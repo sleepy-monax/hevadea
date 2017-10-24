@@ -4,9 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using OpenTK;
+using OpenTK.Graphics;
+using OpenTK.Graphics.ES30;
+
 namespace WorldOfImagination.Framework
 {
-    class Host
+    public class Host
     {
+        Game HostedGame;
+        GameWindow GameWindow;
+
+        public Host(Game hostedGame, int windowWidth = 800, int windowHeight = 600)
+        {
+            HostedGame = hostedGame;
+            HostedGame.Host = this;
+            GameWindow = new GameWindow(windowWidth, windowHeight);
+            GameWindow.RenderFrame += DrawHandle;
+            GameWindow.UpdateFrame += UpdateHandle;
+            GameWindow.Load += LoadHandle;
+            GameWindow.Closing += ExitHandle;
+        }
+        private void LoadHandle(object sender, EventArgs e)
+        {HostedGame.OnLoad();}
+        private void DrawHandle(object sender, FrameEventArgs e)
+        {HostedGame.OnDraw(); GameWindow.SwapBuffers();}
+        private void UpdateHandle(object sender, FrameEventArgs e)
+        {HostedGame.OnUpdate(e.Time);}
+        private void ExitHandle(object sender, EventArgs e)
+        {HostedGame.OnExit();}
+        public void Run()
+        {
+            GameWindow.Run();
+        }
+
+        public void Clear(Color4 clearColor)
+        {
+            GL.ClearColor(clearColor);
+            GL.Clear(ClearBufferMask.ColorBufferBit  | ClearBufferMask.DepthBufferBit);
+        }
     }
 }

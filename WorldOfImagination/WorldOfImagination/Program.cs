@@ -1,5 +1,8 @@
 ﻿using System;
-
+using OpenTK;
+using OpenTK.Graphics;
+using OpenTK.Graphics.ES30;
+using WorldOfImagination.Framework;
 
 namespace WorldOfImagination
 {
@@ -7,7 +10,7 @@ namespace WorldOfImagination
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello world!");
+            new Host(new WorldOfImagination()).Run();
         }
     }
 }

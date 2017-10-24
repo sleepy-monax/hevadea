@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/*.config": true,
+        "**/obj": true,
+        "**/bin": true,
+        "**/packages": true,
+        "**/.vscode": false,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    }
+}

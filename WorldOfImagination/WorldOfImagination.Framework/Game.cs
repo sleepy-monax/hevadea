@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace WorldOfImagination.Framework
 {
-    class Game
+    public abstract class Game
     {
+        public Host Host;
+        public abstract void OnLoad();
+        public abstract void OnExit();
+        public abstract void OnUpdate(double deltaTime);
+        public abstract void OnDraw();
     }
+
+
 }
