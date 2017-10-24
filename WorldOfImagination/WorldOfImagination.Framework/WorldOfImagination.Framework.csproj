@@ -44,10 +44,14 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debbuger.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Graphics\ShaderCode.cs" />
+    <Compile Include="Graphics\ShaderProgram.cs" />
     <Compile Include="Graphics\Texture.cs" />
     <Compile Include="Graphics\Transform.cs" />
     <Compile Include="Host.cs" />
+    <Compile Include="Json.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
