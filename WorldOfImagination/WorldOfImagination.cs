@@ -36,7 +36,7 @@ namespace WorldOfImagination
 
         public override void OnLoad()
         {
-            test = Texture.LoadFromFile("test.png");
+            test = Texture.LoadFromFile("Ressources/test.png");
             v = new VertexArray(4);
             v.SetIndecesBuffer(new int[6]{0, 1, 2, 0, 2, 3});
 
