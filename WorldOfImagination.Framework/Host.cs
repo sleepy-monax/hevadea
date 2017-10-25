@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.ES30;
+using System;
 
 namespace WorldOfImagination.Framework
 {
@@ -14,6 +9,9 @@ namespace WorldOfImagination.Framework
     {
         Game HostedGame;
         GameWindow GameWindow;
+
+        public int Width { get { return GameWindow.Width; } }
+        public int Height { get { return GameWindow.Height; } }
 
         public Host(Game hostedGame, int windowWidth = 800, int windowHeight = 600)
         {

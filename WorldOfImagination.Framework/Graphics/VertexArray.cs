@@ -1,4 +1,3 @@
-using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using System.Collections.Generic;
 
@@ -7,15 +6,21 @@ namespace WorldOfImagination.Framework.Graphics
     public class VertexArray
     {
         public readonly int handle;
+
         private List<int> VBOHandles;
         private List<int> Attributes;
         private Vertex[] vertecies;
+
         int[] vertexIndices;
+
         public VertexArray(int size)
         {
             handle = GL.GenVertexArray();   
             vertecies = new Vertex[size];
             vertexIndices = new int[size];
+
+            VBOHandles = new List<int>();
+            Attributes = new List<int>();
         }
 
         public Vertex this[int i]

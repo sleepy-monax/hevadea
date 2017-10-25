@@ -6,35 +6,24 @@ namespace WorldOfImagination.Framework.Graphics
     {
         public Vector3  Translate   { get; set; }
         public Vector3  Rotation    { get; set; }
-        public float    Scale       { get; set; } = 1f;
+        public Vector3    Scale       { get; set; } = Vector3.Zero;
 
-        public Transform(Vector3 translate, Vector3 rotation, float scale)
+        public Transform(Vector3 translate, Vector3 rotation, Vector3 scale)
         {
             Translate = translate;
             Rotation = rotation;
             Scale = scale;
         }
 
-        public Transform(Vector3 translate, Vector3 rotation)
-        {
-            Translate = translate;
-            Rotation = rotation;
-        }
 
-        public Transform(Vector3 translate, float scale)
+        public Transform(Vector3 translate, Vector3 scale)
         {
             Translate = translate;
             Rotation = Vector3.Zero;
             Scale = scale;
         }
 
-        public Transform(Vector3 translate)
-        {
-            Translate = translate;
-            Rotation = Vector3.Zero;
-        }
-
-        Matrix4 GetMatrix()
+        public Matrix4 GetMatrix()
         {
             return Matrix4.Identity *
                    Matrix4.CreateScale(Scale) * 

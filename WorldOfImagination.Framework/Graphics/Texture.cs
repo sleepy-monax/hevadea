@@ -1,6 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace WorldOfImagination.Framework.Graphics
 {
@@ -8,8 +9,8 @@ namespace WorldOfImagination.Framework.Graphics
     {
         public string Name { get; set; }
         private int Handle { get; set; } = -1;
-        private int Width { get; set; } = 0;
-        private int Height { get; set; } = 0;
+        public int Width { get; set; } = 0;
+        public int Height { get; set; } = 0;
 
         public Texture(string name, int handle, int width, int height)
         {
@@ -33,6 +34,11 @@ namespace WorldOfImagination.Framework.Graphics
 
         public static Texture LoadFromFile(string fileName, bool UseLinearFiletering = false)
         {
+            if (!File.Exists(fileName))
+            {
+                throw new FileNotFoundException();
+            }
+
             Bitmap bitmap = new Bitmap(fileName);
 
             int handle = GL.GenTexture();
@@ -57,7 +63,7 @@ namespace WorldOfImagination.Framework.Graphics
                 
             }
 
-            return new Texture(fileName, handle, bitmap.Height, bitmap.Width);
+            return new Texture(fileName, handle, bitmap.Width, bitmap.Height);
         }
     }
 }
