@@ -13,7 +13,7 @@ namespace WorldOfImagination.Framework
         public int Width { get { return GameWindow.Width; } }
         public int Height { get { return GameWindow.Height; } }
 
-        public Host(Game hostedGame, int windowWidth = 800, int windowHeight = 600)
+        public Host(Game hostedGame, int windowWidth = 800, int windowHeight = 600, string title = "World Of Imagination Framework Window")
         {
             HostedGame = hostedGame;
             HostedGame.Host = this;
@@ -23,6 +23,8 @@ namespace WorldOfImagination.Framework
             GameWindow.Load += LoadHandle;
             GameWindow.Closing += ExitHandle;
             GameWindow.Resize += ResizeHandle;
+            GameWindow.Title = title;
+            Console.Title = title;
         }
         private void LoadHandle(object sender, EventArgs e)
         { HostedGame.OnLoad(); }
@@ -34,8 +36,16 @@ namespace WorldOfImagination.Framework
         { HostedGame.OnExit(); }
         private void ResizeHandle(object sender, EventArgs e)
         { GL.Viewport(0, 0, GameWindow.Width, GameWindow.Height); }
+
         public void Run()
         {
+            Debugger.WriteLog("Game host created...", LogType.Info, nameof(Host));
+            Debugger.WriteLog("GL Renderer: " + GL.GetString(StringName.Renderer), LogType.Info, nameof(Host));
+            Debugger.WriteLog("GL Vendor:   " + GL.GetString(StringName.Vendor), LogType.Info, nameof(Host));
+            Debugger.WriteLog("GL Shader Version: " + GL.GetString(StringName.ShadingLanguageVersion), LogType.Info, nameof(Host));
+            Debugger.WriteLog("GL Version: " + GL.GetString(StringName.Version), LogType.Info, nameof(Host));
+            //Debugger.WriteLog("GL Extensions: " + GL.GetString(StringName.Extensions), LogType.Info, nameof(Host));
+
             GameWindow.Run();
         }
 

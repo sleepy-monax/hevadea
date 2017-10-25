@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graphics\Camera.cs" />
+    <Compile Include="Graphics\ShaderPreprocessor.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="Host.cs" />

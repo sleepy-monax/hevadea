@@ -10,6 +10,9 @@ namespace WorldOfImagination.Framework
 
         public static void WriteLog(string text, LogType logMessageType, string senderName)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write($"[{DateTime.Now}] ");
+
             switch (logMessageType)
             {
                 case LogType.Info:
@@ -29,7 +32,9 @@ namespace WorldOfImagination.Framework
                     break;
             }
 
-            Console.WriteLine($"[{logMessageType.ToString()}] {senderName}: {text}");
+            Console.Write($"[{logMessageType.ToString()}] {senderName}: ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine(text);
             OnLogOutput?.Invoke($"[{logMessageType.ToString()}] {senderName}: {text}");
         }
     }

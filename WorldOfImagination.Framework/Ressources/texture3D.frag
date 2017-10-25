@@ -1,5 +1,8 @@
-#version 320 es
+#version 400 core
+
+#ifdef GL_ES
 precision mediump float;
+#endif
 
 layout(binding = 0) uniform sampler2D material_texture;
 
