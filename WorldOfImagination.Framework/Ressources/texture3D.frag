@@ -1,4 +1,5 @@
-#version 400 core
+#version 320 es
+precision mediump float;
 
 layout(binding = 0) uniform sampler2D material_texture;
 

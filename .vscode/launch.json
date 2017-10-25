@@ -8,8 +8,8 @@
             "name": "Launch",
             "type": "mono",
             "request": "launch",
-            "program": "${workspaceRoot}/WorldOfImagination/bin/Debug/WorldOfImagination.exe",
-            "cwd": "${workspaceRoot}"
+            "program":  "${workspaceRoot}/WorldOfImagination/bin/Debug/WorldOfImagination.exe",
+            "cwd":      "${workspaceRoot}/WorldOfImagination/bin/Debug/"
         },
         {
             "name": "Attach",
