@@ -4,9 +4,9 @@ namespace WorldOfImagination.Framework.Graphics
 {
     public class Transform
     {
-        public Vector3 Translate { get; set; }
-        public Vector3 Rotation { get; set; }
-        public float Scale { get; set; } = 1f;
+        public Vector3  Translate   { get; set; }
+        public Vector3  Rotation    { get; set; }
+        public float    Scale       { get; set; } = 1f;
 
         public Transform(Vector3 translate, Vector3 rotation, float scale)
         {

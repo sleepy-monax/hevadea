@@ -5,8 +5,9 @@
 
         static string vertexShader =
 @"#version 330
-layout (location = 0) in vec2 vert;
-layout (location = 1) in vec2 _uv;
+layout (location = 0) in vec3 vert;
+layout (location = 1) in vec3 _uv;
+uniform mat4 transform;
 out vec2 uv;
 void main()
 {

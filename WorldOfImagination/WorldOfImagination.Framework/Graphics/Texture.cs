@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace WorldOfImagination.Framework.Graphics.OpenGL
+namespace WorldOfImagination.Framework.Graphics
 {
     public class Texture
     {
