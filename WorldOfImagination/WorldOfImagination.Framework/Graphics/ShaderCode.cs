@@ -3,7 +3,7 @@
     public static class ShaderCode
     {
 
-        static string vertexShader =
+        public static string vertexShader =
 @"#version 330
 layout (location = 0) in vec3 vert;
 layout (location = 1) in vec3 _uv;
@@ -15,7 +15,7 @@ void main()
     gl_Position = vec4(vert.x / 720.0 - 1.0, vert.y / 405.0 - 1.0, 0.0, 1.0);
 }";
 
-        static string fragmentShader =
+        public static string fragmentShader =
 @"#version 330
 out vec4 color;
 in vec2 uv;

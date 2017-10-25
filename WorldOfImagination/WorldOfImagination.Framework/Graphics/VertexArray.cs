@@ -54,7 +54,6 @@ namespace WorldOfImagination.Framework.Graphics
         {
             List<float> vertexPositionData = new List<float>();
             List<float> vertexTextureCoordinate = new List<float>();
-            List<float> vertexNormals = new List<float>();
 
             foreach (var v in vertecies)
             {
@@ -69,7 +68,6 @@ namespace WorldOfImagination.Framework.Graphics
             SetIndecesBuffer(vertexIndices);
             StoreAttribute(0, vertexPositionData.ToArray(), 3);
             StoreAttribute(1, vertexTextureCoordinate.ToArray(), 2);
-            StoreAttribute(2, vertexNormals.ToArray(), 3);
         }
         public void Bind()
         {
