@@ -16,7 +16,9 @@ namespace WorldOfImagination
         public override void OnDraw()
         {
             GL.Enable(EnableCap.DepthTest);
-            Host.Clear(Color4.Black);
+            GL.Enable(EnableCap.Blend);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+            Host.Clear(Color4.Gray);
             v.Bind();
             test.Bind(0);
             p.Use();

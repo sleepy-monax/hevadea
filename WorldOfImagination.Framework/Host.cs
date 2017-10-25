@@ -24,16 +24,22 @@ namespace WorldOfImagination.Framework
             GameWindow.Closing += ExitHandle;
             GameWindow.Resize += ResizeHandle;
             GameWindow.Title = title;
+            GameWindow.WindowState = WindowState.Fullscreen;
             Console.Title = title;
         }
+
         private void LoadHandle(object sender, EventArgs e)
         { HostedGame.OnLoad(); }
+
         private void DrawHandle(object sender, FrameEventArgs e)
         { HostedGame.OnDraw(); GameWindow.SwapBuffers(); }
+
         private void UpdateHandle(object sender, FrameEventArgs e)
         { HostedGame.OnUpdate(e.Time); }
+
         private void ExitHandle(object sender, EventArgs e)
         { HostedGame.OnExit(); }
+
         private void ResizeHandle(object sender, EventArgs e)
         { GL.Viewport(0, 0, GameWindow.Width, GameWindow.Height); }
 
