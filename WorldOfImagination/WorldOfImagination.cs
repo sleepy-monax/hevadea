@@ -1,7 +1,5 @@
 using OpenTK;
 using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL4;
-using System.IO;
 using WorldOfImagination.Framework;
 using WorldOfImagination.Framework.Graphics;
 
@@ -9,27 +7,15 @@ namespace WorldOfImagination
 {
     public class WorldOfImagination : Game
     {
-        Texture test; 
-        VertexArray v ;
-        ShaderProgram p;
-        Camera c;
-        public override void OnDraw()
+        Texture MakerLogo; 
+        Camera Camera;
+        Draw Draw;
+
+        public override void OnLoad()
         {
-            Host.Clear(Color4.Gray);
-            
-            GL.Enable(EnableCap.DepthTest);
-            GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-            v.Bind();
-            test.Bind(0);
-            p.Use();
-            p.SetUniformVariable("view", c.GetViewMatrix());
-            p.SetUniformVariable("projection", c.GetProjectionMatrix());
-            p.SetUniformVariable("transform", new Transform(new Vector3(-test.Width / 2, test.Height / 2, 0), Vector3.Zero, new Vector3(test.Width, test.Height, 1)).GetMatrix());
-            //GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-            GL.DrawElements(BeginMode.Triangles, 6, DrawElementsType.UnsignedInt, 0);
-            p.Stop();
-            v.Unbind();   
+            Camera = new Camera(Host);
+            MakerLogo = Texture.LoadFromFile("Ressources/MakerLogo.png");
+            Draw = new Draw();
         }
 
         public override void OnExit()
@@ -37,22 +23,22 @@ namespace WorldOfImagination
             
         }
 
-        public override void OnLoad()
+        Vector3 rot;
+
+        public override void OnDraw()
         {
-            test = Texture.LoadFromFile("Ressources/test.png");
-            v = new VertexArray(4);
-            v.SetIndecesBuffer(new int[6]{0, 1, 2, 0, 2, 3});
+            Host.Clear(Color4.Gray);
 
-            v[0] = new Vertex(new Vector3(0f, 0f, -2), new Vector2(0, 0), Color4.White);
-            v[1] = new Vertex(new Vector3(0f, -1f, -2), new Vector2(0, 1), Color4.White);
-            v[2] = new Vertex(new Vector3(1f, -1f, -2), new Vector2(1, 1), Color4.White);
-            v[3] = new Vertex(new Vector3(1f, 0f, -2), new Vector2(1, 0), Color4.White);
+            Draw.Begin(Camera);
 
-            v.Flush();
+            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, rot);
+            //rot.X += 0.01f;
+            //rot.Y += 0.01f;
+            //rot.Z += 0.01f;
 
-            p = new ShaderProgram(File.ReadAllText("Ressources/texture3D.vert"), File.ReadAllText("Ressources/texture3D.frag"));
-            c = new Camera(this.Host);
+            Draw.End();
         }
+
 
         public override void OnUpdate(double deltaTime)
         {

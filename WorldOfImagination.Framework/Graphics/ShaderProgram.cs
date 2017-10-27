@@ -32,7 +32,7 @@ namespace WorldOfImagination.Framework.Graphics
 
         private Dictionary<string, int> UniformVariableHandleCache = new Dictionary<string, int>();
 
-        public ShaderProgram(string vertexShaderCode, string fragmentShaderCode, string glslVersion = "320 es")
+        public ShaderProgram(string vertexShaderCode, string fragmentShaderCode, string glslVersion = "400 core")
         {
             Handle = GL.CreateProgram();
             VertexShaderHandle = BuildShader(ShaderPreprocessor.Process(vertexShaderCode, glslVersion), ShaderType.VertexShader);
@@ -122,6 +122,12 @@ namespace WorldOfImagination.Framework.Graphics
         {
             int uniformHandle = GetUniformVariable(name);
             GL.Uniform1(uniformHandle, value);
+        }
+
+        internal void SetUniformVariable(string name, Vector2 value)
+        {
+            int uniformHandle = GetUniformVariable(name);
+            GL.Uniform2(uniformHandle, value);
         }
 
         public void SetUniformVariable(string name, Vector3 vec)

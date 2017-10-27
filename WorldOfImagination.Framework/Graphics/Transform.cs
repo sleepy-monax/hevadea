@@ -8,6 +8,8 @@ namespace WorldOfImagination.Framework.Graphics
         public Vector3  Rotation    { get; set; }
         public Vector3    Scale       { get; set; } = Vector3.Zero;
 
+        public static Transform Unit { get { return new Transform(Vector3.Zero, Vector3.Zero, Vector3.One); } }
+
         public Transform(Vector3 translate, Vector3 rotation, Vector3 scale)
         {
             Translate = translate;
@@ -25,11 +27,11 @@ namespace WorldOfImagination.Framework.Graphics
 
         public Matrix4 GetMatrix()
         {
-            return Matrix4.Identity *
-                   Matrix4.CreateScale(Scale) * 
-                   Matrix4.CreateRotationX(Rotation.X) * 
-                   Matrix4.CreateRotationY(Rotation.Y) * 
-                   Matrix4.CreateRotationZ(Rotation.Z) * 
+
+            return Matrix4.CreateScale(Scale) * 
+                   Matrix4.CreateRotationX(Rotation.X) *
+                   Matrix4.CreateRotationY(Rotation.Y) *
+                   Matrix4.CreateRotationZ(Rotation.Z) *
                    Matrix4.CreateTranslation(Translate);
         }
     }

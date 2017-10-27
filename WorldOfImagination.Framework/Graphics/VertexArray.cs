@@ -8,6 +8,7 @@ namespace WorldOfImagination.Framework.Graphics
         public readonly int handle;
 
         private List<int> VBOHandles;
+        private Dictionary<int, int> VBOBinding;
         private List<int> Attributes;
         private Vertex[] vertecies;
 
@@ -20,6 +21,7 @@ namespace WorldOfImagination.Framework.Graphics
             vertexIndices = new int[size];
 
             VBOHandles = new List<int>();
+            VBOBinding = new Dictionary<int, int>();
             Attributes = new List<int>();
         }
 
@@ -44,15 +46,27 @@ namespace WorldOfImagination.Framework.Graphics
         }
         private void StoreAttribute(int AttributeIndex, float[] data, int size = 3)
         {
-            Attributes.Add(AttributeIndex);
-            GL.BindVertexArray(handle);
-            int VBO = GL.GenBuffer();
-            VBOHandles.Add(VBO);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
-            GL.BufferData(BufferTarget.ArrayBuffer, data.Length * sizeof(float), data, BufferUsageHint.DynamicDraw);
-            GL.VertexAttribPointer(AttributeIndex, size, VertexAttribPointerType.Float, false, 0, 0);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-            GL.BindVertexArray(0);
+            int VBO;
+
+            if (!VBOBinding.ContainsKey(AttributeIndex))
+            {
+                Attributes.Add(AttributeIndex);
+                GL.BindVertexArray(handle);
+                VBO = GL.GenBuffer();
+                VBOHandles.Add(VBO);
+                VBOBinding.Add(AttributeIndex, VBO);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
+                GL.BufferData(BufferTarget.ArrayBuffer, data.Length * sizeof(float), data, BufferUsageHint.DynamicDraw);
+                GL.VertexAttribPointer(AttributeIndex, size, VertexAttribPointerType.Float, false, 0, 0);
+                GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+                GL.BindVertexArray(0);
+            }
+            else
+            {
+                VBO = VBOBinding[AttributeIndex];
+            }
+
+
         }
         
         public void Flush()

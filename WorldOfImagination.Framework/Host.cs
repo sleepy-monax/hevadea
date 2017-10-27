@@ -24,7 +24,6 @@ namespace WorldOfImagination.Framework
             GameWindow.Closing += ExitHandle;
             GameWindow.Resize += ResizeHandle;
             GameWindow.Title = title;
-            GameWindow.WindowState = WindowState.Fullscreen;
             Console.Title = title;
         }
 

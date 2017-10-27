@@ -55,19 +55,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graphics\Camera.cs" />
+    <Compile Include="Graphics\Draw.cs" />
     <Compile Include="Graphics\ShaderPreprocessor.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Debbuger.cs" />
+    <Compile Include="Primitive\Rectangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graphics\VertexArray.cs" />
     <Compile Include="Graphics\Vertex.cs" />
     <Compile Include="Graphics\Transform.cs" />
     <Compile Include="Graphics\Texture.cs" />
     <Compile Include="Graphics\ShaderProgram.cs" />
-    <Compile Include="Graphics\RenderBatch.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,7 +82,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ressources\test.png">
+    <None Include="Ressources\MakerLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

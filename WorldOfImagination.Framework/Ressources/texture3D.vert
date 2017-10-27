@@ -12,12 +12,15 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform mat4 transform;
 
+uniform vec2 tile_position;
+uniform vec2 tile_size;
+
 out vec2 pass_texture;
 out vec4 pass_color;
 
 void main(void)
 {
-	pass_texture 	= texture;
+	pass_texture 	= tile_position + (texture * tile_size);
 	pass_color 		= color;
 
 	vec4 world_position = transform * vec4(vertex, 1.0);

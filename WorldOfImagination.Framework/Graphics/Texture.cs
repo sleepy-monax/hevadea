@@ -12,6 +12,8 @@ namespace WorldOfImagination.Framework.Graphics
         public int Width { get; set; } = 0;
         public int Height { get; set; } = 0;
 
+        public Primitive.Rectangle Rectangle { get { return new Primitive.Rectangle(0, 0, Width, Height); } }
+
         public Texture(string name, int handle, int width, int height)
         {
             Name = name;
