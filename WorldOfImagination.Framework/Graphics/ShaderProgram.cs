@@ -32,11 +32,11 @@ namespace WorldOfImagination.Framework.Graphics
 
         private Dictionary<string, int> UniformVariableHandleCache = new Dictionary<string, int>();
 
-        public ShaderProgram(string vertexShaderCode, string fragmentShaderCode)
+        public ShaderProgram(string vertexShaderCode, string fragmentShaderCode, string glslVersion = "320 es")
         {
             Handle = GL.CreateProgram();
-            VertexShaderHandle = BuildShader(vertexShaderCode, ShaderType.VertexShader);
-            FragmentShaderHandle = BuildShader(fragmentShaderCode, ShaderType.FragmentShader);
+            VertexShaderHandle = BuildShader(ShaderPreprocessor.Process(vertexShaderCode, glslVersion), ShaderType.VertexShader);
+            FragmentShaderHandle = BuildShader(ShaderPreprocessor.Process(fragmentShaderCode, glslVersion), ShaderType.FragmentShader);
 
             GL.AttachShader(Handle, VertexShaderHandle);
             GL.AttachShader(Handle, FragmentShaderHandle);

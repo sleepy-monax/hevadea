@@ -3,41 +3,9 @@
     public static class ShaderPreprocessor
     {
 
-        public static string Process(string shaderCode, string[] defs)
+        public static string Process(string shaderCode, string glslVersion)
         {
-            string newCode = "";
-            string tempBuffer = "";
-            bool useTemBuffer = false;
-
-            foreach (var c in shaderCode)
-            {
-                if (c == '#')
-                {
-                    useTemBuffer = true;
-                }
-
-                if (useTemBuffer)
-                {
-                    tempBuffer += c;
-                }
-                else
-                {
-                    newCode += c;
-                }
-
-                if (tempBuffer == "#ifdef")
-                {
-
-                }
-                else if (tempBuffer == "#else")
-                {
-
-                }
-                else if (tempBuffer == "#endif")
-                {
-
-                }
-            }
+            string newCode = shaderCode.Replace("%glslVersion%", glslVersion);
 
             return newCode;
         }

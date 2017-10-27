@@ -15,10 +15,11 @@ namespace WorldOfImagination
         Camera c;
         public override void OnDraw()
         {
+            Host.Clear(Color4.Gray);
+            
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-            Host.Clear(Color4.Gray);
             v.Bind();
             test.Bind(0);
             p.Use();
