@@ -317,7 +317,7 @@ namespace WorldOfImagination.Framework
     //- Outputs JSON structures from an object
     //- Really simple API (new List<int> { 1, 2, 3 }).ToJson() == "[1,2,3]"
     //- Will only output public fields and property getters on objects
-    public static class JSONWriter
+    public static class JsonWriter
     {
         public static string ToJson(this object item)
         {

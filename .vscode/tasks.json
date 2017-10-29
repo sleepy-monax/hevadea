@@ -7,15 +7,14 @@
             "taskName": "build",
             "type": "process",
             "command": "xbuild",
-            "args": [
-                // Ask msbuild to generate full paths for file names.
-            ],
-            "group": "build",
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "presentation": {
-                // Reveal the output only if unrecognized errors occur.
                 "reveal": "silent"
             },
-            // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
         }
     ]

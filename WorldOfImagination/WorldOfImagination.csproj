@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
-    <Compile Include="WorldOfImagination.cs"/>
+    <Compile Include="WorldOfImagination.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +59,7 @@
       <Project>{da8b3408-de10-4305-915b-83610c93bc32}</Project>
       <Name>WorldOfImagination.Framework</Name>
     </ProjectReference>
+    <Content Include="World\Chunk.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

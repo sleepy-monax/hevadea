@@ -17,8 +17,8 @@ namespace WorldOfImagination.Framework.Graphics
 
         public Matrix4 GetProjectionMatrix()
         {
-            //return Matrix4.CreatePerspectiveFieldOfView(1f, Host.Width / Host.Height, 0.1f, 1000f);
-            return Matrix4.CreateOrthographic(Host.Width / 100f, Host.Height / 100f, 0.1f, 1000f);
+            return Matrix4.CreatePerspectiveFieldOfView(1f, Host.Width / Host.Height, 0.1f, 1000f);
+            //return Matrix4.CreateOrthographic(Host.Width / 100f, Host.Height / 100f, 0.1f, 1000f);
         }
 
         public Matrix4 GetViewMatrix()

@@ -31,10 +31,10 @@ namespace WorldOfImagination
 
             Draw.Begin(Camera);
 
-            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, rot);
-            //rot.X += 0.01f;
-            //rot.Y += 0.01f;
-            //rot.Z += 0.01f;
+            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, rot, new Vector3(0.5f, -0.5f, 0f));
+            rot.X += 0.010f;
+            rot.Y += 0.010f;
+            // rot.Z += 0.010f;
 
             Draw.End();
         }
