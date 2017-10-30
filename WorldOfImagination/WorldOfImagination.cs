@@ -11,12 +11,14 @@ namespace WorldOfImagination
         Texture MakerLogo; 
         Camera Camera;
         Draw Draw;
+        Input Input;
 
         public override void OnLoad()
         {
             Camera = new Camera(Host);
             MakerLogo = Texture.LoadFromFile("Ressources/MakerLogo.png");
             Draw = new Draw();
+            Input = new Input();
         }
 
         public override void OnExit()
@@ -41,10 +43,9 @@ namespace WorldOfImagination
             Draw.End();
         }
 
-
-        public override void OnUpdate(double deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
-            
+            Input.Update(deltaTime);
         }
     }
 }

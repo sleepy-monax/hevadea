@@ -11,7 +11,7 @@ namespace WorldOfImagination.Framework
         public Host Host;
         public abstract void OnLoad();
         public abstract void OnExit();
-        public abstract void OnUpdate(double deltaTime);
+        public abstract void OnUpdate(float deltaTime);
         public abstract void OnDraw();
     }
 

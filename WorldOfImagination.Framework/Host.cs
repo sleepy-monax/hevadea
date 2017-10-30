@@ -34,7 +34,7 @@ namespace WorldOfImagination.Framework
         { HostedGame.OnDraw(); GameWindow.SwapBuffers(); }
 
         private void UpdateHandle(object sender, FrameEventArgs e)
-        { HostedGame.OnUpdate(e.Time); }
+        { HostedGame.OnUpdate((float)e.Time); }
 
         private void ExitHandle(object sender, EventArgs e)
         { HostedGame.OnExit(); }

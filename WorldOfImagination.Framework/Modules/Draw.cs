@@ -14,7 +14,7 @@ namespace WorldOfImagination.Framework.Modules
 
         public Draw()
         {
-            shader  = new ShaderProgram(File.ReadAllText("Ressources/texture3D.vert"), File.ReadAllText("Ressources/texture3D.frag"), "400 core");
+            shader  = new ShaderProgram(File.ReadAllText("Ressources/texture3D.vert"), File.ReadAllText("Ressources/texture3D.frag"), "320 es");
             quad    = new VertexArray(4);
 
             quad.SetIndecesBuffer(new int[6] { 0, 1, 2, 0, 2, 3 });

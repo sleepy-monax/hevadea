@@ -2,6 +2,6 @@ namespace WorldOfImagination.Framework
 {
     public interface IUpdateable
     {
-         void Update();
+         void Update(float deltaTime);
     }
 }

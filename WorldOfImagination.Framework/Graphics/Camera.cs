@@ -8,16 +8,22 @@ namespace WorldOfImagination.Framework.Graphics
         public float Pitch { get; set; } = 0f;
         public float Yaw { get; set; } = 0f;
         public float Roll { get; set; } = 0f;
+        public float FOV {get; set;}
+        public bool UsePerspective = false;
 
         Host Host;
-        public Camera(Host host)
+        public Camera(Host host, bool usePerspective = false, float fov = 1f)
         {
             Host = host;
+            UsePerspective = usePerspective;
+            FOV = fov;
         }
 
         public Matrix4 GetProjectionMatrix()
         {
-            return Matrix4.CreatePerspectiveFieldOfView(1f, (float)Host.Width / (float)Host.Height, 0.1f, 1000f);
+            if (UsePerspective)
+                return Matrix4.CreatePerspectiveFieldOfView(FOV, (float)Host.Width / (float)Host.Height, 0.1f, 1000f);
+            
             return Matrix4.CreateOrthographic(Host.Width / 100f, Host.Height / 100f, 0.1f, 1000f);
         }
 
