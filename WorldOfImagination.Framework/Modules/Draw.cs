@@ -14,7 +14,7 @@ namespace WorldOfImagination.Framework.Modules
 
         public Draw()
         {
-            shader  = new ShaderProgram(File.ReadAllText("Ressources/texture3D.vert"), File.ReadAllText("Ressources/texture3D.frag"), "320 es");
+            shader  = new ShaderProgram(File.ReadAllText("Ressources/texture3D.vert"), File.ReadAllText("Ressources/texture3D.frag"), "400 core");
             quad    = new VertexArray(4);
 
             quad.SetIndecesBuffer(new int[6] { 0, 1, 2, 0, 2, 3 });
@@ -37,6 +37,11 @@ namespace WorldOfImagination.Framework.Modules
             shader.Use();
             shader.SetUniformVariable("view", camera.GetViewMatrix());
             shader.SetUniformVariable("projection", camera.GetProjectionMatrix());
+        }
+
+        public void Texture(Texture texture, Rectangle sourceRectangle, Rectangle destinationRectangle)
+        {
+            Texture(texture, sourceRectangle, destinationRectangle, Vector3.Zero, Vector3.Zero);
         }
 
         public void Texture(Texture texture, Rectangle sourceRectangle, Rectangle destinationRectangle, Vector3 rotation, Vector3 origine)

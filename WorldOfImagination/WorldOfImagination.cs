@@ -1,5 +1,6 @@
 using OpenTK;
 using OpenTK.Graphics;
+using OpenTK.Input;
 using WorldOfImagination.Framework;
 using WorldOfImagination.Framework.Graphics;
 using WorldOfImagination.Framework.Modules;
@@ -23,7 +24,7 @@ namespace WorldOfImagination
 
         public override void OnExit()
         {
-            
+           
         }
 
         Vector3 rot;
@@ -34,11 +35,11 @@ namespace WorldOfImagination
 
             Draw.Begin(Camera);
 
-            // Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, Vector3.Zero, new Vector3(0.5f, 0.5f, 0f));
+            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, Vector3.Zero, new Vector3(0.5f, 0.5f, 0f));
             Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, rot, new Vector3(0.5f, 0.5f, 0f));
-            rot.X += 0.01f;
+            // rot.X += 0.01f;
             rot.Y += 0.01f;
-            rot.Z += 0.01f;
+            // rot.Z += 0.01f;
 
             Draw.End();
         }
@@ -46,6 +47,7 @@ namespace WorldOfImagination
         public override void OnUpdate(float deltaTime)
         {
             Input.Update(deltaTime);
+            Camera.UsePerspective = Input.IsKeyboardKeyDown(Key.Space);
         }
     }
 }
