@@ -2,9 +2,10 @@
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using System.IO;
+using WorldOfImagination.Framework.Graphics;
 using WorldOfImagination.Framework.Primitive;
 
-namespace WorldOfImagination.Framework.Graphics
+namespace WorldOfImagination.Framework.Modules
 {
     public class Draw
     {
@@ -13,15 +14,15 @@ namespace WorldOfImagination.Framework.Graphics
 
         public Draw()
         {
-            shader  = new ShaderProgram(File.ReadAllText("Ressources/texture3D.vert"), File.ReadAllText("Ressources/texture3D.frag"));
+            shader  = new ShaderProgram(File.ReadAllText("Ressources/texture3D.vert"), File.ReadAllText("Ressources/texture3D.frag"), "400 core");
             quad    = new VertexArray(4);
 
             quad.SetIndecesBuffer(new int[6] { 0, 1, 2, 0, 2, 3 });
 
-            quad[0] = new Vertex(new Vector3(0f, 0f, 0), new Vector2(0, 0), Color4.White);
-            quad[1] = new Vertex(new Vector3(0f, -1f, 0), new Vector2(0, 1), Color4.White);
-            quad[2] = new Vertex(new Vector3(1f, -1f, 0), new Vector2(1, 1), Color4.White);
-            quad[3] = new Vertex(new Vector3(1f, 0f, 0), new Vector2(1, 0), Color4.White);
+            quad[0] = new Vertex(new Vector3(0f, 1f, 0), new Vector2(0, 0), Color4.White);
+            quad[1] = new Vertex(new Vector3(0f, 0f, 0), new Vector2(0, 1), Color4.White);
+            quad[2] = new Vertex(new Vector3(1f, 0f, 0), new Vector2(1, 1), Color4.White);
+            quad[3] = new Vertex(new Vector3(1f, 1f, 0), new Vector2(1, 0), Color4.White);
 
             quad.Flush();
         }
