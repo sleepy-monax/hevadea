@@ -44,11 +44,28 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+
+  <!-- Source files -->
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="WorldOfImagination.cs" />
+    <Compile Include="World\Chunk.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+
+  <!-- Ressource files-->
+  <ItemGroup>
+    <None Include="Ressources\alagard.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Ressources\romulus.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Ressources\Licence.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <ItemGroup>
     <None Include="App.config" />
     <None Include="OpenTK.dll.config" />
@@ -59,7 +76,6 @@
       <Project>{da8b3408-de10-4305-915b-83610c93bc32}</Project>
       <Name>WorldOfImagination.Framework</Name>
     </ProjectReference>
-    <Content Include="World\Chunk.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

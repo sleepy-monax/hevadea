@@ -29,6 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <!-- References -->
   <ItemGroup>
     <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
@@ -43,16 +44,24 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
+  <!-- Ressources files -->
   <ItemGroup>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
-    <None Include="Ressources\texture3D.frag">
+    <None Include="Ressources\common.vert">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Ressources\texture3D.vert">
+    <None Include="Ressources\texture.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Ressources\color.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Ressources\MakerLogo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <!-- Sources files -->
   <ItemGroup>
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Modules\Draw.cs" />
@@ -70,6 +79,8 @@
     <Compile Include="Graphics\Transform.cs" />
     <Compile Include="Graphics\Texture.cs" />
     <Compile Include="Graphics\ShaderProgram.cs" />
+    <Compile Include="Graphics\Font.cs" />
+    <Compile Include="Graphics\Gliph.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,11 +92,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Ressources\MakerLogo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,7 @@ using OpenTK.Input;
 using WorldOfImagination.Framework;
 using WorldOfImagination.Framework.Graphics;
 using WorldOfImagination.Framework.Modules;
+using WorldOfImagination.Framework.Primitive;
 
 namespace WorldOfImagination
 {
@@ -27,7 +28,9 @@ namespace WorldOfImagination
            
         }
 
-        Vector3 rot;
+        float rotx = 0f;
+        float roty = 0f;
+        float rotz = 0f;
 
         public override void OnDraw()
         {
@@ -35,12 +38,13 @@ namespace WorldOfImagination
 
             Draw.Begin(Camera);
 
-            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, Vector3.Zero, new Vector3(0.5f, 0.5f, 0f));
-            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, rot, new Vector3(0.5f, 0.5f, 0f));
-            // rot.X += 0.01f;
-            rot.Y += 0.01f;
-            // rot.Z += 0.01f;
-
+            Draw.Rectangle(false, new Rectangle(0, 0, 200, 200), Color4.Red, Transform.Unit);
+            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, new Vector3(rotx, 0, 0), new Vector3(0.5f, 0.5f, 0f));
+            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, new Vector3(0, roty, 0), new Vector3(0.5f, 0.5f, 0f));
+            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, new Vector3(0, 0, rotz), new Vector3(0.5f, 0.5f, 0f));
+            rotx += 0.01f;
+            roty += 0.01f;
+            rotz += 0.01f;
             Draw.End();
         }
 

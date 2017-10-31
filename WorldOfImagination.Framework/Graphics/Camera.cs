@@ -29,7 +29,7 @@ namespace WorldOfImagination.Framework.Graphics
 
         public Matrix4 GetViewMatrix()
         {
-            Vector3 AntiCamPosition = new Vector3(-Position.X, -Position.Y, -Position.Z);
+            Vector3 AntiCamPosition = new Vector3(-Position.X, -Position.Y, -Position.Z - 10);
             return Matrix4.Identity * Matrix4.CreateTranslation(AntiCamPosition) * Matrix4.CreateRotationY(Yaw) * Matrix4.CreateRotationX(Pitch) * Matrix4.CreateRotationZ(Roll);
         }
     }
