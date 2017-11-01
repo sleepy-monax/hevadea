@@ -12,5 +12,13 @@
             Height = height;
             Width = width;
         }
+
+        public bool Colide(Rectangle rectangle)
+        {
+            return  X < rectangle.X + rectangle.Width &&
+                    rectangle.X < X + Width &&
+                    Y < rectangle.Y + rectangle.Height &&
+                    rectangle.Y < Y + Height;
+        }
     }
 }
