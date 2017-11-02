@@ -1,3 +1,4 @@
+using System;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
@@ -35,16 +36,16 @@ namespace WorldOfImagination
         public override void OnDraw()
         {
             Host.Clear(Color4.Gray);
-
+            Camera.Zoom = 0.1f + (float)Math.Abs(Math.Sin(rotz / 10f));
+            Camera.Position = new Vector3(10, 0, 10);
             Draw.Begin(Camera);
 
             Draw.Rectangle(false, new Rectangle(0, 0, 200, 200), Color4.Red, Transform.Unit);
-            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, new Vector3(rotx, 0, 0), new Vector3(0.5f, 0.5f, 0f));
-            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, new Vector3(0, roty, 0), new Vector3(0.5f, 0.5f, 0f));
-            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, new Vector3(0, 0, rotz), new Vector3(0.5f, 0.5f, 0f));
-            rotx += 0.01f;
-            roty += 0.01f;
+            
+            Draw.Texture(MakerLogo, MakerLogo.Rectangle, MakerLogo.Rectangle, new Vector3(0, 0, 0), new Vector3(0.5f, 0.5f, 0f));
+
             rotz += 0.01f;
+            
             Draw.End();
         }
 

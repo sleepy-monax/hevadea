@@ -1,4 +1,6 @@
-﻿namespace WorldOfImagination.Framework.Primitive
+﻿using OpenTK;
+
+namespace WorldOfImagination.Framework.Primitive
 {
     public class Rectangle
     {
@@ -12,7 +14,10 @@
             Height = height;
             Width = width;
         }
-
+        public Vector2 GetCenter()
+        {
+            return new Vector2(X + Width / 2, Y + Height / 2);
+        }
         public bool Colide(Rectangle rectangle)
         {
             return  X < rectangle.X + rectangle.Width &&

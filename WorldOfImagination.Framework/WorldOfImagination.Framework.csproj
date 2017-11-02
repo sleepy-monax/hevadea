@@ -63,6 +63,23 @@
   </ItemGroup>
   <!-- Sources files -->
   <ItemGroup>
+    <Compile Include="Ressources\SpriteSheets\test.json" />
+    <Compile Include="Scripting\ScriptManager.cs" />
+    <Compile Include="Scripting\ScriptException.cs" />
+    <Compile Include="Scripting\CommandPrototype.cs" />
+    <Compile Include="Scripting\Script.cs" />
+    <Compile Include="Scripting\ScriptBlock.cs" />
+    <Compile Include="Scripting\ScriptContext.cs" />
+    <Compile Include="Scripting\ScriptHandler.cs" />
+    <Compile Include="Scripting\ScriptLoader.cs" />
+    <Compile Include="Scripting\ScriptLoaderDefault.cs" />
+    <Compile Include="Scripting\Statement.cs" />
+    <Compile Include="Scripting\Token.cs" />
+    <Compile Include="Scripting\VariableDictionary.cs" />
+    <Compile Include="IDrawable.cs" />
+    <Compile Include="Graphics\SpriteSheets\SpriteSheet.cs" />
+    <Compile Include="Graphics\SpriteSheets\Sprite.cs" />
+    <Compile Include="Graphics\SpriteSheets\SpriteSheetData.cs" />
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Modules\Draw.cs" />
     <Compile Include="Modules\Input.cs" />

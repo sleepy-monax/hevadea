@@ -7,7 +7,7 @@ namespace WorldOfImagination.Framework.Graphics
 
         }
 
-        public static Font GenerateFont()
+        public static Font GenerateFont(string FontName, int Size)
         {
             return null;
         }
