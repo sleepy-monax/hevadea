@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace WorldOfImagination
 {
     /// <summary>
@@ -15,6 +14,8 @@ namespace WorldOfImagination
         {
             using (var game = new WorldOfImaginationGame())
                 game.Run();
+
+
         }
     }
 }

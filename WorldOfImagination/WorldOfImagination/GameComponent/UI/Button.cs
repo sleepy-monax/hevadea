@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WorldOfImagination.GameComponent.UI
 {
-    class Button
+    public class Button
     {
     }
 }

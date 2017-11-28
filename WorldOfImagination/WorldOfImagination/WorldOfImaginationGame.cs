@@ -22,53 +22,33 @@ namespace WorldOfImagination
         public UIManager UI;
 
         public int DrawTime { get; private set; }
-        public int UpdateTime { get; private set; }
-
-        private Stopwatch updateStopwatch;
         private Stopwatch drawStopwatch;
 
         public WorldOfImaginationGame()
         {
-            updateStopwatch = new Stopwatch();
             drawStopwatch = new Stopwatch();
-
             Graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
 
-            Audio = new AudioManager(this)
-                           { UpdateOrder = 0 };
-
-            Input = new InputManager(this)
-                           { UpdateOrder = 1 };
-
-            Network = new NetworkManager(this)
-                           { UpdateOrder = 2 };
-
-
-            Scene = new SceneManager(this)
-            { DrawOrder = 0, UpdateOrder = 3 };
-
-            UI = new UIManager(this)
-            { DrawOrder = 1, UpdateOrder = 4};
-
-            Ressource = new RessourceManager(this)
-                           { UpdateOrder = 5 };
-
-            Debug = new DebugManager(this)
-            { DrawOrder = 2, UpdateOrder = 6 };
-
+            Audio = new AudioManager(this)         { UpdateOrder = 0 };
+            Input = new InputManager(this)         { UpdateOrder = 1 };
+            Network = new NetworkManager(this)     { UpdateOrder = 2 };
+            Scene = new SceneManager(this)         { DrawOrder = 0, UpdateOrder = 3 };
+            UI = new UIManager(this)               { DrawOrder = 1, UpdateOrder = 4};
+            Ressource = new RessourceManager(this) { UpdateOrder = 5 };
+            Debug = new DebugManager(this)         { DrawOrder = 2, UpdateOrder = 6 };
 
             Content.RootDirectory = "Content";
         }
 
         protected override void Initialize()
         {
-            base.Initialize();
-
             this.SetTitle("World Of Imagination");
             this.SetFullScreen();
-            
+
             Scene.Switch(new MainMenu(this));
             Console.WriteLine($"{nameof(WorldOfImaginationGame)} initialized !");
+
+            base.Initialize();
         }
 
         protected override void LoadContent()
@@ -80,7 +60,6 @@ namespace WorldOfImagination
         {
             base.UnloadContent();
         }
-
 
         protected override void Update(GameTime gameTime)
         {
