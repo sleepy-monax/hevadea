@@ -29,6 +29,15 @@ namespace WorldOfImagination.GameComponent
         public bool MouseMiddleClick => newMouseState.MiddleButton == ButtonState.Released
                                      && oldMouseState.MiddleButton == ButtonState.Pressed;
 
+        public bool KeyDown(Keys key)
+        {
+            return newKeyState.IsKeyDown(key);
+        }
+
+        public bool KeyPress(Keys key)
+        {
+            return newKeyState.IsKeyUp(key) && oldKeyState.IsKeyDown(key);
+        }
 
         public override void Initialize()
         {

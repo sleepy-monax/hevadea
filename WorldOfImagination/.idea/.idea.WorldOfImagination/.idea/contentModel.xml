@@ -7,6 +7,10 @@
         <e p="Content" t="Include">
           <e p="Content.mgcb" t="Include" />
         </e>
+        <e p="Entities" t="Include">
+          <e p="Entity.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+        </e>
         <e p="GameComponent" t="Include">
           <e p="Audio" t="Include" />
           <e p="AudioManager.cs" t="Include" />
@@ -20,6 +24,7 @@
           <e p="RessourceManager.cs" t="Include" />
           <e p="Ressources.cs" t="Include" />
           <e p="Scene" t="Include">
+            <e p="GameScene.cs" t="Include" />
             <e p="MainMenu.cs" t="Include" />
             <e p="PlayMenu.cs" t="Include" />
             <e p="Scene.cs" t="Include" />
@@ -48,6 +53,9 @@
           <e p="RectangleF.cs" t="Include" />
           <e p="Screen.cs" t="Include" />
           <e p="SpriteBatchExtension.cs" t="Include" />
+        </e>
+        <e p="World" t="Include">
+          <e p="World.cs" t="Include" />
         </e>
         <e p="WorldOfImagination.csproj" t="IncludeRecursive" />
         <e p="WorldOfImaginationGame.cs" t="Include" />

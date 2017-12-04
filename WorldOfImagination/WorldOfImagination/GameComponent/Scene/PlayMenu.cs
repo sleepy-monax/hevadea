@@ -45,6 +45,7 @@ namespace WorldOfImagination.GameComponent.Scene
             };
             
             backButton.OnMouseClick += BackButtonOnOnMouseClick;
+            newButton.OnMouseClick += NewButtonOnOnMouseClick;
 
             UiRoot.AddChild(menuButtonHost);
             UiRoot.AddChild(gameListHost);
@@ -53,6 +54,11 @@ namespace WorldOfImagination.GameComponent.Scene
             menuButtonHost.AddChild(newButton);
             menuButtonHost.AddChild(deleteButton);
             
+        }
+
+        private void NewButtonOnOnMouseClick(object sender, EventArgs eventArgs)
+        {
+            Game.Scene.Switch(new GameScene(Game));
         }
 
         private void BackButtonOnOnMouseClick(object sender, EventArgs eventArgs)

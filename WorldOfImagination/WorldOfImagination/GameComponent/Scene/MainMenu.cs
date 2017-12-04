@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,7 +23,7 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Load()
         {            
-            UiRoot.Padding = new Padding(192);
+            UiRoot.Padding = new Padding(64, 64, 256, 265);
             Game.IsMouseVisible = true;
             
             var menuButtonHost = new Panel(Game.UI)
@@ -90,6 +91,7 @@ namespace WorldOfImagination.GameComponent.Scene
             sb.DrawString(Game.Ress.alagard, "World Of Imagination", titleRect, Alignement.Center, Style.DropShadow, Color.White);
             sb.DrawString(Game.Ress.romulus, "\n\n\nTale of the foreigner", titleRect, Alignement.Center, Style.Regular, Color.Gold);
             sb.End();
+            
         }
 
         public override void Update(GameTime gameTime)

@@ -75,7 +75,7 @@ namespace WorldOfImagination.GameComponent.UI
         public Dock Dock { get; set; } = Dock.None;
         public LayoutMode Layout { get; set; } = LayoutMode.Dock;
 
-        private List<Control> childs;
+        public readonly List<Control> Childs;
 
         public event OnMouseClickHandler OnMouseClick;
         public delegate void OnMouseClickHandler(object sender, EventArgs e);
@@ -83,17 +83,17 @@ namespace WorldOfImagination.GameComponent.UI
         public Control(UiManager ui)
         {
             UI = ui;
-            childs = new List<Control>();
+            Childs = new List<Control>();
         }
 
         public void AddChild(Control child)
         {
-            childs.Add(child);
+            Childs.Add(child);
         }
         
         public void RemoveChild(Control child)
         {
-            childs.Remove(child);
+            Childs.Remove(child);
         }
 
         public void RefreshLayout()
@@ -104,7 +104,7 @@ namespace WorldOfImagination.GameComponent.UI
             if (Layout == LayoutMode.Dock)
             {
             
-                foreach (var c in childs)
+                foreach (var c in Childs)
                 {
                     
                     switch (c.Dock)
@@ -153,10 +153,10 @@ namespace WorldOfImagination.GameComponent.UI
             else if (Layout == LayoutMode.Horizontal || Layout == LayoutMode.Vertical)
             {
                 var i = 0;
-                foreach (var c in childs)
+                foreach (var c in Childs)
                 {
-                    var width = host.Width / childs.Count;
-                    var height = host.Height / childs.Count;
+                    var width = host.Width / Childs.Count;
+                    var height = host.Height / Childs.Count;
                     
                     c.Bound = Layout == LayoutMode.Horizontal ? new Rectangle(host.X + width * i,  host.Y, width ,host.Height) 
                                                               : new Rectangle(host.X, host.Y + height * i, host.Width, height);
@@ -171,7 +171,7 @@ namespace WorldOfImagination.GameComponent.UI
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             OnDraw(spriteBatch, gameTime);
-            foreach (var c in childs)
+            foreach (var c in Childs)
             {
                 c.Draw(spriteBatch, gameTime);
             }
@@ -206,7 +206,7 @@ namespace WorldOfImagination.GameComponent.UI
             }
 
             OnUpdate(gameTime);
-            foreach (var c in childs)
+            foreach (var c in Childs)
             {
                 c.Update(gameTime);
             }
