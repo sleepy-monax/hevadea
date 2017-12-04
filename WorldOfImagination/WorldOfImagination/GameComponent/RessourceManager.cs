@@ -5,24 +5,29 @@ using System.Collections.Generic;
 
 namespace WorldOfImagination.GameComponent
 {
-    public class RessourceManager : Microsoft.Xna.Framework.GameComponent
+    public class RessourceManager : GameComponent
     {
         private Dictionary<string, SpriteFont> FontCache = new Dictionary<string, SpriteFont>();
+        private Dictionary<string, Texture2D> TextureCache = new Dictionary<string, Texture2D>();
 
-        public RessourceManager(Game game) : base(game)
+        public RessourceManager(WorldOfImaginationGame game) : base(game)
         {
-            game.Components.Add(this);
+            
         }
 
         public override void Initialize()
         {
-            base.Initialize();
-            Console.WriteLine($"{nameof(RessourceManager)} initialized !");
+
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+ 
         }
 
         public SpriteFont GetSpriteFont(string name)
@@ -33,6 +38,16 @@ namespace WorldOfImagination.GameComponent
             }
 
             return FontCache[name];
+        }
+        
+        public Texture2D GetIcon(string name)
+        {
+            if (!TextureCache.ContainsKey("icon:" + name))
+            {
+                TextureCache.Add("icon:" + name, Game.Content.Load<Texture2D>($"Icons/{name}"));
+            }
+
+            return TextureCache["icon:" + name];
         }
     }
 }

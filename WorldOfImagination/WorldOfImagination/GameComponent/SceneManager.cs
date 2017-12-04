@@ -3,35 +3,39 @@ using System;
 
 namespace WorldOfImagination.GameComponent
 {
-    public class SceneManager : DrawableGameComponent
+    public class SceneManager : GameComponent
     {
 
-        public Scene.Scene CurrentScene { get; private set; }
+        public Scene.Scene CurrentScene;
         private Scene.Scene NextScene;
 
-        public SceneManager(Game game) : base(game)
+        public SceneManager(WorldOfImaginationGame game) : base(game)
         {
-            game.Components.Add(this);
+
             CurrentScene = null;
             NextScene = null;
         }
 
         public override void Initialize()
         {
-            base.Initialize();
-            Console.WriteLine($"{nameof(SceneManager)} initialized !");
+
         }
 
         public override void Update(GameTime gameTime)
         {
             SwitchInternal();
-            CurrentScene?.Update(gameTime);
-            base.Update(gameTime);
+            if (CurrentScene != null)
+            {
+                CurrentScene.UiRoot.Bound =
+                    new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());
+                Game.UI.RefreshLayout();
+                CurrentScene.Update(gameTime);
+                
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
             CurrentScene?.Draw(gameTime);
         }
 
@@ -49,23 +53,22 @@ namespace WorldOfImagination.GameComponent
 
         private void SwitchInternal()
         {
-            if (NextScene != null)
+            if (NextScene == null) return;
+            
+            if (CurrentScene == null)
             {
-                if (CurrentScene == null)
-                {
-                    Console.WriteLine($"Switching scene to '{NextScene.GetType().FullName}'.");
-                }
-                else
-                {
-                    Console.WriteLine($"Switching scene from '{CurrentScene.GetType().FullName}' to '{NextScene.GetType().FullName}'.");
-                    CurrentScene.Unload();
-                }
-
-                CurrentScene = NextScene;
-                NextScene = null;
-
-                CurrentScene.Load();
+                Console.WriteLine($"Switching scene to '{NextScene.GetType().FullName}'.");
             }
+            else
+            {
+                Console.WriteLine($"Switching scene from '{CurrentScene.GetType().FullName}' to '{NextScene.GetType().FullName}'.");
+                CurrentScene.Unload();
+            }
+
+            CurrentScene = NextScene;
+            NextScene = null;
+
+            CurrentScene.Load();
         }
     }
 }

@@ -17,6 +17,5 @@ namespace WorldOfImagination.Utils
         {
             game.Graphics.SetFullScreen();
         }
-
     }
 }

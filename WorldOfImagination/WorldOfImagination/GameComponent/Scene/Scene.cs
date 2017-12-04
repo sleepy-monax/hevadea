@@ -1,14 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
+using WorldOfImagination.GameComponent.UI;
 
 namespace WorldOfImagination.GameComponent.Scene
 {
     public abstract class Scene
     {
-        public Game Game;
+        public WorldOfImaginationGame Game;
+        public Control UiRoot { get; private set; } = null;
 
-        public Scene(Game game)
+        protected Scene(WorldOfImaginationGame game)
         {
             Game = game;
+            UiRoot = new Panel(Game.UI);
         }
 
         public abstract void Load();

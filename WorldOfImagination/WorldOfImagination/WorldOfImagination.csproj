@@ -47,14 +47,17 @@
   <ItemGroup>
     <Compile Include="GameComponent\AudioManager.cs" />
     <Compile Include="GameComponent\DebugManager.cs" />
+    <Compile Include="GameComponent\GameComponent.cs" />
     <Compile Include="GameComponent\GraphicsDeviceManager.cs" />
     <Compile Include="GameComponent\InputManager.cs" />
     <Compile Include="GameComponent\NetworkManager.cs" />
     <Compile Include="GameComponent\RessourceManager.cs" />
+    <Compile Include="GameComponent\Ressources.cs" />
     <Compile Include="GameComponent\SceneManager.cs" />
     <Compile Include="GameComponent\Scene\MainMenu.cs" />
+    <Compile Include="GameComponent\Scene\PlayMenu.cs" />
     <Compile Include="GameComponent\Scene\Scene.cs" />
-    <Compile Include="GameComponent\UIManager.cs" />
+    <Compile Include="GameComponent\UiManager.cs" />
     <Compile Include="GameComponent\UI\Button.cs" />
     <Compile Include="GameComponent\UI\CheckBox.cs" />
     <Compile Include="GameComponent\UI\Control.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="GameComponent\UI\Picture.cs" />
     <Compile Include="GameComponent\UI\Text.cs" />
     <Compile Include="Utils\GameExtension.cs" />
+    <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\RectangleF.cs" />
     <Compile Include="Utils\Screen.cs" />
     <Compile Include="Utils\SpriteBatchExtension.cs" />
@@ -133,7 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameComponent\Audio\" />
-    <Folder Include="GameComponent\Input\" />
     <Folder Include="GameComponent\Network\" />
     <Folder Include="GameComponent\Ressource\" />
   </ItemGroup>

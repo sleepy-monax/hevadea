@@ -5,44 +5,34 @@ using WorldOfImagination.Utils;
 
 namespace WorldOfImagination.GameComponent
 {
-    public class DebugManager : DrawableGameComponent
+    public class DebugManager : GameComponent
     {
-
-        SpriteFont alagard;
-        SpriteFont romulus;
-        SpriteFont arial;
+        
         SpriteBatch sb;
-        WorldOfImaginationGame g;
-
-        public DebugManager(Game game) : base(game)
+        public bool Visible = false;
+        
+        public DebugManager(WorldOfImaginationGame game) : base(game)
         {
-            g = (WorldOfImaginationGame)game;
-            game.Components.Add(this);
         }
 
         public override void Initialize()
         {
-            sb = new SpriteBatch(g.GraphicsDevice);
-            
-            alagard = g.Ressource.GetSpriteFont("alagard");
-            romulus = g.Ressource.GetSpriteFont("romulus");
-            arial = g.Ressource.GetSpriteFont("arial");
-
-            Console.WriteLine($"{nameof(DebugManager)} initialized !");
-            base.Initialize();
+            sb = new SpriteBatch(Game.GraphicsDevice);
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            
         }
 
         public override void Draw(GameTime gameTime)
         {
-            sb.Begin();
-            sb.DrawString(arial, $"Draw time : {g.DrawTime}ms", new Rectangle(16,16,16,16), Alignement.Left, Style.DropShadow, Color.White);
-            sb.End();
-            base.Draw(gameTime);
+            if (Visible)
+            {            
+                sb.Begin();
+                sb.DrawString(Game.Ress.arial, $"Draw time : {Game.DrawTime}ms", new Rectangle(16,16,16,16), Alignement.Left, Style.DropShadow, Color.White);
+                sb.End();
+            }
         }
     }
 }

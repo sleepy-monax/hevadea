@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using WorldOfImagination.GameComponent;
 using WorldOfImagination.GameComponent.Scene;
@@ -13,13 +14,14 @@ namespace WorldOfImagination
     {
         public Microsoft.Xna.Framework.GraphicsDeviceManager Graphics;
 
-        public AudioManager Audio;
-        public DebugManager Debug;
-        public InputManager Input;
-        public NetworkManager Network;
-        public RessourceManager Ressource;
-        public SceneManager Scene;
-        public UIManager UI;
+        public readonly AudioManager Audio;
+        public readonly DebugManager Debug;
+        public readonly InputManager Input;
+        public readonly NetworkManager Network;
+        public readonly RessourceManager Ressource;
+        public readonly SceneManager Scene;
+        public readonly UiManager UI;
+        public readonly Ressources Ress;
 
         public int DrawTime { get; private set; }
         private Stopwatch drawStopwatch;
@@ -29,15 +31,48 @@ namespace WorldOfImagination
             drawStopwatch = new Stopwatch();
             Graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
 
-            Audio = new AudioManager(this)         { UpdateOrder = 0 };
-            Input = new InputManager(this)         { UpdateOrder = 1 };
-            Network = new NetworkManager(this)     { UpdateOrder = 2 };
-            Scene = new SceneManager(this)         { DrawOrder = 0, UpdateOrder = 3 };
-            UI = new UIManager(this)               { DrawOrder = 1, UpdateOrder = 4};
-            Ressource = new RessourceManager(this) { UpdateOrder = 5 };
-            Debug = new DebugManager(this)         { DrawOrder = 2, UpdateOrder = 6 };
-
+            Audio = new AudioManager(this);
+            Input = new InputManager(this);
+            Network = new NetworkManager(this);
+            Scene = new SceneManager(this);
+            UI = new UiManager(this);
+            Ressource = new RessourceManager(this);
+            Debug = new DebugManager(this);
+            Ress = new Ressources(this);
+            
             Content.RootDirectory = "Content";
+        }
+
+        // Game components Managments -----------------------------------------
+
+        private void IntializeGameComponents()
+        {
+            Audio.Initialize();
+            Input.Initialize();
+            Network.Initialize();
+            Scene.Initialize();
+            UI.Initialize();
+            Ressource.Initialize();
+            Debug.Initialize();
+            Ress.Load();
+        }
+
+        private void DrawGameComponent(GameTime gameTime)
+        {
+            Scene.Draw(gameTime);
+            UI.Draw(gameTime);
+            Debug.Draw(gameTime);
+        }
+
+        private void UpdateGameComponent(GameTime gameTime)
+        {
+            Audio.Update(gameTime);
+            Input.Update(gameTime);
+            Network.Update(gameTime);
+            Scene.Update(gameTime);
+            UI.Update(gameTime);
+            Ressource.Update(gameTime);
+            Debug.Update(gameTime);
         }
 
         protected override void Initialize()
@@ -48,6 +83,7 @@ namespace WorldOfImagination
             Scene.Switch(new MainMenu(this));
             Console.WriteLine($"{nameof(WorldOfImaginationGame)} initialized !");
 
+            IntializeGameComponents();
             base.Initialize();
         }
 
@@ -65,6 +101,7 @@ namespace WorldOfImagination
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            UpdateGameComponent(gameTime);
             base.Update(gameTime);
         }
 
@@ -78,6 +115,7 @@ namespace WorldOfImagination
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            DrawGameComponent(gameTime);
             base.Draw(gameTime);
         }
 

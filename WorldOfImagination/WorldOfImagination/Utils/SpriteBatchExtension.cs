@@ -568,9 +568,9 @@ namespace WorldOfImagination.Utils
 
         }
 
-        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Alignement alignement, Style style, Color color)
+        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Alignement alignement, Style style, Color color, float scale = 1f)
         {
-            Vector2 TextSize = font.MeasureString(text);
+            Vector2 TextSize = font.MeasureString(text) * scale;
             Vector2 pos = boundary.Center.ToVector2();
             Vector2 origin = TextSize / 2;
 
@@ -592,16 +592,14 @@ namespace WorldOfImagination.Utils
                     spriteBatch.DrawString(font, text, new Vector2(pos.X + 1, pos.Y + 1), color, 0, origin, 1, SpriteEffects.None, 0);
                     break;
                 case Style.DropShadow:
-                    spriteBatch.DrawString(font, text, new Vector2(pos.X + 2, pos.Y + 2), new Color(0, 0, 0, 125), 0, origin, 1, SpriteEffects.None, 0);
+                    spriteBatch.DrawString(font, text, new Vector2(pos.X + 2, pos.Y + 2) - origin, new Color(0, 0, 0, (int)(100f * ((float)color.A / 255f))), 0, Vector2.Zero, scale, SpriteEffects.None, 0);
                     break;
                 case Style.Rectangle:
                     spriteBatch.FillRectangle(new Rectangle((pos - origin - new Vector2(4)).ToPoint(), new Point((int)TextSize.X, (int)TextSize.Y) + new Point(8)), Color.Black);
                     break;
-                default:
-                    break;
             }
 
-            spriteBatch.DrawString(font, text, pos - origin, color);
+            spriteBatch.DrawString(font, text, pos - origin, color, 0f, Vector2.Zero, new Vector2(scale, scale), SpriteEffects.None, 1f );
         }
     }
 }

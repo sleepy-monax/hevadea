@@ -3,24 +3,27 @@ using System;
 
 namespace WorldOfImagination.GameComponent
 {
-    public class AudioManager : Microsoft.Xna.Framework.GameComponent
+    public class AudioManager : GameComponent
     {
-        public int UpdateTime { get; private set; }
 
-        public AudioManager(Game game) : base(game)
+        public AudioManager(WorldOfImaginationGame game) : base(game)
         {
-            game.Components.Add(this);
+            
         }
 
         public override void Initialize()
         {
-            base.Initialize();
-            Console.WriteLine($"{nameof(AudioManager)} initialized !");
+
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+
         }
     }
 }
