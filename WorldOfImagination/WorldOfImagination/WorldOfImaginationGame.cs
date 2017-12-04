@@ -10,7 +10,7 @@ using WorldOfImagination.Utils;
 
 namespace WorldOfImagination
 {
-    public class WorldOfImaginationGame : Game
+    public class WorldOfImaginationGame : Microsoft.Xna.Framework.Game
     {
         public Microsoft.Xna.Framework.GraphicsDeviceManager Graphics;
 

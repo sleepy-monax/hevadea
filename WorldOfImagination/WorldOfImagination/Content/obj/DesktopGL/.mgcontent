@@ -4,15 +4,18 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/alagard.spritefont</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/romulus.spritefont</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/arial.spritefont</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/back_arrow.png</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/close.png</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/add.png</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/delete.png</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/people.png</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/play.png</File>
-    <File>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/bebas.spritefont</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/alagard.spritefont</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/romulus.spritefont</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/arial.spritefont</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/back_arrow.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/close.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/add.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/delete.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/people.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/play.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/bebas.spritefont</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Images/Characters.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Images/Faces.png</File>
+    <File>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Images/Tiles.png</File>
   </SourceFiles>
 </SourceFileCollection>

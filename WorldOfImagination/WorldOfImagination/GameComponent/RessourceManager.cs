@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace WorldOfImagination.GameComponent
@@ -48,6 +47,16 @@ namespace WorldOfImagination.GameComponent
             }
 
             return TextureCache["icon:" + name];
+        }
+
+        public Texture2D GetImage(string name)
+        {
+            if (!TextureCache.ContainsKey("img:" + name))
+            {
+                TextureCache.Add("img:" + name, Game.Content.Load<Texture2D>($"Images/{name}"));
+            }
+
+            return TextureCache["img:" + name];
         }
     }
 }

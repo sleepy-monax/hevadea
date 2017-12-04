@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Fonts/alagard_title.spritefont</SourceFile>
+  <SourceTime>2017-12-01T15:55:23.3080233+01:00</SourceTime>
+  <DestFile>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/bin/DesktopGL/Fonts/alagard_title.xnb</DestFile>
+  <DestTime>2017-12-01T16:05:51.4209804+01:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

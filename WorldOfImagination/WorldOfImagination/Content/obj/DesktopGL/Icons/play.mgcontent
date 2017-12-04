@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/play.png</SourceFile>
-  <SourceTime>2016-02-08T12:15:40+01:00</SourceTime>
-  <DestFile>/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/bin/DesktopGL/Icons/play.xnb</DestFile>
-  <DestTime>2017-12-04T16:20:08+01:00</DestTime>
+  <SourceFile>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/Icons/play.png</SourceFile>
+  <SourceTime>2017-12-04T20:31:05.6269831+01:00</SourceTime>
+  <DestFile>D:/Documents/Projet/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/Content/bin/DesktopGL/Icons/play.xnb</DestFile>
+  <DestTime>2017-12-04T20:31:15.2690588+01:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2017-12-04T09:26:28+01:00</ImporterTime>
+  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2017-12-04T09:26:28+01:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

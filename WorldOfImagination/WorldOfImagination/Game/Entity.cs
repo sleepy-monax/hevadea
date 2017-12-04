@@ -2,22 +2,28 @@
 using Microsoft.Xna.Framework.Graphics;
 using WorldOfImagination.Utils;
 
-namespace WorldOfImagination.Entities
+namespace WorldOfImagination.Game
 {
     public abstract class Entity
     {
-        private WorldOfImaginationGame Game;
-        private World.World World;
+        public GameState State;
+        public WorldOfImaginationGame Game;
 
         public float X = 0f;
         public float Y = 0f;
+
+        public float SpeedX = 0f;
+        public float SpeedY = 0f;
+
         public float Width = 0f;
         public float Height = 0f;
+
+        public float MaxSpeed = 5f;
         
-        public Entity(WorldOfImaginationGame game, World.World world)
+        public Entity(WorldOfImaginationGame game, GameState state)
         {
+            State = state;
             Game = game;
-            World = world;
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

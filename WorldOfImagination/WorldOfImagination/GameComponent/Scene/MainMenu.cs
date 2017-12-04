@@ -73,7 +73,7 @@ namespace WorldOfImagination.GameComponent.Scene
 
         private void ExitButtonOnOnMouseClick(object sender, EventArgs eventArgs)
         {
-           Game.Exit();
+            Game.Exit();
         }
 
         public override void Unload()

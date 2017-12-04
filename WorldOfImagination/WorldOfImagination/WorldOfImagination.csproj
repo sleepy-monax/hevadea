@@ -45,8 +45,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Game\Camera.cs" />
+    <Compile Include="Game\Entity.cs" />
+    <Compile Include="Game\GameState.cs" />
+    <Compile Include="Game\Player.cs" />
     <Compile Include="GameComponent\AudioManager.cs" />
     <Compile Include="GameComponent\DebugManager.cs" />
     <Compile Include="GameComponent\GameComponent.cs" />
@@ -76,7 +78,6 @@
     <Compile Include="WorldOfImaginationGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="World\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

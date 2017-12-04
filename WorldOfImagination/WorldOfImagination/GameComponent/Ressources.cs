@@ -19,6 +19,8 @@ namespace WorldOfImagination.GameComponent
         public Texture2D icon_play;
         public Texture2D icon_people;
         public Texture2D icon_delete;
+
+        public Texture2D img_terrain;
         
         public Ressources(WorldOfImaginationGame game)
         {
@@ -38,6 +40,8 @@ namespace WorldOfImagination.GameComponent
             icon_add = Game.Ressource.GetIcon("add");
             icon_people = Game.Ressource.GetIcon("people");
             icon_delete = Game.Ressource.GetIcon("delete");
+
+            img_terrain = Game.Ressource.GetImage("Tiles");
         }
     }
 }
