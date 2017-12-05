@@ -45,6 +45,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameComponent\UI\DialogBox.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="Game\Entity.cs" />
     <Compile Include="Game\GameState.cs" />

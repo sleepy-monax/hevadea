@@ -43,11 +43,18 @@ namespace WorldOfImagination.GameComponent.Scene
                 Text = "Delete",
                 Icon = Game.Ress.icon_delete
             };
+            var test = new DialogBox(Game.UI)
+            {
+                Bound = new Rectangle(0, 0, 96, 96),
+                Dock = Dock.Bottom
+            };
             
             backButton.OnMouseClick += BackButtonOnOnMouseClick;
             newButton.OnMouseClick += NewButtonOnOnMouseClick;
+            deleteButton.OnMouseClick += delegate(object sender, EventArgs args) { test.Show(); };
 
             UiRoot.AddChild(menuButtonHost);
+            UiRoot.AddChild(test);
             UiRoot.AddChild(gameListHost);
             
             menuButtonHost.AddChild(backButton);

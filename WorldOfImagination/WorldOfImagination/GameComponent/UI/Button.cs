@@ -20,7 +20,6 @@ namespace WorldOfImagination.GameComponent.UI
             if (MouseState == MouseState.Over)
             {
                 animation = Math.Min(1f, animation + (float)(gameTime.ElapsedGameTime.Milliseconds) / 200f);
-               
             }
             else
             {
@@ -29,7 +28,7 @@ namespace WorldOfImagination.GameComponent.UI
 
             var width = (int) (Bound.Width * MathUtils.Interpolate(animation));
             var height = (int) (Bound.Height * MathUtils.Interpolate(animation));
-            //spriteBatch.DrawRectangle(new Rectangle(Bound.X + Bound.Width / 2 - width / 2, Bound.Y + Bound.Height / 2 - height / 2, width, height), new Color(255, 255, 255, (int)(100f * animation)));
+            spriteBatch.DrawRectangle(new Rectangle(Bound.X + Bound.Width / 2 - width / 2, Bound.Y + Bound.Height / 2 - height / 2, width, height), new Color(255, 255, 255, (int)(100f * animation)));
             
             if (Icon != null)
             {

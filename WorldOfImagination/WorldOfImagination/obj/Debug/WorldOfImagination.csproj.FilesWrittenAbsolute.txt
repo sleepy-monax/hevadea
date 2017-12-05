@@ -51,3 +51,12 @@
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Icons/people.xnb
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Icons/play.xnb
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Fonts/bebas.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Data/SpriteSheet/Characters.json
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Data/SpriteSheet/Faces.json
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Data/SpriteSheet/Particles.json
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Data/SpriteSheet/Tiles.json
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Fonts/alagard_title.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Images/Characters.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Images/Faces.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Images/Particles.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Images/Tiles.xnb
