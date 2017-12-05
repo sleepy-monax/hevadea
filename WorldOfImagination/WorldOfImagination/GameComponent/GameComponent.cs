@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace WorldOfImagination.GameComponent
 {
     public abstract class GameComponent
     {
-        protected WorldOfImaginationGame Game;
+        public WorldOfImaginationGame Game;
         protected GameComponent(WorldOfImaginationGame game)
         {
             Game = game;

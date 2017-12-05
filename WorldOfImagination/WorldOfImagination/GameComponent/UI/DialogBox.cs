@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using WorldOfImagination.Utils;
 
 namespace WorldOfImagination.GameComponent.UI
@@ -35,7 +35,8 @@ namespace WorldOfImagination.GameComponent.UI
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-           spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width * MathUtils.Interpolate(animation)), Bound.Height), Color.DimGray);
+            spriteBatch.FillRectangle(new Rectangle(Bound.X + (int)(Bound.Width * MathUtils.Interpolate(1f - animation)), Bound.Y, Bound.Width, Bound.Height), Color.Red * MathUtils.Interpolate(animation));
+            //spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width), Bound.Height), Color.DimGray);
         }
 
         protected override void OnUpdate(GameTime gameTime)
@@ -44,8 +45,8 @@ namespace WorldOfImagination.GameComponent.UI
             {
                 case DialogBoxState.Hide    : break;
                 case DialogBoxState.Show    : break;
-                case DialogBoxState.Hidding : animation = Math.Max(0f, animation - gameTime.ElapsedGameTime.Milliseconds / 1000f); break;
-                case DialogBoxState.Showning: animation = Math.Min(1f, animation + gameTime.ElapsedGameTime.Milliseconds / 1000f); break;
+                case DialogBoxState.Hidding : animation = Math.Max(0f, animation - gameTime.ElapsedGameTime.Milliseconds / 1000f * 2); break;
+                case DialogBoxState.Showning: animation = Math.Min(1f, animation + gameTime.ElapsedGameTime.Milliseconds / 1000f * 2); break;
             }
         }
     }

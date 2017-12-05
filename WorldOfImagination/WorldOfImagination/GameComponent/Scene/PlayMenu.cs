@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
 using WorldOfImagination.GameComponent.UI;
 
 namespace WorldOfImagination.GameComponent.Scene
@@ -49,8 +49,8 @@ namespace WorldOfImagination.GameComponent.Scene
                 Dock = Dock.Bottom
             };
             
-            backButton.OnMouseClick += BackButtonOnOnMouseClick;
-            newButton.OnMouseClick += NewButtonOnOnMouseClick;
+            backButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new MainMenu(Game)); };
+            newButton.OnMouseClick += delegate (object sender, EventArgs args) { test.Hide(); };
             deleteButton.OnMouseClick += delegate(object sender, EventArgs args) { test.Show(); };
 
             UiRoot.AddChild(menuButtonHost);
@@ -63,15 +63,6 @@ namespace WorldOfImagination.GameComponent.Scene
             
         }
 
-        private void NewButtonOnOnMouseClick(object sender, EventArgs eventArgs)
-        {
-            Game.Scene.Switch(new GameScene(Game));
-        }
-
-        private void BackButtonOnOnMouseClick(object sender, EventArgs eventArgs)
-        {
-            Game.Scene.Switch(new MainMenu(Game));
-        }
 
         public override void Update(GameTime gameTime)
         {
