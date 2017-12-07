@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 using WorldOfImagination.Game;
+using WorldOfImagination.GameComponent.UI;
+using Padding = WorldOfImagination.GameComponent.UI.Padding;
 
 namespace WorldOfImagination.GameComponent.Scene
 {
@@ -28,13 +31,31 @@ namespace WorldOfImagination.GameComponent.Scene
             State.Camera.FocusEntity = player;
         }
 
+        private DialogBox dialog;
+        
         public override void Load()
         {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
+            
+            UiRoot.Padding = new Padding(16);
+            dialog = new DialogBox(Game.UI)
+            {
+                Dock = Dock.Bottom,
+                Bound = new Rectangle(0,0, 256, 256)
+            }; 
+            
+            UiRoot.AddChild(dialog);
+            
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (Game.Input.KeyPress(Keys.P)) dialog.Show("Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+                                                         " In et ipsum massa." +
+                                                         " Aenean euismod purus ipsum, in euismod dolor pretium et." +
+                                                         " Sed id. ");
+            if (Game.Input.KeyPress(Keys.O)) dialog.Hide();
+            
             foreach (var e in Entities)
             {
                 e.SpeedX = e.SpeedX * 0.90f;

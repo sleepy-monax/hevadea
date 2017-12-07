@@ -47,20 +47,19 @@ namespace WorldOfImagination
 
         private void IntializeGameComponents()
         {
+            Ressource.Initialize(); Ress.Load();
             Audio.Initialize();
             Input.Initialize();
             Network.Initialize();
             Scene.Initialize();
             UI.Initialize();
-            Ressource.Initialize();
             Debug.Initialize();
-            Ress.Load();
+            
         }
 
         private void DrawGameComponent(GameTime gameTime)
         {
             Scene.Draw(gameTime);
-            UI.Draw(gameTime);
             Debug.Draw(gameTime);
         }
 
@@ -78,8 +77,11 @@ namespace WorldOfImagination
         protected override void Initialize()
         {
             this.SetTitle("World Of Imagination");
-            this.SetFullScreen();
+            //this.IsFixedTimeStep=false;
+            Graphics.SynchronizeWithVerticalRetrace = false;
 
+            this.SetFullScreen();
+            
             Scene.Switch(new MainMenu(this));
             Console.WriteLine($"{nameof(WorldOfImaginationGame)} initialized !");
 

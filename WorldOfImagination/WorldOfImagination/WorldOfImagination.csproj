@@ -45,7 +45,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameComponent\UI\Animation.cs" />
     <Compile Include="GameComponent\UI\DialogBox.cs" />
+    <Compile Include="GameComponent\UI\Label.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="Game\Entity.cs" />
     <Compile Include="Game\GameState.cs" />
@@ -70,12 +72,13 @@
     <Compile Include="GameComponent\UI\List.cs" />
     <Compile Include="GameComponent\UI\Panel.cs" />
     <Compile Include="GameComponent\UI\Picture.cs" />
-    <Compile Include="GameComponent\UI\Text.cs" />
+    <Compile Include="GameComponent\UI\TextInput.cs" />
     <Compile Include="Utils\GameExtension.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\RectangleF.cs" />
     <Compile Include="Utils\Screen.cs" />
     <Compile Include="Utils\SpriteBatchExtension.cs" />
+    <Compile Include="Utils\Text.cs" />
     <Compile Include="WorldOfImaginationGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +148,9 @@
     <Folder Include="GameComponent\Audio\" />
     <Folder Include="GameComponent\Network\" />
     <Folder Include="GameComponent\Ressource\" />
+    <Folder Include="Game\CharacterClass" />
+    <Folder Include="Game\Entities" />
+    <Folder Include="Game\Items" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

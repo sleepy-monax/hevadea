@@ -60,3 +60,6 @@
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Images/Faces.xnb
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Images/Particles.xnb
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Images/Tiles.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Fonts/hack.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Icons/settings.xnb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Icons/single_people.xnb

@@ -55,15 +55,11 @@ namespace WorldOfImagination.GameComponent.UI
         public UiManager UI;
 
         public Rectangle Bound { get; set; } = Rectangle.Empty;
-        private Rectangle Host {
-            get
-            {
-                return new Rectangle(Bound.X + Padding.Left,
-                    Bound.Y + Padding.Up,
-                    Bound.Width - Padding.Left - Padding.Right,
-                    Bound.Height - Padding.Up - Padding.Down);
-            }
-        }
+        public Point MaximuSize { get; set; } = Point.Zero;
+        private Rectangle Host => new Rectangle(Bound.X + Padding.Left,
+            Bound.Y + Padding.Up,
+            Bound.Width - Padding.Left - Padding.Right,
+            Bound.Height - Padding.Up - Padding.Down);
 
         public bool Enabled { get; set; } = true;
         public bool Visible { get; set; } = true;
@@ -79,11 +75,19 @@ namespace WorldOfImagination.GameComponent.UI
 
         public event OnMouseClickHandler OnMouseClick;
         public delegate void OnMouseClickHandler(object sender, EventArgs e);
-        
+
+        private bool NoManagedMouseClick = false;
         public Control(UiManager ui)
         {
             UI = ui;
             Childs = new List<Control>();
+        }
+        
+        public Control(UiManager ui, bool noManagedMouseClick)
+        {
+            UI = ui;
+            Childs = new List<Control>();
+            NoManagedMouseClick = noManagedMouseClick;
         }
 
         public void AddChild(Control child)
@@ -153,11 +157,29 @@ namespace WorldOfImagination.GameComponent.UI
             else if (Layout == LayoutMode.Horizontal || Layout == LayoutMode.Vertical)
             {
                 var i = 0;
+                var hostWidth = host.Width;
+                var hostHeight = host.Height;
+                var childsCount = Childs.Count;
                 foreach (var c in Childs)
                 {
-                    var width = host.Width / Childs.Count;
-                    var height = host.Height / Childs.Count;
-                    
+                    var width = hostWidth / childsCount;
+                    var height = hostHeight / childsCount;
+
+                    if (c.MaximuSize != Point.Zero)
+                    {
+                        if (width > c.MaximuSize.X)
+                        {
+                            width = c.MaximuSize.X;
+                        }
+                        
+                        if (height > c.MaximuSize.Y)
+                        {
+                            height = c.MaximuSize.Y;
+                        }
+                        
+                        //TODO: Finish handeling controls maximum size on layout.
+                    }
+
                     c.Bound = Layout == LayoutMode.Horizontal ? new Rectangle(host.X + width * i,  host.Y, width ,host.Height) 
                                                               : new Rectangle(host.X, host.Y + height * i, host.Width, height);
 
@@ -170,17 +192,24 @@ namespace WorldOfImagination.GameComponent.UI
         protected abstract void OnDraw(SpriteBatch spriteBatch,GameTime gameTime);
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            UI.Game.GraphicsDevice.ScissorRectangle = Bound;
             OnDraw(spriteBatch, gameTime);
             foreach (var c in Childs)
             {
                 c.Draw(spriteBatch, gameTime);
             }
 
+            UI.Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, UI.Game.Graphics.GetWidth(), UI.Game.Graphics.GetHeight());
             if (UI.Debug)
             {
                 spriteBatch.DrawRectangle(Host, Color.Red);
                 spriteBatch.DrawRectangle(Bound, Color.Black);
             }
+        }
+
+        public void RaiseOnMouseClick()
+        {
+            OnMouseClick?.Invoke(this, EventArgs.Empty);
         }
 
         protected abstract void OnUpdate(GameTime gameTime);
@@ -195,9 +224,9 @@ namespace WorldOfImagination.GameComponent.UI
                     MouseState = MouseState.Down;
                 }
 
-                if (UI.Input.MouseLeftClick)
+                if (UI.Input.MouseLeftClick && !NoManagedMouseClick)
                 {
-                    OnMouseClick?.Invoke(this, EventArgs.Empty);
+                    RaiseOnMouseClick();
                 }
             }
             else

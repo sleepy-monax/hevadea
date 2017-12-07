@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using WorldOfImagination.GameComponent.UI;
 using WorldOfImagination.Utils;
-using Button = WorldOfImagination.GameComponent.UI.Button;
-using Padding = WorldOfImagination.GameComponent.UI.Padding;
-using Panel = WorldOfImagination.GameComponent.UI.Panel;
 
 namespace WorldOfImagination.GameComponent.Scene
 {
@@ -23,37 +19,49 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Load()
         {            
-            UiRoot.Padding = new Padding(64, 64, 256, 265);
+            UiRoot.Padding = new Padding(16, 16, 16, 16);
             Game.IsMouseVisible = true;
             
             var menuButtonHost = new Panel(Game.UI)
             {
-                Bound = new Rectangle(0, 0, 64, 64),
-                Dock  = Dock.Bottom,
-                Layout = LayoutMode.Horizontal
+                //Dock  = Dock.Left,
+                Layout = LayoutMode.Vertical
             };
             
             var playButton = new Button(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 64),
-                Text = "Play",
-                Icon = Game.Ress.icon_play
+                Text = "singleplayer",
+                Icon = Game.Ress.icon_single_people
             };
             
             var multiPlayerButton = new Button(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 64),
-                Text = "Multi Player",
+                Text = "multiplayer",
                 Icon = Game.Ress.icon_people
+            };
+            
+            var editorButton = new Button(Game.UI)
+            {
+                Bound = new Rectangle(64, 64, 64, 64),
+                Text = "world editor", 
+                //Icon = Game.Ress.icon_close
+            };
+            
+            var optionButton = new Button(Game.UI)
+            {
+                Bound = new Rectangle(64, 64, 64, 64),
+                Text = "option", 
+                Icon = Game.Ress.icon_settings
             };
             
             var exitButton = new Button(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 64),
-                Text = "Exit", 
+                Text = "exit", 
                 Icon = Game.Ress.icon_close
             };
-            
             
             playButton.OnMouseClick += PlayButtonOnOnMouseClick;
             exitButton.OnMouseClick += ExitButtonOnOnMouseClick;
@@ -61,8 +69,12 @@ namespace WorldOfImagination.GameComponent.Scene
             UiRoot.AddChild(menuButtonHost);
             menuButtonHost.AddChild(playButton);
             menuButtonHost.AddChild(multiPlayerButton);
+            menuButtonHost.AddChild(editorButton);
+            menuButtonHost.AddChild(optionButton);
             menuButtonHost.AddChild(exitButton);
 
+            menuButtonHost.Bound = new Rectangle(Game.Graphics.GetWidth() / 2 - 180, Game.Graphics.GetHeight() / 2 - (64 * menuButtonHost.Childs.Count) / 2, 360, 64 * menuButtonHost.Childs.Count);
+            
             Game.UI.RefreshLayout();
         }
 
@@ -85,11 +97,11 @@ namespace WorldOfImagination.GameComponent.Scene
         {
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
 
-            var titleRect = new Rectangle(0, (int)(Game.Graphics.GetHeight() * (3/8f)), Game.Graphics.GetWidth(), Game.Graphics.GetHeight() / 4);
+            var titleRect = new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight() / 4);
 
-            sb.FillRectangle(titleRect, new Color(0, 0, 0, 100));
-            sb.DrawString(Game.Ress.alagard, "World Of Imagination", titleRect, Alignement.Center, Style.DropShadow, Color.White);
-            sb.DrawString(Game.Ress.romulus, "\n\n\nTale of the foreigner", titleRect, Alignement.Center, Style.Regular, Color.Gold);
+            //sb.FillRectangle(titleRect, new Color(0, 0, 0, 200));
+            sb.DrawString(Game.Ress.font_alagard, "World Of Imagination", titleRect, Alignement.Center, Style.DropShadow, Color.White);
+            sb.DrawString(Game.Ress.font_romulus, "\n\n\nTale of the foreigner", titleRect, Alignement.Center, Style.Regular, Color.Gold);
             sb.End();
             
         }

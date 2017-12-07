@@ -9,8 +9,11 @@
         </e>
         <e p="Game" t="Include">
           <e p="Camera.cs" t="Include" />
+          <e p="CharacterClass" t="Include" />
+          <e p="Entities" t="Include" />
           <e p="Entity.cs" t="Include" />
           <e p="GameState.cs" t="Include" />
+          <e p="Items" t="Include" />
           <e p="Player.cs" t="Include" />
         </e>
         <e p="GameComponent" t="Include">
@@ -33,14 +36,16 @@
           </e>
           <e p="SceneManager.cs" t="Include" />
           <e p="UI" t="Include">
+            <e p="Animation.cs" t="Include" />
             <e p="Button.cs" t="Include" />
             <e p="CheckBox.cs" t="Include" />
             <e p="Control.cs" t="Include" />
             <e p="DialogBox.cs" t="Include" />
+            <e p="Label.cs" t="Include" />
             <e p="List.cs" t="Include" />
             <e p="Panel.cs" t="Include" />
             <e p="Picture.cs" t="Include" />
-            <e p="Text.cs" t="Include" />
+            <e p="TextInput.cs" t="Include" />
           </e>
           <e p="UiManager.cs" t="Include" />
         </e>
@@ -56,6 +61,7 @@
           <e p="RectangleF.cs" t="Include" />
           <e p="Screen.cs" t="Include" />
           <e p="SpriteBatchExtension.cs" t="Include" />
+          <e p="Text.cs" t="Include" />
         </e>
         <e p="WorldOfImagination.csproj" t="IncludeRecursive" />
         <e p="WorldOfImaginationGame.cs" t="Include" />

@@ -8,8 +8,8 @@ namespace WorldOfImagination.Game
     {
         public Player(WorldOfImaginationGame game, GameState state) : base(game, state)
         {
-            this.Height = 64;
-            this.Width = 48;
+            this.Height = 32;
+            this.Width = 32;
         }
 
         public override void OnColide(Entity entity)

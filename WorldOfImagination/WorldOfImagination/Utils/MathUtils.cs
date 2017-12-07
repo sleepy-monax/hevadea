@@ -6,8 +6,11 @@ namespace WorldOfImagination.Utils
     {
         public static float Interpolate(float value)
         {
-            //(sin(x * PI - PI / 2) + 1) / 2
             return (float)((Math.Sin(value * Math.PI - Math.PI / 2f) + 1f) / 2f);
+
+            //(sin(x * PI - PI / 2) + 1) / 2
+            
+            //return (float)((Math.Sin(value * Math.PI - Math.PI / 2f) + 1f) / 2f);
         }
     }
 }

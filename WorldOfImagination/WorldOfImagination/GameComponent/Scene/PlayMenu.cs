@@ -28,6 +28,13 @@ namespace WorldOfImagination.GameComponent.Scene
                 Layout = LayoutMode.Vertical
             };
 
+            var titleLabel = new Label(Game.UI)
+            {
+                Bound = new Rectangle(64, 64, 64, 64),
+                Text = "Singleplayer",
+                Dock = Dock.Top
+            };
+            
             var newButton = new Button(Game.UI)
             {
                 Text = "New",
@@ -43,18 +50,13 @@ namespace WorldOfImagination.GameComponent.Scene
                 Text = "Delete",
                 Icon = Game.Ress.icon_delete
             };
-            var test = new DialogBox(Game.UI)
-            {
-                Bound = new Rectangle(0, 0, 96, 96),
-                Dock = Dock.Bottom
-            };
             
             backButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new MainMenu(Game)); };
-            newButton.OnMouseClick += delegate (object sender, EventArgs args) { test.Hide(); };
-            deleteButton.OnMouseClick += delegate(object sender, EventArgs args) { test.Show(); };
+            newButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new GameScene(Game)); };
+            deleteButton.OnMouseClick += delegate(object sender, EventArgs args) {  };
 
+            UiRoot.AddChild(titleLabel);
             UiRoot.AddChild(menuButtonHost);
-            UiRoot.AddChild(test);
             UiRoot.AddChild(gameListHost);
             
             menuButtonHost.AddChild(backButton);

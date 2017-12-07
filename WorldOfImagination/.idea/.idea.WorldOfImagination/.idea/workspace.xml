@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c110686-6353-47a6-ade2-0c2a087ab010" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/WorldOfImagination.pdb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/test.json" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Animation.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Label.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/TextInput.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WorldOfImagination/Utils/Text.cs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Text.cs" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/bin/DesktopGL/Fonts/arial.xnb" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/bin/DesktopGL/Fonts/arial.xnb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/bin/DesktopGL/Fonts/bebas.xnb" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/bin/DesktopGL/Fonts/bebas.xnb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Fonts/arial.xnb" afterPath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Fonts/arial.xnb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Fonts/bebas.xnb" afterPath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/Content/Fonts/bebas.xnb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/MonoGame.Framework.dll" afterPath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/MonoGame.Framework.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/WorldOfImagination.exe" afterPath="$PROJECT_DIR$/WorldOfImagination/bin/DesktopGL/AnyCPU/Debug/WorldOfImagination.exe" />
@@ -14,6 +18,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/obj/Debug/WorldOfImagination.exe.mdb" afterPath="$PROJECT_DIR$/WorldOfImagination/obj/Debug/WorldOfImagination.exe.mdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.WorldOfImagination/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.WorldOfImagination/.idea/contentModel.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.WorldOfImagination/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.WorldOfImagination/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/Content.mgcb" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/Content.mgcb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/Fonts/arial.spritefont" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/Fonts/arial.spritefont" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/.mgcontent" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/.mgcontent" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Fonts/alagard.mgcontent" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Fonts/alagard.mgcontent" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Fonts/arial.mgcontent" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Fonts/arial.mgcontent" />
@@ -28,9 +34,21 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Images/Characters.mgcontent" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Images/Characters.mgcontent" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Images/Faces.mgcontent" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Images/Faces.mgcontent" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Images/Tiles.mgcontent" afterPath="$PROJECT_DIR$/WorldOfImagination/Content/obj/DesktopGL/Images/Tiles.mgcontent" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Game/Player.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/Game/Player.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Ressources.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Ressources.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/WorldOfImagination.csproj" afterPath="$PROJECT_DIR$/WorldOfImagination/WorldOfImagination.csproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs" afterPath="$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WorldOfImagination/obj/Debug/WorldOfImagination.csproj.FilesWrittenAbsolute.txt" afterPath="$PROJECT_DIR$/WorldOfImagination/obj/Debug/WorldOfImagination.csproj.FilesWrittenAbsolute.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,137 +60,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Player.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/Game/Player.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding>
-                <marker date="1512427564028" expanded="false" signature="6:107" ph="..." />
-                <marker date="1512427564028" expanded="true" signature="177:1007" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="271:350" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="404:426" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="507:528" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="586:1001" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="640:694" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="739:793" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="838:892" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="937:991" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameScene.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-              <folding>
-                <marker date="1512427564028" expanded="true" signature="1735:1745" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="1735:1823" ph="{...}" />
-                <marker date="1512427564028" expanded="true" signature="1784:1817" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DebugManager.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-              <folding>
-                <marker date="1512408720819" expanded="false" signature="6:153" ph="..." />
-                <marker date="1512408720819" expanded="true" signature="245:1142" ph="{...}" />
-                <marker date="1512408720819" expanded="true" signature="400:420" ph="{...}" />
-                <marker date="1512408720819" expanded="true" signature="463:538" ph="{...}" />
-                <marker date="1512408720819" expanded="true" signature="594:724" ph="{...}" />
-                <marker date="1512408720819" expanded="true" signature="650:714" ph="{...}" />
-                <marker date="1512408720819" expanded="true" signature="778:1136" ph="{...}" />
-                <marker date="1512408720819" expanded="true" signature="813:1126" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UiManager.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="31" column="62" lean-forward="false" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
-              <folding>
-                <marker date="1512397576173" expanded="false" signature="6:84" ph="..." />
-                <marker date="1512397576173" expanded="true" signature="173:1167" ph="{...}" />
-                <marker date="1512397576173" expanded="true" signature="450:483" ph="{...}" />
-                <marker date="1512397576173" expanded="true" signature="526:612" ph="{...}" />
-                <marker date="1512397576173" expanded="true" signature="649:731" ph="{...}" />
-                <marker date="1512397576173" expanded="true" signature="787:870" ph="{...}" />
-                <marker date="1512397576173" expanded="true" signature="924:1161" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SceneManager.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="56" column="12" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
-              <folding>
-                <marker date="1512394524462" expanded="false" signature="6:44" ph="..." />
-                <marker date="1512394524462" expanded="true" signature="136:1952" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="294:378" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="421:442" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="498:857" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="576:847" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="911:973" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="983:1248" ph="/// Switch the current scene to a another one. ... " />
-                <marker date="1512394524462" expanded="true" signature="1298:1353" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="1392:1946" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="1496:1616" ph="{...}" />
-                <marker date="1512394524462" expanded="true" signature="1633:1833" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Control.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="74" column="23" lean-forward="false" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
+            <state relative-caret-position="0">
+              <caret line="179" column="81" lean-forward="false" selection-start-line="179" selection-start-column="81" selection-end-line="179" selection-end-column="81" />
               <folding>
-                <marker date="1512408473217" expanded="false" signature="6:203" ph="..." />
-                <marker date="1512408473217" expanded="true" signature="250:6809" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="275:379" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="401:458" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="486:533" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="561:598" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="628:1077" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="856:974" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="1007:1071" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="1112:6807" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="1244:1529" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="1261:1519" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="2164:2247" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="2292:2343" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="2399:2453" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="2490:5536" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="2580:4844" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="2649:4830" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="2724:4752" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="4931:5526" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="5014:5512" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="5689:6043" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="5780:5855" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="5882:6033" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="6151:6801" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="6217:6565" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="6318:6404" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="6450:6551" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="6582:6656" ph="{...}" />
-                <marker date="1512408473217" expanded="true" signature="6727:6791" ph="{...}" />
+                <marker date="1512597780691" expanded="false" signature="6:203" ph="..." />
+                <marker date="1512597780691" expanded="true" signature="250:7991" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="275:379" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="401:458" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="486:533" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="561:598" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="628:1077" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="856:974" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="1007:1071" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="1112:7989" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2166:2249" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2321:2459" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2504:2555" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2611:2665" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2702:6405" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2792:5056" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2861:5042" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="2936:4964" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="5143:6395" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="5364:6381" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="5551:6041" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="5625:5729" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="5807:5912" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="6558:7107" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="6710:6785" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="6946:7097" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="7148:7225" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="7333:7983" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="7399:7747" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="7500:7586" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="7656:7733" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="7764:7838" ph="{...}" />
+                <marker date="1512597780691" expanded="true" signature="7909:7973" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DialogBox.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="884">
+              <caret line="55" column="72" lean-forward="false" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
+              <folding>
+                <marker date="1512645463189" expanded="false" signature="6:116" ph="..." />
+                <marker date="1512645463189" expanded="true" signature="202:2893" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="443:634" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="469:624" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="776:980" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="867:944" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="1008:1186" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="1100:1176" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="1237:1323" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="1407:2669" ph="{...}" />
+                <marker date="1512645463189" expanded="true" signature="2413:2659" ph="/* spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width), Bound.Height), Color.DimGray); ... */" />
+                <marker date="1512645463189" expanded="true" signature="2730:2887" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1156">
+              <caret line="73" column="48" lean-forward="false" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
+              <folding>
+                <marker date="1512639371621" expanded="false" signature="6:184" ph="..." />
+                <marker date="1512639371621" expanded="true" signature="234:3748" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="270:3746" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="385:460" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="497:2654" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="695:792" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="868:1029" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="1112:1265" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="1343:1499" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="1577:1728" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="1804:1950" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="2737:2808" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="2891:2936" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="2975:2996" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="3050:3650" ph="{...}" />
+                <marker date="1512639371621" expanded="true" signature="3706:3739" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -181,93 +157,161 @@
       <file leaf-file-name="Button.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="21" column="108" lean-forward="false" selection-start-line="21" selection-start-column="108" selection-end-line="21" selection-end-column="108" />
+            <state relative-caret-position="-34">
+              <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
               <folding>
-                <marker date="1512460201672" expanded="false" signature="6:116" ph="..." />
-                <marker date="1512460201672" expanded="true" signature="163:2151" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="199:2149" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="338:358" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="480:2053" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="537:674" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="691:828" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="1234:1857" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="1874:2043" ph="{...}" />
-                <marker date="1512460201672" expanded="true" signature="2114:2143" ph="{...}" />
+                <marker date="1512645731302" expanded="false" signature="6:116" ph="..." />
+                <marker date="1512645731302" expanded="true" signature="163:3095" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="199:3093" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="653:673" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="757:2095" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="1476:1886" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="1903:2085" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="2156:3087" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="2419:2636" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="2685:2935" ph="{...}" />
+                <marker date="1512645731302" expanded="true" signature="2844:2921" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DialogBox.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs">
+      <file leaf-file-name="DebugManager.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="37" column="121" lean-forward="false" selection-start-line="37" selection-start-column="121" selection-end-line="37" selection-end-column="121" />
+            <state relative-caret-position="185">
+              <caret line="50" column="91" lean-forward="false" selection-start-line="50" selection-start-column="91" selection-end-line="50" selection-end-column="91" />
               <folding>
-                <marker date="1512484910018" expanded="true" signature="6:116" ph="..." />
-                <marker date="1512484910018" expanded="true" signature="163:1671" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="202:1669" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="418:596" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="509:586" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="624:802" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="716:792" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="853:886" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="970:1145" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="1206:1663" ph="{...}" />
-                <marker date="1512484910018" expanded="true" signature="1243:1653" ph="{...}" />
+                <marker date="1512646628574" expanded="false" signature="6:230" ph="..." />
+                <marker date="1512646628574" expanded="true" signature="274:2211" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="322:2209" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="516:579" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="622:697" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="753:1070" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="871:937" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="996:1060" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="1124:1854" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="1159:1844" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="1307:1499" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="1932:2203" ph="{...}" />
+                <marker date="1512646628574" expanded="true" signature="2085:2193" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InputManager.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/InputManager.cs">
+      <file leaf-file-name="WorldOfImaginationGame.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+            <state relative-caret-position="-19">
+              <caret line="79" column="14" lean-forward="false" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
               <folding>
-                <marker date="1512408226599" expanded="false" signature="6:81" ph="..." />
-                <marker date="1512408226599" expanded="true" signature="173:2122" ph="{...}" />
-                <marker date="1512408226599" expanded="true" signature="420:449" ph="{...}" />
-                <marker date="1512408226599" expanded="true" signature="1355:1422" ph="{...}" />
-                <marker date="1512408226599" expanded="true" signature="1462:1557" ph="{...}" />
-                <marker date="1512408226599" expanded="true" signature="1600:1754" ph="{...}" />
-                <marker date="1512408226599" expanded="true" signature="1808:1841" ph="{...}" />
-                <marker date="1512408226599" expanded="true" signature="1897:2116" ph="{...}" />
+                <marker date="1512646823831" expanded="false" signature="6:299" ph="..." />
+                <marker date="1512646823831" expanded="true" signature="329:3974" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="402:3972" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="968:1529" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="1658:1931" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="1990:2078" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="2139:2414" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="2460:2881" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="2928:2980" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="3029:3083" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="3142:3397" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="3442:3535" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="3592:3742" ph="{...}" />
+                <marker date="1512646823831" expanded="true" signature="3785:3966" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayMenu.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs">
+      <file leaf-file-name="GameState.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/Game/GameState.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="53" column="95" lean-forward="false" selection-start-line="53" selection-start-column="95" selection-end-line="53" selection-end-column="95" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1512484753469" expanded="false" signature="6:87" ph="..." />
-                <marker date="1512484753469" expanded="true" signature="137:2478" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="173:2476" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="245:265" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="302:1950" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="438:607" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="684:778" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="841:928" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="991:1080" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="1145:1238" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="1298:1401" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="2032:2104" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="2187:2258" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="2314:2335" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="2389:2410" ph="{...}" />
-                <marker date="1512484753469" expanded="true" signature="2449:2470" ph="{...}" />
+                <marker date="1512427564028" expanded="true" signature="33:229" ph="{...}" />
+                <marker date="1512427564028" expanded="true" signature="62:227" ph="{...}" />
+                <marker date="1512427564028" expanded="true" signature="162:221" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/Game/Player.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+              <folding>
+                <marker date="1512640339952" expanded="false" signature="6:107" ph="..." />
+                <marker date="1512640339952" expanded="true" signature="142:1009" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="177:1007" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="271:350" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="404:426" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="507:528" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="586:1001" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="640:694" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="739:793" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="838:892" ph="{...}" />
+                <marker date="1512640339952" expanded="true" signature="937:991" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Animation.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Animation.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="39" column="1" lean-forward="false" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
+              <folding>
+                <marker date="1512645463209" expanded="true" signature="6:76" ph="..." />
+                <marker date="1512645463209" expanded="true" signature="123:1442" ph="{...}" />
+                <marker date="1512645463209" expanded="true" signature="152:1440" ph="{...}" />
+                <marker date="1512645463209" expanded="true" signature="671:753" ph="{...}" />
+                <marker date="1512645463209" expanded="true" signature="800:1434" ph="{...}" />
+                <marker date="1512645463209" expanded="true" signature="832:1106" ph="{...}" />
+                <marker date="1512645463209" expanded="true" signature="1123:1424" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TextInput.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/TextInput.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+              <folding>
+                <marker date="1512645463229" expanded="true" signature="6:218" ph="..." />
+                <marker date="1512645463229" expanded="true" signature="265:3663" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="303:3661" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="691:809" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="903:1515" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="1054:1254" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="1105:1240" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="1271:1505" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="1599:3427" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="1703:2023" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="2040:2186" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="2787:3281" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="3112:3267" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="3298:3417" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="3488:3655" ph="{...}" />
+                <marker date="1512645463229" expanded="true" signature="3582:3645" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Draw(Texture2D</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -279,17 +323,20 @@
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/NetworkManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/GraphicsDeviceManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorldOfImagination/Utils/Text.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/InputManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/RessourceManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Animation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/List.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Text.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/TextInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Picture.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/CheckBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Label.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Panel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs" root0="FORCE_HIGHLIGHTING" />
@@ -298,8 +345,11 @@
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/GameComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Ressources.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/Game/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorldOfImagination/Game/GameState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A6B5C168-6196-475A-A75B-8DDE7820E259/22/5faf4dc5/SpriteBatch.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A6B5C168-6196-475A-A75B-8DDE7820E259/71/6d546f53/GraphicsDevice.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -310,36 +360,43 @@
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/AudioManager.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/NetworkManager.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/GameComponent.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Panel.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/Scene.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/RessourceManager.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Ressources.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameElements.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameElements/GameElements.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/Entities/Player.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/World/World.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/InputManager.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/Entities/Entity.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/Properties/AssemblyInfo.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs" />
-        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/Utils/Text.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs" />
         <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Text.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/TextInput.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Label.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Ressources.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/Game/Player.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Animation.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs" />
+        <option value="$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1" />
-    <option name="width" value="1368" />
-    <option name="height" value="771" />
+    <option name="x" value="187" />
+    <option name="y" value="54" />
+    <option name="width" value="1360" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -374,14 +431,13 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="WorldOfImagination (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="WorldOfImagination" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="GameComponent" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="WorldOfImagination (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="WorldOfImagination" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="GameComponent" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="Scene" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
@@ -389,6 +445,12 @@
               <item name="WorldOfImagination" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="GameComponent" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="UI" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="WorldOfImagination" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Utils" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
           </expand>
           <select />
@@ -448,7 +510,15 @@
       <workItem from="1512459745712" duration="456000" />
       <workItem from="1512476527900" duration="69000" />
       <workItem from="1512480015224" duration="1523000" />
-      <workItem from="1512483477032" duration="2189000" />
+      <workItem from="1512483477032" duration="2302000" />
+      <workItem from="1512501971765" duration="871000" />
+      <workItem from="1512547577792" duration="1411000" />
+      <workItem from="1512551344668" duration="2464000" />
+      <workItem from="1512558378329" duration="5138000" />
+      <workItem from="1512566992011" duration="24883000" />
+      <workItem from="1512627408776" duration="6115000" />
+      <workItem from="1512634973628" duration="5579000" />
+      <workItem from="1512643297454" duration="3541000" />
     </task>
     <task id="LOCAL-00001" summary="Working on GUI toolkit">
       <created>1512401400792</created>
@@ -457,11 +527,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512401400792</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Working on GUI toolkit">
+      <created>1512485840954</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1512485840954</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32102000" />
+    <option name="totallyTimeSpent" value="82217000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -473,20 +550,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1368" height="771" extended-state="6" />
+    <frame x="5" y="6" width="1356" height="759" extended-state="6" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31298906" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3515249" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20757575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2293578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744783" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3964687" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -497,7 +574,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -505,17 +582,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32394367" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34991974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2621212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22553517" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286385" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744783" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3964687" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -533,281 +610,23 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs">
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state relative-caret-position="425">
+          <caret line="28" column="12" lean-forward="false" selection-start-line="28" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
           <folding>
-            <marker date="1512394524462" expanded="false" signature="6:44" ph="..." />
-            <marker date="1512394524462" expanded="true" signature="136:1952" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="294:378" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="421:442" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="498:857" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="576:847" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="911:973" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="983:1248" ph="/// Switch the current scene to a another one. ... " />
-            <marker date="1512394524462" expanded="true" signature="1298:1353" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1392:1946" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1496:1616" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1633:1833" ph="{...}" />
+            <marker date="1512645731302" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645731302" expanded="true" signature="163:3095" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="199:3093" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="653:673" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="757:2095" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="1476:1886" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="1903:2085" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2156:3087" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2419:2636" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2685:2935" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2844:2921" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/InputManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Panel.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Content/Content.mgcb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" column="50" lean-forward="false" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-          <folding>
-            <marker date="1512408720819" expanded="false" signature="6:153" ph="..." />
-            <marker date="1512408720819" expanded="true" signature="245:1142" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="400:420" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="463:538" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="594:724" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="650:714" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="778:1136" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="813:1126" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-          <folding>
-            <marker date="1512408473217" expanded="false" signature="6:203" ph="..." />
-            <marker date="1512408473217" expanded="true" signature="250:6809" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="275:379" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="401:458" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="486:533" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="561:598" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="628:1077" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="856:974" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1007:1071" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1112:6807" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1244:1529" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1261:1519" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2164:2247" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2292:2343" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2399:2453" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2490:5536" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2580:4844" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2649:4830" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2724:4752" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="4931:5526" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5014:5512" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5689:6043" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5780:5855" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5882:6033" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6151:6801" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6217:6565" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6318:6404" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6450:6551" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6582:6656" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6727:6791" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding>
-            <marker date="1512397576173" expanded="false" signature="6:84" ph="..." />
-            <marker date="1512397576173" expanded="true" signature="173:1167" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="450:483" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="526:612" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="649:731" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="787:870" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="924:1161" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/GameComponent.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <marker date="1512394524462" expanded="false" signature="6:44" ph="..." />
-            <marker date="1512394524462" expanded="true" signature="136:1952" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="294:378" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="421:442" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="498:857" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="576:847" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="911:973" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="983:1248" ph="/// Switch the current scene to a another one. ... " />
-            <marker date="1512394524462" expanded="true" signature="1298:1353" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1392:1946" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1496:1616" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1633:1833" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/RessourceManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/NetworkManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/InputManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="12" lean-forward="false" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/GraphicsDeviceManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="25" column="58" lean-forward="false" selection-start-line="25" selection-start-column="58" selection-end-line="25" selection-end-column="58" />
-          <folding>
-            <marker date="1512408720819" expanded="false" signature="6:153" ph="..." />
-            <marker date="1512408720819" expanded="true" signature="245:1142" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="400:420" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="463:538" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="594:724" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="650:714" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="778:1136" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="813:1126" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/AudioManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/List.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Text.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Picture.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/GameExtension.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/AudioManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/GraphicsDeviceManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/NetworkManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Content/Content.mgcb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/WorldOfImagination.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2289">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="79" lean-forward="false" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/GameComponent.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -818,268 +637,901 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Panel.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/Scene.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="56" column="23" lean-forward="false" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/RessourceManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="46" column="90" lean-forward="false" selection-start-line="46" selection-start-column="90" selection-end-line="46" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="586" column="65" lean-forward="false" selection-start-line="586" selection-start-column="65" selection-end-line="586" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Ressources.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="55" lean-forward="false" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameElements.cs" />
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameElements/GameElements.cs" />
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/World/World.cs" />
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Properties/AssemblyInfo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="29" column="2" lean-forward="false" selection-start-line="29" selection-start-column="2" selection-end-line="29" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/InputManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        <state relative-caret-position="901">
+          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
           <folding>
-            <marker date="1512408226599" expanded="false" signature="6:81" ph="..." />
-            <marker date="1512408226599" expanded="true" signature="173:2122" ph="{...}" />
-            <marker date="1512408226599" expanded="true" signature="420:449" ph="{...}" />
-            <marker date="1512408226599" expanded="true" signature="1355:1422" ph="{...}" />
-            <marker date="1512408226599" expanded="true" signature="1462:1557" ph="{...}" />
-            <marker date="1512408226599" expanded="true" signature="1600:1754" ph="{...}" />
-            <marker date="1512408226599" expanded="true" signature="1808:1841" ph="{...}" />
-            <marker date="1512408226599" expanded="true" signature="1897:2116" ph="{...}" />
+            <marker date="1512646823831" expanded="false" signature="6:299" ph="..." />
+            <marker date="1512646823831" expanded="true" signature="329:3974" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="402:3972" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="968:1529" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="1658:1931" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="1990:2078" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2139:2414" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2460:2881" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2928:2980" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3029:3083" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3142:3397" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3442:3535" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3592:3742" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3785:3966" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs">
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/TextInput.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="56" column="12" lean-forward="false" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="12" />
+        <state relative-caret-position="1224">
+          <caret line="72" column="132" lean-forward="false" selection-start-line="72" selection-start-column="132" selection-end-line="72" selection-end-column="132" />
           <folding>
-            <marker date="1512394524462" expanded="false" signature="6:44" ph="..." />
-            <marker date="1512394524462" expanded="true" signature="136:1952" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="294:378" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="421:442" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="498:857" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="576:847" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="911:973" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="983:1248" ph="/// Switch the current scene to a another one. ... " />
-            <marker date="1512394524462" expanded="true" signature="1298:1353" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1392:1946" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1496:1616" ph="{...}" />
-            <marker date="1512394524462" expanded="true" signature="1633:1833" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding>
-            <marker date="1512408720819" expanded="false" signature="6:153" ph="..." />
-            <marker date="1512408720819" expanded="true" signature="245:1142" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="400:420" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="463:538" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="594:724" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="650:714" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="778:1136" ph="{...}" />
-            <marker date="1512408720819" expanded="true" signature="813:1126" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="31" column="62" lean-forward="false" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
-          <folding>
-            <marker date="1512397576173" expanded="false" signature="6:84" ph="..." />
-            <marker date="1512397576173" expanded="true" signature="173:1167" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="450:483" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="526:612" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="649:731" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="787:870" ph="{...}" />
-            <marker date="1512397576173" expanded="true" signature="924:1161" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Entities/Player.cs" />
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <marker date="1512427564028" expanded="true" signature="1735:1745" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="1735:1823" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="1784:1817" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Entities/Entity.cs" />
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Game/Player.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <marker date="1512427564028" expanded="false" signature="6:107" ph="..." />
-            <marker date="1512427564028" expanded="true" signature="177:1007" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="271:350" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="404:426" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="507:528" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="586:1001" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="640:694" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="739:793" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="838:892" ph="{...}" />
-            <marker date="1512427564028" expanded="true" signature="937:991" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="74" column="23" lean-forward="false" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="23" />
-          <folding>
-            <marker date="1512408473217" expanded="false" signature="6:203" ph="..." />
-            <marker date="1512408473217" expanded="true" signature="250:6809" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="275:379" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="401:458" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="486:533" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="561:598" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="628:1077" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="856:974" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1007:1071" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1112:6807" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1244:1529" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="1261:1519" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2164:2247" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2292:2343" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2399:2453" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2490:5536" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2580:4844" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2649:4830" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="2724:4752" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="4931:5526" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5014:5512" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5689:6043" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5780:5855" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="5882:6033" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6151:6801" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6217:6565" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6318:6404" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6450:6551" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6582:6656" ph="{...}" />
-            <marker date="1512408473217" expanded="true" signature="6727:6791" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="108" lean-forward="false" selection-start-line="21" selection-start-column="108" selection-end-line="21" selection-end-column="108" />
-          <folding>
-            <marker date="1512460201672" expanded="false" signature="6:116" ph="..." />
-            <marker date="1512460201672" expanded="true" signature="163:2151" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="199:2149" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="338:358" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="480:2053" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="537:674" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="691:828" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="1234:1857" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="1874:2043" ph="{...}" />
-            <marker date="1512460201672" expanded="true" signature="2114:2143" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="53" column="95" lean-forward="false" selection-start-line="53" selection-start-column="95" selection-end-line="53" selection-end-column="95" />
-          <folding>
-            <marker date="1512484753469" expanded="false" signature="6:87" ph="..." />
-            <marker date="1512484753469" expanded="true" signature="137:2478" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="173:2476" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="245:265" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="302:1950" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="438:607" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="684:778" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="841:928" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="991:1080" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="1145:1238" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="1298:1401" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="2032:2104" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="2187:2258" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="2314:2335" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="2389:2410" ph="{...}" />
-            <marker date="1512484753469" expanded="true" signature="2449:2470" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="6:218" ph="..." />
+            <marker date="1512645463229" expanded="true" signature="265:3663" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="303:3661" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="691:809" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="903:1515" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1054:1254" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1105:1240" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1271:1505" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1599:3427" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1703:2023" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="2040:2186" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="2787:3281" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3112:3267" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3298:3417" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3488:3655" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3582:3645" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="37" column="121" lean-forward="false" selection-start-line="37" selection-start-column="121" selection-end-line="37" selection-end-column="121" />
+        <state relative-caret-position="1020">
+          <caret line="63" column="145" lean-forward="false" selection-start-line="63" selection-start-column="145" selection-end-line="63" selection-end-column="145" />
           <folding>
-            <marker date="1512484910018" expanded="true" signature="6:116" ph="..." />
-            <marker date="1512484910018" expanded="true" signature="163:1671" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="202:1669" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="418:596" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="509:586" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="624:802" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="716:792" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="853:886" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="970:1145" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="1206:1663" ph="{...}" />
-            <marker date="1512484910018" expanded="true" signature="1243:1653" ph="{...}" />
+            <marker date="1512645463189" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645463189" expanded="true" signature="202:2893" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="443:634" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="469:624" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="776:980" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="867:944" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1008:1186" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1100:1176" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1237:1323" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1407:2669" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="2413:2659" ph="/* spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width), Bound.Height), Color.DimGray); ... */" />
+            <marker date="1512645463189" expanded="true" signature="2730:2887" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" column="33" lean-forward="false" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2958">
+          <caret line="179" column="81" lean-forward="false" selection-start-line="179" selection-start-column="81" selection-end-line="179" selection-end-column="81" />
+          <folding>
+            <marker date="1512597780691" expanded="false" signature="6:203" ph="..." />
+            <marker date="1512597780691" expanded="true" signature="250:7991" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="275:379" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="401:458" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="486:533" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="561:598" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="628:1077" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="856:974" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="1007:1071" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="1112:7989" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2166:2249" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2321:2459" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2504:2555" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2611:2665" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2702:6405" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2792:5056" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2861:5042" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2936:4964" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5143:6395" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5364:6381" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5551:6041" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5625:5729" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5807:5912" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="6558:7107" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="6710:6785" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="6946:7097" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7148:7225" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7333:7983" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7399:7747" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7500:7586" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7656:7733" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7764:7838" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7909:7973" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4777">
+          <caret line="284" column="12" lean-forward="false" selection-start-line="284" selection-start-column="12" selection-end-line="284" selection-end-column="12" />
+          <folding>
+            <marker date="1512597780719" expanded="false" signature="6:118" ph="..." />
+            <marker date="1512597780719" expanded="true" signature="154:25117" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="366:25115" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="381:586" ph="Private Members" />
+            <marker date="1512597780719" expanded="true" signature="596:4874" ph="Private Methods" />
+            <marker date="1512597780719" expanded="true" signature="688:855" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="865:1303" ph="/// Draws a list of connecting points ... " />
+            <marker date="1512597780719" expanded="true" signature="1437:1700" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="1557:1690" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="1711:2038" ph="/// Creates a list of vectors that represents a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="2114:3083" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="2286:2361" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="2578:2732" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="3093:3679" ph="/// Creates a list of vectors that represents an arc ... " />
+            <marker date="1512597780719" expanded="true" signature="3787:4854" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="4283:4480" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="4884:9408" ph="FillRectangle" />
+            <marker date="1512597780719" expanded="true" signature="4915:5202" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="5302:5532" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="5344:5417" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="5543:5916" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="6029:6256" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="6071:6144" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="6267:6615" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="6731:6822" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="6833:7267" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="7396:7924" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="7438:7513" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="7935:8377" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="8497:8610" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="8621:9141" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="9274:9388" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="9418:12596" ph="DrawRectangle" />
+            <marker date="1512597780719" expanded="true" signature="9449:9757" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="9857:9938" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="9949:10328" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="10445:11192" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="10469:10610" ph="/* TODO: Handle rotations ... */" />
+            <marker date="1512597780719" expanded="true" signature="11203:11572" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="11688:11838" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="11849:12288" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="12421:12576" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="12606:17606" ph="DrawLine" />
+            <marker date="1512597780719" expanded="true" signature="12632:13139" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="13258:13370" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="13380:13957" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="14093:14210" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="14220:14568" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="14679:14765" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="14775:15193" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="15321:15701" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="15711:16165" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="16286:16378" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="16388:16901" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="17039:17586" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17080:17153" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17616:18112" ph="PutPixel" />
+            <marker date="1512597780719" expanded="true" signature="17730:17811" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17909:18092" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17951:18026" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="18122:21096" ph="DrawCircle" />
+            <marker date="1512597780719" expanded="true" signature="18150:18558" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="18680:18789" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="18799:19283" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="19422:19534" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="19544:20012" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="20136:20256" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="20266:20810" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="20951:21076" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="21106:23190" ph="DrawArc" />
+            <marker date="1512597780719" expanded="true" signature="21131:21761" ph="/// Draw a arc ... " />
+            <marker date="1512597780719" expanded="true" signature="21916:22032" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="22042:22741" ph="/// Draw a arc ... " />
+            <marker date="1512597780719" expanded="true" signature="22913:23170" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="23333:23354" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="23540:25109" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="24221:24959" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+          <folding>
+            <marker date="1512645731302" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645731302" expanded="true" signature="163:3095" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="199:3093" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="653:673" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="757:2095" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="1476:1886" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="1903:2085" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2156:3087" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2419:2636" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2685:2935" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2844:2921" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/Scene.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Animation.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding>
+            <marker date="1512645463209" expanded="true" signature="6:76" ph="..." />
+            <marker date="1512645463209" expanded="true" signature="123:1442" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="152:1440" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="671:753" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="800:1434" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="832:1106" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="1123:1424" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+          <folding>
+            <marker date="1512646823831" expanded="false" signature="6:299" ph="..." />
+            <marker date="1512646823831" expanded="true" signature="329:3974" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="402:3972" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="968:1529" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="1658:1931" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="1990:2078" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2139:2414" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2460:2881" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2928:2980" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3029:3083" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3142:3397" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3442:3535" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3592:3742" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3785:3966" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="104" column="46" lean-forward="false" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+          <folding>
+            <marker date="1512639371621" expanded="false" signature="6:184" ph="..." />
+            <marker date="1512639371621" expanded="true" signature="234:3748" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="270:3746" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="385:460" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="497:2654" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="695:792" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="868:1029" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1112:1265" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1343:1499" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1577:1728" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1804:1950" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2737:2808" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2891:2936" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2975:2996" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3050:3650" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3706:3739" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="62" column="66" lean-forward="false" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
+          <folding>
+            <marker date="1512645463189" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645463189" expanded="true" signature="202:2893" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="443:634" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="469:624" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="776:980" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="867:944" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1008:1186" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1100:1176" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1237:1323" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1407:2669" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="2413:2659" ph="/* spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width), Bound.Height), Color.DimGray); ... */" />
+            <marker date="1512645463189" expanded="true" signature="2730:2887" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/Text.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="38" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="9" lean-forward="false" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1512639371621" expanded="false" signature="6:184" ph="..." />
+            <marker date="1512639371621" expanded="true" signature="234:3748" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="270:3746" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="385:460" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="497:2654" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="695:792" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="868:1029" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1112:1265" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1343:1499" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1577:1728" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1804:1950" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2737:2808" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2891:2936" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2975:2996" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3050:3650" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3706:3739" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="50" column="25" lean-forward="false" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="68" lean-forward="false" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1512645463189" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645463189" expanded="true" signature="202:2893" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="443:634" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="469:624" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="776:980" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="867:944" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1008:1186" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1100:1176" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1237:1323" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1407:2669" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="2413:2659" ph="/* spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width), Bound.Height), Color.DimGray); ... */" />
+            <marker date="1512645463189" expanded="true" signature="2730:2887" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/Text.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="38" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1512639371621" expanded="false" signature="6:184" ph="..." />
+            <marker date="1512639371621" expanded="true" signature="234:3748" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="270:3746" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="385:460" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="497:2654" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="695:792" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="868:1029" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1112:1265" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1343:1499" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1577:1728" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1804:1950" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2737:2808" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2891:2936" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2975:2996" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3050:3650" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3706:3739" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="47" column="49" lean-forward="false" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1512645463189" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645463189" expanded="true" signature="202:2893" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="443:634" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="469:624" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="776:980" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="867:944" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1008:1186" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1100:1176" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1237:1323" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1407:2669" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="2413:2659" ph="/* spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width), Bound.Height), Color.DimGray); ... */" />
+            <marker date="1512645463189" expanded="true" signature="2730:2887" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/Text.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="38" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/MathUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/Scene.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UiManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/SceneManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" column="33" lean-forward="false" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Utils/SpriteBatchExtension.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4777">
+          <caret line="284" column="12" lean-forward="false" selection-start-line="284" selection-start-column="12" selection-end-line="284" selection-end-column="12" />
+          <folding>
+            <marker date="1512597780719" expanded="false" signature="6:118" ph="..." />
+            <marker date="1512597780719" expanded="true" signature="154:25117" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="366:25115" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="381:586" ph="Private Members" />
+            <marker date="1512597780719" expanded="true" signature="596:4874" ph="Private Methods" />
+            <marker date="1512597780719" expanded="true" signature="688:855" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="865:1303" ph="/// Draws a list of connecting points ... " />
+            <marker date="1512597780719" expanded="true" signature="1437:1700" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="1557:1690" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="1711:2038" ph="/// Creates a list of vectors that represents a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="2114:3083" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="2286:2361" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="2578:2732" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="3093:3679" ph="/// Creates a list of vectors that represents an arc ... " />
+            <marker date="1512597780719" expanded="true" signature="3787:4854" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="4283:4480" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="4884:9408" ph="FillRectangle" />
+            <marker date="1512597780719" expanded="true" signature="4915:5202" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="5302:5532" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="5344:5417" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="5543:5916" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="6029:6256" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="6071:6144" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="6267:6615" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="6731:6822" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="6833:7267" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="7396:7924" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="7438:7513" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="7935:8377" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="8497:8610" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="8621:9141" ph="/// Draws a filled rectangle ... " />
+            <marker date="1512597780719" expanded="true" signature="9274:9388" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="9418:12596" ph="DrawRectangle" />
+            <marker date="1512597780719" expanded="true" signature="9449:9757" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="9857:9938" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="9949:10328" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="10445:11192" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="10469:10610" ph="/* TODO: Handle rotations ... */" />
+            <marker date="1512597780719" expanded="true" signature="11203:11572" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="11688:11838" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="11849:12288" ph="/// Draws a rectangle with the thickness provided ... " />
+            <marker date="1512597780719" expanded="true" signature="12421:12576" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="12606:17606" ph="DrawLine" />
+            <marker date="1512597780719" expanded="true" signature="12632:13139" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="13258:13370" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="13380:13957" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="14093:14210" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="14220:14568" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="14679:14765" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="14775:15193" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="15321:15701" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="15711:16165" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="16286:16378" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="16388:16901" ph="/// Draws a line from point1 to point2 with an offset ... " />
+            <marker date="1512597780719" expanded="true" signature="17039:17586" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17080:17153" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17616:18112" ph="PutPixel" />
+            <marker date="1512597780719" expanded="true" signature="17730:17811" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17909:18092" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="17951:18026" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="18122:21096" ph="DrawCircle" />
+            <marker date="1512597780719" expanded="true" signature="18150:18558" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="18680:18789" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="18799:19283" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="19422:19534" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="19544:20012" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="20136:20256" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="20266:20810" ph="/// Draw a circle ... " />
+            <marker date="1512597780719" expanded="true" signature="20951:21076" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="21106:23190" ph="DrawArc" />
+            <marker date="1512597780719" expanded="true" signature="21131:21761" ph="/// Draw a arc ... " />
+            <marker date="1512597780719" expanded="true" signature="21916:22032" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="22042:22741" ph="/// Draw a arc ... " />
+            <marker date="1512597780719" expanded="true" signature="22913:23170" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="23333:23354" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="23540:25109" ph="{...}" />
+            <marker date="1512597780719" expanded="true" signature="24221:24959" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/CheckBox.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/GameScene.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="51" column="9" lean-forward="false" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Label.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="93" lean-forward="false" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/PlayMenu.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <marker date="1512637716797" expanded="false" signature="6:87" ph="..." />
+            <marker date="1512637716797" expanded="true" signature="173:2336" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="245:265" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="302:2117" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="438:607" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="684:778" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="841:982" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="1057:1144" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="1207:1296" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="1361:1454" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="2174:2195" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="2249:2270" ph="{...}" />
+            <marker date="1512637716797" expanded="true" signature="2309:2330" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Ressources.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+          <folding>
+            <marker date="1512638043175" expanded="true" signature="113:1839" ph="{...}" />
+            <marker date="1512638043175" expanded="true" signature="864:909" ph="{...}" />
+            <marker date="1512638043175" expanded="true" signature="937:1833" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/DialogBox.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="55" column="72" lean-forward="false" selection-start-line="55" selection-start-column="72" selection-end-line="55" selection-end-column="72" />
+          <folding>
+            <marker date="1512645463189" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645463189" expanded="true" signature="202:2893" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="443:634" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="469:624" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="776:980" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="867:944" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1008:1186" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1100:1176" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1237:1323" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="1407:2669" ph="{...}" />
+            <marker date="1512645463189" expanded="true" signature="2413:2659" ph="/* spriteBatch.FillRectangle(new Rectangle(Bound.X, Bound.Y, (int)(Bound.Width), Bound.Height), Color.DimGray); ... */" />
+            <marker date="1512645463189" expanded="true" signature="2730:2887" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/TextInput.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <marker date="1512645463229" expanded="true" signature="6:218" ph="..." />
+            <marker date="1512645463229" expanded="true" signature="265:3663" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="303:3661" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="691:809" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="903:1515" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1054:1254" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1105:1240" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1271:1505" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1599:3427" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="1703:2023" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="2040:2186" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="2787:3281" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3112:3267" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3298:3417" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3488:3655" ph="{...}" />
+            <marker date="1512645463229" expanded="true" signature="3582:3645" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/Scene/MainMenu.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="73" column="48" lean-forward="false" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
+          <folding>
+            <marker date="1512639371621" expanded="false" signature="6:184" ph="..." />
+            <marker date="1512639371621" expanded="true" signature="234:3748" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="270:3746" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="385:460" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="497:2654" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="695:792" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="868:1029" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1112:1265" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1343:1499" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1577:1728" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="1804:1950" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2737:2808" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2891:2936" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="2975:2996" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3050:3650" ph="{...}" />
+            <marker date="1512639371621" expanded="true" signature="3706:3739" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Control.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="179" column="81" lean-forward="false" selection-start-line="179" selection-start-column="81" selection-end-line="179" selection-end-column="81" />
+          <folding>
+            <marker date="1512597780691" expanded="false" signature="6:203" ph="..." />
+            <marker date="1512597780691" expanded="true" signature="250:7991" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="275:379" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="401:458" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="486:533" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="561:598" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="628:1077" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="856:974" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="1007:1071" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="1112:7989" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2166:2249" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2321:2459" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2504:2555" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2611:2665" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2702:6405" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2792:5056" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2861:5042" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="2936:4964" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5143:6395" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5364:6381" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5551:6041" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5625:5729" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="5807:5912" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="6558:7107" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="6710:6785" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="6946:7097" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7148:7225" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7333:7983" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7399:7747" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7500:7586" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7656:7733" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7764:7838" ph="{...}" />
+            <marker date="1512597780691" expanded="true" signature="7909:7973" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Game/GameState.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1512427564028" expanded="true" signature="33:229" ph="{...}" />
+            <marker date="1512427564028" expanded="true" signature="62:227" ph="{...}" />
+            <marker date="1512427564028" expanded="true" signature="162:221" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/Game/Player.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <marker date="1512640339952" expanded="false" signature="6:107" ph="..." />
+            <marker date="1512640339952" expanded="true" signature="142:1009" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="177:1007" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="271:350" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="404:426" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="507:528" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="586:1001" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="640:694" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="739:793" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="838:892" ph="{...}" />
+            <marker date="1512640339952" expanded="true" signature="937:991" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A6B5C168-6196-475A-A75B-8DDE7820E259/22/5faf4dc5/SpriteBatch.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="93" column="13" lean-forward="false" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A6B5C168-6196-475A-A75B-8DDE7820E259/71/6d546f53/GraphicsDevice.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30346">
+          <caret line="77" column="49" lean-forward="false" selection-start-line="77" selection-start-column="49" selection-end-line="77" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Animation.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="39" column="1" lean-forward="false" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
+          <folding>
+            <marker date="1512645463209" expanded="true" signature="6:76" ph="..." />
+            <marker date="1512645463209" expanded="true" signature="123:1442" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="152:1440" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="671:753" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="800:1434" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="832:1106" ph="{...}" />
+            <marker date="1512645463209" expanded="true" signature="1123:1424" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/UI/Button.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <folding>
+            <marker date="1512645731302" expanded="false" signature="6:116" ph="..." />
+            <marker date="1512645731302" expanded="true" signature="163:3095" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="199:3093" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="653:673" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="757:2095" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="1476:1886" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="1903:2085" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2156:3087" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2419:2636" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2685:2935" ph="{...}" />
+            <marker date="1512645731302" expanded="true" signature="2844:2921" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/GameComponent/DebugManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="50" column="91" lean-forward="false" selection-start-line="50" selection-start-column="91" selection-end-line="50" selection-end-column="91" />
+          <folding>
+            <marker date="1512646628574" expanded="false" signature="6:230" ph="..." />
+            <marker date="1512646628574" expanded="true" signature="274:2211" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="322:2209" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="516:579" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="622:697" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="753:1070" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="871:937" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="996:1060" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="1124:1854" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="1159:1844" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="1307:1499" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="1932:2203" ph="{...}" />
+            <marker date="1512646628574" expanded="true" signature="2085:2193" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorldOfImagination/WorldOfImaginationGame.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="79" column="14" lean-forward="false" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+          <folding>
+            <marker date="1512646823831" expanded="false" signature="6:299" ph="..." />
+            <marker date="1512646823831" expanded="true" signature="329:3974" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="402:3972" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="968:1529" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="1658:1931" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="1990:2078" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2139:2414" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2460:2881" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="2928:2980" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3029:3083" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3142:3397" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3442:3535" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3592:3742" ph="{...}" />
+            <marker date="1512646823831" expanded="true" signature="3785:3966" ph="{...}" />
           </folding>
         </state>
       </provider>

@@ -11,10 +11,11 @@ namespace WorldOfImagination.GameComponent
         public InputManager Input => Game.Input;
         public Ressources Ress => Game.Ress;
         public bool Debug => Game.Debug.Visible;
+        private readonly RasterizerState _rasterizerState;
         
         public UiManager(WorldOfImaginationGame game) : base(game)
         {
-            
+            _rasterizerState = new RasterizerState() { ScissorTestEnable = true };
         }
 
         public override void Initialize()
@@ -32,9 +33,11 @@ namespace WorldOfImagination.GameComponent
             Game.Scene?.CurrentScene?.UiRoot.Update(gameTime);
         }
 
+        
+        
         public override void Draw(GameTime gameTime)
         {
-            uiSpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp);
+            uiSpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, _rasterizerState);
             Game.Scene?.CurrentScene?.UiRoot.Draw(uiSpriteBatch, gameTime);
             uiSpriteBatch.End();
         }
