@@ -27,7 +27,7 @@ namespace WorldOfImagination.GameComponent.UI
             var height = (int) (Bound.Height * animation.SinTwoPhases - 8f * downAnimation.SinTwoPhases);
             
             spriteBatch.FillRectangle(new Rectangle(Bound.X + Bound.Width / 2 - width / 2, Bound.Y + Bound.Height / 2 - height / 2, width, height), new Color(0, 0, 0, (int)(200f * animation.TwoPhases)));
-            spriteBatch.FillRectangle(new Rectangle((int)(OnMousClickPosition.X - width / 2f * clickAnimation.TwoPhases), Bound.Y, (int)(width*clickAnimation.TwoPhases), height), Color.Gold * ((1f - clickAnimation.TwoPhases) * 0.75f));
+            spriteBatch.FillRectangle(new Rectangle((int)(OnMousClickPosition.X - width / 2f * clickAnimation.TwoPhases), Bound.Y + Bound.Height / 2 - height / 2, (int)(width*clickAnimation.TwoPhases), height), Color.Gold * ((1f - clickAnimation.TwoPhases) * 0.75f));
             
             if (Icon != null)
             {

@@ -15,6 +15,27 @@
           <e p="GameState.cs" t="Include" />
           <e p="Items" t="Include" />
           <e p="Player.cs" t="Include" />
+          <e p="Script" t="Include">
+            <e p="CodeStruct" t="Include">
+              <e p="Block.cs" t="Include" />
+              <e p="Function.cs" t="Include" />
+              <e p="Scope.cs" t="Include" />
+              <e p="Statement.cs" t="Include" />
+              <e p="Statements" t="Include">
+                <e p="Constant.cs" t="Include" />
+                <e p="FunctionCall.cs" t="Include" />
+                <e p="Math.cs" t="Include" />
+                <e p="Variable.cs" t="Include" />
+                <e p="VariableAssignment.cs" t="Include" />
+              </e>
+              <e p="Tokenizer.cs" t="Include" />
+              <e p="Value.cs" t="Include" />
+            </e>
+            <e p="Compiler.cs" t="Include" />
+            <e p="SciptRuntime.cs" t="Include" />
+            <e p="Script.cs" t="Include" />
+            <e p="Sheduler.cs" t="Include" />
+          </e>
         </e>
         <e p="GameComponent" t="Include">
           <e p="Audio" t="Include" />

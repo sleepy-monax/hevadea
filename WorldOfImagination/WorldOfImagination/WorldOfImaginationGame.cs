@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using WorldOfImagination.GameComponent;
 using WorldOfImagination.GameComponent.Scene;
 using WorldOfImagination.Utils;
@@ -77,7 +78,7 @@ namespace WorldOfImagination
         protected override void Initialize()
         {
             this.SetTitle("World Of Imagination");
-            //this.IsFixedTimeStep=false;
+            // this.IsFixedTimeStep=false;
             Graphics.SynchronizeWithVerticalRetrace = false;
 
             this.SetFullScreen();
@@ -107,26 +108,17 @@ namespace WorldOfImagination
             base.Update(gameTime);
         }
 
-        protected override bool BeginDraw()
-        {
-            drawStopwatch.Start();
-
-            return base.BeginDraw();
-        }
-
         protected override void Draw(GameTime gameTime)
         {
+            drawStopwatch.Start();
+            //Thread.Sleep(50);
             GraphicsDevice.Clear(Color.CornflowerBlue);
             DrawGameComponent(gameTime);
             base.Draw(gameTime);
-        }
-
-        protected override void EndDraw()
-        {
             drawStopwatch.Stop();
             DrawTime = (int)drawStopwatch.Elapsed.Milliseconds;
             drawStopwatch.Reset();
-            base.EndDraw();
         }
+
     }
 }
