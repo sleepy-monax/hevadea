@@ -10,8 +10,10 @@ namespace WorldOfImagination.GameComponent
         
         public SpriteFont font_alagard;
         public SpriteFont font_arial;
+        public SpriteFont font_arial_tiny;
         public SpriteFont font_romulus;
         public SpriteFont font_bebas;
+        public SpriteFont font_bebas_big;
         public SpriteFont font_hack;
         
         public Texture2D icon_back;
@@ -27,6 +29,7 @@ namespace WorldOfImagination.GameComponent
         public Texture2D img_terrain;
         public Texture2D img_characters;
         public Texture2D img_menu_background;
+        public Texture2D img_maker_logo;
 
         public Ressources(WorldOfImaginationGame game)
         {
@@ -37,8 +40,10 @@ namespace WorldOfImagination.GameComponent
         {
             font_alagard = Game.Ressource.GetSpriteFont("alagard");
             font_arial = Game.Ressource.GetSpriteFont("arial");
+            font_arial_tiny = Game.Ressource.GetSpriteFont("arial_tiny");
             font_romulus = Game.Ressource.GetSpriteFont("romulus");
             font_bebas = Game.Ressource.GetSpriteFont("bebas");
+            font_bebas_big = Game.Ressource.GetSpriteFont("bebas_big");
             font_hack = Game.Ressource.GetSpriteFont("hack");
 
             icon_back = Game.Ressource.GetIcon("back_arrow");
@@ -54,6 +59,7 @@ namespace WorldOfImagination.GameComponent
             img_terrain = Game.Ressource.GetImage("Tiles");
             img_characters = Game.Ressource.GetImage("Characters");
             img_menu_background = Game.Ressource.GetImage("menu_background");
+            img_maker_logo = Game.Ressource.GetImage("maker_logo");
         }
     }
 }

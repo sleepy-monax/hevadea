@@ -78,12 +78,12 @@ namespace WorldOfImagination
             this.SetTitle("World Of Imagination");
             // this.IsFixedTimeStep=false;
             Graphics.SynchronizeWithVerticalRetrace = false;
-            /*Graphics.SetWidth(1280);
+            Graphics.SetWidth(1280);
             Graphics.SetHeight(720);
-            Graphics.Apply();*/
+            Graphics.Apply();
             this.SetFullScreen();
             
-            Scene.Switch(new MainMenu(this));
+            Scene.Switch(new SplashScene(this));
             Console.WriteLine($"{nameof(WorldOfImaginationGame)} initialized !");
 
             IntializeGameComponents();

@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using WorldOfImagination.GameComponent.UI;
-using WorldOfImagination.Utils;
 
 namespace WorldOfImagination.GameComponent.Scene
 {
@@ -55,11 +54,20 @@ namespace WorldOfImagination.GameComponent.Scene
                 Text = "exit", 
                 Icon = Game.Ress.icon_close
             };
-            
+
+            var titleLabel = new Label(Game.UI)
+            {
+                Bound = new Rectangle(64, 64, 64, 64),
+                Text = "The World Is Your Only Limit.",
+                Font = Game.Ress.font_bebas_big,
+                Dock = Dock.Fill
+            };
+
             playButton.OnMouseClick += PlayButtonOnOnMouseClick;
             exitButton.OnMouseClick += ExitButtonOnOnMouseClick;
 
             UiRoot.AddChild(menuButtonHost);
+            UiRoot.AddChild(titleLabel);
             menuButtonHost.AddChild(playButton);
             menuButtonHost.AddChild(editorButton);
             menuButtonHost.AddChild(optionButton);
