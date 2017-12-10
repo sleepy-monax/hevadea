@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
 using WorldOfImagination.Utils;
 
 namespace WorldOfImagination.GameComponent.UI
@@ -8,6 +8,7 @@ namespace WorldOfImagination.GameComponent.UI
     {
         public bool Show { get; set; } = false;
         public float Speed = 1f;
+        private float debugSpeed = 1f;
         
         private float animation = 0f;
         private float animation_final = 0f;
@@ -27,13 +28,13 @@ namespace WorldOfImagination.GameComponent.UI
         {
             if (Show)
             {
-                animation = Math.Min(1f, animation + (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed);
-                animation_final = Math.Min(1f, animation_final + (float)(gameTime.ElapsedGameTime.Milliseconds) / 400f * Speed);
+                animation = Math.Min(1f, animation + (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * debugSpeed);
+                animation_final = Math.Min(1f, animation_final + (float)(gameTime.ElapsedGameTime.Milliseconds) / 400f * Speed * debugSpeed);
             }
             else
             {
-                animation = Math.Max(0f, animation - (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed);
-                                          animation_final = Math.Min(0f, animation_final + (float) (gameTime.ElapsedGameTime.Milliseconds) / 400f * Speed);
+                animation = Math.Max(0f, animation - (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * debugSpeed);
+                                          animation_final = Math.Min(0f, animation_final + (float) (gameTime.ElapsedGameTime.Milliseconds) / 400f * Speed * debugSpeed);
             }
         }
     }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using WorldOfImagination.Game.Script.CodeStruct.Statements;
+using WorldOfImagination.Game.Scripting.CodeStruct.Statements;
 
-namespace WorldOfImagination.Game.Script.CodeStruct
+namespace WorldOfImagination.Game.Scripting.CodeStruct
 {
     public enum ValueType {_string, _int, _bool}
     

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WorldOfImagination.Game.Script.CodeStruct
+namespace WorldOfImagination.Game.Scripting
 {
     public static class Tokenizer
     {

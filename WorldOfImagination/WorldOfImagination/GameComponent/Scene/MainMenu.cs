@@ -1,7 +1,6 @@
-﻿using System;
-using System.Reflection;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using WorldOfImagination.GameComponent.UI;
 using WorldOfImagination.Utils;
 
@@ -19,46 +18,40 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Load()
         {            
-            UiRoot.Padding = new Padding(16, 16, 16, 16);
+            
             Game.IsMouseVisible = true;
             
             var menuButtonHost = new Panel(Game.UI)
             {
-                //Dock  = Dock.Left,
+                Dock  = Dock.Left,
                 Layout = LayoutMode.Vertical
             };
             
-            var playButton = new Button(Game.UI)
+            var playButton = new MainMenuButton(Game.UI)
             {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "singleplayer",
-                Icon = Game.Ress.icon_single_people
+                Bound = new Rectangle(64, 64, 64, 72),
+                Text = "play",
+                Icon = Game.Ress.icon_play
+            };
+
+
+            var editorButton = new MainMenuButton(Game.UI)
+            {
+                Bound = new Rectangle(64, 64, 64, 72),
+                Text = "editor",
+                Icon = Game.Ress.icon_edit
             };
             
-            var multiPlayerButton = new Button(Game.UI)
+            var optionButton = new MainMenuButton(Game.UI)
             {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "multiplayer",
-                Icon = Game.Ress.icon_people
-            };
-            
-            var editorButton = new Button(Game.UI)
-            {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "world editor", 
-                //Icon = Game.Ress.icon_close
-            };
-            
-            var optionButton = new Button(Game.UI)
-            {
-                Bound = new Rectangle(64, 64, 64, 64),
+                Bound = new Rectangle(64, 64, 64, 72),
                 Text = "option", 
                 Icon = Game.Ress.icon_settings
             };
             
-            var exitButton = new Button(Game.UI)
+            var exitButton = new MainMenuButton(Game.UI)
             {
-                Bound = new Rectangle(64, 64, 64, 64),
+                Bound = new Rectangle(64, 64, 64, 72),
                 Text = "exit", 
                 Icon = Game.Ress.icon_close
             };
@@ -68,13 +61,14 @@ namespace WorldOfImagination.GameComponent.Scene
 
             UiRoot.AddChild(menuButtonHost);
             menuButtonHost.AddChild(playButton);
-            menuButtonHost.AddChild(multiPlayerButton);
             menuButtonHost.AddChild(editorButton);
             menuButtonHost.AddChild(optionButton);
             menuButtonHost.AddChild(exitButton);
 
-            menuButtonHost.Bound = new Rectangle(Game.Graphics.GetWidth() / 2 - 180, Game.Graphics.GetHeight() / 2 - (64 * menuButtonHost.Childs.Count) / 2, 360, 64 * menuButtonHost.Childs.Count);
-            
+            menuButtonHost.Bound = new Rectangle(0, 0, 360, 64 * menuButtonHost.Childs.Count);
+            var padding = Game.Graphics.GetHeight() / 2 - menuButtonHost.Bound.Height / 2;
+            UiRoot.Padding = new Padding(padding, padding, 16, 16);
+
             Game.UI.RefreshLayout();
         }
 
@@ -97,11 +91,7 @@ namespace WorldOfImagination.GameComponent.Scene
         {
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
 
-            var titleRect = new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight() / 4);
-
-            //sb.FillRectangle(titleRect, new Color(0, 0, 0, 200));
-            sb.DrawString(Game.Ress.font_alagard, "World Of Imagination", titleRect, Alignement.Center, Style.DropShadow, Color.White);
-            sb.DrawString(Game.Ress.font_romulus, "\n\n\nTale of the foreigner", titleRect, Alignement.Center, Style.Regular, Color.Gold);
+            sb.Draw(Game.Ress.img_menu_background, new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight()), Color.White);
             sb.End();
             
         }

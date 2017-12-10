@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using WorldOfImagination.GameComponent.UI;
 
@@ -6,12 +7,16 @@ namespace WorldOfImagination.GameComponent.Scene
 {
     public class PlayMenu : Scene
     {
+        private readonly SpriteBatch sb;
         public PlayMenu(WorldOfImaginationGame game) : base(game)
         {
+            sb = new SpriteBatch(game.GraphicsDevice);
         }
 
         public override void Load()
         {
+
+
             UiRoot.Padding = new Padding(64, 64, 256, 265);
 
             var menuButtonHost = new Panel(Game.UI)
@@ -73,7 +78,9 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Draw(GameTime gameTime)
         {
-
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
+            sb.Draw(Game.Ress.img_menu_background, new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight()), Color.White);
+            sb.End();
         }
 
         public override void Unload()

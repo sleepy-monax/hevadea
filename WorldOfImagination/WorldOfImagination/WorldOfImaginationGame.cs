@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
 using WorldOfImagination.GameComponent;
 using WorldOfImagination.GameComponent.Scene;
 using WorldOfImagination.Utils;
@@ -80,7 +78,9 @@ namespace WorldOfImagination
             this.SetTitle("World Of Imagination");
             // this.IsFixedTimeStep=false;
             Graphics.SynchronizeWithVerticalRetrace = false;
-
+            /*Graphics.SetWidth(1280);
+            Graphics.SetHeight(720);
+            Graphics.Apply();*/
             this.SetFullScreen();
             
             Scene.Switch(new MainMenu(this));

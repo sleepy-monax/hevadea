@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace WorldOfImagination.GameComponent
@@ -15,7 +14,7 @@ namespace WorldOfImagination.GameComponent
         
         public UiManager(WorldOfImaginationGame game) : base(game)
         {
-            _rasterizerState = new RasterizerState() { ScissorTestEnable = true };
+            _rasterizerState = new RasterizerState() { ScissorTestEnable = true};
         }
 
         public override void Initialize()
@@ -37,7 +36,7 @@ namespace WorldOfImagination.GameComponent
         
         public override void Draw(GameTime gameTime)
         {
-            uiSpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, _rasterizerState);
+            uiSpriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, _rasterizerState);
             Game.Scene?.CurrentScene?.UiRoot.Draw(uiSpriteBatch, gameTime);
             uiSpriteBatch.End();
         }

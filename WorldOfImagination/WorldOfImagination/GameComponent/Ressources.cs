@@ -15,6 +15,7 @@ namespace WorldOfImagination.GameComponent
         public SpriteFont font_hack;
         
         public Texture2D icon_back;
+        public Texture2D icon_edit;
         public Texture2D icon_close;
         public Texture2D icon_add;
         public Texture2D icon_play;
@@ -24,7 +25,9 @@ namespace WorldOfImagination.GameComponent
         public Texture2D icon_settings;
 
         public Texture2D img_terrain;
-        
+        public Texture2D img_characters;
+        public Texture2D img_menu_background;
+
         public Ressources(WorldOfImaginationGame game)
         {
             Game = game;
@@ -46,8 +49,11 @@ namespace WorldOfImagination.GameComponent
             icon_single_people = Game.Ressource.GetIcon("single_people");
             icon_delete = Game.Ressource.GetIcon("delete");
             icon_settings = Game.Ressource.GetIcon("settings");
+            icon_edit = Game.Ressource.GetIcon("edit");
 
             img_terrain = Game.Ressource.GetImage("Tiles");
+            img_characters = Game.Ressource.GetImage("Characters");
+            img_menu_background = Game.Ressource.GetImage("menu_background");
         }
     }
 }

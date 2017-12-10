@@ -1,4 +1,4 @@
-﻿namespace WorldOfImagination.Game.Script.CodeStruct.Statements
+﻿namespace WorldOfImagination.Game.Scripting.CodeStruct.Statements
 {
     
     

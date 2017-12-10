@@ -1,6 +1,6 @@
-﻿using WorldOfImagination.Game.Script.CodeStruct;
+﻿using WorldOfImagination.Game.Scripting.CodeStruct;
 
-namespace WorldOfImagination.Game.Script
+namespace WorldOfImagination.Game.Scripting
 {
     public class Compiler
     {

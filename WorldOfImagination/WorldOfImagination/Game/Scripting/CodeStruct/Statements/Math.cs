@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WorldOfImagination.Game.Script.CodeStruct.Statements
+namespace WorldOfImagination.Game.Scripting.CodeStruct.Statements
 {
     public enum MathOperator {Add, Sub, Mult, Divide, Modulo, Exp, Equal, NotEqual, BiggerThan, SmallerThan}
     

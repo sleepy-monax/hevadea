@@ -1,4 +1,4 @@
-﻿namespace WorldOfImagination.Game.Script
+﻿namespace WorldOfImagination.Game.Scripting
 {
     public class Sheduler
     {

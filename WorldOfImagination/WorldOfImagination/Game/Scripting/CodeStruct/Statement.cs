@@ -1,4 +1,4 @@
-﻿namespace WorldOfImagination.Game.Script.CodeStruct
+﻿namespace WorldOfImagination.Game.Scripting.CodeStruct
 {
     public abstract class Statement
     {
