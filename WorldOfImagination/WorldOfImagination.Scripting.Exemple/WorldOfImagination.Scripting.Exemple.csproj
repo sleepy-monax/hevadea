@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WorldOfImagination.Json\WorldOfImagination.Json.csproj">
+      <Project>{14238b3f-e459-4ad9-a533-213b8c160bbc}</Project>
+      <Name>WorldOfImagination.Json</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WorldOfImagination.Scripting\WorldOfImagination.Scripting.csproj">
       <Project>{3d173296-a75a-44eb-a041-50f10b3998bb}</Project>
       <Name>WorldOfImagination.Scripting</Name>
@@ -56,7 +60,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="exemple\functionCall.sc" />
+    <None Include="exemple\functionCall.sc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="exemple\SimpleTest.sc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

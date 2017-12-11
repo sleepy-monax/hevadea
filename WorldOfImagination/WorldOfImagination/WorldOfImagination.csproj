@@ -45,7 +45,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameComponent\Ressource\Tileset.cs" />
+    <Compile Include="GameComponent\Ressource\TileSheet.cs" />
     <Compile Include="GameComponent\Scene\SplashScene.cs" />
     <Compile Include="GameComponent\UI\Animation.cs" />
     <Compile Include="GameComponent\UI\DialogBox.cs" />
@@ -76,6 +76,8 @@
     <Compile Include="GameComponent\UI\Panel.cs" />
     <Compile Include="GameComponent\UI\Picture.cs" />
     <Compile Include="GameComponent\UI\TextInput.cs" />
+    <Compile Include="Game\World\Cell.cs" />
+    <Compile Include="Game\World\Tile.cs" />
     <Compile Include="Utils\GameExtension.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\RectangleF.cs" />

@@ -5,11 +5,13 @@ namespace WorldOfImagination.Scripting.CodeStruct.Statements
     public class VariableAssignment : Statement
     {
         private string VariableName;
-        private Statement Value;
+        private Statement VariableValue;
         
         public override Value Evaluate(State state)
         {
-            throw new System.NotImplementedException();
+            var val = VariableValue.Evaluate(state);
+            state.SetVariable(VariableName, val);
+            return val;
         }
     }
 }

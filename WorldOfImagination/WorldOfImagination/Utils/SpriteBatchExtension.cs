@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using WorldOfImagination.GameComponent.Ressource;
 
 namespace WorldOfImagination.Utils
 {
@@ -563,11 +564,6 @@ namespace WorldOfImagination.Utils
 
         #endregion
 
-        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 position, Style style, Color color)
-        {
-
-        }
-
         public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Alignement alignement, Style style, Color color, float scale = 1f)
         {
             Vector2 TextSize = font.MeasureString(text) * scale;
@@ -600,6 +596,12 @@ namespace WorldOfImagination.Utils
             }
 
             spriteBatch.DrawString(font, text, pos - origin, color, 0f, Vector2.Zero, new Vector2(scale, scale), SpriteEffects.None, 1f );
+        }
+
+        public static void Draw(this SpriteBatch spriteBatch, TileSheet tileSheet, int tileIndex, Vector2 position,
+            Color color)
+        {
+            spriteBatch.Draw(tileSheet.Texture, position, tileSheet.GetTile(tileIndex), color);
         }
     }
 }

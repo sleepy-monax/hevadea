@@ -3,3 +3,7 @@
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Scripting/bin/Debug/WorldOfImagination.Scripting.dll
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Scripting/obj/Debug/WorldOfImagination.Scripting.dll
 /home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Scripting/obj/Debug/WorldOfImagination.Scripting.dll.mdb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Scripting/bin/Debug/WorldOfImagination.Json.dll
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Scripting/bin/Debug/WorldOfImagination.Json.dll.mdb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Scripting/bin/Debug/WorldOfImagination.Scripting.pdb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Scripting/obj/Debug/WorldOfImagination.Scripting.pdb

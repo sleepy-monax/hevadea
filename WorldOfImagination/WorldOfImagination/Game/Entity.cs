@@ -41,6 +41,7 @@ namespace WorldOfImagination.Game
         public void Update(GameTime gameTime)
         {
             OnUpdate(gameTime);
+           
         }
 
         public abstract void OnUpdate(GameTime gameTime);

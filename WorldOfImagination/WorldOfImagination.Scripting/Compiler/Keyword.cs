@@ -7,19 +7,46 @@
         QUOTE,
         
         // math operator
-        MATHADD, MATHSUM, MATHMULT, MATHDIV, MATHMOD, MATHEXP, 
-        MATHEQUAL,  MATHENOTQUAL,  MATHEBIGGERTHAN,  MATHSMALLERTHAN,
+        MATHADD, MATHSUM,
+        MATHMULT, MATHDIV,
+        MATHMOD,
+        
+        MATHEQUAL,
+        MATHENOTQUAL,
+        
+        BIGGER_OR_EQUAL,
+        SMALLER_OR_EQUAL,
+        BIGGER_THAN,
+        SMALLER_THAN,
         
         // bool operator
-        BOOLAND, BOOLOR, BOOLNOT,
+        AND, OR, NOT,
         
         // Keywords
-        kwFUNCTION, kwRETURN, kwEND, kwIF, kwELSE, kwELSEIF, kwFOR, kwWHILE, kwDO, kwTRUE, kwFALSE,
+        FUNCTION,
+        RETURN, 
+        END, 
+        IF, 
+        ELSE, 
+        ELSEIF, 
+        FOR, 
+        WHILE,
+        DO,
+        TRUE,
+        FALSE,
 
         // Value
-        valINT, valBOOL, valSTRING, 
+        INT, 
+        BOOL,
+        STRING, 
         
         // Misc
-        ARROW, FUNCTIONNAME, VARNAME, RAW, LINEEND
+        ARROW, 
+        FUNCTIONNAME,
+        FUNCTIONARGNAME,
+        VARNAME,
+        RAW, // Raw is for not yet identified token
+        LINEEND,
+        COMMA,
     }
 }

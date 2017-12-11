@@ -1,0 +1,5 @@
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Networking/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Networking/bin/Debug/WorldOfImagination.Networking.dll.mdb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Networking/bin/Debug/WorldOfImagination.Networking.dll
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Networking/obj/Debug/WorldOfImagination.Networking.dll
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/WorldOfImagination.Networking/obj/Debug/WorldOfImagination.Networking.dll.mdb

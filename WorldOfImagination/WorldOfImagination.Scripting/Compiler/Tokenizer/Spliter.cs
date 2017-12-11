@@ -11,12 +11,13 @@ namespace WorldOfImagination.Scripting.Compiler
             bool isString = false;
             foreach (var c in str)
             {
-                if (c == ' ' && ! isString)
+                if (c == ' ' && !isString)
                 {
-                    tokens.Add(token);
+                    if (token != "")
+                        tokens.Add(token);
                     token = "";
                 }
-                if (c == '"' || ((c == '(' || c == ')' || c == '{' || c == '}') && ! isString))
+                else if (c == '"' || ((c == '(' || c == ')' || c == '{' || c == '}' || c == ';' || c == ',') && ! isString))
                 {
                     if (token != "")
                         tokens.Add(token);
@@ -32,6 +33,7 @@ namespace WorldOfImagination.Scripting.Compiler
                     token += c;
                 }
             }
+            
             if (token != "")
                 tokens.Add(token);
             return tokens;
