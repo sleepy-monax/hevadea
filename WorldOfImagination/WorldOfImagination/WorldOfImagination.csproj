@@ -76,21 +76,6 @@
     <Compile Include="GameComponent\UI\Panel.cs" />
     <Compile Include="GameComponent\UI\Picture.cs" />
     <Compile Include="GameComponent\UI\TextInput.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Block.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Function.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Scope.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Statement.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Statements\Constant.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Statements\FunctionCall.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Statements\Math.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Statements\Variable.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Statements\VariableAssignment.cs" />
-    <Compile Include="Game\Scripting\Tokenizer.cs" />
-    <Compile Include="Game\Scripting\CodeStruct\Value.cs" />
-    <Compile Include="Game\Scripting\Compiler.cs" />
-    <Compile Include="Game\Scripting\ScriptRuntime.cs" />
-    <Compile Include="Game\Scripting\Script.cs" />
-    <Compile Include="Game\Scripting\Sheduler.cs" />
     <Compile Include="Utils\GameExtension.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\RectangleF.cs" />
@@ -168,6 +153,16 @@
     <Folder Include="Game\CharacterClass\" />
     <Folder Include="Game\Entities\" />
     <Folder Include="Game\Items\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WorldOfImagination.Json\WorldOfImagination.Json.csproj">
+      <Project>{14238b3f-e459-4ad9-a533-213b8c160bbc}</Project>
+      <Name>WorldOfImagination.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldOfImagination.Scripting\WorldOfImagination.Scripting.csproj">
+      <Project>{3d173296-a75a-44eb-a041-50f10b3998bb}</Project>
+      <Name>WorldOfImagination.Scripting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
