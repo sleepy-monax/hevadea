@@ -7,116 +7,37 @@ namespace WorldOfImagination.Scripting.Compiler
     public class Lexer
     {
         private string currentToken = "";
-        
-        
-        public Lexer()
+        public List<Token> Tokens;
+
+        private List<string> RawToken;
+        private int currentIndex = 0;
+        private bool isString = false;
+
+        public Lexer(List<string> rawToken)
         {
-            
+            Tokens = new List<Token>();
+            RawToken = rawToken;
         }
 
-        private static readonly string[] KeyWords =
+        internal void PushToken(TokenType type, string content)
         {
-            "fun",
-            "return",
-            "end",
-            
-            "if",
-            "else",
-            "elseif",
-            
-            "for",
-            "while",
-            "do"
-        };
-
-        private static readonly string[] Operator = 
-        {
-            "^", // exposant
-            "*", // multiplication
-            "/", // Division
-            "%", // modulo
-            "+", // add
-            "-", // minus
-            "=", // equal
-            "!=",// not equal
-            ">", // Bigger
-            "<", // Smaller
-            ">=",// Bigger or equal
-            "<=",// Smalller or equal 
-            "and", // bool and
-            "or",  // bool or
-            "xor", // bool xor
-            "->"   // Variable assignement
-            
-            /* NOTES: operator like min, max, sqrt, not... Will be buildin functions */
-        };
-
-        private static readonly char[] Separator =
-        {
-            '{', '}', '[', ']', '(', ')', ';', ','
-        };
-        
-        private static string PrepareString(string str)
-        {
-            return str.Replace("\r\n", "").Replace("\n", ""); // Remove new line char.
+            Tokens.Add(new Token(type, content));
+            currentToken = "";
         }
-        
-        public List<Token> Lexe(string str)
-        {
-            var tokens = new List<Token>();
 
-            var isString = false;
-            var ignoreSpace = true;
-            
-            var token = "";
-            
-            foreach (char c in PrepareString(str))
+        public void Lexe()
+        {
+            bool isString = false;
+            foreach (var i in RawToken)
             {
-                var tokenEnd = false;
-                var tokenType = TokenType.None;
-                var ignore = false;
-                
-                if (c == '"')
-                {
-                    if (isString)
-                    {
-                        tokenEnd = true;
-                        tokenType = TokenType.Literal;
-                        
-                    }
-                    else
-                    {
-                        ignore = true;
-                    }
-                    
-                    isString = !isString;
-                    ignoreSpace = !isString;
-                }
+                if (i.IsKeyword()) PushToken(TokenType.Keyword, i);
+                else if (i.IsOperator()) PushToken(TokenType.Operator, i);
+                else if (i.IsSeparator()) PushToken(TokenType.Separator, i);
+                else if (i == "\"") isString = !isString;
+                else if (i.IsInt() || i.IsBool() || isString) PushToken(TokenType.Literal, i);
+                else PushToken(TokenType.Identifier, i);
 
-                if (!isString && Separator.Contains(c))
-                {
-                    tokenEnd = true;
-                    tokenType = TokenType.Separator;
-                }
-                
-                var saveToken = (c != ' ' || !ignoreSpace) && (isString || Separator.Contains(c)) && !ignore;
-                
-                if (saveToken)
-                {
-                     
-                }
-
-                token += c;
-                
-                if (tokenEnd && !string.IsNullOrEmpty(token))
-                {
-                    tokens.Add(new Token(tokenType, token));
-                    token = "";
-                }
-                
             }
-            
-            return tokens;      
         }
     }
 }

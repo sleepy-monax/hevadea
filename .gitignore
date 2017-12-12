@@ -1,7 +1,15 @@
+/.vscode
 /WorldOfImagination/.vs
 /WorldOfImagination/.idea
 /WorldOfImagination/WorldOfImagination/bin
 /WorldOfImagination/WorldOfImagination/obj
 /WorldOfImagination/WorldOfImagination/Content/bin
 /WorldOfImagination/WorldOfImagination/Content/obj
-/.vscode
+/WorldOfImagination/WorldOfImagination.Json/bin
+/WorldOfImagination/WorldOfImagination.Json/obj
+/WorldOfImagination/WorldOfImagination.Networking/bin
+/WorldOfImagination/WorldOfImagination.Networking/obj
+/WorldOfImagination/WorldOfImagination.Scripting/bin
+/WorldOfImagination/WorldOfImagination.Scripting/obj
+/WorldOfImagination/WorldOfImagination.Scripting.Exemple/bin
+/WorldOfImagination/WorldOfImagination.Scripting.Exemple/obj

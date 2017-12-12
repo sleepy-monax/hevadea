@@ -43,6 +43,8 @@
     <Compile Include="Compiler\Lexer.cs" />
     <Compile Include="Compiler\Parser.cs" />
     <Compile Include="Compiler\Token.cs" />
+    <Compile Include="Compiler\Tokenizer.cs" />
+    <Compile Include="Syntaxe.cs" />
     <Compile Include="utils.cs" />
   </ItemGroup>
   <ItemGroup>

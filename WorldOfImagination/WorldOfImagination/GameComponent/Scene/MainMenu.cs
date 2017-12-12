@@ -97,9 +97,16 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Draw(GameTime gameTime)
         {
+            var dest = new Rectangle(
+                (int)(Game.Input.MousePosition.X / (float)Game.Graphics.GetWidth() * 32f) - 32,
+                (int)(Game.Input.MousePosition.Y / (float)Game.Graphics.GetHeight() * 32f) - 32,
+                
+                (int)(Game.Graphics.GetWidth() * 1.1f),
+                (int)(Game.Graphics.GetHeight() * 1.1f));
+
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
 
-            sb.Draw(Game.Ress.img_menu_background, new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight()), Color.White);
+            sb.Draw(Game.Ress.img_menu_background, dest, Color.White);
             sb.End();
             
         }

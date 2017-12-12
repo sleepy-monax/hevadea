@@ -4,11 +4,16 @@ using System.Linq;
 
 namespace WorldOfImagination.Scripting
 {
-    static class Utils
+    public static class Utils
     {
         public static IList<T> Clone<T>(this IList<T> listToClone) where T: ICloneable
         {
             return listToClone.Select(item => (T)item.Clone()).ToList();
+        }
+
+        public static string PrepareString(string str)
+        {
+            return str.Replace("\r\n", "").Replace("\n", ""); // Remove new line char.
         }
     }
 }

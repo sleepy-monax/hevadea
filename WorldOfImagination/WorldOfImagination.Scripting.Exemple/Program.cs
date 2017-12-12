@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using WorldOfImagination.Scripting.Compiler;
-using WorldOfImagination.Json;
 
 namespace WorldOfImagination.Scripting.Exemple
 {
@@ -10,12 +8,34 @@ namespace WorldOfImagination.Scripting.Exemple
     {
         public static void Main(string[] args)
         {
-            
-            var tokens = new Lexer().Lexe(File.ReadAllText("exemple/SimpleTest.sc"));
-            foreach (var t in tokens)
+
+            Console.WriteLine("\n----- RAW FILE CONTENT -----");
+            var rawFileContent = File.ReadAllText("exemple/SimpleTest.sc");
+            Console.WriteLine(rawFileContent);
+
+
+            Console.WriteLine("\n----- PREPARED FILE CONTENT -----");
+            var preparedFileContent = Utils.PrepareString(rawFileContent);
+            Console.WriteLine(preparedFileContent);
+
+            Console.WriteLine("\n----- Raw Token -----");
+            var rawToken = Tokenizer.Tokenize(preparedFileContent);
+            foreach (var t in rawToken)
             {
-                Console.WriteLine($"'{t.Content}' is {t.Type}");
+                Console.WriteLine($"'{t}'");
             }
+
+            Console.WriteLine("\n----- Token -----");
+            var lexer = new Lexer(rawToken);
+            lexer.Lexe();
+
+            var token = lexer.Tokens;
+
+            foreach (var t in token)
+            {
+                Console.WriteLine($"{t.Type, 10}: '{t.Content}'");
+            }
+            Console.ReadKey();
         }
     }
 }
