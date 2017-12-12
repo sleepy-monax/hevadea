@@ -34,8 +34,8 @@ namespace WorldOfImagination.GameComponent.UI
             var clickRectWidth = (int)(width * clickAnimation.SinTwoPhases);
             var clickRect = new Rectangle(rectX + width / 2 - clickRectWidth / 2, rectY, clickRectWidth, height);
 
-            spriteBatch.FillRectangle(rect, new Color(0, 0, 0, (int)(200f * animation.TwoPhases)));
-            spriteBatch.FillRectangle(clickRect, Color.White * invClickanim * 0.75f);
+            spriteBatch.FillRectangle(rect, Color.Black * animation.TwoPhases);
+            spriteBatch.FillRectangle(clickRect, Color.White * invClickanim);
 
             if (Icon != null)
             {

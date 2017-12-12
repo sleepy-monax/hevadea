@@ -1,9 +1,5 @@
 fun main()
 {
-    1 + 1 -> a;
-    a + 3 -> b;
-    
-    a + b -> c;
-    
-    return c;
+    "je ne suis pas une pomme" -> pomme;
+    "moi je suis une pomme"    -> poire;
 }

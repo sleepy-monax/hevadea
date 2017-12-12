@@ -8,12 +8,11 @@ namespace WorldOfImagination.GameComponent
 {
     public class SceneManager : GameComponent
     {
-        private string loadingMessage = "Loading";
-        private Vector2 loadingMessageSize = Vector2.Zero;
         public Scene.Scene CurrentScene;
         private Animation animation;
         private Scene.Scene NextScene;
         private SpriteBatch sb;
+        private readonly RasterizerState _rasterizerState;
 
         public SceneManager(WorldOfImaginationGame game) : base(game)
         {
@@ -21,12 +20,13 @@ namespace WorldOfImagination.GameComponent
             CurrentScene = null;
             NextScene = null;
             
+            _rasterizerState = new RasterizerState() { ScissorTestEnable = true};
+            
         }
 
         public override void Initialize()
         {
             sb = new SpriteBatch(Game.GraphicsDevice);
-            loadingMessageSize = Game.Ress.font_bebas.MeasureString(loadingMessage);
         }
 
         public override void Update(GameTime gameTime)
@@ -53,11 +53,16 @@ namespace WorldOfImagination.GameComponent
             CurrentScene?.Draw(gameTime);
             Game.UI.Draw(gameTime);
             
-            sb.Begin();
-            var height = (int) (Game.Graphics.GetHeight() * MathUtils.Interpolate(animation.TwoPhases));
-            sb.FillRectangle(new Rectangle(0, Game.Graphics.GetHeight() / 2 - height/2, Game.Graphics.GetWidth(), height), Color.Black * animation.Linear);
-            sb.DrawString(Game.Ress.font_bebas, loadingMessage, new Vector2(Game.Graphics.GetWidth() / 2 - loadingMessageSize.X / 2, Game.Graphics.GetHeight() / 2 - loadingMessageSize.Y / 2), Color.White * animation.Linear);
-            //sb.DrawCircle(new Vector2(Game.Graphics.GetWidth() / 2f, Game.Graphics.GetHeight() / 2f),  10 + (int)(loadingMessageSize.X *Math.Sin(animation.ValueLinear * 3)), 10, Color.White * animation.ValueLinear);
+            sb.Begin(SpriteSortMode.Immediate, null, null, null, _rasterizerState);
+            var height = (int) (Game.Graphics.GetHeight() * MathUtils.Interpolate(animation.TwoPhases) );
+            var width = (int) (Game.Graphics.GetWidth() * MathUtils.Interpolate(animation.TwoPhases) );
+            var rect = new Rectangle(Game.Graphics.GetWidth() / 2 - width / 2,
+            Game.Graphics.GetHeight() / 2 - height / 2, width, height);
+            Game.GraphicsDevice.ScissorRectangle = rect;
+            sb.Draw(Game.Ress.img_menu_background, new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight()), Color.White * animation.TwoPhases);
+            Game.GraphicsDevice.ScissorRectangle =
+                new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());
+            //sb.FillRectangle(rect, Color.Black * animation.SinTwoPhases);
             sb.End();
         }
 

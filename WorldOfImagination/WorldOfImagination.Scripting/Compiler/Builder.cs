@@ -1,6 +1,6 @@
 ﻿namespace WorldOfImagination.Scripting.Compiler
 {
-    public class CodeGenerator
+    public class Builder
     {
         
     }
