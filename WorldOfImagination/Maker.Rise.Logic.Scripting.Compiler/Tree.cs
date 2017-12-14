@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using WorldOfImagination.Scripting;
 
 namespace Maker.Rise.Logic.Scripting.Compiler
 {

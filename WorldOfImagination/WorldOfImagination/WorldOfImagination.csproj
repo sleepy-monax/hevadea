@@ -14,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -177,10 +179,6 @@
     <ProjectReference Include="..\Maker.Rise.Storage.Json\Maker.Rise.Storage.Json.csproj">
       <Project>{b82fc963-721e-415f-8878-01b4682d8b6d}</Project>
       <Name>Maker.Rise.Storage.Json</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WorldOfImagination.Scripting\WorldOfImagination.Scripting.csproj">
-      <Project>{3d173296-a75a-44eb-a041-50f10b3998bb}</Project>
-      <Name>WorldOfImagination.Scripting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
