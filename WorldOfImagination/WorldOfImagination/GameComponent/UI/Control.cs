@@ -192,14 +192,13 @@ namespace WorldOfImagination.GameComponent.UI
         protected abstract void OnDraw(SpriteBatch spriteBatch,GameTime gameTime);
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            UI.Game.GraphicsDevice.ScissorRectangle = Bound;
+            //UI.Game.GraphicsDevice.ScissorRectangle = Bound;
             OnDraw(spriteBatch, gameTime);
             foreach (var c in Childs)
             {
                 c.Draw(spriteBatch, gameTime);
             }
 
-            UI.Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, UI.Game.Graphics.GetWidth(), UI.Game.Graphics.GetHeight());
             if (UI.Debug)
             {
                 spriteBatch.DrawRectangle(Host, Color.Red);

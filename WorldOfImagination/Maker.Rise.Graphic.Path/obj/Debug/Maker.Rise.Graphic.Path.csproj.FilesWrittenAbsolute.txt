@@ -1,0 +1,6 @@
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/Maker.Rise.Graphic.Path/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/Maker.Rise.Graphic.Path/bin/Debug/MonoGame.Framework.dll
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/Maker.Rise.Graphic.Path/bin/Debug/Maker.Rise.Graphic.Path.pdb
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/Maker.Rise.Graphic.Path/bin/Debug/Maker.Rise.Graphic.Path.dll
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/Maker.Rise.Graphic.Path/obj/Debug/Maker.Rise.Graphic.Path.dll
+/home/nicolas/Projets/mk-world-of-imagination/WorldOfImagination/Maker.Rise.Graphic.Path/obj/Debug/Maker.Rise.Graphic.Path.pdb

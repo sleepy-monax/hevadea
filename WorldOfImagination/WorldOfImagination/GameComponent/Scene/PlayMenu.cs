@@ -78,7 +78,8 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Draw(GameTime gameTime)
         {
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Game.RasterizerState);
+
             sb.Draw(Game.Ress.img_menu_background, new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight()), Color.White);
             sb.End();
         }

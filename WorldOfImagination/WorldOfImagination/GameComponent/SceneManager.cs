@@ -12,16 +12,12 @@ namespace WorldOfImagination.GameComponent
         private Animation animation;
         private Scene.Scene NextScene;
         private SpriteBatch sb;
-        private readonly RasterizerState _rasterizerState;
 
         public SceneManager(WorldOfImaginationGame game) : base(game)
         {
             animation = new Animation();
             CurrentScene = null;
             NextScene = null;
-            
-            _rasterizerState = new RasterizerState() { ScissorTestEnable = true};
-            
         }
 
         public override void Initialize()
@@ -41,27 +37,55 @@ namespace WorldOfImagination.GameComponent
             
             if (CurrentScene != null)
             {
-                CurrentScene.UiRoot.Bound =
-                    new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());
-                Game.UI.RefreshLayout();
+                CurrentScene.UiRoot.Bound = new Rectangle(
+                    0, 0,
+                    Game.Graphics.GetWidth(),
+                    Game.Graphics.GetHeight());
+                
+                CurrentScene.UiRoot.RefreshLayout();
+                
+                CurrentScene.UiRoot.Update(gameTime);
                 CurrentScene.Update(gameTime);
+            }
+            
+            if (NextScene != null)
+            {
+                NextScene.UiRoot.Bound = new Rectangle(
+                    0, 0,
+                    Game.Graphics.GetWidth(),
+                    Game.Graphics.GetHeight());
+                
+                NextScene.UiRoot.RefreshLayout();
+                
+                NextScene.UiRoot.Update(gameTime);
+                NextScene.Update(gameTime);
             }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            CurrentScene?.Draw(gameTime);
-            Game.UI.Draw(gameTime);
+            Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());
             
-            sb.Begin(SpriteSortMode.Immediate, null, null, null, _rasterizerState);
+            if (CurrentScene != null)
+            {
+                CurrentScene.Draw(gameTime);
+                Game.UI.DrawUiTree(gameTime, CurrentScene.UiRoot);
+            }
+            
+            sb.Begin(SpriteSortMode.Immediate, null, null, null, Game.RasterizerState);
             var height = (int) (Game.Graphics.GetHeight() * MathUtils.Interpolate(animation.TwoPhases) );
             var width = (int) (Game.Graphics.GetWidth() * MathUtils.Interpolate(animation.TwoPhases) );
             var rect = new Rectangle(Game.Graphics.GetWidth() / 2 - width / 2,
             Game.Graphics.GetHeight() / 2 - height / 2, width, height);
+            
             Game.GraphicsDevice.ScissorRectangle = rect;
-            sb.Draw(Game.Ress.img_menu_background, new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight()), Color.White * animation.TwoPhases);
-            Game.GraphicsDevice.ScissorRectangle =
-                new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());
+
+            if (NextScene != null)
+            {
+                NextScene.Draw(gameTime);
+                Game.UI.DrawUiTree(gameTime, NextScene.UiRoot);
+            }
+
             //sb.FillRectangle(rect, Color.Black * animation.SinTwoPhases);
             sb.End();
         }
@@ -76,6 +100,9 @@ namespace WorldOfImagination.GameComponent
         public void Switch(Scene.Scene nextScene)
         {
             NextScene = nextScene;
+            NextScene.Load();
+            NextScene.UiRoot.RefreshLayout();
+            
             animation.Show = true;
             animation.Speed = 0.75f;
             animation.Reset();
@@ -98,7 +125,7 @@ namespace WorldOfImagination.GameComponent
             CurrentScene = NextScene;
             NextScene = null;
 
-            CurrentScene.Load();
+            //CurrentScene.Load();
         }
     }
 }

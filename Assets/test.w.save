@@ -1,0 +1,6 @@
+fun test()
+{
+	1 + 1 -> i;
+	true -> b;
+	"string" -> j;
+}

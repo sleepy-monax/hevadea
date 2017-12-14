@@ -4,10 +4,9 @@ namespace WorldOfImagination.GameComponent
 {
     public class Ressources
     {
-        private WorldOfImaginationGame Game;
+        private readonly WorldOfImaginationGame Game;
 
         // Fonts --------------------------------------------------------------
-        
         public SpriteFont font_alagard;
         public SpriteFont font_arial;
         public SpriteFont font_arial_tiny;
@@ -30,6 +29,12 @@ namespace WorldOfImagination.GameComponent
         public Texture2D img_characters;
         public Texture2D img_menu_background;
         public Texture2D img_maker_logo;
+
+        public Texture2D img_forest_background;
+        public Texture2D img_forest_light;
+        public Texture2D img_forest_trees0;
+        public Texture2D img_forest_trees1;
+
 
         public Ressources(WorldOfImaginationGame game)
         {
@@ -60,6 +65,11 @@ namespace WorldOfImagination.GameComponent
             img_characters = Game.Ressource.GetImage("Characters");
             img_menu_background = Game.Ressource.GetImage("menu_background");
             img_maker_logo = Game.Ressource.GetImage("maker_logo");
+            
+            img_forest_background = Game.Ressource.GetImage("forest_background");
+            img_forest_light = Game.Ressource.GetImage("forest_light");
+            img_forest_trees0 = Game.Ressource.GetImage("forest_trees0");
+            img_forest_trees1 = Game.Ressource.GetImage("forest_trees1");
         }
     }
 }

@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D173296-A75A-44EB-A041-50F10B3998BB}</ProjectGuid>
+    <ProjectGuid>{8ACD237E-1F00-47BB-B047-8E6A35493312}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WorldOfImagination.Scripting</RootNamespace>
-    <AssemblyName>WorldOfImagination.Scripting</AssemblyName>
+    <RootNamespace>Maker.Rise.Logic.Scripting.Compiler</RootNamespace>
+    <AssemblyName>Maker.Rise.Logic.Scripting.Compiler</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,19 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compiler\Builder.cs" />
-    <Compile Include="Compiler\Lexer.cs" />
-    <Compile Include="Compiler\Parser.cs" />
-    <Compile Include="Compiler\Token.cs" />
-    <Compile Include="Compiler\Tokenizer.cs" />
+    <Compile Include="Builder.cs" />
+    <Compile Include="Lexer.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Syntaxe.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="Tokenizer.cs" />
+    <Compile Include="Tree.cs" />
     <Compile Include="utils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WorldOfImagination.Json\WorldOfImagination.Json.csproj">
-      <Project>{14238b3f-e459-4ad9-a533-213b8c160bbc}</Project>
-      <Name>WorldOfImagination.Json</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WorldOfImagination.Scripting
+namespace Maker.Rise.Logic.Scripting.Compiler
 {
     public static class Utils
     {

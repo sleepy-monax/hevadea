@@ -45,6 +45,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameComponent\Ressource\ParalaxeBackground.cs" />
     <Compile Include="GameComponent\Ressource\TileSheet.cs" />
     <Compile Include="GameComponent\Scene\SplashScene.cs" />
     <Compile Include="GameComponent\UI\Animation.cs" />
@@ -157,9 +158,25 @@
     <Folder Include="Game\Items\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WorldOfImagination.Json\WorldOfImagination.Json.csproj">
-      <Project>{14238b3f-e459-4ad9-a533-213b8c160bbc}</Project>
-      <Name>WorldOfImagination.Json</Name>
+    <ProjectReference Include="..\Maker.Rise.Graphic.Path\Maker.Rise.Graphic.Path.csproj">
+      <Project>{6b97b73f-24aa-4e4e-bdf0-11e35dc82c46}</Project>
+      <Name>Maker.Rise.Graphic.Path</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maker.Rise.Logic.Scripting.Compiler\Maker.Rise.Logic.Scripting.Compiler.csproj">
+      <Project>{8acd237e-1f00-47bb-b047-8e6a35493312}</Project>
+      <Name>Maker.Rise.Logic.Scripting.Compiler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maker.Rise.Logic.Scripting.Runtime\Maker.Rise.Logic.Scripting.Runtime.csproj">
+      <Project>{fa3ffc61-4e10-420e-85a9-d7f3c1b703c1}</Project>
+      <Name>Maker.Rise.Logic.Scripting.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maker.Rise.Net\Maker.Rise.Net.csproj">
+      <Project>{e705ed59-c04c-4aa8-b49e-86b3217ab809}</Project>
+      <Name>Maker.Rise.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maker.Rise.Storage.Json\Maker.Rise.Storage.Json.csproj">
+      <Project>{b82fc963-721e-415f-8878-01b4682d8b6d}</Project>
+      <Name>Maker.Rise.Storage.Json</Name>
     </ProjectReference>
     <ProjectReference Include="..\WorldOfImagination.Scripting\WorldOfImagination.Scripting.csproj">
       <Project>{3d173296-a75a-44eb-a041-50f10b3998bb}</Project>

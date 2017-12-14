@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
-namespace WorldOfImagination.Scripting.Compiler
+namespace Maker.Rise.Logic.Scripting.Compiler
 {
     public class Lexer
     {
-        private string currentToken = "";
         public List<Token> Tokens;
 
-        private List<string> RawToken;
-        private int currentIndex = 0;
-        private bool isString = false;
+        private readonly List<string> RawToken;
 
         public Lexer(List<string> rawToken)
         {
@@ -22,7 +17,6 @@ namespace WorldOfImagination.Scripting.Compiler
         internal void PushToken(TokenType type, string content)
         {
             Tokens.Add(new Token(type, content));
-            currentToken = "";
         }
 
         public void Lexe()

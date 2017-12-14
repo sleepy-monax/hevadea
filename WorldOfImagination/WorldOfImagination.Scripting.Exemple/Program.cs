@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using WorldOfImagination.Scripting.Compiler;
+using Maker.Rise.Logic.Scripting.Compiler;
+using Maker.Rise.Logic.Scripting.Runtime;
 
 namespace WorldOfImagination.Scripting.Exemple
 {
@@ -29,13 +30,36 @@ namespace WorldOfImagination.Scripting.Exemple
             var lexer = new Lexer(rawToken);
             lexer.Lexe();
 
-            var token = lexer.Tokens;
+            var tokens = lexer.Tokens;
 
-            foreach (var t in token)
+            foreach (var t in tokens)
             {
                 Console.WriteLine($"{t.Type, 10}: '{t.Content}'");
             }
+            
+            Console.WriteLine("\n----- Building syntaxe tree -----");
+            
+            var tree = new Tree(tokens);
+            tree.Build();
+            var Token = tree.Root;
+            ShowTree(Token, 0);
+
+
             Console.ReadKey();
+        }
+
+        static void ShowTree(Token root, int depth)
+        {
+            if (root.Content != "")
+                Console.WriteLine(root.Content);
+            foreach (var c in root.Childs)
+            {
+                for (int i = 0; i < depth; i++)
+                {
+                    Console.Write("   |");
+                }
+                ShowTree(c, depth + 1);
+            } 
         }
     }
 }

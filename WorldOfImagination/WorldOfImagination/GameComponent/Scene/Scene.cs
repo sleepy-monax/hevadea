@@ -6,7 +6,7 @@ namespace WorldOfImagination.GameComponent.Scene
     public abstract class Scene
     {
         public WorldOfImaginationGame Game;
-        public Control UiRoot { get; private set; } = null;
+        public Control UiRoot { get;}
 
         protected Scene(WorldOfImaginationGame game)
         {

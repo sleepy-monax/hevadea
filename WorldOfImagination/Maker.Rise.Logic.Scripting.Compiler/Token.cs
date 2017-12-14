@@ -1,4 +1,6 @@
-﻿namespace WorldOfImagination.Scripting.Compiler
+﻿using System.Collections.Generic;
+
+namespace Maker.Rise.Logic.Scripting.Compiler
 {
     public enum TokenType
     {
@@ -9,6 +11,11 @@
         Operator, 	    //+, <, =
         Literal,	    //true, 6.02e23, "music"
         Comment, 	    // must be negative, /* Retrieves user data */
+        
+        SyntaxeTreeNode,
+        
+        Indexer,
+        Block,
     }
 
     public class Token
@@ -17,9 +24,11 @@
         {
             Type = type;
             Content = content;
+            Childs = new List<Token>();
         }
 
         public readonly TokenType Type;
         public readonly string Content;
+        public readonly List<Token> Childs;
     }
 }

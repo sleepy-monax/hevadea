@@ -73,7 +73,7 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, State.Camera.GetTransform());
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, Game.RasterizerState, null, State.Camera.GetTransform());
             spriteBatch.Draw(Game.Ress.img_terrain, Vector2.Zero, Color.White);
             foreach (var e in Entities)
             {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
-namespace WorldOfImagination.Scripting
+namespace Maker.Rise.Logic.Scripting.Compiler
 {
     public static class Syntaxe
     {
@@ -65,10 +61,30 @@ namespace WorldOfImagination.Scripting
         {
             return Separator.Contains(c[0]);
         }
+        
+        public static bool IsOpenSeparator(this string c)
+        {
+            return OpenSeparator.Contains(c[0]);
+        }
+        
+        public static bool IsCloseSeparator(this string c)
+        {
+            return CloseSeparator.Contains(c[0]);
+        }
 
         public static readonly char[] Separator =
         {
             '{', '}', '[', ']', '(', ')', ';', ',',
+        };
+        
+        public static readonly char[] OpenSeparator =
+        {
+            '{', '[', '('
+        };
+        
+        public static readonly char[] CloseSeparator =
+        {
+            '}', ']', ')'
         };
 
         public static bool IsInt(this string str)

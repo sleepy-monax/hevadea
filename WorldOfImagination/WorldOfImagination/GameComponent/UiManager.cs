@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using WorldOfImagination.GameComponent.UI;
 
 namespace WorldOfImagination.GameComponent
 {
@@ -10,11 +11,10 @@ namespace WorldOfImagination.GameComponent
         public InputManager Input => Game.Input;
         public Ressources Ress => Game.Ress;
         public bool Debug => Game.Debug.Visible;
-        private readonly RasterizerState _rasterizerState;
         
         public UiManager(WorldOfImaginationGame game) : base(game)
         {
-            _rasterizerState = new RasterizerState() { ScissorTestEnable = true};
+            
         }
 
         public override void Initialize()
@@ -22,22 +22,19 @@ namespace WorldOfImagination.GameComponent
             uiSpriteBatch = new SpriteBatch(Game.GraphicsDevice);
         }
 
-        public void RefreshLayout()
+        public override void Draw(GameTime gameTime)
         {
-            Game.Scene?.CurrentScene?.UiRoot.RefreshLayout();
+            
         }
 
         public override void Update(GameTime gameTime)
         {
-            Game.Scene?.CurrentScene?.UiRoot.Update(gameTime);
         }
 
-        
-        
-        public override void Draw(GameTime gameTime)
+        public void DrawUiTree(GameTime gameTime, Control UiRoot)
         {
-            uiSpriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, _rasterizerState);
-            Game.Scene?.CurrentScene?.UiRoot.Draw(uiSpriteBatch, gameTime);
+            uiSpriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, Game.RasterizerState);
+            UiRoot.Draw(uiSpriteBatch, gameTime);
             uiSpriteBatch.End();
         }
     }

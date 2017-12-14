@@ -12,7 +12,8 @@ namespace WorldOfImagination
     public class WorldOfImaginationGame : Microsoft.Xna.Framework.Game
     {
         public Microsoft.Xna.Framework.GraphicsDeviceManager Graphics;
-
+        public readonly RasterizerState RasterizerState;
+        
         public readonly AudioManager Audio;
         public readonly DebugManager Debug;
         public readonly InputManager Input;
@@ -27,6 +28,7 @@ namespace WorldOfImagination
 
         public WorldOfImaginationGame()
         {
+            RasterizerState = new RasterizerState { ScissorTestEnable = true};
             drawStopwatch = new Stopwatch();
             Graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
 
@@ -54,6 +56,7 @@ namespace WorldOfImagination
             UI.Initialize();
             Debug.Initialize();
             
+            Scene.Switch(new SplashScene(this));
         }
 
         private void DrawGameComponent(GameTime gameTime)
@@ -83,7 +86,7 @@ namespace WorldOfImagination
             Graphics.Apply();
             this.SetFullScreen();
             
-            Scene.Switch(new SplashScene(this));
+            
             Console.WriteLine($"{nameof(WorldOfImaginationGame)} initialized !");
 
             IntializeGameComponents();

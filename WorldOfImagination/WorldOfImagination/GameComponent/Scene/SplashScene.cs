@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Maker.Rise.Graphic.Path;
+using Maker.Rise.Graphic.Path.Brushes;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace WorldOfImagination.GameComponent.Scene
@@ -6,11 +9,12 @@ namespace WorldOfImagination.GameComponent.Scene
     public class SplashScene : Scene
     {
         private readonly SpriteBatch sb;
+        private readonly DrawBatch db;
         private Texture2D logo;
         public SplashScene(WorldOfImaginationGame game) : base(game)
         {
             sb = new SpriteBatch(Game.GraphicsDevice);
-            
+            db = new DrawBatch(Game.GraphicsDevice);
         }
 
 
@@ -35,8 +39,13 @@ namespace WorldOfImagination.GameComponent.Scene
 
         public override void Draw(GameTime gameTime)
         {
-            Game.GraphicsDevice.Clear(Color.White);
-            sb.Begin();
+            db.Begin();
+            db.FillRectangle(Brush.LightGray, Vector2.Zero, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());  
+            db.End();
+            
+            
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Game.RasterizerState);
+
             sb.Draw(logo, new Vector2(Game.Graphics.GetWidth() / 2 - logo.Width / 2, Game.Graphics.GetHeight() / 2 - logo.Height / 2), Color.White);
             sb.End();
         }
