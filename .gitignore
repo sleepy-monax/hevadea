@@ -1,5 +1,6 @@
 /.vscode
 /WorldOfImagination/.vs
 /WorldOfImagination/.idea
-bin/
-obj/
+bin
+obj
+packages
