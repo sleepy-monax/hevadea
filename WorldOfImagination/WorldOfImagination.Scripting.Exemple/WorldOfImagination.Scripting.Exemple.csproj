@@ -53,10 +53,6 @@
       <Project>{fa3ffc61-4e10-420e-85a9-d7f3c1b703c1}</Project>
       <Name>Maker.Rise.Logic.Scripting.Runtime</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WorldOfImagination.Json\WorldOfImagination.Json.csproj">
-      <Project>{14238b3f-e459-4ad9-a533-213b8c160bbc}</Project>
-      <Name>WorldOfImagination.Json</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="exemple\math.sc">
