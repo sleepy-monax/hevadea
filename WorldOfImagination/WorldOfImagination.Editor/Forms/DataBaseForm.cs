@@ -33,7 +33,7 @@ namespace WorldOfImagination.Editor.Forms
                             }
                             catch (Exception exception)
                             {
-                                MessageBox.Show("Something go wrong while importing the DataBase");
+                                MessageBox.Show($"Something go wrong!");
                                 Console.WriteLine(exception);
                                 throw;
                             }

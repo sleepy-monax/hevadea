@@ -16,6 +16,8 @@ namespace Maker.Rise.Logic.Scripting.Compiler
         
         Indexer,
         Block,
+        BlockHealder,
+        Statement,
     }
 
     public class Token

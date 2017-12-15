@@ -1,6 +1,4 @@
-﻿using WorldOfImagination.GameComponent.Ressource;
-
-namespace WorldOfImagination.Game.World
+﻿namespace WorldOfImagination.Game.World
 {
     public class Cell
     {
