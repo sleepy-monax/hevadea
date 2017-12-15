@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework.Graphics;
 using WorldOfImagination.GameComponent.UI;
 using WorldOfImagination.Utils;
@@ -99,9 +100,17 @@ namespace WorldOfImagination.GameComponent
         /// <param name="nextScene">Scene to switch.</param>
         public void Switch(Scene.Scene nextScene)
         {
+            Console.WriteLine("\n--- SCENE SWITCH BEGIN ---");
+            
+            var s = new Stopwatch();
             NextScene = nextScene;
+            
+            s.Start();
             NextScene.Load();
             NextScene.UiRoot.RefreshLayout();
+            s.Stop();
+            
+            Console.WriteLine($"'{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}s to load.");
             
             animation.Show = true;
             animation.Speed = 0.75f;
@@ -118,13 +127,20 @@ namespace WorldOfImagination.GameComponent
             }
             else
             {
-                Console.WriteLine($"Switching scene from '{CurrentScene.GetType().FullName}' to '{NextScene.GetType().FullName}'.");
+                var s = new Stopwatch();
+            
+                s.Start();
                 CurrentScene.Unload();
+                s.Stop();
+                Console.WriteLine($"'{CurrentScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}s to unload.");
+            
+                Console.WriteLine($"Switching scene from '{CurrentScene.GetType().FullName}'");
+                Console.WriteLine($"                  to '{NextScene.GetType().FullName}'.");
             }
 
             CurrentScene = NextScene;
             NextScene = null;
-
+            Console.WriteLine("--- SCENE SWITCH END ---");
             //CurrentScene.Load();
         }
     }

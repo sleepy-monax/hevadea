@@ -1,11 +1,14 @@
 ﻿namespace WorldOfImagination.Data
 {
-    public class Classe
+    public class Classe : GameData
     {
-        public string Name        { get; set; }
-        public string Description { get; set; }
         public int[] MeleeDamages { get; set; }
         public int[] MagicDamages { get; set; }
         public int[] XpToLevelUp  { get; set; }
+
+        public Classe()
+        {
+            DataType = nameof(Classe);
+        }
     }
 }

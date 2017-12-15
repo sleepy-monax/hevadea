@@ -153,11 +153,7 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GameComponent\Audio\" />
-    <Folder Include="GameComponent\Network\" />
-    <Folder Include="Game\CharacterClass\" />
     <Folder Include="Game\Entities\" />
-    <Folder Include="Game\Items\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maker.Rise.Graphic.Path\Maker.Rise.Graphic.Path.csproj">
@@ -179,6 +175,10 @@
     <ProjectReference Include="..\Maker.Rise.Storage.Json\Maker.Rise.Storage.Json.csproj">
       <Project>{b82fc963-721e-415f-8878-01b4682d8b6d}</Project>
       <Name>Maker.Rise.Storage.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldOfImagination.Data\WorldOfImagination.Data.csproj">
+      <Project>{f12748cc-23ee-49e2-976e-3d8aea211749}</Project>
+      <Name>WorldOfImagination.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

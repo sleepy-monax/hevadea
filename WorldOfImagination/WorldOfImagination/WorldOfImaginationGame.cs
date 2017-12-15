@@ -84,7 +84,7 @@ namespace WorldOfImagination
             Graphics.SetWidth(1280);
             Graphics.SetHeight(720);
             Graphics.Apply();
-            this.SetFullScreen();
+            //this.SetFullScreen();
             
             
             Console.WriteLine($"{nameof(WorldOfImaginationGame)} initialized !");

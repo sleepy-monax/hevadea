@@ -53,13 +53,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs" />
+    <Compile Include="Forms\ClasseEditorForm.cs" />
+    <Compile Include="Forms\DataBaseForm.cs" />
+    <Compile Include="Forms\ItemEditorForm.cs" />
+    <Compile Include="Forms\MainForm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maker.Rise.Storage.Json\Maker.Rise.Storage.Json.csproj">
+      <Project>{B82FC963-721E-415F-8878-01B4682D8B6D}</Project>
+      <Name>Maker.Rise.Storage.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldOfImagination.Data\WorldOfImagination.Data.csproj">
+      <Project>{F12748CC-23EE-49E2-976E-3D8AEA211749}</Project>
+      <Name>WorldOfImagination.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
