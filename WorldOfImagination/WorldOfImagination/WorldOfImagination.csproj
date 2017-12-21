@@ -47,47 +47,27 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameComponent\Ressource\ParalaxeBackground.cs" />
-    <Compile Include="GameComponent\Ressource\TileSheet.cs" />
-    <Compile Include="GameComponent\Scene\SplashScene.cs" />
-    <Compile Include="GameComponent\UI\Animation.cs" />
-    <Compile Include="GameComponent\UI\DialogBox.cs" />
-    <Compile Include="GameComponent\UI\Label.cs" />
-    <Compile Include="GameComponent\UI\MainMenuButton.cs" />
     <Compile Include="Game\Camera.cs" />
-    <Compile Include="Game\Entity.cs" />
-    <Compile Include="Game\GameState.cs" />
-    <Compile Include="Game\Player.cs" />
-    <Compile Include="GameComponent\AudioManager.cs" />
-    <Compile Include="GameComponent\DebugManager.cs" />
-    <Compile Include="GameComponent\GameComponent.cs" />
-    <Compile Include="GameComponent\GraphicsDeviceManager.cs" />
-    <Compile Include="GameComponent\InputManager.cs" />
-    <Compile Include="GameComponent\NetworkManager.cs" />
-    <Compile Include="GameComponent\RessourceManager.cs" />
-    <Compile Include="GameComponent\Ressources.cs" />
-    <Compile Include="GameComponent\SceneManager.cs" />
-    <Compile Include="GameComponent\Scene\GameScene.cs" />
-    <Compile Include="GameComponent\Scene\MainMenu.cs" />
-    <Compile Include="GameComponent\Scene\PlayMenu.cs" />
-    <Compile Include="GameComponent\Scene\Scene.cs" />
-    <Compile Include="GameComponent\UiManager.cs" />
-    <Compile Include="GameComponent\UI\Button.cs" />
-    <Compile Include="GameComponent\UI\CheckBox.cs" />
-    <Compile Include="GameComponent\UI\Control.cs" />
-    <Compile Include="GameComponent\UI\List.cs" />
-    <Compile Include="GameComponent\UI\Panel.cs" />
-    <Compile Include="GameComponent\UI\Picture.cs" />
-    <Compile Include="GameComponent\UI\TextInput.cs" />
-    <Compile Include="Game\World\Cell.cs" />
-    <Compile Include="Game\World\Tile.cs" />
-    <Compile Include="Utils\GameExtension.cs" />
-    <Compile Include="Utils\MathUtils.cs" />
-    <Compile Include="Utils\RectangleF.cs" />
-    <Compile Include="Utils\Screen.cs" />
-    <Compile Include="Utils\SpriteBatchExtension.cs" />
-    <Compile Include="Utils\Text.cs" />
-    <Compile Include="WorldOfImaginationGame.cs" />
+    <Compile Include="Game\ConstVal.cs" />
+    <Compile Include="Game\Entities\Entity.cs" />
+    <Compile Include="Game\Entities\EntityPosition.cs" />
+    <Compile Include="Game\Entities\Mob.cs" />
+    <Compile Include="Game\Entities\Player.cs" />
+    <Compile Include="Game\Items\Item.cs" />
+    <Compile Include="Game\Level.cs" />
+    <Compile Include="Game\LevelGen\Generator.cs" />
+    <Compile Include="Game\Ressources.cs" />
+    <Compile Include="Game\Tiles\GrassTile.cs" />
+    <Compile Include="Game\Tiles\RockTile.cs" />
+    <Compile Include="Game\Tiles\SandTile.cs" />
+    <Compile Include="Game\Tiles\Tile.cs" />
+    <Compile Include="Game\Tiles\TilePosition.cs" />
+    <Compile Include="Game\Tiles\VoidTile.cs" />
+    <Compile Include="Game\Tiles\WaterTile.cs" />
+    <Compile Include="Scenes\GameScene.cs" />
+    <Compile Include="Scenes\MainMenu.cs" />
+    <Compile Include="Scenes\PlayMenu.cs" />
+    <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -153,7 +133,8 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Game\Entities\" />
+    <Folder Include="Crafting\" />
+    <Folder Include="Game\Craftings\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maker.Rise.Graphic.Path\Maker.Rise.Graphic.Path.csproj">
@@ -176,9 +157,9 @@
       <Project>{b82fc963-721e-415f-8878-01b4682d8b6d}</Project>
       <Name>Maker.Rise.Storage.Json</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WorldOfImagination.Data\WorldOfImagination.Data.csproj">
-      <Project>{f12748cc-23ee-49e2-976e-3d8aea211749}</Project>
-      <Name>WorldOfImagination.Data</Name>
+    <ProjectReference Include="..\Maker.Rise\Maker.Rise.csproj">
+      <Project>{8a64df5f-5501-44e9-8254-8ef37fe51f36}</Project>
+      <Name>Maker.Rise</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

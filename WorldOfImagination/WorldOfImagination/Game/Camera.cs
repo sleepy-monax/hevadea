@@ -1,6 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Rise;
+using Maker.Rise.GameComponent;
+using Microsoft.Xna.Framework;
 using System;
-using WorldOfImagination.GameComponent;
+using WorldOfImagination.Game.Entities;
 
 namespace WorldOfImagination.Game
 {
@@ -25,8 +27,8 @@ namespace WorldOfImagination.Game
             }
             else
             {
-                var cameraX = (float)Math.Floor(FocusEntity.X + (FocusEntity.Width / 2));
-                var cameraY = (float)Math.Floor(FocusEntity.Y + (FocusEntity.Height / 2));
+                var cameraX = (float)Math.Floor(FocusEntity.Position.X + (FocusEntity.Width / 2f));
+                var cameraY = (float)Math.Floor(FocusEntity.Position.Y + (FocusEntity.Height / 2f));
                 return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
                     (float)Math.Floor(-(cameraX * Zoom - Game.Graphics.GetWidth() / 2 )),
                     (float)Math.Floor(-(cameraY * Zoom - Game.Graphics.GetHeight() / 2)), 0f);
