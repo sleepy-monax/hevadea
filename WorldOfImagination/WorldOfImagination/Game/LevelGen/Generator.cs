@@ -58,7 +58,7 @@ namespace WorldOfImagination.Game.LevelGen
                     
                 }
             }
-            new Form() { BackgroundImage = b, BackgroundImageLayout = ImageLayout.Zoom }.Show();
+            //new Form() { BackgroundImage = b, BackgroundImageLayout = ImageLayout.Zoom }.Show();
             return l;
         }
 

@@ -26,7 +26,6 @@ namespace Maker.Rise.GameComponent
         public Texture2D icon_delete;
         public Texture2D icon_settings;
 
-        public Texture2D img_characters;
         public Texture2D img_menu_background;
         public Texture2D img_maker_logo;
 
@@ -61,7 +60,6 @@ namespace Maker.Rise.GameComponent
             icon_settings = Game.Ressource.GetIcon("settings");
             icon_edit = Game.Ressource.GetIcon("edit");
 
-            img_characters = Game.Ressource.GetImage("Characters");
             img_menu_background = Game.Ressource.GetImage("menu_background");
             img_maker_logo = Game.Ressource.GetImage("maker_logo");
             
