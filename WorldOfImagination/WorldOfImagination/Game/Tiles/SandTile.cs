@@ -12,7 +12,7 @@ namespace WorldOfImagination.Game.Tiles
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime, Level level, TilePosition pos)
         {
-            spriteBatch.Draw(Ressources.tile_tiles, 2, pos.ToOnScreenPosition().ToVector2(), Color.White);
+            spriteBatch.Draw(Ressources.tile_tiles, 4, pos.ToOnScreenPosition().ToVector2(), Color.White);
         }
     }
 }
