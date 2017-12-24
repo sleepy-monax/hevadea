@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Rise.GameComponent.UI
 {
-    class MainMenuButton : Control
+    public class MainMenuButton : Control
     {
         public string Text { get; set; } = "Button";
         public string SubText { get; set; } = "do something";
@@ -54,6 +54,11 @@ namespace Maker.Rise.GameComponent.UI
 
         protected override void OnUpdate(GameTime gameTime)
         {
+            if (OldMouseState == MouseState.None && MouseState == MouseState.Over)
+            {
+                UI.Game.Ress.menu_pick.Play();
+            }
+
             animation.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
             downAnimation.Show = MouseState == MouseState.Down;
 
@@ -63,6 +68,7 @@ namespace Maker.Rise.GameComponent.UI
                 clickAnimation.Show = true;
                 clickAnimation.Speed = 1f;
                 OnMousClickPosition = UI.Input.MousePosition;
+                UI.Game.Ress.menu_select.Play();
             }
 
             if (clickAnimation.TwoPhases == 1f)

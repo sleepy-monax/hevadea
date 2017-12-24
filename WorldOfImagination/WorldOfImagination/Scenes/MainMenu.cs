@@ -36,7 +36,7 @@ namespace WorldOfImagination.Scenes
                 Layout = LayoutMode.Vertical
             };
             
-            var playButton = new Button(Game.UI)
+            var playButton = new MainMenuButton(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "play",
@@ -44,21 +44,21 @@ namespace WorldOfImagination.Scenes
             };
 
 
-            var editorButton = new Button(Game.UI)
+            var editorButton = new MainMenuButton(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "editor",
                 Icon = Game.Ress.icon_edit
             };
             
-            var optionButton = new Button(Game.UI)
+            var optionButton = new MainMenuButton(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "option", 
                 Icon = Game.Ress.icon_settings
             };
             
-            var exitButton = new Button(Game.UI)
+            var exitButton = new MainMenuButton(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "exit", 
@@ -109,7 +109,7 @@ namespace WorldOfImagination.Scenes
 
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Game.RasterizerState);
             paralaxe.Draw(sb, gameTime);
-            sb.FillRectangle(new Rectangle(0, 0, 392, Game.Graphics.GetHeight()), Color.Black * 0.5f);
+            sb.FillRectangle(new Rectangle(0, 0, 96, Game.Graphics.GetHeight()), Color.Black * 0.5f);
             sb.End();
             
         }

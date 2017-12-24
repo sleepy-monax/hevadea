@@ -8,6 +8,7 @@ namespace WorldOfImagination.Game.Tiles
 {
     public class Tile
     {
+#region Tiles instaces
         public static Tile[] Tiles = new Tile[256];
 
         public static VoidTile Void = new VoidTile(0);
@@ -15,6 +16,7 @@ namespace WorldOfImagination.Game.Tiles
         public static SandTile Sand = new SandTile(2);
         public static WaterTile Water = new WaterTile(3);
         public static RockTile Rock = new RockTile(4);
+#endregion
 
         public readonly byte ID;
 
@@ -25,9 +27,7 @@ namespace WorldOfImagination.Game.Tiles
             Tiles[ID] = this;
         }
 
-        
-
-        public virtual void Update(Level level, TilePosition pos)
+        public virtual void Update(Level level, int tx, int ty)
         {
         }
 
@@ -43,7 +43,7 @@ namespace WorldOfImagination.Game.Tiles
             return true;
         }
 
-        // Intercation --------------------------------------------------------
+        // Interaction --------------------------------------------------------
 
         /* What happens when you are inside the tile (ex: lava) */
         public virtual void SteppedOn(Level level, TilePosition pos, Entity entity)
@@ -55,7 +55,7 @@ namespace WorldOfImagination.Game.Tiles
         {
             return Colision.Check(tile.X * ConstVal.TileSize, tile.Y * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize,
                                   position.X, position.Y, width, height);
-
         }
+
     }
 }

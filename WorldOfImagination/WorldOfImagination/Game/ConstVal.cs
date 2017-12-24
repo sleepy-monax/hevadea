@@ -9,8 +9,7 @@ namespace WorldOfImagination.Game
 {
     public static class ConstVal
     {
-
-        public static int TileSize = 32;
+        public static int   TileSize = 32;
         public static Point TileBound = new Point(TileSize, TileSize);
     }
 }

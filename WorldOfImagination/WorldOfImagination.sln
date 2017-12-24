@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldOfImagination", "WorldOfImagination\WorldOfImagination.csproj", "{76037D71-10CA-4C2E-A64E-563B595CA88F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldOfImagination.Scripting.Exemple", "WorldOfImagination.Scripting.Exemple\WorldOfImagination.Scripting.Exemple.csproj", "{EB498744-E117-4F8B-A73D-184CCA9B4FC3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Rise.Graphic.Path", "Maker.Rise.Graphic.Path\Maker.Rise.Graphic.Path.csproj", "{6B97B73F-24AA-4E4E-BDF0-11E35DC82C46}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Rise.Logic.Scripting.Runtime", "Maker.Rise.Logic.Scripting.Runtime\Maker.Rise.Logic.Scripting.Runtime.csproj", "{FA3FFC61-4E10-420E-85A9-D7F3C1B703C1}"
@@ -33,10 +31,6 @@ Global
 		{76037D71-10CA-4C2E-A64E-563B595CA88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76037D71-10CA-4C2E-A64E-563B595CA88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76037D71-10CA-4C2E-A64E-563B595CA88F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB498744-E117-4F8B-A73D-184CCA9B4FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB498744-E117-4F8B-A73D-184CCA9B4FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB498744-E117-4F8B-A73D-184CCA9B4FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB498744-E117-4F8B-A73D-184CCA9B4FC3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B97B73F-24AA-4E4E-BDF0-11E35DC82C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B97B73F-24AA-4E4E-BDF0-11E35DC82C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B97B73F-24AA-4E4E-BDF0-11E35DC82C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -67,7 +61,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{76037D71-10CA-4C2E-A64E-563B595CA88F} = {AF807974-480A-4166-AE79-46F538D5AD73}
-		{EB498744-E117-4F8B-A73D-184CCA9B4FC3} = {0E4856D9-9025-41A9-A12A-ACAD4F5EC7EF}
 		{6B97B73F-24AA-4E4E-BDF0-11E35DC82C46} = {0E4856D9-9025-41A9-A12A-ACAD4F5EC7EF}
 		{FA3FFC61-4E10-420E-85A9-D7F3C1B703C1} = {0E4856D9-9025-41A9-A12A-ACAD4F5EC7EF}
 		{8ACD237E-1F00-47BB-B047-8E6A35493312} = {0E4856D9-9025-41A9-A12A-ACAD4F5EC7EF}

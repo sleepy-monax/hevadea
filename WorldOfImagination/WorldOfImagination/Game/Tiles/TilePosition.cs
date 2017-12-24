@@ -29,7 +29,7 @@ namespace WorldOfImagination.Game.Tiles
             return false;
         }
 
-        public Point ToPoint()
+        public Point ToOnScreenPosition()
         {
 
             return new Point(X * ConstVal.TileSize, Y * ConstVal.TileSize);

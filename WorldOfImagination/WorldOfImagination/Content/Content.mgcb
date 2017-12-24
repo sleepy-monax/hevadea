@@ -278,3 +278,15 @@
 /processorParam:TextureFormat=Color
 /build:Images/tiles.png
 
+#begin Sounds/menu_pick.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/menu_pick.wav
+
+#begin Sounds/menu_select.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/menu_select.wav
+

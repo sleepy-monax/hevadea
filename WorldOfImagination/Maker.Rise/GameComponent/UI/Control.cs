@@ -64,7 +64,8 @@ namespace Maker.Rise.GameComponent.UI
         public bool Visible { get; set; } = true;
 
         public MouseState MouseState = MouseState.None;
-        
+        public MouseState OldMouseState = MouseState.None;
+
         public Padding Padding { get; set; } = new Padding(0);
         public Anchor Anchor { get; set; } = Anchor.Center;
         public Dock Dock { get; set; } = Dock.None;
@@ -213,6 +214,7 @@ namespace Maker.Rise.GameComponent.UI
         protected abstract void OnUpdate(GameTime gameTime);
         public void Update(GameTime gameTime)
         {
+            OldMouseState = MouseState;
             if (Bound.Contains(UI.Input.MousePosition))
             {
                 MouseState = MouseState.Over;

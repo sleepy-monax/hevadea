@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,7 +56,8 @@
     <Compile Include="GameComponent\RessourceManager.cs" />
     <Compile Include="GameComponent\Ressources.cs" />
     <Compile Include="GameComponent\Ressource\ParalaxeBackground.cs" />
-    <Compile Include="GameComponent\Ressource\TileSheet.cs" />
+    <Compile Include="GameComponent\Ressource\Sprite.cs" />
+    <Compile Include="GameComponent\Ressource\SpriteSheet.cs" />
     <Compile Include="GameComponent\SceneManager.cs" />
     <Compile Include="GameComponent\Scene.cs" />
     <Compile Include="GameComponent\UiManager.cs" />

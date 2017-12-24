@@ -3,14 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Rise.GameComponent.Ressource
 {
-    public class TileSheet
+    public class SpriteSheet
     {
         public readonly Texture2D Texture;
         public readonly Point TileSize;
 
         private readonly Point TileCount;
 
-        public TileSheet(Texture2D texture, Point tileSize)
+        public SpriteSheet(Texture2D texture, Point tileSize)
         {
             Texture = texture;
             TileSize = tileSize;

@@ -11,8 +11,8 @@ namespace WorldOfImagination.Game.Entities
     {
 
         public EntityPosition Position = new EntityPosition(0,0);
-        public int Width = 28;
-        public int Height = 28 ;
+        public int Width = 16;
+        public int Height = 16 ;
         public Level Level;
         public bool Removed = true;
 
@@ -44,7 +44,8 @@ namespace WorldOfImagination.Game.Entities
 
                 if (!stopped)
                 {
-                    Level.GetTile(Position.ToTilePosition()).SteppedOn(Level, Position.ToTilePosition(), this);
+                    var pos = Position.ToTilePosition();
+                    Level.GetTile(pos.X, pos.Y).SteppedOn(Level, pos, this);
                 }
 
                 return !stopped;
@@ -73,7 +74,7 @@ namespace WorldOfImagination.Game.Entities
                 {
                     var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
 
-                    if (!Level.GetTile(t).CanPass(Level, t, this))
+                    if (!Level.GetTile(t.X, t.Y).CanPass(Level, t, this))
                     {
 
                         if (Tile.Colide(t, new EntityPosition(Position.X, Position.Y + accelerationY), Width, Height))

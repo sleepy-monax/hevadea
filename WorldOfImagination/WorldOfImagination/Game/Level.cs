@@ -1,5 +1,4 @@
-﻿using Maker.Rise.Utils;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -104,10 +103,10 @@ namespace WorldOfImagination.Game
         }
 
         // TILES --------------------------------------------------------------
-        public Tile GetTile(TilePosition p)
+        public Tile GetTile(int tx, int ty)
         {
-            if (p.X < 0 || p.Y < 0 || p.X >= W || p.Y >= H) return null;
-            return Tile.Tiles[Tiles[p.X, p.Y]];
+            if (tx< 0 || ty < 0 || tx>= W || ty>= H) return Tile.Rock;
+            return Tile.Tiles[Tiles[tx, ty]];
         }
 
         public void SetTile(TilePosition p, byte id, byte data)
@@ -124,9 +123,9 @@ namespace WorldOfImagination.Game
             // Randome tick tiles.
             for (int i = 0; i < W * H / 50; i++)
             {
-                var pos = new TilePosition(rnd.Next(W), rnd.Next(H));
-
-                GetTile(pos).Update(this, pos);
+                var tx = rnd.Next(W);
+                var ty = rnd.Next(H);
+                GetTile(tx, ty).Update(this, tx, ty);
             }
 
             // Tick entities.
@@ -166,12 +165,11 @@ namespace WorldOfImagination.Game
             var endX = Math.Min(W, playerPos.X + dist + 1);
             var endY = Math.Min(H, playerPos.Y + dist + 1);
 
-            for (int x = beginX; x < endX; x++)
+            for (int tx = beginX; tx < endX; tx++)
             {
-                for (int y = beginY; y < endY; y++)
+                for (int ty = beginY; ty < endY; ty++)
                 {
-                    var pos = new TilePosition(x, y);
-                    GetTile(pos).Draw(sb, gameTime, this, pos);
+                    GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
                     //sb.DrawRectangle(new Rectangle(pos.X * ConstVal.TileSize, pos.Y * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255,100));
                 }
             }

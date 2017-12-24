@@ -2,11 +2,6 @@
 using Maker.Rise.GameComponent.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WorldOfImagination.Game
 {
@@ -16,9 +11,12 @@ namespace WorldOfImagination.Game
         public static Texture2D img_items;
         public static Texture2D img_entities;
 
-        public static TileSheet tile_tiles;
-        public static TileSheet tile_items;
-        public static TileSheet tile_entities;
+        public static SpriteSheet tile_tiles;
+        public static SpriteSheet tile_tiles_parts;
+        public static SpriteSheet tile_items;
+        public static SpriteSheet tile_entities;
+
+        
 
         public static void Load(WorldOfImaginationGame Game)
         {
@@ -26,9 +24,12 @@ namespace WorldOfImagination.Game
             img_items = Game.Ressource.GetImage("items");
             img_entities = Game.Ressource.GetImage("entities");
 
-            tile_tiles = new TileSheet(img_tiles, new Point(32, 32));
-            tile_items = new TileSheet(img_items, new Point(32, 32));
-            tile_entities = new TileSheet(img_entities, new Point(32, 32));
+            tile_tiles = new SpriteSheet(img_tiles, new Point(64, 64));
+            tile_tiles_parts = new SpriteSheet(img_tiles, new Point(16, 16));
+
+            tile_items = new SpriteSheet(img_items, new Point(32, 32));
+            tile_entities = new SpriteSheet(img_entities, new Point(32, 32));
+            
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using Maker.Rise.GameComponent.Ressource;
+﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Rise.GameComponent
@@ -33,6 +33,8 @@ namespace Maker.Rise.GameComponent
         public Texture2D img_forest_light;
         public Texture2D img_forest_trees0;
         public Texture2D img_forest_trees1;
+        public SoundEffect menu_select;
+        public SoundEffect menu_pick;
 
 
         public Ressources(WorldOfImaginationGame game)
@@ -67,6 +69,8 @@ namespace Maker.Rise.GameComponent
             img_forest_light = Game.Ressource.GetImage("forest_light");
             img_forest_trees0 = Game.Ressource.GetImage("forest_trees0");
             img_forest_trees1 = Game.Ressource.GetImage("forest_trees1");
+            menu_select = Game.Content.Load<SoundEffect>("Sounds/menu_select");
+            menu_pick = Game.Content.Load<SoundEffect>("Sounds/menu_pick");
 
         }
     }

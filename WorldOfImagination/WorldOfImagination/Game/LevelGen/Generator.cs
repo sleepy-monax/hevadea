@@ -21,10 +21,10 @@ namespace WorldOfImagination.Game.LevelGen
             {
                 for (int y = 0; y < worldSize; y++)
                 {
-                    var groundLevel = Perlin.OctavePerlin(x / 50f, y / 50f, (double)(Seed ^ Seed), 10, 0.5);
+                    var groundLevel = Perlin.OctavePerlin(x / 50f, y / 50f, Seed ^ Seed, 10, 0.5);
                     var biomsVariant = Perlin.OctavePerlin(x / 20f, y / 20f, Seed ^ Seed, 2, 0.5);
 
-                    var v = (int)(255 * biomsVariant) & 0xff;
+                    var v = (int)(255 * groundLevel) & 0xff;
                     b.SetPixel(x, y, Color.FromArgb(v, v, v));
 
                     if (groundLevel > 1)
