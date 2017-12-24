@@ -1,6 +1,4 @@
-﻿using Maker.Rise.Utils;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Maker.Rise.GameComponent.Ressource;
 
 namespace WorldOfImagination.Game.Tiles
 {
@@ -8,11 +6,8 @@ namespace WorldOfImagination.Game.Tiles
     {
         public SandTile(byte id) : base(id)
         {
+            Sprite = new Sprite(Ressources.tile_tiles, 3);
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime, Level level, TilePosition pos)
-        {
-            spriteBatch.Draw(Ressources.tile_tiles, 4, pos.ToOnScreenPosition().ToVector2(), Color.White);
-        }
     }
 }

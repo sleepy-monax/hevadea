@@ -1,4 +1,5 @@
-﻿using Maker.Rise.Utils;
+﻿using Maker.Rise.GameComponent.Ressource;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,12 +20,16 @@ namespace WorldOfImagination.Game.Tiles
 #endregion
 
         public readonly byte ID;
-
+        public Sprite Sprite;
+        public bool BackgroundDirt = true;
+        private Sprite DirtSprite;
         public Tile(byte id)
         {
             ID = id;
             if (Tiles[id] != null) throw new Exception($"Duplicate tile ids {ID}!");
             Tiles[ID] = this;
+            Sprite = new Sprite(Ressources.tile_tiles, 0);
+            DirtSprite = new Sprite(Ressources.tile_tiles, 0);
         }
 
         public virtual void Update(Level level, int tx, int ty)
@@ -33,8 +38,56 @@ namespace WorldOfImagination.Game.Tiles
 
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime, Level level, TilePosition pos)
         {
+
+
+            var onScreen = pos.ToOnScreenPosition().ToVector2();
+
+            bool u = level.GetTile(pos.X, pos.Y - 1) == this;
+            bool d = level.GetTile(pos.X, pos.Y + 1) == this;
+            bool l = level.GetTile(pos.X - 1, pos.Y) == this;
+            bool r = level.GetTile(pos.X + 1, pos.Y) == this;
+
+            bool ul = level.GetTile(pos.X - 1, pos.Y - 1) == this;
+            bool ur = level.GetTile(pos.X + 1, pos.Y - 1) == this;
+            bool dl = level.GetTile(pos.X - 1, pos.Y + 1) == this;
+            bool dr = level.GetTile(pos.X + 1, pos.Y + 1) == this;
+
+            DrawCorner(spriteBatch, l, ul, u, new Point(0, 0), new Point(0, 2), new Point(0, 3), new Point(2, 0), new Point(2, 2), (int)(onScreen.X + 0), (int)(onScreen.Y + 0));
+            DrawCorner(spriteBatch, u, ur, r, new Point(1, 0), new Point(1, 2), new Point(0, 2), new Point(3, 0), new Point(2, 2), (int)(onScreen.X + 16), (int)(onScreen.Y + 0));
+
+            DrawCorner(spriteBatch, r, dr, d, new Point(1, 1), new Point(1, 3), new Point(1, 2), new Point(3, 1), new Point(2, 2), (int)(onScreen.X + 16), (int)(onScreen.Y + 16));
+            DrawCorner(spriteBatch, d, dl, l, new Point(0, 1), new Point(0, 3), new Point(1, 3), new Point(2, 1), new Point(2, 2), (int)(onScreen.X), (int)(onScreen.Y + 16));
         }
 
+        public void DrawCorner(SpriteBatch spriteBatch,
+                               bool a, bool b, bool c,
+                               Point case1, Point case2, Point case3, Point case4, Point case5,
+                               int x, int y)
+        {
+
+            if (BackgroundDirt) DirtSprite.DrawSubSprite(spriteBatch, new Vector2(x, y), new Point(0, 0), Color.White);
+
+            if (!a & !c)
+            {
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case1, Color.White);
+            }
+            else if (a & !c)
+            {
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case2, Color.White);
+            }
+            else if (!a & c)
+            {
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case3, Color.White);
+            }
+            else if (!b)
+            {
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case4, Color.White);
+            }
+            else
+            {
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case5, Color.White);
+            }
+        }
         // Properties ---------------------------------------------------------
 
         /* Returns if the entity can walk on it */

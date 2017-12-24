@@ -1,4 +1,5 @@
-﻿using Maker.Rise.Utils;
+﻿using Maker.Rise.GameComponent.Ressource;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,12 +14,10 @@ namespace WorldOfImagination.Game.Tiles
     {
         public WaterTile(byte id) : base(id)
         {
+            Sprite = new Sprite(Ressources.tile_tiles, 4);
+            BackgroundDirt = false;
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime, Level level, TilePosition pos)
-        {
-            spriteBatch.Draw(Ressources.tile_tiles, 4, pos.ToOnScreenPosition().ToVector2(), Color.White);
-        }
 
     }
 }

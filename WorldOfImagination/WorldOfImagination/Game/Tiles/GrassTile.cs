@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Maker.Rise.Utils;
+﻿using Maker.Rise.GameComponent.Ressource;
 
 namespace WorldOfImagination.Game.Tiles
 {
@@ -13,11 +6,7 @@ namespace WorldOfImagination.Game.Tiles
     {
         public GrassTile(byte id) : base(id)
         {
-        }
-
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime, Level level, TilePosition pos)
-        {
-            spriteBatch.Draw(Ressources.tile_tiles, 4, pos.ToOnScreenPosition().ToVector2(), Color.White);
+            Sprite = new Sprite(Ressources.tile_tiles, 2);
         }
     }
 }
