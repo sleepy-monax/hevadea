@@ -19,9 +19,9 @@ namespace Maker.Rise.GameComponent.Ressource
     public class ParalaxeBackground
     {
         public ParalaxeLayer[] Layers;
-        private WorldOfImaginationGame Game;
+        private RiseGame Game;
         public float Position = 0;
-        public ParalaxeBackground(WorldOfImaginationGame game, params ParalaxeLayer[] layers)
+        public ParalaxeBackground(RiseGame game, params ParalaxeLayer[] layers)
         {
             Layers = layers;
             Game = game;

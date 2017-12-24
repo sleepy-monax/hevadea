@@ -9,9 +9,9 @@ namespace WorldOfImagination.Game.Entities
     public class Player : Mob
     {
 
-        WorldOfImaginationGame Game;
+        RiseGame Game;
 
-        public Player(WorldOfImaginationGame game)
+        public Player(RiseGame game)
         {
             Game = game;
         }

@@ -12,7 +12,7 @@ namespace Maker.Rise.Utils
             Console.Title = title;
         }
 
-        public static void SetFullScreen(this WorldOfImaginationGame game)
+        public static void SetFullScreen(this RiseGame game)
         {
             game.Graphics.SetFullScreen();
         }

@@ -14,7 +14,7 @@ namespace Maker.Rise.GameComponent
         private Scene NextScene;
         private SpriteBatch sb;
 
-        public SceneManager(WorldOfImaginationGame game) : base(game)
+        public SceneManager(RiseGame game) : base(game)
         {
             animation = new Animation();
             CurrentScene = null;

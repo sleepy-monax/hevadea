@@ -4,7 +4,7 @@ namespace Maker.Rise.GameComponent
 {
     public class NetworkManager : GameComponent
     {
-        public NetworkManager(WorldOfImaginationGame game) : base(game)
+        public NetworkManager(RiseGame game) : base(game)
         {
         }
 

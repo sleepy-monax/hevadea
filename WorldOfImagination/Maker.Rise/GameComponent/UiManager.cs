@@ -12,7 +12,7 @@ namespace Maker.Rise.GameComponent
         public Ressources Ress => Game.Ress;
         public bool Debug => Game.Debug.Visible;
         
-        public UiManager(WorldOfImaginationGame game) : base(game)
+        public UiManager(RiseGame game) : base(game)
         {
             
         }

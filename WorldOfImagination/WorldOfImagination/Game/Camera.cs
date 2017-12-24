@@ -11,10 +11,10 @@ namespace WorldOfImagination.Game
 
         float Zoom = 4.0f;
 
-        WorldOfImaginationGame Game;
+        RiseGame Game;
         public Entity FocusEntity = null;
 
-        public Camera(WorldOfImaginationGame game)
+        public Camera(RiseGame game)
         {
             Game = game;
         }

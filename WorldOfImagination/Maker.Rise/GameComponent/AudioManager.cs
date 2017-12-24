@@ -5,7 +5,7 @@ namespace Maker.Rise.GameComponent
     public class AudioManager : GameComponent
     {
 
-        public AudioManager(WorldOfImaginationGame game) : base(game)
+        public AudioManager(RiseGame game) : base(game)
         {
             
         }

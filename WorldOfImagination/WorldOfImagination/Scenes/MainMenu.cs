@@ -15,7 +15,7 @@ namespace WorldOfImagination.Scenes
         private ParalaxeBackground paralaxe;
 
 
-        public MainMenu(WorldOfImaginationGame game) : base(game)
+        public MainMenu(RiseGame game) : base(game)
         {
             sb = new SpriteBatch(game.GraphicsDevice);
         }

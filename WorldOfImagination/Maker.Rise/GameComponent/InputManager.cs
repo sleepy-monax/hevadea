@@ -10,7 +10,7 @@ namespace Maker.Rise.GameComponent
 
         private MouseState oldMouseState;
         private MouseState newMouseState;
-        public InputManager(WorldOfImaginationGame game) : base(game)
+        public InputManager(RiseGame game) : base(game)
         {
         
         }

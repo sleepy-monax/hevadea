@@ -81,7 +81,7 @@
     <Compile Include="Utils\Screen.cs" />
     <Compile Include="Utils\SpriteBatchExtension.cs" />
     <Compile Include="Utils\Text.cs" />
-    <Compile Include="WorldOfImaginationGame.cs" />
+    <Compile Include="RiseGame.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

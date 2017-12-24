@@ -10,7 +10,7 @@ namespace WorldOfImagination.Scenes
     public class PlayMenu : Scene
     {
         private readonly SpriteBatch sb;
-        public PlayMenu(WorldOfImaginationGame game) : base(game)
+        public PlayMenu(RiseGame game) : base(game)
         {
             sb = new SpriteBatch(game.GraphicsDevice);
         }

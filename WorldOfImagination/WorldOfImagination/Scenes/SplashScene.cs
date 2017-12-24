@@ -13,7 +13,7 @@ namespace WorldOfImagination.Scenes
         private readonly SpriteBatch sb;
         private readonly DrawBatch db;
         private Texture2D logo;
-        public SplashScene(WorldOfImaginationGame game) : base(game)
+        public SplashScene(RiseGame game) : base(game)
         {
             sb = new SpriteBatch(Game.GraphicsDevice);
             db = new DrawBatch(Game.GraphicsDevice);

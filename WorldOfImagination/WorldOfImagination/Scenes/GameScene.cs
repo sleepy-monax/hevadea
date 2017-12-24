@@ -17,7 +17,7 @@ namespace WorldOfImagination.Scenes
         private Level level;
         private Camera camera;
         
-        public GameScene(WorldOfImaginationGame game) : base(game)
+        public GameScene(RiseGame game) : base(game)
         {
 
 

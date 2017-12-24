@@ -8,33 +8,33 @@ using System.Diagnostics;
 
 namespace Maker.Rise
 {
-    public sealed class WorldOfImaginationGame : Game
+    public sealed class RiseGame : Game
     {
         public Microsoft.Xna.Framework.GraphicsDeviceManager Graphics;
         public readonly RasterizerState RasterizerState;
         
-        public readonly AudioManager Audio;
-        public readonly DebugManager Debug;
-        public readonly InputManager Input;
-        public readonly NetworkManager Network;
+        public readonly AudioManager     Audio;
+        public readonly DebugManager     Debug;
+        public readonly InputManager     Input;
+        public readonly NetworkManager   Network;
         public readonly RessourceManager Ressource;
-        public readonly SceneManager Scene;
-        public readonly UiManager UI;
-        public readonly Ressources Ress;
+        public readonly SceneManager     Scene;
+        public readonly UiManager        UI;
+        public readonly Ressources       Ress;
 
         public int DrawTime { get; private set; }
         private Stopwatch drawStopwatch;
 
-        public delegate void OnLoadHandler(WorldOfImaginationGame sender, EventArgs e);
+        public delegate void OnLoadHandler(RiseGame sender, EventArgs e);
         public event OnLoadHandler OnLoad;
 
-        public delegate void OnUpdateHandler(WorldOfImaginationGame sender, GameTime gameTime, EventArgs e);
+        public delegate void OnUpdateHandler(RiseGame sender, GameTime gameTime, EventArgs e);
         public event OnUpdateHandler OnUpdate;
 
-        public delegate void OnDrawHandler(WorldOfImaginationGame sender, GameTime gameTime,  EventArgs e);
+        public delegate void OnDrawHandler(RiseGame sender, GameTime gameTime,  EventArgs e);
         public event OnDrawHandler OnDraw;
 
-        public WorldOfImaginationGame()
+        public RiseGame()
         {
             RasterizerState = new RasterizerState { ScissorTestEnable = true};
             drawStopwatch = new Stopwatch();
@@ -53,7 +53,6 @@ namespace Maker.Rise
         }
 
         // Game components Managments -----------------------------------------
-
         private void IntializeGameComponents()
         {
             Ressource.Initialize(); Ress.Load();
@@ -86,18 +85,11 @@ namespace Maker.Rise
 
         protected override void Initialize()
         {
-            this.SetTitle("World Of Imagination");
-            // this.IsFixedTimeStep=false;
-            Graphics.SynchronizeWithVerticalRetrace = false;
-            Graphics.SetWidth(1280);
-            Graphics.SetHeight(720);
-            Graphics.Apply();
             //this.SetFullScreen();
             
-            
-            Console.WriteLine($"{nameof(WorldOfImaginationGame)} initialized !");
-
             IntializeGameComponents();
+            Console.WriteLine($"{nameof(RiseGame)} initialized !");
+           
             base.Initialize();
         }
 

@@ -5,7 +5,7 @@ namespace Maker.Rise.GameComponent
 {
     public class Ressources
     {
-        private readonly WorldOfImaginationGame Game;
+        private readonly RiseGame Game;
 
         // Fonts --------------------------------------------------------------
         public SpriteFont font_alagard;
@@ -37,7 +37,7 @@ namespace Maker.Rise.GameComponent
         public SoundEffect menu_pick;
 
 
-        public Ressources(WorldOfImaginationGame game)
+        public Ressources(RiseGame game)
         {
             Game = game;
         }

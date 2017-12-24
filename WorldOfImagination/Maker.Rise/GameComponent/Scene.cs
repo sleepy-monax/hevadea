@@ -5,10 +5,10 @@ namespace Maker.Rise.GameComponent
 {
     public abstract class Scene
     {
-        public WorldOfImaginationGame Game;
+        public RiseGame Game;
         public Control UiRoot { get;}
 
-        protected Scene(WorldOfImaginationGame game)
+        protected Scene(RiseGame game)
         {
             Game = game;
             UiRoot = new Panel(Game.UI);

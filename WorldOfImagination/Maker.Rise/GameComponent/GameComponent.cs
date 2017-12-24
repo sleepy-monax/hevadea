@@ -4,8 +4,8 @@ namespace Maker.Rise.GameComponent
 {
     public abstract class GameComponent
     {
-        public WorldOfImaginationGame Game;
-        protected GameComponent(WorldOfImaginationGame game)
+        public RiseGame Game;
+        protected GameComponent(RiseGame game)
         {
             Game = game;
         }

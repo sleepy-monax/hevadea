@@ -14,7 +14,7 @@ namespace Maker.Rise.GameComponent
         public bool Visible = false;
         private Queue<int> renderTime;
         
-        public DebugManager(WorldOfImaginationGame game) : base(game)
+        public DebugManager(RiseGame game) : base(game)
         {
             renderTime = new Queue<int>();
         }

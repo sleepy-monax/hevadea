@@ -11,14 +11,14 @@ namespace WorldOfImagination
         static void Main()
         {
             
-            using (var game = new WorldOfImaginationGame())
+            using (var game = new RiseGame())
             {
                 game.OnLoad += GameLoad;
                 game.Run();
             }
         }
 
-        private static void GameLoad(WorldOfImaginationGame sender, EventArgs e)
+        private static void GameLoad(RiseGame sender, EventArgs e)
         {
             Ressources.Load(sender);
             sender.Scene.Switch(new SplashScene(sender));
