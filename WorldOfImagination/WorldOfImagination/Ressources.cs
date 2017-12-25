@@ -3,7 +3,7 @@ using Maker.Rise.GameComponent.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace WorldOfImagination.Game
+namespace WorldOfImagination
 {
     public static class Ressources
     {
@@ -19,12 +19,13 @@ namespace WorldOfImagination.Game
         {
             img_tiles = Game.Ressource.GetImage("tiles");
             img_items = Game.Ressource.GetImage("items");
+
             img_entities = Game.Ressource.GetImage("entities");
 
-            tile_tiles = new SpriteSheet(img_tiles, new Point(64, 64));
+            tile_tiles = new SpriteSheet(img_tiles, new Point(32, 32));
 
             tile_items = new SpriteSheet(img_items, new Point(32, 32));
-            tile_entities = new SpriteSheet(img_entities, new Point(32, 32));
+            tile_entities = new SpriteSheet(img_entities, new Point(48, 64));
             
         }
 

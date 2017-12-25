@@ -53,10 +53,10 @@ namespace WorldOfImagination.Game.Tiles
             bool dr = level.GetTile(pos.X + 1, pos.Y + 1) == this;
 
             DrawCorner(spriteBatch, l, ul, u, new Point(0, 0), new Point(0, 2), new Point(0, 3), new Point(2, 0), new Point(2, 2), (int)(onScreen.X + 0), (int)(onScreen.Y + 0));
-            DrawCorner(spriteBatch, u, ur, r, new Point(1, 0), new Point(1, 2), new Point(0, 2), new Point(3, 0), new Point(2, 2), (int)(onScreen.X + 16), (int)(onScreen.Y + 0));
+            DrawCorner(spriteBatch, u, ur, r, new Point(1, 0), new Point(1, 2), new Point(0, 2), new Point(3, 0), new Point(2, 2), (int)(onScreen.X + 8), (int)(onScreen.Y + 0));
 
-            DrawCorner(spriteBatch, r, dr, d, new Point(1, 1), new Point(1, 3), new Point(1, 2), new Point(3, 1), new Point(2, 2), (int)(onScreen.X + 16), (int)(onScreen.Y + 16));
-            DrawCorner(spriteBatch, d, dl, l, new Point(0, 1), new Point(0, 3), new Point(1, 3), new Point(2, 1), new Point(2, 2), (int)(onScreen.X), (int)(onScreen.Y + 16));
+            DrawCorner(spriteBatch, r, dr, d, new Point(1, 1), new Point(1, 3), new Point(1, 2), new Point(3, 1), new Point(2, 2), (int)(onScreen.X + 8), (int)(onScreen.Y + 8));
+            DrawCorner(spriteBatch, d, dl, l, new Point(0, 1), new Point(0, 3), new Point(1, 3), new Point(2, 1), new Point(2, 2), (int)(onScreen.X), (int)(onScreen.Y + 8));
         }
 
         public void DrawCorner(SpriteBatch spriteBatch,
@@ -85,7 +85,7 @@ namespace WorldOfImagination.Game.Tiles
             }
             else
             {
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case5, Color.White);
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case5 + case1, Color.White);
             }
         }
         // Properties ---------------------------------------------------------
@@ -106,8 +106,14 @@ namespace WorldOfImagination.Game.Tiles
 
         public static bool Colide(TilePosition tile, EntityPosition position, int width, int height)
         {
-            return Colision.Check(tile.X * ConstVal.TileSize, tile.Y * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize,
-                                  position.X, position.Y, width, height);
+            return Colision.Check(tile.X * ConstVal.TileSize,
+                                  tile.Y * ConstVal.TileSize,
+                                  
+                                  ConstVal.TileSize, ConstVal.TileSize,
+
+                                  position.X,
+                                  position.Y,
+                                  width, height);
         }
 
     }

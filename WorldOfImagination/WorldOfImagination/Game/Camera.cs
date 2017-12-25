@@ -9,7 +9,7 @@ namespace WorldOfImagination.Game
     public class Camera
     {
 
-        float Zoom = 3.0f;
+        float Zoom = 4.0f;
 
         RiseGame Game;
         public Entity FocusEntity = null;

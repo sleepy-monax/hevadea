@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Rise.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using WorldOfImagination.Game.Tiles;
 
@@ -11,10 +12,12 @@ namespace WorldOfImagination.Game.Entities
     {
 
         public EntityPosition Position = new EntityPosition(0,0);
-        public int Width = 16;
-        public int Height = 16 ;
+        public int Width = 32;
+        public int Height = 48 ;
         public Level Level;
+
         public bool Removed = true;
+        public bool noclip = false;
 
         public void Init(Level level)
         {
@@ -59,8 +62,6 @@ namespace WorldOfImagination.Game.Entities
         {
 
             // TODO: Check colisions...
-
-            var blocked = false;
             var onTilePosition = Position.ToTilePosition();
 
             if (Position.X + accelerationX + Width >= Level.W * ConstVal.TileSize) accelerationX = 0;
@@ -74,17 +75,17 @@ namespace WorldOfImagination.Game.Entities
                 {
                     var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
 
-                    if (!Level.GetTile(t.X, t.Y).CanPass(Level, t, this))
+                    if (!Level.GetTile(t.X, t.Y).CanPass(Level, t, this) & !noclip)
                     {
 
                         if (Tile.Colide(t, new EntityPosition(Position.X, Position.Y + accelerationY), Width, Height))
                         {
-                            accelerationX = 0;
+                            accelerationY = 0;
                         }
                         
                         if (Tile.Colide(t, new EntityPosition(Position.X + accelerationX, Position.Y), Width, Height))
                         {
-                            accelerationY = 0;
+                            accelerationX = 0;
                         }
 
                         if (Tile.Colide(t, new EntityPosition(Position.X + accelerationX, Position.Y + accelerationY), Width, Height))
@@ -96,11 +97,10 @@ namespace WorldOfImagination.Game.Entities
                 }
             }
 
-            if (!blocked)
-            {
-                Position.X += accelerationX;
-                Position.Y += accelerationY;
-            }
+
+            Position.X += accelerationX;
+            Position.Y += accelerationY;
+            
 
             return true;
         }
@@ -132,7 +132,7 @@ namespace WorldOfImagination.Game.Entities
 
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-
+            spriteBatch.FillRectangle(new Rectangle(Position.X, Position.Y, Width, Height), Color.Red);
         }
     }
 }

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorldOfImagination.Game
+namespace WorldOfImagination
 {
     public static class ConstVal
     {
-        public static int   TileSize = 32;
+        public static int   TileSize = 16;
         public static Point TileBound = new Point(TileSize, TileSize);
     }
 }

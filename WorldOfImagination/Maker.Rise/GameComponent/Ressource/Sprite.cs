@@ -15,7 +15,7 @@ namespace Maker.Rise.GameComponent.Ressource
         {
             Sheet = sheet;
             Index = index;
-            SubSpriteSize = new Point(16, 16);
+            SubSpriteSize = new Point(8, 8);
         }
 
         public Sprite(SpriteSheet sheet, int index, Point subSpriteSize) : this(sheet, index)

@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Maker.Rise.Utils;
 using WorldOfImagination.Game.Entities;
 using WorldOfImagination.Game.Tiles;
 
@@ -13,8 +12,9 @@ namespace WorldOfImagination.Game
         public readonly int W;
         public readonly int H;
 
-        public byte[,] Tiles;
-        public byte[,] Data;
+        private byte[,] Tiles;
+        private Dictionary<string, object>[,] Data;
+
         public List<Entity> Entities;
         public List<Entity>[,] EntityOnTiles;
         public Player Player;
@@ -26,7 +26,7 @@ namespace WorldOfImagination.Game
             W = w;
             H = h;
             Tiles = new byte[W, H];
-            Data = new byte[W, H];
+            Data = new Dictionary<string, object>[W, H];
             Entities = new List<Entity>();
             EntityOnTiles = new List<Entity>[W, H];
             rnd = new Random();
@@ -36,6 +36,7 @@ namespace WorldOfImagination.Game
                 for (int y = 0; y < H; y++)
                 {
                     EntityOnTiles[x, y] = new List<Entity>();
+                    Data[x, y] = new Dictionary<string, object>();
                 }
             }
         }
@@ -110,11 +111,25 @@ namespace WorldOfImagination.Game
             return Tile.Tiles[Tiles[tx, ty]];
         }
 
-        public void SetTile(TilePosition p, byte id, byte data)
+        public void SetTile(int tx, int ty, byte id)
         {
-            if (p.X < 0 || p.Y < 0 || p.X >= W || p.Y >= H) return;
-            Tiles[p.X, p.Y] = id;
-            Data[p.X, p.Y] = data;
+            if (tx < 0 || ty < 0 || tx >= W || ty >= H) return;
+            Tiles[tx, ty] = id;
+        }
+
+        public T GetData<T>(int tx, int ty, string dataName, T defaultValue)
+        {
+            if (Data[tx, ty].ContainsKey(dataName))
+            {
+                return (T)Data[tx, ty][dataName];
+            }
+
+            return defaultValue;
+        }
+
+        public void SetData<T>(int tx, int ty, string dataName, T Value)
+        {
+            Data[tx, ty][dataName] = Value;
         }
 
         // GAME LOOPS ---------------------------------------------------------
@@ -174,11 +189,11 @@ namespace WorldOfImagination.Game
                 for (int ty = beginY; ty < endY; ty++)
                 {
                     GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
-                    sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize, ty * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255) * 0.25f);
+                    // sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize, ty * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255) * 0.25f);
                 }
             }
 
-            Entities.Sort((a, b) => (a.Position.X + a.Height).CompareTo(b.Position.Y + b.Height));
+            Entities.Sort((a, b) => (a.Position.Y + a.Height).CompareTo(b.Position.Y + b.Height));
 
             foreach (var e in Entities)
             {

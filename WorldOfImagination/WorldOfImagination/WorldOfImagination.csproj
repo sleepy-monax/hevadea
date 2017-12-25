@@ -48,15 +48,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game\Camera.cs" />
-    <Compile Include="Game\ConstVal.cs" />
+    <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\EntityPosition.cs" />
     <Compile Include="Game\Entities\Mob.cs" />
     <Compile Include="Game\Entities\Player.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Level.cs" />
+    <Compile Include="Game\LevelGen\Features\Overworld\OverworldBaseTerrain.cs" />
+    <Compile Include="Game\LevelGen\Features\Overworld\TreeFeature.cs" />
     <Compile Include="Game\LevelGen\Generator.cs" />
-    <Compile Include="Game\Ressources.cs" />
+    <Compile Include="Game\LevelGen\GeneratorFeature.cs" />
+    <Compile Include="Game\World.cs" />
+    <Compile Include="Ressources.cs" />
     <Compile Include="Game\Tiles\GrassTile.cs" />
     <Compile Include="Game\Tiles\RockTile.cs" />
     <Compile Include="Game\Tiles\SandTile.cs" />
