@@ -85,7 +85,7 @@ namespace Maker.Rise
 
         protected override void Initialize()
         {
-            //this.SetFullScreen();
+            this.SetFullScreen();
             
             IntializeGameComponents();
             Console.WriteLine($"{nameof(RiseGame)} initialized !");

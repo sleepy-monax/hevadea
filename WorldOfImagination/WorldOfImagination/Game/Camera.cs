@@ -9,7 +9,7 @@ namespace WorldOfImagination.Game
     public class Camera
     {
 
-        float Zoom = 4.0f;
+        float Zoom = 3.0f;
 
         RiseGame Game;
         public Entity FocusEntity = null;
@@ -17,6 +17,16 @@ namespace WorldOfImagination.Game
         public Camera(RiseGame game)
         {
             Game = game;
+        }
+
+        public int GetWidth()
+        {
+            return (int)(Game.Graphics.GetWidth() / Zoom);
+        }
+
+        public int GetHeight()
+        {
+            return (int)(Game.Graphics.GetHeight() / Zoom);
         }
 
         public Matrix GetTransform()

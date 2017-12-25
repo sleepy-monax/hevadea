@@ -59,7 +59,7 @@ namespace WorldOfImagination.Scenes
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, null, null, camera.GetTransform());
-            level.Draw(spriteBatch, gameTime);
+            level.Draw(spriteBatch, camera, gameTime);
             spriteBatch.End();
         }
 

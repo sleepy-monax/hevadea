@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Maker.Rise.Utils;
 using WorldOfImagination.Game.Entities;
 using WorldOfImagination.Game.Tiles;
 
@@ -156,25 +157,28 @@ namespace WorldOfImagination.Game
         }
 
 
-        public void Draw(SpriteBatch sb, GameTime gameTime)
+        public void Draw(SpriteBatch sb, Camera camera, GameTime gameTime)
         {
             var playerPos = Player.Position.ToTilePosition();
-            var dist = 15;
-            var beginX = Math.Max(0, playerPos.X - dist + 1);
-            var beginY = Math.Max(0, playerPos.Y - dist + 1);
-            var endX = Math.Min(W, playerPos.X + dist + 1);
-            var endY = Math.Min(H, playerPos.Y + dist + 1);
+            
+            var distX = (camera.GetWidth() / 2) / ConstVal.TileSize;
+            var distY = (camera.GetHeight() / 2) / ConstVal.TileSize;
+            
+            var beginX = Math.Max(0, playerPos.X - distX - 1);
+            var beginY = Math.Max(0, playerPos.Y - distY - 1);
+            var endX = Math.Min(W, playerPos.X + distX + 2);
+            var endY = Math.Min(H, playerPos.Y + distY + 2);
 
             for (int tx = beginX; tx < endX; tx++)
             {
                 for (int ty = beginY; ty < endY; ty++)
                 {
                     GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
-                    //sb.DrawRectangle(new Rectangle(pos.X * ConstVal.TileSize, pos.Y * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255,100));
+                    sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize, ty * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255) * 0.25f);
                 }
             }
 
-            Entities.Sort((a, b) => a.Position.X.CompareTo(b.Position.Y));
+            Entities.Sort((a, b) => (a.Position.X + a.Height).CompareTo(b.Position.Y + b.Height));
 
             foreach (var e in Entities)
             {
