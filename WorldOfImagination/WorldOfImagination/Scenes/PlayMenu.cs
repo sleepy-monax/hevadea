@@ -59,7 +59,7 @@ namespace WorldOfImagination.Scenes
             };
             
             backButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new MainMenu(Game)); };
-            newButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new GameScene(Game)); };
+            //newButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new GameScene(Game)); };
             deleteButton.OnMouseClick += delegate(object sender, EventArgs args) {  };
 
             UiRoot.AddChild(titleLabel);

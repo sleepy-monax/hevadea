@@ -24,7 +24,8 @@ namespace WorldOfImagination
         private static void GameLoad(RiseGame sender, EventArgs e)
         {
             Ressources.Load(sender);
-            sender.Scene.Switch(new GameScene(sender));
+            //sender.Scene.Switch(new MainMenu(sender));
+            sender.Scene.Switch(new GameScene(sender, World.Generate(0, sender)));
         }
     }
 }

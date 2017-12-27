@@ -14,15 +14,18 @@ namespace WorldOfImagination.Game.Entities
         public EntityPosition Position = new EntityPosition(0,0);
         public int Width = 32;
         public int Height = 48 ;
-        public Level Level;
+        private Level Level;
+        private World World;
 
         public bool Removed = true;
         public bool noclip = false;
 
-        public void Init(Level level)
+        internal void Init(Level level, World world)
         {
             Level = level;
+            World = world;
         }
+
 
         // Events
         public virtual void Hurt(Mob mob, int damages, Direction attackDirection)
@@ -66,8 +69,8 @@ namespace WorldOfImagination.Game.Entities
 
             if (Position.X + accelerationX + Width >= Level.W * ConstVal.TileSize) accelerationX = 0;
             if (Position.Y + accelerationY + Height >= Level.H * ConstVal.TileSize) accelerationY = 0;
-            if (Position.X + accelerationX <= 0) accelerationX = 0;
-            if (Position.Y + accelerationY <= 0) accelerationY = 0;
+            if (Position.X + accelerationX < 0) accelerationX = 0;
+            if (Position.Y + accelerationY < 0) accelerationY = 0;
 
             for (int ox = -1; ox < 2; ox++)
             {
@@ -133,6 +136,11 @@ namespace WorldOfImagination.Game.Entities
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.FillRectangle(new Rectangle(Position.X, Position.Y, Width, Height), Color.Red);
+        }
+
+        internal Rectangle ToRectangle()
+        {
+            return new Rectangle(Position.X, Position.Y, Width, Height);
         }
     }
 }

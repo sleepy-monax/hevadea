@@ -68,7 +68,7 @@ namespace WorldOfImagination.Scenes
             var titleLabel = new Label(Game.UI)
             {
                 Bound = new Rectangle(64, 64, 64, 64),
-                Text = "The World Is Your Only Limit.",
+                Text = "Tales of Hevadea",
                 Font = Game.Ress.font_bebas_big,
                 Dock = Dock.Fill
             };

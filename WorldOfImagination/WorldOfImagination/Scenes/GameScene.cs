@@ -3,9 +3,6 @@ using Maker.Rise.GameComponent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using WorldOfImagination.Game;
-using WorldOfImagination.Game.Entities;
-using WorldOfImagination.Game.LevelGen;
-using WorldOfImagination.Game.LevelGen.Features.Overworld;
 
 
 namespace WorldOfImagination.Scenes
@@ -14,47 +11,35 @@ namespace WorldOfImagination.Scenes
     {
 
         private SpriteBatch spriteBatch;
-        private Level level;
-        private Camera camera;
-        
-        public GameScene(RiseGame game) : base(game)
+        public World World;
+
+
+        public GameScene(RiseGame game, World world) : base(game)
         {
-
-
+            World = world;
         }
         
         public override void Load()
         {
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
+            GenerateLevel(0);
+            World.Initialize();
 
-            level = new Generator
-            {
-                Seed = 0,
-                Features =
-                {
-                    new OverworldBaseTerrain(),
-                    //new TreeFeature()
-                }
+        }
 
-            }.Generate();
+        public void GenerateLevel(int seed)
+        {
 
-            level.AddEntity(new Player(Game) { Position = new EntityPosition((level.W / 2) * ConstVal.TileSize, (level.H / 2) * ConstVal.TileSize) });
-
-            camera = new Camera(Game) { FocusEntity = level.Player };
         }
 
         public override void Update(GameTime gameTime)
         {
-            level.Update(gameTime);
+            World.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, null, null, camera.GetTransform());
-
-            level.Draw(spriteBatch, camera, gameTime);
-
-            spriteBatch.End();
+            World.Draw(gameTime, Game.Debug.Visible);
         }
 
         public override void Unload()

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WorldOfImagination.Game.Entities;
 using WorldOfImagination.Game.Tiles;
 
@@ -22,7 +18,16 @@ namespace WorldOfImagination.Game.LevelGen.Features.Overworld
             {
                 for (int y = 0; y < generator.LevelSize; y++)
                 {
- 
+                    if (level.GetTile(x, y).ID == Tile.Grass.ID & (rnd.Next(5) == 1))
+                    {
+                        var tree = new TreeEntity
+                        {
+
+                            Position = new EntityPosition(x * ConstVal.TileSize + rnd.Next(-4, 4), y * ConstVal.TileSize + rnd.Next(-4,4))
+                        };
+
+                        level.AddEntity(tree);
+                    } 
 
                 }
             }

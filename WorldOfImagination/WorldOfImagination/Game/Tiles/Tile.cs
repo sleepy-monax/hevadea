@@ -17,7 +17,9 @@ namespace WorldOfImagination.Game.Tiles
         public static SandTile Sand = new SandTile(2);
         public static WaterTile Water = new WaterTile(3);
         public static RockTile Rock = new RockTile(4);
-#endregion
+        public static WoodFloorTile WoodFloor = new WoodFloorTile(5);
+        public static WoodWallTile WoodWall = new WoodWallTile(6);
+        #endregion
 
         public readonly byte ID;
         public Sprite Sprite;
@@ -64,8 +66,7 @@ namespace WorldOfImagination.Game.Tiles
                                Point case1, Point case2, Point case3, Point case4, Point case5,
                                int x, int y)
         {
-
-            if (BackgroundDirt) DirtSprite.DrawSubSprite(spriteBatch, new Vector2(x, y), new Point(0, 0), Color.White);
+            if (BackgroundDirt && !(a & b & c)) DirtSprite.DrawSubSprite(spriteBatch, new Vector2(x, y), new Point(0, 0), Color.White);
 
             if (!a & !c)
             {
@@ -87,6 +88,7 @@ namespace WorldOfImagination.Game.Tiles
             {
                 Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case5 + case1, Color.White);
             }
+
         }
         // Properties ---------------------------------------------------------
 

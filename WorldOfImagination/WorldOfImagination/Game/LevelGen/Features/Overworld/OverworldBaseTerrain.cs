@@ -1,4 +1,7 @@
 ﻿using Maker.Rise.Utils;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 using WorldOfImagination.Game.Tiles;
 
 namespace WorldOfImagination.Game.LevelGen.Features.Overworld
@@ -12,17 +15,29 @@ namespace WorldOfImagination.Game.LevelGen.Features.Overworld
 
         public override void ApplyInternal(Level level, Generator generator)
         {
+            //Bitmap preview = new Bitmap(generator.LevelSize, generator.LevelSize);
+
             for (int x = 0; x < generator.LevelSize; x++)
             {
                 for (int y = 0; y < generator.LevelSize; y++)
                 {
-                    var groundLevel = Perlin.OctavePerlin(x / 50f, y / 50f, generator.Seed ^ generator.Seed, 10, 0.5);
-                    var biomsVariant = Perlin.OctavePerlin(x / 20f, y / 20f, generator.Seed ^ generator.Seed, 2, 0.5);
+                    double seed = generator.Seed;
 
-                    if (groundLevel > 1)
+                    var groundLevel = Perlin.OctavePerlin((x / 50d) + seed, (y / 50d) + seed, 0, 10, 0.5);
+
+                    groundLevel = groundLevel * Math.Min(1d,
+                        Math.Sin(((float)x / generator.LevelSize) * Math.PI) 
+                        * Math.Sin(((float)y / generator.LevelSize) * Math.PI) * 4);
+
+                    var montains = Perlin.OctavePerlin(x / 20d + seed, y / 20d + seed, 0, 2, 0.5);
+                    var biomes = Perlin.OctavePerlin(x / 30d + seed, y / 30d + seed, 0, 1, 1);
+
+                    //preview.SetPixel(x, y, groundLevel > 0.9d ? Color.Green : Color.Blue);
+
+                    if (groundLevel > 1d)
                     {
 
-                        if (biomsVariant > 0.7)
+                        if (montains > 0.7)
                         {
                             level.SetTile(x, y, Tile.Grass.ID);
                         }
@@ -32,9 +47,9 @@ namespace WorldOfImagination.Game.LevelGen.Features.Overworld
                         }
 
                     }
-                    else if (groundLevel > 0.9)
+                    else if (groundLevel > 0.90)
                     {
-                        if (biomsVariant > 0.5)
+                        if (biomes > 0.5d)
                         {
                             level.SetTile(x, y, Tile.Grass.ID);
                         }
@@ -50,6 +65,8 @@ namespace WorldOfImagination.Game.LevelGen.Features.Overworld
 
                 }
             }
+
+            //new Form { BackgroundImage = preview,BackgroundImageLayout = ImageLayout.Zoom }.Show();
         }
     }
 }

@@ -1,9 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Rise.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using WorldOfImagination.Game.Entities;
+using WorldOfImagination.Game.SaveStorage;
 using WorldOfImagination.Game.Tiles;
+using WorldOfImagination.Json;
 
 namespace WorldOfImagination.Game
 {
@@ -12,21 +16,23 @@ namespace WorldOfImagination.Game
         public readonly int W;
         public readonly int H;
 
-        private byte[,] Tiles;
-        private Dictionary<string, object>[,] Data;
+        private byte[] Tiles;
+        private Dictionary<string, object>[] Data;
 
         public List<Entity> Entities;
         public List<Entity>[,] EntityOnTiles;
         public Player Player;
 
         private Random rnd;
+        private World world;
 
         public Level(int w, int h)
         {
             W = w;
+            
             H = h;
-            Tiles = new byte[W, H];
-            Data = new Dictionary<string, object>[W, H];
+            Tiles = new byte[W * H];
+            Data = new Dictionary<string, object>[W * H];
             Entities = new List<Entity>();
             EntityOnTiles = new List<Entity>[W, H];
             rnd = new Random();
@@ -36,11 +42,10 @@ namespace WorldOfImagination.Game
                 for (int y = 0; y < H; y++)
                 {
                     EntityOnTiles[x, y] = new List<Entity>();
-                    Data[x, y] = new Dictionary<string, object>();
+                    Data[x + y * W] = new Dictionary<string, object>();
                 }
             }
         }
-
 
         // ENTITIES -----------------------------------------------------------
 
@@ -51,7 +56,7 @@ namespace WorldOfImagination.Game
             e.Removed = false;
             Entities.Add(e);
 
-            e.Init(this);
+            e.Init(this, world);
             AddEntityToTile(e.Position.ToTilePosition(), e);
         }
 
@@ -62,13 +67,13 @@ namespace WorldOfImagination.Game
             RemoveEntityFromTile(tilePosition, e);
         }
 
-        public void AddEntityToTile(TilePosition p, Entity e)
+        private void AddEntityToTile(TilePosition p, Entity e)
         {
             if (p.X < 0 || p.Y < 0 || p.X >= W || p.Y >= H) return;
             EntityOnTiles[p.X, p.Y].Add(e);
         }
 
-        public void RemoveEntityFromTile(TilePosition p, Entity e)
+        private void RemoveEntityFromTile(TilePosition p, Entity e)
         {
             if (p.X < 0 || p.Y < 0 || p.X >= W || p.Y >= H) return;
             EntityOnTiles[p.X, p.Y].Remove(e);
@@ -98,6 +103,7 @@ namespace WorldOfImagination.Game
                     {
                         if (i.Colide(p, width, height)) { result.Add(i); }
                     }
+                    
                 }
             }
 
@@ -108,20 +114,20 @@ namespace WorldOfImagination.Game
         public Tile GetTile(int tx, int ty)
         {
             if (tx< 0 || ty < 0 || tx>= W || ty>= H) return Tile.Rock;
-            return Tile.Tiles[Tiles[tx, ty]];
+            return Tile.Tiles[Tiles[tx + ty * W]];
         }
 
         public void SetTile(int tx, int ty, byte id)
         {
             if (tx < 0 || ty < 0 || tx >= W || ty >= H) return;
-            Tiles[tx, ty] = id;
+            Tiles[tx + ty * W] = id;
         }
 
         public T GetData<T>(int tx, int ty, string dataName, T defaultValue)
         {
-            if (Data[tx, ty].ContainsKey(dataName))
+            if (Data[tx + ty * W].ContainsKey(dataName))
             {
-                return (T)Data[tx, ty][dataName];
+                return (T)Data[tx + ty * W][dataName];
             }
 
             return defaultValue;
@@ -129,10 +135,15 @@ namespace WorldOfImagination.Game
 
         public void SetData<T>(int tx, int ty, string dataName, T Value)
         {
-            Data[tx, ty][dataName] = Value;
+            Data[tx + ty * W][dataName] = Value;
         }
 
         // GAME LOOPS ---------------------------------------------------------
+
+        public void Initialize(World world)
+        {
+            this.world = world;
+        }
 
         public void Update(GameTime gameTime)
         {
@@ -172,39 +183,61 @@ namespace WorldOfImagination.Game
         }
 
 
-        public void Draw(SpriteBatch sb, Camera camera, GameTime gameTime)
+        public void Draw(SpriteBatch sb, Camera camera, GameTime gameTime, bool showDebug)
         {
             var playerPos = Player.Position.ToTilePosition();
             
-            var distX = (camera.GetWidth() / 2) / ConstVal.TileSize;
-            var distY = (camera.GetHeight() / 2) / ConstVal.TileSize;
+            var distX = ((camera.GetWidth() / 2) / ConstVal.TileSize);
+            var distY = ((camera.GetHeight() / 2) / ConstVal.TileSize);
             
-            var beginX = Math.Max(0, playerPos.X - distX - 1);
-            var beginY = Math.Max(0, playerPos.Y - distY - 1);
-            var endX = Math.Min(W, playerPos.X + distX + 2);
-            var endY = Math.Min(H, playerPos.Y + distY + 2);
+            var beginX = Math.Max(0, playerPos.X - distX - 5);
+            var beginY = Math.Max(0, playerPos.Y - distY - 5);
+            var endX = Math.Min(W, playerPos.X + distX + 5);
+            var endY = Math.Min(H, playerPos.Y + distY + 5);
+
+            List<Entity> EntityRenderList = new List<Entity>();
 
             for (int tx = beginX; tx < endX; tx++)
             {
                 for (int ty = beginY; ty < endY; ty++)
                 {
                     GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
-                    // sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize, ty * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255) * 0.25f);
+                    if (showDebug) sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize, ty * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255) * 0.25f);
+                    EntityRenderList.AddRange(EntityOnTiles[tx, ty]);
                 }
             }
 
-            Entities.Sort((a, b) => (a.Position.Y + a.Height).CompareTo(b.Position.Y + b.Height));
+            EntityRenderList.Sort((a, b) => (a.Position.Y + a.Height).CompareTo(b.Position.Y + b.Height));
 
-            foreach (var e in Entities)
+            foreach (var e in EntityRenderList)
             {
+                if (showDebug) sb.DrawRectangle(e.ToRectangle(), new Color(255, 0, 0) * 0.25f);
                 e.Draw(sb, gameTime);
             }
         }
 
-        public static bool Save(Level level, string fileName)
+        public static bool Save(Level level, string folderName)
         {
-            // Todo: level saving.
-            return false;
+            List<TileSaveStorage> storedTile = new List<TileSaveStorage>();
+            List<EntitySaveStorage> storedEntity = new List<EntitySaveStorage>();
+            LevelSaveStorage storedLevel = new LevelSaveStorage { Height = level.H, Width = level.W };
+
+            for (int i = 0; i < level.W * level.H; i++)
+            {
+                storedTile.Add(new TileSaveStorage { ID = level.Tiles[i], Data = level.Data[i]});
+            }
+
+            foreach (var e in level.Entities)
+            {
+
+                storedEntity.Add(new EntitySaveStorage() { Type = e.GetType().FullName, Data = e.ToJson() });
+            }
+
+            File.WriteAllText(folderName + "entities.json", storedEntity.ToJson());
+            File.WriteAllText(folderName + "tiles.json", storedTile.ToJson());
+            File.WriteAllText(folderName + "level.json", storedLevel.ToJson());
+
+            return true;
         }
 
         public static Level Load(string fileName)
