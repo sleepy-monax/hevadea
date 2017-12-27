@@ -32,7 +32,7 @@ namespace WorldOfImagination.Game.Entities
             if (Game.Input.KeyDown(Keys.S)) { Move(0, 1);  Facing = Facing.Down; walking = true; }
             if (Game.Input.KeyDown(Keys.Q)) { Move(-1, 0); Facing = Facing.Left; walking = true; }
             if (Game.Input.KeyDown(Keys.D)) { Move(1, 0);  Facing = Facing.Right; walking = true; }
-            if (Game.Input.KeyPress(Keys.N)) { noclip = !noclip; Console.WriteLine($"noclip: {noclip}"); }
+            if (Game.Input.KeyPress(Keys.N)) { NoClip = !NoClip; Console.WriteLine($"noclip: {NoClip}"); }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

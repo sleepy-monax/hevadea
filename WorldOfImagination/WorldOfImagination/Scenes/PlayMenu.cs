@@ -4,6 +4,7 @@ using Maker.Rise.GameComponent.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using WorldOfImagination.Game;
 
 namespace WorldOfImagination.Scenes
 {
@@ -59,7 +60,10 @@ namespace WorldOfImagination.Scenes
             };
             
             backButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new MainMenu(Game)); };
-            //newButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new GameScene(Game)); };
+            newButton.OnMouseClick += delegate (object sender, EventArgs args) {
+                var world = World.Generate(0, Game);
+                Game.Scene.Switch(new GameScene(Game, world));
+            };
             deleteButton.OnMouseClick += delegate(object sender, EventArgs args) {  };
 
             UiRoot.AddChild(titleLabel);

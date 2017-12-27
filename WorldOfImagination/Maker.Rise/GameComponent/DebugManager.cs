@@ -13,10 +13,14 @@ namespace Maker.Rise.GameComponent
         SpriteBatch sb;
         public bool Visible = false;
         private Queue<int> renderTime;
-        
+        private Queue<int> updateTime;
+
+        int MaxSample = 256;
+
         public DebugManager(RiseGame game) : base(game)
         {
             renderTime = new Queue<int>();
+            updateTime = new Queue<int>();
         }
 
         public override void Initialize()
@@ -27,9 +31,11 @@ namespace Maker.Rise.GameComponent
         public override void Update(GameTime gameTime)
         {
             renderTime.Enqueue(Game.DrawTime);
-            if (renderTime.Count > Game.Graphics.GetWidth())
+            updateTime.Enqueue(Game.UpdateTime);
+            if (renderTime.Count > MaxSample)
             {
                 renderTime.Dequeue();
+                updateTime.Dequeue();
             }
             
             if (Game.Input.KeyPress(Keys.F3))
@@ -47,13 +53,26 @@ namespace Maker.Rise.GameComponent
                 var index = 0;
                 foreach (var i in renderTime)
                 {
-                    sb.FillRectangle(new Rectangle(index, Game.Graphics.GetHeight() - i * 5, 1, i * 5), Color.Red * 0.1f * i);
+                    
+                    sb.FillRectangle(new Rectangle(index, Game.Graphics.GetHeight() - i * 5, 1, i * 5), Color.Red);
                     index++;
                 }
-                
-                sb.DrawString(Game.Ress.font_hack, $"Draw time : {Game.DrawTime}ms\nCurrent Scene: {Game.Scene.CurrentScene.GetType().FullName}", new Vector2(16f,16f), Color.White);
-                var y = 64;
-                DrawUiGraph(sb, Game.Scene.CurrentScene.UiRoot, 64, ref y);
+
+                index = 0;
+                foreach (var i in updateTime)
+                {
+
+                    sb.FillRectangle(new Rectangle(index + 256, Game.Graphics.GetHeight() - i * 5, 1, i * 5), Color.Blue);
+                    index++;
+                }
+
+
+                sb.DrawString(Game.Ress.font_hack, 
+$@"
+Render: {Game.DrawTime}ms
+Tick: {Game.UpdateTime}ms
+Scene: {Game.Scene.CurrentScene.GetType().FullName}", new Vector2(32f,16f), Color.White);
+
 
 
                 sb.End();

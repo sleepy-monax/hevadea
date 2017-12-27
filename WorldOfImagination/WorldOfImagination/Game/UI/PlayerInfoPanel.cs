@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Maker.Rise.GameComponent;
 using Maker.Rise.GameComponent.UI;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Maker.Rise.GameComponent;
 using WorldOfImagination.Game.Entities;
 
 namespace WorldOfImagination.Game.UI
@@ -14,11 +14,12 @@ namespace WorldOfImagination.Game.UI
         public PlayerInfoPanel(UiManager ui, Player player) : base(ui, false)
         {
             Player = player;
+            
         }
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            
+            spriteBatch.FillRectangle(this.Bound, Color.Black * 0.25f);
         }
 
         protected override void OnUpdate(GameTime gameTime)

@@ -1,6 +1,7 @@
 ﻿using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using WorldOfImagination.Game.Tiles;
 
 namespace WorldOfImagination.Game.Entities
@@ -18,7 +19,8 @@ namespace WorldOfImagination.Game.Entities
         private World World;
 
         public bool Removed = true;
-        public bool noclip = false;
+        public bool NoClip = false;
+
 
         internal void Init(Level level, World world)
         {
@@ -27,16 +29,52 @@ namespace WorldOfImagination.Game.Entities
         }
 
 
-        // Events
+        // Health macanic ---------------------------------------------------
+        public int Health = 1;
+        public int MaxHealth = 1;
+        public bool Invincible = true;
+
         public virtual void Hurt(Mob mob, int damages, Direction attackDirection)
         {
+            if (!Invincible)
+            {
+                Health = Math.Max(0, Health - damages);
 
+                if (Health == 0)
+                {
+                    Die();
+                }
+            }
         }
 
         public virtual void Hurt(Tile tile, int damages, int tileX, int tileY)
         {
+            if (!Invincible)
+            {
+                Health = Math.Max(0, Health - damages);
+
+                if (Health == 0)
+                {
+                    Die();
+                }
+            }
+        }
+
+        public virtual void Heal(Mob mob, int damages, Direction attackDirection)
+        {
+            Health = Math.Min(MaxHealth, Health + damages);
+        }
+
+        public virtual void Heal(Tile tile, int damages, int tileX, int tileY)
+        {
+            Health = Math.Min(MaxHealth, Health + damages);
+        }
+
+        public virtual void Die()
+        {
 
         }
+
 
 
         // Movement and colisions ---------------------------------------------
@@ -78,7 +116,7 @@ namespace WorldOfImagination.Game.Entities
                 {
                     var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
 
-                    if (!Level.GetTile(t.X, t.Y).CanPass(Level, t, this) & !noclip)
+                    if (!Level.GetTile(t.X, t.Y).CanPass(Level, t, this) & !NoClip)
                     {
 
                         if (Tile.Colide(t, new EntityPosition(Position.X, Position.Y + accelerationY), Width, Height))

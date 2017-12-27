@@ -13,6 +13,7 @@ namespace WorldOfImagination.Game
         public Level[] Levels;
         private SpriteBatch spriteBatch;
         public Camera Camera;
+        public RiseGame Game;
 
         public Level this[int index]
         {
@@ -26,8 +27,9 @@ namespace WorldOfImagination.Game
             }
         }
 
-        public World(RiseGame Game)
+        public World(RiseGame game)
         {
+            Game = game;
             Levels = new Level[1];
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             Camera = new Camera(Game);
@@ -35,7 +37,8 @@ namespace WorldOfImagination.Game
 
         public void Draw(GameTime gameTime, bool showDebug = true)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, null, null, Camera.GetTransform());
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Game.RasterizerState, null, Camera.GetTransform());
 
             Levels[Player.CurrentLevel].Draw(spriteBatch, Camera, gameTime, showDebug);
 

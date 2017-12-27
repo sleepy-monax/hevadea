@@ -6,7 +6,7 @@ namespace Maker.Rise.GameComponent
     public abstract class Scene
     {
         public RiseGame Game;
-        public Control UiRoot { get;}
+        public Control UiRoot { get; set; }
 
         protected Scene(RiseGame game)
         {

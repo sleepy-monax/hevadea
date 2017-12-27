@@ -19,9 +19,12 @@ namespace WorldOfImagination.Game.LevelGen.Features.Overworld
 
                 bool isEnoughtSpace = true;
 
-                for (int dx = 0; dx < 9; dx++)
+                int sx = rnd.Next(5, 10);
+                int sy = rnd.Next(5, 7);
+
+                for (int dx = 0; dx < sx; dx++)
                 {
-                    for (int dy = 0; dy < 7; dy++)
+                    for (int dy = 0; dy < sy; dy++)
                     {
                         int id = level.GetTile(x + dx, y + dy).ID;
                         if (!(id == Tile.Rock.ID | id == Tile.Grass.ID))
@@ -35,12 +38,12 @@ namespace WorldOfImagination.Game.LevelGen.Features.Overworld
                 {
                     Console.WriteLine($"House generated at {x},{y}");
 
-                    for (int dx = 0; dx < 9; dx++)
+                    for (int dx = 0; dx < sx; dx++)
                     {
-                        for (int dy = 0; dy < 7; dy++)
+                        for (int dy = 0; dy < sy; dy++)
                         {
 
-                            if (dx == 0 | dx == 8 | dy == 0 | dy == 6)
+                            if (dx == 0 | dx == sx - 1 | dy == 0 | dy == sy -1)
                             {
                                 level.SetTile(x + dx, y + dy, Tile.WoodWall.ID);
                             }

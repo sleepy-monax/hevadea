@@ -71,7 +71,7 @@ namespace Maker.Rise.GameComponent.UI
         public Dock Dock { get; set; } = Dock.None;
         public LayoutMode Layout { get; set; } = LayoutMode.Dock;
 
-        public readonly List<Control> Childs;
+        public List<Control> Childs;
 
         public event OnMouseClickHandler OnMouseClick;
         public delegate void OnMouseClickHandler(object sender, EventArgs e);

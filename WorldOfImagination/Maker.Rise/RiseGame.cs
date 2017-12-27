@@ -22,8 +22,10 @@ namespace Maker.Rise
         public readonly UiManager        UI;
         public readonly Ressources       Ress;
 
-        public int DrawTime { get; private set; }
+        public int DrawTime { get; private set; } = 0;
+        public int UpdateTime { get; private set; } = 0;
         private Stopwatch drawStopwatch;
+        private Stopwatch UpdateStopwatch;
 
         public delegate void OnLoadHandler(RiseGame sender, EventArgs e);
         public event OnLoadHandler OnLoad;
@@ -38,6 +40,7 @@ namespace Maker.Rise
         {
             RasterizerState = new RasterizerState { ScissorTestEnable = true};
             drawStopwatch = new Stopwatch();
+            UpdateStopwatch = new Stopwatch();
             Graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
 
             Audio = new AudioManager(this);
@@ -105,11 +108,15 @@ namespace Maker.Rise
 
         protected override void Update(GameTime gameTime)
         {
+            UpdateStopwatch.Start();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             UpdateGameComponent(gameTime);
             OnUpdate?.Invoke(this, gameTime, new EventArgs());
             base.Update(gameTime);
+            UpdateStopwatch.Stop();
+            UpdateTime = UpdateStopwatch.Elapsed.Milliseconds;
+            UpdateStopwatch.Reset();
         }
 
         protected override void Draw(GameTime gameTime)
@@ -122,7 +129,8 @@ namespace Maker.Rise
             OnDraw?.Invoke(this, gameTime, new EventArgs());
             base.Draw(gameTime);
             drawStopwatch.Stop();
-            DrawTime = (int)drawStopwatch.Elapsed.Milliseconds;
+
+            DrawTime = drawStopwatch.Elapsed.Milliseconds;
             drawStopwatch.Reset();
         }
 

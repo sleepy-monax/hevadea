@@ -1,5 +1,6 @@
 ﻿using Maker.Rise;
 using Maker.Rise.GameComponent;
+using Maker.Rise.Utils;
 using System;
 using WorldOfImagination.Game;
 using WorldOfImagination.Scenes;
@@ -15,8 +16,12 @@ namespace WorldOfImagination
             using (var game = new RiseGame())
             {
                 game.OnLoad += GameLoad;
-                game.Graphics.SetWidth(1280);
-                game.Graphics.SetHeight(720);
+
+                game.Graphics.SetWidth(Screen.GetWidth());
+                game.Graphics.SetHeight(Screen.GetHeight());
+
+                game.Window.IsBorderless = true;
+
                 game.Run();
             }
         }
@@ -24,8 +29,8 @@ namespace WorldOfImagination
         private static void GameLoad(RiseGame sender, EventArgs e)
         {
             Ressources.Load(sender);
-            //sender.Scene.Switch(new MainMenu(sender));
-            sender.Scene.Switch(new GameScene(sender, World.Generate(0, sender)));
+            sender.Scene.Switch(new MainMenu(sender));
+            
         }
     }
 }
