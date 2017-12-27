@@ -49,29 +49,31 @@ namespace Maker.Rise.GameComponent
             if (Visible)
             {            
                 sb.Begin();
-                
+                int avrRenderTime = 0;
                 var index = 0;
                 foreach (var i in renderTime)
                 {
-                    
-                    sb.FillRectangle(new Rectangle(index, Game.Graphics.GetHeight() - i * 5, 1, i * 5), Color.Red);
+                    avrRenderTime += i;
+                    sb.FillRectangle(new Rectangle(index, Game.Graphics.GetHeight() - i * 5, 1, i * 5), i > 10 ? Color.Red : Color.Green);
                     index++;
                 }
 
+                sb.DrawString(Game.Ress.font_arial_tiny, "Render", new Vector2(16, Game.Graphics.GetHeight() - 256),  Color.White);
                 index = 0;
                 foreach (var i in updateTime)
                 {
 
-                    sb.FillRectangle(new Rectangle(index + 256, Game.Graphics.GetHeight() - i * 5, 1, i * 5), Color.Blue);
+                    sb.FillRectangle(new Rectangle(index + 264, Game.Graphics.GetHeight() - i * 5, 1, i * 5), i > 10 ? Color.Magenta : Color.Blue);
                     index++;
                 }
-
-
+                
                 sb.DrawString(Game.Ress.font_hack, 
 $@"
-Render: {Game.DrawTime}ms
+Render: {Game.DrawTime, 3}ms (avr {avrRenderTime/renderTime.Count}ms)
 Tick: {Game.UpdateTime}ms
-Scene: {Game.Scene.CurrentScene.GetType().FullName}", new Vector2(32f,16f), Color.White);
+Scene: {Game.Scene.CurrentScene.GetType().FullName}
+DisplayMode: {Game.GraphicsDevice.Adapter.CurrentDisplayMode}
+Triangle: {Game.GraphicsDevice.Metrics.PrimitiveCount}", new Vector2(32f,16f), Color.White);
 
 
 

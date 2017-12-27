@@ -35,12 +35,12 @@ namespace WorldOfImagination.Game
             Camera = new Camera(Game);
         }
 
-        public void Draw(GameTime gameTime, bool showDebug = true)
+        public void Draw(GameTime gameTime, bool showDebug = true, bool renderTiles = true, bool renderEntity = true)
         {
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Game.RasterizerState, null, Camera.GetTransform());
 
-            Levels[Player.CurrentLevel].Draw(spriteBatch, Camera, gameTime, showDebug);
+            Levels[Player.CurrentLevel].Draw(spriteBatch, Camera, gameTime, showDebug, renderTiles, renderEntity);
 
             spriteBatch.End();
         }

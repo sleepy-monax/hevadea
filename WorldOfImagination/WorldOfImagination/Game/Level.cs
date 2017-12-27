@@ -158,7 +158,7 @@ namespace WorldOfImagination.Game
             // Tick entities.
             for (int i = 0; i < Entities.Count; i++)
             {
-                Entity e = Entities[i];
+                var e = Entities[i];
 
                 var oldPosition = new EntityPosition(e.Position).ToTilePosition();
 
@@ -183,17 +183,17 @@ namespace WorldOfImagination.Game
         }
 
 
-        public void Draw(SpriteBatch sb, Camera camera, GameTime gameTime, bool showDebug)
+        public void Draw(SpriteBatch sb, Camera camera, GameTime gameTime, bool showDebug, bool renderTiles = true, bool renderEntity = true)
         {
             var playerPos = Player.Position.ToTilePosition();
             
-            var distX = ((camera.GetWidth() / 2) / ConstVal.TileSize);
-            var distY = ((camera.GetHeight() / 2) / ConstVal.TileSize);
+            var distX = ((camera.GetWidth() / 2) / ConstVal.TileSize) + 3;
+            var distY = ((camera.GetHeight() / 2) / ConstVal.TileSize) + 3;
             
-            var beginX = Math.Max(0, playerPos.X - distX - 5);
-            var beginY = Math.Max(0, playerPos.Y - distY - 5);
-            var endX = Math.Min(W, playerPos.X + distX + 5);
-            var endY = Math.Min(H, playerPos.Y + distY + 5);
+            var beginX = Math.Max(0, playerPos.X - distX);
+            var beginY = Math.Max(0, playerPos.Y - distY + 1);
+            var endX = Math.Min(W, playerPos.X + distX + 1);
+            var endY = Math.Min(H, playerPos.Y + distY + 1);
 
             List<Entity> EntityRenderList = new List<Entity>();
 
@@ -201,9 +201,9 @@ namespace WorldOfImagination.Game
             {
                 for (int ty = beginY; ty < endY; ty++)
                 {
-                    GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
-                    if (showDebug) sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize, ty * ConstVal.TileSize, ConstVal.TileSize, ConstVal.TileSize), new Color(255,255,255) * 0.25f);
+                    if (renderTiles) GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
                     EntityRenderList.AddRange(EntityOnTiles[tx, ty]);
+                    if (showDebug) sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize + 1, ty * ConstVal.TileSize + 1, ConstVal.TileSize - 2, ConstVal.TileSize - 2), new Color(255,255,255));
                 }
             }
 
@@ -211,16 +211,16 @@ namespace WorldOfImagination.Game
 
             foreach (var e in EntityRenderList)
             {
-                if (showDebug) sb.DrawRectangle(e.ToRectangle(), new Color(255, 0, 0) * 0.25f);
-                e.Draw(sb, gameTime);
+                if (showDebug) sb.FillRectangle(e.ToRectangle(), new Color(255, 0, 0) * 0.45f);
+                if (renderEntity) e.Draw(sb, gameTime);
             }
         }
 
         public static bool Save(Level level, string folderName)
         {
-            List<TileSaveStorage> storedTile = new List<TileSaveStorage>();
-            List<EntitySaveStorage> storedEntity = new List<EntitySaveStorage>();
-            LevelSaveStorage storedLevel = new LevelSaveStorage { Height = level.H, Width = level.W };
+            var storedTile = new List<TileSaveStorage>();
+            var storedEntity = new List<EntitySaveStorage>();
+            var storedLevel = new LevelSaveStorage { Height = level.H, Width = level.W };
 
             for (int i = 0; i < level.W * level.H; i++)
             {
@@ -229,8 +229,7 @@ namespace WorldOfImagination.Game
 
             foreach (var e in level.Entities)
             {
-
-                storedEntity.Add(new EntitySaveStorage() { Type = e.GetType().FullName, Data = e.ToJson() });
+                storedEntity.Add(new EntitySaveStorage { Type = e.GetType().FullName, Data = e.ToJson() });
             }
 
             File.WriteAllText(folderName + "entities.json", storedEntity.ToJson());

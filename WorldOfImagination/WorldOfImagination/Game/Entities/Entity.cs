@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using WorldOfImagination.Game.Items;
 using WorldOfImagination.Game.Tiles;
 
 namespace WorldOfImagination.Game.Entities
@@ -11,7 +12,6 @@ namespace WorldOfImagination.Game.Entities
 
     public class Entity
     {
-
         public EntityPosition Position = new EntityPosition(0,0);
         public int Width = 32;
         public int Height = 48 ;
@@ -21,19 +21,18 @@ namespace WorldOfImagination.Game.Entities
         public bool Removed = true;
         public bool NoClip = false;
 
-
         internal void Init(Level level, World world)
         {
             Level = level;
             World = world;
         }
 
-
         // Health macanic ---------------------------------------------------
         public int Health = 1;
         public int MaxHealth = 1;
         public bool Invincible = true;
 
+        // Entity get hurt by a other entity (ex: Zombie)
         public virtual void Hurt(Mob mob, int damages, Direction attackDirection)
         {
             if (!Invincible)
@@ -46,8 +45,8 @@ namespace WorldOfImagination.Game.Entities
                 }
             }
         }
-
-        public virtual void Hurt(Tile tile, int damages, int tileX, int tileY)
+        
+        public virtual void Hurt(Item item, int damages, Direction attackDirection)
         {
             if (!Invincible)
             {
@@ -60,6 +59,26 @@ namespace WorldOfImagination.Game.Entities
             }
         }
 
+        // Entity get hurt by a tile (ex: lava)
+        public virtual void Hurt(Tile tile, int damages, int tileX, int tileY)
+        {
+            if (!Invincible)
+            {
+                Health = Math.Max(0, Health - ComputeDamages(damages));
+
+                if (Health == 0)
+                {
+                    Die();
+                }
+            }
+        }
+
+        public virtual int ComputeDamages(int damages)
+        {
+            return damages;
+        }
+        
+        // 
         public virtual void Heal(Mob mob, int damages, Direction attackDirection)
         {
             Health = Math.Min(MaxHealth, Health + damages);
@@ -72,10 +91,9 @@ namespace WorldOfImagination.Game.Entities
 
         public virtual void Die()
         {
-
+            Removed = true;
+            Level.RemoveEntity(this);
         }
-
-
 
         // Movement and colisions ---------------------------------------------
 
@@ -83,20 +101,16 @@ namespace WorldOfImagination.Game.Entities
         {
             if (accelerationX != 0 || accelerationY != 0)
             {
-                var stopped = true;
-                if (MoveInternal(accelerationX, accelerationY)) stopped = false;
-
-                if (!stopped)
+                if (MoveInternal(accelerationX, accelerationY))
                 {
                     var pos = Position.ToTilePosition();
                     Level.GetTile(pos.X, pos.Y).SteppedOn(Level, pos, this);
-                }
-
-                return !stopped;
+                    return true;
+                } 
             }
 
 
-            return true;
+            return false;
         }
 
         protected bool MoveInternal(int accelerationX, int accelerationY)
@@ -137,11 +151,13 @@ namespace WorldOfImagination.Game.Entities
                     }
                 }
             }
-
-
+            if (accelerationX == 0 && accelerationY == 0)
+            {
+                return false;
+            }
+            
             Position.X += accelerationX;
             Position.Y += accelerationY;
-            
 
             return true;
         }
@@ -165,7 +181,6 @@ namespace WorldOfImagination.Game.Entities
         }
 
         // Update and Draw
-
         public virtual void Update(GameTime gameTime)
         {
 

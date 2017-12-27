@@ -51,7 +51,10 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\EntityPosition.cs" />
+    <Compile Include="Game\Items\Inventory.cs" />
+    <Compile Include="Game\Items\ItemMaterial.cs" />
     <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
+    <Compile Include="Game\Menus\Menu.cs" />
     <Compile Include="Game\SaveStorage\EntitySaveStorage.cs" />
     <Compile Include="Game\Entities\Mob.cs" />
     <Compile Include="Game\Entities\Player.cs" />

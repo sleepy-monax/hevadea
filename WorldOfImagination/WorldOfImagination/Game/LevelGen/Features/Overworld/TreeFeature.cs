@@ -23,7 +23,7 @@ namespace WorldOfImagination.Game.LevelGen.Features.Overworld
                         var tree = new TreeEntity
                         {
 
-                            Position = new EntityPosition(x * ConstVal.TileSize + rnd.Next(-4, 4), y * ConstVal.TileSize + rnd.Next(-4,4))
+                            Position = new EntityPosition(x * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4), y * ConstVal.TileSize + rnd.Next(0,ConstVal.TileSize - 4))
                         };
 
                         level.AddEntity(tree);

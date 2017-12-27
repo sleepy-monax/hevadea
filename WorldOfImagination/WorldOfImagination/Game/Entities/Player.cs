@@ -23,16 +23,15 @@ namespace WorldOfImagination.Game.Entities
             
         }
 
-        bool walking = false;
+        bool walking;
 
         public override void Update(GameTime gameTime)
         {
             walking = false;
-            if (Game.Input.KeyDown(Keys.Z)) { Move(0, -1); Facing = Facing.Up; walking = true; }
-            if (Game.Input.KeyDown(Keys.S)) { Move(0, 1);  Facing = Facing.Down; walking = true; }
-            if (Game.Input.KeyDown(Keys.Q)) { Move(-1, 0); Facing = Facing.Left; walking = true; }
-            if (Game.Input.KeyDown(Keys.D)) { Move(1, 0);  Facing = Facing.Right; walking = true; }
-            if (Game.Input.KeyPress(Keys.N)) { NoClip = !NoClip; Console.WriteLine($"noclip: {NoClip}"); }
+            if (Game.Input.KeyDown(Keys.Q) && Move(-1, 0)) { walking = true; Facing = Facing.Left; }
+            if (Game.Input.KeyDown(Keys.D) && Move(1, 0)) { walking = true; Facing = Facing.Right; }
+            if (Game.Input.KeyDown(Keys.Z) && Move(0, -1)) { walking = true; Facing = Facing.Up; }
+            if (Game.Input.KeyDown(Keys.S) && Move(0, 1)) { walking = true; Facing = Facing.Down; }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

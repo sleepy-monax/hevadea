@@ -3,10 +3,12 @@ using Maker.Rise.GameComponent;
 using Maker.Rise.GameComponent.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using WorldOfImagination.Game;
+using WorldOfImagination.Game.Menus;
 using WorldOfImagination.Game.UI;
+using Control = Maker.Rise.GameComponent.UI.Control;
+using Keys = Microsoft.Xna.Framework.Input.Keys;
 
 namespace WorldOfImagination.Scenes
 {
@@ -16,7 +18,10 @@ namespace WorldOfImagination.Scenes
         private SpriteBatch spriteBatch;
         public World World;
         private bool showDebug = false;
-
+        private bool renderTiles = true;
+        private bool renderEntities = true;
+        public Menu currentMenu = null;
+        
         public GameScene(RiseGame game, World world) : base(game)
         {
             World = world;
@@ -41,14 +46,31 @@ namespace WorldOfImagination.Scenes
 
         public override void Update(GameTime gameTime)
         {
-            if (Game.Input.KeyPress(Keys.F4)) showDebug = !showDebug;
+            if (Game.Input.KeyDown(Keys.F4))
+            {
+                if (Game.Input.KeyPress(Keys.D))
+                {
+                    showDebug = !showDebug;
+                }
+                if (Game.Input.KeyPress(Keys.T))
+                {
+                    renderTiles = !renderTiles;
+                }
+                if (Game.Input.KeyPress(Keys.E))
+                {
+                    renderEntities = !renderEntities;
+                }
+            }
 
-            World.Update(gameTime);
+            if (currentMenu == null || !currentMenu.PauseGame)
+            {
+                World.Update(gameTime);
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            World.Draw(gameTime, showDebug);
+            World.Draw(gameTime, showDebug, renderTiles, renderEntities);
         }
 
         public override void Unload()

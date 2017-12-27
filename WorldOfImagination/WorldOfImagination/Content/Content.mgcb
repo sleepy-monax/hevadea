@@ -290,3 +290,10 @@
 /processorParam:Quality=Best
 /build:Sounds/menu_select.wav
 
+#begin Fonts/alagard_big.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/alagard_big.spritefont
+

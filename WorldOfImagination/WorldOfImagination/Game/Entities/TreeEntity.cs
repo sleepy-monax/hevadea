@@ -10,17 +10,19 @@ namespace WorldOfImagination.Game.Entities
 
         public TreeEntity()
         {
-            Width = 16;
-            Height = 16;
+            Width = 4;
+            Height = 4;
 
             treeSprite = new Sprite(Ressources.tile_entities, 1, new Point(16,16));
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X, Position.Y - 32), new Point(0, 1), Color.White);
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X, Position.Y - 16), new Point(0, 2), Color.White);
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X, Position.Y - 0), new Point(0, 3), Color.White);
+            var offx = -6;
+            var offy = -10;
+            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X + offx, Position.Y + offy - 32), new Point(0, 1), Color.White);
+            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X + offx, Position.Y + offy - 16), new Point(0, 2), Color.White);
+            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X + offx, Position.Y + offy - 0), new Point(0, 3), Color.White);
         }
     }
 }

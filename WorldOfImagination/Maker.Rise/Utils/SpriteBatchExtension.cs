@@ -15,7 +15,7 @@ namespace Maker.Rise.Utils
         #region Private Members
 
         private static readonly Dictionary<string, List<Vector2>> circleCache = new Dictionary<string, List<Vector2>>();
-        private static Texture2D pixel;
+        public static Texture2D pixel;
 
         #endregion
 

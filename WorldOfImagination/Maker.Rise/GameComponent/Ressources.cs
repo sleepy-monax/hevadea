@@ -9,6 +9,7 @@ namespace Maker.Rise.GameComponent
 
         // Fonts --------------------------------------------------------------
         public SpriteFont font_alagard;
+        public SpriteFont font_alagard_big;
         public SpriteFont font_arial;
         public SpriteFont font_arial_tiny;
         public SpriteFont font_romulus;
@@ -45,6 +46,7 @@ namespace Maker.Rise.GameComponent
         public void Load()
         {
             font_alagard = Game.Ressource.GetSpriteFont("alagard");
+            font_alagard_big = Game.Ressource.GetSpriteFont("alagard_big");
             font_arial = Game.Ressource.GetSpriteFont("arial");
             font_arial_tiny = Game.Ressource.GetSpriteFont("arial_tiny");
             font_romulus = Game.Ressource.GetSpriteFont("romulus");

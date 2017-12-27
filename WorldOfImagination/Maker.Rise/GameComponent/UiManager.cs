@@ -33,7 +33,7 @@ namespace Maker.Rise.GameComponent
 
         public void DrawUiTree(GameTime gameTime, Control UiRoot)
         {
-            uiSpriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, Game.RasterizerState);
+            uiSpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, Game.RasterizerState);
             UiRoot.Draw(uiSpriteBatch, gameTime);
             uiSpriteBatch.End();
         }

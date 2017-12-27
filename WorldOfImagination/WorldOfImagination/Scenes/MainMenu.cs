@@ -69,7 +69,7 @@ namespace WorldOfImagination.Scenes
             {
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "Tales of Hevadea",
-                Font = Game.Ress.font_bebas_big,
+                Font = Game.Ress.font_alagard_big,
                 Dock = Dock.Fill
             };
 
