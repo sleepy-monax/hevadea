@@ -1,6 +1,6 @@
 ﻿using Maker.Rise.Ressource;
 
-namespace WorldOfImagination.Game.Tiles
+namespace Maker.Hevadea.Game.Tiles
 {
     public class SandTile : Tile
     {

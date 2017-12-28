@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WorldOfImagination.Game.SaveStorage
+namespace Maker.Hevadea.Game.SaveStorage
 {
     public class TileSaveStorage
     {

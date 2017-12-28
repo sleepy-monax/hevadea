@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorldOfImagination.Game.Entities
+namespace Maker.Hevadea.Game.Entities
 {
     public enum Facing
     {

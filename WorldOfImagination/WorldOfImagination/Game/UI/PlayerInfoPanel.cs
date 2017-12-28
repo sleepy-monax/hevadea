@@ -2,9 +2,9 @@
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using WorldOfImagination.Game.Entities;
+using Maker.Hevadea.Game.Entities;
 
-namespace WorldOfImagination.Game.UI
+namespace Maker.Hevadea.Game.UI
 {
     public class PlayerInfoPanel : Control
     {

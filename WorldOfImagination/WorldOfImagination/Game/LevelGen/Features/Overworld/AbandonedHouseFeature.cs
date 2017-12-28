@@ -1,7 +1,7 @@
 ﻿using System;
-using WorldOfImagination.Game.Tiles;
+using Maker.Hevadea.Game.Tiles;
 
-namespace WorldOfImagination.Game.LevelGen.Features.Overworld
+namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 {
     public class AbandonedHouseFeature : GeneratorFeature
     {

@@ -1,4 +1,4 @@
-﻿namespace WorldOfImagination.Game.Items
+﻿namespace Maker.Hevadea.Game.Items
 {
     public class Inventory
     {

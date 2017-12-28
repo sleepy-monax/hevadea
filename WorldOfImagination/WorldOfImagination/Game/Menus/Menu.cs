@@ -2,9 +2,9 @@
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using WorldOfImagination.Scenes;
+using Maker.Hevadea.Scenes;
 
-namespace WorldOfImagination.Game.Menus
+namespace Maker.Hevadea.Game.Menus
 {
     public abstract class Menu : Control
     {

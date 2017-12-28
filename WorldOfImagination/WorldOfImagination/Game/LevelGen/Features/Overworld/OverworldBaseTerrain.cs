@@ -2,9 +2,9 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using WorldOfImagination.Game.Tiles;
+using Maker.Hevadea.Game.Tiles;
 
-namespace WorldOfImagination.Game.LevelGen.Features.Overworld
+namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 {
     class OverworldBaseTerrain : GeneratorFeature
     {

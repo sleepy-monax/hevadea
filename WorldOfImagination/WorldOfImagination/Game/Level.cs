@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using WorldOfImagination.Game.Entities;
-using WorldOfImagination.Game.SaveStorage;
-using WorldOfImagination.Game.Tiles;
-using WorldOfImagination.Json;
+using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.SaveStorage;
+using Maker.Hevadea.Game.Tiles;
+using Maker.Hevadea.Json;
 
-namespace WorldOfImagination.Game
+namespace Maker.Hevadea.Game
 {
     public class Level
     {

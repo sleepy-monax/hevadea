@@ -2,10 +2,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using WorldOfImagination.Game.Items;
-using WorldOfImagination.Game.Tiles;
+using Maker.Hevadea.Game.Items;
+using Maker.Hevadea.Game.Tiles;
 
-namespace WorldOfImagination.Game.Entities
+namespace Maker.Hevadea.Game.Entities
 {
 
     public enum Direction { Up, Down, Left, Right }

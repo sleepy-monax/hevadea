@@ -3,9 +3,9 @@ using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using WorldOfImagination.Game.Entities;
+using Maker.Hevadea.Game.Entities;
 
-namespace WorldOfImagination.Game.Tiles
+namespace Maker.Hevadea.Game.Tiles
 {
     public class Tile
     {

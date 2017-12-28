@@ -1,17 +1,15 @@
 ﻿using System;
-using Maker.Rise.Graphic.Path;
-using Maker.Rise.Graphic.Path.Brushes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Maker.Rise;
 using Maker.Rise.Components;
+using Maker.Rise.Utils;
 
-namespace WorldOfImagination.Scenes
+namespace Maker.Hevadea.Scenes
 {
     public class SplashScene : Scene
     {
         private SpriteBatch sb;
-        private DrawBatch db;
         private Texture2D logo;
 
         public SplashScene()
@@ -23,7 +21,6 @@ namespace WorldOfImagination.Scenes
         public override void Load()
         {
             sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
-            db = new DrawBatch(Engine.Graphic.GraphicsDevice);
             logo = EngineRessources.img_maker_logo;
 
             Ressources.Load();
@@ -46,14 +43,9 @@ namespace WorldOfImagination.Scenes
         }
 
         public override void Draw(GameTime gameTime)
-        {
-            db.Begin();
-            db.FillRectangle(Brush.LightGray, Vector2.Zero, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());  
-            db.End();
-            
-            
+        {            
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
-
+            sb.FillRectangle(new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()), Color.LightGray);
             sb.Draw(logo, new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2, Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White);
             sb.End();
         }

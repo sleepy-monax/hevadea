@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorldOfImagination
+namespace Maker.Hevadea
 {
     public static class ConstVal
     {

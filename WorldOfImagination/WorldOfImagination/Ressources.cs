@@ -3,7 +3,7 @@ using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace WorldOfImagination
+namespace Maker.Hevadea
 {
     public static class Ressources
     {

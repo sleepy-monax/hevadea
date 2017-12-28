@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorldOfImagination.Game.Tiles;
+using Maker.Hevadea.Game.Tiles;
 
-namespace WorldOfImagination.Game.Entities
+namespace Maker.Hevadea.Game.Entities
 {
     public class EntityPosition
     {

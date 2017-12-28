@@ -62,6 +62,8 @@
     <Compile Include="Components\SceneManager.cs" />
     <Compile Include="Components\Scene.cs" />
     <Compile Include="Components\UiManager.cs" />
+    <Compile Include="Storage\Parser.cs" />
+    <Compile Include="Storage\Writer.cs" />
     <Compile Include="UI\Animation.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="UI\CheckBox.cs" />

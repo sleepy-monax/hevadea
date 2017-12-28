@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace WorldOfImagination.Scenes
+namespace Maker.Hevadea.Scenes
 {
     public class MainMenu : Scene
     {

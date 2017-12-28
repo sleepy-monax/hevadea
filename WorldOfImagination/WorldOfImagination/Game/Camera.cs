@@ -2,9 +2,9 @@
 using Maker.Rise.Components;
 using Microsoft.Xna.Framework;
 using System;
-using WorldOfImagination.Game.Entities;
+using Maker.Hevadea.Game.Entities;
 
-namespace WorldOfImagination.Game
+namespace Maker.Hevadea.Game
 {
     public class Camera
     {

@@ -1,4 +1,4 @@
-﻿namespace WorldOfImagination.Game.Entities
+﻿namespace Maker.Hevadea.Game.Entities
 {
     public class EntitySaveStorage
     {

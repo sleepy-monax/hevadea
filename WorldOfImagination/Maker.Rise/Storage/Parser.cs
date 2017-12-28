@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace WorldOfImagination.Json
+namespace Maker.Hevadea.Json
 {
     /*Really simple JSON parser in ~300 lines
     - Attempts to parse JSON files with minimal GC allocation

@@ -2,10 +2,10 @@
 using Maker.Rise.Components;
 using Maker.Rise.Utils;
 using System;
-using WorldOfImagination.Game;
-using WorldOfImagination.Scenes;
+using Maker.Hevadea.Game;
+using Maker.Hevadea.Scenes;
 
-namespace WorldOfImagination
+namespace Maker.Hevadea
 {
     public static class Program
     {

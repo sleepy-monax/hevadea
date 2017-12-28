@@ -1,11 +1,11 @@
 ﻿using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using WorldOfImagination.Game.Entities;
-using WorldOfImagination.Game.LevelGen;
-using WorldOfImagination.Game.LevelGen.Features.Overworld;
+using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.LevelGen;
+using Maker.Hevadea.Game.LevelGen.Features.Overworld;
 
-namespace WorldOfImagination.Game
+namespace Maker.Hevadea.Game
 {
     public class World
     {

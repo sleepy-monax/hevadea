@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Maker.Rise.Ressource;
-using WorldOfImagination.Game.Entities;
-using WorldOfImagination.Game.Tiles;
+using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Tiles;
 
-namespace WorldOfImagination.Game.Items
+namespace Maker.Hevadea.Game.Items
 {
     public class Item
     {

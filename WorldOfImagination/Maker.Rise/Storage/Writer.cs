@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace WorldOfImagination.Json
+namespace Maker.Hevadea.Json
 {
     //Really simple JSON writer
     //- Outputs JSON structures from an object

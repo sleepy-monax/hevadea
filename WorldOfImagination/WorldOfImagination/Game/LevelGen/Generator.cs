@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WorldOfImagination.Game.LevelGen
+namespace Maker.Hevadea.Game.LevelGen
 {
     public class Generator
     {

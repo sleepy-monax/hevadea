@@ -4,13 +4,13 @@ using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using WorldOfImagination.Game;
-using WorldOfImagination.Game.Menus;
-using WorldOfImagination.Game.UI;
+using Maker.Hevadea.Game;
+using Maker.Hevadea.Game.Menus;
+using Maker.Hevadea.Game.UI;
 using Control = Maker.Rise.UI.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
-namespace WorldOfImagination.Scenes
+namespace Maker.Hevadea.Scenes
 {
     public class GameScene : Scene
     {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldOfImagination", "WorldOfImagination\WorldOfImagination.csproj", "{76037D71-10CA-4C2E-A64E-563B595CA88F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Hevadea", "WorldOfImagination\Maker.Hevadea.csproj", "{76037D71-10CA-4C2E-A64E-563B595CA88F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Rise", "Maker.Rise\Maker.Rise.csproj", "{8A64DF5F-5501-44E9-8254-8EF37FE51F36}"
 EndProject

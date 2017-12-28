@@ -4,9 +4,9 @@ using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using WorldOfImagination.Game;
+using Maker.Hevadea.Game;
 
-namespace WorldOfImagination.Scenes
+namespace Maker.Hevadea.Scenes
 {
     public class PlayMenu : Scene
     {

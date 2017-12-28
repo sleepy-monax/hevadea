@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace WorldOfImagination.Game.Tiles
+namespace Maker.Hevadea.Game.Tiles
 {
     public class VoidTile : Tile
     {

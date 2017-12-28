@@ -1,4 +1,4 @@
-﻿namespace WorldOfImagination.Game.LevelGen
+﻿namespace Maker.Hevadea.Game.LevelGen
 {
     public abstract class GeneratorFeature
     {

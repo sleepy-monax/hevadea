@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace WorldOfImagination.Game.Entities
+namespace Maker.Hevadea.Game.Entities
 {
     public class TreeEntity : Entity
     {

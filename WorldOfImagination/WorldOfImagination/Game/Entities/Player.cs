@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace WorldOfImagination.Game.Entities
+namespace Maker.Hevadea.Game.Entities
 {
     public class Player : Mob
     {

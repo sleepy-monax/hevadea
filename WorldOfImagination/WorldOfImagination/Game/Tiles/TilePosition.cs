@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WorldOfImagination.Game.Tiles
+namespace Maker.Hevadea.Game.Tiles
 {
     public class TilePosition
     {
