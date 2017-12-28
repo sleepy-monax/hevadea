@@ -1,11 +1,11 @@
-﻿using Maker.Rise.GameComponent.UI;
+﻿using Maker.Rise.UI;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
 
-namespace Maker.Rise.GameComponent
+namespace Maker.Rise.Components
 {
     public class SceneManager : GameComponent
     {
@@ -40,8 +40,8 @@ namespace Maker.Rise.GameComponent
             {
                 CurrentScene.UiRoot.Bound = new Rectangle(
                     0, 0,
-                    Game.Graphics.GetWidth(),
-                    Game.Graphics.GetHeight());
+                    Engine.Graphic.GetWidth(),
+                    Engine.Graphic.GetHeight());
                 
                 CurrentScene.UiRoot.RefreshLayout();
                 
@@ -53,8 +53,8 @@ namespace Maker.Rise.GameComponent
             {
                 NextScene.UiRoot.Bound = new Rectangle(
                     0, 0,
-                    Game.Graphics.GetWidth(),
-                    Game.Graphics.GetHeight());
+                    Engine.Graphic.GetWidth(),
+                    Engine.Graphic.GetHeight());
                 
                 NextScene.UiRoot.RefreshLayout();
                 
@@ -65,26 +65,26 @@ namespace Maker.Rise.GameComponent
 
         public override void Draw(GameTime gameTime)
         {
-            Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());
+            Game.GraphicsDevice.ScissorRectangle = new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
             
             if (CurrentScene != null)
             {
                 CurrentScene.Draw(gameTime);
-                Game.UI.DrawUiTree(gameTime, CurrentScene.UiRoot);
+                Engine.UI.DrawUiTree(gameTime, CurrentScene.UiRoot);
             }
             
-            sb.Begin(SpriteSortMode.Immediate, null, null, null, Game.RasterizerState);
-            var height = (int) (Game.Graphics.GetHeight() * MathUtils.Interpolate(animation.TwoPhases) );
-            var width = (int) (Game.Graphics.GetWidth() * MathUtils.Interpolate(animation.TwoPhases) );
-            var rect = new Rectangle(Game.Graphics.GetWidth() / 2 - width / 2,
-            Game.Graphics.GetHeight() / 2 - height / 2, width, height);
+            sb.Begin(SpriteSortMode.Immediate, null, null, null, Engine.CommonRasterizerState);
+            var height = (int) (Engine.Graphic.GetHeight() * MathUtils.Interpolate(animation.TwoPhases) );
+            var width = (int) (Engine.Graphic.GetWidth() * MathUtils.Interpolate(animation.TwoPhases) );
+            var rect = new Rectangle(Engine.Graphic.GetWidth() / 2 - width / 2,
+            Engine.Graphic.GetHeight() / 2 - height / 2, width, height);
             
             Game.GraphicsDevice.ScissorRectangle = rect;
 
             if (NextScene != null)
             {
                 NextScene.Draw(gameTime);
-                Game.UI.DrawUiTree(gameTime, NextScene.UiRoot);
+                Engine.UI.DrawUiTree(gameTime, NextScene.UiRoot);
             }
 
             //sb.FillRectangle(rect, Color.Black * animation.SinTwoPhases);

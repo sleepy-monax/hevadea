@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Rise.Components;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.GameComponent.Ressource
+namespace Maker.Rise.Ressource
 {
     public class ParalaxeLayer
     {
@@ -19,12 +20,10 @@ namespace Maker.Rise.GameComponent.Ressource
     public class ParalaxeBackground
     {
         public ParalaxeLayer[] Layers;
-        private RiseGame Game;
         public float Position = 0;
-        public ParalaxeBackground(RiseGame game, params ParalaxeLayer[] layers)
+        public ParalaxeBackground(params ParalaxeLayer[] layers)
         {
             Layers = layers;
-            Game = game;
         }
         
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -33,19 +32,19 @@ namespace Maker.Rise.GameComponent.Ressource
             foreach (var l in Layers)
             {
                 
-                var onScreenPos = (Position * l.Factor) % Game.Graphics.GetWidth();
+                var onScreenPos = (Position * l.Factor) % Engine.Graphic.GetWidth();
                 
                 
                 var dest = new Rectangle(
                     (int)onScreenPos, 0,
-                    (int)(Game.Graphics.GetWidth()),
-                    (int)(Game.Graphics.GetHeight())
+                    (int)(Engine.Graphic.GetWidth()),
+                    (int)(Engine.Graphic.GetHeight())
                     );
                 
                 var dest2 = new Rectangle(
-                    (int)onScreenPos - Game.Graphics.GetWidth(), 0,
-                    (int)(Game.Graphics.GetWidth()),
-                    (int)(Game.Graphics.GetHeight())
+                    (int)onScreenPos - Engine.Graphic.GetWidth(), 0,
+                    (int)(Engine.Graphic.GetWidth()),
+                    (int)(Engine.Graphic.GetHeight())
                 );
                 
                 spriteBatch.Draw(l.Texture, dest, Color.White);

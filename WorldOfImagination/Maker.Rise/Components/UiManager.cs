@@ -1,16 +1,13 @@
-﻿using Maker.Rise.GameComponent.UI;
+﻿using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.GameComponent
+namespace Maker.Rise.Components
 {
     public class UiManager : GameComponent
     {
         private SpriteBatch uiSpriteBatch;
-        
-        public InputManager Input => Game.Input;
-        public Ressources Ress => Game.Ress;
-        public bool Debug => Game.Debug.Visible;
+        public bool Debug => Engine.Debug.Visible;
         
         public UiManager(RiseGame game) : base(game)
         {
@@ -33,7 +30,7 @@ namespace Maker.Rise.GameComponent
 
         public void DrawUiTree(GameTime gameTime, Control UiRoot)
         {
-            uiSpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, Game.RasterizerState);
+            uiSpriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, Engine.CommonRasterizerState);
             UiRoot.Draw(uiSpriteBatch, gameTime);
             uiSpriteBatch.End();
         }

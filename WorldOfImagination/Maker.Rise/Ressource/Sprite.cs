@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.GameComponent.Ressource
+namespace Maker.Rise.Ressource
 {
     public class Sprite
     {

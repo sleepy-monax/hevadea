@@ -1,17 +1,15 @@
-﻿using Maker.Rise.GameComponent.UI;
+﻿using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 
-namespace Maker.Rise.GameComponent
+namespace Maker.Rise.Components
 {
     public abstract class Scene
     {
-        public RiseGame Game;
         public Control UiRoot { get; set; }
 
-        protected Scene(RiseGame game)
+        protected Scene()
         {
-            Game = game;
-            UiRoot = new Panel(Game.UI);
+            UiRoot = new Panel();
         }
 
         public abstract void Load();

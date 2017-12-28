@@ -13,7 +13,6 @@ namespace WorldOfImagination.Game
         public Level[] Levels;
         private SpriteBatch spriteBatch;
         public Camera Camera;
-        public RiseGame Game;
 
         public Level this[int index]
         {
@@ -27,18 +26,17 @@ namespace WorldOfImagination.Game
             }
         }
 
-        public World(RiseGame game)
+        public World()
         {
-            Game = game;
             Levels = new Level[1];
-            spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-            Camera = new Camera(Game);
+            spriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
+            Camera = new Camera();
         }
 
         public void Draw(GameTime gameTime, bool showDebug = true, bool renderTiles = true, bool renderEntity = true)
         {
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Game.RasterizerState, null, Camera.GetTransform());
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Engine.CommonRasterizerState, null, Camera.GetTransform());
 
             Levels[Player.CurrentLevel].Draw(spriteBatch, Camera, gameTime, showDebug, renderTiles, renderEntity);
 
@@ -63,9 +61,9 @@ namespace WorldOfImagination.Game
             Camera.FocusEntity = Player;
         }
 
-        public static World Generate(int seed, RiseGame Game)
+        public static World Generate(int seed)
         {
-            World world = new World(Game);
+            World world = new World();
 
             world[0] = new Generator
             {
@@ -79,7 +77,7 @@ namespace WorldOfImagination.Game
 
             }.Generate();
 
-            world.Player = new Player(Game)
+            world.Player = new Player()
             {
                 Position = new EntityPosition(
                     (world.Levels[0].W / 2) * ConstVal.TileSize,

@@ -1,16 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.GameComponent.UI
+namespace Maker.Rise.UI
 {
     public class Label : Control
     {
         public string Text { get; set; } = "Label";
         public SpriteFont Font { get; set; }
 
-        public Label(UiManager ui) : base(ui)
+        public Label()
         {
-            Font = UI.Ress.font_bebas;
+            Font = EngineRessources.font_bebas;
         }
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

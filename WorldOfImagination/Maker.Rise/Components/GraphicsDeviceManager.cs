@@ -1,6 +1,6 @@
 ﻿using Maker.Rise.Utils;
 
-namespace Maker.Rise.GameComponent
+namespace Maker.Rise.Components
 {
     public static class GraphicsDeviceManager
     {

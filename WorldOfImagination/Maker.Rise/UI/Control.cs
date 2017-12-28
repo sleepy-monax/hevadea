@@ -1,10 +1,11 @@
+using Maker.Rise.Components;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Maker.Rise.GameComponent.UI
+namespace Maker.Rise.UI
 {
     public enum Anchor
     {
@@ -51,7 +52,7 @@ namespace Maker.Rise.GameComponent.UI
 
     public abstract class Control
     {
-        public UiManager UI;
+        public UiManager UI => Engine.UI;
 
         public Rectangle Bound { get; set; } = Rectangle.Empty;
         public Point MaximuSize { get; set; } = Point.Zero;
@@ -71,22 +72,17 @@ namespace Maker.Rise.GameComponent.UI
         public Dock Dock { get; set; } = Dock.None;
         public LayoutMode Layout { get; set; } = LayoutMode.Dock;
 
-        public List<Control> Childs;
+        public List<Control> Childs = new List<Control>();
 
         public event OnMouseClickHandler OnMouseClick;
         public delegate void OnMouseClickHandler(object sender, EventArgs e);
 
         private bool NoManagedMouseClick = false;
-        public Control(UiManager ui)
+
+        public Control() { }
+
+        public Control(bool noManagedMouseClick)
         {
-            UI = ui;
-            Childs = new List<Control>();
-        }
-        
-        public Control(UiManager ui, bool noManagedMouseClick)
-        {
-            UI = ui;
-            Childs = new List<Control>();
             NoManagedMouseClick = noManagedMouseClick;
         }
 
@@ -215,16 +211,16 @@ namespace Maker.Rise.GameComponent.UI
         public void Update(GameTime gameTime)
         {
             OldMouseState = MouseState;
-            if (Bound.Contains(UI.Input.MousePosition))
+            if (Bound.Contains(Engine.Input.MousePosition))
             {
                 MouseState = MouseState.Over;
 
-                if (UI.Input.MouseLeft)
+                if (Engine.Input.MouseLeft)
                 {
                     MouseState = MouseState.Down;
                 }
 
-                if (UI.Input.MouseLeftClick && !NoManagedMouseClick)
+                if (Engine.Input.MouseLeftClick && !NoManagedMouseClick)
                 {
                     RaiseOnMouseClick();
                 }

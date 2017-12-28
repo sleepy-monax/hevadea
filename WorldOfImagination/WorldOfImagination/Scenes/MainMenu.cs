@@ -1,7 +1,7 @@
 ﻿using Maker.Rise;
-using Maker.Rise.GameComponent;
-using Maker.Rise.GameComponent.Ressource;
-using Maker.Rise.GameComponent.UI;
+using Maker.Rise.Components;
+using Maker.Rise.Ressource;
+using Maker.Rise.UI;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,61 +15,60 @@ namespace WorldOfImagination.Scenes
         private ParalaxeBackground paralaxe;
 
 
-        public MainMenu(RiseGame game) : base(game)
+        public MainMenu()
         {
-            sb = new SpriteBatch(game.GraphicsDevice);
+            sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
         }
 
         public override void Load()
         {            
-            Game.IsMouseVisible = true;
-            paralaxe = new ParalaxeBackground(Game,
-                new ParalaxeLayer(Game.Ress.img_forest_background, 1.1f),
-                new ParalaxeLayer(Game.Ress.img_forest_trees0, 1.5f),
-                new ParalaxeLayer(Game.Ress.img_forest_light, 2f),
-                new ParalaxeLayer(Game.Ress.img_forest_trees1, 2.5f)
+            paralaxe = new ParalaxeBackground(
+                new ParalaxeLayer(EngineRessources.img_forest_background, 1.1f),
+                new ParalaxeLayer(EngineRessources.img_forest_trees0, 1.5f),
+                new ParalaxeLayer(EngineRessources.img_forest_light, 2f),
+                new ParalaxeLayer(EngineRessources.img_forest_trees1, 2.5f)
             );
             
-            var menuButtonHost = new Panel(Game.UI)
+            var menuButtonHost = new Panel
             {
                 Dock  = Dock.Left,
                 Layout = LayoutMode.Vertical
             };
             
-            var playButton = new MainMenuButton(Game.UI)
+            var playButton = new MainMenuButton
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "play",
-                Icon = Game.Ress.icon_play
+                Icon = EngineRessources.icon_play
             };
 
 
-            var editorButton = new MainMenuButton(Game.UI)
+            var editorButton = new MainMenuButton
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "editor",
-                Icon = Game.Ress.icon_edit
+                Icon = EngineRessources.icon_edit
             };
             
-            var optionButton = new MainMenuButton(Game.UI)
+            var optionButton = new MainMenuButton
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "option", 
-                Icon = Game.Ress.icon_settings
+                Icon = EngineRessources.icon_settings
             };
             
-            var exitButton = new MainMenuButton(Game.UI)
+            var exitButton = new MainMenuButton
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "exit", 
-                Icon = Game.Ress.icon_close
+                Icon = EngineRessources.icon_close
             };
 
-            var titleLabel = new Label(Game.UI)
+            var titleLabel = new Label
             {
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "Tales of Hevadea",
-                Font = Game.Ress.font_alagard_big,
+                Font = EngineRessources.font_alagard_big,
                 Dock = Dock.Fill
             };
 
@@ -84,19 +83,19 @@ namespace WorldOfImagination.Scenes
             menuButtonHost.AddChild(exitButton);
 
             menuButtonHost.Bound = new Rectangle(0, 0, 360, 64 * menuButtonHost.Childs.Count);
-            var padding = Game.Graphics.GetHeight() / 2 - menuButtonHost.Bound.Height / 2;
+            var padding = Engine.Graphic.GetHeight() / 2 - menuButtonHost.Bound.Height / 2;
             UiRoot.Padding = new Padding(padding, padding, 16, 16);
             UiRoot.RefreshLayout();
         }
 
         private void PlayButtonOnOnMouseClick(object sender, EventArgs eventArgs)
         {
-            Game.Scene.Switch(new PlayMenu(Game));
+            Engine.Scene.Switch(new PlayMenu());
         }
 
         private void ExitButtonOnOnMouseClick(object sender, EventArgs eventArgs)
         {
-            Game.Exit();
+            Engine.Stop();
         }
 
         public override void Unload()
@@ -107,9 +106,9 @@ namespace WorldOfImagination.Scenes
         public override void Draw(GameTime gameTime)
         {;
 
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Game.RasterizerState);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
             paralaxe.Draw(sb, gameTime);
-            sb.FillRectangle(new Rectangle(0, 0, 96, Game.Graphics.GetHeight()), Color.Black * 0.5f);
+            sb.FillRectangle(new Rectangle(0, 0, 96, Engine.Graphic.GetHeight()), Color.Black * 0.5f);
             sb.End();
             
         }

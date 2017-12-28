@@ -4,25 +4,31 @@ using Maker.Rise.Graphic.Path.Brushes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Maker.Rise;
-using Maker.Rise.GameComponent;
+using Maker.Rise.Components;
 
 namespace WorldOfImagination.Scenes
 {
     public class SplashScene : Scene
     {
-        private readonly SpriteBatch sb;
-        private readonly DrawBatch db;
+        private SpriteBatch sb;
+        private DrawBatch db;
         private Texture2D logo;
-        public SplashScene(RiseGame game) : base(game)
+
+        public SplashScene()
         {
-            sb = new SpriteBatch(Game.GraphicsDevice);
-            db = new DrawBatch(Game.GraphicsDevice);
+
         }
 
 
         public override void Load()
         {
-            logo = Game.Ress.img_maker_logo;
+            sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
+            db = new DrawBatch(Engine.Graphic.GraphicsDevice);
+            logo = EngineRessources.img_maker_logo;
+
+            Ressources.Load();
+            Engine.SetMouseVisibility(true);
+            Engine.SetFullScreen(true);
         }
 
         public override void Unload()
@@ -34,7 +40,7 @@ namespace WorldOfImagination.Scenes
         {
             if (gameTime.TotalGameTime.TotalSeconds > 2 && once)
             {
-                Game.Scene.Switch(new MainMenu(Game));
+                Engine.Scene.Switch(new MainMenu());
                 once = false;
             }            
         }
@@ -42,13 +48,13 @@ namespace WorldOfImagination.Scenes
         public override void Draw(GameTime gameTime)
         {
             db.Begin();
-            db.FillRectangle(Brush.LightGray, Vector2.Zero, Game.Graphics.GetWidth(), Game.Graphics.GetHeight());  
+            db.FillRectangle(Brush.LightGray, Vector2.Zero, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());  
             db.End();
             
             
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Game.RasterizerState);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
 
-            sb.Draw(logo, new Vector2(Game.Graphics.GetWidth() / 2 - logo.Width / 2, Game.Graphics.GetHeight() / 2 - logo.Height / 2), Color.White);
+            sb.Draw(logo, new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2, Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White);
             sb.End();
         }
     }

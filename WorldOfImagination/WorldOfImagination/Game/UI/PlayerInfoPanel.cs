@@ -1,5 +1,4 @@
-﻿using Maker.Rise.GameComponent;
-using Maker.Rise.GameComponent.UI;
+﻿using Maker.Rise.UI;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +10,7 @@ namespace WorldOfImagination.Game.UI
     {
         private Player Player;
 
-        public PlayerInfoPanel(UiManager ui, Player player) : base(ui, false)
+        public PlayerInfoPanel(Player player) : base(false)
         {
             Player = player;
             

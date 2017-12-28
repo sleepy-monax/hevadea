@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Maker.Rise.GameComponent.UI
+namespace Maker.Rise.UI
 {
     public class TextInput: Control
     {
@@ -17,10 +17,10 @@ namespace Maker.Rise.GameComponent.UI
         private Animation animation = new Animation();
 
 
-        public TextInput(UiManager ui) : base(ui)
+        public TextInput()
         {
             UI.Game.Window.TextInput += WindowOnTextInput;
-            Font = UI.Ress.font_arial;
+            Font = EngineRessources.font_arial;
         }
 
         private void WindowOnTextInput(object sender, TextInputEventArgs textInputEventArgs)

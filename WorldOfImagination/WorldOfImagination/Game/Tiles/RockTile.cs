@@ -1,4 +1,4 @@
-﻿using Maker.Rise.GameComponent.Ressource;
+﻿using Maker.Rise.Ressource;
 using WorldOfImagination.Game.Entities;
 
 namespace WorldOfImagination.Game.Tiles

@@ -1,22 +1,18 @@
 ﻿using Maker.Rise;
-using Maker.Rise.GameComponent.Ressource;
+using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace WorldOfImagination.Game.Entities
 {
     public class Player : Mob
     {
-
-        RiseGame Game;
         Sprite PlayerSprite;
         public int CurrentLevel = 0;
 
-        public Player(RiseGame game)
+        public Player()
         {
-            Game = game;
             Width = 8;
             Height = 8;
             PlayerSprite = new Sprite(Ressources.tile_entities, 0, new Point(16,16));
@@ -28,10 +24,10 @@ namespace WorldOfImagination.Game.Entities
         public override void Update(GameTime gameTime)
         {
             walking = false;
-            if (Game.Input.KeyDown(Keys.Q) && Move(-1, 0)) { walking = true; Facing = Facing.Left; }
-            if (Game.Input.KeyDown(Keys.D) && Move(1, 0)) { walking = true; Facing = Facing.Right; }
-            if (Game.Input.KeyDown(Keys.Z) && Move(0, -1)) { walking = true; Facing = Facing.Up; }
-            if (Game.Input.KeyDown(Keys.S) && Move(0, 1)) { walking = true; Facing = Facing.Down; }
+            if (Engine.Input.KeyDown(Keys.Q) && Move(-1, 0)) { walking = true; Facing = Facing.Left; }
+            if (Engine.Input.KeyDown(Keys.D) && Move(1, 0)) { walking = true; Facing = Facing.Right; }
+            if (Engine.Input.KeyDown(Keys.Z) && Move(0, -1)) { walking = true; Facing = Facing.Up; }
+            if (Engine.Input.KeyDown(Keys.S) && Move(0, 1)) { walking = true; Facing = Facing.Down; }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

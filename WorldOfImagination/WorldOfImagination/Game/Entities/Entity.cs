@@ -32,8 +32,13 @@ namespace WorldOfImagination.Game.Entities
         public int MaxHealth = 1;
         public bool Invincible = true;
 
+        public virtual int ComputeDamages(int damages)
+        {
+            return damages;
+        }
+
         // Entity get hurt by a other entity (ex: Zombie)
-        public virtual void Hurt(Mob mob, int damages, Direction attackDirection)
+        public virtual void Hurt(Entity entity, int damages, Direction attackDirection)
         {
             if (!Invincible)
             {
@@ -46,19 +51,6 @@ namespace WorldOfImagination.Game.Entities
             }
         }
         
-        public virtual void Hurt(Item item, int damages, Direction attackDirection)
-        {
-            if (!Invincible)
-            {
-                Health = Math.Max(0, Health - damages);
-
-                if (Health == 0)
-                {
-                    Die();
-                }
-            }
-        }
-
         // Entity get hurt by a tile (ex: lava)
         public virtual void Hurt(Tile tile, int damages, int tileX, int tileY)
         {
@@ -73,17 +65,14 @@ namespace WorldOfImagination.Game.Entities
             }
         }
 
-        public virtual int ComputeDamages(int damages)
-        {
-            return damages;
-        }
         
-        // 
-        public virtual void Heal(Mob mob, int damages, Direction attackDirection)
+        // The mob is heal by a mod (healing itself)
+        public virtual void Heal(Entity entity, int damages, Direction attackDirection)
         {
             Health = Math.Min(MaxHealth, Health + damages);
         }
 
+        // The entity in heal b
         public virtual void Heal(Tile tile, int damages, int tileX, int tileY)
         {
             Health = Math.Min(MaxHealth, Health + damages);

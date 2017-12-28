@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace Maker.Rise.GameComponent
+namespace Maker.Rise.Components
 {
     public class InputManager : GameComponent
     {

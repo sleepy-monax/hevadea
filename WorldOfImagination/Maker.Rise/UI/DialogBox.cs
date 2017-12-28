@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.GameComponent.UI
+namespace Maker.Rise.UI
 {
     public class DialogBox : Control
     {
@@ -42,9 +42,9 @@ namespace Maker.Rise.GameComponent.UI
             }
         }
 
-        public DialogBox(UiManager ui) : base(ui)
+        public DialogBox()
         {
-            Font = UI.Ress.font_arial;
+            Font = EngineRessources.font_arial;
             Text = "null";
         }
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Maker.Rise.GameComponent
+namespace Maker.Rise.Components
 {
     public class AudioManager : GameComponent
     {

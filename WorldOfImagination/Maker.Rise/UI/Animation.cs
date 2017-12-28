@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 
-namespace Maker.Rise.GameComponent.UI
+namespace Maker.Rise.UI
 {
     public class Animation
     {

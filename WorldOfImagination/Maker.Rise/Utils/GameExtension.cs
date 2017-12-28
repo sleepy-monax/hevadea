@@ -1,4 +1,4 @@
-﻿using Maker.Rise.GameComponent;
+﻿using Maker.Rise.Components;
 using System;
 
 namespace Maker.Rise.Utils
@@ -10,11 +10,6 @@ namespace Maker.Rise.Utils
         {
             game.Window.Title = title;
             Console.Title = title;
-        }
-
-        public static void SetFullScreen(this RiseGame game)
-        {
-            game.Graphics.SetFullScreen();
         }
     }
 }

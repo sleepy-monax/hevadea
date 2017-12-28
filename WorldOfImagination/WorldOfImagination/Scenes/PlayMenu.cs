@@ -1,6 +1,6 @@
 ﻿using Maker.Rise;
-using Maker.Rise.GameComponent;
-using Maker.Rise.GameComponent.UI;
+using Maker.Rise.Components;
+using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,9 +11,9 @@ namespace WorldOfImagination.Scenes
     public class PlayMenu : Scene
     {
         private readonly SpriteBatch sb;
-        public PlayMenu(RiseGame game) : base(game)
+        public PlayMenu()
         {
-            sb = new SpriteBatch(game.GraphicsDevice);
+            sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
         }
 
         public override void Load()
@@ -22,7 +22,7 @@ namespace WorldOfImagination.Scenes
 
             UiRoot.Padding = new Padding(64, 64, 256, 265);
 
-            var menuButtonHost = new Panel(Game.UI)
+            var menuButtonHost = new Panel
             {
                 Dock = Dock.Bottom,
                 Bound = new Rectangle(64, 64, 64, 64),
@@ -30,41 +30,53 @@ namespace WorldOfImagination.Scenes
                
             };
             
-            var gameListHost = new Panel(Game.UI)
+            var gameListHost = new Panel
             {
                 Dock = Dock.Fill,
                 Layout = LayoutMode.Vertical
             };
 
-            var titleLabel = new Label(Game.UI)
+            var titleLabel = new Label
             {
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "Singleplayer",
                 Dock = Dock.Top
             };
             
-            var newButton = new Button(Game.UI)
+            var newButton = new Button
             {
                 Text = "New",
-                Icon = Game.Ress.icon_add
+                Icon = EngineRessources.icon_add
             };
-            var backButton = new Button(Game.UI)
+            var backButton = new Button
             {
                 Text = "Back",
-                Icon = Game.Ress.icon_back
+                Icon = EngineRessources.icon_back
             };
-            var deleteButton = new Button(Game.UI)
+            var deleteButton = new Button
             {
                 Text = "Delete",
-                Icon = Game.Ress.icon_delete
+                Icon = EngineRessources.icon_delete
             };
             
-            backButton.OnMouseClick += delegate (object sender, EventArgs args) { Game.Scene.Switch(new MainMenu(Game)); };
-            newButton.OnMouseClick += delegate (object sender, EventArgs args) {
-                var world = World.Generate(0, Game);
-                Game.Scene.Switch(new GameScene(Game, world));
-            };
-            deleteButton.OnMouseClick += delegate(object sender, EventArgs args) {  };
+            backButton.OnMouseClick += 
+                delegate (object sender, EventArgs args) 
+                {
+                    Engine.Scene.Switch(new MainMenu());
+                };
+
+            newButton.OnMouseClick += 
+                delegate (object sender, EventArgs args) 
+                {
+                    var world = World.Generate(0);
+                    Engine.Scene.Switch(new GameScene(world));
+                };
+
+            deleteButton.OnMouseClick += 
+                delegate(object sender, EventArgs args) 
+                {
+
+                };
 
             UiRoot.AddChild(titleLabel);
             UiRoot.AddChild(menuButtonHost);
@@ -84,9 +96,8 @@ namespace WorldOfImagination.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Game.RasterizerState);
-
-            sb.Draw(Game.Ress.img_menu_background, new Rectangle(0, 0, Game.Graphics.GetWidth(), Game.Graphics.GetHeight()), Color.White);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
+            sb.Draw(EngineRessources.img_menu_background, new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()), Color.White);
             sb.End();
         }
 

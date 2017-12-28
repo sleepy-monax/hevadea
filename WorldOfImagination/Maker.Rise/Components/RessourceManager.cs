@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace Maker.Rise.GameComponent
+namespace Maker.Rise.Components
 {
     public class RessourceManager : GameComponent
     {
@@ -27,6 +28,11 @@ namespace Maker.Rise.GameComponent
         public override void Update(GameTime gameTime)
         {
  
+        }
+
+        public SoundEffect GetSoundEffect(string name)
+        {
+            return Game.Content.Load<SoundEffect>($"Sounds/{name}");
         }
 
         public SpriteFont GetSpriteFont(string name)

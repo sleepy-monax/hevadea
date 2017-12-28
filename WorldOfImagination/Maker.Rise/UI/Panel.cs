@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.GameComponent.UI
+namespace Maker.Rise.UI
 {
     public class Panel : Control
     {
         public Color Color { get; set; } = Color.Transparent;
         
-        public Panel(UiManager ui) : base(ui)
+        public Panel()
         {
         }
 

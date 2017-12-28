@@ -1,6 +1,4 @@
-﻿using Maker.Rise.GameComponent;
-using Maker.Rise.Utils;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -10,20 +8,10 @@ namespace Maker.Rise
 {
     public sealed class RiseGame : Game
     {
-        public Microsoft.Xna.Framework.GraphicsDeviceManager Graphics;
-        public readonly RasterizerState RasterizerState;
-        
-        public readonly AudioManager     Audio;
-        public readonly DebugManager     Debug;
-        public readonly InputManager     Input;
-        public readonly NetworkManager   Network;
-        public readonly RessourceManager Ressource;
-        public readonly SceneManager     Scene;
-        public readonly UiManager        UI;
-        public readonly Ressources       Ress;
 
         public int DrawTime { get; private set; } = 0;
         public int UpdateTime { get; private set; } = 0;
+
         private Stopwatch drawStopwatch;
         private Stopwatch UpdateStopwatch;
 
@@ -38,19 +26,8 @@ namespace Maker.Rise
 
         public RiseGame()
         {
-            RasterizerState = new RasterizerState { ScissorTestEnable = true};
             drawStopwatch = new Stopwatch();
             UpdateStopwatch = new Stopwatch();
-            Graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
-
-            Audio = new AudioManager(this);
-            Input = new InputManager(this);
-            Network = new NetworkManager(this);
-            Scene = new SceneManager(this);
-            UI = new UiManager(this);
-            Ressource = new RessourceManager(this);
-            Debug = new DebugManager(this);
-            Ress = new Ressources(this);
             
             Content.RootDirectory = "Content";
         }
@@ -58,32 +35,32 @@ namespace Maker.Rise
         // Game components Managments -----------------------------------------
         private void IntializeGameComponents()
         {
-            Ressource.Initialize(); Ress.Load();
-            Audio.Initialize();
-            Input.Initialize();
-            Network.Initialize();
-            Scene.Initialize();
-            UI.Initialize();
-            Debug.Initialize();
+            Engine.Ressource.Initialize(); EngineRessources.Load();
+            Engine.Audio.Initialize();
+            Engine.Input.Initialize();
+            Engine.Network.Initialize();
+            Engine.Scene.Initialize();
+            Engine.UI.Initialize();
+            Engine.Debug.Initialize();
 
             OnLoad?.Invoke(this, new EventArgs());
         }
 
         private void DrawGameComponent(GameTime gameTime)
         {
-            Scene.Draw(gameTime);
-            Debug.Draw(gameTime);
+            Engine.Scene.Draw(gameTime);
+            Engine.Debug.Draw(gameTime);
         }
 
         private void UpdateGameComponent(GameTime gameTime)
         {
-            Audio.Update(gameTime);
-            Input.Update(gameTime);
-            Network.Update(gameTime);
-            Scene.Update(gameTime);
-            UI.Update(gameTime);
-            Ressource.Update(gameTime);
-            Debug.Update(gameTime);
+            Engine.Audio.Update(gameTime);
+            Engine.Input.Update(gameTime);
+            Engine.Network.Update(gameTime);
+            Engine.Scene.Update(gameTime);
+            Engine.UI.Update(gameTime);
+            Engine.Ressource.Update(gameTime);
+            Engine.Debug.Update(gameTime);
         }
 
         protected override void Initialize()
@@ -122,7 +99,6 @@ namespace Maker.Rise
         protected override void Draw(GameTime gameTime)
         {
             drawStopwatch.Start();
-            //Thread.Sleep(50);
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             DrawGameComponent(gameTime);
