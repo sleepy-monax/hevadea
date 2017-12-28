@@ -189,8 +189,8 @@ namespace Maker.Hevadea.Game
         {
             var playerPos = Player.Position.ToTilePosition();
             
-            var distX = ((camera.GetWidth() / 2) / ConstVal.TileSize) + 3;
-            var distY = ((camera.GetHeight() / 2) / ConstVal.TileSize) + 3;
+            var distX = ((camera.GetWidth() / 2) / ConstVal.TileSize) + 4;
+            var distY = ((camera.GetHeight() / 2) / ConstVal.TileSize) + 4;
             
             var beginX = Math.Max(0, playerPos.X - distX);
             var beginY = Math.Max(0, playerPos.Y - distY + 1);
@@ -217,7 +217,7 @@ namespace Maker.Hevadea.Game
                 if (renderEntity) e.Draw(sb, gameTime);
             }
 
-            sb.DrawRectangle(new Rectangle((int)camera.X - camera.GetWidth() / 2, (int)camera.Y - camera.GetHeight() / 2, camera.GetWidth(), camera.GetHeight()), Color.Red);
+            if (camera.debugMode) sb.DrawRectangle(new Rectangle((int)camera.X - camera.GetWidth() / 2, (int)camera.Y - camera.GetHeight() / 2, camera.GetWidth(), camera.GetHeight()), Color.Red);
         }
 
         public static bool Save(Level level, string folderName)

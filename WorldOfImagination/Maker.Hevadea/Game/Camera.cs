@@ -9,7 +9,7 @@ namespace Maker.Hevadea.Game
     public class Camera
     {
 
-        public float Zoom = 0.5f;
+        public float Zoom = 4f;
         public bool debugMode = false;
         public Entity FocusEntity = null;
         public float X = 0f;
@@ -36,13 +36,10 @@ namespace Maker.Hevadea.Game
             {
                 return Matrix.Identity;
             }
-            else
-            {
-                return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
-                    (float)Math.Floor(-(X * Zoom - Engine.Graphic.GetWidth() / 2 )),
-                    (float)Math.Floor(-(Y * Zoom - Engine.Graphic.GetHeight() / 2)), 0f);
-            }
-        }
 
+            return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
+                (float)Math.Floor(-( X * Zoom - Engine.Graphic.GetWidth()  / 2 )),
+                (float)Math.Floor(-( Y * Zoom - Engine.Graphic.GetHeight() / 2 )), 0f);   
+        }
     }
 }
