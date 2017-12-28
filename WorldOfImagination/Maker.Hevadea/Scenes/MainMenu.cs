@@ -67,7 +67,7 @@ namespace Maker.Hevadea.Scenes
             var titleLabel = new Label
             {
                 Bound = new Rectangle(64, 64, 64, 64),
-                Text = "Tales of Hevadea",
+                Text = "Tale of Hevadea",
                 Font = EngineRessources.font_alagard_big,
                 Dock = Dock.Fill
             };

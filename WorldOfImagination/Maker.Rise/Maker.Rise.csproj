@@ -86,5 +86,8 @@
     <Compile Include="Utils\Text.cs" />
     <Compile Include="RiseGame.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Network\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
