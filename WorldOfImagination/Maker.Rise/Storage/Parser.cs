@@ -8,23 +8,23 @@ using System.Text;
 
 namespace WorldOfImagination.Json
 {
-     /*Really simple JSON parser in ~300 lines
-     - Attempts to parse JSON files with minimal GC allocation
-     - Nice and simple "[1,2,3]".FromJson<List<int>>() API
-     - Classes and structs can be parsed too!
-          class Foo { public int Value; }
-          "{\"Value\":10}".FromJson<Foo>()
-     - Can parse JSON without type information into Dictionary<string,object> and List<object> e.g.
-          "[1,2,3]".FromJson<object>().GetType() == typeof(List<object>)
-          "{\"Value\":10}".FromJson<object>().GetType() == typeof(Dictionary<string,object>)
-     - No JIT Emit support to support AOT compilation on iOS
-     - Attempts are made to NOT throw an exception if the JSON is corrupted or invalid: returns null instead.
-     - Only public fields and property setters on classes/structs will be written to
-    
-     Limitations:
-     - No JIT Emit support to parse structures quickly
-     - Limited to parsing <2GB JSON files (due to int.MaxValue)
-     - Parsing of abstract classes or interfaces is NOT supported and will throw an exception.*/
+    /*Really simple JSON parser in ~300 lines
+    - Attempts to parse JSON files with minimal GC allocation
+    - Nice and simple "[1,2,3]".FromJson<List<int>>() API
+    - Classes and structs can be parsed too!
+         class Foo { public int Value; }
+         "{\"Value\":10}".FromJson<Foo>()
+    - Can parse JSON without type information into Dictionary<string,object> and List<object> e.g.
+         "[1,2,3]".FromJson<object>().GetType() == typeof(List<object>)
+         "{\"Value\":10}".FromJson<object>().GetType() == typeof(Dictionary<string,object>)
+    - No JIT Emit support to support AOT compilation on iOS
+    - Attempts are made to NOT throw an exception if the JSON is corrupted or invalid: returns null instead.
+    - Only public fields and property setters on classes/structs will be written to
+
+    Limitations:
+    - No JIT Emit support to parse structures quickly
+    - Limited to parsing <2GB JSON files (due to int.MaxValue)
+    - Parsing of abstract classes or interfaces is NOT supported and will throw an exception.*/
     public static class Parser
     {
         static Stack<List<string>> splitArrayPool = new Stack<List<string>>();
@@ -170,26 +170,22 @@ namespace WorldOfImagination.Json
             }
             if (type == typeof(int))
             {
-                int result;
-                int.TryParse(json, out result);
+                int.TryParse(json, out int result);
                 return result;
             }
             if (type == typeof(byte))
             {
-                byte result;
-                byte.TryParse(json, out result);
+                byte.TryParse(json, out byte result);
                 return result;
             }
             if (type == typeof(float))
             {
-                float result;
-                float.TryParse(json, out result);
+                float.TryParse(json, out float result);
                 return result;
             }
             if (type == typeof(double))
             {
-                double result;
-                double.TryParse(json, out result);
+                double.TryParse(json, out double result);
                 return result;
             }
             if (type == typeof(bool))
