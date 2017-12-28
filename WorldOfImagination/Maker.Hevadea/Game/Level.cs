@@ -1,13 +1,15 @@
-﻿using Maker.Rise.Utils;
+﻿using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.SaveStorage;
+using Maker.Hevadea.Game.Tiles;
+using Maker.Hevadea.Json;
+using Maker.Rise;
+using Maker.Rise.Components;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.SaveStorage;
-using Maker.Hevadea.Game.Tiles;
-using Maker.Hevadea.Json;
 
 namespace Maker.Hevadea.Game
 {
@@ -214,6 +216,8 @@ namespace Maker.Hevadea.Game
                 if (showDebug) sb.FillRectangle(e.ToRectangle(), new Color(255, 0, 0) * 0.45f);
                 if (renderEntity) e.Draw(sb, gameTime);
             }
+
+            sb.DrawRectangle(new Rectangle((int)camera.X - camera.GetWidth() / 2, (int)camera.Y - camera.GetHeight() / 2, camera.GetWidth(), camera.GetHeight()), Color.Red);
         }
 
         public static bool Save(Level level, string folderName)

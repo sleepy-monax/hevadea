@@ -15,7 +15,7 @@ namespace Maker.Hevadea.Game.Entities
         {
             Width = 8;
             Height = 8;
-            PlayerSprite = new Sprite(Ressources.tile_entities, 0, new Point(16,16));
+            PlayerSprite = new Sprite(Ressources.tile_creatures, 0, new Point(16,16));
             
         }
 

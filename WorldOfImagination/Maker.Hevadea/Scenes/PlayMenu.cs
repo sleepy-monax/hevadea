@@ -1,10 +1,10 @@
-﻿using Maker.Rise;
+﻿using Maker.Hevadea.Game;
+using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Maker.Hevadea.Game;
 
 namespace Maker.Hevadea.Scenes
 {
@@ -97,7 +97,7 @@ namespace Maker.Hevadea.Scenes
         public override void Draw(GameTime gameTime)
         {
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
-            sb.Draw(EngineRessources.img_menu_background, new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()), Color.White);
+            sb.Draw(Ressources.img_forest_background, new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()), Color.White);
             sb.End();
         }
 

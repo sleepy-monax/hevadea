@@ -6,7 +6,7 @@ namespace Maker.Rise.Ressource
     public class Sprite
     {
         private readonly SpriteSheet Sheet;
-        private readonly int Index;
+        private readonly Rectangle Source;
         private readonly Point SubSpriteSize;
 
         // Constructors -------------------------------------------------------
@@ -14,7 +14,7 @@ namespace Maker.Rise.Ressource
         public Sprite(SpriteSheet sheet, int index)
         {
             Sheet = sheet;
-            Index = index;
+            Source = sheet.GetTile(index);
             SubSpriteSize = new Point(8, 8);
         }
 
@@ -27,14 +27,13 @@ namespace Maker.Rise.Ressource
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color)
         {
-            spriteBatch.Draw(Sheet.Texture, position, Sheet.GetTile(Index), color);
+            spriteBatch.Draw(Sheet.Texture, position, Source, color);
         }
 
         public void DrawSubSprite(SpriteBatch spriteBatch, Vector2 position, Point subSprite,Color color)
         {
-            var me = Sheet.GetTile(Index);
-            var subMe = new Rectangle(me.X + subSprite.X * SubSpriteSize.X,
-                                      me.Y + subSprite.Y * SubSpriteSize.Y,
+            var subMe = new Rectangle(Source.X + subSprite.X * SubSpriteSize.X,
+                                      Source.Y + subSprite.Y * SubSpriteSize.Y,
                                       
                                       SubSpriteSize.X,
                                       SubSpriteSize.Y);

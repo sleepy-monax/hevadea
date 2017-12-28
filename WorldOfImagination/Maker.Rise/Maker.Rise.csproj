@@ -56,6 +56,8 @@
     <Compile Include="Components\InputManager.cs" />
     <Compile Include="Components\NetworkManager.cs" />
     <Compile Include="Components\RessourceManager.cs" />
+    <Compile Include="Network\Client.cs" />
+    <Compile Include="Network\Server.cs" />
     <Compile Include="Ressource\ParalaxeBackground.cs" />
     <Compile Include="Ressource\Sprite.cs" />
     <Compile Include="Ressource\SpriteSheet.cs" />
@@ -86,8 +88,6 @@
     <Compile Include="Utils\Text.cs" />
     <Compile Include="RiseGame.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Network\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

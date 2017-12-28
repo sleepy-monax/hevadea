@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Maker.Rise;
+﻿using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Utils;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Scenes
 {
@@ -21,11 +20,11 @@ namespace Maker.Hevadea.Scenes
         public override void Load()
         {
             sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
-            logo = EngineRessources.img_maker_logo;
-
             Ressources.Load();
+            logo = Ressources.img_maker_logo;
+
             Engine.SetMouseVisibility(true);
-            Engine.SetFullScreen(true);
+            //Engine.SetFullScreen(true);
         }
 
         public override void Unload()

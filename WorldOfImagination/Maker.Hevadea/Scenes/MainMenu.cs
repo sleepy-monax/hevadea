@@ -23,10 +23,10 @@ namespace Maker.Hevadea.Scenes
         public override void Load()
         {            
             paralaxe = new ParalaxeBackground(
-                new ParalaxeLayer(EngineRessources.img_forest_background, 1.1f),
-                new ParalaxeLayer(EngineRessources.img_forest_trees0, 1.5f),
-                new ParalaxeLayer(EngineRessources.img_forest_light, 2f),
-                new ParalaxeLayer(EngineRessources.img_forest_trees1, 2.5f)
+                new ParalaxeLayer(Ressources.img_forest_background, 1.1f),
+                new ParalaxeLayer(Ressources.img_forest_trees0, 1.5f),
+                new ParalaxeLayer(Ressources.img_forest_light, 2f),
+                new ParalaxeLayer(Ressources.img_forest_trees1, 2.5f)
             );
             
             var menuButtonHost = new Panel
@@ -68,7 +68,7 @@ namespace Maker.Hevadea.Scenes
             {
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "Tale of Hevadea",
-                Font = EngineRessources.font_alagard_big,
+                Font = Ressources.font_alagard_big,
                 Dock = Dock.Fill
             };
 
