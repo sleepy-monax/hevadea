@@ -73,7 +73,9 @@ Render: {Game.DrawTime, 3}ms (avr {avrRenderTime/renderTime.Count}ms)
 Tick: {Game.UpdateTime}ms
 Scene: {Engine.Scene.CurrentScene.GetType().FullName}
 DisplayMode: {Game.GraphicsDevice.Adapter.CurrentDisplayMode}
-Triangle: {Game.GraphicsDevice.Metrics.PrimitiveCount}", new Vector2(32f,16f), Color.White);
+Triangle: {Game.GraphicsDevice.Metrics.PrimitiveCount}
+--- Curent Scene Debug Info ---
+{Engine.Scene.CurrentScene.GetDebugInfo()}", new Vector2(32f,16f), Color.White);
 
 
 

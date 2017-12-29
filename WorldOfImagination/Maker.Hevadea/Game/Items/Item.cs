@@ -20,7 +20,7 @@ namespace Maker.Hevadea.Game.Items
 
         public virtual float GetAttackBonus(Tile Target)
         {
-            return 0f;
+            return 1f;
         }
 
         public virtual void Attack(Mob user, Entity target)

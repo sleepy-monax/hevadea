@@ -30,7 +30,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public void Attack(Item Weapon, TilePosition tile)
         {
-
+            Weapon.Attack(this, tile);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -56,11 +56,11 @@ namespace Maker.Hevadea.Game.Entities
                         break;
                 }
 
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(Position.X - 4, Position.Y - 8), new Point(animationFrame, (int)Facing), Color.White);
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(Position.X - 4, Position.Y - 7), new Point(animationFrame, (int)Facing), Color.White);
             }
             else
             {
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(Position.X - 4, Position.Y - 8), new Point(2, (int)Facing), Color.White);
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(Position.X - 4, Position.Y - 7), new Point(2, (int)Facing), Color.White);
             }
         }
     }

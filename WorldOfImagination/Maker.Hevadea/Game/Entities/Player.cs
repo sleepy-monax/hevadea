@@ -1,7 +1,8 @@
-﻿using Maker.Rise;
+﻿using Maker.Hevadea.Game.Items;
+using Maker.Hevadea.Game.Tiles;
+using Maker.Rise;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Maker.Hevadea.Game.Entities
@@ -9,6 +10,7 @@ namespace Maker.Hevadea.Game.Entities
     public class Player : Mob
     {
         public int CurrentLevel = 0;
+        public Item HoldingItem = new Item();
 
         public Player()
         {
@@ -27,11 +29,20 @@ namespace Maker.Hevadea.Game.Entities
             if (Engine.Input.KeyDown(Keys.Q)) { Facing = Direction.Left; moveX = -1; }
             if (Engine.Input.KeyDown(Keys.D)) { Facing = Direction.Right; moveX = 1; }
             if (Engine.Input.KeyDown(Keys.Z)) { Facing = Direction.Up; moveY = -1; }
-            if (Engine.Input.KeyDown(Keys.S)) {Facing = Direction.Down; moveY = 1; }
+            if (Engine.Input.KeyDown(Keys.S)) { Facing = Direction.Down; moveY = 1; }
 
             Move(moveX, moveY);
+            
 
-            if (Engine.Input.MouseLeftClick) { Level.AddEntity(new TorchEntity { Position = new EntityPosition(this.Position.X, this.Position.Y) }); }
+            var tilePosition = Position.ToTilePosition();
+            var dir = Facing.ToPoint();
+
+            tilePosition = new TilePosition(tilePosition.X + dir.X, tilePosition.Y + dir.Y);
+            
+            if (Engine.Input.MouseLeftClick) Attack(HoldingItem, tilePosition);
+            if (Engine.Input.MouseRightClick) Use(HoldingItem, tilePosition);
+
+            //if (Engine.Input.MouseLeftClick) { Level.AddEntity(new TorchEntity { Position = new EntityPosition(this.Position.X, this.Position.Y) }); }
         }
 
         

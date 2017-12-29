@@ -12,6 +12,10 @@ namespace Maker.Rise.Components
             UiRoot = new Panel();
         }
 
+        public virtual string GetDebugInfo()
+        {
+            return "null";
+        }
         public abstract void Load();
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime);

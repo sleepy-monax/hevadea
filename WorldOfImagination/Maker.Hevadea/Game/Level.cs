@@ -15,6 +15,7 @@ namespace Maker.Hevadea.Game
     public class Level
     {
         public readonly int W;
+
         public readonly int H;
 
         private byte[] Tiles;
@@ -139,6 +140,11 @@ namespace Maker.Hevadea.Game
             Tiles[tx + ty * W] = id;
         }
 
+        internal T GetData<T>(TilePosition tilePosition, string dataName, T defaultValue)
+        {
+            return GetData<T>(tilePosition.X, tilePosition.Y, dataName, defaultValue);
+        }
+
         public T GetData<T>(int tx, int ty, string dataName, T defaultValue)
         {
             if (Data[tx + ty * W].ContainsKey(dataName))
@@ -146,7 +152,13 @@ namespace Maker.Hevadea.Game
                 return (T)Data[tx + ty * W][dataName];
             }
 
+            Data[tx + ty * W].Add(dataName, defaultValue);
             return defaultValue;
+        }
+
+        internal void SetData<T>(TilePosition tilePosition, string dataName, T value)
+        {
+            SetData<T>(tilePosition.X, tilePosition.Y, dataName, value);
         }
 
         public void SetData<T>(int tx, int ty, string dataName, T Value)

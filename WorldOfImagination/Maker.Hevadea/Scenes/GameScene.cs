@@ -78,5 +78,13 @@ namespace Maker.Hevadea.Scenes
         {
             
         }
+
+        public override string GetDebugInfo()
+        {
+            return 
+$@"World time: {World.Time}
+Player pos {World.Player.Position.X} {World.Player.Position.Y}
+";
+        }
     }
 }

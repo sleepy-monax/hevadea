@@ -98,7 +98,7 @@ namespace Maker.Hevadea.Game.Entities
         {
             if (accelerationX != 0 || accelerationY != 0)
             {
-                if (MoveInternal(accelerationX, accelerationY))
+                if (MoveInternal(accelerationX, 0) | MoveInternal(0, accelerationY))
                 {
                     var pos = Position.ToTilePosition();
                     Level.GetTile(pos.X, pos.Y).SteppedOn(this, pos);
