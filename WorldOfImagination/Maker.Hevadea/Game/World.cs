@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.LevelGen;
 using Maker.Hevadea.Game.LevelGen.Features.Overworld;
+using Maker.Rise.Components;
+using Maker.Rise.Utils;
 
 namespace Maker.Hevadea.Game
 {
@@ -12,7 +14,13 @@ namespace Maker.Hevadea.Game
         public Player Player;
         public Level[] Levels;
         private SpriteBatch spriteBatch;
+        private SpriteBatch lightSpriteBatch;
+        private BlendState lightBlend;
+
+        private RenderTarget2D SceneRenderTaget;
+        private RenderTarget2D lightRenderTaget;
         public Camera Camera;
+        public int Time;
 
         public Level this[int index]
         {
@@ -30,22 +38,52 @@ namespace Maker.Hevadea.Game
         {
             Levels = new Level[1];
             spriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
+            lightSpriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
             Camera = new Camera();
+
+            lightBlend = new BlendState()
+            {
+                ColorBlendFunction = BlendFunction.Add,
+                ColorSourceBlend = Blend.DestinationColor,
+                ColorDestinationBlend = Blend.Zero
+            };
+
+            SceneRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
+            lightRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
         }
 
         public void Draw(GameTime gameTime, bool showDebug = true, bool renderTiles = true, bool renderEntity = true)
         {
-
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Engine.CommonRasterizerState, null, Camera.GetTransform());
+            lightSpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearWrap, null, Engine.CommonRasterizerState, null, Camera.GetTransform());
+            lightSpriteBatch.FillRectangle(new Rectangle((int)Camera.X - Camera.GetWidth() / 2, (int)Camera.Y - Camera.GetHeight() / 2, Camera.GetWidth(), Camera.GetHeight()), Levels[Player.CurrentLevel].AmbiantLight);
 
-            Levels[Player.CurrentLevel].Draw(spriteBatch, Camera, gameTime, showDebug, renderTiles, renderEntity);
+            Levels[Player.CurrentLevel].Draw(spriteBatch, lightSpriteBatch, Camera, gameTime, showDebug, renderTiles, renderEntity);
 
+            Engine.Graphic.GraphicsDevice.SetRenderTarget(SceneRenderTaget);
+            spriteBatch.GraphicsDevice.Clear(Color.Transparent);
             spriteBatch.End();
+
+            Engine.Graphic.GraphicsDevice.SetRenderTarget(lightRenderTaget);
+            spriteBatch.GraphicsDevice.Clear(Color.Transparent);
+            lightSpriteBatch.End();
+
+            Engine.Graphic.GraphicsDevice.SetRenderTarget(null);
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(SceneRenderTaget, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, lightBlend);
+            spriteBatch.Draw(lightRenderTaget, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
         }
 
         public void Update(GameTime gameTime)
         {
             Levels[Player.CurrentLevel].Update(gameTime);
+            Time++;
         }
 
         // Static functions ---------------------------------------------------

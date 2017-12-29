@@ -10,7 +10,7 @@ namespace Maker.Hevadea.Game.Tiles
             Sprite = new Sprite(Ressources.tile_tiles, 6);
         }
 
-        public override bool CanPass(Level level, TilePosition pos, Entity e)
+        public override bool CanPass(Entity e, TilePosition pos)
         {
             return false;
         }

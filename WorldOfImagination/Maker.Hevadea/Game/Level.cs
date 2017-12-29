@@ -2,8 +2,7 @@
 using Maker.Hevadea.Game.SaveStorage;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.Json;
-using Maker.Rise;
-using Maker.Rise.Components;
+using Maker.Rise.UI;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,6 +23,15 @@ namespace Maker.Hevadea.Game
         public List<Entity> Entities;
         public List<Entity>[,] EntityOnTiles;
         public Player Player;
+
+        public Color NightColor = Color.Blue * 0.25f;
+        public Color DuskColor  = Color.Orange * 0.75f;
+        public Color DayColor = Color.White;
+
+        public Color AmbiantLight = Color.Blue * 0.25f;
+
+        bool ItsNight = false;
+        Animation dayNightTransition = new Animation { Speed = 0.003f };
 
         private Random rnd;
         private World world;
@@ -113,6 +121,12 @@ namespace Maker.Hevadea.Game
         }
 
         // TILES --------------------------------------------------------------
+
+        public Tile GetTile(TilePosition tPos)
+        {
+            return GetTile(tPos.X, tPos.Y);
+        }
+
         public Tile GetTile(int tx, int ty)
         {
             if (tx< 0 || ty < 0 || tx>= W || ty>= H) return Tile.Rock;
@@ -182,10 +196,37 @@ namespace Maker.Hevadea.Game
                     }
                 }
             }
+
+            // Ambiant light
+            
+
+            var time = ((world.Time % 60000) / 60000f) ;
+            dayNightTransition.Update(gameTime);
+            AmbiantLight = GetAmbiantLightColor(time);
         }
 
 
-        public void Draw(SpriteBatch sb, Camera camera, GameTime gameTime, bool showDebug, bool renderTiles = true, bool renderEntity = true)
+        private Color GetAmbiantLightColor(float time, float dayDuration = 0.5f, float nightDuration = 0.5f)
+        {
+            ItsNight = time > dayDuration;
+
+            dayNightTransition.Show = time > (dayDuration - 0.05);
+            
+
+            var day = DayColor * (1f - dayNightTransition.SinLinear);
+            var night = NightColor * dayNightTransition.SinLinear;
+
+            //Console.WriteLine($"{(int)(time * 100), 3} {ItsNight} {day} {night} {dayNightTransition.SinLinear}");
+
+            return new Color(
+                day.R + night.R,
+                day.G + night.G,
+                day.B + night.B,
+                day.A + night.A);
+
+        }
+
+        public void Draw(SpriteBatch sb, SpriteBatch lightSb, Camera camera, GameTime gameTime, bool showDebug, bool renderTiles = true, bool renderEntity = true)
         {
             var playerPos = Player.Position.ToTilePosition();
             
@@ -215,6 +256,7 @@ namespace Maker.Hevadea.Game
             {
                 if (showDebug) sb.FillRectangle(e.ToRectangle(), new Color(255, 0, 0) * 0.45f);
                 if (renderEntity) e.Draw(sb, gameTime);
+                if (e.IsLightSource) lightSb.Draw(Ressources.img_light,new Rectangle(e.Position.X - e.LightLevel + e.Width / 2, e.Position.Y - e.LightLevel + e.Height / 2, e.LightLevel * 2, e.LightLevel * 2), e.LightColor);
             }
 
             if (camera.debugMode) sb.DrawRectangle(new Rectangle((int)camera.X - camera.GetWidth() / 2, (int)camera.Y - camera.GetHeight() / 2, camera.GetWidth(), camera.GetHeight()), Color.Red);

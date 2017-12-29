@@ -1,9 +1,10 @@
-﻿using Maker.Rise.Ressource;
+﻿using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Items;
+using Maker.Rise.Ressource;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Maker.Hevadea.Game.Entities;
 
 namespace Maker.Hevadea.Game.Tiles
 {
@@ -92,8 +93,12 @@ namespace Maker.Hevadea.Game.Tiles
         }
         // Properties ---------------------------------------------------------
 
+        public virtual void Hurt(Entity e, int damages, TilePosition tilePosition, Direction attackDirection)
+        {
+        }
+
         /* Returns if the entity can walk on it */
-        public virtual bool CanPass(Level level, TilePosition pos, Entity e)
+        public virtual bool CanPass(Entity e, TilePosition pos)
         {
             return true;
         }
@@ -101,8 +106,13 @@ namespace Maker.Hevadea.Game.Tiles
         // Interaction --------------------------------------------------------
 
         /* What happens when you are inside the tile (ex: lava) */
-        public virtual void SteppedOn(Level level, TilePosition pos, Entity entity)
+        public virtual void SteppedOn(Entity e, TilePosition pos)
         {
+        }
+
+        public virtual void Interacte(Mob mob, Item item, TilePosition pos)
+        {
+
         }
 
 

@@ -1,23 +1,26 @@
-﻿using Maker.Rise.Utils;
+﻿using Maker.Hevadea.Game.Items;
+using Maker.Hevadea.Game.Tiles;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Maker.Hevadea.Game.Items;
-using Maker.Hevadea.Game.Tiles;
 
 namespace Maker.Hevadea.Game.Entities
 {
 
-    public enum Direction { Up, Down, Left, Right }
+    public enum Direction { Up = 0, Right = 1, Down = 2, Left = 3 }
 
     public class Entity
     {
         public EntityPosition Position = new EntityPosition(0,0);
         public int Width = 32;
         public int Height = 48 ;
-        private Level Level;
-        private World World;
+        public Level Level;
+        public World World;
 
+        public bool IsLightSource = false;
+        public int LightLevel = 32;
+        public Color LightColor = Color.SpringGreen;
         public bool Removed = true;
         public bool NoClip = false;
 
@@ -84,6 +87,11 @@ namespace Maker.Hevadea.Game.Entities
             Level.RemoveEntity(this);
         }
 
+        public virtual void Interacte(Mob mob, Item item)
+        {
+
+        }
+
         // Movement and colisions ---------------------------------------------
 
         public virtual bool Move(int accelerationX, int accelerationY)
@@ -93,7 +101,7 @@ namespace Maker.Hevadea.Game.Entities
                 if (MoveInternal(accelerationX, accelerationY))
                 {
                     var pos = Position.ToTilePosition();
-                    Level.GetTile(pos.X, pos.Y).SteppedOn(Level, pos, this);
+                    Level.GetTile(pos.X, pos.Y).SteppedOn(this, pos);
                     return true;
                 } 
             }
@@ -119,7 +127,7 @@ namespace Maker.Hevadea.Game.Entities
                 {
                     var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
 
-                    if (!Level.GetTile(t.X, t.Y).CanPass(Level, t, this) & !NoClip)
+                    if (!Level.GetTile(t.X, t.Y).CanPass(this, t) & !NoClip)
                     {
 
                         if (Tile.Colide(t, new EntityPosition(Position.X, Position.Y + accelerationY), Width, Height))
