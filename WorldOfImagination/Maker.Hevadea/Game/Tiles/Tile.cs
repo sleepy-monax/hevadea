@@ -113,9 +113,9 @@ namespace Maker.Hevadea.Game.Tiles
         #endregion
 
 #region Properties
-        public virtual bool CanPass(Entity e, TilePosition pos)
+        public virtual bool IsBlocking(Entity e, TilePosition pos)
         {
-            return true;
+            return false;
         }
 #endregion
 

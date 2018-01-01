@@ -25,5 +25,14 @@ namespace Maker.Hevadea.Game.Entities
             treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 16), new Point(0, 2), Color.White);
             treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 0), new Point(0, 3), Color.White);
         }
+
+        public override bool IsBlocking(Entity e)
+        {
+            if (e is Player)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

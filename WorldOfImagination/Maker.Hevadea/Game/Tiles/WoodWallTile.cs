@@ -10,9 +10,9 @@ namespace Maker.Hevadea.Game.Tiles
             Sprite = new Sprite(Ressources.tile_tiles, 6);
         }
 
-        public override bool CanPass(Entity e, TilePosition pos)
+        public override bool IsBlocking(Entity e, TilePosition pos)
         {
-            return false;
+            return true;
         }
     }
 }

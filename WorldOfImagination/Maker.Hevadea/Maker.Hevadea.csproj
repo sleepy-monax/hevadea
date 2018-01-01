@@ -58,7 +58,10 @@
     <Compile Include="Game\Entities\Particles\Particle.cs" />
     <Compile Include="Game\Entities\TorchEntity.cs" />
     <Compile Include="Game\Items\Inventory.cs" />
+    <Compile Include="Game\LevelGen\DungeonGenerator.cs" />
+    <Compile Include="Game\LevelGen\Features\Dungeon\DungeonBaseFeature.cs" />
     <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
+    <Compile Include="Game\LevelGen\OverWorldGenerator.cs" />
     <Compile Include="Game\Menus\Menu.cs" />
     <Compile Include="Game\SaveStorage\EntitySaveStorage.cs" />
     <Compile Include="Game\Entities\Mob.cs" />

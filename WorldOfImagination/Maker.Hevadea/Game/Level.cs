@@ -87,6 +87,18 @@ namespace Maker.Hevadea.Game
             EntitiesOnTiles[p.X, p.Y].Remove(e);
         }
 
+        public List<Entity> GetEntityOnTile(int tx, int ty)
+        {
+            if (tx < Width && ty < Height)
+            {
+                return EntitiesOnTiles[tx, ty];
+            }
+            else
+            {
+                return new List<Entity>();
+            }
+        }
+
         public List<Entity> GetEntitiesOnArea(EntityPosition p, int width, int height)
         {
             var result = new List<Entity>();
@@ -109,7 +121,7 @@ namespace Maker.Hevadea.Game
 
                     foreach (var i in entities)
                     {
-                        if (i.Colide(p.X, p.Y, width, height)) { result.Add(i); }
+                        if (i.IsColliding(p.X, p.Y, width, height)) { result.Add(i); }
                     }
                     
                 }

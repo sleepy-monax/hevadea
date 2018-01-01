@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Maker.Hevadea.Game.LevelGen
 {
@@ -15,6 +16,7 @@ namespace Maker.Hevadea.Game.LevelGen
 
             foreach (var feature in Features)
             {
+                Console.WriteLine($"{feature.GetType().Name}...");
                 feature.Apply(level, this);
             }
 

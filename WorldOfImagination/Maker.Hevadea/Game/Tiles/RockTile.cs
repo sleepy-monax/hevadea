@@ -27,9 +27,9 @@ namespace Maker.Hevadea.Game.Tiles
             Console.WriteLine("hurt: " + dmg);
         }
 
-        public override bool CanPass(Entity e, TilePosition pos)
+        public override bool IsBlocking(Entity e, TilePosition pos)
         {
-            return false;
+            return true;
         }
     }
 }

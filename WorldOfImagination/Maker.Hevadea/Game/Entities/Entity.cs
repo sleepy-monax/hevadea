@@ -16,6 +16,8 @@ namespace Maker.Hevadea.Game.Entities
         public int Y { get; set; } = 0;
         public int Width = 32;
         public int Height = 48 ;
+        public Rectangle Bound => new Rectangle(X, Y, Width, Height);
+        
         public Level Level;
         public World World;
 
@@ -133,7 +135,7 @@ namespace Maker.Hevadea.Game.Entities
                 {
                     var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
 
-                    if (!Level.GetTile(t.X, t.Y).CanPass(this, t) & !NoClip)
+                    if (Level.GetTile(t.X, t.Y).IsBlocking(this, t) & !NoClip)
                     {
 
                         if (Tile.IsColiding(t, X, Y + aY, Width, Height))
@@ -150,6 +152,28 @@ namespace Maker.Hevadea.Game.Entities
                         {
                             aX = 0;
                             aY = 0;
+                        }
+                    }
+
+                    foreach (var e in Level.GetEntityOnTile(t.X, t.Y))
+                    {
+                        if (e != this && e.IsBlocking(this))
+                        {
+                            if (e.IsColliding(X, Y + aY, Width, Height))
+                            {
+                                aY = 0;
+                            }
+
+                            if (e.IsColliding(X + aX, Y, Width, Height))
+                            {
+                                aX = 0;
+                            }
+
+                            if (e.IsColliding(X + aX, Y + aY, Width, Height))
+                            {
+                                aX = 0;
+                                aY = 0;
+                            }
                         }
                     }
                 }
@@ -171,12 +195,12 @@ namespace Maker.Hevadea.Game.Entities
             return false;
         }
 
-        public bool Colide(Entity e)
+        public bool IsColliding(Entity e)
         {
-            return Colide((int)e.X, (int)e.Y, e.Width, e.Height);
+            return IsColliding((int)e.X, (int)e.Y, e.Width, e.Height);
         }
 
-        public bool Colide(int x, int y, int width1, int height1)
+        public bool IsColliding(int x, int y, int width1, int height1)
         {
             return this.X < x + width1 &&
                    this.X + Width > x &&

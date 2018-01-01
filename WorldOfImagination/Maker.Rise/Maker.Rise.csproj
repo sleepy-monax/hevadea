@@ -81,15 +81,13 @@
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Utils\GameExtension.cs" />
     <Compile Include="Utils\MathUtils.cs" />
+    <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\Perlin.cs" />
     <Compile Include="Utils\RectangleF.cs" />
     <Compile Include="Utils\Screen.cs" />
     <Compile Include="Utils\SpriteBatchExtension.cs" />
     <Compile Include="Utils\Text.cs" />
     <Compile Include="RiseGame.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
