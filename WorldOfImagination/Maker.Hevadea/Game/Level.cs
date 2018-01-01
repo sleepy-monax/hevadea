@@ -14,46 +14,44 @@ namespace Maker.Hevadea.Game
 {
     public class Level
     {
-        public readonly int W;
-
-        public readonly int H;
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public Color AmbiantLight { get; set; } = Color.Blue * 0.25f;
 
         private byte[] Tiles;
-        private Dictionary<string, object>[] Data;
+        private Dictionary<string, object>[] TilesData;
 
         public List<Entity> Entities;
-        public List<Entity>[,] EntityOnTiles;
+        public List<Entity>[,] EntitiesOnTiles;
         public Player Player;
 
         public Color NightColor = Color.Blue * 0.25f;
-        public Color DuskColor  = Color.Orange * 0.75f;
         public Color DayColor = Color.White;
 
-        public Color AmbiantLight = Color.Blue * 0.25f;
 
         bool ItsNight = false;
         Animation dayNightTransition = new Animation { Speed = 0.003f };
 
-        private Random rnd;
-        private World world;
+        private Random Random;
+        private World World;
 
         public Level(int w, int h)
         {
-            W = w;
+            Width = w;
             
-            H = h;
-            Tiles = new byte[W * H];
-            Data = new Dictionary<string, object>[W * H];
+            Height = h;
+            Tiles = new byte[Width * Height];
+            TilesData = new Dictionary<string, object>[Width * Height];
             Entities = new List<Entity>();
-            EntityOnTiles = new List<Entity>[W, H];
-            rnd = new Random();
+            EntitiesOnTiles = new List<Entity>[Width, Height];
+            Random = new Random();
 
-            for (int x = 0; x < W; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 0; y < H; y++)
+                for (int y = 0; y < Height; y++)
                 {
-                    EntityOnTiles[x, y] = new List<Entity>();
-                    Data[x + y * W] = new Dictionary<string, object>();
+                    EntitiesOnTiles[x, y] = new List<Entity>();
+                    TilesData[x + y * Width] = new Dictionary<string, object>();
                 }
             }
         }
@@ -67,27 +65,26 @@ namespace Maker.Hevadea.Game
             e.Removed = false;
             Entities.Add(e);
 
-            e.Init(this, world);
-            AddEntityToTile(e.Position.ToTilePosition(), e);
+            e.Init(this, World);
+            AddEntityToTile(e.GetTilePosition(), e);
         }
 
         public void RemoveEntity(Entity e)
         {
             Entities.Remove(e);
-            var tilePosition = e.Position.ToTilePosition();
-            RemoveEntityFromTile(tilePosition, e);
+            RemoveEntityFromTile(e.GetTilePosition(), e);
         }
 
         private void AddEntityToTile(TilePosition p, Entity e)
         {
-            if (p.X < 0 || p.Y < 0 || p.X >= W || p.Y >= H) return;
-            EntityOnTiles[p.X, p.Y].Add(e);
+            if (p.X < 0 || p.Y < 0 || p.X >= Width || p.Y >= Height) return;
+            EntitiesOnTiles[p.X, p.Y].Add(e);
         }
 
         private void RemoveEntityFromTile(TilePosition p, Entity e)
         {
-            if (p.X < 0 || p.Y < 0 || p.X >= W || p.Y >= H) return;
-            EntityOnTiles[p.X, p.Y].Remove(e);
+            if (p.X < 0 || p.Y < 0 || p.X >= Width || p.Y >= Height) return;
+            EntitiesOnTiles[p.X, p.Y].Remove(e);
         }
 
         public List<Entity> GetEntitiesOnArea(EntityPosition p, int width, int height)
@@ -106,13 +103,13 @@ namespace Maker.Hevadea.Game
             {
                 for (int y = from.Y; y < to.Y; y++)
                 {
-                    if (x < 0 || y < 0 || x >= W || y >= H) continue;
+                    if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
 
-                    var entities = EntityOnTiles[x, y];
+                    var entities = EntitiesOnTiles[x, y];
 
                     foreach (var i in entities)
                     {
-                        if (i.Colide(p, width, height)) { result.Add(i); }
+                        if (i.Colide(p.X, p.Y, width, height)) { result.Add(i); }
                     }
                     
                 }
@@ -130,56 +127,56 @@ namespace Maker.Hevadea.Game
 
         public Tile GetTile(int tx, int ty)
         {
-            if (tx< 0 || ty < 0 || tx>= W || ty>= H) return Tile.Rock;
-            return Tile.Tiles[Tiles[tx + ty * W]];
+            if (tx< 0 || ty < 0 || tx>= Width || ty>= Height) return Tile.Rock;
+            return Tile.Tiles[Tiles[tx + ty * Width]];
         }
 
         public void SetTile(int tx, int ty, byte id)
         {
-            if (tx < 0 || ty < 0 || tx >= W || ty >= H) return;
-            Tiles[tx + ty * W] = id;
+            if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return;
+            Tiles[tx + ty * Width] = id;
         }
 
-        internal T GetData<T>(TilePosition tilePosition, string dataName, T defaultValue)
+        internal T GetTileData<T>(TilePosition tilePosition, string dataName, T defaultValue)
         {
-            return GetData<T>(tilePosition.X, tilePosition.Y, dataName, defaultValue);
+            return GetTileData<T>(tilePosition.X, tilePosition.Y, dataName, defaultValue);
         }
 
-        public T GetData<T>(int tx, int ty, string dataName, T defaultValue)
+        public T GetTileData<T>(int tx, int ty, string dataName, T defaultValue)
         {
-            if (Data[tx + ty * W].ContainsKey(dataName))
+            if (TilesData[tx + ty * Width].ContainsKey(dataName))
             {
-                return (T)Data[tx + ty * W][dataName];
+                return (T)TilesData[tx + ty * Width][dataName];
             }
 
-            Data[tx + ty * W].Add(dataName, defaultValue);
+            TilesData[tx + ty * Width].Add(dataName, defaultValue);
             return defaultValue;
         }
 
-        internal void SetData<T>(TilePosition tilePosition, string dataName, T value)
+        internal void SetTileData<T>(TilePosition tilePosition, string dataName, T value)
         {
-            SetData<T>(tilePosition.X, tilePosition.Y, dataName, value);
+            SetTileData<T>(tilePosition.X, tilePosition.Y, dataName, value);
         }
 
-        public void SetData<T>(int tx, int ty, string dataName, T Value)
+        public void SetTileData<T>(int tx, int ty, string dataName, T Value)
         {
-            Data[tx + ty * W][dataName] = Value;
+            TilesData[tx + ty * Width][dataName] = Value;
         }
 
         // GAME LOOPS ---------------------------------------------------------
 
         public void Initialize(World world)
         {
-            this.world = world;
+            this.World = world;
         }
 
         public void Update(GameTime gameTime)
         {
             // Randome tick tiles.
-            for (int i = 0; i < W * H / 50; i++)
+            for (int i = 0; i < Width * Height / 50; i++)
             {
-                var tx = rnd.Next(W);
-                var ty = rnd.Next(H);
+                var tx = Random.Next(Width);
+                var ty = Random.Next(Height);
                 GetTile(tx, ty).Update(this, tx, ty);
             }
 
@@ -188,7 +185,7 @@ namespace Maker.Hevadea.Game
             {
                 var e = Entities[i];
 
-                var oldPosition = new EntityPosition(e.Position).ToTilePosition();
+                var oldPosition = e.GetTilePosition();
 
                 e.Update(gameTime);
 
@@ -199,7 +196,7 @@ namespace Maker.Hevadea.Game
                 }
                 else
                 {
-                    var newPosition = e.Position.ToTilePosition();
+                    var newPosition = e.GetTilePosition();
 
                     if (oldPosition != newPosition)
                     {
@@ -212,7 +209,7 @@ namespace Maker.Hevadea.Game
             // Ambiant light
             
 
-            var time = ((world.Time % 60000) / 60000f) ;
+            var time = ((World.Time % 60000) / 60000f) ;
             dayNightTransition.Update(gameTime);
             AmbiantLight = GetAmbiantLightColor(time);
         }
@@ -240,15 +237,15 @@ namespace Maker.Hevadea.Game
 
         public void Draw(SpriteBatch sb, SpriteBatch lightSb, Camera camera, GameTime gameTime, bool showDebug, bool renderTiles = true, bool renderEntity = true)
         {
-            var playerPos = Player.Position.ToTilePosition();
+            var playerPos = Player.GetTilePosition();
             
             var distX = ((camera.GetWidth() / 2) / ConstVal.TileSize) + 4;
             var distY = ((camera.GetHeight() / 2) / ConstVal.TileSize) + 4;
             
             var beginX = Math.Max(0, playerPos.X - distX);
             var beginY = Math.Max(0, playerPos.Y - distY + 1);
-            var endX = Math.Min(W, playerPos.X + distX + 1);
-            var endY = Math.Min(H, playerPos.Y + distY + 1);
+            var endX = Math.Min(Width, playerPos.X + distX + 1);
+            var endY = Math.Min(Height, playerPos.Y + distY + 1);
 
             List<Entity> EntityRenderList = new List<Entity>();
 
@@ -257,18 +254,18 @@ namespace Maker.Hevadea.Game
                 for (int ty = beginY; ty < endY; ty++)
                 {
                     if (renderTiles) GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
-                    EntityRenderList.AddRange(EntityOnTiles[tx, ty]);
+                    EntityRenderList.AddRange(EntitiesOnTiles[tx, ty]);
                     if (showDebug) sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize + 1, ty * ConstVal.TileSize + 1, ConstVal.TileSize - 2, ConstVal.TileSize - 2), new Color(255,255,255));
                 }
             }
 
-            EntityRenderList.Sort((a, b) => (a.Position.Y + a.Height).CompareTo(b.Position.Y + b.Height));
+            EntityRenderList.Sort((a, b) => (a.Y + a.Height).CompareTo(b.Y + b.Height));
 
             foreach (var e in EntityRenderList)
             {
                 if (showDebug) sb.FillRectangle(e.ToRectangle(), new Color(255, 0, 0) * 0.45f);
                 if (renderEntity) e.Draw(sb, gameTime);
-                if (e.IsLightSource) lightSb.Draw(Ressources.img_light,new Rectangle(e.Position.X - e.LightLevel + e.Width / 2, e.Position.Y - e.LightLevel + e.Height / 2, e.LightLevel * 2, e.LightLevel * 2), e.LightColor);
+                if (e.IsLightSource) lightSb.Draw(Ressources.img_light,new Rectangle(e.X - e.LightLevel + e.Width / 2, e.Y - e.LightLevel + e.Height / 2, e.LightLevel * 2, e.LightLevel * 2), e.LightColor);
             }
 
             if (camera.debugMode) sb.DrawRectangle(new Rectangle((int)camera.X - camera.GetWidth() / 2, (int)camera.Y - camera.GetHeight() / 2, camera.GetWidth(), camera.GetHeight()), Color.Red);
@@ -278,11 +275,11 @@ namespace Maker.Hevadea.Game
         {
             var storedTile = new List<TileSaveStorage>();
             var storedEntity = new List<EntitySaveStorage>();
-            var storedLevel = new LevelSaveStorage { Height = level.H, Width = level.W };
+            var storedLevel = new LevelSaveStorage { Height = level.Height, Width = level.Width };
 
-            for (int i = 0; i < level.W * level.H; i++)
+            for (int i = 0; i < level.Width * level.Height; i++)
             {
-                storedTile.Add(new TileSaveStorage { ID = level.Tiles[i], Data = level.Data[i]});
+                storedTile.Add(new TileSaveStorage { ID = level.Tiles[i], Data = level.TilesData[i]});
             }
 
             foreach (var e in level.Entities)

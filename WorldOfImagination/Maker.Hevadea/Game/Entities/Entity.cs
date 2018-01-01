@@ -12,7 +12,8 @@ namespace Maker.Hevadea.Game.Entities
 
     public class Entity
     {
-        public EntityPosition Position = new EntityPosition(0,0);
+        public int X { get; set; } = 0;
+        public int Y { get; set; } = 0;
         public int Width = 32;
         public int Height = 48 ;
         public Level Level;
@@ -81,13 +82,18 @@ namespace Maker.Hevadea.Game.Entities
             Health = Math.Min(MaxHealth, Health + damages);
         }
 
-        public virtual void Die()
+        public void Remove()
         {
             Removed = true;
             Level.RemoveEntity(this);
         }
 
-        public virtual void Interacte(Mob mob, Item item)
+        public virtual void Die()
+        {
+            Remove();
+        }
+
+        public virtual void Interacte(Mob mob, Item item, Direction attackDirection)
         {
 
         }
@@ -100,7 +106,7 @@ namespace Maker.Hevadea.Game.Entities
             {
                 if (MoveInternal(accelerationX, 0) | MoveInternal(0, accelerationY))
                 {
-                    var pos = Position.ToTilePosition();
+                    var pos = GetTilePosition();
                     Level.GetTile(pos.X, pos.Y).SteppedOn(this, pos);
                     return true;
                 } 
@@ -110,16 +116,16 @@ namespace Maker.Hevadea.Game.Entities
             return false;
         }
 
-        protected bool MoveInternal(int accelerationX, int accelerationY)
+        protected bool MoveInternal(int aX, int aY)
         {
 
             // TODO: Check colisions...
-            var onTilePosition = Position.ToTilePosition();
+            var onTilePosition = GetTilePosition();
 
-            if (Position.X + accelerationX + Width >= Level.W * ConstVal.TileSize) accelerationX = 0;
-            if (Position.Y + accelerationY + Height >= Level.H * ConstVal.TileSize) accelerationY = 0;
-            if (Position.X + accelerationX < 0) accelerationX = 0;
-            if (Position.Y + accelerationY < 0) accelerationY = 0;
+            if (X + aX + Width >= Level.Width * ConstVal.TileSize) aX = 0;
+            if (Y + aY + Height >= Level.Height * ConstVal.TileSize) aY = 0;
+            if (X + aX < 0) aX = 0;
+            if (Y + aY < 0) aY = 0;
 
             for (int ox = -1; ox < 2; ox++)
             {
@@ -130,31 +136,32 @@ namespace Maker.Hevadea.Game.Entities
                     if (!Level.GetTile(t.X, t.Y).CanPass(this, t) & !NoClip)
                     {
 
-                        if (Tile.Colide(t, new EntityPosition(Position.X, Position.Y + accelerationY), Width, Height))
+                        if (Tile.IsColiding(t, X, Y + aY, Width, Height))
                         {
-                            accelerationY = 0;
-                        }
-                        
-                        if (Tile.Colide(t, new EntityPosition(Position.X + accelerationX, Position.Y), Width, Height))
-                        {
-                            accelerationX = 0;
+                            aY = 0;
                         }
 
-                        if (Tile.Colide(t, new EntityPosition(Position.X + accelerationX, Position.Y + accelerationY), Width, Height))
+                        if (Tile.IsColiding(t, X + aX, Y, Width, Height))
                         {
-                            accelerationX = 0;
-                            accelerationY = 0;
+                            aX = 0;
+                        }
+
+                        if (Tile.IsColiding(t, X + aX, Y + aY, Width, Height))
+                        {
+                            aX = 0;
+                            aY = 0;
                         }
                     }
                 }
             }
-            if (accelerationX == 0 && accelerationY == 0)
+
+            if (aX == 0 && aY == 0)
             {
                 return false;
             }
             
-            Position.X += accelerationX;
-            Position.Y += accelerationY;
+            X += aX;
+            Y += aY;
 
             return true;
         }
@@ -166,15 +173,15 @@ namespace Maker.Hevadea.Game.Entities
 
         public bool Colide(Entity e)
         {
-            return Colide(e.Position, e.Width, e.Height);
+            return Colide((int)e.X, (int)e.Y, e.Width, e.Height);
         }
 
-        public bool Colide(EntityPosition p, int width1, int height1)
+        public bool Colide(int x, int y, int width1, int height1)
         {
-            return Position.X < p.X + width1 &&
-                   Position.X + Width > p.X &&
-                   Position.Y < p.Y + height1 &&
-                   Height + Position.Y > p.Y;
+            return this.X < x + width1 &&
+                   this.X + Width > x &&
+                   this.Y < y + height1 &&
+                   Height + this.Y > y;
         }
 
         // Update and Draw
@@ -185,12 +192,17 @@ namespace Maker.Hevadea.Game.Entities
 
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(new Rectangle(Position.X, Position.Y, Width, Height), Color.Red);
+            spriteBatch.FillRectangle(new Rectangle(X, Y, Width, Height), Color.Red);
         }
 
         internal Rectangle ToRectangle()
         {
-            return new Rectangle(Position.X, Position.Y, Width, Height);
+            return new Rectangle(X, Y, Width, Height);
+        }
+
+        public TilePosition GetTilePosition()
+        {
+            return new TilePosition((X / ConstVal.TileSize), (Y / ConstVal.TileSize));
         }
     }
 }

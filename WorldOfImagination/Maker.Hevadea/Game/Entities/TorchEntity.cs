@@ -21,7 +21,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            sprite.DrawSubSprite(spriteBatch, new Vector2(Position.X - 7, Position.Y - 14), new Point(1, 1), Color.White);
+            sprite.DrawSubSprite(spriteBatch, new Vector2(X - 7, Y - 14), new Point(1, 1), Color.White);
         }
 
     }

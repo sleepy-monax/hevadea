@@ -26,6 +26,7 @@ namespace Maker.Hevadea.Game.Tiles
         public Sprite Sprite;
         public bool BackgroundDirt = true;
         private Sprite DirtSprite;
+
         public Tile(byte id)
         {
             ID = id;
@@ -39,6 +40,7 @@ namespace Maker.Hevadea.Game.Tiles
         {
         }
 
+#region Tile rendering
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime, Level level, TilePosition pos)
         {
 
@@ -91,40 +93,53 @@ namespace Maker.Hevadea.Game.Tiles
             }
 
         }
-        // Properties ---------------------------------------------------------
+        #endregion
 
+#region Tile Interaction
         public virtual void Hurt(Entity e, int damages, TilePosition tilePosition, Direction attackDirection)
         {
         }
 
-        /* Returns if the entity can walk on it */
-        public virtual bool CanPass(Entity e, TilePosition pos)
+        public virtual void Interacte(Mob mob, Item item, TilePosition pos, Direction attackDirection)
         {
-            return true;
-        }
 
-        // Interaction --------------------------------------------------------
+        }
 
         /* What happens when you are inside the tile (ex: lava) */
         public virtual void SteppedOn(Entity e, TilePosition pos)
         {
-        }
 
-        public virtual void Interacte(Mob mob, Item item, TilePosition pos)
+        }
+        #endregion
+
+#region Properties
+        public virtual bool CanPass(Entity e, TilePosition pos)
         {
-
+            return true;
         }
+#endregion
 
-
-        public static bool Colide(TilePosition tile, EntityPosition position, int width, int height)
+        public static bool IsColiding(TilePosition tile, Entity e, int width, int height)
         {
             return Colision.Check(tile.X * ConstVal.TileSize,
                                   tile.Y * ConstVal.TileSize,
                                   
                                   ConstVal.TileSize, ConstVal.TileSize,
 
-                                  position.X,
-                                  position.Y,
+                                  e.X,
+                                  e.Y,
+                                  width, height);
+        }
+
+        public static bool IsColiding(TilePosition tile, int x, int y, int width, int height)
+        {
+            return Colision.Check(tile.X * ConstVal.TileSize,
+                                  tile.Y * ConstVal.TileSize,
+
+                                  ConstVal.TileSize, ConstVal.TileSize,
+
+                                  x,
+                                  y,
                                   width, height);
         }
 

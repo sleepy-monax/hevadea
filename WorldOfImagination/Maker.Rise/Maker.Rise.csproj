@@ -88,6 +88,8 @@
     <Compile Include="Utils\Text.cs" />
     <Compile Include="RiseGame.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,7 +16,6 @@ namespace Maker.Hevadea.Scenes
     {
 
         private SpriteBatch spriteBatch;
-        private SplashScene lightSpriteBatch;
         public World World;
         private bool showDebug = false;
         private bool renderTiles = true;
@@ -83,7 +82,7 @@ namespace Maker.Hevadea.Scenes
         {
             return 
 $@"World time: {World.Time}
-Player pos {World.Player.Position.X} {World.Player.Position.Y}
+Player pos {World.Player.X} {World.Player.Y}
 ";
         }
     }

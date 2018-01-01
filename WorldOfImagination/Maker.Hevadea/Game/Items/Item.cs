@@ -36,13 +36,13 @@ namespace Maker.Hevadea.Game.Items
         
         public virtual void InteracteOn(Mob user, Entity entity)
         {
-            entity.Interacte(user, this);
+            entity.Interacte(user, this, user.Facing);
         }
         
         public virtual void InteracteOn(Mob user, TilePosition pos)
         {
             var tile = user.Level.GetTile(pos);
-            tile.Interacte(user, this, pos);
+            tile.Interacte(user, this, pos, user.Facing);
         }
     }
 }

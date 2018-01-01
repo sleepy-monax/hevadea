@@ -27,8 +27,8 @@ namespace Maker.Hevadea.Game
 
         public Matrix GetTransform()
         {
-            X = (float)Math.Floor(FocusEntity.Position.X + FocusEntity.Width / 2 + (FocusEntity.Width / 2f));
-            Y = (float)Math.Floor(FocusEntity.Position.Y + FocusEntity.Height / 2 + (FocusEntity.Height / 2f));
+            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width / 2 + (FocusEntity.Width / 2f));
+            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2 + (FocusEntity.Height / 2f));
 
             if (debugMode) return Matrix.Identity;
 

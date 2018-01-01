@@ -54,9 +54,10 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\EntityPosition.cs" />
+    <Compile Include="Game\Entities\Particles\DotParticle.cs" />
+    <Compile Include="Game\Entities\Particles\Particle.cs" />
     <Compile Include="Game\Entities\TorchEntity.cs" />
     <Compile Include="Game\Items\Inventory.cs" />
-    <Compile Include="Game\Items\ItemMaterial.cs" />
     <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
     <Compile Include="Game\Menus\Menu.cs" />
     <Compile Include="Game\SaveStorage\EntitySaveStorage.cs" />
@@ -158,6 +159,7 @@
       <InProject>false</InProject>
     </None>
     <None Include="app.manifest" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Craftings\" />

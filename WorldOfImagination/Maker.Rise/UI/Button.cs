@@ -10,9 +10,9 @@ namespace Maker.Rise.UI
         public Texture2D Icon { get; set; } = null;
 
         public bool Dancing { get; set; } = true;
-        private Animation animation = new Animation();
-        private Animation clickAnimation = new Animation();
-        private Animation downAnimation = new Animation();
+        public Animation animation = new Animation();
+        public Animation clickAnimation = new Animation();
+        public Animation downAnimation = new Animation();
         private Point OnMousClickPosition = Point.Zero;
         
         public Button() : base(false)
@@ -52,7 +52,7 @@ namespace Maker.Rise.UI
         {
             if (OldMouseState == MouseState.None && MouseState == MouseState.Over)
             {
-                EngineRessources.menu_pick.Play();
+                Engine.Audio.PlaySoundEffect(EngineRessources.menu_pick);
             }
 
             animation.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
@@ -64,7 +64,7 @@ namespace Maker.Rise.UI
                 clickAnimation.Show = true;
                 clickAnimation.Speed = 1f;
                 OnMousClickPosition = Engine.Input.MousePosition;
-                EngineRessources.menu_select.Play();
+                Engine.Audio.PlaySoundEffect(EngineRessources.menu_select);
             }
 
             if (clickAnimation.TwoPhases == 1f)

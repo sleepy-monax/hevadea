@@ -22,8 +22,8 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     {
                         var tree = new TreeEntity
                         {
-
-                            Position = new EntityPosition(x * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4), y * ConstVal.TileSize + rnd.Next(0,ConstVal.TileSize - 4))
+                            X = x * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4),
+                            Y = y * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4)
                         };
 
                         level.AddEntity(tree);

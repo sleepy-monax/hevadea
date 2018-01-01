@@ -34,7 +34,7 @@ namespace Maker.Hevadea.Game.Entities
             Move(moveX, moveY);
             
 
-            var tilePosition = Position.ToTilePosition();
+            var tilePosition = GetTilePosition();
             var dir = Facing.ToPoint();
 
             tilePosition = new TilePosition(tilePosition.X + dir.X, tilePosition.Y + dir.Y);

@@ -4,18 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Rise.UI
 {
-    public class MainMenuButton : Control
+    public class MainMenuButton : Button
     {
-        public string Text { get; set; } = "Button";
         public string SubText { get; set; } = "do something";
-        public Texture2D Icon { get; set; } = null;
         private SpriteFont Font;
 
         private Point OnMousClickPosition = Point.Zero;
-
-        private Animation animation = new Animation();
-        private Animation clickAnimation = new Animation();
-        private Animation downAnimation = new Animation();
 
 
         public MainMenuButton()
@@ -50,36 +44,6 @@ namespace Maker.Rise.UI
                 spriteBatch.Draw(Icon, new Vector2(Bound.X + iconX, Bound.Y + iconY), Color.White);
                 spriteBatch.DrawString(EngineRessources.font_bebas, Text, new Vector2(Bound.X + (iconX + Icon.Width + iconY) * animation.SinTwoPhases, Bound.Y + (Bound.Height / 2 - textSize.Y / 2) + 4), Color.White * animation.SinLinear);
             }
-        }
-
-        protected override void OnUpdate(GameTime gameTime)
-        {
-            if (OldMouseState == MouseState.None && MouseState == MouseState.Over)
-            {
-                EngineRessources.menu_pick.Play();
-            }
-
-            animation.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
-            downAnimation.Show = MouseState == MouseState.Down;
-
-            if (Engine.Input.MouseLeftClick && Bound.Contains(Engine.Input.MousePosition))
-            {
-                clickAnimation.Reset();
-                clickAnimation.Show = true;
-                clickAnimation.Speed = 1f;
-                OnMousClickPosition = Engine.Input.MousePosition;
-                EngineRessources.menu_select.Play();
-            }
-
-            if (clickAnimation.TwoPhases == 1f)
-            {
-                clickAnimation.Reset();
-                clickAnimation.Show = false;
-            }
-
-            animation.Update(gameTime);
-            clickAnimation.Update(gameTime);
-            downAnimation.Update(gameTime);
         }
     }
 }

@@ -20,9 +20,10 @@ namespace Maker.Hevadea.Game.Entities
         {
             var offx = -6;
             var offy = -10;
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X + offx, Position.Y + offy - 32), new Point(0, 1), Color.White);
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X + offx, Position.Y + offy - 16), new Point(0, 2), Color.White);
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(Position.X + offx, Position.Y + offy - 0), new Point(0, 3), Color.White);
+
+            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 32), new Point(0, 1), Color.White);
+            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 16), new Point(0, 2), Color.White);
+            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 0), new Point(0, 3), Color.White);
         }
     }
 }

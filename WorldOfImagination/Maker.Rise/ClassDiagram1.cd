@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Maker.Rise.Components.AudioManager" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwQEAAAAAAAAAAAAAAEAAAAACAAABAA=</HashCode>
+      <FileName>Components\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.DebugManager" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAAAAAAwACAAAAQAAAAAAAAQAIAAAAAAABAAA=</HashCode>
+      <FileName>Components\DebugManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.GameComponent" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\GameComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.GraphicsDeviceManager" Collapsed="true">
+    <Position X="18.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAADAAAQAAAAAAAAAAEAAAAQ=</HashCode>
+      <FileName>Components\GraphicsDeviceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.InputManager" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAg4AYAEAAEAACIAAAAAQQAAgAAAACAAA=</HashCode>
+      <FileName>Components\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.NetworkManager" Collapsed="true">
+    <Position X="12" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\NetworkManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.RessourceManager" Collapsed="true">
+    <Position X="14.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAIAAAAAAAwAAAAAAAAAQAAAAAAAAAAAAAAAAAII=</HashCode>
+      <FileName>Components\RessourceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.Scene" Collapsed="true">
+    <Position X="16.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgACAAAAAAgAAAAACAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Scene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.SceneManager" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAA4ACAAAIAIAAIAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Components\SceneManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Components.UiManager" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\UiManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Engine" Collapsed="true">
+    <Position X="23.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAACAAAYAAgAEEAAWAEAAAAAAIKAAAAAQAEAA=</HashCode>
+      <FileName>Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.EngineRessources" Collapsed="true">
+    <Position X="25.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgwAgEAAAAAFCAAAAQABBACAAAAAAAIQAAAgAAgAQ=</HashCode>
+      <FileName>EngineRessources.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.RiseGame" Collapsed="true">
+    <Position X="25.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAIAAAwEAAABAAAgCIACAAAQAAAAAAAEAAAQ=</HashCode>
+      <FileName>RiseGame.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Network.Client" Collapsed="true">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Network\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Network.Server" Collapsed="true">
+    <Position X="20.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Network\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Ressource.ParalaxeLayer" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Ressource\ParalaxeBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Ressource.ParalaxeBackground" Collapsed="true">
+    <Position X="25.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Ressource\ParalaxeBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Ressource.Sprite" Collapsed="true">
+    <Position X="22" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgCAAgEAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ressource\Sprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Ressource.SpriteSheet" Collapsed="true">
+    <Position X="25.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Ressource\SpriteSheet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Hevadea.Json.Parser" Collapsed="true">
+    <Position X="18.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAACAEAAAAAAUQAAAAgAAgAAAAAQAAAAgAAAAAA=</HashCode>
+      <FileName>Storage\Parser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Hevadea.Json.Writer" Collapsed="true">
+    <Position X="18.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAACA=</HashCode>
+      <FileName>Storage\Writer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.Animation" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQIAAAgAAAABEAAIAAAAIABAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>UI\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.Button" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgBABIAAAABAAAAAAAAACIEAAAA=</HashCode>
+      <FileName>UI\Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.CheckBox" Collapsed="true">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\CheckBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.Padding" Collapsed="true">
+    <Position X="23.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <FileName>UI\Control.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.Control" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAEAEAAwAAEoAAAABAAAQAAAIACAAIAgKAQAEAEgA=</HashCode>
+      <FileName>UI\Control.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.DialogBox" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEABAAIAAAAQEAAAIAAAADAECAAA=</HashCode>
+      <FileName>UI\DialogBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.Label" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAACAECAAA=</HashCode>
+      <FileName>UI\Label.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.List" Collapsed="true">
+    <Position X="20.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\List.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.MainMenuButton" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAgBAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>UI\MainMenuButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.Panel" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAgAEAAAA=</HashCode>
+      <FileName>UI\Panel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.Picture" Collapsed="true">
+    <Position X="22" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Picture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.UI.TextInput" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAABgAIAIAAAAAAACAAAACAECACA=</HashCode>
+      <FileName>UI\TextInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.Colision" Collapsed="true">
+    <Position X="22" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Colision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.GameExtension" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\GameExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.MathUtils" Collapsed="true">
+    <Position X="22" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\MathUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.Perlin" Collapsed="true">
+    <Position X="20.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAYAAAAAAAAAgAgAAASAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Utils\Perlin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.RectangleF" Collapsed="true">
+    <Position X="23.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAgAAAAAYAA=</HashCode>
+      <FileName>Utils\RectangleF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.Screen" Collapsed="true">
+    <Position X="18.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Utils\Screen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.SpriteBatchExtension" Collapsed="true">
+    <Position X="23.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAACAQABAAAgEAABIAAAQAACAAABABIEAAAAAAAAA=</HashCode>
+      <FileName>Utils\SpriteBatchExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Maker.Rise.Utils.Text" Collapsed="true">
+    <Position X="16.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Utils\Text.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Maker.Rise.UI.Anchor">
+    <Position X="18.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAgIAAAAAAAAAAAAAAAAAAAAAAAAACACAIAAJAAI=</HashCode>
+      <FileName>UI\Control.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Maker.Rise.UI.Dock">
+    <Position X="20.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAICAAACACAAAEAAAA=</HashCode>
+      <FileName>UI\Control.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Maker.Rise.UI.LayoutMode">
+    <Position X="22" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAABAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\Control.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Maker.Rise.UI.MouseState">
+    <Position X="23.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>UI\Control.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Maker.Rise.Utils.Alignement">
+    <Position X="16.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAACACAAAAIAAA=</HashCode>
+      <FileName>Utils\SpriteBatchExtension.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Maker.Rise.Utils.Style">
+    <Position X="25.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAIAAEAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\SpriteBatchExtension.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
