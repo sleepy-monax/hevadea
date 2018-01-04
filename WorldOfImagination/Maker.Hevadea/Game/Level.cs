@@ -23,7 +23,6 @@ namespace Maker.Hevadea.Game
 
         public List<Entity> Entities;
         public List<Entity>[,] EntitiesOnTiles;
-        public Player Player;
 
         public Color NightColor = Color.Blue * 0.25f;
         public Color DayColor = Color.White;
@@ -60,12 +59,10 @@ namespace Maker.Hevadea.Game
 
         public void AddEntity(Entity e)
         {
-            if (e is Player p) { Player = p; };
-
             e.Removed = false;
             Entities.Add(e);
 
-            e.Init(this, World);
+            e.Initialize(this, World);
             AddEntityToTile(e.GetTilePosition(), e);
         }
 
@@ -99,21 +96,20 @@ namespace Maker.Hevadea.Game
             }
         }
 
-        public List<Entity> GetEntitiesOnArea(EntityPosition p, int width, int height)
+        public List<Entity> GetEntitiesOnArea(Rectangle area)
         {
             var result = new List<Entity>();
 
-            var from = p.ToTilePosition();
-            from.Y--;
-            from.Y--;
+            var beginX = area.X / ConstVal.TileSize - 1;
+            var beginY = area.Y / ConstVal.TileSize - 1;
 
-            var to = new EntityPosition(p.X + width, p.Y + height).ToTilePosition();
-            to.X++;
-            to.Y++;
+            var endX = (area.X + area.Width)  / ConstVal.TileSize + 1;
+            var endY = (area.Y + area.Height) / ConstVal.TileSize + 1;
 
-            for (int x = from.X; x < to.X; x++)
+
+            for (int x = beginX; x < endX; x++)
             {
-                for (int y = from.Y; y < to.Y; y++)
+                for (int y = beginY; y < endY; y++)
                 {
                     if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
 
@@ -121,7 +117,7 @@ namespace Maker.Hevadea.Game
 
                     foreach (var i in entities)
                     {
-                        if (i.IsColliding(p.X, p.Y, width, height)) { result.Add(i); }
+                        if (i.IsColliding(area)) { result.Add(i); }
                     }
                     
                 }
@@ -139,8 +135,13 @@ namespace Maker.Hevadea.Game
 
         public Tile GetTile(int tx, int ty)
         {
-            if (tx< 0 || ty < 0 || tx>= Width || ty>= Height) return Tile.Rock;
+            if (tx< 0 || ty < 0 || tx>= Width || ty>= Height) return Tile.Water;
             return Tile.Tiles[Tiles[tx + ty * Width]];
+        }
+
+        public void SetTile(int tx, int ty, Tile tile)
+        {
+            SetTile(tx, ty, tile.ID);
         }
 
         public void SetTile(int tx, int ty, byte id)
@@ -151,7 +152,7 @@ namespace Maker.Hevadea.Game
 
         internal T GetTileData<T>(TilePosition tilePosition, string dataName, T defaultValue)
         {
-            return GetTileData<T>(tilePosition.X, tilePosition.Y, dataName, defaultValue);
+            return GetTileData(tilePosition.X, tilePosition.Y, dataName, defaultValue);
         }
 
         public T GetTileData<T>(int tx, int ty, string dataName, T defaultValue)
@@ -167,7 +168,7 @@ namespace Maker.Hevadea.Game
 
         internal void SetTileData<T>(TilePosition tilePosition, string dataName, T value)
         {
-            SetTileData<T>(tilePosition.X, tilePosition.Y, dataName, value);
+            SetTileData(tilePosition.X, tilePosition.Y, dataName, value);
         }
 
         public void SetTileData<T>(int tx, int ty, string dataName, T Value)
@@ -203,7 +204,8 @@ namespace Maker.Hevadea.Game
 
                 if (e.Removed)
                 {
-                    Entities.RemoveAt(i--);
+                    Entities.RemoveAt(i);
+                    i--;
                     RemoveEntityFromTile(oldPosition, e);
                 }
                 else
@@ -219,9 +221,7 @@ namespace Maker.Hevadea.Game
             }
 
             // Ambiant light
-            
-
-            var time = ((World.Time % 60000) / 60000f) ;
+            var time = ((World.Time % 24000) / 24000f) ;
             dayNightTransition.Update(gameTime);
             AmbiantLight = GetAmbiantLightColor(time);
         }
@@ -247,40 +247,43 @@ namespace Maker.Hevadea.Game
 
         }
 
-        public void Draw(SpriteBatch sb, SpriteBatch lightSb, Camera camera, GameTime gameTime, bool showDebug, bool renderTiles = true, bool renderEntity = true)
+        public void Draw(SpriteBatch spriteBatch, SpriteBatch lightSb, Camera camera, GameTime gameTime, bool showDebug, bool renderTiles = true, bool renderEntities = true)
         {
-            var playerPos = Player.GetTilePosition();
+            var focusEntity = camera.FocusEntity.GetTilePosition();
             
-            var distX = ((camera.GetWidth() / 2) / ConstVal.TileSize) + 4;
-            var distY = ((camera.GetHeight() / 2) / ConstVal.TileSize) + 4;
+            // Get the render frame
+            var dist = new Point(((camera.GetWidth()  / 2) / ConstVal.TileSize) + 4,
+                                 ((camera.GetHeight() / 2) / ConstVal.TileSize) + 4);
             
-            var beginX = Math.Max(0, playerPos.X - distX);
-            var beginY = Math.Max(0, playerPos.Y - distY + 1);
-            var endX = Math.Min(Width, playerPos.X + distX + 1);
-            var endY = Math.Min(Height, playerPos.Y + distY + 1);
+            var begin = new Point(Math.Max(0, focusEntity.X - dist.X),
+                                  Math.Max(0, focusEntity.Y - dist.Y + 1));
 
-            List<Entity> EntityRenderList = new List<Entity>();
+            var end = new Point(Math.Min(Width,  focusEntity.X + dist.X + 1),
+                                Math.Min(Height, focusEntity.Y + dist.Y + 1));
 
-            for (int tx = beginX; tx < endX; tx++)
+            List<Entity> entitiesOnScreen = new List<Entity>();
+
+            // Render tiles
+            for (int tx = begin.X; tx < end.X; tx++)
             {
-                for (int ty = beginY; ty < endY; ty++)
+                for (int ty = begin.Y; ty < end.Y; ty++)
                 {
-                    if (renderTiles) GetTile(tx, ty).Draw(sb, gameTime, this, new TilePosition(tx, ty));
-                    EntityRenderList.AddRange(EntitiesOnTiles[tx, ty]);
-                    if (showDebug) sb.DrawRectangle(new Rectangle(tx * ConstVal.TileSize + 1, ty * ConstVal.TileSize + 1, ConstVal.TileSize - 2, ConstVal.TileSize - 2), new Color(255,255,255));
+                    entitiesOnScreen.AddRange(EntitiesOnTiles[tx, ty]);
+                    if (renderTiles) GetTile(tx, ty).Draw(spriteBatch, gameTime, this, new TilePosition(tx, ty));
+                    if (showDebug) spriteBatch.DrawRectangle(new Rectangle(tx * ConstVal.TileSize + 1, ty * ConstVal.TileSize + 1, ConstVal.TileSize - 2, ConstVal.TileSize - 2), new Color(255,255,255));
                 }
             }
 
-            EntityRenderList.Sort((a, b) => (a.Y + a.Height).CompareTo(b.Y + b.Height));
+            entitiesOnScreen.Sort((a, b) => (a.Y + a.Height).CompareTo(b.Y + b.Height));
 
-            foreach (var e in EntityRenderList)
+            // Render Entities
+            foreach (var e in entitiesOnScreen)
             {
-                if (showDebug) sb.FillRectangle(e.ToRectangle(), new Color(255, 0, 0) * 0.45f);
-                if (renderEntity) e.Draw(sb, gameTime);
-                if (e.IsLightSource) lightSb.Draw(Ressources.img_light,new Rectangle(e.X - e.LightLevel + e.Width / 2, e.Y - e.LightLevel + e.Height / 2, e.LightLevel * 2, e.LightLevel * 2), e.LightColor);
+                if (renderEntities)    e.Draw(spriteBatch, gameTime);
+                if (showDebug)       spriteBatch.FillRectangle(e.Bound, new Color(255, 0, 0) * 0.45f);
+                if (e.Light.On) lightSb.Draw(Ressources.img_light, new Rectangle(e.X - e.Light.Power + e.Width / 2, e.Y - e.Light.Power + e.Height / 2, e.Light.Power * 2, e.Light.Power * 2), e.Light.Color);
             }
 
-            if (camera.debugMode) sb.DrawRectangle(new Rectangle((int)camera.X - camera.GetWidth() / 2, (int)camera.Y - camera.GetHeight() / 2, camera.GetWidth(), camera.GetHeight()), Color.Red);
         }
 
         public static bool Save(Level level, string folderName)

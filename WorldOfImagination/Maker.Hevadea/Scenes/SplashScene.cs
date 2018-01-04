@@ -24,7 +24,7 @@ namespace Maker.Hevadea.Scenes
             logo = Ressources.img_maker_logo;
 
             Engine.SetMouseVisibility(true);
-            //Engine.SetFullScreen(true);
+            Engine.SetFullScreen(true);
         }
 
         public override void Unload()
@@ -34,7 +34,7 @@ namespace Maker.Hevadea.Scenes
         bool once = true;
         public override void Update(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalSeconds > 2 && once)
+            if (gameTime.TotalGameTime.TotalSeconds > 1 && once)
             {
                 Engine.Scene.Switch(new MainMenu());
                 once = false;

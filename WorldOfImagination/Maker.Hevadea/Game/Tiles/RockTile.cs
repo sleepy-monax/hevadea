@@ -22,6 +22,7 @@ namespace Maker.Hevadea.Game.Tiles
             }
             else
             {
+                
                 e.Level.SetTileData<int>(tilePosition, "damages", dmg);
             }
             Console.WriteLine("hurt: " + dmg);

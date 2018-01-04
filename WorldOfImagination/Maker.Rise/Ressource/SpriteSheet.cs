@@ -23,5 +23,10 @@ namespace Maker.Rise.Ressource
             var pos = new Point(Index % TileCount.X, Index / TileCount.Y );
             return new Rectangle(pos.X * TileSize.X, pos.Y * TileSize.Y, TileSize.X, TileSize.Y);
         }
+
+        internal Rectangle GetTile(Point position)
+        {
+            return new Rectangle(position.X * TileSize.X, position.Y * TileSize.Y, TileSize.X, TileSize.Y);
+        }
     }
 }

@@ -24,8 +24,8 @@ namespace Maker.Rise.UI
             var invClickanim = (1f - clickAnimation.TwoPhases);
 
 
-            var width = (int) (Bound.Width * animation.SinTwoPhases - 32f * downAnimation.SinTwoPhases);
-            var height = (int) (Bound.Height * animation.SinTwoPhases - 8f * downAnimation.SinTwoPhases);
+            var width = (int) (Bound.Width + 16f * animation.SinTwoPhases - 32f * downAnimation.SinTwoPhases);
+            var height = (int) (Bound.Height + 16f * animation.SinTwoPhases - 8f * downAnimation.SinTwoPhases);
 
             var rectX = Bound.X + Bound.Width / 2 - width / 2;
             var rectY = Bound.Y + Bound.Height / 2 - height / 2;

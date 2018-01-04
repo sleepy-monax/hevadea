@@ -18,7 +18,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
             {
                 for (int y = 0; y < generator.LevelSize; y++)
                 {
-                    if (level.GetTile(x, y).ID == Tile.Grass.ID & (rnd.Next(5) == 1))
+                    if (level.GetTile(x, y).ID == Tile.Grass.ID & (rnd.Next(5) == 1) & (level.EntitiesOnTiles[x, y].Count == 0))
                     {
                         var tree = new TreeEntity
                         {

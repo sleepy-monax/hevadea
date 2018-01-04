@@ -10,7 +10,6 @@ namespace Maker.Hevadea.Game
     {
 
         public float Zoom = 3f;
-        public bool debugMode = false;
         public Entity FocusEntity = null;
         public float X = 0f;
         public float Y = 0f;
@@ -27,15 +26,13 @@ namespace Maker.Hevadea.Game
 
         public Matrix GetTransform()
         {
-            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width / 2 + (FocusEntity.Width / 2f));
-            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2 + (FocusEntity.Height / 2f));
-
-            if (debugMode) return Matrix.Identity;
-
             if (FocusEntity == null)
             {
                 return Matrix.Identity;
             }
+
+            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width / 2 + (FocusEntity.Width / 2f));
+            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2 + (FocusEntity.Height / 2f));
 
             return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
                 (float)Math.Floor(-( X * Zoom - Engine.Graphic.GetWidth()  / 2 )),

@@ -7,6 +7,7 @@ namespace Maker.Hevadea.Game.Items
     public class Item
     {
         public Sprite Sprite;
+        public bool IsStackable = true;
 
         public virtual bool CanBeStackWith(Item other)
         {

@@ -7,7 +7,7 @@ namespace Maker.Hevadea.Game.Entities.Particles
     public class DotParticle : Particle
     {
         private float Time;
-        private Color color;
+        private Color Color;
         private Vector2 Speed;
 
         public DotParticle(Color color, float lifeTime, Vector2 speed)
@@ -15,6 +15,7 @@ namespace Maker.Hevadea.Game.Entities.Particles
             Time = lifeTime;
             Height = Width = 1;
             Speed = speed;
+            Color = color;
         }
 
         public override void Update(GameTime gameTime)
@@ -32,7 +33,7 @@ namespace Maker.Hevadea.Game.Entities.Particles
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.PutPixel(new Vector2(X, Y), color);
+            spriteBatch.FillRectangle(Bound, Color);
         }
     }
 }

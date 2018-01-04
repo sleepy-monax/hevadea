@@ -103,17 +103,7 @@ namespace Maker.Hevadea.Game
         {
             World world = new World();
 
-            world[0] = new Generator
-            {
-                Seed = seed,
-                Features =
-                {
-                    new OverworldBaseTerrain(),
-                    new AbandonedHouseFeature(),
-                    new TreeFeature()
-                }
-
-            }.Generate();
+            world[0] = new OverWorldGenerator().Generate();
 
             world.Player = new Player()
             {
@@ -132,7 +122,7 @@ namespace Maker.Hevadea.Game
 
         }
 
-        public static World Load(string saveFolder, RiseGame Game)
+        public static World Load(string saveFolder)
         {
             return null;
         }

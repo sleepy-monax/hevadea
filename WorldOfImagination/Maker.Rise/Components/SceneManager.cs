@@ -10,9 +10,9 @@ namespace Maker.Rise.Components
     public class SceneManager : GameComponent
     {
         public  Scene CurrentScene;
-        private Animation animation;
         private Scene NextScene;
-        private SpriteBatch sb;
+
+        private Animation animation;
 
         public SceneManager(RiseGame game) : base(game)
         {
@@ -23,7 +23,7 @@ namespace Maker.Rise.Components
 
         public override void Initialize()
         {
-            sb = new SpriteBatch(Game.GraphicsDevice);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -73,9 +73,8 @@ namespace Maker.Rise.Components
                 Engine.UI.DrawUiTree(gameTime, CurrentScene.UiRoot);
             }
             
-            sb.Begin(SpriteSortMode.Immediate, null, null, null, Engine.CommonRasterizerState);
-            var height = (int) (Engine.Graphic.GetHeight() * MathUtils.Interpolate(animation.TwoPhases) );
-            var width = (int) (Engine.Graphic.GetWidth() * MathUtils.Interpolate(animation.TwoPhases) );
+            var height = (int) (Engine.Graphic.GetHeight() * animation.SinTwoPhases);
+            var width = (int) (Engine.Graphic.GetWidth() * animation.SinTwoPhases );
             var rect = new Rectangle(Engine.Graphic.GetWidth() / 2 - width / 2,
             Engine.Graphic.GetHeight() / 2 - height / 2, width, height);
             
@@ -87,8 +86,6 @@ namespace Maker.Rise.Components
                 Engine.UI.DrawUiTree(gameTime, NextScene.UiRoot);
             }
 
-            //sb.FillRectangle(rect, Color.Black * animation.SinTwoPhases);
-            sb.End();
         }
 
         /// <summary>

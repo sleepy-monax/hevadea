@@ -9,28 +9,56 @@ namespace Maker.Hevadea.Game.Entities
     public class Mob : Entity
     {
         public Sprite Sprite;
-        public Direction Facing = Direction.Down;
-        public bool IsWalking = false;
+        public Direction Facing { get; set; } = Direction.Down;
+        private bool IsWalking { get; set; } = false;
 
         public virtual int GetBaseDamages()
         {
             return 1;
         }
 
-        public override bool Move(int accelerationX, int accelerationY)
+        public bool Move(int ax, int ay, Direction facing)
         {
-            IsWalking = base.Move(accelerationX, accelerationY);
-            return IsWalking;
+            var a = base.Move(ax, ay);
+            Facing = facing;
+            IsWalking = a;
+            return a;
         }
 
-        public void Use(Item item, TilePosition tile)
+        public virtual bool Pickup(Item item)
+        {
+            return false;
+        }
+
+        public void Use(Item item)
         {
 
         }
 
-        public void Attack(Item Weapon, TilePosition tile)
+        public void Attack(Item Weapon)
         {
-            Weapon.Attack(this, tile);
+            var tilePosition = GetTilePosition();
+            var dir = Facing.ToPoint();
+
+            tilePosition = new TilePosition(tilePosition.X + dir.X, tilePosition.Y + dir.Y);
+
+            var entities = Level.GetEntitiesOnArea(new Rectangle(X + Height * dir.X, Y + Width * dir.Y, Height, Width));
+
+            if (entities.Count > 0)
+            {
+                foreach (var e in entities)
+                {
+                    if (!e.IsInvincible)
+                    {
+                        Weapon.Attack(this, e);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Weapon.Attack(this, tilePosition);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

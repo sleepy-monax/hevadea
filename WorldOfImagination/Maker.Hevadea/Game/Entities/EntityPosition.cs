@@ -7,6 +7,7 @@ using Maker.Hevadea.Game.Tiles;
 
 namespace Maker.Hevadea.Game.Entities
 {
+    /*
     public class EntityPosition
     {
         public int X { get; set; }
@@ -41,4 +42,5 @@ namespace Maker.Hevadea.Game.Entities
             return false;
         }
     }
+    */
 }

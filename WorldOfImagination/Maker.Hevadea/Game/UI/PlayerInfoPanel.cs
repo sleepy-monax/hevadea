@@ -19,6 +19,7 @@ namespace Maker.Hevadea.Game.UI
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.FillRectangle(this.Bound, Color.Black * 0.25f);
+            spriteBatch.DrawString(Ressources.font_alagard, $"Healh: {Player.Health}/{Player.MaxHealth}", new Vector2(16,16), Color.White);
         }
 
         protected override void OnUpdate(GameTime gameTime)

@@ -54,14 +54,24 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\EntityPosition.cs" />
+    <Compile Include="Game\Entities\GrassEntity.cs" />
+    <Compile Include="Game\Entities\ItemEntity.cs" />
     <Compile Include="Game\Entities\Particles\DotParticle.cs" />
     <Compile Include="Game\Entities\Particles\Particle.cs" />
     <Compile Include="Game\Entities\TorchEntity.cs" />
+    <Compile Include="Game\Entities\ZombieEntity.cs" />
     <Compile Include="Game\Items\Inventory.cs" />
+    <Compile Include="Game\Items\StackableItem.cs" />
+    <Compile Include="Game\Items\WoodLogItem.cs" />
     <Compile Include="Game\LevelGen\DungeonGenerator.cs" />
     <Compile Include="Game\LevelGen\Features\Dungeon\DungeonBaseFeature.cs" />
     <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
+    <Compile Include="Game\LevelGen\Features\Overworld\GrassFeature.cs" />
     <Compile Include="Game\LevelGen\OverWorldGenerator.cs" />
+    <Compile Include="Game\Light.cs" />
+    <Compile Include="Game\Menus\ChestMenu.cs" />
+    <Compile Include="Game\Menus\CraftMenu.cs" />
+    <Compile Include="Game\Menus\InventoryMenu.cs" />
     <Compile Include="Game\Menus\Menu.cs" />
     <Compile Include="Game\SaveStorage\EntitySaveStorage.cs" />
     <Compile Include="Game\Entities\Mob.cs" />
@@ -77,6 +87,7 @@
     <Compile Include="Game\SaveStorage\TileSaveStorage.cs" />
     <Compile Include="Game\Tiles\WoodFloorTile.cs" />
     <Compile Include="Game\Tiles\WoodWallTile.cs" />
+    <Compile Include="Game\UI\InventoryUI.cs" />
     <Compile Include="Game\UI\PlayerInfoPanel.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Ressources.cs" />
@@ -166,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Craftings\" />
+    <Folder Include="Game\Entities\IA\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maker.Rise\Maker.Rise.csproj">

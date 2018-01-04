@@ -12,31 +12,36 @@ namespace Maker.Hevadea.Game.Entities
 
     public class Entity
     {
-        public int X { get; set; } = 0;
-        public int Y { get; set; } = 0;
-        public int Width = 32;
-        public int Height = 48 ;
-        public Rectangle Bound => new Rectangle(X, Y, Width, Height);
-        
         public Level Level;
         public World World;
 
-        public bool IsLightSource = false;
-        public int LightLevel = 32;
-        public Color LightColor = Color.SpringGreen;
-        public bool Removed = true;
-        public bool NoClip = false;
 
-        internal void Init(Level level, World world)
+        public int  X            { get; set; } = 0;
+        public int  Y            { get; set; } = 0;
+        public int  Width        { get; set; } = 32;
+        public int  Height       { get; set; } = 48 ;
+
+        public int  Health       { get; set; } = 1;
+        public int  MaxHealth    { get; set; } = 1;
+
+        public bool Removed      { get; set; } = true;
+        public bool NoClip       { get; set; } = false;
+        public bool IsInvincible { get; set; } = true;
+
+        public Light Light       { get; set; } = new Light();
+
+        public Point Size => new Point(Width, Height);
+        public Point Position => new Point(X, Y);
+        public Rectangle Bound => new Rectangle(Position, Size);
+        
+
+        internal void Initialize(Level level, World world)
         {
             Level = level;
             World = world;
         }
 
         // Health macanic ---------------------------------------------------
-        public int Health = 1;
-        public int MaxHealth = 1;
-        public bool Invincible = true;
 
         public virtual int ComputeDamages(int damages)
         {
@@ -46,7 +51,7 @@ namespace Maker.Hevadea.Game.Entities
         // Entity get hurt by a other entity (ex: Zombie)
         public virtual void Hurt(Entity entity, int damages, Direction attackDirection)
         {
-            if (!Invincible)
+            if (!IsInvincible)
             {
                 Health = Math.Max(0, Health - damages);
 
@@ -60,7 +65,7 @@ namespace Maker.Hevadea.Game.Entities
         // Entity get hurt by a tile (ex: lava)
         public virtual void Hurt(Tile tile, int damages, int tileX, int tileY)
         {
-            if (!Invincible)
+            if (!IsInvincible)
             {
                 Health = Math.Max(0, Health - ComputeDamages(damages));
 
@@ -87,7 +92,6 @@ namespace Maker.Hevadea.Game.Entities
         public void Remove()
         {
             Removed = true;
-            Level.RemoveEntity(this);
         }
 
         public virtual void Die()
@@ -157,7 +161,7 @@ namespace Maker.Hevadea.Game.Entities
 
                     foreach (var e in Level.GetEntityOnTile(t.X, t.Y))
                     {
-                        if (e != this && e.IsBlocking(this))
+                        if (e != this && e.IsBlocking(this) && !NoClip)
                         {
                             if (e.IsColliding(X, Y + aY, Width, Height))
                             {
@@ -195,9 +199,14 @@ namespace Maker.Hevadea.Game.Entities
             return false;
         }
 
+        public bool IsColliding(Rectangle rect)
+        {
+            return IsColliding(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
         public bool IsColliding(Entity e)
         {
-            return IsColliding((int)e.X, (int)e.Y, e.Width, e.Height);
+            return IsColliding(e.X, e.Y, e.Width, e.Height);
         }
 
         public bool IsColliding(int x, int y, int width1, int height1)
@@ -217,11 +226,6 @@ namespace Maker.Hevadea.Game.Entities
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.FillRectangle(new Rectangle(X, Y, Width, Height), Color.Red);
-        }
-
-        internal Rectangle ToRectangle()
-        {
-            return new Rectangle(X, Y, Width, Height);
         }
 
         public TilePosition GetTilePosition()

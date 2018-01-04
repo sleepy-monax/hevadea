@@ -17,6 +17,7 @@ namespace Maker.Hevadea
         public static Texture2D img_creatures;
 
         public static Texture2D img_light;
+        public static Texture2D img_shadow;
 
         public static SpriteSheet tile_tiles;
         public static SpriteSheet tile_items;
@@ -42,6 +43,7 @@ namespace Maker.Hevadea
             img_creatures = Engine.Ressource.GetImage("creatures");
 
             img_light = Engine.Ressource.GetImage("light");
+            img_shadow = Engine.Ressource.GetImage("shadow");
 
             img_maker_logo = Engine.Ressource.GetImage("logo/maker");
 
@@ -51,8 +53,8 @@ namespace Maker.Hevadea
             img_forest_trees1 = Engine.Ressource.GetImage("background/forest_trees1");
 
             tile_tiles = new SpriteSheet(img_tiles, new Point(32, 32));
-            tile_items = new SpriteSheet(img_items, new Point(32, 32));
-            tile_entities = new SpriteSheet(img_entities, new Point(48, 64));
+            tile_items = new SpriteSheet(img_items, new Point(16, 16));
+            tile_entities = new SpriteSheet(img_entities, new Point(16, 16));
             tile_creatures = new SpriteSheet(img_creatures, new Point(48, 64));
         }
     }

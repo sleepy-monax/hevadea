@@ -48,7 +48,7 @@ namespace Maker.Hevadea.Scenes
                 Text = "New",
                 Icon = EngineRessources.icon_add
             };
-            var backButton = new Button
+            var backButton = new MainMenuButton
             {
                 Text = "Back",
                 Icon = EngineRessources.icon_back

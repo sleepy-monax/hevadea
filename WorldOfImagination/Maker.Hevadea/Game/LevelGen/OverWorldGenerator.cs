@@ -15,6 +15,7 @@ namespace Maker.Hevadea.Game.LevelGen
             {
                 new OverworldBaseTerrain(),
                 new AbandonedHouseFeature(),
+                new GrassFeature(),
                 new TreeFeature()
             };
         }

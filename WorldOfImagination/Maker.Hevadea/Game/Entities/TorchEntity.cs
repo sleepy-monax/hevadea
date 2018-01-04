@@ -12,9 +12,9 @@ namespace Maker.Hevadea.Game.Entities
             Height = 2;
             Width = 2;
 
-            IsLightSource = true;
-            LightColor = Color.White;
-            LightLevel = 72;
+            Light.On = true;
+            Light.Color = Color.White;
+            Light.Power = 72;
 
             sprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
         }

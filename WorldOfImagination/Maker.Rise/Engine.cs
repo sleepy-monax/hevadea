@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace Maker.Rise
         public static SceneManager Scene;
         public static UiManager UI;
         public static RasterizerState CommonRasterizerState;
+        public static Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
         private static RiseGame game;
         private static Scene MainScene;
