@@ -9,7 +9,6 @@ namespace Maker.Hevadea.Game.Items
 
         public void Remove<ItemType>(int quantity)
         {
-
         }
 
         public bool AddItem(Item item)

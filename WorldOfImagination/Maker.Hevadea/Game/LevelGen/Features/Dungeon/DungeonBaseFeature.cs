@@ -8,7 +8,6 @@
 
         public override void ApplyInternal(Level level, Generator generator)
         {
-
         }
     }
 }

@@ -1,8 +1,7 @@
-﻿using Maker.Rise.Ressource;
+﻿using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Entities;
+using Maker.Rise.Ressource;
 using System;
-using Maker.Hevadea.Game.Entities.Particles;
-using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.Game.Tiles
 {
@@ -18,13 +17,13 @@ namespace Maker.Hevadea.Game.Tiles
             var dmg = e.Level.GetTileData(tilePosition, "damages", 0) + damages;
             if (dmg > 5)
             {
-                e.Level.SetTile(tilePosition.X, tilePosition.Y, Tile.Grass.ID);
+                e.Level.SetTile(tilePosition.X, tilePosition.Y, Grass.ID);
             }
             else
             {
-                
-                e.Level.SetTileData<int>(tilePosition, "damages", dmg);
+                e.Level.SetTileData(tilePosition, "damages", dmg);
             }
+
             Console.WriteLine("hurt: " + dmg);
         }
 

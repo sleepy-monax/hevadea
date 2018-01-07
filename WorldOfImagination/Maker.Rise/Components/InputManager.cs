@@ -10,23 +10,25 @@ namespace Maker.Rise.Components
 
         private MouseState oldMouseState;
         private MouseState newMouseState;
+
         public InputManager(RiseGame game) : base(game)
         {
-        
         }
 
         public Point MousePosition => newMouseState.Position;
-        
+
         public bool MouseLeft => newMouseState.LeftButton == ButtonState.Pressed;
         public bool MouseRight => newMouseState.RightButton == ButtonState.Pressed;
         public bool MouseMiddle => newMouseState.MiddleButton == ButtonState.Pressed;
-        
+
         public bool MouseLeftClick => newMouseState.LeftButton == ButtonState.Released
-                                   && oldMouseState.LeftButton == ButtonState.Pressed;
+                                      && oldMouseState.LeftButton == ButtonState.Pressed;
+
         public bool MouseRightClick => newMouseState.RightButton == ButtonState.Released
-                                    && oldMouseState.RightButton == ButtonState.Pressed;
+                                       && oldMouseState.RightButton == ButtonState.Pressed;
+
         public bool MouseMiddleClick => newMouseState.MiddleButton == ButtonState.Released
-                                     && oldMouseState.MiddleButton == ButtonState.Pressed;
+                                        && oldMouseState.MiddleButton == ButtonState.Pressed;
 
         public bool KeyDown(Keys key)
         {
@@ -46,7 +48,6 @@ namespace Maker.Rise.Components
 
         public override void Draw(GameTime gameTime)
         {
-            
         }
 
         public override void Update(GameTime gameTime)
@@ -55,7 +56,6 @@ namespace Maker.Rise.Components
             oldMouseState = newMouseState;
             newKeyState = Keyboard.GetState();
             newMouseState = Mouse.GetState(Game.Window);
-            
         }
     }
 }

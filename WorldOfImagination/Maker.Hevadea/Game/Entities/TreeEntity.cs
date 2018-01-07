@@ -14,18 +14,18 @@ namespace Maker.Hevadea.Game.Entities
             Width = 4;
             Height = 4;
 
-            treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16,16));
+            treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
             IsInvincible = false;
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var offx = -6;
             var offy = -10;
 
             treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 32), new Point(0, 1), Color.White);
             treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 16), new Point(0, 2), Color.White);
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 0 ), new Point(0, 3), Color.White);
+            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 0), new Point(0, 3), Color.White);
         }
 
         public override bool IsBlocking(Entity e)
@@ -34,13 +34,15 @@ namespace Maker.Hevadea.Game.Entities
             {
                 return true;
             }
+
             return false;
         }
 
         public override void Die()
         {
-            Level.AddEntity(new ItemEntity(new WoodLogItem()) { X = this.X, Y = this.Y});
-
+            var dropWood = new ItemEntity(new WoodLogItem());
+            Level.AddEntity(dropWood);
+            dropWood.MoveTo(X, Y);
             base.Die();
         }
     }

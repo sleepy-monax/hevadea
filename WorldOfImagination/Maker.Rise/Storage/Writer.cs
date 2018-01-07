@@ -31,8 +31,8 @@ namespace Maker.Hevadea.Json
             if (type == typeof(string))
             {
                 stringBuilder.Append('"');
-                string str = (string)item;
-                for (int i = 0; i<str.Length; ++i)
+                string str = (string) item;
+                for (int i = 0; i < str.Length; ++i)
                     switch (str[i])
                     {
                         case '\\':
@@ -71,7 +71,7 @@ namespace Maker.Hevadea.Json
             }
             else if (type == typeof(bool))
             {
-                stringBuilder.Append(((bool)item) ? "true" : "false");
+                stringBuilder.Append(((bool) item) ? "true" : "false");
             }
             else if (item is IList)
             {
@@ -86,12 +86,13 @@ namespace Maker.Hevadea.Json
                         stringBuilder.Append(',');
                     AppendValue(stringBuilder, list[i]);
                 }
+
                 stringBuilder.Append(']');
             }
             else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
             {
                 Type keyType = type.GetGenericArguments()[0];
-                
+
                 //Refuse to output dictionary keys that aren't of type string
                 if (keyType != typeof(string))
                 {
@@ -109,10 +110,11 @@ namespace Maker.Hevadea.Json
                     else
                         stringBuilder.Append(',');
                     stringBuilder.Append('\"');
-                    stringBuilder.Append((string)key);
+                    stringBuilder.Append((string) key);
                     stringBuilder.Append("\":");
                     AppendValue(stringBuilder, dict[key]);
                 }
+
                 stringBuilder.Append('}');
             }
             else
@@ -139,8 +141,9 @@ namespace Maker.Hevadea.Json
                         }
                     }
                 }
+
                 PropertyInfo[] propertyInfo = type.GetProperties();
-                for (int i = 0; i<propertyInfo.Length; i++)
+                for (int i = 0; i < propertyInfo.Length; i++)
                 {
                     if (propertyInfo[i].CanRead)
                     {

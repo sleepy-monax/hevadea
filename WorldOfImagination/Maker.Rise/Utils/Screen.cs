@@ -2,7 +2,6 @@
 {
     public static class Screen
     {
-
         public static int GetWidth()
         {
             return System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
@@ -12,6 +11,5 @@
         {
             return System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
         }
-
     }
 }

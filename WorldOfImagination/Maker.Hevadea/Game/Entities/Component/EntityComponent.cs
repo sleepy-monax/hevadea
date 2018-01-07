@@ -1,0 +1,18 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace Maker.Hevadea.Game.Entities.Component
+{
+    public abstract class EntityComponent
+    {
+        public Entity Owner;
+
+        public EntityComponent(Entity owner)
+        {
+            Owner = owner;
+        }
+
+        public abstract void Update(GameTime gameTime);
+        public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+    }
+}

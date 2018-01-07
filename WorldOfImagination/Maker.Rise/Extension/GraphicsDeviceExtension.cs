@@ -1,10 +1,9 @@
 ﻿using Maker.Rise.Utils;
 
-namespace Maker.Rise.Components
+namespace Maker.Rise.Extension
 {
     public static class GraphicsDeviceManager
     {
-
         public static int GetWidth(this Microsoft.Xna.Framework.GraphicsDeviceManager graphic)
         {
             return graphic.PreferredBackBufferWidth;

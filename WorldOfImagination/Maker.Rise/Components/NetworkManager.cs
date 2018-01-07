@@ -10,17 +10,14 @@ namespace Maker.Rise.Components
 
         public override void Initialize()
         {
-
         }
 
         public override void Draw(GameTime gameTime)
         {
-            
         }
 
         public override void Update(GameTime gameTime)
         {
-
         }
     }
 }

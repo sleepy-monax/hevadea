@@ -1,11 +1,9 @@
-﻿using Maker.Rise;
+﻿using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.LevelGen;
+using Maker.Rise;
+using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.LevelGen;
-using Maker.Hevadea.Game.LevelGen.Features.Overworld;
-using Maker.Rise.Components;
-using Maker.Rise.Utils;
 
 namespace Maker.Hevadea.Game
 {
@@ -14,7 +12,6 @@ namespace Maker.Hevadea.Game
         public Player Player;
         public Level[] Levels;
         private SpriteBatch spriteBatch;
-        private SpriteBatch lightSpriteBatch;
         private BlendState lightBlend;
 
         private RenderTarget2D SceneRenderTaget;
@@ -24,21 +21,14 @@ namespace Maker.Hevadea.Game
 
         public Level this[int index]
         {
-            get
-            {
-                return Levels[index];
-            }
-            set
-            {
-                Levels[index] = value;
-            }
+            get { return Levels[index]; }
+            set { Levels[index] = value; }
         }
 
         public World()
         {
             Levels = new Level[1];
             spriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
-            lightSpriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
             Camera = new Camera();
 
             lightBlend = new BlendState()
@@ -48,41 +38,29 @@ namespace Maker.Hevadea.Game
                 ColorDestinationBlend = Blend.Zero
             };
 
-            SceneRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
-            lightRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
+            SceneRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(),
+                Engine.Graphic.GetHeight());
+            lightRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(),
+                Engine.Graphic.GetHeight());
         }
 
         public void Draw(GameTime gameTime, bool showDebug = true, bool renderTiles = true, bool renderEntity = true)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Engine.CommonRasterizerState, null, Camera.GetTransform());
-            lightSpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearWrap, null, Engine.CommonRasterizerState, null, Camera.GetTransform());
-            lightSpriteBatch.FillRectangle(new Rectangle((int)Camera.X - Camera.GetWidth() / 2, (int)Camera.Y - Camera.GetHeight() / 2, Camera.GetWidth(), Camera.GetHeight()), Levels[Player.CurrentLevel].AmbiantLight);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Engine.CommonRasterizerState,
+                null, Camera.GetTransform());
 
-            Levels[Player.CurrentLevel].Draw(spriteBatch, lightSpriteBatch, Camera, gameTime, showDebug, renderTiles, renderEntity);
+            var state = Player.Level.GetRenderState(Camera);
 
-            Engine.Graphic.GraphicsDevice.SetRenderTarget(SceneRenderTaget);
-            spriteBatch.GraphicsDevice.Clear(Color.Transparent);
+            Player.Level.DrawTerrain(state, spriteBatch, gameTime);
+            Player.Level.DrawEntities(state, spriteBatch, gameTime);
+
+            state.Clear();
             spriteBatch.End();
-
-            Engine.Graphic.GraphicsDevice.SetRenderTarget(lightRenderTaget);
-            spriteBatch.GraphicsDevice.Clear(Color.Transparent);
-            lightSpriteBatch.End();
-
-            Engine.Graphic.GraphicsDevice.SetRenderTarget(null);
-
-            spriteBatch.Begin();
-            spriteBatch.Draw(SceneRenderTaget, Vector2.Zero, Color.White);
-            spriteBatch.End();
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, lightBlend);
-            spriteBatch.Draw(lightRenderTaget, Vector2.Zero, Color.White);
-            spriteBatch.End();
-
         }
 
         public void Update(GameTime gameTime)
         {
-            Levels[Player.CurrentLevel].Update(gameTime);
+            Player.Level.Update(gameTime);
             Time++;
         }
 
@@ -105,26 +83,14 @@ namespace Maker.Hevadea.Game
 
             world[0] = new OverWorldGenerator().Generate();
 
-            world.Player = new Player()
-            {
-                //Position = new EntityPosition(0, 0)
-                X = (world.Levels[0].Width / 2) * ConstVal.TileSize,
-                Y = (world.Levels[0].Height / 2) * ConstVal.TileSize
-            };
-
+            world.Player = new Player();
             world[0].AddEntity(world.Player);
 
+            world.Player.MoveTo((world.Levels[0].Width / 2) * ConstVal.TileSize,
+                (world.Levels[0].Height / 2) * ConstVal.TileSize);
+
+
             return world;
-        }
-
-        public static void Save(World world, string saveFolder)
-        {
-
-        }
-
-        public static World Load(string saveFolder)
-        {
-            return null;
         }
     }
 }

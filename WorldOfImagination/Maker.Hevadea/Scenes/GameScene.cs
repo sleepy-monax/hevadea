@@ -1,10 +1,10 @@
-﻿using Maker.Hevadea.Game;
-using Maker.Hevadea.Game.Entities;
+﻿using Maker.Hevadea.Enum;
+using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Menus;
 using Maker.Hevadea.Game.UI;
 using Maker.Rise;
 using Maker.Rise.Components;
-using Maker.Rise.UI;
+using Maker.Rise.Enum;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -15,19 +15,18 @@ namespace Maker.Hevadea.Scenes
 {
     public class GameScene : Scene
     {
-
         private SpriteBatch spriteBatch;
         public World World;
         private bool showDebug = false;
         private bool renderTiles = true;
         private bool renderEntities = true;
-        public Menu currentMenu = null;
-        
+        public Menu CurrentMenu = null;
+
         public GameScene(World world)
         {
             World = world;
         }
-        
+
         public override void Load()
         {
             spriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
@@ -35,7 +34,7 @@ namespace Maker.Hevadea.Scenes
 
             UiRoot.Childs = new List<Control>
             {
-                new PlayerInfoPanel(World.Player){ Dock = Dock.Top, Bound = new Rectangle(64, 64, 64, 72)},
+                new PlayerInfoPanel(World.Player) {Dock = Dock.Top, Bound = new Rectangle(64, 64, 64, 72)},
             };
         }
 
@@ -48,27 +47,47 @@ namespace Maker.Hevadea.Scenes
                 {
                     showDebug = !showDebug;
                 }
+
                 if (Engine.Input.KeyPress(Keys.T))
                 {
                     renderTiles = !renderTiles;
                 }
+
                 if (Engine.Input.KeyPress(Keys.E))
                 {
                     renderEntities = !renderEntities;
                 }
             }
 
-            if (currentMenu == null || !currentMenu.PauseGame)
+            if (CurrentMenu == null || !CurrentMenu.PauseGame)
             {
                 World.Update(gameTime);
             }
 
-            if (Engine.Input.KeyDown(Keys.Q)) { World.Player.Move(-1, 0, Direction.Left); }
-            if (Engine.Input.KeyDown(Keys.D)) { World.Player.Move(1, 0, Direction.Right); }
-            if (Engine.Input.KeyDown(Keys.Z)) { World.Player.Move(0, -1, Direction.Up); }
-            if (Engine.Input.KeyDown(Keys.S)) { World.Player.Move(0, 1, Direction.Down); }
+            if (Engine.Input.KeyDown(Keys.Q))
+            {
+                World.Player.Move(-1, 0, Direction.Left);
+            }
 
-            if (Engine.Input.KeyPress(Keys.N)) { World.Player.NoClip = !World.Player.NoClip; }
+            if (Engine.Input.KeyDown(Keys.D))
+            {
+                World.Player.Move(1, 0, Direction.Right);
+            }
+
+            if (Engine.Input.KeyDown(Keys.Z))
+            {
+                World.Player.Move(0, -1, Direction.Up);
+            }
+
+            if (Engine.Input.KeyDown(Keys.S))
+            {
+                World.Player.Move(0, 1, Direction.Down);
+            }
+
+            if (Engine.Input.KeyPress(Keys.N))
+            {
+                World.Player.NoClip = !World.Player.NoClip;
+            }
 
             if (Engine.Input.MouseLeft) World.Player.Attack(World.Player.HoldingItem);
             if (Engine.Input.MouseRight) World.Player.Use(World.Player.HoldingItem);
@@ -81,13 +100,12 @@ namespace Maker.Hevadea.Scenes
 
         public override void Unload()
         {
-            
         }
 
         public override string GetDebugInfo()
         {
-            return 
-$@"World time: {World.Time}
+            return
+                $@"World time: {World.Time}
 Player pos {World.Player.X} {World.Player.Y}
 ";
         }

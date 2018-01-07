@@ -6,7 +6,6 @@
 
         public GeneratorFeature(string name)
         {
-
         }
 
         public void Apply(Level level, Generator generator)

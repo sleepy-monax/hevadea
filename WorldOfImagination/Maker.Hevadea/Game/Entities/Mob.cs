@@ -1,4 +1,5 @@
-﻿using Maker.Hevadea.Game.Items;
+﻿using Maker.Hevadea.Enum;
+using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
@@ -10,7 +11,7 @@ namespace Maker.Hevadea.Game.Entities
     {
         public Sprite Sprite;
         public Direction Facing { get; set; } = Direction.Down;
-        private bool IsWalking { get; set; } = false;
+        private bool IsWalking = false;
 
         public virtual int GetBaseDamages()
         {
@@ -32,7 +33,6 @@ namespace Maker.Hevadea.Game.Entities
 
         public void Use(Item item)
         {
-
         }
 
         public void Attack(Item Weapon)
@@ -61,13 +61,12 @@ namespace Maker.Hevadea.Game.Entities
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            int animationFrame = (int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4);
+            int animationFrame = (int) (gameTime.TotalGameTime.TotalSeconds * 8 % 4);
 
             if (IsWalking)
             {
-
                 switch (animationFrame)
                 {
                     case 0:
@@ -84,12 +83,15 @@ namespace Maker.Hevadea.Game.Entities
                         break;
                 }
 
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(X - 4, Y - 7), new Point(animationFrame, (int)Facing), Color.White);
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(X - 4, Y - 7), new Point(animationFrame, (int) Facing),
+                    Color.White);
             }
             else
             {
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(X - 4, Y - 7), new Point(2, (int)Facing), Color.White);
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(X - 4, Y - 7), new Point(2, (int) Facing), Color.White);
             }
+
+            IsWalking = false;
         }
     }
 }

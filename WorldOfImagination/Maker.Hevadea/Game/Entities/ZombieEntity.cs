@@ -1,16 +1,10 @@
 ﻿using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maker.Hevadea.Game.Entities
 {
     public class ZombieEntity : Mob
     {
-
         public ZombieEntity()
         {
             Width = 8;
@@ -20,6 +14,5 @@ namespace Maker.Hevadea.Game.Entities
             Health = MaxHealth = 20;
             IsInvincible = false;
         }
-
     }
 }

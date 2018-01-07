@@ -1,14 +1,14 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Rise;
-using Maker.Rise.Components;
+using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using System;
 
 namespace Maker.Hevadea.Game
 {
+    [Serializable]
     public class Camera
     {
-
         public float Zoom = 3f;
         public Entity FocusEntity = null;
         public float X = 0f;
@@ -16,12 +16,12 @@ namespace Maker.Hevadea.Game
 
         public int GetWidth()
         {
-            return (int)(Engine.Graphic.GetWidth() / Zoom);
+            return (int) (Engine.Graphic.GetWidth() / Zoom);
         }
 
         public int GetHeight()
         {
-            return (int)(Engine.Graphic.GetHeight() / Zoom);
+            return (int) (Engine.Graphic.GetHeight() / Zoom);
         }
 
         public Matrix GetTransform()
@@ -31,12 +31,12 @@ namespace Maker.Hevadea.Game
                 return Matrix.Identity;
             }
 
-            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width / 2 + (FocusEntity.Width / 2f));
-            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2 + (FocusEntity.Height / 2f));
+            X = (float) Math.Floor(FocusEntity.X + FocusEntity.Width / 2 + (FocusEntity.Width / 2f));
+            Y = (float) Math.Floor(FocusEntity.Y + FocusEntity.Height / 2 + (FocusEntity.Height / 2f));
 
             return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
-                (float)Math.Floor(-( X * Zoom - Engine.Graphic.GetWidth()  / 2 )),
-                (float)Math.Floor(-( Y * Zoom - Engine.Graphic.GetHeight() / 2 )), 0f);   
+                       (float) Math.Floor(-(X * Zoom - Engine.Graphic.GetWidth() / 2f)),
+                       (float) Math.Floor(-(Y * Zoom - Engine.Graphic.GetHeight() / 2f)), 0f);
         }
     }
 }

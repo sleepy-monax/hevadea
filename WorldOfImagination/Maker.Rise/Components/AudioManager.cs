@@ -6,25 +6,22 @@ namespace Maker.Rise.Components
 {
     public class AudioManager : GameComponent
     {
-
         private List<SoundEffectInstance> PlayingSoundEffects;
         public float MasterVolume = 0.75f;
-        public float EffectVolume = 0.5f;
+        public float EffectVolume = 0.1f;
 
 
         public AudioManager(RiseGame game) : base(game)
         {
-            PlayingSoundEffects = new List<SoundEffectInstance>();            
+            PlayingSoundEffects = new List<SoundEffectInstance>();
         }
 
         public override void Initialize()
         {
-
         }
 
         public override void Draw(GameTime gameTime)
         {
-            
         }
 
         public override void Update(GameTime gameTime)

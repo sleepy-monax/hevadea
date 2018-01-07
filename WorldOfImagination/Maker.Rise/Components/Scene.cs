@@ -16,6 +16,7 @@ namespace Maker.Rise.Components
         {
             return "null";
         }
+
         public abstract void Load();
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime);

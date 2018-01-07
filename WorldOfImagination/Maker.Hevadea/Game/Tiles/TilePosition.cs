@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maker.Hevadea.Game.Tiles
 {
@@ -18,22 +13,40 @@ namespace Maker.Hevadea.Game.Tiles
             Y = y;
         }
 
-        public override bool Equals(object obj)
-        {
-
-            if (obj is TilePosition e)
-            {
-                return X == e.X && Y == e.Y;
-            }
-
-            return false;
-        }
-
         public Point ToOnScreenPosition()
         {
-
             return new Point(X * ConstVal.TileSize, Y * ConstVal.TileSize);
+        }
 
+        public static bool operator !=(TilePosition left, TilePosition right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(TilePosition left, TilePosition right)
+        {
+            return left.X == right.X | left.Y == right.Y;
+        }
+
+        protected bool Equals(TilePosition other)
+        {
+            return X == other.X && Y == other.Y;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((TilePosition)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (X * 397) ^ Y;
+            }
         }
     }
 }

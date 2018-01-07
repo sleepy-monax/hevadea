@@ -12,22 +12,18 @@ namespace Maker.Rise.Components
 
         public RessourceManager(RiseGame game) : base(game)
         {
-            
         }
 
         public override void Initialize()
         {
-
         }
 
         public override void Draw(GameTime gameTime)
         {
-
         }
 
         public override void Update(GameTime gameTime)
         {
- 
         }
 
         public SoundEffect GetSoundEffect(string name)
@@ -44,7 +40,7 @@ namespace Maker.Rise.Components
 
             return FontCache[name];
         }
-        
+
         public Texture2D GetIcon(string name)
         {
             if (!TextureCache.ContainsKey("icon:" + name))

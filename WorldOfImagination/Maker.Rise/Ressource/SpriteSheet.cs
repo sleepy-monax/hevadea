@@ -20,7 +20,7 @@ namespace Maker.Rise.Ressource
 
         public Rectangle GetTile(int Index)
         {
-            var pos = new Point(Index % TileCount.X, Index / TileCount.Y );
+            var pos = new Point(Index % TileCount.X, Index / TileCount.Y);
             return new Rectangle(pos.X * TileSize.X, pos.Y * TileSize.Y, TileSize.X, TileSize.Y);
         }
 

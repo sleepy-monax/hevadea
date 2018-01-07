@@ -1,8 +1,9 @@
 ﻿using Maker.Rise;
 using Maker.Rise.Components;
-using Maker.Rise.Utils;
+using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace Maker.Hevadea.Scenes
 {
@@ -13,7 +14,6 @@ namespace Maker.Hevadea.Scenes
 
         public SplashScene()
         {
-
         }
 
 
@@ -24,28 +24,37 @@ namespace Maker.Hevadea.Scenes
             logo = Ressources.img_maker_logo;
 
             Engine.SetMouseVisibility(true);
-            Engine.SetFullScreen(true);
+            //Engine.SetFullScreen(true);
+
+            // Setup
+
+            Directory.CreateDirectory("Saves");
         }
 
         public override void Unload()
         {
-            
         }
+
         bool once = true;
+
         public override void Update(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalSeconds > 1 && once)
             {
                 Engine.Scene.Switch(new MainMenu());
                 once = false;
-            }            
+            }
         }
 
         public override void Draw(GameTime gameTime)
-        {            
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
-            sb.FillRectangle(new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()), Color.LightGray);
-            sb.Draw(logo, new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2, Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White);
+        {
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
+                Engine.CommonRasterizerState);
+            sb.FillRectangle(new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()),
+                Color.LightGray);
+            sb.Draw(logo,
+                new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2,
+                    Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White);
             sb.End();
         }
     }

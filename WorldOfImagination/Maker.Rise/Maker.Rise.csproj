@@ -52,11 +52,18 @@
     <Compile Include="Components\AudioManager.cs" />
     <Compile Include="Components\DebugManager.cs" />
     <Compile Include="Components\GameComponent.cs" />
-    <Compile Include="Components\GraphicsDeviceManager.cs" />
+    <Compile Include="Enum\Alignement.cs" />
+    <Compile Include="Enum\Anchor.cs" />
+    <Compile Include="Enum\Dock.cs" />
+    <Compile Include="Enum\Layout.cs" />
+    <Compile Include="Enum\MouseState.cs" />
+    <Compile Include="Enum\TextStyle.cs" />
+    <Compile Include="Extension\GraphicsDeviceExtension.cs" />
     <Compile Include="Components\InputManager.cs" />
     <Compile Include="Components\NetworkManager.cs" />
     <Compile Include="Components\RessourceManager.cs" />
     <Compile Include="Network\Client.cs" />
+    <Compile Include="Network\Packet.cs" />
     <Compile Include="Network\Server.cs" />
     <Compile Include="Ressource\ParalaxeBackground.cs" />
     <Compile Include="Ressource\Sprite.cs" />
@@ -79,15 +86,19 @@
     <Compile Include="UI\TextInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Colision.cs" />
-    <Compile Include="Utils\GameExtension.cs" />
+    <Compile Include="Extension\GameExtension.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\Perlin.cs" />
     <Compile Include="Utils\RectangleF.cs" />
     <Compile Include="Utils\Screen.cs" />
-    <Compile Include="Utils\SpriteBatchExtension.cs" />
-    <Compile Include="Utils\Text.cs" />
+    <Compile Include="Extension\SerializationExtension.cs" />
+    <Compile Include="Extension\SpriteBatchExtension.cs" />
+    <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="RiseGame.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

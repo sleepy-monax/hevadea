@@ -1,4 +1,5 @@
-﻿using Maker.Rise.Utils;
+﻿using Maker.Rise.Extension;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -7,7 +8,7 @@ namespace Maker.Rise.UI
     public class Panel : Control
     {
         public Color Color { get; set; } = Color.Transparent;
-        
+
         public Panel()
         {
         }
@@ -19,7 +20,6 @@ namespace Maker.Rise.UI
 
         protected override void OnUpdate(GameTime gameTime)
         {
-            
         }
     }
 }

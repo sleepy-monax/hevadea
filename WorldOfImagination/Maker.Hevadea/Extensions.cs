@@ -1,11 +1,10 @@
-﻿using Maker.Hevadea.Game.Entities;
+﻿using Maker.Hevadea.Enum;
 using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea
 {
     public static class Extensions
     {
-
         public static Point ToPoint(this Direction dir)
         {
             switch (dir)
@@ -22,6 +21,5 @@ namespace Maker.Hevadea
                     return new Point(0, 0);
             }
         }
-
     }
 }

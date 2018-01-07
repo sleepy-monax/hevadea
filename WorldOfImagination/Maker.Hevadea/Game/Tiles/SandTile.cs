@@ -8,6 +8,5 @@ namespace Maker.Hevadea.Game.Tiles
         {
             Sprite = new Sprite(Ressources.tile_tiles, 3);
         }
-
     }
 }

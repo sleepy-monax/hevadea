@@ -50,10 +50,9 @@ namespace Maker.Rise.Ressource
         public void DrawSubSprite(SpriteBatch spriteBatch, Vector2 position, Point subSprite, Color color)
         {
             var subMe = new Rectangle(Source.X + subSprite.X * SubSpriteSize.X,
-                                      Source.Y + subSprite.Y * SubSpriteSize.Y,
-                                      
-                                      SubSpriteSize.X,
-                                      SubSpriteSize.Y);
+                Source.Y + subSprite.Y * SubSpriteSize.Y,
+                SubSpriteSize.X,
+                SubSpriteSize.Y);
 
             spriteBatch.Draw(Sheet.Texture, position, subMe, color);
         }

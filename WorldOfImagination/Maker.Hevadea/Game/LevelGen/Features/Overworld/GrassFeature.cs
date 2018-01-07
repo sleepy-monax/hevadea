@@ -22,15 +22,10 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     var v = Perlin.OctavePerlin((x / 10d) + generator.Seed, (y / 10d) + generator.Seed, 0, 10, 0.5);
                     if (level.GetTile(x, y).ID == Tile.Grass.ID & (v > 1) & (rnd.Next(5) == 1))
                     {
-                        var grass = new GrassEntity
-                        {
-                            X = x * ConstVal.TileSize + rnd.Next(0, 4),
-                            Y = y * ConstVal.TileSize + rnd.Next(0, 4)
-                        };
-
+                        var grass = new GrassEntity();
                         level.AddEntity(grass);
+                        grass.MoveTo(x * ConstVal.TileSize + rnd.Next(0, 4), y * ConstVal.TileSize + rnd.Next(0, 4));
                     }
-
                 }
             }
         }

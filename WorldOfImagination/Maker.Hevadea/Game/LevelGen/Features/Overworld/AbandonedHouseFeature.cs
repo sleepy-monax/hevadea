@@ -1,5 +1,5 @@
-﻿using System;
-using Maker.Hevadea.Game.Tiles;
+﻿using Maker.Hevadea.Game.Tiles;
+using System;
 
 namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 {
@@ -12,7 +12,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
         public override void ApplyInternal(Level level, Generator generator)
         {
             Random rnd = new Random(generator.Seed);
-            for (int i = 0; i < 64; i++)
+            for (int i = 0; i < 32; i++)
             {
                 int x = rnd.Next(generator.LevelSize);
                 int y = rnd.Next(generator.LevelSize);
@@ -42,8 +42,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     {
                         for (int dy = 0; dy < sy; dy++)
                         {
-
-                            if (dx == 0 | dx == sx - 1 | dy == 0 | dy == sy -1)
+                            if (dx == 0 | dx == sx - 1 | dy == 0 | dy == sy - 1)
                             {
                                 level.SetTile(x + dx, y + dy, Tile.WoodWall.ID);
                             }
@@ -54,7 +53,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                         }
                     }
                 }
-
             }
         }
     }

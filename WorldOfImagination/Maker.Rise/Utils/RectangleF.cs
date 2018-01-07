@@ -2,7 +2,6 @@
 {
     public class RectangleF
     {
-
         public float X, Y, Height, Width = 0;
 
         public RectangleF(float x, float y, float width, float height)
@@ -19,7 +18,6 @@
                    rect.X < X + Width &&
                    Y < rect.Y + rect.Height &&
                    rect.Y < Y + Height;
-             
         }
     }
 }

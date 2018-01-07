@@ -1,8 +1,9 @@
 ﻿using Maker.Rise;
 using Maker.Rise.Components;
+using Maker.Rise.Enum;
+using Maker.Rise.Extension;
 using Maker.Rise.Ressource;
 using Maker.Rise.UI;
-using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -21,25 +22,25 @@ namespace Maker.Hevadea.Scenes
         }
 
         public override void Load()
-        {            
+        {
             paralaxe = new ParalaxeBackground(
                 new ParalaxeLayer(Ressources.img_forest_background, 1.1f),
                 new ParalaxeLayer(Ressources.img_forest_trees0, 1.5f),
                 new ParalaxeLayer(Ressources.img_forest_light, 2f),
                 new ParalaxeLayer(Ressources.img_forest_trees1, 2.5f)
             );
-            
+
             var menuButtonHost = new Panel
             {
-                Dock  = Dock.Left,
+                Dock = Dock.Left,
                 Layout = LayoutMode.Vertical
             };
-            
+
             var playButton = new MainMenuButton
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "play",
-                Icon = EngineRessources.icon_play
+                Icon = EngineRessources.IconPlay
             };
 
 
@@ -47,21 +48,21 @@ namespace Maker.Hevadea.Scenes
             {
                 Bound = new Rectangle(64, 64, 64, 72),
                 Text = "editor",
-                Icon = EngineRessources.icon_edit
+                Icon = EngineRessources.IconEdit
             };
-            
+
             var optionButton = new MainMenuButton
             {
                 Bound = new Rectangle(64, 64, 64, 72),
-                Text = "option", 
-                Icon = EngineRessources.icon_settings
+                Text = "option",
+                Icon = EngineRessources.IconSettings
             };
-            
+
             var exitButton = new MainMenuButton
             {
                 Bound = new Rectangle(64, 64, 64, 72),
-                Text = "exit", 
-                Icon = EngineRessources.icon_close
+                Text = "exit",
+                Icon = EngineRessources.IconClose
             };
 
             var titleLabel = new Label
@@ -100,23 +101,21 @@ namespace Maker.Hevadea.Scenes
 
         public override void Unload()
         {
-
         }
 
         public override void Draw(GameTime gameTime)
-        {;
+        {
+            ;
 
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
+                Engine.CommonRasterizerState);
             paralaxe.Draw(sb, gameTime);
             sb.FillRectangle(new Rectangle(0, 0, 96, Engine.Graphic.GetHeight()), Color.Black * 0.5f);
             sb.End();
-            
         }
 
         public override void Update(GameTime gameTime)
         {
-            
         }
-
     }
 }

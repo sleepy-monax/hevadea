@@ -1,15 +1,12 @@
-﻿using Maker.Rise.Ressource;
+﻿using Maker.Rise.Enum;
+using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Maker.Rise.Utils
+namespace Maker.Rise.Extension
 {
-
-    public enum Alignement { Center = 0, Left = 1, Right = 2, Top = 4, Bottom = 8 }
-    public enum Style { Regular = 0, Bold = 1, DropShadow = 2, Rectangle = 3 }
-
     public static class SpriteBatchExtension
     {
         #region Private Members
@@ -24,7 +21,7 @@ namespace Maker.Rise.Utils
         private static void CreateThePixel(SpriteBatch spriteBatch)
         {
             pixel = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            pixel.SetData(new[] { Color.White });
+            pixel.SetData(new[] {Color.White});
         }
 
         /// <summary>
@@ -35,7 +32,8 @@ namespace Maker.Rise.Utils
         /// <param name="points">The points to connect with lines</param>
         /// <param name="color">The color to use</param>
         /// <param name="thickness">The thickness of the lines</param>
-        private static void DrawPoints(SpriteBatch spriteBatch, Vector2 position, List<Vector2> points, Color color, float thickness)
+        private static void DrawPoints(SpriteBatch spriteBatch, Vector2 position, List<Vector2> points, Color color,
+            float thickness)
         {
             if (points.Count < 2)
                 return;
@@ -55,7 +53,6 @@ namespace Maker.Rise.Utils
         /// <returns>A list of vectors that, if connected, will create a circle</returns>
         private static List<Vector2> CreateCircle(double radius, int sides)
         {
-
             // Look for a cached version of this circle
             String circleKey = radius + "x" + sides;
             if (circleCache.ContainsKey(circleKey))
@@ -70,17 +67,17 @@ namespace Maker.Rise.Utils
 
             for (double theta = 0.0; theta < max; theta += step)
             {
-                vectors.Add(new Vector2((float)(radius * System.Math.Cos(theta)), (float)(radius * System.Math.Sin(theta))));
+                vectors.Add(new Vector2((float) (radius * System.Math.Cos(theta)),
+                    (float) (radius * System.Math.Sin(theta))));
             }
 
             // then add the first vector again so it's a complete loop
-            vectors.Add(new Vector2((float)(radius * System.Math.Cos(0)), (float)(radius * System.Math.Sin(0))));
+            vectors.Add(new Vector2((float) (radius * System.Math.Cos(0)), (float) (radius * System.Math.Sin(0))));
 
             // Cache this circle so that it can be quickly drawn next time
             circleCache.Add(circleKey, vectors);
 
             return vectors;
-
         }
 
         /// <summary>
@@ -93,7 +90,6 @@ namespace Maker.Rise.Utils
         /// <returns>A list of vectors that, if connected, will create an arc</returns>
         private static List<Vector2> CreateArc(float radius, int sides, float startingAngle, float radians)
         {
-
             List<Vector2> points = new List<Vector2>();
             points.AddRange(CreateCircle(radius, sides));
             points.RemoveAt(points.Count - 1); // remove the last point because it's a duplicate of the first
@@ -116,11 +112,10 @@ namespace Maker.Rise.Utils
             points.Add(points[0]);
 
             // Now remove the points at the end of the circle to create the arc
-            int sidesInArc = (int)((radians / anglePerSide) + 0.5);
+            int sidesInArc = (int) ((radians / anglePerSide) + 0.5);
             points.RemoveRange(sidesInArc + 1, points.Count - sidesInArc - 1);
 
             return points;
-
         }
 
         #endregion
@@ -135,7 +130,6 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to draw the rectangle in</param>
         public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
         {
-
             if (pixel == null)
             {
                 CreateThePixel(spriteBatch);
@@ -143,7 +137,6 @@ namespace Maker.Rise.Utils
 
             // Simply use the function already there
             spriteBatch.Draw(pixel, rect, color);
-
         }
 
 
@@ -156,14 +149,12 @@ namespace Maker.Rise.Utils
         /// <param name="angle">The angle in radians to draw the rectangle at</param>
         public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float angle)
         {
-
             if (pixel == null)
             {
                 CreateThePixel(spriteBatch);
             }
 
             spriteBatch.Draw(pixel, rect, null, color, angle, Vector2.Zero, SpriteEffects.None, 0);
-
         }
 
 
@@ -176,9 +167,7 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to draw the rectangle in</param>
         public static void FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
         {
-
             FillRectangle(spriteBatch, location, size, color, 0.0f);
-
         }
 
 
@@ -190,27 +179,24 @@ namespace Maker.Rise.Utils
         /// <param name="size">The size of the rectangle</param>
         /// <param name="angle">The angle in radians to draw the rectangle at</param>
         /// <param name="color">The color to draw the rectangle in</param>
-        public static void FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float angle)
+        public static void FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color,
+            float angle)
         {
-
             if (pixel == null)
             {
-
                 CreateThePixel(spriteBatch);
-
             }
 
             // stretch the pixel between the two vectors
             spriteBatch.Draw(pixel,
-                             location,
-                             null,
-                             color,
-                             angle,
-                             Vector2.Zero,
-                             size,
-                             SpriteEffects.None,
-                             0);
-
+                location,
+                null,
+                color,
+                angle,
+                Vector2.Zero,
+                size,
+                SpriteEffects.None,
+                0);
         }
 
 
@@ -225,9 +211,7 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to draw the rectangle in</param>
         public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color)
         {
-
             FillRectangle(spriteBatch, new Vector2(x, y), new Vector2(w, h), color, 0.0f);
-
         }
 
 
@@ -241,11 +225,10 @@ namespace Maker.Rise.Utils
         /// <param name="h">Height</param>
         /// <param name="color">The color to draw the rectangle in</param>
         /// <param name="angle">The angle of the rectangle in radians</param>
-        public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle)
+        public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color,
+            float angle)
         {
-
             FillRectangle(spriteBatch, new Vector2(x, y), new Vector2(w, h), color, angle);
-
         }
 
         #endregion
@@ -260,9 +243,7 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to draw the rectangle in</param>
         public static void DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color)
         {
-
             DrawRectangle(spriteBatch, rect, color, 1.0f);
-
         }
 
 
@@ -275,15 +256,16 @@ namespace Maker.Rise.Utils
         /// <param name="thickness">The thickness of the lines</param>
         public static void DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float thickness)
         {
-
             // TODO: Handle rotations
             // TODO: Figure out the pattern for the offsets required and then handle it in the line instead of here
-
-            DrawLine(spriteBatch, new Vector2(rect.X, rect.Y), new Vector2(rect.Right, rect.Y), color, thickness); // top
-            DrawLine(spriteBatch, new Vector2(rect.X + 1f, rect.Y), new Vector2(rect.X + 1f, rect.Bottom + thickness), color, thickness); // left
-            DrawLine(spriteBatch, new Vector2(rect.X, rect.Bottom), new Vector2(rect.Right, rect.Bottom), color, thickness); // bottom
-            DrawLine(spriteBatch, new Vector2(rect.Right + 1f, rect.Y), new Vector2(rect.Right + 1f, rect.Bottom + thickness), color, thickness); // right
-            
+            DrawLine(spriteBatch, new Vector2(rect.X, rect.Y), new Vector2(rect.Right, rect.Y), color,
+                thickness); // top
+            DrawLine(spriteBatch, new Vector2(rect.X + 1f, rect.Y), new Vector2(rect.X + 1f, rect.Bottom + thickness),
+                color, thickness); // left
+            DrawLine(spriteBatch, new Vector2(rect.X, rect.Bottom), new Vector2(rect.Right, rect.Bottom), color,
+                thickness); // bottom
+            DrawLine(spriteBatch, new Vector2(rect.Right + 1f, rect.Y),
+                new Vector2(rect.Right + 1f, rect.Bottom + thickness), color, thickness); // right
         }
 
 
@@ -296,9 +278,8 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to draw the rectangle in</param>
         public static void DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
         {
-
-            DrawRectangle(spriteBatch, new Rectangle((int)location.X, (int)location.Y, (int)size.X, (int)size.Y), color, 1.0f);
-
+            DrawRectangle(spriteBatch, new Rectangle((int) location.X, (int) location.Y, (int) size.X, (int) size.Y),
+                color, 1.0f);
         }
 
 
@@ -310,11 +291,11 @@ namespace Maker.Rise.Utils
         /// <param name="size">The size of the rectangle</param>
         /// <param name="color">The color to draw the rectangle in</param>
         /// <param name="thickness">The thickness of the line</param>
-        public static void DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float thickness)
+        public static void DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color,
+            float thickness)
         {
-
-            DrawRectangle(spriteBatch, new Rectangle((int)location.X, (int)location.Y, (int)size.X, (int)size.Y), color, thickness);
-
+            DrawRectangle(spriteBatch, new Rectangle((int) location.X, (int) location.Y, (int) size.X, (int) size.Y),
+                color, thickness);
         }
 
         #endregion
@@ -332,9 +313,7 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to use</param>
         public static void DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color)
         {
-
             DrawLine(spriteBatch, new Vector2(x1, y1), new Vector2(x2, y2), color, 1.0f);
-
         }
 
         /// <summary>
@@ -347,11 +326,10 @@ namespace Maker.Rise.Utils
         /// <param name="y2">The Y coord of the second point</param>
         /// <param name="color">The color to use</param>
         /// <param name="thickness">The thickness of the line</param>
-        public static void DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color, float thickness)
+        public static void DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color,
+            float thickness)
         {
-
             DrawLine(spriteBatch, new Vector2(x1, y1), new Vector2(x2, y2), color, thickness);
-
         }
 
         /// <summary>
@@ -363,9 +341,7 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to use</param>
         public static void DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color)
         {
-
             DrawLine(spriteBatch, point1, point2, color, 1.0f);
-
         }
 
         /// <summary>
@@ -376,17 +352,16 @@ namespace Maker.Rise.Utils
         /// <param name="point2">The second point</param>
         /// <param name="color">The color to use</param>
         /// <param name="thickness">The thickness of the line</param>
-        public static void DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color, float thickness)
+        public static void DrawLine(this SpriteBatch spriteBatch, Vector2 point1, Vector2 point2, Color color,
+            float thickness)
         {
-
             // calculate the distance between the two vectors
             float distance = Vector2.Distance(point1, point2);
 
             // calculate the angle between the two vectors
-            float angle = (float)System.Math.Atan2(point2.Y - point1.Y, point2.X - point1.X);
+            float angle = (float) System.Math.Atan2(point2.Y - point1.Y, point2.X - point1.X);
 
             DrawLine(spriteBatch, point1, distance, angle, color, thickness);
-
         }
 
         /// <summary>
@@ -399,9 +374,7 @@ namespace Maker.Rise.Utils
         /// <param name="color">The color to use</param>
         public static void DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color)
         {
-
             DrawLine(spriteBatch, point, length, angle, color, 1.0f);
-
         }
 
         /// <summary>
@@ -413,7 +386,8 @@ namespace Maker.Rise.Utils
         /// <param name="angle">The angle of this line from the starting point</param>
         /// <param name="color">The color to use</param>
         /// <param name="thickness">The thickness of the line</param>
-        public static void DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color, float thickness)
+        public static void DrawLine(this SpriteBatch spriteBatch, Vector2 point, float length, float angle, Color color,
+            float thickness)
         {
             if (pixel == null)
             {
@@ -422,14 +396,14 @@ namespace Maker.Rise.Utils
 
             // stretch the pixel between the two vectors
             spriteBatch.Draw(pixel,
-                             point,
-                             null,
-                             color,
-                             angle,
-                             Vector2.Zero,
-                             new Vector2(length, thickness),
-                             SpriteEffects.None,
-                             0);
+                point,
+                null,
+                color,
+                angle,
+                Vector2.Zero,
+                new Vector2(length, thickness),
+                SpriteEffects.None,
+                0);
         }
 
         #endregion
@@ -443,16 +417,12 @@ namespace Maker.Rise.Utils
 
         public static void PutPixel(this SpriteBatch spriteBatch, Vector2 position, Color color)
         {
-
             if (pixel == null)
             {
-
                 CreateThePixel(spriteBatch);
-
             }
 
             spriteBatch.Draw(pixel, position, color);
-
         }
 
         #endregion
@@ -467,11 +437,10 @@ namespace Maker.Rise.Utils
         /// <param name="radius">The radius of the circle</param>
         /// <param name="sides">The number of sides to generate</param>
         /// <param name="color">The color of the circle</param>
-        public static void DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color)
+        public static void DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides,
+            Color color)
         {
-
             DrawPoints(spriteBatch, center, CreateCircle(radius, sides), color, 1.0f);
-
         }
 
         /// <summary>
@@ -483,7 +452,8 @@ namespace Maker.Rise.Utils
         /// <param name="sides">The number of sides to generate</param>
         /// <param name="color">The color of the circle</param>
         /// <param name="thickness">The thickness of the lines used</param>
-        public static void DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, Color color, float thickness)
+        public static void DrawCircle(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides,
+            Color color, float thickness)
         {
             DrawPoints(spriteBatch, center, CreateCircle(radius, sides), color, thickness);
         }
@@ -497,11 +467,10 @@ namespace Maker.Rise.Utils
         /// <param name="radius">The radius of the circle</param>
         /// <param name="sides">The number of sides to generate</param>
         /// <param name="color">The color of the circle</param>
-        public static void DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color)
+        public static void DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides,
+            Color color)
         {
-
             DrawPoints(spriteBatch, new Vector2(x, y), CreateCircle(radius, sides), color, 1.0f);
-
         }
 
         /// <summary>
@@ -514,11 +483,10 @@ namespace Maker.Rise.Utils
         /// <param name="sides">The number of sides to generate</param>
         /// <param name="color">The color of the circle</param>
         /// <param name="thickness">The thickness of the lines used</param>
-        public static void DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides, Color color, float thickness)
+        public static void DrawCircle(this SpriteBatch spriteBatch, float x, float y, float radius, int sides,
+            Color color, float thickness)
         {
-
             DrawPoints(spriteBatch, new Vector2(x, y), CreateCircle(radius, sides), color, thickness);
-
         }
 
         #endregion
@@ -535,11 +503,10 @@ namespace Maker.Rise.Utils
         /// <param name="startingAngle">The starting angle of arc, 0 being to the east, increasing as you go clockwise</param>
         /// <param name="radians">The number of radians to draw, clockwise from the starting angle</param>
         /// <param name="color">The color of the arc</param>
-        public static void DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color)
+        public static void DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides,
+            float startingAngle, float radians, Color color)
         {
-
             DrawArc(spriteBatch, center, radius, sides, startingAngle, radians, color, 1.0f);
-
         }
 
         /// <summary>
@@ -553,18 +520,18 @@ namespace Maker.Rise.Utils
         /// <param name="radians">The number of radians to draw, clockwise from the starting angle</param>
         /// <param name="color">The color of the arc</param>
         /// <param name="thickness">The thickness of the arc</param>
-        public static void DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides, float startingAngle, float radians, Color color, float thickness)
+        public static void DrawArc(this SpriteBatch spriteBatch, Vector2 center, float radius, int sides,
+            float startingAngle, float radians, Color color, float thickness)
         {
-
             List<Vector2> arc = CreateArc(radius, sides, startingAngle, radians);
             //List<Vector2> arc = CreateArc2(radius, sides, startingAngle, degrees);
             DrawPoints(spriteBatch, center, arc, color, thickness);
-
         }
 
         #endregion
 
-        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Alignement alignement, Style style, Color color, float scale = 1f)
+        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary,
+            Alignement alignement, TextStyle style, Color color, float scale = 1f)
         {
             Vector2 TextSize = font.MeasureString(text) * scale;
             Vector2 pos = boundary.Center.ToVector2();
@@ -584,18 +551,24 @@ namespace Maker.Rise.Utils
 
             switch (style)
             {
-                case Style.Bold:
-                    spriteBatch.DrawString(font, text, new Vector2(pos.X + 1, pos.Y + 1), color, 0, origin, 1, SpriteEffects.None, 0);
+                case TextStyle.Bold:
+                    spriteBatch.DrawString(font, text, new Vector2(pos.X + 1, pos.Y + 1), color, 0, origin, 1,
+                        SpriteEffects.None, 0);
                     break;
-                case Style.DropShadow:
-                    spriteBatch.DrawString(font, text, new Vector2(pos.X + 2, pos.Y + 2) - origin, new Color(0, 0, 0, (int)(100f * ((float)color.A / 255f))), 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                case TextStyle.DropShadow:
+                    spriteBatch.DrawString(font, text, new Vector2(pos.X + 2, pos.Y + 2) - origin,
+                        new Color(0, 0, 0, (int) (100f * ((float) color.A / 255f))), 0, Vector2.Zero, scale,
+                        SpriteEffects.None, 0);
                     break;
-                case Style.Rectangle:
-                    spriteBatch.FillRectangle(new Rectangle((pos - origin - new Vector2(4)).ToPoint(), new Point((int)TextSize.X, (int)TextSize.Y) + new Point(8)), Color.Black);
+                case TextStyle.Rectangle:
+                    spriteBatch.FillRectangle(
+                        new Rectangle((pos - origin - new Vector2(4)).ToPoint(),
+                            new Point((int) TextSize.X, (int) TextSize.Y) + new Point(8)), Color.Black);
                     break;
             }
 
-            spriteBatch.DrawString(font, text, pos - origin, color, 0f, Vector2.Zero, new Vector2(scale, scale), SpriteEffects.None, 1f );
+            spriteBatch.DrawString(font, text, pos - origin, color, 0f, Vector2.Zero, new Vector2(scale, scale),
+                SpriteEffects.None, 1f);
         }
 
         public static void Draw(this SpriteBatch spriteBatch, SpriteSheet tileSheet, int tileIndex, Vector2 position,

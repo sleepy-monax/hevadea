@@ -1,8 +1,6 @@
-﻿using Maker.Rise.Utils;
+﻿using Maker.Hevadea.Game.Tiles;
+using Maker.Rise.Utils;
 using System;
-using System.Drawing;
-using System.Windows.Forms;
-using Maker.Hevadea.Game.Tiles;
 
 namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 {
@@ -10,7 +8,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
     {
         public OverworldBaseTerrain() : base(nameof(OverworldBaseTerrain))
         {
-
         }
 
         public override void ApplyInternal(Level level, Generator generator)
@@ -26,8 +23,8 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     var groundLevel = Perlin.OctavePerlin((x / 50d) + seed, (y / 50d) + seed, 0, 10, 0.5);
 
                     groundLevel = groundLevel * Math.Min(1d,
-                        Math.Sin(((float)x / generator.LevelSize) * Math.PI) 
-                        * Math.Sin(((float)y / generator.LevelSize) * Math.PI) * 4);
+                                      Math.Sin(((float) x / generator.LevelSize) * Math.PI)
+                                      * Math.Sin(((float) y / generator.LevelSize) * Math.PI) * 4);
 
                     var montains = Perlin.OctavePerlin(x / 20d + seed, y / 20d + seed, 0, 2, 0.5);
                     var biomes = Perlin.OctavePerlin(x / 30d + seed, y / 30d + seed, 0, 1, 1);
@@ -36,7 +33,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 
                     if (groundLevel > 1d)
                     {
-
                         if (montains > 0.7)
                         {
                             level.SetTile(x, y, Tile.Grass.ID);
@@ -45,7 +41,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                         {
                             level.SetTile(x, y, Tile.Rock.ID);
                         }
-
                     }
                     else if (groundLevel > 0.90)
                     {
@@ -62,7 +57,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     {
                         level.SetTile(x, y, Tile.Water.ID);
                     }
-
                 }
             }
 

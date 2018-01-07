@@ -1,8 +1,5 @@
-﻿using Maker.Rise.Components;
+﻿using Maker.Hevadea.Scenes;
 using Maker.Rise.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Maker.Hevadea.Scenes;
 
 namespace Maker.Hevadea.Game.Menus
 {
@@ -11,7 +8,7 @@ namespace Maker.Hevadea.Game.Menus
         private World World;
         public bool PauseGame = false;
         public GameScene Scene;
-        
+
         public Menu(World world, GameScene scene)
         {
             World = world;
@@ -20,12 +17,10 @@ namespace Maker.Hevadea.Game.Menus
 
         public void Show()
         {
-            
         }
-        
+
         public void Close()
         {
-            
         }
     }
 }

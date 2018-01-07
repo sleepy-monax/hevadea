@@ -49,11 +49,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Enum\Direction.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
+    <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
-    <Compile Include="Game\Entities\EntityPosition.cs" />
     <Compile Include="Game\Entities\GrassEntity.cs" />
     <Compile Include="Game\Entities\ItemEntity.cs" />
     <Compile Include="Game\Entities\Particles\DotParticle.cs" />
@@ -68,12 +69,12 @@
     <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
     <Compile Include="Game\LevelGen\Features\Overworld\GrassFeature.cs" />
     <Compile Include="Game\LevelGen\OverWorldGenerator.cs" />
+    <Compile Include="Game\LevelRenderState.cs" />
     <Compile Include="Game\Light.cs" />
     <Compile Include="Game\Menus\ChestMenu.cs" />
     <Compile Include="Game\Menus\CraftMenu.cs" />
     <Compile Include="Game\Menus\InventoryMenu.cs" />
     <Compile Include="Game\Menus\Menu.cs" />
-    <Compile Include="Game\SaveStorage\EntitySaveStorage.cs" />
     <Compile Include="Game\Entities\Mob.cs" />
     <Compile Include="Game\Entities\Player.cs" />
     <Compile Include="Game\Entities\TreeEntity.cs" />
@@ -83,8 +84,6 @@
     <Compile Include="Game\LevelGen\Features\Overworld\TreeFeature.cs" />
     <Compile Include="Game\LevelGen\Generator.cs" />
     <Compile Include="Game\LevelGen\GeneratorFeature.cs" />
-    <Compile Include="Game\SaveStorage\LevelSaveStorage.cs" />
-    <Compile Include="Game\SaveStorage\TileSaveStorage.cs" />
     <Compile Include="Game\Tiles\WoodFloorTile.cs" />
     <Compile Include="Game\Tiles\WoodWallTile.cs" />
     <Compile Include="Game\UI\InventoryUI.cs" />
@@ -173,11 +172,11 @@
       <InProject>false</InProject>
     </None>
     <None Include="app.manifest" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Craftings\" />
     <Folder Include="Game\Entities\IA\" />
+    <Folder Include="Game\Multiplayer\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maker.Rise\Maker.Rise.csproj">

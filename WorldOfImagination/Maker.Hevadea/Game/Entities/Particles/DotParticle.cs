@@ -1,4 +1,4 @@
-﻿using Maker.Rise.Utils;
+﻿using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -18,7 +18,7 @@ namespace Maker.Hevadea.Game.Entities.Particles
             Color = color;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime)
         {
             Time -= gameTime.ElapsedGameTime.Seconds;
 
@@ -27,11 +27,11 @@ namespace Maker.Hevadea.Game.Entities.Particles
                 Remove();
             }
 
-            X += (int)(ConstVal.TileSize * Speed.X);
-            Y += (int)(ConstVal.TileSize * Speed.Y);
+            MoveTo((int) (ConstVal.TileSize * Speed.X),
+                (int) (ConstVal.TileSize * Speed.Y));
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.FillRectangle(Bound, Color);
         }

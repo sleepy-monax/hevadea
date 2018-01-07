@@ -29,8 +29,12 @@ namespace Maker.Hevadea.Json
     {
         static Stack<List<string>> splitArrayPool = new Stack<List<string>>();
         static StringBuilder stringBuilder = new StringBuilder();
-        static readonly Dictionary<Type, Dictionary<string, FieldInfo>> fieldInfoCache = new Dictionary<Type, Dictionary<string, FieldInfo>>();
-        static readonly Dictionary<Type, Dictionary<string, PropertyInfo>> propertyInfoCache = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
+
+        static readonly Dictionary<Type, Dictionary<string, FieldInfo>> fieldInfoCache =
+            new Dictionary<Type, Dictionary<string, FieldInfo>>();
+
+        static readonly Dictionary<Type, Dictionary<string, PropertyInfo>> propertyInfoCache =
+            new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
         public static T FromJson<T>(this string json)
         {
@@ -44,6 +48,7 @@ namespace Maker.Hevadea.Json
                     i = AppendUntilStringEnd(true, i, json);
                     continue;
                 }
+
                 if (char.IsWhiteSpace(c))
                     continue;
 
@@ -51,20 +56,20 @@ namespace Maker.Hevadea.Json
             }
 
             //Parse the thing!
-            return (T)ParseValue(typeof(T), stringBuilder.ToString());
+            return (T) ParseValue(typeof(T), stringBuilder.ToString());
         }
 
         static int AppendUntilStringEnd(bool appendEscapeCharacter, int startIdx, string json)
         {
             stringBuilder.Append(json[startIdx]);
-            for (int i = startIdx+1; i<json.Length; i++)
+            for (int i = startIdx + 1; i < json.Length; i++)
             {
                 if (json[i] == '\\')
                 {
                     if (appendEscapeCharacter)
                         stringBuilder.Append(json[i]);
                     stringBuilder.Append(json[i + 1]);
-                    i++;//Skip next character as it is escaped
+                    i++; //Skip next character as it is escaped
                 }
                 else if (json[i] == '\"')
                 {
@@ -74,6 +79,7 @@ namespace Maker.Hevadea.Json
                 else
                     stringBuilder.Append(json[i]);
             }
+
             return json.Length - 1;
         }
 
@@ -82,11 +88,11 @@ namespace Maker.Hevadea.Json
         {
             List<string> splitArray = splitArrayPool.Count > 0 ? splitArrayPool.Pop() : new List<string>();
             splitArray.Clear();
-            if(json.Length == 2)
+            if (json.Length == 2)
                 return splitArray;
             int parseDepth = 0;
             stringBuilder.Length = 0;
-            for (int i = 1; i<json.Length-1; i++)
+            for (int i = 1; i < json.Length - 1; i++)
             {
                 switch (json[i])
                 {
@@ -109,6 +115,7 @@ namespace Maker.Hevadea.Json
                             stringBuilder.Length = 0;
                             continue;
                         }
+
                         break;
                 }
 
@@ -127,11 +134,11 @@ namespace Maker.Hevadea.Json
                 if (json.Length <= 2)
                     return string.Empty;
                 StringBuilder stringBuilder = new StringBuilder();
-                for (int i = 1; i<json.Length-1; ++i)
+                for (int i = 1; i < json.Length - 1; ++i)
                 {
                     if (json[i] == '\\' && i + 1 < json.Length - 1)
                     {
-                        switch (json[i+1])
+                        switch (json[i + 1])
                         {
                             case '"':
                                 stringBuilder.Append('"');
@@ -161,41 +168,50 @@ namespace Maker.Hevadea.Json
                                 stringBuilder.Append(json[i]);
                                 break;
                         }
+
                         ++i;
                     }
                     else
                         stringBuilder.Append(json[i]);
                 }
+
                 return stringBuilder.ToString();
             }
+
             if (type == typeof(int))
             {
                 int.TryParse(json, out int result);
                 return result;
             }
+
             if (type == typeof(byte))
             {
                 byte.TryParse(json, out byte result);
                 return result;
             }
+
             if (type == typeof(float))
             {
                 float.TryParse(json, out float result);
                 return result;
             }
+
             if (type == typeof(double))
             {
                 double.TryParse(json, out double result);
                 return result;
             }
+
             if (type == typeof(bool))
             {
                 return json.ToLower() == "true";
             }
+
             if (json == "null")
             {
                 return null;
             }
+
             if (type.IsArray)
             {
                 Type arrayType = type.GetElementType();
@@ -209,6 +225,7 @@ namespace Maker.Hevadea.Json
                 splitArrayPool.Push(elems);
                 return newArray;
             }
+
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
             {
                 Type listType = type.GetGenericArguments()[0];
@@ -216,12 +233,13 @@ namespace Maker.Hevadea.Json
                     return null;
 
                 List<string> elems = Split(json);
-                var list = (IList)type.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { elems.Count });
+                var list = (IList) type.GetConstructor(new Type[] {typeof(int)}).Invoke(new object[] {elems.Count});
                 for (int i = 0; i < elems.Count; i++)
                     list.Add(ParseValue(listType, elems[i]));
                 splitArrayPool.Push(elems);
                 return list;
             }
+
             if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
             {
                 Type keyType, valueType;
@@ -242,7 +260,8 @@ namespace Maker.Hevadea.Json
                 if (elems.Count % 2 != 0)
                     return null;
 
-                var dictionary = (IDictionary)type.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { elems.Count / 2 });
+                var dictionary = (IDictionary) type.GetConstructor(new Type[] {typeof(int)})
+                    .Invoke(new object[] {elems.Count / 2});
                 for (int i = 0; i < elems.Count; i += 2)
                 {
                     if (elems[i].Length <= 2)
@@ -251,12 +270,15 @@ namespace Maker.Hevadea.Json
                     object val = ParseValue(valueType, elems[i + 1]);
                     dictionary.Add(keyValue, val);
                 }
+
                 return dictionary;
             }
+
             if (type == typeof(object))
             {
                 return ParseAnonymousValue(json);
-            }    
+            }
+
             if (json[0] == '{' && json[json.Length - 1] == '}')
             {
                 return ParseObject(type, json);
@@ -279,6 +301,7 @@ namespace Maker.Hevadea.Json
                     dict.Add(elems[i].Substring(1, elems[i].Length - 2), ParseAnonymousValue(elems[i + 1]));
                 return dict;
             }
+
             if (json[0] == '[' && json[json.Length - 1] == ']')
             {
                 List<string> items = Split(json);
@@ -287,11 +310,13 @@ namespace Maker.Hevadea.Json
                     finalList.Add(ParseAnonymousValue(items[i]));
                 return finalList;
             }
+
             if (json[0] == '\"' && json[json.Length - 1] == '\"')
             {
                 string str = json.Substring(1, json.Length - 2);
                 return str.Replace("\\", string.Empty);
             }
+
             if (char.IsDigit(json[0]) || json[0] == '-')
             {
                 if (json.Contains("."))
@@ -305,6 +330,7 @@ namespace Maker.Hevadea.Json
                     return result;
                 }
             }
+
             if (json == "true")
                 return true;
             if (json == "false")
@@ -327,6 +353,7 @@ namespace Maker.Hevadea.Json
                 nameToField = type.GetFields().Where(field => field.IsPublic).ToDictionary(field => field.Name);
                 fieldInfoCache.Add(type, nameToField);
             }
+
             if (!propertyInfoCache.TryGetValue(type, out var nameToProperty))
             {
                 nameToProperty = type.GetProperties().ToDictionary(p => p.Name);

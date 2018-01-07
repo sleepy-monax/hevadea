@@ -8,10 +8,9 @@ namespace Maker.Rise.Components
     {
         private SpriteBatch uiSpriteBatch;
         public bool Debug => Engine.Debug.Visible;
-        
+
         public UiManager(RiseGame game) : base(game)
         {
-            
         }
 
         public override void Initialize()
@@ -21,7 +20,6 @@ namespace Maker.Rise.Components
 
         public override void Draw(GameTime gameTime)
         {
-            
         }
 
         public override void Update(GameTime gameTime)
