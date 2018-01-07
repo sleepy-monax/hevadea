@@ -23,7 +23,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     {
                         var tree = new TreeEntity();
                         level.AddEntity(tree);
-                        tree.MoveTo(x * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4),
+                        tree.SetPosition(x * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4),
                             y * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4));
                     }
                 }

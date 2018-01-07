@@ -204,7 +204,7 @@ namespace Maker.Hevadea.Game
             {
                 var e = Entities[i];
 
-                e.OnUpdate(gameTime);
+                e.Update(gameTime);
 
                 if (e.Removed)
                 {
@@ -286,7 +286,7 @@ namespace Maker.Hevadea.Game
         {
             foreach (var e in state.OnScreenEntities)
             {
-                e.OnDraw(spriteBatch, gameTime);
+                e.Draw(spriteBatch, gameTime);
             }
         }
 

@@ -19,6 +19,7 @@ namespace Maker.Hevadea.Game.Entities
         public int Y { get; private set; }
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 48;
+        public Direction Facing { get; set; } = Direction.Down;
 
         public int Health { get; set; } = 1;
         public int MaxHealth { get; set; } = 1;
@@ -51,6 +52,9 @@ namespace Maker.Hevadea.Game.Entities
             }
 
             components.Add(component);
+            component.Owner = this;
+
+            components.Sort((a, b) => a.Priority.CompareTo(b.Priority));
         }
 
         public T GetComponent<T>() where T : EntityComponent
@@ -64,6 +68,19 @@ namespace Maker.Hevadea.Game.Entities
             }
 
             throw new Exception($"Component {nameof(T)} not found.");
+        }
+
+        public bool HasComponent<T>() where T : EntityComponent
+        {
+            foreach (var e in components)
+            {
+                if (e is T)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // Health macanic -----------------------------------------------------
@@ -130,7 +147,7 @@ namespace Maker.Hevadea.Game.Entities
 
         // Movement and colisions ---------------------------------------------
 
-        public virtual void MoveTo(int x, int y)
+        public virtual void SetPosition(int x, int y)
         {
             var oldPosition = GetTilePosition();
 
@@ -256,13 +273,13 @@ namespace Maker.Hevadea.Game.Entities
         // Update and Draw
         public void Update(GameTime gameTime)
         {
-            OnUpdate(gameTime);
-
-
+            // always update component before the entity.
             foreach (var c in components)
             {
                 c.Update(gameTime);
             }
+
+            OnUpdate(gameTime);
         }
 
         public virtual void OnUpdate(GameTime gameTime)
@@ -271,12 +288,12 @@ namespace Maker.Hevadea.Game.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            OnDraw(spriteBatch, gameTime);
-
             foreach (var c in components)
             {
                 c.Draw(spriteBatch, gameTime);
             }
+
+            OnDraw(spriteBatch, gameTime);
         }
 
         public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

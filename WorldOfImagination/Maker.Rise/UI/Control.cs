@@ -45,7 +45,7 @@ namespace Maker.Rise.UI
 
         public Point MaximumSize { get; set; } = Point.Zero;
 
-        private Rectangle Host
+        public Rectangle Host
             => new Rectangle(Bound.X + Padding.Left, Bound.Y + Padding.Up,
                 Bound.Width - Padding.Left - Padding.Right, Bound.Height - Padding.Up - Padding.Down);
 

@@ -86,7 +86,7 @@ namespace Maker.Hevadea.Game
             world.Player = new Player();
             world[0].AddEntity(world.Player);
 
-            world.Player.MoveTo((world.Levels[0].Width / 2) * ConstVal.TileSize,
+            world.Player.SetPosition((world.Levels[0].Width / 2) * ConstVal.TileSize,
                 (world.Levels[0].Height / 2) * ConstVal.TileSize);
 
 

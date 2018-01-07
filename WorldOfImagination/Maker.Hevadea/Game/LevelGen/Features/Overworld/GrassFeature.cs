@@ -24,7 +24,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     {
                         var grass = new GrassEntity();
                         level.AddEntity(grass);
-                        grass.MoveTo(x * ConstVal.TileSize + rnd.Next(0, 4), y * ConstVal.TileSize + rnd.Next(0, 4));
+                        grass.SetPosition(x * ConstVal.TileSize + rnd.Next(0, 4), y * ConstVal.TileSize + rnd.Next(0, 4));
                     }
                 }
             }
