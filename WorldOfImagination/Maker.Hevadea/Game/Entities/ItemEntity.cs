@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Maker.Hevadea.Game.Entities.Component.Misc;
 
 namespace Maker.Hevadea.Game.Entities
 {
@@ -22,8 +23,10 @@ namespace Maker.Hevadea.Game.Entities
 
             foreach (var e in entities)
             {
-                if (e is Mob m && m.Pickup(Item))
+                if (e.HasComponent<InventoryComponent>() 
+                    && e.GetComponent<InventoryComponent>().Pickup(Item))
                 {
+                    
                     Console.WriteLine($"{e.GetType().Name} pickup {Item.GetType().Name}");
                     Remove();
                 }

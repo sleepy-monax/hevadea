@@ -12,7 +12,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
         public override void ApplyInternal(Level level, Generator generator)
         {
             Random rnd = new Random(generator.Seed);
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 32 * (generator.LevelSize / 256); i++)
             {
                 int x = rnd.Next(generator.LevelSize);
                 int y = rnd.Next(generator.LevelSize);

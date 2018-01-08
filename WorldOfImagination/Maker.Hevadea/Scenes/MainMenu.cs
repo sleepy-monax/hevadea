@@ -30,11 +30,13 @@ namespace Maker.Hevadea.Scenes
                 new ParalaxeLayer(Ressources.img_forest_trees1, 2.5f)
             );
 
+            UiRoot.Padding = new Padding(64, 64, 256, 265);
+            
             var menuButtonHost = new Panel
             {
                 Dock = Dock.Bottom,
-                Layout = LayoutMode.Vertical,
-                Bound = new Rectangle(64, 64, 64, 64),
+                Layout = LayoutMode.Horizontal,
+                Bound = new Rectangle(64, 64, 64, 72),
             };
 
             var playButton = new Button
@@ -42,14 +44,6 @@ namespace Maker.Hevadea.Scenes
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "play",
                 Icon = EngineRessources.IconPlay
-            };
-
-
-            var editorButton = new Button
-            {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "editor",
-                Icon = EngineRessources.IconEdit
             };
 
             var optionButton = new Button
@@ -79,15 +73,11 @@ namespace Maker.Hevadea.Scenes
 
             UiRoot.AddChild(menuButtonHost);
             UiRoot.AddChild(titleLabel);
+            
             menuButtonHost.AddChild(playButton);
-            menuButtonHost.AddChild(editorButton);
             menuButtonHost.AddChild(optionButton);
             menuButtonHost.AddChild(exitButton);
 
-            menuButtonHost.Bound = new Rectangle(0, 0, 360, 64 * menuButtonHost.Childs.Count);
-
-            var padding = Engine.Graphic.GetWidth() / 2 - menuButtonHost.Bound.Width / 2;
-            UiRoot.Padding = new Padding(256, 256, padding, padding);
             UiRoot.RefreshLayout();
         }
 
@@ -110,7 +100,6 @@ namespace Maker.Hevadea.Scenes
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
                 Engine.CommonRasterizerState);
             paralaxe.Draw(sb, gameTime);
-            sb.FillRectangle(UiRoot.Host, Color.Black * 0.5f);
             sb.End();
         }
 

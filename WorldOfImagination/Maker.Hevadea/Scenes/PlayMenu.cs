@@ -26,14 +26,14 @@ namespace Maker.Hevadea.Scenes
             var menuButtonHost = new Panel
             {
                 Dock = Dock.Bottom,
-                Bound = new Rectangle(64, 64, 64, 64),
+                Bound = new Rectangle(64, 64, 64, 72),
                 Layout = LayoutMode.Horizontal
             };
 
             var gameListHost = new Panel
             {
                 Dock = Dock.Fill,
-                Layout = LayoutMode.Vertical
+                Layout = LayoutMode.Horizontal
             };
 
             var titleLabel = new Label
@@ -48,7 +48,7 @@ namespace Maker.Hevadea.Scenes
                 Text = "New",
                 Icon = EngineRessources.IconAdd
             };
-            var backButton = new MainMenuButton
+            var backButton = new Button
             {
                 Text = "Back",
                 Icon = EngineRessources.IconBack
@@ -60,17 +60,17 @@ namespace Maker.Hevadea.Scenes
             };
 
             backButton.OnMouseClick +=
-                delegate(object sender, EventArgs args) { Engine.Scene.Switch(new MainMenu()); };
+                delegate { Engine.Scene.Switch(new MainMenu()); };
 
             newButton.OnMouseClick +=
-                delegate(object sender, EventArgs args)
+                delegate
                 {
                     var world = World.Generate(0);
                     Engine.Scene.Switch(new GameScene(world));
                 };
 
             deleteButton.OnMouseClick +=
-                delegate(object sender, EventArgs args) { };
+                delegate { };
 
             UiRoot.AddChild(titleLabel);
             UiRoot.AddChild(menuButtonHost);

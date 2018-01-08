@@ -179,6 +179,7 @@ namespace Maker.Rise.UI
 
         protected abstract void OnUpdate(GameTime gameTime);
 
+        private bool mouse = false;
         public void Update(GameTime gameTime)
         {
             OldMouseState = MouseState;
@@ -191,7 +192,7 @@ namespace Maker.Rise.UI
                     MouseState = MouseState.Down;
                 }
 
-                if (Engine.Input.MouseLeftClick)
+                if (mouse && !Engine.Input.MouseLeft)
                 {
                     RaiseOnMouseClick();
                 }
@@ -202,6 +203,9 @@ namespace Maker.Rise.UI
             }
 
             OnUpdate(gameTime);
+
+            mouse = Engine.Input.MouseLeft;
+            
             foreach (var c in Childs)
             {
                 c.Update(gameTime);

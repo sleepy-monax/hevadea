@@ -44,7 +44,7 @@ namespace Maker.Hevadea.Game
                 Engine.Graphic.GetHeight());
         }
 
-        public void Draw(GameTime gameTime, bool showDebug = true, bool renderTiles = true, bool renderEntity = true)
+        public void Draw(GameTime gameTime)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, Engine.CommonRasterizerState,
                 null, Camera.GetTransform());
@@ -53,9 +53,9 @@ namespace Maker.Hevadea.Game
 
             Player.Level.DrawTerrain(state, spriteBatch, gameTime);
             Player.Level.DrawEntities(state, spriteBatch, gameTime);
-
-            state.Clear();
+            
             spriteBatch.End();
+           
         }
 
         public void Update(GameTime gameTime)
@@ -79,13 +79,17 @@ namespace Maker.Hevadea.Game
 
         public static World Generate(int seed)
         {
-            World world = new World();
+            var world = new World
+            {
+                [0] = new OverWorldGenerator().Generate(),
+                // TODO: generate other level.
+                Player = new Player()
+            };
 
-            world[0] = new OverWorldGenerator().Generate();
 
-            world.Player = new Player();
             world[0].AddEntity(world.Player);
 
+            // TODO: Beter player placing on new game.
             world.Player.SetPosition((world.Levels[0].Width / 2) * ConstVal.TileSize,
                 (world.Levels[0].Height / 2) * ConstVal.TileSize);
 

@@ -8,6 +8,7 @@ using Maker.Rise.Enum;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Maker.Hevadea.Game.Entities.Component.Misc;
 using Control = Maker.Rise.UI.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
@@ -17,9 +18,6 @@ namespace Maker.Hevadea.Scenes
     {
         private SpriteBatch spriteBatch;
         public World World;
-        private bool showDebug = false;
-        private bool renderTiles = true;
-        private bool renderEntities = true;
         public Menu CurrentMenu = null;
 
         public GameScene(World world)
@@ -41,47 +39,33 @@ namespace Maker.Hevadea.Scenes
 
         public override void Update(GameTime gameTime)
         {
-            if (Engine.Input.KeyDown(Keys.F4))
-            {
-                if (Engine.Input.KeyPress(Keys.D))
-                {
-                    showDebug = !showDebug;
-                }
-
-                if (Engine.Input.KeyPress(Keys.T))
-                {
-                    renderTiles = !renderTiles;
-                }
-
-                if (Engine.Input.KeyPress(Keys.E))
-                {
-                    renderEntities = !renderEntities;
-                }
-            }
-
+            // Update the world.
             if (CurrentMenu == null || !CurrentMenu.PauseGame)
             {
                 World.Update(gameTime);
             }
 
+            var playerMovement = World.Player.GetComponent<MoveComponent>();
+            
+            // Player mouvement.
             if (Engine.Input.KeyDown(Keys.Q))
             {
-                World.Player.Move(-1, 0, Direction.Left);
+                playerMovement.Move(-1, 0, Direction.Left);
             }
 
             if (Engine.Input.KeyDown(Keys.D))
             {
-                World.Player.Move(1, 0, Direction.Right);
+                playerMovement.Move(1, 0, Direction.Right);
             }
 
             if (Engine.Input.KeyDown(Keys.Z))
             {
-                World.Player.Move(0, -1, Direction.Up);
+                playerMovement.Move(0, -1, Direction.Up);
             }
 
             if (Engine.Input.KeyDown(Keys.S))
             {
-                World.Player.Move(0, 1, Direction.Down);
+                playerMovement.Move(0, 1, Direction.Down);
             }
 
             if (Engine.Input.KeyPress(Keys.N))
@@ -95,7 +79,7 @@ namespace Maker.Hevadea.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            World.Draw(gameTime, showDebug, renderTiles, renderEntities);
+            World.Draw(gameTime);
         }
 
         public override void Unload()

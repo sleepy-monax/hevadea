@@ -54,7 +54,7 @@ namespace Maker.Hevadea.Game.Entities
             components.Add(component);
             component.Owner = this;
 
-            components.Sort((a, b) => a.Priority.CompareTo(b.Priority));
+            components.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
         }
 
         public T GetComponent<T>() where T : EntityComponent
@@ -159,92 +159,6 @@ namespace Maker.Hevadea.Game.Entities
             //TODO: make this smarter
             Level?.RemoveEntityFromTile(oldPosition, this);
             Level?.AddEntityToTile(pos, this);
-        }
-
-        public virtual bool Move(int accelerationX, int accelerationY)
-        {
-            var oldPosition = GetTilePosition();
-
-            if (accelerationX != 0 || accelerationY != 0)
-            {
-                if (MoveInternal(accelerationX, 0) | MoveInternal(0, accelerationY))
-                {
-                    var pos = GetTilePosition();
-                    Level.GetTile(pos.X, pos.Y).SteppedOn(this, pos);
-
-                    //TODO: make this smarter
-                    Level?.RemoveEntityFromTile(oldPosition, this);
-                    Level?.AddEntityToTile(pos, this);
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        protected bool MoveInternal(int aX, int aY)
-        {
-            var onTilePosition = GetTilePosition();
-
-            if (X + aX + Width >= Level.Width * ConstVal.TileSize) aX = 0;
-            if (Y + aY + Height >= Level.Height * ConstVal.TileSize) aY = 0;
-            if (X + aX < 0) aX = 0;
-            if (Y + aY < 0) aY = 0;
-
-            for (var ox = -1; ox < 2; ox++)
-            {
-                for (var oy = -1; oy < 2; oy++)
-                {
-                    var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
-
-                    if (Level.GetTile(t.X, t.Y).IsBlocking(this, t) & !NoClip)
-                    {
-                        if (Tile.IsColiding(t, X, Y + aY, Width, Height))
-                        {
-                            aY = 0;
-                        }
-
-                        if (Tile.IsColiding(t, X + aX, Y, Width, Height))
-                        {
-                            aX = 0;
-                        }
-
-                        if (Tile.IsColiding(t, X + aX, Y + aY, Width, Height))
-                        {
-                            aX = 0;
-                            aY = 0;
-                        }
-                    }
-
-                    foreach (var e in Level.GetEntityOnTile(t.X, t.Y))
-                    {
-                        if (e != this && e.IsBlocking(this) && !NoClip)
-                        {
-                            if (e.IsColliding(X, Y + aY, Width, Height))
-                            {
-                                aY = 0;
-                            }
-
-                            if (e.IsColliding(X + aX, Y, Width, Height))
-                            {
-                                aX = 0;
-                            }
-
-                            if (e.IsColliding(X + aX, Y + aY, Width, Height))
-                            {
-                                aX = 0;
-                                aY = 0;
-                            }
-                        }
-                    }
-                }
-            }
-
-            X += aX;
-            Y += aY;
-
-            return !(aX == 0 && aY == 0);
         }
 
         public virtual bool IsBlocking(Entity entity)

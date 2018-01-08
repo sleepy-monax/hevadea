@@ -55,6 +55,8 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
+    <Compile Include="Game\Entities\Component\Misc\HealComponent.cs" />
+    <Compile Include="Game\Entities\Component\Misc\InventoryComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\LightComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\MoveComponent.cs" />
     <Compile Include="Game\Entities\Component\Render\NpcRenderComponent.cs" />

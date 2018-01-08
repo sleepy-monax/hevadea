@@ -79,7 +79,6 @@
     <Compile Include="UI\DialogBox.cs" />
     <Compile Include="UI\Label.cs" />
     <Compile Include="UI\List.cs" />
-    <Compile Include="UI\MainMenuButton.cs" />
     <Compile Include="UI\Panel.cs" />
     <Compile Include="UI\Picture.cs" />
     <Compile Include="UI\TextInput.cs" />

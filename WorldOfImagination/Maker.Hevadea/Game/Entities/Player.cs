@@ -9,9 +9,7 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class Player : Mob
     {
-        public int CurrentLevel = 0;
         public Item HoldingItem = new Item();
-        public Inventory Inventory;
 
         public Player()
         {
@@ -23,15 +21,10 @@ namespace Maker.Hevadea.Game.Entities
 
             Health = MaxHealth = 20;
             IsInvincible = false;
-            Inventory = new Inventory();
 
             AddComponent(new MoveComponent());
-            AddComponent(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 0, new Point(16, 16))));
-        }
-
-        public override bool Pickup(Item item)
-        {
-            return Inventory.AddItem(item);
+            AddComponent(new InventoryComponent(16));
+            AddComponent(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 0, new Point(16, 16))) {Priority = 1});
         }
     }
 }
