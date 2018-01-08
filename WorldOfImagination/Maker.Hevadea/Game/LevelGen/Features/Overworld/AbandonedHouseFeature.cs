@@ -12,7 +12,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
         public override void ApplyInternal(Level level, Generator generator)
         {
             Random rnd = new Random(generator.Seed);
-            for (int i = 0; i < 32 * (generator.LevelSize / 256); i++)
+            for (int i = 0; i < 48 * (generator.LevelSize / 256); i++)
             {
                 int x = rnd.Next(generator.LevelSize);
                 int y = rnd.Next(generator.LevelSize);
@@ -27,7 +27,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     for (int dy = 0; dy < sy; dy++)
                     {
                         int id = level.GetTile(x + dx, y + dy).ID;
-                        if (!(id == Tile.Rock.ID | id == Tile.Grass.ID))
+                        if (id != Tile.Grass.ID)
                         {
                             isEnoughtSpace = false;
                         }

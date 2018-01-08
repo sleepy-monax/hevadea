@@ -4,7 +4,7 @@ namespace Maker.Hevadea.Game.Items
 {
     public class Inventory
     {
-        public int capacity = 16;
+        public int Capacity = 16;
         public List<Item> Items = new List<Item>();
 
         public void Remove<ItemType>(int quantity)
@@ -15,21 +15,17 @@ namespace Maker.Hevadea.Game.Items
         {
             if (item is StackableItem s)
             {
-                if (Items.Count != capacity || Contain(s))
+                var stack = (StackableItem)Get(s);
+
+                if (stack != null && stack.Count + s.Count <= stack.StackSize)
                 {
-                    if (s.Count < s.StackSize)
-                    {
-                        s.Count++;
-                        return true;
-                    }
+                    stack.Count += s.Count;
+                    return true;
                 }
+
             }
 
-            if (Items.Count == capacity)
-            {
-                return false;
-            }
-
+            if (Items.Count == Capacity) return false;
             Items.Add(item);
             return true;
         }
@@ -54,16 +50,47 @@ namespace Maker.Hevadea.Game.Items
             return false;
         }
 
-        public int Count<ItemType>()
+        public int Count<T>() where T: Item
         {
-            int count = 0;
+            var count = 0;
 
             foreach (var item in Items)
             {
-                if (typeof(Item) is ItemType)
+                if (item is T)
                 {
                     count++;
                 }
+            }
+
+            return count;
+        }
+
+
+
+        public int Count(Item item)
+        {
+            var count = 0;
+
+            foreach (var i in Items)
+            {
+                if (i.GetType() == item.GetType())
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public int Count()
+        {
+            var count = 0;
+
+            foreach (var i in Items)
+            {
+
+                count++;
+
             }
 
             return count;

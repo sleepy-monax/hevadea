@@ -1,4 +1,5 @@
 ﻿using Maker.Hevadea.Game.Items;
+using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,42 +9,38 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
     {
         public readonly Inventory Inventory;
         public bool CanPickUp { get; set; } = true;
-
-        private Item LastAdded = null;
-        private int dt = 0;
+        private Item lastAdded;
+        private readonly Animation anim = new Animation();
 
         public InventoryComponent(int slotCount)
         {
-            Inventory = new Inventory{capacity = slotCount};
+            Inventory = new Inventory{Capacity = slotCount};
         }
         
         public bool Pickup(Item item)
         {
             if (CanPickUp && Inventory.AddItem(item))
             {
-                LastAdded = item;
+                anim.Reset();
+                anim.Show = true;
+                anim.Speed = 0.50f;
+
+                lastAdded = item;
                 return true;
             }
-            return false ;
+
+            return false;
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (dt > 64)
-            {
-                LastAdded = null;
-                dt = 0;
-            }
-            
-            if (LastAdded != null)
-            {
-                dt++;
-            }
+            anim.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            LastAdded?.Sprite.Draw(spriteBatch, new Vector2(Owner.X + Owner.Width / 2f, Owner.Y+ Owner.Height / 2 - dt), 0.5f, Color.White);
+            var v = 1f - anim.SinTwoPhases;
+            lastAdded?.Sprite.Draw(spriteBatch, new Vector2(Owner.X + Owner.Width / 2f - 8 * v, Owner.Y+ Owner.Height / 2 - 24 * v), v, Color.White);
         }
     }
 }

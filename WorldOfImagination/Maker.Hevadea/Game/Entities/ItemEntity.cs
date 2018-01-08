@@ -8,7 +8,7 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class ItemEntity : Entity
     {
-        Item Item;
+        public readonly Item Item;
 
         public ItemEntity(Item item)
         {
@@ -23,12 +23,15 @@ namespace Maker.Hevadea.Game.Entities
 
             foreach (var e in entities)
             {
-                if (e.HasComponent<InventoryComponent>() 
-                    && e.GetComponent<InventoryComponent>().Pickup(Item))
+                if (e.HasComponent<InventoryComponent>())
                 {
-                    
-                    Console.WriteLine($"{e.GetType().Name} pickup {Item.GetType().Name}");
-                    Remove();
+                    var inv = e.GetComponent<InventoryComponent>();
+
+                    if (inv.Pickup(Item))
+                    {
+                        Console.WriteLine($"{e.GetType().Name} pickup {Item.GetType().Name}");
+                        Remove();
+                    }
                 }
             }
         }

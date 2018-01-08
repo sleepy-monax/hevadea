@@ -24,7 +24,7 @@ namespace Maker.Hevadea.Game.Entities
 
             AddComponent(new MoveComponent());
             AddComponent(new InventoryComponent(16));
-            AddComponent(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 0, new Point(16, 16))) {Priority = 1});
+            AddComponent(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 0, new Point(16, 16))));
         }
     }
 }
