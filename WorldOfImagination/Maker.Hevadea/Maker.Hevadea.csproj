@@ -54,6 +54,10 @@
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
+    <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
+    <Compile Include="Game\Entities\Component\Misc\LightComponent.cs" />
+    <Compile Include="Game\Entities\Component\Misc\MoveComponent.cs" />
+    <Compile Include="Game\Entities\Component\Render\NpcRenderComponent.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\GrassEntity.cs" />
     <Compile Include="Game\Entities\ItemEntity.cs" />
@@ -174,7 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Game\Craftings\" />
-    <Folder Include="Game\Entities\IA\" />
     <Folder Include="Game\Multiplayer\" />
   </ItemGroup>
   <ItemGroup>

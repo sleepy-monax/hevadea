@@ -27,7 +27,7 @@ namespace Maker.Hevadea.Game.Entities.Particles
                 Remove();
             }
 
-            MoveTo((int) (ConstVal.TileSize * Speed.X),
+            SetPosition((int) (ConstVal.TileSize * Speed.X),
                 (int) (ConstVal.TileSize * Speed.Y));
         }
 

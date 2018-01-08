@@ -17,7 +17,7 @@ namespace Maker.Hevadea.Test
             var e = new Entity();
 
             var oldPos = e.GetTilePosition();
-            e.MoveTo(1000, 1000);
+            e.SetPosition(1000, 1000);
 
             var newPos = e.GetTilePosition();
 

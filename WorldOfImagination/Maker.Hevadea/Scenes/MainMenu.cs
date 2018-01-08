@@ -32,35 +32,36 @@ namespace Maker.Hevadea.Scenes
 
             var menuButtonHost = new Panel
             {
-                Dock = Dock.Left,
-                Layout = LayoutMode.Vertical
+                Dock = Dock.Bottom,
+                Layout = LayoutMode.Vertical,
+                Bound = new Rectangle(64, 64, 64, 64),
             };
 
-            var playButton = new MainMenuButton
+            var playButton = new Button
             {
-                Bound = new Rectangle(64, 64, 64, 72),
+                Bound = new Rectangle(64, 64, 64, 64),
                 Text = "play",
                 Icon = EngineRessources.IconPlay
             };
 
 
-            var editorButton = new MainMenuButton
+            var editorButton = new Button
             {
-                Bound = new Rectangle(64, 64, 64, 72),
+                Bound = new Rectangle(64, 64, 64, 64),
                 Text = "editor",
                 Icon = EngineRessources.IconEdit
             };
 
-            var optionButton = new MainMenuButton
+            var optionButton = new Button
             {
-                Bound = new Rectangle(64, 64, 64, 72),
+                Bound = new Rectangle(64, 64, 64, 64),
                 Text = "option",
                 Icon = EngineRessources.IconSettings
             };
 
-            var exitButton = new MainMenuButton
+            var exitButton = new Button
             {
-                Bound = new Rectangle(64, 64, 64, 72),
+                Bound = new Rectangle(64, 64, 64, 64),
                 Text = "exit",
                 Icon = EngineRessources.IconClose
             };
@@ -84,8 +85,9 @@ namespace Maker.Hevadea.Scenes
             menuButtonHost.AddChild(exitButton);
 
             menuButtonHost.Bound = new Rectangle(0, 0, 360, 64 * menuButtonHost.Childs.Count);
-            var padding = Engine.Graphic.GetHeight() / 2 - menuButtonHost.Bound.Height / 2;
-            UiRoot.Padding = new Padding(padding, padding, 16, 16);
+
+            var padding = Engine.Graphic.GetWidth() / 2 - menuButtonHost.Bound.Width / 2;
+            UiRoot.Padding = new Padding(256, 256, padding, padding);
             UiRoot.RefreshLayout();
         }
 
@@ -105,12 +107,10 @@ namespace Maker.Hevadea.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            ;
-
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
                 Engine.CommonRasterizerState);
             paralaxe.Draw(sb, gameTime);
-            sb.FillRectangle(new Rectangle(0, 0, 96, Engine.Graphic.GetHeight()), Color.Black * 0.5f);
+            sb.FillRectangle(UiRoot.Host, Color.Black * 0.5f);
             sb.End();
         }
 

@@ -42,7 +42,7 @@ namespace Maker.Hevadea.Game.Entities
         {
             var dropWood = new ItemEntity(new WoodLogItem());
             Level.AddEntity(dropWood);
-            dropWood.MoveTo(X, Y);
+            dropWood.SetPosition(X, Y);
             base.Die();
         }
     }

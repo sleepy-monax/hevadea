@@ -24,7 +24,7 @@ namespace Maker.Hevadea.Scenes
             logo = Ressources.img_maker_logo;
 
             Engine.SetMouseVisibility(true);
-            //Engine.SetFullScreen(true);
+            Engine.SetFullScreen();
 
             // Setup
 

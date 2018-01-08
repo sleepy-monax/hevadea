@@ -18,6 +18,7 @@ namespace Maker.Rise.UI
 
         public Button()
         {
+            animation.Speed = 1f;
         }
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -25,8 +26,8 @@ namespace Maker.Rise.UI
             var invClickanim = (1f - clickAnimation.TwoPhases);
 
 
-            var width = (int) (Bound.Width + 16f * animation.SinTwoPhases - 32f * downAnimation.SinTwoPhases);
-            var height = (int) (Bound.Height + 16f * animation.SinTwoPhases - 8f * downAnimation.SinTwoPhases);
+            var width = (int) (Bound.Width + 8f * animation.SinTwoPhases - 16f * downAnimation.SinTwoPhases - 16f);
+            var height = (int) (Bound.Height + 8f * animation.SinTwoPhases - 16f * downAnimation.SinTwoPhases - 16f);
 
             var rectX = Bound.X + Bound.Width / 2 - width / 2;
             var rectY = Bound.Y + Bound.Height / 2 - height / 2;
@@ -35,17 +36,14 @@ namespace Maker.Rise.UI
             var clickRectWidth = (int) (width * clickAnimation.SinTwoPhases);
             var clickRect = new Rectangle(rectX + width / 2 - clickRectWidth / 2, rectY, clickRectWidth, height);
 
-            spriteBatch.FillRectangle(rect, Color.Black * animation.TwoPhases);
+            spriteBatch.FillRectangle(rect, Color.Chocolate * (1f - animation.Linear));
+            spriteBatch.FillRectangle(rect, Color.Black * animation.Linear);
             spriteBatch.FillRectangle(clickRect, Color.White * invClickanim);
 
             if (Icon != null)
             {
-                spriteBatch.Draw(Icon,
-                    new Vector2(Bound.X + (Bound.Width / 2 - Icon.Width / 2),
-                        Bound.Y + Bound.Height / 2 - (Icon.Height / 2) * animation.TwoPhases),
-                    Color.White * animation.TwoPhases);
                 spriteBatch.DrawString(EngineRessources.FontBebas, Text, Bound, Alignement.Center, TextStyle.DropShadow,
-                    Color.White * (1f - animation.Linear), 1f + animation.SinTwoPhases);
+                    Color.White);
             }
             else
             {
