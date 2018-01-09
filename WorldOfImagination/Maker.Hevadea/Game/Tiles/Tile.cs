@@ -108,7 +108,7 @@ namespace Maker.Hevadea.Game.Tiles
         {
         }
 
-        public virtual void Interacte(Mob mob, Item item, TilePosition pos, Direction attackDirection)
+        public virtual void Interacte(Entity mob, Item item, TilePosition pos, Direction attackDirection)
         {
         }
 

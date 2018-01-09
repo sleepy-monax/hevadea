@@ -1,32 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+﻿using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component.Render
 {
-    public class NpcRenderComponent : EntityComponent
+    public class NpcRenderComponent : EntityComponent, IDrawableComponent
     {
-        private Sprite Sprite;
+        public Sprite Sprite { get; set; }
 
         public NpcRenderComponent(Sprite sprite)
         {
             Sprite = sprite;
         }
 
-        public override void Update(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            // do noting
-        }
-
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            var animationFrame = (int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4);
+            var animationFrame = (int)(gameTime.TotalGameTime.TotalSeconds * 4 % 4);
             var isWalking = false;
 
             if (Owner.HasComponent<MoveComponent>())
@@ -50,12 +40,12 @@ namespace Maker.Hevadea.Game.Entities.Component.Render
                     animationFrame = 2;
                 }
 
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(Owner.X - 4, Owner.Y - 7), new Point(animationFrame, (int)Owner.Facing),
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(Owner.X - 4, Owner.Y - 18), new Point(animationFrame, (int)Owner.Facing),
                     Color.White);
             }
             else
             {
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(Owner.X - 4, Owner.Y - 7), new Point(2, (int)Owner.Facing), Color.White);
+                Sprite.DrawSubSprite(spriteBatch, new Vector2(Owner.X - 4, Owner.Y - 18), new Point(2, (int)Owner.Facing), Color.White);
             }
 
             isWalking = false;

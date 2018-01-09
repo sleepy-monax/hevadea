@@ -13,15 +13,5 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         public bool On { get; set; } = false;
         public int Power { get; set; } = 32;
         public Color Color { get; set; } = Color.White;
-
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-
-        }
     }
 }

@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component.Misc
 {
-    public class MoveComponent : EntityComponent
+    public class MoveComponent : EntityComponent, IUpdatableComponent
     {
-        public bool IsMoving = false;
+        public bool IsMoving { get; private set; } = false;
 
         /// <summary>
         /// Move the entity relative to him.
@@ -99,14 +99,9 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
             return !(aX == 0 && aY == 0);
         }
         
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             IsMoving = false;
-        }
-
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Maker.Rise.Components
     {
         private List<SoundEffectInstance> PlayingSoundEffects;
         public float MasterVolume = 0.75f;
-        public float EffectVolume = 0.1f;
+        public float EffectVolume = 0.5f;
 
 
         public AudioManager(RiseGame game) : base(game)

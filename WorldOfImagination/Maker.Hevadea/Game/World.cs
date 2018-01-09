@@ -9,7 +9,7 @@ namespace Maker.Hevadea.Game
 {
     public class World
     {
-        public Player Player;
+        public PlayerEntity Player;
         public Level[] Levels;
         private SpriteBatch spriteBatch;
         private BlendState lightBlend;
@@ -83,7 +83,7 @@ namespace Maker.Hevadea.Game
             {
                 [0] = new OverWorldGenerator().Generate(),
                 // TODO: generate other level.
-                Player = new Player()
+                Player = new PlayerEntity()
             };
 
 

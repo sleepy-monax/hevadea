@@ -3,9 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component
 {
-    public abstract class EntityComponent
+    interface IDrawableComponent
     {
-        public byte Priority = 0;
-        public Entity Owner;
+        void Draw(SpriteBatch spriteBatch, GameTime gameTime);
     }
 }

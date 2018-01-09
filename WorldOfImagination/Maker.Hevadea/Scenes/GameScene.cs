@@ -73,8 +73,9 @@ namespace Maker.Hevadea.Scenes
                 World.Player.NoClip = !World.Player.NoClip;
             }
 
-            if (Engine.Input.MouseLeft) World.Player.Attack(World.Player.HoldingItem);
-            if (Engine.Input.MouseRight) World.Player.Use(World.Player.HoldingItem);
+            if (Engine.Input.MouseLeft) World.Player.GetComponent<AttackComponent>().Attack(World.Player.HoldingItem);
+            // TODO use component
+            //if (Engine.Input.MouseRight) World.Player.Use(World.Player.HoldingItem);
         }
 
         public override void Draw(GameTime gameTime)

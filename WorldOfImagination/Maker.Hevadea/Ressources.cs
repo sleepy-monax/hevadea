@@ -55,7 +55,7 @@ namespace Maker.Hevadea
             tile_tiles = new SpriteSheet(img_tiles, new Point(32, 32));
             tile_items = new SpriteSheet(img_items, new Point(16, 16));
             tile_entities = new SpriteSheet(img_entities, new Point(16, 16));
-            tile_creatures = new SpriteSheet(img_creatures, new Point(48, 64));
+            tile_creatures = new SpriteSheet(img_creatures, new Point(48, 128));
         }
     }
 }

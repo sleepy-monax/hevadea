@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component.Misc
 {
-    public class InventoryComponent : EntityComponent
+    public class InventoryComponent : EntityComponent, IDrawableComponent, IUpdatableComponent
     {
-        public readonly Inventory Inventory;
-        public bool CanPickUp { get; set; } = true;
+        public Inventory Inventory { get; private set; }
+        public bool AlowPickUp { get; set; } = true;
         private Item lastAdded;
         private readonly Animation anim = new Animation();
 
@@ -19,7 +19,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         
         public bool Pickup(Item item)
         {
-            if (CanPickUp && Inventory.AddItem(item))
+            if (AlowPickUp && Inventory.AddItem(item))
             {
                 anim.Reset();
                 anim.Show = true;
@@ -32,12 +32,12 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
             return false;
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             anim.Update(gameTime);
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var v = 1f - anim.SinTwoPhases;
             lastAdded?.Sprite.Draw(spriteBatch, new Vector2(Owner.X + Owner.Width / 2f - 8 * v, Owner.Y+ Owner.Height / 2 - 24 * v), v, Color.White);

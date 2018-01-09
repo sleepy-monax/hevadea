@@ -1,4 +1,5 @@
-﻿using Maker.Hevadea.Game.Items;
+﻿using Maker.Hevadea.Game.Entities.Component.Misc;
+using Maker.Hevadea.Game.Items;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +16,14 @@ namespace Maker.Hevadea.Game.Entities
             Height = 4;
 
             treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
-            IsInvincible = false;
+
+            AddComponent(new HealthComponent(20));
+            GetComponent<HealthComponent>().OnDie += (sender, args) =>
+            {
+                var dropWood = new ItemEntity(new WoodLogItem());
+                Level.AddEntity(dropWood);
+                dropWood.SetPosition(X, Y);
+            };
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -30,20 +38,12 @@ namespace Maker.Hevadea.Game.Entities
 
         public override bool IsBlocking(Entity e)
         {
-            if (e is Player)
+            if (e is PlayerEntity)
             {
                 return true;
             }
 
             return false;
-        }
-
-        public override void Die()
-        {
-            var dropWood = new ItemEntity(new WoodLogItem());
-            Level.AddEntity(dropWood);
-            dropWood.SetPosition(X, Y);
-            base.Die();
         }
     }
 }

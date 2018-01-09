@@ -206,12 +206,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/tiles.png
 
-#begin Sounds/menu_pick.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/menu_pick.wav
-
 #begin Sounds/menu_select.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -320,4 +314,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/shadow.png
+
+#begin Sounds/menu_pick.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/menu_pick.ogg
 

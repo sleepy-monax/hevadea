@@ -12,8 +12,8 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class Entity
     {
-        public Level Level;
-        public World World;
+        public Level Level { get; private set; }
+        public World World { get; private set; }
 
         public int X { get; private set; }
         public int Y { get; private set; }
@@ -21,12 +21,8 @@ namespace Maker.Hevadea.Game.Entities
         public int Height { get; set; } = 48;
         public Direction Facing { get; set; } = Direction.Down;
 
-        public int Health { get; set; } = 1;
-        public int MaxHealth { get; set; } = 1;
-
         public bool Removed { get; set; } = true;
         public bool NoClip { get; set; } = false;
-        public bool IsInvincible { get; set; } = true;
 
         public Light Light { get; set; } = new Light();
 
@@ -40,26 +36,26 @@ namespace Maker.Hevadea.Game.Entities
             World = world;
         }
 
-        private readonly List<EntityComponent> components = new List<EntityComponent>();
+        public List<EntityComponent> Components { get; private set; } = new List<EntityComponent>();
 
-        // Entity components --------------------------------------------------
+        // Entity Components --------------------------------------------------
 
         public void AddComponent(EntityComponent component)
         {
-            foreach (var e in components)
+            foreach (var e in Components)
             {
                 if (e == component) return;
             }
 
-            components.Add(component);
+            Components.Add(component);
             component.Owner = this;
 
-            components.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
+            Components.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
         }
 
         public T GetComponent<T>() where T : EntityComponent
         {
-            foreach (var e in components)
+            foreach (var e in Components)
             {
                 if (e is T component)
                 {
@@ -72,7 +68,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public bool HasComponent<T>() where T : EntityComponent
         {
-            foreach (var e in components)
+            foreach (var e in Components)
             {
                 if (e is T)
                 {
@@ -90,58 +86,13 @@ namespace Maker.Hevadea.Game.Entities
             return damages;
         }
 
-        // Entity get hurt by a other entity (ex: Zombie)
-        public virtual void Hurt(Entity entity, int damages, Direction attackDirection)
-        {
-            if (!IsInvincible)
-            {
-                Health = Math.Max(0, Health - damages);
-
-                if (Health == 0)
-                {
-                    Die();
-                }
-            }
-        }
-
-        // Entity get hurt by a tile (ex: lava)
-        public virtual void Hurt(Tile tile, int damages, int tileX, int tileY)
-        {
-            if (!IsInvincible)
-            {
-                Health = Math.Max(0, Health - ComputeDamages(damages));
-
-                if (Health == 0)
-                {
-                    Die();
-                }
-            }
-        }
-
-
-        // The mob is heal by a mod (healing itself)
-        public virtual void Heal(Entity entity, int damages, Direction attackDirection)
-        {
-            Health = Math.Min(MaxHealth, Health + damages);
-        }
-
-        // The entity in heal b
-        public virtual void Heal(Tile tile, int damages, int tileX, int tileY)
-        {
-            Health = Math.Min(MaxHealth, Health + damages);
-        }
-
         public void Remove()
         {
             Removed = true;
         }
 
-        public virtual void Die()
-        {
-            Remove();
-        }
 
-        public virtual void Interacte(Mob mob, Item item, Direction attackDirection)
+        public virtual void Interacte(Entity mob, Item item, Direction attackDirection)
         {
         }
 
@@ -188,9 +139,12 @@ namespace Maker.Hevadea.Game.Entities
         public void Update(GameTime gameTime)
         {
             // always update component before the entity.
-            foreach (var c in components)
+            foreach (var c in Components)
             {
-                c.Update(gameTime);
+                if (c is IUpdatableComponent updatable)
+                {
+                    updatable.Update(gameTime);
+                }
             }
 
             OnUpdate(gameTime);
@@ -202,9 +156,12 @@ namespace Maker.Hevadea.Game.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach (var c in components)
+            foreach (var c in Components)
             {
-                c.Draw(spriteBatch, gameTime);
+                if (c is IDrawableComponent drawable)
+                {
+                    drawable.Draw(spriteBatch, gameTime);
+                }
             }
 
             OnDraw(spriteBatch, gameTime);
@@ -212,7 +169,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(new Rectangle(X, Y, Width, Height), Color.Red);
+            //spriteBatch.FillRectangle(new Rectangle(X, Y, Width, Height), Color.Red);
         }
 
         public TilePosition GetTilePosition()

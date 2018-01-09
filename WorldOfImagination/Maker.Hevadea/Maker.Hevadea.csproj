@@ -55,7 +55,10 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
-    <Compile Include="Game\Entities\Component\Misc\HealComponent.cs" />
+    <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
+    <Compile Include="Game\Entities\Component\IUpdatableComponent.cs" />
+    <Compile Include="Game\Entities\Component\Misc\AttackComponent.cs" />
+    <Compile Include="Game\Entities\Component\Misc\HealthComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\InventoryComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\LightComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\MoveComponent.cs" />
@@ -81,8 +84,7 @@
     <Compile Include="Game\Menus\CraftMenu.cs" />
     <Compile Include="Game\Menus\InventoryMenu.cs" />
     <Compile Include="Game\Menus\Menu.cs" />
-    <Compile Include="Game\Entities\Mob.cs" />
-    <Compile Include="Game\Entities\Player.cs" />
+    <Compile Include="Game\Entities\PlayerEntity.cs" />
     <Compile Include="Game\Entities\TreeEntity.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Level.cs" />
@@ -117,7 +119,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
