@@ -12,8 +12,10 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         public float HealthPercent => Health / (float)MaxHealth;
         public int Health { get; private set; }
         public int MaxHealth { get; private set; }
+        
         public bool Invicible { get; set; } = false;
         public bool ShowHealthBar { get; set; } = true;
+        public bool NaturalRegeneration { get; set; } = false;
 
         public delegate void OnDieHandler(object sender, EventArgs e);
         public event OnDieHandler OnDie;
@@ -81,16 +83,15 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            // TODO Heal bar
-
             if (ShowHealthBar && (Health != MaxHealth))
             {
                 var barY = Owner.Y + Owner.Height + 8;
                 var barX = Owner.X + Owner.Width / 2 - 16;
                 
-                spriteBatch.FillRectangle(new Rectangle((int)barX, (int)barY, 32, 8), Color.Black * 0.25f);
-                spriteBatch.FillRectangle(new Rectangle((int)barX, (int)barY, (int)(32 * HealthPercent), 8), Color.Red * (1f - HealthPercent));
-                spriteBatch.FillRectangle(new Rectangle((int)barX, (int)barY, (int)(32 * HealthPercent), 8), Color.Green * HealthPercent);
+                spriteBatch.FillRectangle(new Rectangle((int)barX, (int)barY, 32, 8), Color.Black * 0.45f);
+                spriteBatch.FillRectangle(new Rectangle((int)barX + 1, (int)barY + 1, (int)(30 * HealthPercent), 6), Color.Red * (1f - HealthPercent));
+                spriteBatch.FillRectangle(new Rectangle((int)barX + 1, (int)barY + 1, (int)(30 * HealthPercent), 6), Color.Green * HealthPercent);
+                spriteBatch.FillRectangle(new Rectangle((int)barX + 1, (int)barY + 1, (int)(30 * HealthPercent), 3), Color.White * 0.25f);
             }
         }
     }
