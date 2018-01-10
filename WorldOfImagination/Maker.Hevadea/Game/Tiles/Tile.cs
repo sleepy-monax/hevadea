@@ -22,6 +22,7 @@ namespace Maker.Hevadea.Game.Tiles
         public static RockTile Rock = new RockTile(4);
         public static WoodFloorTile WoodFloor = new WoodFloorTile(5);
         public static WoodWallTile WoodWall = new WoodWallTile(6);
+        public static DirtTile Dirt = new DirtTile(7);
 
         #endregion
 

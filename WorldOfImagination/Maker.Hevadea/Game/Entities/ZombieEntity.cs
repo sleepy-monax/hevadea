@@ -21,6 +21,7 @@ namespace Maker.Hevadea.Game.Entities
             AddComponent(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 2, new Point(16, 32))));
         }
 
+        Random rnd = new Random();
         private int counter = 16;
         private Direction direction = Direction.Down;
         
@@ -30,7 +31,6 @@ namespace Maker.Hevadea.Game.Entities
 
             if (counter == 0)
             {
-                var rnd = new Random();
                 direction = (Direction)rnd.Next(0, 4);
                 counter = rnd.Next(8, 48);
             }

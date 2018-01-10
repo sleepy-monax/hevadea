@@ -7,7 +7,7 @@ namespace Maker.Hevadea.Game.Tiles
         public WaterTile(byte id) : base(id)
         {
             Sprite = new Sprite(Ressources.tile_tiles, 4);
-            BackgroundDirt = false;
+            //BackgroundDirt = false;
         }
     }
 }

@@ -93,6 +93,7 @@
     <Compile Include="Game\LevelGen\Features\Overworld\TreeFeature.cs" />
     <Compile Include="Game\LevelGen\Generator.cs" />
     <Compile Include="Game\LevelGen\GeneratorFeature.cs" />
+    <Compile Include="Game\Tiles\DirtTile.cs" />
     <Compile Include="Game\Tiles\WoodFloorTile.cs" />
     <Compile Include="Game\Tiles\WoodWallTile.cs" />
     <Compile Include="Game\UI\InventoryUI.cs" />

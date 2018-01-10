@@ -17,7 +17,7 @@ namespace Maker.Hevadea.Game.Tiles
             var dmg = e.Level.GetTileData(tilePosition, "damages", 0) + damages;
             if (dmg > 5)
             {
-                e.Level.SetTile(tilePosition.X, tilePosition.Y, Grass.ID);
+                e.Level.SetTile(tilePosition.X, tilePosition.Y, Dirt.ID);
             }
             else
             {
