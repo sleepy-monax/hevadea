@@ -8,6 +8,7 @@ using Maker.Rise.Enum;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Control = Maker.Rise.UI.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
@@ -70,10 +71,11 @@ namespace Maker.Hevadea.Scenes
 
             if (Engine.Input.KeyPress(Keys.N))
             {
-                World.Player.NoClip = !World.Player.NoClip;
+                playerMovement.NoClip = !playerMovement.NoClip;
             }
 
             if (Engine.Input.MouseLeft) World.Player.GetComponent<AttackComponent>().Attack(World.Player.HoldingItem);
+            if (Engine.Input.KeyPress(Keys.T)) {var z = new ZombieEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y);}
             // TODO use component
             //if (Engine.Input.MouseRight) World.Player.Use(World.Player.HoldingItem);
         }

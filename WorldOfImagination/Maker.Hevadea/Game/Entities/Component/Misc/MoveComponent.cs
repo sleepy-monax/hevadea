@@ -8,12 +8,13 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
     public class MoveComponent : EntityComponent, IUpdatableComponent
     {
         public bool IsMoving { get; private set; } = false;
+        public bool NoClip { get; set; } = false;
 
         /// <summary>
         /// Move the entity relative to him.
         /// With colision detection.
         /// </summary>
-        public virtual bool Move(int accelerationX, int accelerationY, Direction facing)
+        public virtual bool Move(float accelerationX, float accelerationY, Direction facing)
         {
             var oldPosition = Owner.GetTilePosition();
             Owner.Facing = facing;
@@ -37,7 +38,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
             return false;
         }
 
-        private bool MoveInternal(int aX, int aY)
+        private bool MoveInternal(float aX, float aY)
         {
             var onTilePosition = Owner.GetTilePosition();
 
@@ -52,7 +53,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
                 {
                     var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
 
-                    if (Owner.Level.GetTile(t.X, t.Y).IsBlocking(Owner, t) & !Owner.NoClip)
+                    if (Owner.Level.GetTile(t.X, t.Y).IsBlocking(Owner, t) & !NoClip)
                     {
                         if (Tile.IsColiding(t, Owner.X, Owner.Y + aY, Owner.Width, Owner.Height))
                         {
@@ -73,22 +74,22 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
 
                     foreach (var e in Owner.Level.GetEntityOnTile(t.X, t.Y))
                     {
-                        if (e != Owner && e.IsBlocking(Owner) && !Owner.NoClip)
+                        if (e != Owner && e.IsBlocking(Owner) && !NoClip)
                         {
                             if (e.IsColliding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height))
                             {
-                                aY = 0;
+                                aY = 0f;
                             }
 
                             if (e.IsColliding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height))
                             {
-                                aX = 0;
+                                aX = 0f;
                             }
 
                             if (e.IsColliding(Owner.X + aX, Owner.Y + aY, Owner.Width, Owner.Height))
                             {
-                                aX = 0;
-                                aY = 0;
+                                aX = 0f;
+                                aY = 0f;
                             }
                         }
                     }
@@ -96,7 +97,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
             }
             
             Owner.SetPosition(Owner.X + aX, Owner.Y + aY);
-            return !(aX == 0 && aY == 0);
+            return !(aX == 0f && aY == 0f);
         }
         
         public void Update(GameTime gameTime)

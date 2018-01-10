@@ -138,7 +138,7 @@ namespace Maker.Hevadea.Game.Tiles
                 width, height);
         }
 
-        public static bool IsColiding(TilePosition tile, int x, int y, int width, int height)
+        public static bool IsColiding(TilePosition tile, float x, float y, int width, int height)
         {
             return Colision.Check(tile.X * ConstVal.TileSize,
                 tile.Y * ConstVal.TileSize,

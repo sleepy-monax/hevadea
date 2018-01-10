@@ -38,12 +38,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public override bool IsBlocking(Entity e)
         {
-            if (e is PlayerEntity)
-            {
-                return true;
-            }
-
-            return false;
+            return e is PlayerEntity || e is ZombieEntity;
         }
     }
 }

@@ -15,20 +15,19 @@ namespace Maker.Hevadea.Game.Entities
         public Level Level { get; private set; }
         public World World { get; private set; }
 
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public float X { get; private set; }
+        public float Y { get; private set; }
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 48;
         public Direction Facing { get; set; } = Direction.Down;
 
         public bool Removed { get; set; } = true;
-        public bool NoClip { get; set; } = false;
 
         public Light Light { get; set; } = new Light();
 
         public Point Size => new Point(Width, Height);
-        public Point Position => new Point(X, Y);
-        public Rectangle Bound => new Rectangle(Position, Size);
+        public Vector2 Position => new Vector2(X, Y);
+        public Rectangle Bound => new Rectangle(Position.ToPoint(), Size);
 
         internal void Initialize(Level level, World world)
         {
@@ -88,7 +87,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public void Remove()
         {
-            Removed = true;
+            Level.RemoveEntity(this);
         }
 
 
@@ -98,7 +97,7 @@ namespace Maker.Hevadea.Game.Entities
 
         // Movement and colisions ---------------------------------------------
 
-        public virtual void SetPosition(int x, int y)
+        public virtual void SetPosition(float x, float y)
         {
             var oldPosition = GetTilePosition();
 
@@ -127,7 +126,7 @@ namespace Maker.Hevadea.Game.Entities
             return IsColliding(e.X, e.Y, e.Width, e.Height);
         }
 
-        public bool IsColliding(int x, int y, int width1, int height1)
+        public bool IsColliding(float x, float y, int width1, int height1)
         {
             return X < x + width1 &&
                    X + Width > x &&
@@ -174,7 +173,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public TilePosition GetTilePosition()
         {
-            return new TilePosition(X / ConstVal.TileSize, Y / ConstVal.TileSize);
+            return new TilePosition((int)(X / ConstVal.TileSize), (int)(Y / ConstVal.TileSize));
         }
     }
 }

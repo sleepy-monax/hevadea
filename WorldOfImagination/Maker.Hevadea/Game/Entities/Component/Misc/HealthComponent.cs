@@ -1,6 +1,7 @@
 ﻿using System;
 using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Tiles;
+using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,6 +9,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
 {
     public class HealthComponent : EntityComponent, IDrawableComponent, IUpdatableComponent
     {
+        public float HealthPercent => Health / (float)MaxHealth;
         public int Health { get; private set; }
         public int MaxHealth { get; private set; }
         public bool Invicible { get; set; } = false;
@@ -65,7 +67,10 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
 
         public virtual void Die()
         {
-            OnDie?.Invoke(this, null);
+            if (OnDie != null)
+            {
+                OnDie.Invoke(this, null);
+            }
             Owner.Remove();
         }
 
@@ -78,9 +83,14 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         {
             // TODO Heal bar
 
-            if (ShowHealthBar)
+            if (ShowHealthBar && (Health != MaxHealth))
             {
-
+                var barY = Owner.Y + Owner.Height + 8;
+                var barX = Owner.X + Owner.Width / 2 - 16;
+                
+                spriteBatch.FillRectangle(new Rectangle((int)barX, (int)barY, 32, 8), Color.Black * 0.25f);
+                spriteBatch.FillRectangle(new Rectangle((int)barX, (int)barY, (int)(32 * HealthPercent), 8), Color.Red * (1f - HealthPercent));
+                spriteBatch.FillRectangle(new Rectangle((int)barX, (int)barY, (int)(32 * HealthPercent), 8), Color.Green * HealthPercent);
             }
         }
     }

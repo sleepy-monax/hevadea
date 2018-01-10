@@ -22,8 +22,13 @@ namespace Maker.Hevadea.Game.Entities
             AddComponent(new MoveComponent());
             AddComponent(new HealthComponent(20));
             AddComponent(new AttackComponent(1));
-            AddComponent(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 0, new Point(16, 32))));
+            AddComponent(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 1, new Point(16, 32))));
             AddComponent(new InventoryComponent(16));
+        }
+        
+        public override bool IsBlocking(Entity entity)
+        {
+            return true;
         }
     }
 }

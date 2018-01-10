@@ -26,8 +26,8 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
 
             tilePosition = new TilePosition(tilePosition.X + dir.X, tilePosition.Y + dir.Y);
 
-            var entities = Owner.Level.GetEntitiesOnArea(new Rectangle(Owner.X + Owner.Height * dir.X, 
-                                                                       Owner.Y + Owner.Width  * dir.Y,
+            var entities = Owner.Level.GetEntitiesOnArea(new Rectangle((int)(Owner.X + Owner.Height * dir.X), 
+                                                                       (int)(Owner.Y + Owner.Width  * dir.Y),
                                                                        Owner.Height, Owner.Width));
 
             if (entities.Count > 0)

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Maker.Hevadea.Game
 {
@@ -13,16 +14,16 @@ namespace Maker.Hevadea.Game
         public int Width { get; private set; }
         public int Height { get; private set; }
         public Color AmbiantLight { get; set; } = Color.Blue * 0.25f;
-
+        
         private byte[] Tiles;
         private Dictionary<string, object>[] TilesData;
 
         public List<Entity> Entities;
+        public List<Entity> EntitiesToRemove = new List<Entity>();
         public List<Entity>[,] EntitiesOnTiles;
 
         public Color NightColor = Color.Blue * 0.25f;
         public Color DayColor = Color.White;
-
 
         bool ItsNight = false;
         Animation dayNightTransition = new Animation {Speed = 0.003f};
@@ -67,8 +68,7 @@ namespace Maker.Hevadea.Game
 
         public void RemoveEntity(Entity e)
         {
-            Entities.Remove(e);
-            RemoveEntityFromTile(e.GetTilePosition(), e);
+            EntitiesToRemove.Add(e);
         }
 
         public void AddEntityToTile(TilePosition p, Entity e)
@@ -83,16 +83,14 @@ namespace Maker.Hevadea.Game
             EntitiesOnTiles[p.X, p.Y].Remove(e);
         }
 
-        public List<Entity> GetEntityOnTile(int tx, int ty)
+        public IEnumerable<Entity> GetEntityOnTile(int tx, int ty)
         {
             if (tx < Width && ty < Height)
             {
                 return EntitiesOnTiles[tx, ty];
             }
-            else
-            {
-                return new List<Entity>();
-            }
+
+            return new List<Entity>();
         }
 
         public List<Entity> GetEntitiesOnArea(Rectangle area)
@@ -111,16 +109,8 @@ namespace Maker.Hevadea.Game
                 for (int y = beginY; y < endY; y++)
                 {
                     if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
-
                     var entities = EntitiesOnTiles[x, y];
-
-                    foreach (var i in entities)
-                    {
-                        if (i.IsColliding(area))
-                        {
-                            result.Add(i);
-                        }
-                    }
+                    result.AddRange(entities.Where(i => i.IsColliding(area)));
                 }
             }
 
@@ -199,21 +189,22 @@ namespace Maker.Hevadea.Game
                 GetTile(tx, ty).Update(this, tx, ty);
             }
 
-            // Tick entities.
-            for (int i = 0; i < Entities.Count; i++)
+            // Update entities
+            foreach (var e in Entities)
             {
-                var e = Entities[i];
-
                 e.Update(gameTime);
-
-                if (e.Removed)
-                {
-                    Entities.RemoveAt(i);
-                    i--;
-                    RemoveEntityFromTile(e.GetTilePosition(), e);
-                }
             }
-
+            
+            // Remove removed entities.
+            foreach (var er in EntitiesToRemove)
+            {
+                Entities.Remove(er);
+                RemoveEntityFromTile(er.GetTilePosition(), er);
+                er.Removed = true;
+            }
+            
+            EntitiesToRemove.Clear();
+            
             // Ambiant light
             var time = ((World.Time % 24000) / 24000f);
             dayNightTransition.Update(gameTime);
@@ -295,8 +286,10 @@ namespace Maker.Hevadea.Game
             foreach (var e in state.OnScreenEntities)
             {
                 spriteBatch.Draw(Ressources.img_light,
-                    new Rectangle(e.X - e.Light.Power + e.Width / 2, e.Y - e.Light.Power + e.Height / 2,
-                        e.Light.Power * 2, e.Light.Power * 2), e.Light.Color);
+                    new Rectangle((int)(e.X - e.Light.Power + e.Width / 2), 
+                                  (int)(e.Y - e.Light.Power + e.Height / 2),
+                                  e.Light.Power * 2,
+                                  e.Light.Power * 2), e.Light.Color);
             }
         }
     }

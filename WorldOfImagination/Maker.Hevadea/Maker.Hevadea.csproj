@@ -56,6 +56,7 @@
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
+    <Compile Include="Game\Entities\Component\ISaveLoadComponent.cs" />
     <Compile Include="Game\Entities\Component\IUpdatableComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\AttackComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\HealthComponent.cs" />
