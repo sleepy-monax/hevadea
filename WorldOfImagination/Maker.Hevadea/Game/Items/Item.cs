@@ -4,6 +4,7 @@ using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
 using System;
+using Maker.Rise;
 
 namespace Maker.Hevadea.Game.Items
 {
@@ -53,6 +54,16 @@ namespace Maker.Hevadea.Game.Items
         public virtual Sprite GetSprite()
         {
             return new Sprite(Ressources.tile_items, 0);
+        }
+
+        public void Drop(Level level, float x, float y, int quantity)
+        {
+            for (int i = 0; i < quantity; i++)
+            {
+                var dropWood = new ItemEntity(this, Engine.Random.Next(-50,50) / 10f, Engine.Random.Next(-50, 50) / 10f);
+                level.AddEntity(dropWood);
+                dropWood.SetPosition(x, y);
+            }
         }
     }
 }

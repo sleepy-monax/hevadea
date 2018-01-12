@@ -14,12 +14,11 @@ namespace Maker.Hevadea.Game.Registry
         public static void InitializeRegistry()
         {
             Logger.Log("Initializing registery.");
-
-
+            {   
                 TILES.Initialize();
                 ITEMS.Initialize();
                 RECIPIES.InitializeHandCraftedRecipe();
-
+            }
         }
     }
 }

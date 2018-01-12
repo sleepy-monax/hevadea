@@ -1,4 +1,5 @@
-﻿using Maker.Rise.Extension;
+﻿using System;
+using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,6 +32,7 @@ namespace Maker.Rise.Components
         {
             renderTime.Enqueue(Game.DrawTime);
             updateTime.Enqueue(Game.UpdateTime);
+
             if (renderTime.Count > MaxSample)
             {
                 renderTime.Dequeue();
@@ -67,11 +69,12 @@ namespace Maker.Rise.Components
                         i > 10 ? Color.Magenta : Color.Blue);
                     index++;
                 }
-
+                
                 sb.DrawString(EngineRessources.FontHack,
                     $@"
 Render: {Game.DrawTime,3}ms (avr {avrRenderTime / renderTime.Count}ms)
-Tick: {Game.UpdateTime}ms
+Tick: {Game.UpdateTime,3}ms
+Memory: {GC.GetTotalMemory(false)}
 Scene: {Engine.Scene.CurrentScene.GetType().FullName}
 DisplayMode: {Game.GraphicsDevice.Adapter.CurrentDisplayMode}
 Triangle: {Game.GraphicsDevice.Metrics.PrimitiveCount}
@@ -80,17 +83,6 @@ Triangle: {Game.GraphicsDevice.Metrics.PrimitiveCount}
 
 
                 sb.End();
-            }
-        }
-
-        public void DrawUiGraph(SpriteBatch sb, Control c, int x, ref int y)
-        {
-            sb.DrawString(EngineRessources.FontHack, c.GetType().Name, new Vector2(x, y), Color.Black);
-
-            foreach (var child in c.Childs)
-            {
-                y += 16;
-                DrawUiGraph(sb, child, x + 16, ref y);
             }
         }
     }

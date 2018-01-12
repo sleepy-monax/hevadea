@@ -19,7 +19,8 @@ namespace Maker.Rise
         public static UiManager Ui;
         public static RasterizerState CommonRasterizerState;
         public static Version Version => Assembly.GetExecutingAssembly().GetName().Version;
-
+        public static Random Random = new Random();
+        
         private static RiseGame game;
         private static Scene MainScene;
         

@@ -1,5 +1,7 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
+﻿using System;
+using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Registry;
+using Maker.Rise;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,12 +23,8 @@ namespace Maker.Hevadea.Game.Entities
             AddComponent(new InteractableComponent());
             GetComponent<HealthComponent>().OnDie += (sender, args) =>
             {
-                for (int i = 0; i < Game.Random.Next(1, 4); i++)
-                {
-                    var dropWood = new ItemEntity(ITEMS.WOOD_LOG, Game.Random.Next(-50,50) / 10f, Game.Random.Next(-50, 50) / 10f);
-                    Level.AddEntity(dropWood);
-                    dropWood.SetPosition(X, Y);
-                }
+                ITEMS.WOOD_LOG.Drop(Level, X + Origin.X, Y + Origin.Y, Engine.Random.Next(1, 5));
+                ITEMS.PINE_CONE.Drop(Level, X + Origin.X, Y + Origin.Y, Engine.Random.Next(0, 3));
             };
         }
 
@@ -34,7 +32,6 @@ namespace Maker.Hevadea.Game.Entities
         {
             var offx = -6;
             var offy = -10;
-
             treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 32), new Point(0, 1), Color.White);
             treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 16), new Point(0, 2), Color.White);
             treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 0), new Point(0, 3), Color.White);
