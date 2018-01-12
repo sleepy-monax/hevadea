@@ -1,7 +1,6 @@
 ﻿using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component.Misc
 {

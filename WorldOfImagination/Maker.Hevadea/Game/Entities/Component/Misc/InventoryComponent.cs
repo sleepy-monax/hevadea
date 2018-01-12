@@ -19,7 +19,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         
         public bool Pickup(Item item)
         {
-            if (AlowPickUp && Inventory.AddItem(item))
+            if (AlowPickUp && Inventory.Add(item))
             {
                 anim.Reset();
                 anim.Show = true;
@@ -40,7 +40,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var v = 1f - anim.SinTwoPhases;
-            lastAdded?.Sprite.Draw(spriteBatch, new Vector2(Owner.X + Owner.Width / 2f - 8 * v, Owner.Y+ Owner.Height / 2 - 24 * v), v, Color.White);
+            lastAdded?.GetSprite().Draw(spriteBatch, new Vector2(Owner.X + Owner.Width / 2f - 8 * v, Owner.Y+ Owner.Height / 2 - 24 * v), v, Color.White);
         }
     }
 }

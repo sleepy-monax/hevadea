@@ -1,8 +1,7 @@
 ﻿using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Entities.Component;
-using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Tiles;
-using Maker.Rise.Extension;
+using Maker.Hevadea.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,9 +13,11 @@ namespace Maker.Hevadea.Game.Entities
     {
         public Level Level { get; private set; }
         public World World { get; private set; }
+        public GameScene Game { get; private set; }
 
         public float X { get; private set; }
         public float Y { get; private set; }
+        public Point Origin = new Point(0,0);
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 48;
         public Direction Facing { get; set; } = Direction.Down;
@@ -29,10 +30,11 @@ namespace Maker.Hevadea.Game.Entities
         public Vector2 Position => new Vector2(X, Y);
         public Rectangle Bound => new Rectangle(Position.ToPoint(), Size);
 
-        internal void Initialize(Level level, World world)
+        internal void Initialize(Level level, World world, GameScene game)
         {
             Level = level;
             World = world;
+            Game = game;
         }
 
         public List<EntityComponent> Components { get; private set; } = new List<EntityComponent>();
@@ -91,9 +93,7 @@ namespace Maker.Hevadea.Game.Entities
         }
 
 
-        public virtual void Interacte(Entity mob, Item item, Direction attackDirection)
-        {
-        }
+
 
         // Movement and colisions ---------------------------------------------
 
@@ -151,6 +151,17 @@ namespace Maker.Hevadea.Game.Entities
 
         public virtual void OnUpdate(GameTime gameTime)
         {
+        }
+
+        public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            foreach (var c in Components)
+            {
+                if (c is IDrawableOverlayComponent drawable)
+                {
+                    drawable.DrawOverlay(spriteBatch, gameTime);
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

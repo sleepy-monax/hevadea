@@ -1,4 +1,5 @@
-﻿using Maker.Rise;
+﻿using Maker.Hevadea.Game.Registry;
+using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
@@ -21,10 +22,14 @@ namespace Maker.Hevadea.Scenes
         {
             sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
             Ressources.Load();
+            Init.InitializeRegistry();
             logo = Ressources.img_maker_logo;
 
             Engine.SetMouseVisibility(true);
-            Engine.SetFullScreen();
+            Engine.Graphic.SetHeight(720);
+            Engine.Graphic.SetWidth(1280);
+            Engine.Graphic.Apply();
+            //Engine.SetFullScreen();
 
             // Setup
 

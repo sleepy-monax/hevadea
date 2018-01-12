@@ -1,5 +1,7 @@
 ﻿using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
+using Maker.Hevadea.Scenes;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,6 +32,7 @@ namespace Maker.Hevadea.Game
 
         private Random Random;
         private World World;
+        private GameScene Game;
 
         public Level(int w, int h)
         {
@@ -54,6 +57,12 @@ namespace Maker.Hevadea.Game
 
         // ENTITIES -----------------------------------------------------------
 
+        public void AddEntity(Entity e, float x, float y)
+        {
+            AddEntity(e);
+            e.SetPosition(x, y);
+        }
+
         public void AddEntity(Entity e)
         {
             e.Removed = false;
@@ -62,7 +71,7 @@ namespace Maker.Hevadea.Game
                 Entities.Add(e);
             }
 
-            e.Initialize(this, World);
+            e.Initialize(this, World, Game);
             AddEntityToTile(e.GetTilePosition(), e);
         }
 
@@ -126,8 +135,8 @@ namespace Maker.Hevadea.Game
 
         public Tile GetTile(int tx, int ty)
         {
-            if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return Tile.Water;
-            return Tile.Tiles[Tiles[tx + ty * Width]];
+            if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return TILES.WATER;
+            return TILES.ById[Tiles[tx + ty * Width]];
         }
 
         public void SetTile(int tx, int ty, Tile tile)
@@ -162,20 +171,20 @@ namespace Maker.Hevadea.Game
             SetTileData(tilePosition.X, tilePosition.Y, dataName, value);
         }
 
-        public void SetTileData<T>(int tx, int ty, string dataName, T Value)
+        public void SetTileData<T>(int tx, int ty, string dataName, T value)
         {
-            TilesData[tx + ty * Width][dataName] = Value;
+            TilesData[tx + ty * Width][dataName] = value;
         }
 
         // GAME LOOPS ---------------------------------------------------------
 
-        public void Initialize(World world)
+        public void Initialize(World world, GameScene game)
         {
             World = world;
-
+            Game = game;
             foreach (var e in Entities)
             {
-                e.Initialize(this, world);
+                e.Initialize(this, world, Game);
             }
         }
 
@@ -233,7 +242,7 @@ namespace Maker.Hevadea.Game
 
         public LevelRenderState GetRenderState(Camera camera)
         {
-            List<Entity> entitiesOnScreen = new List<Entity>();
+            var entitiesOnScreen = new List<Entity>();
             var focusEntity = camera.FocusEntity.GetTilePosition();
             var dist = new Point(((camera.GetWidth() / 2) / ConstVal.TileSize) + 4,
                 ((camera.GetHeight() / 2) / ConstVal.TileSize) + 4);
@@ -255,7 +264,7 @@ namespace Maker.Hevadea.Game
                 }
             }
 
-            entitiesOnScreen.Sort((a, b) => (a.Y + a.Height).CompareTo(b.Y + b.Height));
+            entitiesOnScreen.Sort((a, b) => (a.Y + a.Origin.Y).CompareTo(b.Y + b.Origin.Y));
 
             state.OnScreenEntities = entitiesOnScreen;
 
@@ -281,13 +290,21 @@ namespace Maker.Hevadea.Game
             }
         }
 
+        public void DrawEntitiesOverlay(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            foreach (var e in state.OnScreenEntities)
+            {
+                e.DrawOverlay(spriteBatch, gameTime);
+            }
+        }
+
         public void DrawLightMap(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (var e in state.OnScreenEntities)
             {
                 spriteBatch.Draw(Ressources.img_light,
-                    new Rectangle((int)(e.X - e.Light.Power + e.Width / 2), 
-                                  (int)(e.Y - e.Light.Power + e.Height / 2),
+                    new Rectangle((int)e.X - e.Light.Power + e.Width / 2, 
+                                  (int)e.Y - e.Light.Power + e.Height / 2,
                                   e.Light.Power * 2,
                                   e.Light.Power * 2), e.Light.Color);
             }

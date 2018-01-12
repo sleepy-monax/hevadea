@@ -1,6 +1,7 @@
 ﻿using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Items;
+using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
@@ -11,21 +12,6 @@ namespace Maker.Hevadea.Game.Tiles
 {
     public class Tile
     {
-        #region Tiles instaces
-
-        public static Tile[] Tiles = new Tile[256];
-
-        public static VoidTile Void = new VoidTile(0);
-        public static GrassTile Grass = new GrassTile(1);
-        public static SandTile Sand = new SandTile(2);
-        public static WaterTile Water = new WaterTile(3);
-        public static RockTile Rock = new RockTile(4);
-        public static WoodFloorTile WoodFloor = new WoodFloorTile(5);
-        public static WoodWallTile WoodWall = new WoodWallTile(6);
-        public static DirtTile Dirt = new DirtTile(7);
-
-        #endregion
-
         public readonly byte ID;
         public Sprite Sprite;
         public bool BackgroundDirt = true;
@@ -34,8 +20,8 @@ namespace Maker.Hevadea.Game.Tiles
         public Tile(byte id)
         {
             ID = id;
-            if (Tiles[id] != null) throw new Exception($"Duplicate tile ids {ID}!");
-            Tiles[ID] = this;
+            if (TILES.ById[id] != null) throw new Exception($"Duplicate tile ids {ID}!");
+            TILES.ById[ID] = this;
             Sprite = new Sprite(Ressources.tile_tiles, 0);
             DirtSprite = new Sprite(Ressources.tile_tiles, 0);
         }

@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Game.Tiles;
+﻿using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Utils;
 using System;
 
@@ -35,27 +35,27 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     {
                         if (montains > 0.7)
                         {
-                            level.SetTile(x, y, Tile.Grass.ID);
+                            level.SetTile(x, y, TILES.GRASS);
                         }
                         else
                         {
-                            level.SetTile(x, y, Tile.Rock.ID);
+                            level.SetTile(x, y, TILES.ROCK);
                         }
                     }
                     else if (groundLevel > 0.90)
                     {
                         if (biomes > 0.5d)
                         {
-                            level.SetTile(x, y, Tile.Grass.ID);
+                            level.SetTile(x, y, TILES.GRASS);
                         }
                         else
                         {
-                            level.SetTile(x, y, Tile.Sand.ID);
+                            level.SetTile(x, y, TILES.SAND);
                         }
                     }
                     else
                     {
-                        level.SetTile(x, y, Tile.Water.ID);
+                        level.SetTile(x, y, TILES.WATER);
                     }
                 }
             }

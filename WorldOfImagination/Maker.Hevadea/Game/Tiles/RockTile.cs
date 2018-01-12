@@ -1,5 +1,6 @@
 ﻿using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using System;
 
@@ -17,14 +18,12 @@ namespace Maker.Hevadea.Game.Tiles
             var dmg = e.Level.GetTileData(tilePosition, "damages", 0) + damages;
             if (dmg > 5)
             {
-                e.Level.SetTile(tilePosition.X, tilePosition.Y, Dirt.ID);
+                e.Level.SetTile(tilePosition.X, tilePosition.Y, TILES.DIRT);
             }
             else
             {
                 e.Level.SetTileData(tilePosition, "damages", dmg);
             }
-
-            Console.WriteLine("hurt: " + dmg);
         }
 
         public override bool IsBlocking(Entity e, TilePosition pos)

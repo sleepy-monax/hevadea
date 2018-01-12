@@ -1,10 +1,10 @@
-﻿using System;
-using System.Runtime.InteropServices.ComTypes;
-using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enum;
+using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Entities.Component.Render;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace Maker.Hevadea.Game.Entities
 {
@@ -15,6 +15,8 @@ namespace Maker.Hevadea.Game.Entities
             Width = 8;
             Height = 8;
             
+            Origin = new Point(4,4);
+
             AddComponent(new MoveComponent());
             AddComponent(new HealthComponent(20));
             AddComponent(new AttackComponent(1));
@@ -36,7 +38,7 @@ namespace Maker.Hevadea.Game.Entities
             }
             
             var v = direction.ToPoint();
-            GetComponent<MoveComponent>().Move(v.X * 0.5f, v.Y * 0.5f, direction);
+            GetComponent<MoveComponent>().Move(v.X * 0.25f, v.Y * 0.25f, direction);
         }
 
         public override bool IsBlocking(Entity entity)

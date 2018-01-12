@@ -1,5 +1,5 @@
 ﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;

@@ -1,4 +1,7 @@
-﻿using Maker.Hevadea.Game.Tiles;
+﻿using Maker.Hevadea.Game.Registry;
+using Maker.Rise;
+using Maker.Rise.Enum;
+using Maker.Rise.Logging;
 using System;
 
 namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
@@ -26,8 +29,8 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                 {
                     for (int dy = 0; dy < sy; dy++)
                     {
-                        int id = level.GetTile(x + dx, y + dy).ID;
-                        if (id != Tile.Grass.ID)
+                        var tile = level.GetTile(x + dx, y + dy);
+                        if (tile != TILES.GRASS)
                         {
                             isEnoughtSpace = false;
                         }
@@ -36,7 +39,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 
                 if (isEnoughtSpace)
                 {
-                    Console.WriteLine($"House generated at {x},{y}");
+                    Logger.Log<AbandonedHouseFeature>(LoggerLevel.Info, $"House generated at {x}, {y}.");
 
                     for (int dx = 0; dx < sx; dx++)
                     {
@@ -44,11 +47,11 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                         {
                             if (dx == 0 | dx == sx - 1 | dy == 0 | dy == sy - 1)
                             {
-                                level.SetTile(x + dx, y + dy, Tile.WoodWall.ID);
+                                level.SetTile(x + dx, y + dy, TILES.WOOD_WALL);
                             }
                             else
                             {
-                                level.SetTile(x + dx, y + dy, Tile.WoodFloor.ID);
+                                level.SetTile(x + dx, y + dy, TILES.WOOD_FLOOR);
                             }
                         }
                     }

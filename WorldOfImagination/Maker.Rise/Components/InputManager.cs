@@ -30,6 +30,9 @@ namespace Maker.Rise.Components
         public bool MouseMiddleClick => newMouseState.MiddleButton == ButtonState.Released
                                         && oldMouseState.MiddleButton == ButtonState.Pressed;
 
+        public bool MouseScrollDown => newMouseState.ScrollWheelValue < oldMouseState.ScrollWheelValue;
+        public bool MouseScrollUp => newMouseState.ScrollWheelValue > oldMouseState.ScrollWheelValue;
+
         public bool KeyDown(Keys key)
         {
             return newKeyState.IsKeyDown(key);

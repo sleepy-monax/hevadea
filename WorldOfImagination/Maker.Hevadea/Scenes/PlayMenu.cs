@@ -6,7 +6,6 @@ using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Maker.Hevadea.Scenes
 {

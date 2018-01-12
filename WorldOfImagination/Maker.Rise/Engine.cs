@@ -1,5 +1,6 @@
 ﻿using Maker.Rise.Components;
 using Maker.Rise.Extension;
+using Maker.Rise.Logging;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
@@ -21,10 +22,15 @@ namespace Maker.Rise
 
         private static RiseGame game;
         private static Scene MainScene;
-
+        
 
         public static void Initialize()
         {
+            
+            // Initialize the logger
+            Logger.DefaultInitialization();
+            
+            // Initialize the game engine.
             game = new RiseGame();
 
             Audio = new AudioManager(game);
@@ -36,6 +42,7 @@ namespace Maker.Rise
             Debug = new DebugManager(game);
             Graphic = new Microsoft.Xna.Framework.GraphicsDeviceManager(game);
             CommonRasterizerState = new RasterizerState {ScissorTestEnable = true};
+            
         }
 
         public static void Start(Scene mainScene)

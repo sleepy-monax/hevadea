@@ -1,5 +1,4 @@
-﻿using Maker.Rise.Components;
-using Maker.Rise.Extension;
+﻿using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

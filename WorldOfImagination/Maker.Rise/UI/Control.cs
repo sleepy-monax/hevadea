@@ -1,7 +1,5 @@
-using Maker.Rise.Components;
 using Maker.Rise.Enum;
 using Maker.Rise.Extension;
-using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -68,6 +66,7 @@ namespace Maker.Rise.UI
         public void RemoveChild(Control child)
         {
             Childs.Remove(child);
+            RefreshLayout();
         }
 
         public void RefreshLayout()
@@ -110,7 +109,8 @@ namespace Maker.Rise.UI
                                 host.Width - c.Bound.Width, host.Height);
                             break;
                         case Dock.Fill:
-                            c.Bound = host;
+                            c.Bound = new Rectangle(host.X, host.Y,
+                                host.Width, host.Height);
                             break;
                         case Dock.None:
                             break;

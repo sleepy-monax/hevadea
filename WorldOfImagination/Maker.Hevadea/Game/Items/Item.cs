@@ -1,20 +1,31 @@
 ﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+using Maker.Hevadea.Game.Entities.Component.Interaction;
+using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
+using System;
 
 namespace Maker.Hevadea.Game.Items
 {
     public class Item
     {
-        public Sprite Sprite;
+        public int Id { get; }
+        public string Name { get; }
 
-        public virtual float GetAttackBonus(Entity Target)
+        public Item(byte id, string name)
+        {
+            Id = id;
+            Name = name;
+            if (ITEMS.ById[id] != null) throw new Exception($"Duplicate item ID: {Id}!");
+            ITEMS.ById[Id] = this;
+        }
+
+        public virtual float GetAttackBonus(Entity target)
         {
             return 1f;
         }
 
-        public virtual float GetAttackBonus(Tile Target)
+        public virtual float GetAttackBonus(Tile target)
         {
             return 1f;
         }
@@ -33,15 +44,15 @@ namespace Maker.Hevadea.Game.Items
             tile.Hurt(user, (int) (baseDamages * GetAttackBonus(tile)), target, user.Facing);
         }
 
-        public virtual void InteracteOn(Entity user, Entity entity)
-        {
-            entity.Interacte(user, this, user.Facing);
-        }
-
         public virtual void InteracteOn(Entity user, TilePosition pos)
         {
             var tile = user.Level.GetTile(pos);
             tile.Interacte(user, this, pos, user.Facing);
+        }
+
+        public virtual Sprite GetSprite()
+        {
+            return new Sprite(Ressources.tile_items, 0);
         }
     }
 }

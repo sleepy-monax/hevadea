@@ -1,4 +1,5 @@
-﻿using Maker.Hevadea.Scenes;
+﻿using Maker.Hevadea.Game.Registry;
+using Maker.Hevadea.Scenes;
 using Maker.Rise;
 using System;
 

@@ -1,11 +1,11 @@
-﻿using System;
-using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
-namespace Maker.Hevadea.Game.Entities.Component.Misc
+namespace Maker.Hevadea.Game.Entities.Component.Interaction
 {
     public class HealthComponent : EntityComponent, IDrawableComponent, IUpdatableComponent
     {

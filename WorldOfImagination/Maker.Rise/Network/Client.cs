@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Maker.Rise.Network
+﻿namespace Maker.Rise.Network
 {
-    class Client
+    public class Client
     {
+
+        public void Connect() { }
+        public void Send() { }
+        public void Disconnect() { }
+
     }
 }

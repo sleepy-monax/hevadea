@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{76037D71-10CA-4C2E-A64E-563B595CA88F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Maker.Hevadea</RootNamespace>
     <AssemblyName>Maker.Hevadea</AssemblyName>
@@ -27,6 +27,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
@@ -53,13 +54,19 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
+    <Compile Include="Game\Craftings\Recipe.cs" />
+    <Compile Include="Game\Craftings\RecipeCost.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
+    <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\InteractComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\InteractEventArg.cs" />
     <Compile Include="Game\Entities\Component\ISaveLoadComponent.cs" />
     <Compile Include="Game\Entities\Component\IUpdatableComponent.cs" />
-    <Compile Include="Game\Entities\Component\Misc\AttackComponent.cs" />
-    <Compile Include="Game\Entities\Component\Misc\HealthComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\AttackComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\HealthComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\InteractableComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\InventoryComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\LightComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\MoveComponent.cs" />
@@ -72,8 +79,7 @@
     <Compile Include="Game\Entities\TorchEntity.cs" />
     <Compile Include="Game\Entities\ZombieEntity.cs" />
     <Compile Include="Game\Items\Inventory.cs" />
-    <Compile Include="Game\Items\StackableItem.cs" />
-    <Compile Include="Game\Items\WoodLogItem.cs" />
+    <Compile Include="Game\Items\RessourceItem.cs" />
     <Compile Include="Game\LevelGen\DungeonGenerator.cs" />
     <Compile Include="Game\LevelGen\Features\Dungeon\DungeonBaseFeature.cs" />
     <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
@@ -93,10 +99,15 @@
     <Compile Include="Game\LevelGen\Features\Overworld\TreeFeature.cs" />
     <Compile Include="Game\LevelGen\Generator.cs" />
     <Compile Include="Game\LevelGen\GeneratorFeature.cs" />
+    <Compile Include="Game\Registry\Init.cs" />
+    <Compile Include="Game\Registry\ITEMS.cs" />
+    <Compile Include="Game\Registry\RECIPIES.cs" />
+    <Compile Include="Game\Registry\TILES.cs" />
     <Compile Include="Game\Tiles\DirtTile.cs" />
     <Compile Include="Game\Tiles\WoodFloorTile.cs" />
     <Compile Include="Game\Tiles\WoodWallTile.cs" />
-    <Compile Include="Game\UI\InventoryUI.cs" />
+    <Compile Include="Game\UI\CraftingUi.cs" />
+    <Compile Include="Game\UI\InventoryUi.cs" />
     <Compile Include="Game\UI\PlayerInfoPanel.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Ressources.cs" />
@@ -183,7 +194,6 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Game\Craftings\" />
     <Folder Include="Game\Multiplayer\" />
   </ItemGroup>
   <ItemGroup>

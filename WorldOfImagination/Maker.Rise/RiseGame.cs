@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Rise.Enum;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 
@@ -61,7 +61,7 @@ namespace Maker.Rise
         {
             IntializeGameEngine();
             OnLoad?.Invoke(this, new EventArgs());
-            Console.WriteLine($"{nameof(RiseGame)} initialized !");
+            Logger.Log<RiseGame>(LoggerLevel.Fine, "Game engine initialized, entering game loop...");
 
             base.Initialize();
         }

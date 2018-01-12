@@ -1,7 +1,8 @@
-﻿using Maker.Rise.Extension;
+﻿using Maker.Rise.Enum;
+using Maker.Rise.Extension;
+using Maker.Rise.Logging;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
-using System;
 using System.Diagnostics;
 
 namespace Maker.Rise.Components
@@ -95,8 +96,6 @@ namespace Maker.Rise.Components
         /// <param name="nextScene">Scene to switch.</param>
         public void Switch(Scene nextScene)
         {
-            Console.WriteLine("\n--- SCENE SWITCH BEGIN ---");
-
             var s = new Stopwatch();
             NextScene = nextScene;
 
@@ -104,8 +103,7 @@ namespace Maker.Rise.Components
             NextScene.Load();
             NextScene.UiRoot.RefreshLayout();
             s.Stop();
-
-            Console.WriteLine($"'{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}s to load.");
+            Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
 
             animation.Show = true;
             animation.Speed = 0.75f;
@@ -118,7 +116,7 @@ namespace Maker.Rise.Components
 
             if (CurrentScene == null)
             {
-                Console.WriteLine($"Switching scene to '{NextScene.GetType().FullName}'.");
+                Logger.Log<SceneManager>(LoggerLevel.Fine, $"Switching scene to '{NextScene.GetType().FullName}'.");
             }
             else
             {
@@ -127,15 +125,14 @@ namespace Maker.Rise.Components
                 s.Start();
                 CurrentScene.Unload();
                 s.Stop();
-                Console.WriteLine($"'{CurrentScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}s to unload.");
+                Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{CurrentScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to unload.");
 
-                Console.WriteLine($"Switching scene from '{CurrentScene.GetType().FullName}'");
-                Console.WriteLine($"                  to '{NextScene.GetType().FullName}'.");
+
+                Logger.Log<SceneManager>(LoggerLevel.Info, $"Scene switch from '{CurrentScene.GetType().FullName}' to '{NextScene.GetType().FullName}' is done.");
             }
 
             CurrentScene = NextScene;
             NextScene = null;
-            Console.WriteLine("--- SCENE SWITCH END ---");
             //CurrentScene.Load();
         }
     }

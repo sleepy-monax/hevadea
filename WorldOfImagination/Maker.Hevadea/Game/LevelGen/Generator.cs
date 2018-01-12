@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Maker.Rise;
+using Maker.Rise.Enum;
+using Maker.Rise.Logging;
+using System;
 using System.Collections.Generic;
 
 namespace Maker.Hevadea.Game.LevelGen
@@ -15,7 +18,7 @@ namespace Maker.Hevadea.Game.LevelGen
 
             foreach (var feature in Features)
             {
-                Console.WriteLine($"{feature.GetType().Name}...");
+                Logger.Log<Generator>(LoggerLevel.Info, $"{feature.GetType().Name}...");
                 feature.Apply(level, this);
             }
 

@@ -1,4 +1,5 @@
 ﻿using Maker.Hevadea.Enum;
+using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using System;
 
@@ -22,7 +23,7 @@ namespace Maker.Hevadea.Game.Tiles
 
             if (level.GetTile(tx + p.X, ty + p.Y) is DirtTile && rnd.Next(10) == 5)
             {
-                level.SetTile(tx + p.X, ty + p.Y, Grass);
+                level.SetTile(tx + p.X, ty + p.Y, TILES.GRASS);
             }
         }
     }

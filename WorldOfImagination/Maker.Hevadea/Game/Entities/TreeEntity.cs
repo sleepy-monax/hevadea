@@ -1,5 +1,5 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Misc;
-using Maker.Hevadea.Game.Items;
+﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
+using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,15 +14,19 @@ namespace Maker.Hevadea.Game.Entities
         {
             Width = 4;
             Height = 4;
-
+            Origin = new Point(2,2);
             treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
 
             AddComponent(new HealthComponent(20));
+            AddComponent(new InteractableComponent());
             GetComponent<HealthComponent>().OnDie += (sender, args) =>
             {
-                var dropWood = new ItemEntity(new WoodLogItem());
-                Level.AddEntity(dropWood);
-                dropWood.SetPosition(X, Y);
+                for (int i = 0; i < Game.Random.Next(1, 4); i++)
+                {
+                    var dropWood = new ItemEntity(ITEMS.WOOD_LOG, Game.Random.Next(-50,50) / 10f, Game.Random.Next(-50, 50) / 10f);
+                    Level.AddEntity(dropWood);
+                    dropWood.SetPosition(X, Y);
+                }
             };
         }
 

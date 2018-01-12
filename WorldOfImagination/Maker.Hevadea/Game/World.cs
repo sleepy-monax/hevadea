@@ -1,5 +1,6 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.LevelGen;
+using Maker.Hevadea.Scenes;
 using Maker.Rise;
 using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
@@ -17,6 +18,7 @@ namespace Maker.Hevadea.Game
         private RenderTarget2D SceneRenderTaget;
         private RenderTarget2D lightRenderTaget;
         public Camera Camera;
+        public GameScene Game;
         public int Time;
 
         public Level this[int index]
@@ -53,7 +55,8 @@ namespace Maker.Hevadea.Game
 
             Player.Level.DrawTerrain(state, spriteBatch, gameTime);
             Player.Level.DrawEntities(state, spriteBatch, gameTime);
-            
+            Player.Level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
+
             spriteBatch.End();
            
         }
@@ -67,11 +70,12 @@ namespace Maker.Hevadea.Game
         // Static functions ---------------------------------------------------
         // Load, Save and generate a new World.
 
-        public void Initialize()
+        public void Initialize(GameScene game)
         {
+            Game = game;
             foreach (var l in Levels)
             {
-                l.Initialize(this);
+                l.Initialize(this, game);
             }
 
             Camera.FocusEntity = Player;

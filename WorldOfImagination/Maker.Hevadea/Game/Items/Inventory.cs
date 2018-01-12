@@ -1,99 +1,76 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Maker.Hevadea.Game.Items
 {
     public class Inventory
     {
-        public int Capacity = 16;
-        public List<Item> Items = new List<Item>();
+        public List<int> Items;
+        public int Capacity;
 
-        public void Remove<ItemType>(int quantity)
+        public Inventory(int capacity = 256)
         {
+            Items = new List<int>();
+            Capacity = capacity;
         }
 
-        public bool AddItem(Item item)
+
+        public int Add(Item item, int quantity)
         {
-            if (item is StackableItem s)
+            var count = quantity;
+            for (int i = 0; i < quantity; i++)
             {
-                var stack = (StackableItem)Get(s);
-
-                if (stack != null && stack.Count + s.Count <= stack.StackSize)
-                {
-                    stack.Count += s.Count;
-                    return true;
-                }
-
+                if (Add(item)) count--;
             }
 
-            if (Items.Count == Capacity) return false;
-            Items.Add(item);
-            return true;
+            return count;
         }
 
-        public Item Get(Item itemType)
+        public bool Add(Item item)
         {
-            foreach (var item in Items)
+            if (HasFreeSlot())
             {
-                if (item.GetType() == itemType.GetType()) return item;
-            }
-
-            return null;
-        }
-
-        public bool Contain(Item itemType)
-        {
-            foreach (var item in Items)
-            {
-                if (item.GetType() == itemType.GetType()) return true;
+                Items.Add(item.Id);
+                return true;
             }
 
             return false;
         }
 
-        public int Count<T>() where T: Item
+        public bool HasFreeSlot()
         {
-            var count = 0;
-
-            foreach (var item in Items)
-            {
-                if (item is T)
-                {
-                    count++;
-                }
-            }
-
-            return count;
+            return Items.Count < Capacity;
         }
-
-
 
         public int Count(Item item)
         {
             var count = 0;
-
-            foreach (var i in Items)
+            for (int i = 0; i < Items.Count; i++)
             {
-                if (i.GetType() == item.GetType())
+                if (Items[i] == item.Id)
                 {
                     count++;
                 }
             }
-
             return count;
         }
 
-        public int Count()
+        public void Remove(Item item, int quantity)
         {
-            var count = 0;
-
-            foreach (var i in Items)
+            for (int i = 0; i < Items.Count; i++)
             {
-
-                count++;
-
+                if (Items[i] == item.Id && quantity > 0)
+                {
+                    Items.Remove(item.Id);
+                    quantity--;
+                    i--;
+                }
             }
+        }
 
-            return count;
+        public int FreeSpace()
+        {
+            return Math.Max(0, Capacity - Items.Count);
         }
     }
 }

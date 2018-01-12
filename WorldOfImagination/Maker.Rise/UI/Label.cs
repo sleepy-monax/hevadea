@@ -1,7 +1,7 @@
 ﻿using Maker.Rise.Enum;
+using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Maker.Rise.Extension;
 
 namespace Maker.Rise.UI
 {
