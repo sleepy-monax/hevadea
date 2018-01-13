@@ -8,7 +8,7 @@ namespace Maker.Hevadea.Game.Craftings
     {
         public Item Result;
         public int Quantity;
-        List<RecipeCost> Costs = new List<RecipeCost>();
+        public List<RecipeCost> Costs = new List<RecipeCost>();
 
         public Recipe(Item result, int quantity)
         {

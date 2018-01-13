@@ -14,7 +14,7 @@ namespace Maker.Hevadea.Game.Menus
         public CraftingUi craft;
        
 
-        public InventoryMenu(Entity entity ,World world, GameScene game) : base(world, game)
+        public InventoryMenu(Entity entity, World world, GameScene game) : base(world, game)
         {
             Layout = LayoutMode.Horizontal;
             var LeftPanel = new Panel();
