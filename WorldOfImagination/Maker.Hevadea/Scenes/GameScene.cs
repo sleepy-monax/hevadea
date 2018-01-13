@@ -60,8 +60,9 @@ namespace Maker.Hevadea.Scenes
                 }
 
                 // Cheat and testing control:
-                    if (Engine.Input.KeyPress(Keys.N)){ playerMovement.NoClip = !playerMovement.NoClip; }
+                if (Engine.Input.KeyPress(Keys.N)){ playerMovement.NoClip = !playerMovement.NoClip; }
                 if (Engine.Input.KeyPress(Keys.T)) {var z = new ZombieEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y);}
+                if (Engine.Input.KeyPress(Keys.C)) { var z = new ChestEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y); }
 
                 if (Engine.Input.MouseLeft) World.Player.GetComponent<AttackComponent>().Attack(World.Player.HoldingItem);
                 if (Engine.Input.MouseRight) World.Player.GetComponent<InteractComponent>().Interact(World.Player.HoldingItem);

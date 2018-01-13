@@ -2,6 +2,7 @@
 using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Maker.Hevadea.Game.Entities.Component.Interaction
 {
@@ -21,13 +22,13 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
             {
                 foreach (var e in entities)
                 {
+                   
                     if (!e.HasComponent<InteractableComponent>()) continue;
                     e.GetComponent<InteractableComponent>().Interacte(Owner, Owner.Facing, item);
                     break;
                 }
             }
         }
-
       
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -44,7 +45,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
                 {
                     if (e.HasComponent<InteractableComponent>())
                     {
-                        spriteBatch.DrawRectangle(e.Bound, Color.Red * 0.25f, 1f);
+                        spriteBatch.FillRectangle(e.Bound, Color.Red * (float)((Math.Sin(gameTime.TotalGameTime.TotalSeconds * 4f) + 1f) / 2f));
                     }
                     break;
                 }
