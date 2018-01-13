@@ -9,7 +9,7 @@ namespace Maker.Hevadea.Game.LevelGen
     public class Generator
     {
         public int Seed = 0;
-        public int LevelSize = 256;
+        public int LevelSize = 512;
         public List<GeneratorFeature> Features = new List<GeneratorFeature>();
 
         public Level Generate()

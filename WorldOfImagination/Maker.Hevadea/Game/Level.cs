@@ -94,7 +94,7 @@ namespace Maker.Hevadea.Game
 
         public IEnumerable<Entity> GetEntityOnTile(int tx, int ty)
         {
-            if (tx < Width && ty < Height)
+            if (tx < Width && ty < Height && tx >= 0 && ty >= 0)
             {
                 return EntitiesOnTiles[tx, ty];
             }
