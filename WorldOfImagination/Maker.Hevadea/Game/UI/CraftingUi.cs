@@ -36,11 +36,20 @@ namespace Maker.Hevadea.Game.UI
                         var rect = new Rectangle(Bound.X + sx * 64, Bound.Y + sy * 64, 48, 48);
                         spriteBatch.FillRectangle(rect, Color.Black * 0.25f);
                         c.Result.GetSprite().Draw(spriteBatch, rect, Color.White);
-                        spriteBatch.DrawString(Ressources.font_romulus, $"x{c.Quantity}", new Vector2(rect.X + 32, rect.Y + 32), Color.White);
 
-                        if (rect.Contains(Engine.Input.MousePosition) && Engine.Input.MouseLeftClick)
+                        if (rect.Contains(Engine.Input.MousePosition))
                         {
-                            c.Craft(Inventory);
+                            spriteBatch.DrawString(Ressources.font_romulus, $"x{c.Quantity}", new Vector2(rect.X + 32, rect.Y + 32), Color.White);
+                            
+                            foreach (var i in c.Costs)
+                            {
+                                  
+                            }
+                        
+                            if (Engine.Input.MouseLeftClick)
+                            {
+                                c.Craft(Inventory);
+                            }
                         }
 
                         index++;

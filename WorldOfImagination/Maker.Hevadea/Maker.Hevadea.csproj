@@ -56,6 +56,7 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Craftings\Recipe.cs" />
     <Compile Include="Game\Craftings\RecipeCost.cs" />
+    <Compile Include="Game\Entities\ChestEntity.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
