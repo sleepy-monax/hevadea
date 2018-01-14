@@ -1,6 +1,4 @@
 /.vscode
-/WorldOfImagination/.vs
-/WorldOfImagination/.idea
 bin
 obj
 packages
