@@ -11,6 +11,7 @@ namespace Maker.Hevadea
         public static SpriteFont font_alagard_big;
         public static SpriteFont font_romulus;
 
+        public static Texture2D img_icons;
         public static Texture2D img_tiles;
         public static Texture2D img_items;
         public static Texture2D img_entities;
@@ -20,6 +21,7 @@ namespace Maker.Hevadea
         public static Texture2D img_shadow;
 
         public static SpriteSheet tile_tiles;
+        public static SpriteSheet tile_icons;
         public static SpriteSheet tile_items;
         public static SpriteSheet tile_entities;
         public static SpriteSheet tile_creatures;
@@ -39,6 +41,7 @@ namespace Maker.Hevadea
 
             img_tiles = Engine.Ressource.GetImage("tiles");
             img_items = Engine.Ressource.GetImage("items");
+            img_icons = Engine.Ressource.GetImage("icons");
             img_entities = Engine.Ressource.GetImage("entities");
             img_creatures = Engine.Ressource.GetImage("creatures");
 
@@ -53,6 +56,7 @@ namespace Maker.Hevadea
             img_forest_trees1 = Engine.Ressource.GetImage("background/forest_trees1");
 
             tile_tiles = new SpriteSheet(img_tiles, new Point(32, 32));
+            tile_icons = new SpriteSheet(img_icons, new Point(16, 16));
             tile_items = new SpriteSheet(img_items, new Point(16, 16));
             tile_entities = new SpriteSheet(img_entities, new Point(16, 16));
             tile_creatures = new SpriteSheet(img_creatures, new Point(48, 128));

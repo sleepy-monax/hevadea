@@ -1,4 +1,5 @@
 ﻿using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.Scenes;
@@ -302,11 +303,11 @@ namespace Maker.Hevadea.Game
         {
             foreach (var e in state.OnScreenEntities)
             {
-                spriteBatch.Draw(Ressources.img_light,
-                    new Rectangle((int)e.X - e.Light.Power + e.Width / 2, 
-                                  (int)e.Y - e.Light.Power + e.Height / 2,
-                                  e.Light.Power * 2,
-                                  e.Light.Power * 2), e.Light.Color);
+                var light = e.GetComponent<LightComponent>();
+                if (light != null)
+                {
+                    spriteBatch.Draw(Ressources.img_light, new Rectangle((int)e.X - light.Power + e.Width / 2, (int)e.Y - light.Power + e.Height / 2, light.Power * 2, light.Power * 2), light.Color);
+                }
             }
         }
     }

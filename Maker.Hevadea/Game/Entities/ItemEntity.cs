@@ -50,16 +50,13 @@ namespace Maker.Hevadea.Game.Entities
 
             foreach (var e in entities)
             {
-                if (e.HasComponent<InventoryComponent>())
-                {
-                    var inv = e.GetComponent<InventoryComponent>();
+                var inv = e.GetComponent<InventoryComponent>();
 
-                    if (inv.Pickup(Item))
-                    {
-                        Logger.Log<ItemEntity>(LoggerLevel.Info, $"{e.GetType().Name} pickup {Item.GetType().Name}.");
-                        Remove();
-                    }
+                if (inv != null && inv.Pickup(Item))
+                {
+                    Remove();
                 }
+                
             }
         }
 

@@ -17,7 +17,7 @@ namespace Maker.Hevadea.Scenes
 
         public MainMenu()
         {
-            sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
+            sb = Engine.Graphic.CreateSpriteBatch();
         }
 
         public override void Load()

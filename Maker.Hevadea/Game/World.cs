@@ -30,7 +30,7 @@ namespace Maker.Hevadea.Game
         public World()
         {
             Levels = new Level[1];
-            spriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
+            spriteBatch = Engine.Graphic.CreateSpriteBatch();
             Camera = new Camera();
 
             lightBlend = new BlendState()
@@ -40,10 +40,8 @@ namespace Maker.Hevadea.Game
                 ColorDestinationBlend = Blend.Zero
             };
 
-            SceneRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(),
-                Engine.Graphic.GetHeight());
-            lightRenderTaget = new RenderTarget2D(Engine.Graphic.GraphicsDevice, Engine.Graphic.GetWidth(),
-                Engine.Graphic.GetHeight());
+            SceneRenderTaget = Engine.Graphic.CreateRenderTarget();
+            lightRenderTaget = Engine.Graphic.CreateRenderTarget();
         }
 
         public void Draw(GameTime gameTime)

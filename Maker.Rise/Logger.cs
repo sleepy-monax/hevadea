@@ -35,6 +35,7 @@ namespace Maker.Rise
         {
             LoggerHandlerManager
                 .AddHandler(new FileLoggerHandler())
+                .AddHandler(new ConsoleLoggerHandler())
                 .AddHandler(new DebugConsoleLoggerHandler());
 
             Log(LoggerLevel.Info, "Default initialization");

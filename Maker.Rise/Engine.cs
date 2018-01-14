@@ -9,7 +9,7 @@ namespace Maker.Rise
 {
     public static class Engine
     {
-        public static Microsoft.Xna.Framework.GraphicsDeviceManager Graphic;
+        public static GraphicComponent Graphic;
         public static AudioManager Audio;
         public static DebugManager Debug;
         public static InputManager Input;
@@ -41,7 +41,7 @@ namespace Maker.Rise
             Ui = new UiManager(game);
             Ressource = new RessourceManager(game);
             Debug = new DebugManager(game);
-            Graphic = new Microsoft.Xna.Framework.GraphicsDeviceManager(game);
+            Graphic = new GraphicComponent(game);
             CommonRasterizerState = new RasterizerState {ScissorTestEnable = true};
             
         }
@@ -62,11 +62,6 @@ namespace Maker.Rise
         public static void SetMouseVisibility(bool visible)
         {
             game.IsMouseVisible = visible;
-        }
-
-        public static void SetFullScreen()
-        {
-            Graphic.SetFullScreen();
         }
 
         private static void Game_OnLoad(RiseGame sender, EventArgs e)

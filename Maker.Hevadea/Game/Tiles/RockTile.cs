@@ -13,9 +13,9 @@ namespace Maker.Hevadea.Game.Tiles
             Sprite = new Sprite(Ressources.tile_tiles, 1);
         }
 
-        public override void Hurt(Entity e, int damages, TilePosition tilePosition, Direction attackDirection)
+        public override void Hurt(Entity e, float damages, TilePosition tilePosition, Direction attackDirection)
         {
-            var dmg = e.Level.GetTileData(tilePosition, "damages", 0) + damages;
+            var dmg = e.Level.GetTileData(tilePosition, "damages", 0f) + damages;
             if (dmg > 5)
             {
                 e.Level.SetTile(tilePosition.X, tilePosition.Y, TILES.DIRT);

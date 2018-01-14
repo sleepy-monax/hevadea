@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{76037D71-10CA-4C2E-A64E-563B595CA88F}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Maker.Hevadea</RootNamespace>
     <AssemblyName>Maker.Hevadea</AssemblyName>
@@ -68,6 +68,7 @@
     <Compile Include="Game\Entities\Component\Interaction\AttackComponent.cs" />
     <Compile Include="Game\Entities\Component\Interaction\HealthComponent.cs" />
     <Compile Include="Game\Entities\Component\Interaction\InteractableComponent.cs" />
+    <Compile Include="Game\Entities\Component\Misc\EnergyComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\InventoryComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\LightComponent.cs" />
     <Compile Include="Game\Entities\Component\Misc\MoveComponent.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="Game\LevelGen\Features\Overworld\GrassFeature.cs" />
     <Compile Include="Game\LevelGen\OverWorldGenerator.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
-    <Compile Include="Game\Light.cs" />
     <Compile Include="Game\Menus\ChestMenu.cs" />
     <Compile Include="Game\Menus\CraftMenu.cs" />
     <Compile Include="Game\Menus\InventoryMenu.cs" />

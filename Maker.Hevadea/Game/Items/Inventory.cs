@@ -10,7 +10,7 @@ namespace Maker.Hevadea.Game.Items
 
         public Inventory(int capacity = 256)
         {
-            Items = new List<int>();
+            Items = new List<int>(capacity);
             Capacity = capacity;
         }
 

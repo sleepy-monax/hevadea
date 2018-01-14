@@ -4,7 +4,6 @@ using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace Maker.Hevadea.Game.Entities
@@ -23,8 +22,6 @@ namespace Maker.Hevadea.Game.Entities
         public Direction Facing { get; set; } = Direction.Down;
 
         public bool Removed { get; set; } = true;
-
-        public Light Light { get; set; } = new Light();
 
         public Point Size => new Point(Width, Height);
         public Vector2 Position => new Vector2(X, Y);
@@ -64,7 +61,7 @@ namespace Maker.Hevadea.Game.Entities
                 }
             }
 
-            throw new Exception($"Component {nameof(T)} not found.");
+            return null;
         }
 
         public bool HasComponent<T>() where T : EntityComponent

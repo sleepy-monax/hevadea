@@ -31,18 +31,18 @@ namespace Maker.Hevadea.Game.Items
             return 1f;
         }
 
-        public virtual void Attack(Entity user, Entity target, int baseDamages)
+        public virtual void Attack(Entity user, Entity target, float baseDamages)
         {
             if (target.HasComponent<HealthComponent>())
             {
-                target.GetComponent<HealthComponent>().Hurt(user, (int) (baseDamages * GetAttackBonus(target)), user.Facing);
+                target.GetComponent<HealthComponent>().Hurt(user, baseDamages * GetAttackBonus(target), user.Facing);
             }
         }
 
-        public virtual void Attack(Entity user, TilePosition target, int baseDamages)
+        public virtual void Attack(Entity user, TilePosition target, float baseDamages)
         {
             var tile = user.Level.GetTile(target);
-            tile.Hurt(user, (int) (baseDamages * GetAttackBonus(tile)), target, user.Facing);
+            tile.Hurt(user, baseDamages * GetAttackBonus(tile), target, user.Facing);
         }
 
         public virtual void InteracteOn(Entity user, TilePosition pos)

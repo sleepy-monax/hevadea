@@ -91,7 +91,7 @@ namespace Maker.Hevadea.Game.Tiles
 
         #region Tile Interaction
 
-        public virtual void Hurt(Entity e, int damages, TilePosition tilePosition, Direction attackDirection)
+        public virtual void Hurt(Entity e, float damages, TilePosition tilePosition, Direction attackDirection)
         {
         }
 

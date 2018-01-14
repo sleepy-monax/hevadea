@@ -31,10 +31,10 @@ namespace Maker.Hevadea.Scenes
 
         public override void Load()
         {
-            spriteBatch = new SpriteBatch(Engine.Graphic.GraphicsDevice);
+            spriteBatch = Engine.Graphic.CreateSpriteBatch();
             World.Initialize(this);
             UiRoot.Padding = new Padding(16);
-            UiRoot.AddChild(new PlayerInfoPanel(World.Player) { Dock = Dock.Top, Bound = new Rectangle(64, 64, 64, 72) });
+            UiRoot.AddChild(new PlayerInfoPanel(World.Player) { Dock = Dock.Bottom, Bound = new Rectangle(64, 64, 64, 64) });
         }
 
 

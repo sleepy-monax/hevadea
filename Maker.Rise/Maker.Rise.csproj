@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\GraphicComponent.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineRessources.cs" />
     <Compile Include="Components\AudioManager.cs" />
@@ -101,6 +102,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Extension\GameExtension.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FSM.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FsmSnapshot.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FsmStateBehaviour.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FsmStateData.cs" />
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\Perlin.cs" />
@@ -113,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Utils\FiniteStateMachine\FSM.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

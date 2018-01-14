@@ -20,19 +20,13 @@ namespace Maker.Hevadea.Scenes
 
         public override void Load()
         {
-            sb = new SpriteBatch(Engine.Graphic.GraphicsDevice);
+            sb = Engine.Graphic.CreateSpriteBatch();
             Ressources.Load();
             Init.InitializeRegistry();
             logo = Ressources.img_maker_logo;
 
             Engine.SetMouseVisibility(true);
-            Engine.Graphic.SetHeight(720);
-            Engine.Graphic.SetWidth(1280);
-            Engine.Graphic.Apply();
-            //Engine.SetFullScreen();
-
-            // Setup
-
+            Engine.Graphic.SetResolution(1280, 720);
             Directory.CreateDirectory("Saves");
         }
 
