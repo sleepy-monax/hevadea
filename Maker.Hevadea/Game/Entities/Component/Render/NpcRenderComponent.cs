@@ -25,7 +25,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Render
         {
             if (isWalking)
             {
-                walkingFrame = new int[] { 0, 2, 1, 2 }[(int)(gameTime.TotalGameTime.TotalSeconds * 4 % 4)];
+                walkingFrame = new int[] { 0, 2, 1, 2 }[(int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
                 Sprite.DrawSubSprite(spriteBatch, new Vector2(Owner.X - 4, Owner.Y - 18), new Point(walkingFrame, (int)Owner.Facing),
                     Color.White);
             }

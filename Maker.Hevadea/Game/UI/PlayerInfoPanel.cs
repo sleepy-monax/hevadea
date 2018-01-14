@@ -6,6 +6,7 @@ using Maker.Rise.Ressource;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Maker.Hevadea.Game.UI
 {
@@ -27,15 +28,27 @@ namespace Maker.Hevadea.Game.UI
             var playerHealth = Player.GetComponent<HealthComponent>();
             var playerEnergy = Player.GetComponent<EnergyComponent>();
 
-            for (int i = 0; i < 10 * (playerHealth.Health / playerHealth.MaxHealth); i++)
+            spriteBatch.FillRectangle(new Rectangle(Bound.X - 4, Bound.Y, 320 + 8, 64), Color.Black * 0.2f);
+
+            var health = (playerHealth.Health / playerHealth.MaxHealth);
+            var energyV = (playerEnergy.Energy / playerEnergy.MaxEnergy);
+
+
+            int i = 0;
+
+            for (i = 0; i <= 10 * health - 1; i++)
             {
                 hearth.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y, 32, 32), Color.White);
             }
 
-            for (int i = 0; i < 10 * (playerEnergy.Energy / playerEnergy.MaxEnergy); i++)
+            hearth.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y, 32, 32), Color.White * (float)(10 * health - Math.Floor(10 * health)));
+
+            for (i = 0; i <= 10 * energyV - 1; i++)
             {
                 energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32), Color.White);
             }
+
+            energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32), Color.White * (float)( 10 * energyV - Math.Floor(10 * energyV)));
 
 
         }
