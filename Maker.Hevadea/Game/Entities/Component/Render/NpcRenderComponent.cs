@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+﻿using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -38,7 +37,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Render
 
         public void Update(GameTime gameTime)
         {
-            var move = Owner.GetComponent<MoveComponent>();
+            var move = Owner.Components.Get<MoveComponent>();
             if (move != null) {
                 isWalking = move.IsMoving;
             }

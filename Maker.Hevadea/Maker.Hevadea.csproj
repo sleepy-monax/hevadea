@@ -58,6 +58,7 @@
     <Compile Include="Game\Craftings\RecipeCost.cs" />
     <Compile Include="Game\Entities\ChestEntity.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
+    <Compile Include="Game\Entities\Component\EntityComponentsManager.cs" />
     <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />
@@ -81,7 +82,11 @@
     <Compile Include="Game\Entities\TorchEntity.cs" />
     <Compile Include="Game\Entities\ZombieEntity.cs" />
     <Compile Include="Game\Items\Inventory.cs" />
+    <Compile Include="Game\Items\Materials\BaseMaterial.cs" />
+    <Compile Include="Game\Items\Materials\Material.cs" />
     <Compile Include="Game\Items\RessourceItem.cs" />
+    <Compile Include="Game\Items\Tools\ToolItem.cs" />
+    <Compile Include="Game\Items\Tools\ToolType.cs" />
     <Compile Include="Game\LevelGen\DungeonGenerator.cs" />
     <Compile Include="Game\LevelGen\Features\Dungeon\DungeonBaseFeature.cs" />
     <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
@@ -119,6 +124,7 @@
     <Compile Include="Game\Tiles\TilePosition.cs" />
     <Compile Include="Game\Tiles\VoidTile.cs" />
     <Compile Include="Game\Tiles\WaterTile.cs" />
+    <Compile Include="Scenes\EngineSplash.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Scenes\PlayMenu.cs" />

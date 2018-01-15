@@ -17,14 +17,14 @@ namespace Maker.Hevadea.Game.Registry
 
         public static void Initialize()
         {
-            VOID = new VoidTile(0);
-            GRASS = new GrassTile(1);
-            SAND = new SandTile(2);
-            WATER = new WaterTile(3);
-            ROCK = new RockTile(4);
+            VOID       = new VoidTile(0);
+            GRASS      = new GrassTile(1);
+            SAND       = new SandTile(2);
+            WATER      = new WaterTile(3);
+            ROCK       = new RockTile(4);
             WOOD_FLOOR = new WoodFloorTile(5);
-            WOOD_WALL = new WoodWallTile(6);
-            DIRT = new DirtTile(7);
+            WOOD_WALL  = new WoodWallTile(6);
+            DIRT       = new DirtTile(7);
         }
     }
 }

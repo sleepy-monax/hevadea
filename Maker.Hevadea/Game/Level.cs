@@ -3,6 +3,7 @@ using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.Scenes;
+using Maker.Rise;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,13 +26,6 @@ namespace Maker.Hevadea.Game
         public List<Entity> EntitiesToRemove = new List<Entity>();
         public List<Entity>[,] EntitiesOnTiles;
 
-        public Color NightColor = Color.Blue * 0.25f;
-        public Color DayColor = Color.White;
-
-        bool ItsNight = false;
-        Animation dayNightTransition = new Animation {Speed = 0.003f};
-
-        private Random Random;
         private World World;
         private GameScene Game;
 
@@ -44,7 +38,6 @@ namespace Maker.Hevadea.Game
             TilesData = new Dictionary<string, object>[Width * Height];
             Entities = new List<Entity>();
             EntitiesOnTiles = new List<Entity>[Width, Height];
-            Random = new Random();
 
             for (int x = 0; x < Width; x++)
             {
@@ -194,8 +187,8 @@ namespace Maker.Hevadea.Game
             // Randome tick tiles.
             for (int i = 0; i < Width * Height / 50; i++)
             {
-                var tx = Random.Next(Width);
-                var ty = Random.Next(Height);
+                var tx = Engine.Random.Next(Width);
+                var ty = Engine.Random.Next(Height);
                 GetTile(tx, ty).Update(this, tx, ty);
             }
 
@@ -214,31 +207,6 @@ namespace Maker.Hevadea.Game
             }
             
             EntitiesToRemove.Clear();
-            
-            // Ambiant light
-            var time = ((World.Time % 24000) / 24000f);
-            dayNightTransition.Update(gameTime);
-            AmbiantLight = GetAmbiantLightColor(time);
-        }
-
-
-        private Color GetAmbiantLightColor(float time, float dayDuration = 0.5f, float nightDuration = 0.5f)
-        {
-            ItsNight = time > dayDuration;
-
-            dayNightTransition.Show = time > (dayDuration - 0.05);
-
-
-            var day = DayColor * (1f - dayNightTransition.SinLinear);
-            var night = NightColor * dayNightTransition.SinLinear;
-
-            //Console.WriteLine($"{(int)(time * 100), 3} {ItsNight} {day} {night} {dayNightTransition.SinLinear}");
-
-            return new Color(
-                day.R + night.R,
-                day.G + night.G,
-                day.B + night.B,
-                day.A + night.A);
         }
 
         public LevelRenderState GetRenderState(Camera camera)
@@ -303,7 +271,7 @@ namespace Maker.Hevadea.Game
         {
             foreach (var e in state.OnScreenEntities)
             {
-                var light = e.GetComponent<LightComponent>();
+                var light = e.Components.Get<LightComponent>();
                 if (light != null)
                 {
                     spriteBatch.Draw(Ressources.img_light, new Rectangle((int)e.X - light.Power + e.Width / 2, (int)e.Y - light.Power + e.Height / 2, light.Power * 2, light.Power * 2), light.Color);

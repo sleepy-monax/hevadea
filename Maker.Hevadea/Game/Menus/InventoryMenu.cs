@@ -20,12 +20,12 @@ namespace Maker.Hevadea.Game.Menus
             var LeftPanel = new Panel();
             var RightPanel = new Panel();
 
-            inv = new InventoryUi(entity.GetComponent<InventoryComponent>().Inventory)
+            inv = new InventoryUi(entity.Components.Get<InventoryComponent>().Inventory)
             {
                 Dock = Dock.Fill
             };
 
-            craft = new CraftingUi(entity.GetComponent<InventoryComponent>().Inventory)
+            craft = new CraftingUi(entity.Components.Get<InventoryComponent>().Inventory)
             {
                 Dock = Dock.Fill
             };

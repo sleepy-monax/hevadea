@@ -59,19 +59,10 @@ namespace Maker.Hevadea.Scenes
                 Icon = EngineRessources.IconClose
             };
 
-            var titleLabel = new Label
-            {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "Tale of Hevadea",
-                Font = Ressources.font_alagard_big,
-                Dock = Dock.Fill
-            };
-
             playButton.OnMouseClick += PlayButtonOnOnMouseClick;
             exitButton.OnMouseClick += ExitButtonOnOnMouseClick;
 
             UiRoot.AddChild(menuButtonHost);
-            UiRoot.AddChild(titleLabel);
             
             menuButtonHost.AddChild(playButton);
             menuButtonHost.AddChild(optionButton);
@@ -96,9 +87,12 @@ namespace Maker.Hevadea.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
-                Engine.CommonRasterizerState);
+            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, Engine.CommonRasterizerState);
             paralaxe.Draw(sb, gameTime);
+            var logo = Ressources.img_hevadea_logo;
+            sb.Draw(logo,
+      new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2,
+          Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White * 10f);
             sb.End();
         }
 

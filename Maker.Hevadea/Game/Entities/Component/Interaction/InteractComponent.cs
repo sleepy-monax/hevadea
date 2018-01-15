@@ -23,8 +23,8 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
                 foreach (var e in entities)
                 {
                    
-                    if (!e.HasComponent<InteractableComponent>()) continue;
-                    e.GetComponent<InteractableComponent>().Interacte(Owner, Owner.Facing, item);
+                    if (!e.Components.Has<InteractableComponent>()) continue;
+                    e.Components.Get<InteractableComponent>().Interacte(Owner, Owner.Facing, item);
                     break;
                 }
             }
@@ -43,7 +43,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
             {
                 foreach (var e in entities)
                 {
-                    if (e.HasComponent<InteractableComponent>())
+                    if (e.Components.Has<InteractableComponent>())
                     {
                         spriteBatch.FillRectangle(e.Bound, Color.Red * (float)((Math.Sin(gameTime.TotalGameTime.TotalSeconds * 4f) + 1f) / 2f));
                     }

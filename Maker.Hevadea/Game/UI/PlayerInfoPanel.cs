@@ -1,7 +1,6 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Entities.Component.Misc;
-using Maker.Rise.Extension;
 using Maker.Rise.Ressource;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
@@ -25,10 +24,8 @@ namespace Maker.Hevadea.Game.UI
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var playerHealth = Player.GetComponent<HealthComponent>();
-            var playerEnergy = Player.GetComponent<EnergyComponent>();
-
-            spriteBatch.FillRectangle(new Rectangle(Bound.X - 4, Bound.Y, 320 + 8, 64), Color.Black * 0.2f);
+            var playerHealth = Player.Components.Get<HealthComponent>();
+            var playerEnergy = Player.Components.Get<EnergyComponent>();
 
             var health = (playerHealth.Health / playerHealth.MaxHealth);
             var energyV = (playerEnergy.Energy / playerEnergy.MaxEnergy);

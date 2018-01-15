@@ -1,5 +1,4 @@
-﻿using System;
-using Maker.Hevadea.Game.Entities.Component.Interaction;
+﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Registry;
 using Maker.Rise;
 using Maker.Rise.Ressource;
@@ -19,9 +18,9 @@ namespace Maker.Hevadea.Game.Entities
             Origin = new Point(2,2);
             treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
 
-            AddComponent(new HealthComponent(20));
-            AddComponent(new InteractableComponent());
-            GetComponent<HealthComponent>().OnDie += (sender, args) =>
+            Components.Add(new HealthComponent(20));
+            Components.Add(new InteractableComponent());
+            Components.Get<HealthComponent>().OnDie += (sender, args) =>
             {
                 ITEMS.WOOD_LOG.Drop(Level, X + Origin.X, Y + Origin.Y, Engine.Random.Next(1, 5));
                 ITEMS.PINE_CONE.Drop(Level, X + Origin.X, Y + Origin.Y, Engine.Random.Next(0, 3));

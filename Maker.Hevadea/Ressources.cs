@@ -27,6 +27,8 @@ namespace Maker.Hevadea
         public static SpriteSheet tile_creatures;
 
         public static Texture2D img_maker_logo;
+        public static Texture2D img_engine_logo;
+        public static Texture2D img_hevadea_logo;
 
         public static Texture2D img_forest_background;
         public static Texture2D img_forest_light;
@@ -49,6 +51,8 @@ namespace Maker.Hevadea
             img_shadow = Engine.Ressource.GetImage("shadow");
 
             img_maker_logo = Engine.Ressource.GetImage("logo/maker");
+            img_engine_logo = Engine.Ressource.GetImage("logo/engine");
+            img_hevadea_logo = Engine.Ressource.GetImage("logo/hevadea");
 
             img_forest_background = Engine.Ressource.GetImage("background/forest");
             img_forest_light = Engine.Ressource.GetImage("background/forest_light");

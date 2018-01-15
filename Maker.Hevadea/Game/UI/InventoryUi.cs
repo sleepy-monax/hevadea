@@ -12,9 +12,7 @@ namespace Maker.Hevadea.Game.UI
     public class InventoryUi : Control
     {
         public Inventory Inventory;
-
         public Item SelectedItem { get; set; }
-        public int slotOffset = 0;
 
         public InventoryUi(Inventory i)
         {
@@ -59,10 +57,6 @@ namespace Maker.Hevadea.Game.UI
 
         protected override void OnUpdate(GameTime gameTime)
         {
-            if (Engine.Input.MouseScrollDown) slotOffset++;
-            if (Engine.Input.MouseScrollUp) slotOffset--;
-            if (slotOffset < 0) slotOffset = 0;
-            //if (slotOffset >= Inventory.Stacks.Count) slotOffset = Inventory.Stacks.Count - 1;
 
         }
     }

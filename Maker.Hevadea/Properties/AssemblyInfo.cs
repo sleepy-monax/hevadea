@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Tale Of Hevadea")]
+[assembly: AssemblyTitle("Tales Of Hevadea")]
 [assembly: AssemblyProduct("Maker.Hevadea")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyCopyright("Copyright © 2017 Maker Dev Team")]
+[assembly: AssemblyCopyright("Copyright © 2017-2018 THE MAKER")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

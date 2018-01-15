@@ -1,12 +1,8 @@
 ﻿using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Registry;
-using Maker.Rise;
-using Maker.Rise.Enum;
-using Maker.Rise.Logging;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Maker.Hevadea.Game.Entities
 {
@@ -29,7 +25,7 @@ namespace Maker.Hevadea.Game.Entities
             sx = speedx;
             sy = speedy;
 
-            AddComponent(new MoveComponent());
+            Components.Add(new MoveComponent());
         }
 
         public ItemEntity(int itemId) : this(ITEMS.ById[itemId], 0,0)
@@ -44,13 +40,13 @@ namespace Maker.Hevadea.Game.Entities
         public override void OnUpdate(GameTime gameTime)
         {
             var entities = Level.GetEntitiesOnArea(Bound);
-            GetComponent<MoveComponent>().Move(sx, sy, Facing);
+            Components.Get<MoveComponent>().Move(sx, sy, Facing);
             sx = sx / 2;
             sy = sy / 2;
 
             foreach (var e in entities)
             {
-                var inv = e.GetComponent<InventoryComponent>();
+                var inv = e.Components.Get<InventoryComponent>();
 
                 if (inv != null && inv.Pickup(Item))
                 {

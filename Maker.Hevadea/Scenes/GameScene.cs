@@ -40,32 +40,24 @@ namespace Maker.Hevadea.Scenes
 
         public override void Update(GameTime gameTime)
         {
-            // Update the world.
             if (CurrentMenu == null || !CurrentMenu.PauseGame)
             {
                 World.Update(gameTime);
 
 
-                var playerMovement = World.Player.GetComponent<MoveComponent>();
+                var playerMovement = World.Player.Components.Get<MoveComponent>();
             
-                // Player mouvement:
-                if (Engine.Input.KeyDown(Keys.Q)) { playerMovement.Move(-1, 0, Direction.Left); }
-                if (Engine.Input.KeyDown(Keys.D)) { playerMovement.Move(1, 0, Direction.Right); }
-                if (Engine.Input.KeyDown(Keys.Z)) { playerMovement.Move(0, -1, Direction.Up);   }
-                if (Engine.Input.KeyDown(Keys.S)) { playerMovement.Move(0, 1, Direction.Down);  }
-
-                if (Engine.Input.KeyPress(Keys.I))
-                {
-                    SetMenu(new InventoryMenu(World.Player, World, this));
-                }
-
-                // Cheat and testing control:
-                if (Engine.Input.KeyPress(Keys.N)){ playerMovement.NoClip = !playerMovement.NoClip; }
+                if (Engine.Input.KeyDown(Keys.Q))  { playerMovement.Move(-1, 0, Direction.Left); }
+                if (Engine.Input.KeyDown(Keys.D))  { playerMovement.Move(1, 0, Direction.Right); }
+                if (Engine.Input.KeyDown(Keys.Z))  { playerMovement.Move(0, -1, Direction.Up);   }
+                if (Engine.Input.KeyDown(Keys.S))  { playerMovement.Move(0, 1, Direction.Down);  }
+                if (Engine.Input.KeyPress(Keys.I)) { SetMenu(new InventoryMenu(World.Player, World, this)); }
+                if (Engine.Input.KeyPress(Keys.N)) { playerMovement.NoClip = !playerMovement.NoClip; }
                 if (Engine.Input.KeyPress(Keys.T)) {var z = new ZombieEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y);}
                 if (Engine.Input.KeyPress(Keys.C)) { var z = new ChestEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y); }
 
-                if (Engine.Input.MouseLeft) World.Player.GetComponent<AttackComponent>().Attack(World.Player.HoldingItem);
-                if (Engine.Input.MouseRight) World.Player.GetComponent<InteractComponent>().Interact(World.Player.HoldingItem);
+                if (Engine.Input.MouseLeft) World.Player.Components.Get<AttackComponent>().Attack(World.Player.HoldingItem);
+                if (Engine.Input.MouseRight) World.Player.Components.Get<InteractComponent>().Interact(World.Player.HoldingItem);
             }
 
             if (Engine.Input.KeyPress(Keys.Escape) && CurrentMenu != null)

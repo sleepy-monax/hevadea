@@ -12,6 +12,7 @@ namespace Maker.Hevadea.Scenes
     {
         private SpriteBatch sb;
         private Texture2D logo;
+        private Texture2D logoEngine;
 
         public SplashScene()
         {
@@ -24,9 +25,11 @@ namespace Maker.Hevadea.Scenes
             Ressources.Load();
             Init.InitializeRegistry();
             logo = Ressources.img_maker_logo;
+            logoEngine = Ressources.img_engine_logo;
 
             Engine.SetMouseVisibility(true);
-            Engine.Graphic.SetResolution(1280, 720);
+            Engine.Graphic.SetResolution(1920, 1080);
+            Engine.Graphic.SetFullscreen();
             Directory.CreateDirectory("Saves");
         }
 
@@ -38,9 +41,9 @@ namespace Maker.Hevadea.Scenes
 
         public override void Update(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalSeconds > 1 && once)
+            if (gameTime.TotalGameTime.TotalSeconds > 2 && once)
             {
-                Engine.Scene.Switch(new MainMenu());
+                Engine.Scene.Switch(new EngineSplash());
                 once = false;
             }
         }
@@ -50,10 +53,10 @@ namespace Maker.Hevadea.Scenes
             sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
                 Engine.CommonRasterizerState);
             sb.FillRectangle(new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()),
-                Color.LightGray);
+                Color.White);
             sb.Draw(logo,
                 new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2,
-                    Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White);
+                    Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White * 10f);
             sb.End();
         }
     }

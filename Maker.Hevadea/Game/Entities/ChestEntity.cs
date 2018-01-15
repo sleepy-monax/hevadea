@@ -19,11 +19,11 @@ namespace Maker.Hevadea.Game.Entities
             Origin      = new Point(8, 8);
             closeSprite = new Sprite(Ressources.tile_entities, new Point(1,1));
 
-            AddComponent(new InventoryComponent(512));
-            AddComponent(new InteractableComponent());
-            GetComponent<InteractableComponent>().OnInteracte += (sender, arg) =>
+            Components.Add(new InventoryComponent(512));
+            Components.Add(new InteractableComponent());
+            Components.Get<InteractableComponent>().OnInteracte += (sender, arg) =>
             {
-                if (arg.Entity.HasComponent<InventoryComponent>())
+                if (arg.Entity.Components.Has<InventoryComponent>())
                 {
                     Game.SetMenu(new ChestMenu(arg.Entity, this, World, Game));
                 }

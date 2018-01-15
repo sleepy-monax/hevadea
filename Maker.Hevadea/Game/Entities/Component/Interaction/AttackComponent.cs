@@ -29,7 +29,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
             if (!IsAttacking)
             {
                 float multiplier = 1f;
-                var energy = Owner.GetComponent<EnergyComponent>();
+                var energy = Owner.Components.Get<EnergyComponent>();
 
                 if (energy != null)
                 {
@@ -49,7 +49,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
                 {
                     foreach (var e in entities)
                     {
-                        if (!e.HasComponent<HealthComponent>() || e.GetComponent<HealthComponent>().Invicible) continue;
+                        if (!e.Components.Has<HealthComponent>() || e.Components.Get<HealthComponent>().Invicible) continue;
                         weapon.Attack(Owner, e, BaseDamages * multiplier);
                         IsAttacking = true;
                         break;
