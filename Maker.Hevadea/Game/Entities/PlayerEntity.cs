@@ -26,7 +26,7 @@ namespace Maker.Hevadea.Game.Entities
             Components.Add(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 1, new Point(16, 32))));
             Components.Add(new InventoryComponent(512));
             Components.Add(new InteractComponent());
-            Components.Add(new LightComponent { On = true, Color = Color.Orange * 0.50f, Power = 72 });
+            Components.Add(new LightComponent { On = true, Color = Color.White * 0.30f, Power = 48 });
             Components.Add(new MoveComponent());
         }
         

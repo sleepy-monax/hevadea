@@ -2,7 +2,7 @@
 using Maker.Hevadea.Game.Registry;
 using System;
 
-namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
+namespace Maker.Hevadea.Game.Generator.Features.Overworld
 {
     class TreeFeature : GeneratorFeature
     {
@@ -10,7 +10,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
         {
         }
 
-        public override void ApplyInternal(Level level, Generator generator)
+        public override void ApplyInternal(Level level, GeneratorBase generator)
         {
             Random rnd = new Random(generator.Seed);
 
@@ -27,6 +27,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                             y * ConstVal.TileSize + rnd.Next(0, ConstVal.TileSize - 4));
                     }
                 }
+                Console.WriteLine($"{x/(float)generator.LevelSize*100,3}%");
             }
         }
     }

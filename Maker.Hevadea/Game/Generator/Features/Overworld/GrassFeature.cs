@@ -3,7 +3,7 @@ using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Utils;
 using System;
 
-namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
+namespace Maker.Hevadea.Game.Generator.Features.Overworld
 {
     public class GrassFeature : GeneratorFeature
     {
@@ -11,7 +11,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
         {
         }
 
-        public override void ApplyInternal(Level level, Generator generator)
+        public override void ApplyInternal(Level level, GeneratorBase generator)
         {
             Random rnd = new Random(generator.Seed);
 

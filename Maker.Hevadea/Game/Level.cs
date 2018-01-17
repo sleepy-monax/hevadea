@@ -6,6 +6,7 @@ using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.Scenes;
 using Maker.Rise;
 using Maker.Rise.Enum;
+using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -302,6 +303,9 @@ namespace Maker.Hevadea.Game
             foreach (var e in state.OnScreenEntities)
             {
                 e.DrawOverlay(spriteBatch, gameTime);
+
+                spriteBatch.DrawRectangle(e.Bound, Color.Aqua);
+                spriteBatch.PutPixel(e.Position, Color.Cyan);
             }
         }
 

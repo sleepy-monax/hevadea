@@ -7,7 +7,7 @@ namespace Maker.Hevadea.Game
 {
     public class Camera
     {
-        public float Zoom = 3f;
+        public float Zoom = 4f;
         public Entity FocusEntity = null;
         public float X = 0f;
         public float Y = 0f;
@@ -26,8 +26,8 @@ namespace Maker.Hevadea.Game
         {
             if (FocusEntity == null) { return Matrix.Identity; }
 
-            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width  / 2f + (FocusEntity.Width  / 2f));
-            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2f + (FocusEntity.Height / 2f));
+            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width  / 2f);
+            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2f);
 
             return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation((float)Math.Floor(-(X * Zoom - Engine.Graphic.GetWidth()  / 2f)),
                                                                        (float)Math.Floor(-(Y * Zoom - Engine.Graphic.GetHeight() / 2f)), 0f);

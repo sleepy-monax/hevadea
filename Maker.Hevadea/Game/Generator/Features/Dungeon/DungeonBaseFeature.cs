@@ -1,4 +1,4 @@
-﻿namespace Maker.Hevadea.Game.LevelGen.Features.Dungeon
+﻿namespace Maker.Hevadea.Game.Generator.Features.Dungeon
 {
     public class DungeonBaseFeature : GeneratorFeature
     {
@@ -6,7 +6,7 @@
         {
         }
 
-        public override void ApplyInternal(Level level, Generator generator)
+        public override void ApplyInternal(Level level, GeneratorBase generator)
         {
         }
     }

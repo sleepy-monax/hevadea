@@ -28,7 +28,7 @@ namespace Maker.Hevadea.Scenes
             Engine.SetMouseVisibility(true);
             Directory.CreateDirectory("Saves");
 
-            Engine.Graphic.SetResolution(1280, 720);
+            Engine.Graphic.SetResolution(1280, 960);
 
             // Initialize the scene.
             sb = Engine.Graphic.CreateSpriteBatch();

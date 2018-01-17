@@ -4,7 +4,7 @@ using Maker.Rise.Enum;
 using Maker.Rise.Logging;
 using System;
 
-namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
+namespace Maker.Hevadea.Game.Generator.Features.Overworld
 {
     public class AbandonedHouseFeature : GeneratorFeature
     {
@@ -12,7 +12,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
         {
         }
 
-        public override void ApplyInternal(Level level, Generator generator)
+        public override void ApplyInternal(Level level, GeneratorBase generator)
         {
             Random rnd = new Random(generator.Seed);
             for (int i = 0; i < 48 * (generator.LevelSize / 256); i++)

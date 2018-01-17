@@ -1,4 +1,4 @@
-﻿namespace Maker.Hevadea.Game.LevelGen
+﻿namespace Maker.Hevadea.Game.Generator
 {
     public abstract class GeneratorFeature
     {
@@ -8,11 +8,11 @@
         {
         }
 
-        public void Apply(Level level, Generator generator)
+        public void Apply(Level level, GeneratorBase generator)
         {
             ApplyInternal(level, generator);
         }
 
-        public abstract void ApplyInternal(Level level, Generator generator);
+        public abstract void ApplyInternal(Level level, GeneratorBase generator);
     }
 }

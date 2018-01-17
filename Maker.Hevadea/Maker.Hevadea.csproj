@@ -66,6 +66,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Enum\Direction.cs" />
+    <Compile Include="Enum\Levels.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Game\Entities\ItemEntity.cs" />
     <Compile Include="Game\Entities\Particles\DotParticle.cs" />
     <Compile Include="Game\Entities\Particles\Particle.cs" />
+    <Compile Include="Game\Entities\StairsEntity.cs" />
     <Compile Include="Game\Entities\TorchEntity.cs" />
     <Compile Include="Game\Entities\ZombieEntity.cs" />
     <Compile Include="Game\Items\Inventory.cs" />
@@ -102,14 +104,14 @@
     <Compile Include="Game\Items\RessourceItem.cs" />
     <Compile Include="Game\Items\Tools\ToolItem.cs" />
     <Compile Include="Game\Items\Tools\ToolType.cs" />
-    <Compile Include="Game\LevelGen\CaveGenerator.cs" />
-    <Compile Include="Game\LevelGen\DungeonGenerator.cs" />
-    <Compile Include="Game\LevelGen\Features\Cave\BaseCaveFeature.cs" />
-    <Compile Include="Game\LevelGen\Features\Dungeon\DungeonBaseFeature.cs" />
-    <Compile Include="Game\LevelGen\Features\Overworld\AbandonedHouseFeature.cs" />
-    <Compile Include="Game\LevelGen\Features\Overworld\GrassFeature.cs" />
-    <Compile Include="Game\LevelGen\Features\Overworld\WorldGenerator.cs" />
-    <Compile Include="Game\LevelGen\OverWorldGenerator.cs" />
+    <Compile Include="Game\Generator\Features\Cave\CaveGenerator.cs" />
+    <Compile Include="Game\Generator\Features\Dungeon\DungeonGenerator.cs" />
+    <Compile Include="Game\Generator\Features\Cave\BaseCaveFeature.cs" />
+    <Compile Include="Game\Generator\Features\Dungeon\DungeonBaseFeature.cs" />
+    <Compile Include="Game\Generator\Features\Overworld\AbandonedHouseFeature.cs" />
+    <Compile Include="Game\Generator\Features\Overworld\GrassFeature.cs" />
+    <Compile Include="Game\Generator\WorldGenerator.cs" />
+    <Compile Include="Game\Generator\Features\Overworld\OverWorldGenerator.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
     <Compile Include="Menus\ChestMenu.cs" />
     <Compile Include="Menus\CraftMenu.cs" />
@@ -119,10 +121,10 @@
     <Compile Include="Game\Entities\TreeEntity.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Level.cs" />
-    <Compile Include="Game\LevelGen\Features\Overworld\OverworldBaseTerrain.cs" />
-    <Compile Include="Game\LevelGen\Features\Overworld\TreeFeature.cs" />
-    <Compile Include="Game\LevelGen\Generator.cs" />
-    <Compile Include="Game\LevelGen\GeneratorFeature.cs" />
+    <Compile Include="Game\Generator\Features\Overworld\OverworldBaseTerrain.cs" />
+    <Compile Include="Game\Generator\Features\Overworld\TreeFeature.cs" />
+    <Compile Include="Game\Generator\GeneratorBase.cs" />
+    <Compile Include="Game\Generator\Features\GeneratorFeature.cs" />
     <Compile Include="Game\Registry\Init.cs" />
     <Compile Include="Game\Registry\ITEMS.cs" />
     <Compile Include="Game\Registry\RECIPIES.cs" />

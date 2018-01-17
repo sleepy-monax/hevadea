@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Maker.Hevadea.Game.LevelGen
+namespace Maker.Hevadea.Game.Generator
 {
-    public class DungeonGenerator : Generator
+    public class DungeonGenerator : GeneratorBase
     {
         public DungeonGenerator()
         {

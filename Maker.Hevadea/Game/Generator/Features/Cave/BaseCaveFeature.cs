@@ -1,7 +1,7 @@
 ﻿using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Utils;
 
-namespace Maker.Hevadea.Game.LevelGen.Features.Cave
+namespace Maker.Hevadea.Game.Generator.Features.Cave
 {
     public class BaseCaveFeature : GeneratorFeature
     {
@@ -10,7 +10,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Cave
 
         }
 
-        public override void ApplyInternal(Level level, Generator generator)
+        public override void ApplyInternal(Level level, GeneratorBase generator)
         {
             for (int x = 0; x < generator.LevelSize; x++)
             {

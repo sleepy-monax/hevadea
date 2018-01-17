@@ -1,10 +1,12 @@
-﻿namespace Maker.Rise.Logging.Formatters
+﻿using Maker.Hevadea.Json;
+
+namespace Maker.Rise.Logging.Formatters
 {
     internal class DefaultLoggerFormatter : ILoggerFormatter
     {
         public string ApplyFormat(LogMessage logMessage)
         {
-            return string.Format("{0:dd.MM.yyyy HH:mm:ss}: {1} [line: {2} {3} -> {4}()]: {5}",
+            return string.Format("{0:HH:mm:ss} {1} [{3}::{4}() ln{2}] {5}",
                             logMessage.DateTime, logMessage.Level, logMessage.LineNumber, logMessage.CallingClass,
                             logMessage.CallingMethod, logMessage.Text);
         }

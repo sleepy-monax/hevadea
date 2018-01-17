@@ -8,6 +8,7 @@ namespace Maker.Rise.Components
     {
         private GraphicsDeviceManager g;
         private RiseGame Game;
+
         public GraphicComponent(RiseGame game)
         {
             Game = game;
@@ -70,6 +71,11 @@ namespace Maker.Rise.Components
                 Engine.Graphic.GetHeight());
         }
 
+        public void SetRenderTarget(RenderTarget2D renderTarget)
+        {
+            g.GraphicsDevice.SetRenderTarget(renderTarget);   
+        }
+
         public GraphicsDevice GetGraphicsDevice()
         {
             return g.GraphicsDevice;
@@ -80,9 +86,9 @@ namespace Maker.Rise.Components
             return new SpriteBatch(g.GraphicsDevice);
         }
 
-        public void Begin(SpriteBatch spriteBatch)
+        public void Begin(SpriteBatch spriteBatch, bool linearFiltering = true, Matrix? transform = null)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, linearFiltering ? SamplerState.LinearClamp : SamplerState.PointClamp, null, Engine.CommonRasterizerState, null, transform);
         }
     }
 }

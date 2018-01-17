@@ -15,7 +15,6 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         /// </summary>
         public virtual bool Move(float accelerationX, float accelerationY, Direction facing)
         {
-            var oldPosition = Owner.GetTilePosition();
             Owner.Facing = facing;
             if (accelerationX != 0 || accelerationY != 0)
             {
@@ -23,11 +22,6 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
                 {
                     var pos = Owner.GetTilePosition();
                     Owner.Level.GetTile(pos.X, pos.Y).SteppedOn(Owner, pos);
-
-                    //TODO: make this smarter
-                    Owner.Level?.RemoveEntityFromTile(oldPosition, Owner);
-                    Owner.Level?.AddEntityToTile(pos, Owner);
-
                     IsMoving = true;
                     
                     return true;

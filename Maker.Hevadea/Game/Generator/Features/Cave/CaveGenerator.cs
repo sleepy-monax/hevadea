@@ -1,9 +1,9 @@
-﻿using Maker.Hevadea.Game.LevelGen.Features.Cave;
+﻿using Maker.Hevadea.Game.Generator.Features.Cave;
 using System.Collections.Generic;
 
-namespace Maker.Hevadea.Game.LevelGen
+namespace Maker.Hevadea.Game.Generator
 {
-    public class CaveGenerator : Generator
+    public class CaveGenerator : GeneratorBase
     {
         public CaveGenerator()
         {

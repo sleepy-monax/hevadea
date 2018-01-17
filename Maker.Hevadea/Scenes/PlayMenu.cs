@@ -1,5 +1,5 @@
 ﻿using Maker.Hevadea.Game;
-using Maker.Hevadea.Game.LevelGen.Features.Overworld;
+using Maker.Hevadea.Game.Generator.Features.Overworld;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enum;

@@ -111,7 +111,7 @@ namespace Maker.Hevadea.Game.Entities
         }
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
-
+            Components.DrawOverlay(spriteBatch, gameTime);
         }
 
         public virtual void OnUpdate(GameTime gameTime)

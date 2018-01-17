@@ -2,7 +2,7 @@
 using Maker.Rise.Utils;
 using System;
 
-namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
+namespace Maker.Hevadea.Game.Generator.Features.Overworld
 {
     class OverworldBaseTerrain : GeneratorFeature
     {
@@ -10,7 +10,7 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
         {
         }
 
-        public override void ApplyInternal(Level level, Generator generator)
+        public override void ApplyInternal(Level level, GeneratorBase generator)
         {
             for (int x = 0; x < generator.LevelSize; x++)
             {

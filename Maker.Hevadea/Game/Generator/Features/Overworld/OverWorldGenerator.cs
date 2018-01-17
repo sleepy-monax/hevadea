@@ -1,9 +1,9 @@
-﻿using Maker.Hevadea.Game.LevelGen.Features.Overworld;
+﻿using Maker.Hevadea.Game.Generator.Features.Overworld;
 using System.Collections.Generic;
 
-namespace Maker.Hevadea.Game.LevelGen
+namespace Maker.Hevadea.Game.Generator
 {
-    public class OverWorldGenerator : Generator
+    public class OverWorldGenerator : GeneratorBase
     {
         public OverWorldGenerator()
         {
