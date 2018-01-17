@@ -1,8 +1,10 @@
 ﻿using Maker.Rise.Enum;
 using Maker.Rise.Extension;
 using Maker.Rise.Logging;
+using Maker.Rise.Ressource;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
 namespace Maker.Rise.Components
@@ -13,6 +15,8 @@ namespace Maker.Rise.Components
         private Scene NextScene;
 
         private Animation animation;
+        public ParalaxeBackground Background = null;
+        public SpriteBatch sb;
 
         public SceneManager(RiseGame game) : base(game)
         {
@@ -23,6 +27,7 @@ namespace Maker.Rise.Components
 
         public override void Initialize()
         {
+            sb = Engine.Graphic.CreateSpriteBatch();
         }
 
         public override void Update(GameTime gameTime)
@@ -44,8 +49,11 @@ namespace Maker.Rise.Components
 
                 CurrentScene.UiRoot.RefreshLayout();
 
-                CurrentScene.UiRoot.Update(gameTime);
-                CurrentScene.Update(gameTime);
+                if (NextScene == null)
+                {
+                    CurrentScene.UiRoot.Update(gameTime);
+                    CurrentScene.Update(gameTime);
+                }
             }
 
             if (NextScene != null)
@@ -57,8 +65,8 @@ namespace Maker.Rise.Components
 
                 NextScene.UiRoot.RefreshLayout();
 
-                NextScene.UiRoot.Update(gameTime);
-                NextScene.Update(gameTime);
+                //NextScene.UiRoot.Update(gameTime);
+                //NextScene.Update(gameTime);
             }
         }
 
@@ -66,6 +74,10 @@ namespace Maker.Rise.Components
         {
             Game.GraphicsDevice.ScissorRectangle =
                 new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
+
+            Engine.Graphic.Begin(sb);
+            Background?.Draw(sb, gameTime);
+            sb.End();
 
             if (CurrentScene != null)
             {
@@ -82,6 +94,9 @@ namespace Maker.Rise.Components
 
             if (NextScene != null)
             {
+                Engine.Graphic.Begin(sb);
+                Background?.Draw(sb, gameTime);
+                sb.End();
                 NextScene.Draw(gameTime);
                 Engine.Ui.DrawUiTree(gameTime, NextScene.UiRoot);
             }

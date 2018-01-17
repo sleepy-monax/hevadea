@@ -1,4 +1,5 @@
 ﻿using Maker.Hevadea.Enum;
+using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
@@ -7,7 +8,7 @@ using System;
 
 namespace Maker.Hevadea.Game.Entities.Component.Interaction
 {
-    public class HealthComponent : EntityComponent, IDrawableComponent, IUpdatableComponent
+    public class HealthComponent : EntityComponent, IDrawableComponent, IUpdatableComponent, ISaveLoadComponent
     {
         public float HealthPercent => Health / (float)MaxHealth;
         public float Health { get; private set; }
@@ -93,6 +94,16 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
                 spriteBatch.FillRectangle(new Rectangle((int)barX + 1, (int)barY + 1, (int)(30 * HealthPercent), 6), Color.Green * HealthPercent);
                 spriteBatch.FillRectangle(new Rectangle((int)barX + 1, (int)barY + 1, (int)(30 * HealthPercent), 3), Color.White * 0.25f);
             }
+        }
+
+        public void OnSave(EntityStorage store)
+        {
+            store.Set(nameof(Health), Health);
+        }
+
+        public void OnLoad(EntityStorage store)
+        {
+            Health = store.Get(nameof(Health), Health);
         }
     }
 }

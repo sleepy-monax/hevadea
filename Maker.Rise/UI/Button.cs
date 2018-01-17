@@ -24,6 +24,9 @@ namespace Maker.Rise.UI
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            animation.Update(gameTime);
+            clickAnimation.Update(gameTime);
+
             var invClickanim = (1f - clickAnimation.TwoPhases);
             
             var width = (int) (Bound.Width + 8f * animation.SinLinear - 16f);
@@ -85,9 +88,6 @@ namespace Maker.Rise.UI
                 clickAnimation.Reset();
                 clickAnimation.Show = false;
             }
-
-            animation.Update(gameTime);
-            clickAnimation.Update(gameTime);
         }
     }
 }

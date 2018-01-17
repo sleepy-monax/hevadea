@@ -12,8 +12,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 
         public override void ApplyInternal(Level level, Generator generator)
         {
-            //Bitmap preview = new Bitmap(generator.LevelSize, generator.LevelSize);
-
             for (int x = 0; x < generator.LevelSize; x++)
             {
                 for (int y = 0; y < generator.LevelSize; y++)
@@ -28,8 +26,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
 
                     var montains = Perlin.OctavePerlin(x / 20d + seed, y / 20d + seed, 0, 2, 0.5);
                     var biomes = Perlin.OctavePerlin(x / 30d + seed, y / 30d + seed, 0, 1, 1);
-
-                    //preview.SetPixel(x, y, groundLevel > 0.9d ? Color.Green : Color.Blue);
 
                     if (groundLevel > 1d)
                     {
@@ -59,8 +55,6 @@ namespace Maker.Hevadea.Game.LevelGen.Features.Overworld
                     }
                 }
             }
-
-            //new Form { BackgroundImage = preview,BackgroundImageLayout = ImageLayout.Zoom }.Show();
         }
     }
 }

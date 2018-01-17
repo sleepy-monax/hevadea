@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Rise.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Rise.Components
@@ -6,26 +7,32 @@ namespace Maker.Rise.Components
     public class GraphicComponent
     {
         private GraphicsDeviceManager g;
-
+        private RiseGame Game;
         public GraphicComponent(RiseGame game)
         {
+            Game = game;
             g = new GraphicsDeviceManager(game);
         }
 
         public void SetFullscreen()
         {
-            if (!g.IsFullScreen)
-            {
-                g.ToggleFullScreen();
-            }
+            SetWindowedFullScreen();
+            g.HardwareModeSwitch = true;
+            g.ApplyChanges();
         }
 
         public void SetWindowed()
         {
-            if (g.IsFullScreen)
-            {
-                g.ToggleFullScreen();
-            }
+            g.IsFullScreen = false;
+            g.ApplyChanges();
+        }
+
+        public void SetWindowedFullScreen()
+        {
+            g.HardwareModeSwitch = false;
+            g.IsFullScreen = true;
+            g.ApplyChanges();
+            SetResolution(Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height);
         }
 
         public void SetResolution(int width, int height)
@@ -33,6 +40,11 @@ namespace Maker.Rise.Components
             g.PreferredBackBufferWidth = width;
             g.PreferredBackBufferHeight = height;
             g.ApplyChanges();
+        }
+
+        public Rectangle GetResolutionRect()
+        {
+            return new Rectangle(Point.Zero, GetResolution());
         }
 
         public Point GetResolution()
@@ -50,6 +62,8 @@ namespace Maker.Rise.Components
             return g.PreferredBackBufferWidth;
         }
 
+        public Vector2 GetCenter() { return GetResolutionRect().Center.ToVector2(); }
+
         public RenderTarget2D CreateRenderTarget()
         {
             return new RenderTarget2D(GetGraphicsDevice(), Engine.Graphic.GetWidth(),
@@ -64,6 +78,11 @@ namespace Maker.Rise.Components
         public SpriteBatch CreateSpriteBatch()
         {
             return new SpriteBatch(g.GraphicsDevice);
+        }
+
+        public void Begin(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null, Engine.CommonRasterizerState);
         }
     }
 }

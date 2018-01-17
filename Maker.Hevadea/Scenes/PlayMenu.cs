@@ -1,9 +1,11 @@
 ﻿using Maker.Hevadea.Game;
+using Maker.Hevadea.Game.LevelGen.Features.Overworld;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enum;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -59,12 +61,15 @@ namespace Maker.Hevadea.Scenes
             };
 
             backButton.OnMouseClick +=
-                delegate { Engine.Scene.Switch(new MainMenu()); };
+                delegate 
+                {
+                    Engine.Scene.Switch(new MainMenu());
+                };
 
             newButton.OnMouseClick +=
                 delegate
                 {
-                    var world = World.Generate(0);
+                    var world = WorldGenerator.Generate(0);
                     Engine.Scene.Switch(new GameScene(world));
                 };
 
@@ -87,10 +92,11 @@ namespace Maker.Hevadea.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
-                Engine.CommonRasterizerState);
-            sb.Draw(Ressources.img_forest_background,
-                new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()), Color.White);
+            var logo = Ressources.img_hevadea_logo;
+
+            Engine.Graphic.Begin(sb);
+            sb.Draw(logo, Engine.Graphic.GetCenter() - logo.GetCenter(), Color.White);
+            sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black * 0.90f);
             sb.End();
         }
 

@@ -115,6 +115,8 @@
     <Compile Include="Extension\SpriteBatchExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="RiseGame.cs" />
+    <Compile Include="Utils\SDL.cs" />
+    <Compile Include="Utils\Texture2D.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />

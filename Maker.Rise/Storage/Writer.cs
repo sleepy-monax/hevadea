@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 
@@ -31,7 +32,7 @@ namespace Maker.Hevadea.Json
             if (type == typeof(string))
             {
                 stringBuilder.Append('"');
-                string str = (string) item;
+                string str = (string)item;
                 for (int i = 0; i < str.Length; ++i)
                     switch (str[i])
                     {
@@ -65,13 +66,22 @@ namespace Maker.Hevadea.Json
                     }
                 stringBuilder.Append('"');
             }
-            else if (type == typeof(byte) || type == typeof(int) || type == typeof(float) || type == typeof(double))
+            // Fix float and double formating
+            else if (item is float f)
+            {
+                stringBuilder.Append(f.ToString(CultureInfo.InvariantCulture));
+            }
+            else if (item is double d)
+            {
+                stringBuilder.Append(d.ToString(CultureInfo.InvariantCulture));
+            }
+            else if (type == typeof(byte) || type == typeof(int))
             {
                 stringBuilder.Append(item.ToString());
             }
             else if (type == typeof(bool))
             {
-                stringBuilder.Append(((bool) item) ? "true" : "false");
+                stringBuilder.Append(((bool)item) ? "true" : "false");
             }
             else if (item is IList)
             {
@@ -110,7 +120,7 @@ namespace Maker.Hevadea.Json
                     else
                         stringBuilder.Append(',');
                     stringBuilder.Append('\"');
-                    stringBuilder.Append((string) key);
+                    stringBuilder.Append((string)key);
                     stringBuilder.Append("\":");
                     AppendValue(stringBuilder, dict[key]);
                 }

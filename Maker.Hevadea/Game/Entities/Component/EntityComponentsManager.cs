@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Hevadea.Game.Storage;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,29 @@ namespace Maker.Hevadea.Game.Entities.Component
             }
 
             return false;
+        }
+
+
+        public virtual void Save(EntityStorage store)
+        {
+            foreach (var c in components)
+            {
+                if (c is ISaveLoadComponent s)
+                {
+                    s.OnSave(store);
+                }
+            }
+        }
+
+        public virtual void Load(EntityStorage store)
+        {
+            foreach (var c in components)
+            {
+                if (c is ISaveLoadComponent s)
+                {
+                    s.OnLoad(store);
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

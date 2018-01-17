@@ -5,6 +5,7 @@ using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Menus;
 using Maker.Hevadea.Game.UI;
+using Maker.Hevadea.Json;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enum;
@@ -13,7 +14,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-
+using System.IO;
 
 namespace Maker.Hevadea.Scenes
 {
@@ -35,6 +36,7 @@ namespace Maker.Hevadea.Scenes
             World.Initialize(this);
             UiRoot.Padding = new Padding(16);
             UiRoot.AddChild(new PlayerInfoPanel(World.Player) { Dock = Dock.Bottom, Bound = new Rectangle(64, 64, 64, 64) });
+            Engine.Scene.Background = null;
         }
 
 
@@ -58,6 +60,8 @@ namespace Maker.Hevadea.Scenes
 
                 if (Engine.Input.MouseLeft) World.Player.Components.Get<AttackComponent>().Attack(World.Player.HoldingItem);
                 if (Engine.Input.MouseRight) World.Player.Components.Get<InteractComponent>().Interact(World.Player.HoldingItem);
+
+                if (Engine.Input.KeyPress(Keys.P)) { File.WriteAllText("test.json", World[0].Save().ToJson()); }
             }
 
             if (Engine.Input.KeyPress(Keys.Escape) && CurrentMenu != null)

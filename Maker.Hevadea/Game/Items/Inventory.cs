@@ -5,8 +5,8 @@ namespace Maker.Hevadea.Game.Items
 {
     public class Inventory
     {
-        public List<int> Items;
-        public int Capacity;
+        public List<int> Items { get; set; }
+        public int Capacity { get; private set; }
 
         public Inventory(int capacity = 256)
         {

@@ -2,7 +2,6 @@
 using Maker.Hevadea.Game.LevelGen;
 using Maker.Hevadea.Scenes;
 using Maker.Rise;
-using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -29,7 +28,7 @@ namespace Maker.Hevadea.Game
 
         public World()
         {
-            Levels = new Level[1];
+            Levels = new Level[2];
             spriteBatch = Engine.Graphic.CreateSpriteBatch();
             Camera = new Camera();
 
@@ -61,7 +60,11 @@ namespace Maker.Hevadea.Game
 
         public void Update(GameTime gameTime)
         {
-            Player.Level.Update(gameTime);
+            foreach (var l in Levels)
+            {
+                l.Update(gameTime);
+            }
+
             Time++;
         }
 
@@ -79,24 +82,5 @@ namespace Maker.Hevadea.Game
             Camera.FocusEntity = Player;
         }
 
-        public static World Generate(int seed)
-        {
-            var world = new World
-            {
-                [0] = new OverWorldGenerator().Generate(),
-                // TODO: generate other level.
-                Player = new PlayerEntity()
-            };
-
-
-            world[0].AddEntity(world.Player);
-
-            // TODO: Beter player placing on new game.
-            world.Player.SetPosition((world.Levels[0].Width / 2) * ConstVal.TileSize,
-                (world.Levels[0].Height / 2) * ConstVal.TileSize);
-
-
-            return world;
-        }
     }
 }

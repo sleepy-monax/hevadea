@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -192,7 +193,7 @@ namespace Maker.Hevadea.Json
 
             if (type == typeof(float))
             {
-                float.TryParse(json, out float result);
+                float result = float.Parse(json, CultureInfo.InvariantCulture);
                 return result;
             }
 

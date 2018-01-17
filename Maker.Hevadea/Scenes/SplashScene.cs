@@ -2,6 +2,8 @@
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Extension;
+using Maker.Rise.Ressource;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -12,7 +14,6 @@ namespace Maker.Hevadea.Scenes
     {
         private SpriteBatch sb;
         private Texture2D logo;
-        private Texture2D logoEngine;
 
         public SplashScene()
         {
@@ -21,16 +22,17 @@ namespace Maker.Hevadea.Scenes
 
         public override void Load()
         {
-            sb = Engine.Graphic.CreateSpriteBatch();
+            // Initialize the game engine
             Ressources.Load();
             Init.InitializeRegistry();
-            logo = Ressources.img_maker_logo;
-            logoEngine = Ressources.img_engine_logo;
-
             Engine.SetMouseVisibility(true);
-            Engine.Graphic.SetResolution(1920, 1080);
-            Engine.Graphic.SetFullscreen();
             Directory.CreateDirectory("Saves");
+
+            Engine.Graphic.SetResolution(1280, 720);
+
+            // Initialize the scene.
+            sb = Engine.Graphic.CreateSpriteBatch();
+            logo = Ressources.img_maker_logo;
         }
 
         public override void Unload()
@@ -38,7 +40,6 @@ namespace Maker.Hevadea.Scenes
         }
 
         bool once = true;
-
         public override void Update(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalSeconds > 2 && once)
@@ -50,13 +51,9 @@ namespace Maker.Hevadea.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointWrap, null,
-                Engine.CommonRasterizerState);
-            sb.FillRectangle(new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight()),
-                Color.White);
-            sb.Draw(logo,
-                new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2,
-                    Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White * 10f);
+            Engine.Graphic.Begin(sb);
+            sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.White);
+            sb.Draw(logo,Engine.Graphic.GetCenter() - logo.GetCenter(), Color.White * 10f);
             sb.End();
         }
     }

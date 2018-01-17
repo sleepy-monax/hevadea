@@ -1,10 +1,11 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Registry;
+using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.Scenes;
 using Maker.Rise;
-using Maker.Rise.UI;
+using Maker.Rise.Enum;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,11 +18,8 @@ namespace Maker.Hevadea.Game
     {
         public int Width { get; private set; }
         public int Height { get; private set; }
-        public Color AmbiantLight { get; set; } = Color.Blue * 0.25f;
-        
         private byte[] Tiles;
         private Dictionary<string, object>[] TilesData;
-
         public List<Entity> Entities;
         public List<Entity> EntitiesToRemove = new List<Entity>();
         public List<Entity>[,] EntitiesOnTiles;
@@ -29,21 +27,21 @@ namespace Maker.Hevadea.Game
         private World World;
         private GameScene Game;
 
-        public Level(int w, int h)
+        public Level(int width, int height)
         {
-            Width = w;
+            Width  = width;
+            Height = height;
 
-            Height = h;
-            Tiles = new byte[Width * Height];
-            TilesData = new Dictionary<string, object>[Width * Height];
-            Entities = new List<Entity>();
+            Tiles           = new byte[Width * Height];
+            TilesData       = new Dictionary<string, object>[Width * Height];
+            Entities        = new List<Entity>();
             EntitiesOnTiles = new List<Entity>[Width, Height];
 
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    EntitiesOnTiles[x, y] = new List<Entity>();
+                    EntitiesOnTiles[x, y]    = new List<Entity>();
                     TilesData[x + y * Width] = new Dictionary<string, object>();
                 }
             }
@@ -103,7 +101,7 @@ namespace Maker.Hevadea.Game
             var beginX = area.X / ConstVal.TileSize - 1;
             var beginY = area.Y / ConstVal.TileSize - 1;
 
-            var endX = (area.X + area.Width) / ConstVal.TileSize + 1;
+            var endX = (area.X + area.Width)  / ConstVal.TileSize + 1;
             var endY = (area.Y + area.Height) / ConstVal.TileSize + 1;
 
 
@@ -174,12 +172,52 @@ namespace Maker.Hevadea.Game
 
         public void Initialize(World world, GameScene game)
         {
+            Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
             World = world;
             Game = game;
+            Logger.Log<Level>(LoggerLevel.Info, "Initializing entities...");
             foreach (var e in Entities)
             {
                 e.Initialize(this, world, Game);
             }
+            Logger.Log<Level>(LoggerLevel.Fine, "Done!");
+        }
+
+        public LevelStorage Save()
+        {
+            Logger.Log<Level>(LoggerLevel.Info, "Saving level...");
+            var store = new LevelStorage
+            {
+                Width = Width,
+                Height = Height,
+                Tiles = Tiles,
+                TilesData = TilesData
+            };
+
+            Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
+            foreach (var e in Entities)
+            {
+                store.Entities.Add(e.Save());
+            }
+
+            Logger.Log<Level>(LoggerLevel.Fine, "Done!");
+            return store;
+        }
+
+        public void Load(LevelStorage store)
+        {
+            var asm = System.Reflection.Assembly.GetExecutingAssembly();
+            foreach (var item in store.Entities)
+            {
+                var e = (Entity)asm.CreateInstance(item.Type);
+                e.Load(item);
+                AddEntity(e);
+            }
+
+            Width = store.Width ;
+            Height = store.Height;
+            Tiles = store.Tiles;
+            TilesData = store.TilesData;
         }
 
         public void Update(GameTime gameTime)
@@ -272,6 +310,7 @@ namespace Maker.Hevadea.Game
             foreach (var e in state.OnScreenEntities)
             {
                 var light = e.Components.Get<LightComponent>();
+
                 if (light != null)
                 {
                     spriteBatch.Draw(Ressources.img_light, new Rectangle((int)e.X - light.Power + e.Width / 2, (int)e.Y - light.Power + e.Height / 2, light.Power * 2, light.Power * 2), light.Color);

@@ -1,8 +1,10 @@
 ﻿using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enum;
+using Maker.Rise.Extension;
 using Maker.Rise.Ressource;
 using Maker.Rise.UI;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,7 +14,6 @@ namespace Maker.Hevadea.Scenes
     public class MainMenu : Scene
     {
         private readonly SpriteBatch sb;
-        private ParalaxeBackground paralaxe;
 
 
         public MainMenu()
@@ -22,13 +23,7 @@ namespace Maker.Hevadea.Scenes
 
         public override void Load()
         {
-            paralaxe = new ParalaxeBackground(
-                new ParalaxeLayer(Ressources.img_forest_background, 1.1f),
-                new ParalaxeLayer(Ressources.img_forest_trees0, 1.5f),
-                new ParalaxeLayer(Ressources.img_forest_light, 2f),
-                new ParalaxeLayer(Ressources.img_forest_trees1, 2.5f)
-            );
-
+            Engine.Scene.Background = Ressources.paralaxe_forest;
             UiRoot.Padding = new Padding(64, 64, 256, 265);
             
             var menuButtonHost = new Panel
@@ -87,12 +82,11 @@ namespace Maker.Hevadea.Scenes
 
         public override void Draw(GameTime gameTime)
         {
-            sb.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, null, Engine.CommonRasterizerState);
-            paralaxe.Draw(sb, gameTime);
             var logo = Ressources.img_hevadea_logo;
-            sb.Draw(logo,
-      new Vector2(Engine.Graphic.GetWidth() / 2 - logo.Width / 2,
-          Engine.Graphic.GetHeight() / 2 - logo.Height / 2), Color.White * 10f);
+
+            Engine.Graphic.Begin(sb);
+            sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black * 0.25f);
+            sb.Draw(logo, Engine.Graphic.GetCenter() - logo.GetCenter(), Color.White);
             sb.End();
         }
 

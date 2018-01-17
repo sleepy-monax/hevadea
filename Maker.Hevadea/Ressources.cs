@@ -11,6 +11,14 @@ namespace Maker.Hevadea
         public static SpriteFont font_alagard_big;
         public static SpriteFont font_romulus;
 
+        public static SpriteSheet tile_tiles;
+        public static SpriteSheet tile_icons;
+        public static SpriteSheet tile_items;
+        public static SpriteSheet tile_entities;
+        public static SpriteSheet tile_creatures;
+
+        public static ParalaxeBackground paralaxe_forest;
+
         public static Texture2D img_icons;
         public static Texture2D img_tiles;
         public static Texture2D img_items;
@@ -20,11 +28,6 @@ namespace Maker.Hevadea
         public static Texture2D img_light;
         public static Texture2D img_shadow;
 
-        public static SpriteSheet tile_tiles;
-        public static SpriteSheet tile_icons;
-        public static SpriteSheet tile_items;
-        public static SpriteSheet tile_entities;
-        public static SpriteSheet tile_creatures;
 
         public static Texture2D img_maker_logo;
         public static Texture2D img_engine_logo;
@@ -64,6 +67,13 @@ namespace Maker.Hevadea
             tile_items = new SpriteSheet(img_items, new Point(16, 16));
             tile_entities = new SpriteSheet(img_entities, new Point(16, 16));
             tile_creatures = new SpriteSheet(img_creatures, new Point(48, 128));
+
+            paralaxe_forest = new ParalaxeBackground(
+                new ParalaxeLayer(img_forest_background, 1.1f),
+                new ParalaxeLayer(img_forest_trees0, 1.5f),
+                new ParalaxeLayer(img_forest_light, 2f),
+                new ParalaxeLayer(img_forest_trees1, 2.5f)
+            );
         }
     }
 }

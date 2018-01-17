@@ -1,5 +1,6 @@
 ﻿using Maker.Hevadea.Enum;
 using Maker.Hevadea.Game.Entities.Component;
+using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.Scenes;
 using Microsoft.Xna.Framework;
@@ -43,6 +44,39 @@ namespace Maker.Hevadea.Game.Entities
             World = world;
             Game = game;
         }
+
+        public EntityStorage Save()
+        {
+            var store = new EntityStorage(this.GetType().FullName);
+
+            store.Set("X", X);
+            store.Set("Y", Y);
+            store.Set("Width", Width);
+            store.Set("Height", Height);
+            store.Set("Facing", (int)Facing);
+
+            Components.Save(store);
+            OnSave(store);
+
+            return store;
+        }
+
+        public void Load(EntityStorage store)
+        {
+            X = store.Get("X", X);
+            Y = store.Get("Y", Y);
+            Width = store.Get("Width", Width);
+            Height = store.Get("Height", Height);
+
+            Facing = (Direction)store.Get("Facing", (int)Facing);
+
+            Components.Load(store);
+            OnLoad(store);
+        }
+
+        public virtual void OnSave(EntityStorage store) {}
+        public virtual void OnLoad(EntityStorage store) {}
+
         public void Remove()
         {
             Level.RemoveEntity(this);
