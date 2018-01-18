@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Maker.Rise.PathFinding;
 
 namespace Maker.Hevadea.Game
 {
@@ -252,8 +253,8 @@ namespace Maker.Hevadea.Game
         {
             var entitiesOnScreen = new List<Entity>();
             var focusEntity = camera.FocusEntity.GetTilePosition();
-            var dist = new Point(((camera.GetWidth() / 2) / ConstVal.TileSize) + 4,
-                ((camera.GetHeight() / 2) / ConstVal.TileSize) + 4);
+            var dist = new Point(camera.GetWidth() / 2 / ConstVal.TileSize + 4,
+                camera.GetHeight() / 2 / ConstVal.TileSize + 4);
 
             var state = new LevelRenderState
             {
@@ -304,8 +305,11 @@ namespace Maker.Hevadea.Game
             {
                 e.DrawOverlay(spriteBatch, gameTime);
 
-                spriteBatch.DrawRectangle(e.Bound, Color.Aqua);
-                spriteBatch.PutPixel(e.Position, Color.Cyan);
+                if (Engine.Debug.Visible)
+                {
+                    spriteBatch.DrawRectangle(e.Bound, Color.Aqua);
+                    spriteBatch.PutPixel(e.Position + e.Origin.ToVector2(), Color.Magenta);
+                }
             }
         }
 

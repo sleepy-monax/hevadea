@@ -1,0 +1,1438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="df664c61-15cb-45c4-98fa-c2a664fdb1f6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/Action.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/MoveToAction.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Maker.Rise/PathFinding/AStar.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/EntityComponentsManager.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/EntityComponentsManager.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/AiBaseComponent.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/AiBaseComponent.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/AttackComponent.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/AttackComponent.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/HealthComponent.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/HealthComponent.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Render/NpcRenderComponent.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Render/NpcRenderComponent.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Game/Level.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/Level.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Game/World.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Game/World.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Maker.Hevadea.csproj" afterPath="$PROJECT_DIR$/Maker.Hevadea/Maker.Hevadea.csproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Program.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Program.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Ressources.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Ressources.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Hevadea/Scenes/SplashScene.cs" afterPath="$PROJECT_DIR$/Maker.Hevadea/Scenes/SplashScene.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Rise/Engine.cs" afterPath="$PROJECT_DIR$/Maker.Rise/Engine.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Maker.Rise/Maker.Rise.csproj" afterPath="$PROJECT_DIR$/Maker.Rise/Maker.Rise.csproj" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AttackComponent.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/AttackComponent.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="94">
+              <caret line="89" column="28" lean-forward="false" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
+              <folding>
+                <marker date="1516286096335" expanded="false" signature="6:252" ph="..." />
+                <marker date="1516286096335" expanded="true" signature="313:4748" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="407:4746" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="938:997" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="1038:2722" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="1078:2712" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="1238:1393" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="1995:2398" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="2061:2380" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="2450:2595" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="2769:3194" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="2924:3005" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="3064:3184" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="3264:4740" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="3303:4598" ph="{...}" />
+                <marker date="1516286096335" expanded="true" signature="3433:4584" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AStar.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/AStar.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+              <folding>
+                <marker date="1516290657216" expanded="true" signature="6:97" ph="..." />
+                <marker date="1516290657216" expanded="true" signature="131:4068" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="155:1097" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="384:540" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="410:530" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="629:847" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="655:837" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="926:1091" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="1121:4066" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="1278:1323" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="1388:3407" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="2039:2911" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="2282:2897" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="2363:2879" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="2436:2857" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="3057:3114" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="3275:3372" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="3462:4064" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="3639:3713" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="3742:3816" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="3845:3919" ph="{...}" />
+                <marker date="1516290657216" expanded="true" signature="3954:4028" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Level.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Level.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+              <folding>
+                <marker date="1516290657116" expanded="true" signature="6:450" ph="..." />
+                <marker date="1516290657116" expanded="true" signature="480:10577" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="505:10575" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="952:1583" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="1312:1573" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="1375:1559" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="1723:1802" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="1843:2093" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="1923:1984" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="2137:2194" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="2257:2400" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="2468:2614" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="2682:2883" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="2757:2833" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="2946:3679" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="3309:3641" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="3375:3627" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="3808:3872" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="3917:4077" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="4133:4191" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="4245:4379" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="4474:4582" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="4664:4945" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="4740:4833" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="5036:5130" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="5208:5286" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="5428:5826" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="5681:5758" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="5862:6424" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="5994:6142" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="6255:6329" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="6470:6907" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="6602:6753" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="6954:7707" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="7057:7244" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="7316:7380" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="7482:7646" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="7770:8859" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="8107:8400" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="8467:8672" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="8550:8658" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="8960:9275" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="9035:9265" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="9118:9251" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="9377:9526" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="9441:9516" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="9635:10030" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="9699:10020" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="9810:10006" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="10132:10569" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="10196:10559" ph="{...}" />
+                <marker date="1516290657116" expanded="true" signature="10310:10545" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AiBaseComponent.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/AiBaseComponent.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+              <folding>
+                <marker date="1516290657188" expanded="true" signature="6:70" ph="..." />
+                <marker date="1516290657188" expanded="true" signature="122:588" ph="{...}" />
+                <marker date="1516290657188" expanded="true" signature="243:586" ph="{...}" />
+                <marker date="1516290657188" expanded="true" signature="282:315" ph="{...}" />
+                <marker date="1516290657188" expanded="true" signature="370:391" ph="{...}" />
+                <marker date="1516290657188" expanded="true" signature="461:482" ph="{...}" />
+                <marker date="1516290657188" expanded="true" signature="559:580" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Action.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/Action.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="10" column="40" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+              <folding>
+                <marker date="1516290657156" expanded="true" signature="6:80" ph="..." />
+                <marker date="1516290657156" expanded="true" signature="140:450" ph="{...}" />
+                <marker date="1516290657156" expanded="true" signature="166:448" ph="{...}" />
+                <marker date="1516290657156" expanded="true" signature="287:358" ph="{...}" />
+                <marker date="1516290657156" expanded="true" signature="421:442" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoveToAction.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/MoveToAction.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+              <folding>
+                <marker date="1516290657168" expanded="true" signature="6:80" ph="..." />
+                <marker date="1516290657168" expanded="true" signature="140:725" ph="{...}" />
+                <marker date="1516290657168" expanded="true" signature="181:723" ph="{...}" />
+                <marker date="1516290657168" expanded="true" signature="347:429" ph="{...}" />
+                <marker date="1516290657168" expanded="true" signature="485:717" ph="{...}" />
+                <marker date="1516290657168" expanded="true" signature="600:629" ph="{...}" />
+                <marker date="1516290657168" expanded="true" signature="646:707" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZombieEntity.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/ZombieEntity.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+              <folding>
+                <marker date="1516263945579" expanded="false" signature="6:257" ph="..." />
+                <marker date="1516263945579" expanded="true" signature="296:1398" ph="{...}" />
+                <marker date="1516263945579" expanded="true" signature="337:1396" ph="{...}" />
+                <marker date="1516263945579" expanded="true" signature="373:758" ph="{...}" />
+                <marker date="1516263945579" expanded="true" signature="948:1289" ph="{...}" />
+                <marker date="1516263945579" expanded="true" signature="1012:1138" ph="{...}" />
+                <marker date="1516263945579" expanded="true" signature="1345:1390" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/ZombieEntity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Rise/Components/GraphicComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/EntityComponentsManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/MoveToAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/Action.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/AStar.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/AiBaseComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Misc/InventoryComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Ressources.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Render/NpcRenderComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/InteractableComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/InteractComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/AttackComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/InteractEventArg.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/HealthComponent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Level.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Camera.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Craftings/Recipe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Craftings/RecipeCost.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/World.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Rise/Engine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Rise/Storage/Parser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Rise/RiseGame.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Tiles/Tile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Rise/Logger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Scenes/EngineSplash.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Maker.Hevadea/Scenes/SplashScene.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Scenes/SplashScene.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Ressources.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Render/NpcRenderComponent.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/EntityComponentsManager.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/World.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Craftings/Recipe.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/HealthComponent.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Program.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/Engine.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/Logger.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Camera.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/AttackComponent.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/NodeList.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/AdjacencyList.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/EdgeToNeighbor.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/Graph.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/AStart.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/PriorityQueue.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/IHasNeighbours.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/Path.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/Node.cs" />
+        <option value="$PROJECT_DIR$/Maker.Rise/PathFinding/AStar.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Level.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/AiBaseComponent.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/Action.cs" />
+        <option value="$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/MoveToAction.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="102" />
+    <option name="y" value="85" />
+    <option name="width" value="1352" />
+    <option name="height" value="738" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Content" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Enum" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Craftings" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Component" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Component" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="IA" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Component" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="IA" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Actions" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Component" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Interaction" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Component" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Misc" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Component" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Render" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Entities" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Particles" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Game" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Tiles" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Hevadea" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Scenes" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Rise" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="WorldOfImagination (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Maker.Rise" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="PathFinding" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="/usr/lib/mono/xbuild/MonoGame/v3.0/Assemblies/DesktopGL/MonoGame.Framework.dll" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Maker.Hevadea/bin/DesktopGL/AnyCPU/Debug/Maker.Hevadea.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Maker.Hevadea/bin/DesktopGL/AnyCPU/Debug" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <envs />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/Maker.Hevadea/Maker.Hevadea.csproj" />
+      <option name="PROJECT_OUTPUT_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="Console" />
+      <option name="PROJECT_TFM" value=".NETFramework,Version=v4.5" />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df664c61-15cb-45c4-98fa-c2a664fdb1f6" name="Default" comment="" />
+      <created>1516277068203</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1516277068203</updated>
+      <workItem from="1516277074586" duration="2363000" />
+      <workItem from="1516284520838" duration="6694000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="9057000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="5" y="6" width="1356" height="759" extended-state="6" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22792937" sideWeight="0.5030581" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22792937" sideWeight="0.4969419" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2530581" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Scenes/EngineSplash.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945587" expanded="false" signature="6:169" ph="..." />
+            <marker date="1516263945587" expanded="true" signature="201:1109" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="234:1107" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="341:462" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="501:521" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="604:800" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="679:790" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="854:1101" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Scenes/SplashScene.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="50" lean-forward="false" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+          <folding>
+            <marker date="1516277413515" expanded="false" signature="6:249" ph="..." />
+            <marker date="1516277413515" expanded="true" signature="320:1600" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="420:440" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="478:948" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="759:839" ph="/* Engine.Graphic.SetResolution(1280, 960); ... */" />
+            <marker date="1516277413515" expanded="true" signature="987:1007" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="1089:1289" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="1164:1279" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="1343:1594" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Level.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4947">
+          <caret line="304" column="38" lean-forward="false" selection-start-line="304" selection-start-column="38" selection-end-line="304" selection-end-column="38" />
+          <folding>
+            <marker date="1516290657116" expanded="true" signature="6:450" ph="..." />
+            <marker date="1516290657116" expanded="true" signature="480:10577" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="505:10575" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="952:1583" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1312:1573" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1375:1559" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1723:1802" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1843:2093" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1923:1984" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2137:2194" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2257:2400" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2468:2614" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2682:2883" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2757:2833" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2946:3679" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3309:3641" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3375:3627" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3808:3872" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3917:4077" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4133:4191" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4245:4379" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4474:4582" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4664:4945" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4740:4833" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5036:5130" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5208:5286" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5428:5826" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5681:5758" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5862:6424" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5994:6142" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6255:6329" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6470:6907" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6602:6753" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6954:7707" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7057:7244" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7316:7380" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7482:7646" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7770:8859" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8107:8400" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8467:8672" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8550:8658" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8960:9275" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9035:9265" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9118:9251" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9377:9526" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9441:9516" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9635:10030" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9699:10020" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9810:10006" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="10132:10569" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="10196:10559" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="10310:10545" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/Storage/Parser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6222">
+          <caret line="366" column="29" lean-forward="false" selection-start-line="366" selection-start-column="29" selection-end-line="366" selection-end-column="29" />
+          <folding>
+            <marker date="1516263945599" expanded="true" signature="6:200" ph="..." />
+            <marker date="1516263945599" expanded="true" signature="237:1273" ph="/* Really simple JSON parser in ~300 lines ... */" />
+            <marker date="1516263945599" expanded="true" signature="1304:13935" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="1833:2459" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2010:2345" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2089:2216" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2555:3276" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2676:3229" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2727:2984" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3026:3143" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3434:4758" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3777:4661" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3824:4599" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="4335:4549" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="4825:10550" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="4875:6747" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="5093:6683" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="5179:6585" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="5246:6533" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="6785:6896" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="6935:7048" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7088:7227" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7268:7385" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7424:7501" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7534:7591" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7622:8143" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="8233:8782" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="8879:10254" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="9885:10204" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10295:10373" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10438:10514" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10606:12369" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10743:11167" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11232:11527" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11594:11743" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11801:12147" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11855:11985" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="12006:12133" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="12428:13929" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="12827:13023" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="13102:13272" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="13326:13889" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Ressources.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="53" column="59" lean-forward="false" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+          <folding>
+            <marker date="1516278624099" expanded="false" signature="6:116" ph="..." />
+            <marker date="1516278624099" expanded="true" signature="178:3361" ph="{...}" />
+            <marker date="1516278624099" expanded="true" signature="1372:3355" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/AttackComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1547">
+          <caret line="91" column="40" lean-forward="true" selection-start-line="91" selection-start-column="40" selection-end-line="91" selection-end-column="40" />
+          <folding>
+            <marker date="1516286096335" expanded="false" signature="6:252" ph="..." />
+            <marker date="1516286096335" expanded="true" signature="313:4748" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="407:4746" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="938:997" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1038:2722" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1078:2712" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1238:1393" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1995:2398" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2061:2380" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2450:2595" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2769:3194" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2924:3005" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3064:3184" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3264:4740" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3303:4598" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3433:4584" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Scenes/EngineSplash.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945587" expanded="false" signature="6:169" ph="..." />
+            <marker date="1516263945587" expanded="true" signature="201:1109" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="234:1107" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="341:462" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="501:521" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="604:800" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="679:790" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="854:1101" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Scenes/SplashScene.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="50" lean-forward="false" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+          <folding>
+            <marker date="1516277413515" expanded="false" signature="6:249" ph="..." />
+            <marker date="1516277413515" expanded="true" signature="320:1600" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="420:440" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="478:948" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="759:839" ph="/* Engine.Graphic.SetResolution(1280, 960); ... */" />
+            <marker date="1516277413515" expanded="true" signature="987:1007" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="1089:1289" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="1164:1279" ph="{...}" />
+            <marker date="1516277413515" expanded="true" signature="1343:1594" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/Storage/Parser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6222">
+          <caret line="366" column="29" lean-forward="false" selection-start-line="366" selection-start-column="29" selection-end-line="366" selection-end-column="29" />
+          <folding>
+            <marker date="1516263945599" expanded="true" signature="6:200" ph="..." />
+            <marker date="1516263945599" expanded="true" signature="237:1273" ph="/* Really simple JSON parser in ~300 lines ... */" />
+            <marker date="1516263945599" expanded="true" signature="1304:13935" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="1833:2459" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2010:2345" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2089:2216" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2555:3276" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2676:3229" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2727:2984" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3026:3143" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3434:4758" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3777:4661" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="3824:4599" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="4335:4549" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="4825:10550" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="4875:6747" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="5093:6683" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="5179:6585" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="5246:6533" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="6785:6896" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="6935:7048" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7088:7227" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7268:7385" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7424:7501" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7534:7591" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="7622:8143" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="8233:8782" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="8879:10254" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="9885:10204" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10295:10373" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10438:10514" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10606:12369" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="10743:11167" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11232:11527" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11594:11743" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11801:12147" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="11855:11985" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="12006:12133" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="12428:13929" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="12827:13023" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="13102:13272" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="13326:13889" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Ressources.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="53" column="59" lean-forward="false" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+          <folding>
+            <marker date="1516278624099" expanded="false" signature="6:116" ph="..." />
+            <marker date="1516278624099" expanded="true" signature="178:3361" ph="{...}" />
+            <marker date="1516278624099" expanded="true" signature="1372:3355" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Misc/InventoryComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-409">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945575" expanded="false" signature="6:157" ph="..." />
+            <marker date="1516263945575" expanded="true" signature="211:1665" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="328:1663" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="585:655" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="702:992" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="763:955" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1039:1094" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1164:1383" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1432:1511" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1560:1657" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Render/NpcRenderComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <marker date="1516285186081" expanded="false" signature="6:148" ph="..." />
+            <marker date="1516285186081" expanded="true" signature="204:1388" ph="{...}" />
+            <marker date="1516285186081" expanded="true" signature="301:1384" ph="{...}" />
+            <marker date="1516285186081" expanded="true" signature="479:555" ph="{...}" />
+            <marker date="1516285186081" expanded="true" signature="625:1160" ph="{...}" />
+            <marker date="1516285186081" expanded="true" signature="662:967" ph="{...}" />
+            <marker date="1516285186081" expanded="true" signature="984:1149" ph="{...}" />
+            <marker date="1516285186081" expanded="true" signature="1207:1378" ph="{...}" />
+            <marker date="1516285186081" expanded="true" signature="1310:1368" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/EntityComponentsManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-514">
+          <caret line="50" column="9" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+          <folding>
+            <marker date="1516285188137" expanded="false" signature="6:220" ph="..." />
+            <marker date="1516285188137" expanded="true" signature="269:2773" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="319:2771" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="530:577" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="629:930" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="681:753" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="983:1211" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1035:1175" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1087:1161" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1267:1336" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1384:1594" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1436:1584" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1497:1570" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1641:1851" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1693:1841" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1754:1827" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1921:2159" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="1973:2149" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="2041:2135" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="2206:2436" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="2258:2426" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="2328:2412" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="2513:2765" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="2565:2755" ph="{...}" />
+            <marker date="1516285188137" expanded="true" signature="2640:2741" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/World.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-833">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <marker date="1516285191185" expanded="false" signature="6:177" ph="..." />
+            <marker date="1516285191185" expanded="true" signature="207:3069" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="232:3067" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="731:831" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="869:965" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="989:1259" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="1304:2627" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="2674:2817" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="2722:2786" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="2865:3060" ph="{...}" />
+            <marker date="1516285191185" expanded="true" signature="2938:3008" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Tiles/Tile.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1632">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945587" expanded="false" signature="6:264" ph="..." />
+            <marker date="1516263945587" expanded="true" signature="300:4844" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="324:4842" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="501:789" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="854:874" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="884:3512" ph="Tile rendering" />
+            <marker date="1516263945587" expanded="true" signature="1015:2400" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="2596:3492" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="2784:2902" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="2931:3049" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="3078:3196" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="3221:3339" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="3356:3482" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="3522:3980" ph="Tile Interaction" />
+            <marker date="1516263945587" expanded="true" signature="3659:3679" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="3786:3806" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="3940:3960" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="3990:4142" ph="Properties" />
+            <marker date="1516263945587" expanded="true" signature="4076:4122" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="4233:4487" ph="{...}" />
+            <marker date="1516263945587" expanded="true" signature="4586:4836" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Craftings/Recipe.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="9" lean-forward="false" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding>
+            <marker date="1516263945571" expanded="true" signature="6:100" ph="..." />
+            <marker date="1516263945571" expanded="true" signature="140:1257" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="166:1255" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="343:425" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="481:582" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="637:867" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="721:824" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="915:1249" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="987:1212" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="1085:1168" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Craftings/RecipeCost.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <marker date="1516263945571" expanded="false" signature="6:147" ph="..." />
+            <marker date="1516263945571" expanded="true" signature="187:446" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="217:444" ph="{...}" />
+            <marker date="1516263945571" expanded="true" signature="366:438" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/HealthComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="85" column="54" lean-forward="false" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
+          <folding>
+            <marker date="1516285392354" expanded="false" signature="6:204" ph="..." />
+            <marker date="1516285392354" expanded="true" signature="265:3442" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="379:3440" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="896:983" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="1132:1361" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="1170:1351" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="1274:1337" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="1491:1720" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="1529:1710" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="1633:1696" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="1865:1945" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="2059:2139" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="2174:2261" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="2308:2365" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="2435:3193" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="2501:3183" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="3242:3309" ph="{...}" />
+            <marker date="1516285392354" expanded="true" signature="3358:3434" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/InteractableComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945575" expanded="false" signature="6:57" ph="..." />
+            <marker date="1516263945575" expanded="true" signature="118:536" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="177:534" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="415:527" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/InteractComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945575" expanded="false" signature="6:144" ph="..." />
+            <marker date="1516263945575" expanded="true" signature="205:1832" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="287:1830" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="333:1036" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="693:1026" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="751:1012" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1119:1824" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1423:1814" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1481:1800" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="1566:1755" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/InteractEventArg.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945575" expanded="false" signature="6:71" ph="..." />
+            <marker date="1516263945575" expanded="true" signature="132:517" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="180:515" ph="{...}" />
+            <marker date="1516263945575" expanded="true" signature="385:509" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding>
+            <marker date="1516285392382" expanded="false" signature="6:137" ph="..." />
+            <marker date="1516285392382" expanded="true" signature="162:388" ph="{...}" />
+            <marker date="1516285392382" expanded="true" signature="196:386" ph="{...}" />
+            <marker date="1516285392382" expanded="true" signature="249:380" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/Engine.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="52" column="23" lean-forward="false" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+          <folding>
+            <marker date="1516285392370" expanded="false" signature="6:161" ph="..." />
+            <marker date="1516285392370" expanded="true" signature="183:2138" ph="{...}" />
+            <marker date="1516285392370" expanded="true" signature="216:2136" ph="{...}" />
+            <marker date="1516285392370" expanded="true" signature="921:1588" ph="{...}" />
+            <marker date="1516285392370" expanded="true" signature="1639:1765" ph="{...}" />
+            <marker date="1516285392370" expanded="true" signature="1800:1878" ph="{...}" />
+            <marker date="1516285392370" expanded="true" signature="1939:2002" ph="{...}" />
+            <marker date="1516285392370" expanded="true" signature="2073:2130" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/RiseGame.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-973">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516263945599" expanded="true" signature="6:133" ph="..." />
+            <marker date="1516263945599" expanded="true" signature="155:2590" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="197:2588" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="564:724" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="775:1110" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="1176:1278" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="1346:1670" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="1716:1956" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2015:2252" ph="{...}" />
+            <marker date="1516263945599" expanded="true" signature="2309:2582" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/Logger.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="231" column="27" lean-forward="false" selection-start-line="231" selection-start-column="27" selection-end-line="231" selection-end-column="27" />
+          <folding>
+            <marker date="1516263945595" expanded="false" signature="6:234" ph="..." />
+            <marker date="1516263945595" expanded="true" signature="256:7631" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="289:7629" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="724:949" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="1001:1287" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="1335:1440" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="1506:1567" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="1601:1661" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="1709:1770" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="1837:2214" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="2267:2393" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="2475:2720" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="2797:2866" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="2962:3329" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="3456:3881" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="3960:4092" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="4144:4602" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="4270:4567" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="4635:4685" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="4719:4770" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="4808:4863" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="4902:4958" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5014:5084" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5125:5185" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5230:5292" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5337:5474" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5513:6330" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5619:5711" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5807:5899" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="5997:6089" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="6226:6320" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="6366:7623" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="6593:6737" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="6773:6879" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="6928:7613" ph="{...}" />
+            <marker date="1516263945595" expanded="true" signature="6962:7599" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/Components/GraphicComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="75" column="62" lean-forward="false" selection-start-line="75" selection-start-column="62" selection-end-line="75" selection-end-column="62" />
+          <folding>
+            <marker date="1516263945591" expanded="false" signature="6:94" ph="..." />
+            <marker date="1516263945591" expanded="true" signature="127:2600" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="163:2598" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="289:383" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="420:548" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="583:669" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="714:933" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="991:1139" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="1185:1268" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="1306:1413" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="1445:1513" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="1544:1611" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="1750:1901" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="1967:2050" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="2101:2158" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="2206:2280" ph="{...}" />
+            <marker date="1516263945591" expanded="true" signature="2387:2592" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Camera.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <marker date="1516285642648" expanded="false" signature="6:97" ph="..." />
+            <marker date="1516285642648" expanded="true" signature="127:1081" ph="{...}" />
+            <marker date="1516285642648" expanded="true" signature="153:1079" ph="{...}" />
+            <marker date="1516285642648" expanded="true" signature="322:403" ph="{...}" />
+            <marker date="1516285642648" expanded="true" signature="435:517" ph="{...}" />
+            <marker date="1516285642648" expanded="true" signature="555:1073" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/Interaction/AttackComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="89" column="28" lean-forward="false" selection-start-line="89" selection-start-column="28" selection-end-line="89" selection-end-column="28" />
+          <folding>
+            <marker date="1516286096335" expanded="false" signature="6:252" ph="..." />
+            <marker date="1516286096335" expanded="true" signature="313:4748" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="407:4746" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="938:997" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1038:2722" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1078:2712" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1238:1393" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="1995:2398" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2061:2380" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2450:2595" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2769:3194" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="2924:3005" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3064:3184" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3264:4740" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3303:4598" ph="{...}" />
+            <marker date="1516286096335" expanded="true" signature="3433:4584" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/NodeList.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/AdjacencyList.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="14" column="50" lean-forward="false" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/EdgeToNeighbor.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/Graph.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3708">
+          <caret line="64" column="36" lean-forward="false" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/AStart.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/PriorityQueue.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="14" column="36" lean-forward="false" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/IHasNeighbours.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/Path.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/Node.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="192" column="20" lean-forward="false" selection-start-line="192" selection-start-column="20" selection-end-line="192" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Rise/PathFinding/AStar.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <folding>
+            <marker date="1516290657216" expanded="true" signature="6:97" ph="..." />
+            <marker date="1516290657216" expanded="true" signature="131:4068" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="155:1097" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="384:540" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="410:530" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="629:847" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="655:837" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="926:1091" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="1121:4066" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="1278:1323" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="1388:3407" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="2039:2911" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="2282:2897" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="2363:2879" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="2436:2857" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="3057:3114" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="3275:3372" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="3462:4064" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="3639:3713" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="3742:3816" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="3845:3919" ph="{...}" />
+            <marker date="1516290657216" expanded="true" signature="3954:4028" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Level.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+          <folding>
+            <marker date="1516290657116" expanded="true" signature="6:450" ph="..." />
+            <marker date="1516290657116" expanded="true" signature="480:10577" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="505:10575" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="952:1583" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1312:1573" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1375:1559" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1723:1802" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1843:2093" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="1923:1984" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2137:2194" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2257:2400" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2468:2614" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2682:2883" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2757:2833" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="2946:3679" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3309:3641" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3375:3627" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3808:3872" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="3917:4077" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4133:4191" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4245:4379" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4474:4582" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4664:4945" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="4740:4833" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5036:5130" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5208:5286" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5428:5826" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5681:5758" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5862:6424" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="5994:6142" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6255:6329" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6470:6907" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6602:6753" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="6954:7707" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7057:7244" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7316:7380" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7482:7646" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="7770:8859" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8107:8400" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8467:8672" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8550:8658" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="8960:9275" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9035:9265" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9118:9251" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9377:9526" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9441:9516" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9635:10030" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9699:10020" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="9810:10006" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="10132:10569" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="10196:10559" ph="{...}" />
+            <marker date="1516290657116" expanded="true" signature="10310:10545" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/AiBaseComponent.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <marker date="1516290657188" expanded="true" signature="6:70" ph="..." />
+            <marker date="1516290657188" expanded="true" signature="122:588" ph="{...}" />
+            <marker date="1516290657188" expanded="true" signature="243:586" ph="{...}" />
+            <marker date="1516290657188" expanded="true" signature="282:315" ph="{...}" />
+            <marker date="1516290657188" expanded="true" signature="370:391" ph="{...}" />
+            <marker date="1516290657188" expanded="true" signature="461:482" ph="{...}" />
+            <marker date="1516290657188" expanded="true" signature="559:580" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/Action.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="40" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+          <folding>
+            <marker date="1516290657156" expanded="true" signature="6:80" ph="..." />
+            <marker date="1516290657156" expanded="true" signature="140:450" ph="{...}" />
+            <marker date="1516290657156" expanded="true" signature="166:448" ph="{...}" />
+            <marker date="1516290657156" expanded="true" signature="287:358" ph="{...}" />
+            <marker date="1516290657156" expanded="true" signature="421:442" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/Component/IA/Actions/MoveToAction.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+          <folding>
+            <marker date="1516290657168" expanded="true" signature="6:80" ph="..." />
+            <marker date="1516290657168" expanded="true" signature="140:725" ph="{...}" />
+            <marker date="1516290657168" expanded="true" signature="181:723" ph="{...}" />
+            <marker date="1516290657168" expanded="true" signature="347:429" ph="{...}" />
+            <marker date="1516290657168" expanded="true" signature="485:717" ph="{...}" />
+            <marker date="1516290657168" expanded="true" signature="600:629" ph="{...}" />
+            <marker date="1516290657168" expanded="true" signature="646:707" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Maker.Hevadea/Game/Entities/ZombieEntity.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding>
+            <marker date="1516263945579" expanded="false" signature="6:257" ph="..." />
+            <marker date="1516263945579" expanded="true" signature="296:1398" ph="{...}" />
+            <marker date="1516263945579" expanded="true" signature="337:1396" ph="{...}" />
+            <marker date="1516263945579" expanded="true" signature="373:758" ph="{...}" />
+            <marker date="1516263945579" expanded="true" signature="948:1289" ph="{...}" />
+            <marker date="1516263945579" expanded="true" signature="1012:1138" ph="{...}" />
+            <marker date="1516263945579" expanded="true" signature="1345:1390" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

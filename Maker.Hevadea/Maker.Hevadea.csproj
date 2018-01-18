@@ -75,6 +75,8 @@
     <Compile Include="Game\Entities\ChestEntity.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\EntityComponentsManager.cs" />
+    <Compile Include="Game\Entities\Component\IA\Actions\Action.cs" />
+    <Compile Include="Game\Entities\Component\IA\Actions\MoveToAction.cs" />
     <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />
@@ -155,9 +157,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -222,7 +223,6 @@
     </None>
     <None Include="app.manifest" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Maker.Rise\Maker.Rise.csproj">
       <Project>{8a64df5f-5501-44e9-8254-8ef37fe51f36}</Project>

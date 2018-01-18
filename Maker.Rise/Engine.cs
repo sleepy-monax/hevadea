@@ -19,10 +19,10 @@ namespace Maker.Rise
         public static UiManager Ui;
         public static RasterizerState CommonRasterizerState;
         public static Version Version => Assembly.GetExecutingAssembly().GetName().Version;
-        public static Random Random = new Random();
+        public static readonly Random Random = new Random();
         
         private static RiseGame game;
-        private static Scene MainScene;
+        private static Scene mainScene;
         
 
         public static void Initialize()
@@ -48,7 +48,7 @@ namespace Maker.Rise
 
         public static void Start(Scene mainScene)
         {
-            MainScene = mainScene;
+            Engine.mainScene = mainScene;
             game.OnLoad += Game_OnLoad;
             game.Run();
         }
@@ -66,7 +66,7 @@ namespace Maker.Rise
 
         private static void Game_OnLoad(RiseGame sender, EventArgs e)
         {
-            Scene.Switch(MainScene);
+            Scene.Switch(mainScene);
         }
     }
 }

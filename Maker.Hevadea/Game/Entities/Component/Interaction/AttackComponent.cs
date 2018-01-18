@@ -5,15 +5,17 @@ using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Maker.Hevadea.Enum;
 
 namespace Maker.Hevadea.Game.Entities.Component.Interaction
 {
     public class AttackComponent : EntityComponent, IUpdatableComponent, IDrawableComponent
     {
         public bool IsAttacking = false;
+        public Direction AttackDirection  { get; private set; } = Direction.Up;
         public double AttackCooldownTimer { get; private set; } = 0;
-        private double BaseAttackCooldown { get; set; } = 0.35f;
-        public double AttackCouldown { get; private set; } = 0.35;
+        public double BaseAttackCooldown { get; set; } = 1;
+        public double AttackCouldown { get; private set; } = 1;
 
         public int BaseDamages { get; set; }
         public bool CanAttackTile { get; set; } = true;
@@ -62,14 +64,14 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
                     IsAttacking = true;
                 }
 
+                AttackDirection = Owner.Facing;
                 AttackCooldownTimer = AttackCouldown;
-
             }
         }
 
         public void Update(GameTime gameTime)
         {
-            AttackCooldownTimer = Math.Max(0.0, AttackCooldownTimer - gameTime.ElapsedGameTime.TotalSeconds);
+            AttackCooldownTimer = Math.Max(0.0, AttackCooldownTimer - gameTime.ElapsedGameTime.TotalSeconds * 5);
 
             if (!IsAttacking)
             {
@@ -85,7 +87,29 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(new Rectangle((int)Owner.X, (int)Owner.Y, (int)(64 * AttackCooldownTimer), 16), Color.Red);
+            if (IsAttacking)
+            {
+                var invTimer =  1f - AttackCooldownTimer;
+                
+                switch (AttackDirection)
+                {
+                    case Direction.Up:
+                        spriteBatch.Draw(Ressources.img_swing, new Rectangle((int)(Owner.X), (int)(Owner.Y - Owner.Height), (int)(Owner.Width * invTimer), Owner.Height), Color.White);
+                        break;
+                    case Direction.Right:
+                        spriteBatch.Draw(Ressources.img_swing, new Rectangle((int)(Owner.X + Owner.Width), (int)(Owner.Y), Owner.Width, (int)(Owner.Height * invTimer)), Color.White);
+                        break;
+                    case Direction.Down:
+                        spriteBatch.Draw(Ressources.img_swing, new Rectangle((int)(Owner.X), (int)(Owner.Y + Owner.Height), (int)(Owner.Width * invTimer), Owner.Height), Color.White);
+                        break;
+                    case Direction.Left:
+                        spriteBatch.Draw(Ressources.img_swing, new Rectangle((int)(Owner.X - Owner.Width), (int)(Owner.Y), Owner.Width, (int)(Owner.Height * invTimer)), Color.White);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            //spriteBatch.FillRectangle(new Rectangle((int)Owner.X, (int)Owner.Y, (int)(64 * AttackCooldownTimer), 16), Color.Red);
         }
     }
 }

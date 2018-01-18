@@ -10,8 +10,6 @@ namespace Maker.Hevadea.Game.Entities.Component.Render
         public Sprite Sprite { get; set; }
 
         private bool isWalking = false;
-        private bool isAttacking = false;
-
         private int walkingFrame = 0;
 
         public NpcRenderComponent(Sprite sprite)
@@ -41,10 +39,6 @@ namespace Maker.Hevadea.Game.Entities.Component.Render
             if (move != null) {
                 isWalking = move.IsMoving;
             }
-
-            //var attack = Owner.GetComponent<AttackComponent>();
-            //if (attack != null) { isAttacking = attack.IsAttacking; }
-
         }
     }
 

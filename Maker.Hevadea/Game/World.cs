@@ -23,14 +23,14 @@ namespace Maker.Hevadea.Game
 
         public Level this[Levels l]
         {
-            get { return Levels[(int) l]; }
-            set { Levels[(int) l] = value; }
+            get => Levels[(int) l];
+            set => Levels[(int) l] = value;
         }
 
         public Level this[int index]
         {
-            get { return Levels[index]; }
-            set { Levels[index] = value; }
+            get => Levels[index];
+            set => Levels[index] = value;
         }
 
         public World()

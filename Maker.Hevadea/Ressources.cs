@@ -27,6 +27,7 @@ namespace Maker.Hevadea
 
         public static Texture2D img_light;
         public static Texture2D img_shadow;
+        public static Texture2D img_swing;
 
 
         public static Texture2D img_maker_logo;
@@ -52,6 +53,7 @@ namespace Maker.Hevadea
 
             img_light = Engine.Ressource.GetImage("light");
             img_shadow = Engine.Ressource.GetImage("shadow");
+            img_swing = Engine.Ressource.GetImage("swing");
 
             img_maker_logo = Engine.Ressource.GetImage("logo/maker");
             img_engine_logo = Engine.Ressource.GetImage("logo/engine");

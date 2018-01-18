@@ -70,10 +70,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
 
         public virtual void Die()
         {
-            if (OnDie != null)
-            {
-                OnDie.Invoke(this, null);
-            }
+            OnDie?.Invoke(this, null);
             Owner.Remove();
         }
 
