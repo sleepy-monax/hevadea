@@ -12,6 +12,11 @@ namespace Maker.Hevadea.Game
         public float X = 0f;
         public float Y = 0f;
 
+        public Camera(Entity focusEntity)
+        {
+            FocusEntity = focusEntity;
+        }
+
         public int GetWidth()
         {
             return (int) (Engine.Graphic.GetWidth() / Zoom);
@@ -24,13 +29,15 @@ namespace Maker.Hevadea.Game
 
         public Matrix GetTransform()
         {
-            if (FocusEntity == null) { return Matrix.Identity; }
-
-            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width  / 2f);
-            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2f);
-
+            Update();
             return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation((float)Math.Floor(-(X * Zoom - Engine.Graphic.GetWidth()  / 2f)),
                                                                        (float)Math.Floor(-(Y * Zoom - Engine.Graphic.GetHeight() / 2f)), 0f);
+        }
+
+        public void Update()
+        {
+            X = (float)Math.Floor(FocusEntity.X + FocusEntity.Width / 2f);
+            Y = (float)Math.Floor(FocusEntity.Y + FocusEntity.Height / 2f);
         }
     }
 }

@@ -66,7 +66,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Enum\Direction.cs" />
-    <Compile Include="Enum\Levels.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
@@ -75,23 +74,24 @@
     <Compile Include="Game\Entities\ChestEntity.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\EntityComponentsManager.cs" />
-    <Compile Include="Game\Entities\Component\IA\Actions\Action.cs" />
-    <Compile Include="Game\Entities\Component\IA\Actions\MoveToAction.cs" />
-    <Compile Include="Game\Entities\Component\IA\AiBaseComponent.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Actions\Action.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Actions\MoveToAction.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Ai.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\InteractComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\Interact.cs" />
     <Compile Include="Game\Entities\Component\Interaction\InteractEventArg.cs" />
     <Compile Include="Game\Entities\Component\ISaveLoadComponent.cs" />
     <Compile Include="Game\Entities\Component\IUpdatableComponent.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\AttackComponent.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\HealthComponent.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\InteractableComponent.cs" />
-    <Compile Include="Game\Entities\Component\Misc\EnergyComponent.cs" />
-    <Compile Include="Game\Entities\Component\Misc\InventoryComponent.cs" />
-    <Compile Include="Game\Entities\Component\Misc\LightComponent.cs" />
-    <Compile Include="Game\Entities\Component\Misc\MoveComponent.cs" />
-    <Compile Include="Game\Entities\Component\Render\NpcRenderComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\Attack.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\Health.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\Interactable.cs" />
+    <Compile Include="Game\Entities\Component\Misc\Energy.cs" />
+    <Compile Include="Game\Entities\Component\Misc\Inventory.cs" />
+    <Compile Include="Game\Entities\Component\Misc\Light.cs" />
+    <Compile Include="Game\Entities\Component\Misc\Move.cs" />
+    <Compile Include="Game\Entities\Component\Render\NpcRender.cs" />
+    <Compile Include="Game\Entities\Component\Render\ParticleEmiter.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\GrassEntity.cs" />
     <Compile Include="Game\Entities\ItemEntity.cs" />
@@ -100,33 +100,28 @@
     <Compile Include="Game\Entities\StairsEntity.cs" />
     <Compile Include="Game\Entities\TorchEntity.cs" />
     <Compile Include="Game\Entities\ZombieEntity.cs" />
-    <Compile Include="Game\Items\Inventory.cs" />
+    <Compile Include="Game\GameManager.cs" />
+    <Compile Include="Game\Items\ItemStorage.cs" />
     <Compile Include="Game\Items\Materials\BaseMaterial.cs" />
     <Compile Include="Game\Items\Materials\Material.cs" />
     <Compile Include="Game\Items\RessourceItem.cs" />
     <Compile Include="Game\Items\Tools\ToolItem.cs" />
     <Compile Include="Game\Items\Tools\ToolType.cs" />
-    <Compile Include="Game\Generator\Features\Cave\CaveGenerator.cs" />
-    <Compile Include="Game\Generator\Features\Dungeon\DungeonGenerator.cs" />
-    <Compile Include="Game\Generator\Features\Cave\BaseCaveFeature.cs" />
-    <Compile Include="Game\Generator\Features\Dungeon\DungeonBaseFeature.cs" />
-    <Compile Include="Game\Generator\Features\Overworld\AbandonedHouseFeature.cs" />
-    <Compile Include="Game\Generator\Features\Overworld\GrassFeature.cs" />
-    <Compile Include="Game\Generator\WorldGenerator.cs" />
-    <Compile Include="Game\Generator\Features\Overworld\OverWorldGenerator.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
+    <Compile Include="Game\Registry\GENERATOR.cs" />
+    <Compile Include="Game\Storage\WorldStorage.cs" />
+    <Compile Include="Game\Tiles\Render\CompositConectedTileRender.cs" />
+    <Compile Include="Game\Tiles\Render\ConnectedTileRender.cs" />
+    <Compile Include="Game\Tiles\Render\TileConection.cs" />
     <Compile Include="Menus\ChestMenu.cs" />
     <Compile Include="Menus\CraftMenu.cs" />
+    <Compile Include="Menus\HUDMenu.cs" />
     <Compile Include="Menus\InventoryMenu.cs" />
     <Compile Include="Menus\Menu.cs" />
     <Compile Include="Game\Entities\PlayerEntity.cs" />
     <Compile Include="Game\Entities\TreeEntity.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Level.cs" />
-    <Compile Include="Game\Generator\Features\Overworld\OverworldBaseTerrain.cs" />
-    <Compile Include="Game\Generator\Features\Overworld\TreeFeature.cs" />
-    <Compile Include="Game\Generator\GeneratorBase.cs" />
-    <Compile Include="Game\Generator\Features\GeneratorFeature.cs" />
     <Compile Include="Game\Registry\Init.cs" />
     <Compile Include="Game\Registry\ITEMS.cs" />
     <Compile Include="Game\Registry\RECIPIES.cs" />
@@ -136,6 +131,8 @@
     <Compile Include="Game\Tiles\DirtTile.cs" />
     <Compile Include="Game\Tiles\WoodFloorTile.cs" />
     <Compile Include="Game\Tiles\WoodWallTile.cs" />
+    <Compile Include="Scenes\TestScene.cs" />
+    <Compile Include="Scenes\WorldGenScene.cs" />
     <Compile Include="UI\CraftingUi.cs" />
     <Compile Include="UI\InventoryUi.cs" />
     <Compile Include="UI\PlayerInfoPanel.cs" />
@@ -155,13 +152,28 @@
     <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorldGenerator\Features\BaseTerainFeature.cs" />
+    <Compile Include="WorldGenerator\Features\Functions\CombinedFunction.cs" />
+    <Compile Include="WorldGenerator\Features\Functions\FlatFunction.cs" />
+    <Compile Include="WorldGenerator\Features\Functions\FunctionBase.cs" />
+    <Compile Include="WorldGenerator\Features\Functions\IslandFunction.cs" />
+    <Compile Include="WorldGenerator\Features\Functions\PerlinFunction.cs" />
+    <Compile Include="WorldGenerator\Features\PlantFeature.cs" />
+    <Compile Include="WorldGenerator\Features\TerrainLayer.cs" />
+    <Compile Include="WorldGenerator\Generator.cs" />
+    <Compile Include="WorldGenerator\GenFeature.cs" />
+    <Compile Include="WorldGenerator\LevelGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +234,7 @@
       <InProject>false</InProject>
     </None>
     <None Include="app.manifest" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maker.Rise\Maker.Rise.csproj">
@@ -235,6 +248,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Game\Entities\Component\Ai\Behavior\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

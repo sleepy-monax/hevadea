@@ -18,6 +18,7 @@ namespace Maker.Hevadea.Game.Registry
                 TILES.Initialize();
                 ITEMS.Initialize();
                 RECIPIES.InitializeHandCraftedRecipe();
+                GENERATOR.Initialize();
             }
         }
     }

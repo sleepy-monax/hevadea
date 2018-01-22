@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Scenes;
-using Maker.Rise.Extension;
+﻿using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,13 +7,11 @@ namespace Maker.Hevadea.Game.Menus
 {
     public class Menu : Control
     {
-        private World World;
         public bool PauseGame = false;
-        public GameScene Game;
+        public GameManager Game;
 
-        public Menu(World world, GameScene game)
+        public Menu(GameManager game)
         {
-            World = world;
             Game = game;
             Padding = new Padding(8);
         }

@@ -12,8 +12,8 @@ namespace Maker.Rise.UI
         public Texture2D Icon { get; set; } = null;
 
         public bool Dancing { get; set; } = true;
-        public Animation animation = new Animation();
-        public Animation clickAnimation = new Animation();
+        public FadingAnimation animation = new FadingAnimation();
+        public FadingAnimation clickAnimation = new FadingAnimation();
         private Point OnMousClickPosition = Point.Zero;
 
         public Button()

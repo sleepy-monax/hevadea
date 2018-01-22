@@ -15,7 +15,6 @@ namespace Maker.Hevadea.Scenes
     {
         private readonly SpriteBatch sb;
 
-
         public MainMenu()
         {
             sb = Engine.Graphic.CreateSpriteBatch();

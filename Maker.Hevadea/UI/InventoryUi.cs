@@ -11,10 +11,10 @@ namespace Maker.Hevadea.Game.UI
 {
     public class InventoryUi : Control
     {
-        public Inventory Inventory;
+        public ItemStorage Inventory;
         public Item SelectedItem { get; set; }
 
-        public InventoryUi(Inventory i)
+        public InventoryUi(ItemStorage i)
         {
             Inventory = i;
         }
@@ -42,7 +42,7 @@ namespace Maker.Hevadea.Game.UI
                         var rect = new Rectangle(Bound.X + sx * 64, Bound.Y + sy * 64, 48, 48);
                         spriteBatch.FillRectangle(rect, Color.Black * 0.25f);
                         i.GetSprite().Draw(spriteBatch ,rect, Color.White);
-                        spriteBatch.DrawString(Ressources.font_romulus, $"x{itemCount}", new Vector2(rect.X + 24, rect.Y + 32), Color.White);
+                        spriteBatch.DrawString(Ressources.fontRomulus, $"x{itemCount}", new Vector2(rect.X + 24, rect.Y + 32), Color.White);
 
                         if (rect.Contains(Engine.Input.MousePosition))
                         {

@@ -17,10 +17,10 @@ namespace Maker.Hevadea.Game.Entities
             
             Origin = new Point(4,4);
 
-            Components.Add(new MoveComponent());
-            Components.Add(new HealthComponent(20));
-            Components.Add(new AttackComponent(1));
-            Components.Add(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 2, new Point(16, 32))));
+            Components.Add(new Move());
+            Components.Add(new Health(10));
+            Components.Add(new Attack(1));
+            Components.Add(new NpcRender(new Sprite(Ressources.tile_creatures, 2, new Point(16, 32))));
         }
 
         Random rnd = new Random();
@@ -38,7 +38,7 @@ namespace Maker.Hevadea.Game.Entities
             }
             
             var v = direction.ToPoint();
-            Components.Get<MoveComponent>().Move(v.X * 0.25f, v.Y * 0.25f, direction);
+            Components.Get<Move>().Do(v.X * 0.25f, v.Y * 0.25f, direction);
         }
 
         public override bool IsBlocking(Entity entity)

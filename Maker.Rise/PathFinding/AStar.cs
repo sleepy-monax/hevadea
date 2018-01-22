@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 
 namespace Maker.Rise.PathFinding
 {
@@ -106,7 +106,7 @@ namespace Maker.Rise.PathFinding
             }
             return Path;
         }
-		
+        
         private List<Node> GetAdjacentNodes(Node n)
         {
             List<Node> temp = new List<Node>();

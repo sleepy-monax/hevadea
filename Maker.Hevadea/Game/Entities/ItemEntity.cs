@@ -25,7 +25,7 @@ namespace Maker.Hevadea.Game.Entities
             sx = speedx;
             sy = speedy;
 
-            Components.Add(new MoveComponent());
+            Components.Add(new Move());
         }
 
         public ItemEntity(int itemId) : this(ITEMS.ById[itemId], 0,0)
@@ -40,13 +40,13 @@ namespace Maker.Hevadea.Game.Entities
         public override void OnUpdate(GameTime gameTime)
         {
             var entities = Level.GetEntitiesOnArea(Bound);
-            Components.Get<MoveComponent>().Move(sx, sy, Facing);
+            Components.Get<Move>().Do(sx, sy, Facing);
             sx = sx / 2;
             sy = sy / 2;
 
             foreach (var e in entities)
             {
-                var inv = e.Components.Get<InventoryComponent>();
+                var inv = e.Components.Get<Inventory>();
 
                 if (inv != null && inv.Pickup(Item))
                 {

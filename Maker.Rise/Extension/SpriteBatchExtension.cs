@@ -570,11 +570,5 @@ namespace Maker.Rise.Extension
             spriteBatch.DrawString(font, text, pos - origin, color, 0f, Vector2.Zero, new Vector2(scale, scale),
                 SpriteEffects.None, 1f);
         }
-
-        public static void Draw(this SpriteBatch spriteBatch, SpriteSheet tileSheet, int tileIndex, Vector2 position,
-            Color color)
-        {
-            spriteBatch.Draw(tileSheet.Texture, position, tileSheet.GetTile(tileIndex), color);
-        }
     }
 }

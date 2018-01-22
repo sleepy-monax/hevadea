@@ -3,7 +3,6 @@ using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
-using Maker.Hevadea.Scenes;
 using Maker.Rise;
 using Maker.Rise.Enum;
 using Maker.Rise.Extension;
@@ -12,14 +11,17 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Maker.Rise.PathFinding;
 
 namespace Maker.Hevadea.Game
 {
     public class Level
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
         public int Width { get; private set; }
         public int Height { get; private set; }
+
         private byte[] Tiles;
         private Dictionary<string, object>[] TilesData;
         public List<Entity> Entities;
@@ -27,7 +29,7 @@ namespace Maker.Hevadea.Game
         public List<Entity>[,] EntitiesOnTiles;
 
         private World World;
-        private GameScene Game;
+        private GameManager Game;
 
         public Level(int width, int height)
         {
@@ -55,6 +57,13 @@ namespace Maker.Hevadea.Game
         {
             AddEntity(e);
             e.SetPosition(x, y);
+        }
+
+        public void SpawnEntity(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
+        {
+            AddEntity(e);
+            e.SetPosition(tx * ConstVal.TileSize + (ConstVal.TileSize / 2 - e.Width  / 2) + offX,
+                          ty * ConstVal.TileSize + (ConstVal.TileSize / 2 - e.Height / 2) + offY);
         }
 
         public void AddEntity(Entity e)
@@ -172,7 +181,7 @@ namespace Maker.Hevadea.Game
 
         // GAME LOOPS ---------------------------------------------------------
 
-        public void Initialize(World world, GameScene game)
+        public void Initialize(World world, GameManager game)
         {
             Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
             World = world;
@@ -193,7 +202,9 @@ namespace Maker.Hevadea.Game
                 Width = Width,
                 Height = Height,
                 Tiles = Tiles,
-                TilesData = TilesData
+                TilesData = TilesData,
+                Name = Name,
+                Id = Id
             };
 
             Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
@@ -252,17 +263,17 @@ namespace Maker.Hevadea.Game
         public LevelRenderState GetRenderState(Camera camera)
         {
             var entitiesOnScreen = new List<Entity>();
-            var focusEntity = camera.FocusEntity.GetTilePosition();
+            var focusEntity = new Point((int)camera.X / ConstVal.TileSize, (int)camera.Y / ConstVal.TileSize);
             var dist = new Point(camera.GetWidth() / 2 / ConstVal.TileSize + 4,
                 camera.GetHeight() / 2 / ConstVal.TileSize + 4);
 
             var state = new LevelRenderState
             {
                 Begin = new Point(Math.Max(0, focusEntity.X - dist.X),
-                    Math.Max(0, focusEntity.Y - dist.Y + 1)),
+                                  Math.Max(0, focusEntity.Y - dist.Y + 1)),
 
                 End = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
-                    Math.Min(Height, focusEntity.Y + dist.Y + 1)),
+                                Math.Min(Height, focusEntity.Y + dist.Y + 1)),
             };
 
             for (int tx = state.Begin.X; tx < state.End.X; tx++)
@@ -317,7 +328,7 @@ namespace Maker.Hevadea.Game
         {
             foreach (var e in state.OnScreenEntities)
             {
-                var light = e.Components.Get<LightComponent>();
+                var light = e.Components.Get<Light>();
 
                 if (light != null)
                 {

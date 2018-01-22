@@ -1,11 +1,14 @@
 ﻿using Maker.Hevadea.Game;
-using Maker.Hevadea.Game.Generator.Features.Overworld;
+using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Registry;
+
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enum;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Maker.Rise.Utils;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -69,8 +72,9 @@ namespace Maker.Hevadea.Scenes
             newButton.OnMouseClick +=
                 delegate
                 {
-                    var world = WorldGenerator.Generate(0);
-                    Engine.Scene.Switch(new GameScene(world));
+                    var world = GENERATOR.DEFAULT.Generate();
+                    var player = new PlayerEntity();
+                    Engine.Scene.Switch(new GameScene(new GameManager(world, player)));
                 };
 
             deleteButton.OnMouseClick +=

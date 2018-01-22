@@ -4,7 +4,7 @@ using System;
 
 namespace Maker.Rise.UI
 {
-    public class Animation
+    public class FadingAnimation
     {
         public bool Show { get; set; } = false;
         public float Speed = 1f;

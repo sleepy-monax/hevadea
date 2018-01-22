@@ -14,7 +14,7 @@ namespace Maker.Rise.UI
 
         private bool charAdded = false;
         private char addedChar = ' ';
-        private Animation animation = new Animation();
+        private FadingAnimation animation = new FadingAnimation();
 
 
         public TextInput()

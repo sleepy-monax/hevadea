@@ -13,7 +13,7 @@ namespace Maker.Hevadea.Game.Entities
     {
         public Level Level { get; private set; }
         public World World { get; private set; }
-        public GameScene Game { get; private set; }
+        public GameManager Game { get; private set; }
         public EntityComponentsManager Components { get; private set; }
 
         public float X          { get; private set; }
@@ -38,7 +38,7 @@ namespace Maker.Hevadea.Game.Entities
             Height = 32;
         }
 
-        internal void Initialize(Level level, World world, GameScene game)
+        internal void Initialize(Level level, World world, GameManager game)
         {
             Level = level;
             World = world;

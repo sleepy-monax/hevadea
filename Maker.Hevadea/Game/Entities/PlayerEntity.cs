@@ -20,14 +20,14 @@ namespace Maker.Hevadea.Game.Entities
 
             HoldingItem = ITEMS.WOOD_LOG;
 
-            Components.Add(new HealthComponent(20));
-            Components.Add(new AttackComponent(1));
-            Components.Add(new EnergyComponent());
-            Components.Add(new NpcRenderComponent(new Sprite(Ressources.tile_creatures, 1, new Point(16, 32))));
-            Components.Add(new InventoryComponent(512));
-            Components.Add(new InteractComponent());
-            Components.Add(new LightComponent { On = true, Color = Color.White * 0.30f, Power = 48 });
-            Components.Add(new MoveComponent());
+            Components.Add(new Health(20));
+            Components.Add(new Attack(1));
+            Components.Add(new Energy());
+            Components.Add(new NpcRender(new Sprite(Ressources.tile_creatures, 1, new Point(16, 32))));
+            Components.Add(new Inventory(512) { AlowPickUp = true });
+            Components.Add(new Interact());
+            Components.Add(new Light { On = true, Color = Color.White * 0.30f, Power = 48 });
+            Components.Add(new Move());
         }
         
         public override bool IsBlocking(Entity entity)

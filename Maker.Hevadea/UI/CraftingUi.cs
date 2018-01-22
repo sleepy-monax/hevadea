@@ -10,8 +10,8 @@ namespace Maker.Hevadea.Game.UI
 {
     public class CraftingUi : Control
     {
-        Inventory Inventory;
-        public CraftingUi(Inventory i)
+        ItemStorage Inventory;
+        public CraftingUi(ItemStorage i)
         {
             Inventory = i;
         }
@@ -39,7 +39,7 @@ namespace Maker.Hevadea.Game.UI
 
                         if (rect.Contains(Engine.Input.MousePosition))
                         {
-                            spriteBatch.DrawString(Ressources.font_romulus, $"x{c.Quantity}", new Vector2(rect.X + 32, rect.Y + 32), Color.White);
+                            spriteBatch.DrawString(Ressources.fontRomulus, $"x{c.Quantity}", new Vector2(rect.X + 32, rect.Y + 32), Color.White);
                             
                             foreach (var i in c.Costs)
                             {

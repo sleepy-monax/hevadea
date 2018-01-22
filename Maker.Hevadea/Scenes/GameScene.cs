@@ -4,102 +4,95 @@ using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Menus;
-using Maker.Hevadea.Game.UI;
-using Maker.Hevadea.Json;
+using Maker.Hevadea.Menus;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enum;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.IO;
 
 namespace Maker.Hevadea.Scenes
 {
     public class GameScene : Scene
     {
-        private SpriteBatch spriteBatch;
-        public World World;
-        public Menu CurrentMenu = null;
-        public Random Random = new Random();
+        public GameManager Game;
+        
 
-        public GameScene(World world)
+        public GameScene(GameManager game)
         {
-            World = world;
+            Game = game;
+            Game.CurrentMenuChange += Game_CurrentMenuChange;
+        }
+
+        private void Game_CurrentMenuChange(Menu oldMenu, Menu newMenu)
+        {
+            if (oldMenu != null)
+            {
+                UiRoot.RemoveChild(oldMenu);
+            }
+
+            // Add the menu to the ui tree.
+            newMenu.Dock = Dock.Fill;
+            UiRoot.AddChild(newMenu);
+            UiRoot.RefreshLayout();
         }
 
         public override void Load()
         {
-            spriteBatch = Engine.Graphic.CreateSpriteBatch();
-            World.Initialize(this);
+            Game.Initialize();
             UiRoot.Padding = new Padding(16);
-            UiRoot.AddChild(new PlayerInfoPanel(World.Player) { Dock = Dock.Bottom, Bound = new Rectangle(64, 64, 64, 64) });
             Engine.Scene.Background = null;
         }
 
 
         public override void Update(GameTime gameTime)
         {
-            if (CurrentMenu == null || !CurrentMenu.PauseGame)
+            if (Game.CurrentMenu == null || !Game.CurrentMenu.PauseGame)
             {
-                World.Update(gameTime);
+                Game.Update(gameTime);
 
 
-                var playerMovement = World.Player.Components.Get<MoveComponent>();
+                var playerMovement = Game.Player?.Components.Get<Move>();
             
-                if (Engine.Input.KeyDown(Keys.Q))  { playerMovement.Move(-1, 0, Direction.Left); }
-                if (Engine.Input.KeyDown(Keys.D))  { playerMovement.Move(1, 0, Direction.Right); }
-                if (Engine.Input.KeyDown(Keys.Z))  { playerMovement.Move(0, -1, Direction.Up);   }
-                if (Engine.Input.KeyDown(Keys.S))  { playerMovement.Move(0, 1, Direction.Down);  }
-                if (Engine.Input.KeyPress(Keys.I)) { SetMenu(new InventoryMenu(World.Player, World, this)); }
+                if (Engine.Input.KeyDown(Keys.Q))  { playerMovement.Do(-1, 0, Direction.Left); }
+                if (Engine.Input.KeyDown(Keys.D))  { playerMovement.Do(1, 0, Direction.Right); }
+                if (Engine.Input.KeyDown(Keys.Z))  { playerMovement.Do(0, -1, Direction.Up);   }
+                if (Engine.Input.KeyDown(Keys.S))  { playerMovement.Do(0, 1, Direction.Down);  }
+                if (Engine.Input.KeyPress(Keys.I)) { Game.CurrentMenu = new InventoryMenu(Game.Player, Game); }
                 if (Engine.Input.KeyPress(Keys.N)) { playerMovement.NoClip = !playerMovement.NoClip; }
 
-                if (Engine.Input.KeyPress(Keys.D1)) {var z = new ZombieEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y);}
-                if (Engine.Input.KeyPress(Keys.D2)) { var z = new ChestEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y); }
-                if (Engine.Input.KeyPress(Keys.D3)) { var z = new TorchEntity(); World.Player.Level.AddEntity(z); z.SetPosition(World.Player.X, World.Player.Y); }
+                var pos = Game.Player.GetTilePosition();
+                if (Engine.Input.KeyPress(Keys.D1)) {var z = new ZombieEntity(); Game.Player.Level.SpawnEntity(z, pos.X, pos.Y); }
+                if (Engine.Input.KeyPress(Keys.D2)) { var z = new ChestEntity(); Game.Player.Level.SpawnEntity(z, pos.X, pos.Y); }
+                if (Engine.Input.KeyPress(Keys.D3)) { var z = new TorchEntity(); Game.Player.Level.SpawnEntity(z, pos.X, pos.Y); }
+                
+                if (Engine.Input.MouseLeft) Game.Player.Components.Get<Attack>().Do(Game.Player.HoldingItem);
+                if (Engine.Input.MouseRight) Game.Player.Components.Get<Interact>().Do(Game.Player.HoldingItem);
 
-                if (Engine.Input.MouseLeft) World.Player.Components.Get<AttackComponent>().Attack(World.Player.HoldingItem);
-                if (Engine.Input.MouseRight) World.Player.Components.Get<InteractComponent>().Interact(World.Player.HoldingItem);
-
-                if (Engine.Input.KeyPress(Keys.P)) { File.WriteAllText("test.json", World[0].Save().ToJson()); }
+                //if (Engine.Input.KeyPress(Keys.P)) { File.WriteAllText("test.json", World[0].Save().ToJson()); }
             }
 
-            if (Engine.Input.KeyPress(Keys.Escape) && CurrentMenu != null)
+            if (Engine.Input.KeyPress(Keys.Escape) && Game.CurrentMenu != null)
             {
-                UiRoot.RemoveChild(CurrentMenu);
-                CurrentMenu = null;
+                Game.CurrentMenu = new HUDMenu(Game);
             }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            World.Draw(gameTime);
+            Game.Draw(gameTime);
         }
 
         public override void Unload()
         {
         }
 
-        public void SetMenu(Menu menu)
-        {
-            if (CurrentMenu != null)
-            {
-                UiRoot.RemoveChild(CurrentMenu);
-            }
-
-            CurrentMenu = menu;
-            menu.Dock = Dock.Fill;
-            UiRoot.AddChild(menu);
-            UiRoot.RefreshLayout();
-        }
-
         public override string GetDebugInfo()
         {
             return
-                $@"World time: {World.Time}
-Player pos {World.Player.X} {World.Player.Y}
+                $@"World time: {Game.World.Time}
+Player pos {Game.Player.X} {Game.Player.Y}
 ";
         }
     }

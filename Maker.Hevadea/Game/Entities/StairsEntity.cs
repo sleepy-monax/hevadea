@@ -7,10 +7,10 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class StairsEntity : Entity
     {
-        public static Levels Destination = Levels.Overworld;
+        public static int Destination;
         public static bool GoUp = true;
 
-        public StairsEntity(bool goUp, Levels destination) : this()
+        public StairsEntity(bool goUp, int destination) : this()
         {
             GoUp = goUp;
             Destination = destination;
@@ -21,7 +21,7 @@ namespace Maker.Hevadea.Game.Entities
             Width = Height = 16;
             Origin = new Point(0, 0);
 
-            var interaction = new InteractableComponent();
+            var interaction = new Interactable();
             Components.Add(interaction);
             interaction.OnInteracte += (sender, arg) =>
             {

@@ -1,4 +1,7 @@
-﻿using Maker.Rise;
+﻿using Maker.Hevadea.Game;
+using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Registry;
+using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Extension;
 using Maker.Rise.Utils;
@@ -11,6 +14,7 @@ namespace Maker.Hevadea.Scenes
     {
         private SpriteBatch sb;
         private Texture2D logo;
+        public bool GoToGame = true;
 
         public override void Load()
         {
@@ -26,9 +30,19 @@ namespace Maker.Hevadea.Scenes
 
         public override void Update(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalSeconds > 4 && once)
+            if (gameTime.TotalGameTime.TotalSeconds > 2 && once)
             {
-                Engine.Scene.Switch(new MainMenu());
+                if (GoToGame)
+                {
+                    var world = GENERATOR.DEFAULT.Generate();
+                    var player = new PlayerEntity();
+                    Engine.Scene.Switch(new GameScene(new GameManager(world, player)));
+                }
+                else
+                {
+                    //Engine.Scene.Switch(new MainMenu());
+                    Engine.Scene.Switch(new TestScene());
+                }
                 once = false;
             }
         }

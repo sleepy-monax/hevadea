@@ -15,7 +15,7 @@ namespace Maker.Hevadea.Game.Entities
             Width = 2;
 
             sprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
-            Components.Add(new LightComponent { On = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 72 });
+            Components.Add(new Light { On = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 72 });
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

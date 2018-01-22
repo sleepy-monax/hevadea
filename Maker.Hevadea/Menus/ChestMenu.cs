@@ -1,8 +1,6 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.UI;
-
-using Maker.Hevadea.Scenes;
 using Maker.Rise.Enum;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
@@ -14,18 +12,18 @@ namespace Maker.Hevadea.Game.Menus
         public InventoryUi inv;
         public InventoryUi chestInv;
         
-        public ChestMenu(Entity entity, ChestEntity chest, World world, GameScene game) : base(world, game)
+        public ChestMenu(Entity entity, ChestEntity chest, GameManager game) : base(game)
         {
             Layout = LayoutMode.Horizontal;
             var LeftPanel = new Panel();
             var RightPanel = new Panel();
 
-            inv = new InventoryUi(entity.Components.Get<InventoryComponent>().Inventory)
+            inv = new InventoryUi(entity.Components.Get<Inventory>().Content)
             {
                 Dock = Dock.Fill
             };
             
-            chestInv = new InventoryUi(chest.Components.Get<InventoryComponent>().Inventory)
+            chestInv = new InventoryUi(chest.Components.Get<Inventory>().Content)
             {
                 Dock = Dock.Fill
             };

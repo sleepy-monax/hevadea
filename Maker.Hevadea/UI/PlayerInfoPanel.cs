@@ -24,11 +24,11 @@ namespace Maker.Hevadea.Game.UI
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var playerHealth = Player.Components.Get<HealthComponent>();
-            var playerEnergy = Player.Components.Get<EnergyComponent>();
+            var playerHealth = Player.Components.Get<Health>();
+            var playerEnergy = Player.Components.Get<Energy>();
 
-            var health = (playerHealth.Health / playerHealth.MaxHealth);
-            var energyV = (playerEnergy.Energy / playerEnergy.MaxEnergy);
+            var health = (playerHealth.Value / playerHealth.MaxValue);
+            var energyV = (playerEnergy.Value / playerEnergy.MaxValue);
 
 
             int i = 0;

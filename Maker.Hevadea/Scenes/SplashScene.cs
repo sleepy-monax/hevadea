@@ -42,7 +42,7 @@ namespace Maker.Hevadea.Scenes
         bool once = true;
         public override void Update(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalSeconds > 2 && once)
+            if (gameTime.TotalGameTime.TotalSeconds > 1 && once)
             {
                 Engine.Scene.Switch(new EngineSplash());
                 once = false;

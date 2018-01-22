@@ -14,13 +14,13 @@ namespace Maker.Rise.Components
         public Scene CurrentScene;
         private Scene NextScene;
 
-        private Animation animation;
+        private FadingAnimation animation;
         public ParalaxeBackground Background = null;
         public SpriteBatch sb;
 
         public SceneManager(RiseGame game) : base(game)
         {
-            animation = new Animation();
+            animation = new FadingAnimation();
             CurrentScene = null;
             NextScene = null;
         }

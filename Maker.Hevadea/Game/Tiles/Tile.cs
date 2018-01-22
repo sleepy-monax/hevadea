@@ -15,7 +15,7 @@ namespace Maker.Hevadea.Game.Tiles
         public readonly byte ID;
         public Sprite Sprite;
         public bool BackgroundDirt = true;
-        private Sprite DirtSprite;
+        public Sprite DirtSprite;
 
         public Tile(byte id)
         {

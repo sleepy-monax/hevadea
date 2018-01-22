@@ -19,17 +19,19 @@ namespace Maker.Hevadea.Game.Entities.Component
             Owner = owner;
         }
 
-        public void Add(EntityComponent component)
+        public T Add<T>(T component) where T : EntityComponent
         {
             foreach (var e in Components)
             {
-                if (e == component) return;
+                if (e == component) return null;
             }
 
             Components.Add(component);
             component.Owner = Owner;
 
             Components.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
+
+            return component;
         }
 
         public T Get<T>() where T : EntityComponent

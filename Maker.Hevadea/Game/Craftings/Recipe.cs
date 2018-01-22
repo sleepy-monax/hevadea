@@ -23,7 +23,7 @@ namespace Maker.Hevadea.Game.Craftings
             return this;
         }
 
-        public virtual bool CanBeCrafted(Inventory i)
+        public virtual bool CanBeCrafted(ItemStorage i)
         {
             var canBeCrafted = true;
             foreach (var c in Costs)
@@ -33,9 +33,9 @@ namespace Maker.Hevadea.Game.Craftings
             return canBeCrafted;
         }
 
-        public virtual bool Craft(Inventory i)
+        public virtual bool Craft(ItemStorage i)
         {
-            if (CanBeCrafted(i) && i.FreeSpace() >= Quantity)
+            if (CanBeCrafted(i) && i.GetFreeSpace() >= Quantity)
             {
 
                 i.Add(Result, Quantity);

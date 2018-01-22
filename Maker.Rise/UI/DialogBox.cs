@@ -16,7 +16,7 @@ namespace Maker.Rise.UI
 
         private Vector2 _textSize = Vector2.Zero;
         private string _text;
-        private Animation animation = new Animation();
+        private FadingAnimation animation = new FadingAnimation();
 
         private string Text
         {

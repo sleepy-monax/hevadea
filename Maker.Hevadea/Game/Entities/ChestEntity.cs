@@ -16,18 +16,24 @@ namespace Maker.Hevadea.Game.Entities
         {
             Width       = 12;
             Height      = 9;
-            Origin      = new Point(8, 8);
-            closeSprite = new Sprite(Ressources.tile_entities, new Point(1,1));
+            Origin      = new Point(8, 6);
+            closeSprite = new Sprite(Ressources.tile_entities, new Point(1, 1));
 
-            Components.Add(new InventoryComponent(512));
-            Components.Add(new InteractableComponent());
-            Components.Get<InteractableComponent>().OnInteracte += (sender, arg) =>
-            {
-                if (arg.Entity.Components.Has<InventoryComponent>())
+            Components.Add(new Inventory(512));
+            Components.Add(new Health(10)).OnDie +=
+                (sender, arg) => 
                 {
-                    Game.SetMenu(new ChestMenu(arg.Entity, this, World, Game));
-                }
-            };
+                    Components.Get<Inventory>().Content.DropOnGround(Level, X + Origin.X, Y + Origin.Y);
+                };
+
+            Components.Add(new Interactable()).OnInteracte += 
+                (sender, arg) =>
+                {
+                    if (arg.Entity.Components.Has<Inventory>())
+                    {
+                        Game.CurrentMenu = new ChestMenu(arg.Entity, this, Game);
+                    }
+                };
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

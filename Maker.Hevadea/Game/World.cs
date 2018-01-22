@@ -1,67 +1,91 @@
-﻿using Maker.Hevadea.Enum;
-using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Scenes;
+﻿using Maker.Hevadea.Game.Entities;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Maker.Hevadea.Game
 {
     public class World
     {
-        public PlayerEntity Player;
-        public Level[] Levels;
+        public GameManager Game;
+        public int Time;
+        public List<Level> Levels = new List<Level>();
+        public string PlayerSpawnLevel = "overworld";
 
         private SpriteBatch spriteBatch;
         private RenderTarget2D lightRT;
         private RenderTarget2D worldRT;
         private BlendState lightBlend = new BlendState() { ColorBlendFunction = BlendFunction.Add, ColorSourceBlend = Blend.DestinationColor, ColorDestinationBlend = Blend.Zero };
 
-        public Camera Camera;
-        public GameScene Game;
-        public int Time;
-
-        public Level this[Levels l]
+        public void SpawnPlayer(PlayerEntity player)
         {
-            get => Levels[(int) l];
-            set => Levels[(int) l] = value;
+            var level = GetLevel(PlayerSpawnLevel);
+            level.SpawnEntity(player, level.Width / 2, level.Height / 2);
         }
 
-        public Level this[int index]
+        public Level GetLevel(string name)
         {
-            get => Levels[index];
-            set => Levels[index] = value;
+            foreach (var l in Levels)
+            {
+                if (l.Name == name)
+                {
+                    return l;
+                }
+            }
+
+            return null;
+        }
+
+        public Level GetLevel(int id)
+        {
+            foreach (var l in Levels)
+            {
+                if (l.Id == id)
+                {
+                    return l;
+                }
+            }
+
+            return null;
+        }
+
+        public void AddLevel(Level level)
+        {
+            if (GetLevel(level.Id) == null)
+            {
+                Levels.Add(level);
+            }
         }
 
         public World()
         {
-            Levels = new Level[2];
             spriteBatch = Engine.Graphic.CreateSpriteBatch();
             lightRT = Engine.Graphic.CreateRenderTarget();
             worldRT = Engine.Graphic.CreateRenderTarget();
-            Camera = new Camera();
         }
 
-        public void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime, Camera camera)
         {
+            var level = camera.FocusEntity.Level;
+            var state = level.GetRenderState(camera);
 
-            var state = Player.Level.GetRenderState(Camera);
+            //Engine.Graphic.SetRenderTarget(worldRT);
 
-            Engine.Graphic.SetRenderTarget(worldRT);
-
-            Engine.Graphic.Begin(spriteBatch, false, Camera.GetTransform());
-            Player.Level.DrawTerrain(state, spriteBatch, gameTime);
-            Player.Level.DrawEntities(state, spriteBatch, gameTime);
-            Player.Level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
+            Engine.Graphic.Begin(spriteBatch, false, camera.GetTransform());
+            level.DrawTerrain(state, spriteBatch, gameTime);
+            level.DrawEntities(state, spriteBatch, gameTime);
+            level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
             spriteBatch.End();
 
+            /*
             Engine.Graphic.SetRenderTarget(lightRT);
 
             //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
             Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, null, null, null, Camera.GetTransform());
-            Player.Level.DrawLightMap(state, spriteBatch, gameTime);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, null, null, null, camera.GetTransform());
+            level.DrawLightMap(state, spriteBatch, gameTime);
             spriteBatch.End();
 
             Engine.Graphic.SetRenderTarget(null);
@@ -77,29 +101,29 @@ namespace Maker.Hevadea.Game
             spriteBatch.Draw(lightRT, Engine.Graphic.GetResolutionRect(), Color.White);
 
             spriteBatch.End();
+            */
            
         }
 
-        public void Update(GameTime gameTime)
-        {
-            foreach (var l in Levels)
-            {
-                l.Update(gameTime);
-            }
 
-            Time++;
-        }
 
-        public void Initialize(GameScene game)
+        public void Initialize(GameManager game)
         {
             Game = game;
             foreach (var l in Levels)
             {
                 l.Initialize(this, game);
             }
-
-            Camera.FocusEntity = Player;
         }
 
+        public void Save()
+        {
+
+        }
+
+        public void Load()
+        {
+
+        }
     }
 }

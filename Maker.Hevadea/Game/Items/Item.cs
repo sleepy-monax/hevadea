@@ -39,9 +39,9 @@ namespace Maker.Hevadea.Game.Items
 
         public void Attack(Entity user, Entity target, float baseDamages)
         {
-            if (target.Components.Has<HealthComponent>())
+            if (target.Components.Has<Health>())
             {
-                target.Components.Get<HealthComponent>().Hurt(user, baseDamages * GetAttackBonus(target), user.Facing);
+                target.Components.Get<Health>().Hurt(user, baseDamages * GetAttackBonus(target), user.Facing);
             }
         }
         public void Attack(Entity user, TilePosition target, float baseDamages)
@@ -59,9 +59,9 @@ namespace Maker.Hevadea.Game.Items
         {
             for (int i = 0; i < quantity; i++)
             {
-                var dropWood = new ItemEntity(this, Engine.Random.Next(-50,50) / 10f, Engine.Random.Next(-50, 50) / 10f);
-                level.AddEntity(dropWood);
-                dropWood.SetPosition(x, y);
+                var dropItem = new ItemEntity(this, Engine.Random.Next(-50,50) / 10f, Engine.Random.Next(-50, 50) / 10f);
+                level.AddEntity(dropItem);
+                dropItem.SetPosition(x, y);
             }
         }
     }
