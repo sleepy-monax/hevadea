@@ -1,11 +1,9 @@
-﻿using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
-using Maker.Hevadea.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
 namespace Maker.Hevadea.Game.Entities
 {
@@ -122,10 +120,23 @@ namespace Maker.Hevadea.Game.Entities
             // Do nothing.
         }
 
-        public TilePosition GetTilePosition()
+        public TilePosition GetTilePosition(bool onOrigine = false)
         {
+            if (onOrigine)
+            {
+                return new TilePosition((int)((X + Origin.X) / ConstVal.TileSize), (int)((Y + Origin.Y) / ConstVal.TileSize));
+            }
+
             return new TilePosition((int)(X / ConstVal.TileSize), (int)(Y / ConstVal.TileSize));
         }
+
+        public TilePosition GetFacingTile()
+        {
+            var dir = Facing.ToPoint();
+            var pos = GetTilePosition(true);
+            return new TilePosition(dir.X + pos.X, dir.Y + pos.Y);
+        }
+
         public virtual void SetPosition(float x, float y)
         {
             var oldPosition = GetTilePosition();

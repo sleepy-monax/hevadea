@@ -4,7 +4,7 @@ using Maker.Hevadea.Game.Registry;
 
 using Maker.Rise;
 using Maker.Rise.Components;
-using Maker.Rise.Enum;
+using Maker.Rise.Enums;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Maker.Rise.Utils;

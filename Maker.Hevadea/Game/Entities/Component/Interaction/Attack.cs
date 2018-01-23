@@ -1,11 +1,9 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Misc;
+﻿using Maker.Hevadea.Enums;
+using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Items;
-using Maker.Hevadea.Game.Tiles;
-using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Maker.Hevadea.Enum;
 
 namespace Maker.Hevadea.Game.Entities.Component.Interaction
 {
@@ -17,56 +15,64 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
         public double BaseAttackCooldown { get; set; } = 1;
         public double AttackCouldown { get; private set; } = 1;
 
-        public int BaseDamages { get; set; }
+        public float BaseDamages { get; set; }
         public bool CanAttackTile { get; set; } = true;
         public bool CanAttackEntities { get; set; } = true;
 
-        public Attack(int baseDamages)
+        public Attack(float baseDamages)
         {
             BaseDamages = baseDamages;
         }
 
+        public float GetBaseDamages()
+        {
+            var damages = BaseDamages;
+
+            var energy = Owner.Components.Get<Energy>();
+
+            if (energy != null)
+            {
+                damages = damages * (energy.Value / energy.MaxValue);
+            }
+
+            return damages;
+        }
+
         public void Do(Item weapon)
         {
-            if (!IsAttacking)
+            if (IsAttacking) return;
+            if (!Owner.Components.Get<Energy>()?.Reduce(1f) ?? false) return;
+
+            var damages = GetBaseDamages();
+            var facingTile = Owner.GetFacingTile();
+
+            if (CanAttackEntities)
             {
-                float multiplier = 1f;
-                var energy = Owner.Components.Get<Energy>();
+                var facingEntities = Owner.Level.GetEntityOnTile(facingTile);
 
-                if (energy != null)
+                foreach (var e in facingEntities)
                 {
-                    multiplier = energy.Value / energy.MaxValue;
-                    if (!energy.Reduce(1f)) return;
-                }
+                    var eHealth = e.Components.Get<Health>();
 
-                var tilePosition = Owner.GetTilePosition();
-                var dir = Owner.Facing.ToPoint();
-
-                tilePosition = new TilePosition(tilePosition.X + dir.X, tilePosition.Y + dir.Y);
-
-                var entities = Owner.Level.GetEntitiesOnArea(new Rectangle((int)(Owner.X + Owner.Height * dir.X),
-                                                                           (int)(Owner.Y + Owner.Width * dir.Y),
-                                                                           Owner.Height, Owner.Width));
-                if (CanAttackEntities && entities.Count > 0)
-                {
-                    foreach (var e in entities)
+                    if (!eHealth?.Invicible ?? false)
                     {
-                        if (!e.Components.Has<Health>() || e.Components.Get<Health>().Invicible) continue;
-                        weapon.Attack(Owner, e, BaseDamages * multiplier);
-                        IsAttacking = true;
+                        eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
+
                         break;
                     }
                 }
-
-                if (CanAttackTile && !IsAttacking)
-                {
-                    weapon.Attack(Owner, tilePosition, BaseDamages);
-                    IsAttacking = true;
-                }
-
-                AttackDirection = Owner.Facing;
-                AttackCooldownTimer = AttackCouldown;
             }
+
+            if (CanAttackTile && !IsAttacking)
+            {
+            
+                var tile = Owner.Level.GetTile(facingTile);
+                tile.Hurt(Owner, damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Facing);
+            }
+
+            IsAttacking = true;
+            AttackDirection = Owner.Facing;
+            AttackCooldownTimer = AttackCouldown;
         }
 
         public void Update(GameTime gameTime)

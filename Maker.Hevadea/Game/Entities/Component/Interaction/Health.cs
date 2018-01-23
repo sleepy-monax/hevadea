@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Extension;

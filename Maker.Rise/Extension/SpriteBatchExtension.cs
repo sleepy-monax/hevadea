@@ -1,4 +1,4 @@
-﻿using Maker.Rise.Enum;
+﻿using Maker.Rise.Enums;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;

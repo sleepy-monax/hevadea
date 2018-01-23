@@ -1,6 +1,8 @@
 ﻿using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Storage;
+using Maker.Rise.Enums;
 using Maker.Rise.UI;
+using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -24,7 +26,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
             {
                 anim.Reset();
                 anim.Show = true;
-                anim.Speed = 0.50f;
+                anim.Speed = 0.5f;
 
                 lastAdded = item;
                 return true;
@@ -42,7 +44,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         {
             if (lastAdded != null)
             {
-                float size = 1f - anim.SinTwoPhases;
+                float size = 1f - anim.GetValue(EasingFunctions.QuadraticEaseOut);
                 lastAdded.GetSprite().Draw(spriteBatch, new Vector2(Owner.X + Owner.Width / 2f - 8 * size, Owner.Y + Owner.Height / 2 - 24 * size),  size, Color.White);
             }            
         }

@@ -22,8 +22,7 @@ namespace Maker.Hevadea.Game.Menus
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(Bound, new Color(176,112,48));
-            spriteBatch.DrawRectangle(Bound, Color.White * 0.50f);
+
         }
 
         protected override void OnUpdate(GameTime gameTime)

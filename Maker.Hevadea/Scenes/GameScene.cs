@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component.Interaction;
@@ -7,7 +7,7 @@ using Maker.Hevadea.Game.Menus;
 using Maker.Hevadea.Menus;
 using Maker.Rise;
 using Maker.Rise.Components;
-using Maker.Rise.Enum;
+using Maker.Rise.Enums;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -62,7 +62,7 @@ namespace Maker.Hevadea.Scenes
                 if (Engine.Input.KeyPress(Keys.I)) { Game.CurrentMenu = new InventoryMenu(Game.Player, Game); }
                 if (Engine.Input.KeyPress(Keys.N)) { playerMovement.NoClip = !playerMovement.NoClip; }
 
-                var pos = Game.Player.GetTilePosition();
+                var pos = Game.Player.GetFacingTile();
                 if (Engine.Input.KeyPress(Keys.D1)) {var z = new ZombieEntity(); Game.Player.Level.SpawnEntity(z, pos.X, pos.Y); }
                 if (Engine.Input.KeyPress(Keys.D2)) { var z = new ChestEntity(); Game.Player.Level.SpawnEntity(z, pos.X, pos.Y); }
                 if (Engine.Input.KeyPress(Keys.D3)) { var z = new TorchEntity(); Game.Player.Level.SpawnEntity(z, pos.X, pos.Y); }

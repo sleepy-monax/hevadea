@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Registry;

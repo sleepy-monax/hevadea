@@ -1,5 +1,5 @@
 ﻿using Maker.Hevadea.Game.Items;
-using Maker.Rise.Extension;
+using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,9 +7,12 @@ using System;
 
 namespace Maker.Hevadea.Game.Entities.Component.Interaction
 {
-    public class Interact : EntityComponent, IDrawableOverlayComponent
+    public class Interact : EntityComponent, IDrawableOverlayComponent, IUpdatableComponent
     {
+        public TilePosition SelectedTile { get; private set; } = new TilePosition(0, 0);
+
         Sprite cursor;
+        Vector2 selectionCursorPosition = Vector2.Zero;
 
         public Interact()
         {
@@ -18,38 +21,41 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
 
         public void Do(Item item)
         {
-            var tilePosition = Owner.GetTilePosition();
-            var dir = Owner.Facing.ToPoint();
-
-
-            var entities = Owner.Level.GetEntitiesOnArea(new Rectangle((int)(Owner.X + Owner.Height * dir.X),
-                (int)(Owner.Y + Owner.Width * dir.Y),
-                Owner.Height, Owner.Width));
+            var entities = Owner.Level.GetEntityOnTile(SelectedTile);
 
             if (entities.Count > 0)
             {
                 foreach (var e in entities)
                 {
-                   
-                    if (!e.Components.Has<Interactable>()) continue;
-                    e.Components.Get<Interactable>().Interacte(Owner, Owner.Facing, item);
-                    break;
+                    var interactable = e.Components.Get<Interactable>();
+
+                    if (interactable != null)
+                    {
+                        interactable.Interacte(Owner, Owner.Facing, item);
+                        break;
+                    }
                 }
+            }
+            else if (item != null)
+            {
+                item.InteracteOn(Owner, SelectedTile);
             }
         }
 
-        Vector2 Sel = Vector2.Zero;
+        public void Update(GameTime gameTime)
+        {
+
+            SelectedTile = Owner.GetFacingTile();
+        }
+        
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var dir = Owner.Facing.ToPoint();
-            var pos = Owner.GetTilePosition();
+            var selectionRectangle = new Vector2(SelectedTile.X * ConstVal.TileSize, SelectedTile.Y * ConstVal.TileSize);
+            selectionCursorPosition = new Vector2((selectionCursorPosition.X*0.8f + selectionRectangle.X*0.2f), (selectionCursorPosition.Y*0.8f + selectionRectangle.Y * 0.2f));
 
-            var selected = new Point(dir.X + pos.X, dir.Y + pos.Y);
-            var selectionRectangle = new Vector2(selected.X * ConstVal.TileSize, selected.Y * ConstVal.TileSize);
-            Sel = new Vector2((Sel.X*0.5f + selectionRectangle.X*0.5f), (Sel.Y*0.5f + selectionRectangle.Y * 0.5f));
-            var selectedFrame = (gameTime.TotalGameTime.Milliseconds / 100) % 3;
-            var value = ((float)Math.Abs(Math.Sin(gameTime.TotalGameTime.TotalSeconds * 4)) + 1f) / 2;
-            cursor.Draw(spriteBatch, Sel + new Vector2( 16f * (1f - value) / 2), value, Color.White);
+            var animation = ((float)Math.Abs(Math.Sin(gameTime.TotalGameTime.TotalSeconds * 4)) + 1f) / 2;
+            cursor.Draw(spriteBatch, selectionCursorPosition + new Vector2( 16f * (1f - animation) / 2), animation, Color.White);
         }
+
     }
 }

@@ -24,7 +24,7 @@ namespace Maker.Hevadea.Scenes
         {
             // Initialize the game engine
             Ressources.Load();
-            Init.InitializeRegistry();
+            REGISTRY.Initialize();
             Engine.SetMouseVisibility(true);
             Directory.CreateDirectory("Saves");
             Engine.Graphic.SetResolution(1280, 720);

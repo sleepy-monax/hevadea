@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Hevadea", "Maker.Heva
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Rise", "Maker.Rise\Maker.Rise.csproj", "{8A64DF5F-5501-44E9-8254-8EF37FE51F36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Utils", "Maker.Utils\Maker.Utils.csproj", "{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8A64DF5F-5501-44E9-8254-8EF37FE51F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A64DF5F-5501-44E9-8254-8EF37FE51F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A64DF5F-5501-44E9-8254-8EF37FE51F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

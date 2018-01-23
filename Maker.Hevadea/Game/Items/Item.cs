@@ -37,24 +37,13 @@ namespace Maker.Hevadea.Game.Items
             return 1f;
         }
 
-        public void Attack(Entity user, Entity target, float baseDamages)
-        {
-            if (target.Components.Has<Health>())
-            {
-                target.Components.Get<Health>().Hurt(user, baseDamages * GetAttackBonus(target), user.Facing);
-            }
-        }
-        public void Attack(Entity user, TilePosition target, float baseDamages)
-        {
-            var tile = user.Level.GetTile(target);
-            tile.Hurt(user, baseDamages * GetAttackBonus(tile), target, user.Facing);
-        }
 
         public void InteracteOn(Entity user, TilePosition pos)
         {
             var tile = user.Level.GetTile(pos);
             tile.Interacte(user, this, pos, user.Facing);
         }
+
         public void Drop(Level level, float x, float y, int quantity)
         {
             for (int i = 0; i < quantity; i++)

@@ -14,7 +14,7 @@ namespace Maker.Rise.Components
 
         public virtual string GetDebugInfo()
         {
-            return "null";
+            return "";
         }
 
         public abstract void Load();

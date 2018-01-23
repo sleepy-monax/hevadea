@@ -1,4 +1,6 @@
-﻿using Maker.Rise.Extension;
+﻿using Maker.Rise.Enums;
+using Maker.Rise.Extension;
+using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -55,7 +57,7 @@ namespace Maker.Rise.UI
             {
                 textSize = Font.MeasureString(Text.Length <= 1 ? Text : Text.Remove(Text.Length - 1, 1));
                 var addedCharSize = Font.MeasureString(addedChar.ToString());
-                posX = Bound.X + Bound.Width - textSize.X - addedCharSize.X * (animation.TwoPhases) - 8f;
+                posX = Bound.X + Bound.Width - textSize.X - addedCharSize.X * (animation.GetValue(EasingFunctions.SineEaseIn)) - 8f;
             }
             else
             {
@@ -67,8 +69,8 @@ namespace Maker.Rise.UI
 
             spriteBatch.FillRectangle(Bound, new Color(0, 0, 0, 200));
             spriteBatch.FillRectangle(new Rectangle(
-                    (int) (Bound.X + Bound.Width - Bound.Width / 16f * animation.TwoPhases), Bound.Y,
-                    Bound.Width, Bound.Height), Color.Gold * ((1f - animation.TwoPhases) * 0.75f));
+                    (int) (Bound.X + Bound.Width - Bound.Width / 16f * animation.GetValue(EasingFunctions.SineEaseIn)), Bound.Y,
+                    Bound.Width, Bound.Height), Color.Gold * ((1f - animation.GetValue(EasingFunctions.SineEaseIn)) * 0.75f));
 
             spriteBatch.DrawString(Font, Hint, new Vector2(Bound.X + 16f, posY), Color.White * 0.45f);
 
@@ -76,7 +78,7 @@ namespace Maker.Rise.UI
             {
                 var height = (int) Font.MeasureString("azertyuiopqsdfghjklmwxcvbn").Y;
                 textSize = new Vector2(16 * Text.Length, height);
-                posX = Bound.X + Bound.Width - textSize.X - 16 * (animation.TwoPhases);
+                posX = Bound.X + Bound.Width - textSize.X - 16 * (animation.GetValue(EasingFunctions.SineEaseIn));
 
                 for (int i = 0; i < Text.Length; i++)
                 {
@@ -93,7 +95,7 @@ namespace Maker.Rise.UI
         {
             animation.Update(gameTime);
 
-            if (animation.TwoPhases == 1f)
+            if (animation.GetValue(EasingFunctions.Linear) == 1f)
             {
                 charAdded = false;
             }

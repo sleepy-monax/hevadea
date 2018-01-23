@@ -1,9 +1,9 @@
 ﻿using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Menus;
 using Maker.Hevadea.Game.UI;
-using Maker.Rise.Enum;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Maker.Rise.Enums;
 
 namespace Maker.Hevadea.Menus
 {

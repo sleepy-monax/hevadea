@@ -1,6 +1,5 @@
 ﻿using Maker.Rise.Components;
-using Maker.Rise.Extension;
-using Maker.Rise.Logging;
+using Maker.Utils;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;

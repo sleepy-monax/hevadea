@@ -4,8 +4,9 @@ using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise;
-using Maker.Rise.Enum;
 using Maker.Rise.Extension;
+using Maker.Utils;
+using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,6 +25,7 @@ namespace Maker.Hevadea.Game
 
         private byte[] Tiles;
         private Dictionary<string, object>[] TilesData;
+
         public List<Entity> Entities;
         public List<Entity> EntitiesToRemove = new List<Entity>();
         public List<Entity>[,] EntitiesOnTiles;
@@ -95,7 +97,12 @@ namespace Maker.Hevadea.Game
             EntitiesOnTiles[p.X, p.Y].Remove(e);
         }
 
-        public IEnumerable<Entity> GetEntityOnTile(int tx, int ty)
+        internal List<Entity> GetEntityOnTile(TilePosition selectedTile)
+        {
+            return GetEntityOnTile(selectedTile.X, selectedTile.Y);
+        }
+
+        public List<Entity> GetEntityOnTile(int tx, int ty)
         {
             if (tx < Width && ty < Height && tx >= 0 && ty >= 0)
             {

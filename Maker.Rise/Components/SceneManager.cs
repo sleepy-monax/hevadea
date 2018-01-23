@@ -1,8 +1,7 @@
-﻿using Maker.Rise.Enum;
-using Maker.Rise.Extension;
-using Maker.Rise.Logging;
-using Maker.Rise.Ressource;
+﻿using Maker.Rise.Ressource;
 using Maker.Rise.UI;
+using Maker.Utils;
+using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
@@ -34,7 +33,7 @@ namespace Maker.Rise.Components
         {
             animation.Update(gameTime);
 
-            if (animation.TwoPhases == 1f)
+            if (animation.GetValue(EasingFunctions.Linear) == 1f)
             {
                 SwitchInternal();
                 animation.Show = false;
@@ -85,8 +84,8 @@ namespace Maker.Rise.Components
                 Engine.Ui.DrawUiTree(gameTime, CurrentScene.UiRoot);
             }
 
-            var height = (int) (Engine.Graphic.GetHeight() * animation.SinTwoPhases);
-            var width = (int) (Engine.Graphic.GetWidth() * animation.SinTwoPhases);
+            var height = (int) (Engine.Graphic.GetHeight() * animation.GetValue(EasingFunctions.QuinticEaseOut));
+            var width = (int) (Engine.Graphic.GetWidth() * animation.GetValue(EasingFunctions.QuadraticEaseOut));
             var rect = new Rectangle(Engine.Graphic.GetWidth() / 2 - width / 2,
                 Engine.Graphic.GetHeight() / 2 - height / 2, width, height);
 
@@ -121,7 +120,7 @@ namespace Maker.Rise.Components
             Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
 
             animation.Show = true;
-            animation.Speed = 0.75f;
+            animation.Speed = 0.5f;
             animation.Reset();
         }
 

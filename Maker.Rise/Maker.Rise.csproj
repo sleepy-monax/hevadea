@@ -51,41 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\EffectSource.cs" />
     <Compile Include="Components\GraphicComponent.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineRessources.cs" />
-    <Compile Include="Components\AudioManager.cs" />
+    <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Components\DebugManager.cs" />
     <Compile Include="Components\GameComponent.cs" />
-    <Compile Include="Enum\Alignement.cs" />
-    <Compile Include="Enum\Anchor.cs" />
-    <Compile Include="Enum\AnimationReapeatMode.cs" />
-    <Compile Include="Enum\Dock.cs" />
-    <Compile Include="Enum\Layout.cs" />
-    <Compile Include="Enum\LoggerLevel.cs" />
-    <Compile Include="Enum\MouseState.cs" />
-    <Compile Include="Enum\TextStyle.cs" />
+    <Compile Include="Enums\Alignement.cs" />
+    <Compile Include="Enums\Anchor.cs" />
+    <Compile Include="Enums\Dock.cs" />
+    <Compile Include="Enums\Layout.cs" />
+    <Compile Include="Enums\MouseState.cs" />
+    <Compile Include="Enums\TextStyle.cs" />
     <Compile Include="Extension\GraphicsDeviceExtension.cs" />
     <Compile Include="Components\InputManager.cs" />
     <Compile Include="Components\NetworkManager.cs" />
     <Compile Include="Components\RessourceManager.cs" />
-    <Compile Include="Logging\DebugLogger.cs" />
-    <Compile Include="Logging\Formatters\DefaultLoggerFormatter.cs" />
-    <Compile Include="Logging\Formatters\ILoggerFormatter.cs" />
-    <Compile Include="Logging\Handlers\ConsoleLoggerHandler.cs" />
-    <Compile Include="Logging\Handlers\DebugConsoleLoggerHandler.cs" />
-    <Compile Include="Logging\Handlers\FileLoggerHandler.cs" />
-    <Compile Include="Logging\ILoggerHandler.cs" />
-    <Compile Include="Logging\ILoggerHandlerManager.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="Logging\LogMessage.cs" />
-    <Compile Include="Logging\LogPublisher.cs" />
-    <Compile Include="Logging\Module\LoggerModule.cs" />
-    <Compile Include="Logging\Module\ModuleManager.cs" />
-    <Compile Include="Network\Client.cs" />
-    <Compile Include="Network\Packet.cs" />
-    <Compile Include="Network\Server.cs" />
-    <Compile Include="PathFinding\AStar.cs" />
     <Compile Include="Ressource\ParalaxeBackground.cs" />
     <Compile Include="Components\SceneManager.cs" />
     <Compile Include="Components\Scene.cs" />
@@ -93,8 +75,6 @@
     <Compile Include="Ressource\Sprite.cs" />
     <Compile Include="Ressource\SpriteSheet.cs" />
     <Compile Include="Ressource\SpriteSheetData.cs" />
-    <Compile Include="Storage\Parser.cs" />
-    <Compile Include="Storage\Writer.cs" />
     <Compile Include="UI\Animation.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="UI\CheckBox.cs" />
@@ -106,27 +86,27 @@
     <Compile Include="UI\Picture.cs" />
     <Compile Include="UI\TextInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\BitHelper.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Extension\GameExtension.cs" />
     <Compile Include="Utils\FiniteStateMachine\FSM.cs" />
     <Compile Include="Utils\FiniteStateMachine\FsmSnapshot.cs" />
     <Compile Include="Utils\FiniteStateMachine\FsmStateBehaviour.cs" />
     <Compile Include="Utils\FiniteStateMachine\FsmStateData.cs" />
-    <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\Perlin.cs" />
     <Compile Include="Utils\RectangleF.cs" />
-    <Compile Include="Utils\Screen.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Extension\SerializationExtension.cs" />
     <Compile Include="Extension\SpriteBatchExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="RiseGame.cs" />
-    <Compile Include="Utils\SDL.cs" />
-    <Compile Include="Utils\Texture2D.cs" />
+    <Compile Include="Extension\Texture2D.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Config\" />
+    <ProjectReference Include="..\Maker.Utils\Maker.Utils.csproj">
+      <Project>{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}</Project>
+      <Name>Maker.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

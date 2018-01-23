@@ -6,5 +6,6 @@ namespace Maker.Hevadea
     {
         public static int TileSize = 16;
         public static Point TileBound = new Point(TileSize, TileSize);
+        public static string ApplicationName = "Hevadea";
     }
 }

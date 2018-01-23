@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Enum;
+﻿using Maker.Hevadea.Enums;
 using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea

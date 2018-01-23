@@ -1,5 +1,6 @@
-﻿using Maker.Rise.Enum;
+﻿using Maker.Rise.Enums;
 using Maker.Rise.Extension;
+using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,7 +20,7 @@ namespace Maker.Rise.UI
         public Button()
         {
             animation.Speed = 1f;
-            clickAnimation.Speed = 0.5f;
+            clickAnimation.Speed = 0.1f;
         }
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -27,17 +28,17 @@ namespace Maker.Rise.UI
             animation.Update(gameTime);
             clickAnimation.Update(gameTime);
 
-            var invClickanim = (1f - clickAnimation.TwoPhases);
+            var invClickanim = (1f - clickAnimation.GetValue(EasingFunctions.Linear));
             
-            var width = (int) (Bound.Width + 8f * animation.SinLinear - 16f);
-            var height = (int) (Bound.Height + 8f * animation.SinLinear - 16f);
+            var width = (int) (Bound.Width + 8f * animation.GetValue(EasingFunctions.SineEaseIn) - 16f);
+            var height = (int) (Bound.Height + 8f * animation.GetValue(EasingFunctions.SineEaseIn) - 16f);
 
             var rectX = Bound.X + Bound.Width / 2 - width / 2;
             var rectY = Bound.Y + Bound.Height / 2 - height / 2;
             var rect = new Rectangle(rectX, rectY, width, height);
 
-            var clickRectWidth =  (int)(width * clickAnimation.SinLinear);
-            var clickRectHeight = (int)(height* clickAnimation.SinLinear);
+            var clickRectWidth =  (int)(width * clickAnimation.GetValue(EasingFunctions.QuadraticEaseInOut));
+            var clickRectHeight = (int)(height* clickAnimation.GetValue(EasingFunctions.QuadraticEaseInOut));
 
             var clickRect = new Rectangle(rectX + (int)Math.Min(Math.Max(OnMousClickPosition.X - clickRectWidth / 2, 0f), width - clickRectWidth),
                                           rectY + (int)Math.Min(Math.Max(OnMousClickPosition.Y - clickRectHeight / 2, 0f), height - clickRectHeight),
@@ -47,7 +48,7 @@ namespace Maker.Rise.UI
             spriteBatch.FillRectangle(new Rectangle(rectX + 4, rectY + 4, width, height), Color.Black * 0.25f);
             
             spriteBatch.FillRectangle(rect, new Color(0, 74, 127));
-            spriteBatch.FillRectangle(rect, Color.Black * animation.Linear);
+            spriteBatch.FillRectangle(rect, Color.Black * animation.GetValue(EasingFunctions.Linear));
 
             spriteBatch.FillRectangle(clickRect, Color.White * invClickanim);
 
@@ -62,7 +63,7 @@ namespace Maker.Rise.UI
             else
             {
                 spriteBatch.DrawString(EngineRessources.FontBebas, Text, Bound, Alignement.Center, TextStyle.DropShadow,
-                    Color.White, 1f + animation.TwoPhases / 3f);
+                    Color.White, 1f + animation.GetValue(EasingFunctions.ElasticEaseIn) / 3f);
             }
         }
 
@@ -83,7 +84,7 @@ namespace Maker.Rise.UI
                 Engine.Audio.PlaySoundEffect(EngineRessources.MenuSelect);
             }
 
-            if (clickAnimation.TwoPhases == 1f)
+            if (clickAnimation.GetValue(EasingFunctions.ElasticEaseIn) == 1f)
             {
                 clickAnimation.Reset();
                 clickAnimation.Show = false;

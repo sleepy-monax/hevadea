@@ -18,11 +18,20 @@ namespace Maker.Hevadea.Game
         private RenderTarget2D worldRT;
         private BlendState lightBlend = new BlendState() { ColorBlendFunction = BlendFunction.Add, ColorSourceBlend = Blend.DestinationColor, ColorDestinationBlend = Blend.Zero };
 
+        public World()
+        {
+            spriteBatch = Engine.Graphic.CreateSpriteBatch();
+            lightRT = Engine.Graphic.CreateRenderTarget();
+            worldRT = Engine.Graphic.CreateRenderTarget();
+        }
+
         public void SpawnPlayer(PlayerEntity player)
         {
             var level = GetLevel(PlayerSpawnLevel);
             level.SpawnEntity(player, level.Width / 2, level.Height / 2);
         }
+
+       
 
         public Level GetLevel(string name)
         {
@@ -58,19 +67,14 @@ namespace Maker.Hevadea.Game
             }
         }
 
-        public World()
-        {
-            spriteBatch = Engine.Graphic.CreateSpriteBatch();
-            lightRT = Engine.Graphic.CreateRenderTarget();
-            worldRT = Engine.Graphic.CreateRenderTarget();
-        }
+
 
         public void Draw(GameTime gameTime, Camera camera)
         {
             var level = camera.FocusEntity.Level;
             var state = level.GetRenderState(camera);
 
-            //Engine.Graphic.SetRenderTarget(worldRT);
+            Engine.Graphic.SetRenderTarget(worldRT);
 
             Engine.Graphic.Begin(spriteBatch, false, camera.GetTransform());
             level.DrawTerrain(state, spriteBatch, gameTime);
@@ -78,7 +82,7 @@ namespace Maker.Hevadea.Game
             level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
             spriteBatch.End();
 
-            /*
+            
             Engine.Graphic.SetRenderTarget(lightRT);
 
             //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
@@ -101,7 +105,7 @@ namespace Maker.Hevadea.Game
             spriteBatch.Draw(lightRT, Engine.Graphic.GetResolutionRect(), Color.White);
 
             spriteBatch.End();
-            */
+            
            
         }
 

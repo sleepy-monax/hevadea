@@ -1,4 +1,6 @@
-﻿using Maker.Rise.Extension;
+﻿using Maker.Rise.Enums;
+using Maker.Rise.Extension;
+using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -56,16 +58,16 @@ namespace Maker.Rise.UI
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var width = (int) (Bound.Width * 0.9f + Bound.Width * 0.1f * animation.SinTwoPhases);
-            var height = (int) (Bound.Height * 0.9f + Bound.Height * 0.1f * animation.SinTwoPhases);
+            var width = (int) (Bound.Width * 0.9f + Bound.Width * 0.1f * animation.GetValue(EasingFunctions.ElasticEaseIn));
+            var height = (int) (Bound.Height * 0.9f + Bound.Height * 0.1f * animation.GetValue(EasingFunctions.ElasticEaseIn));
             var rect = new Rectangle(Bound.X + (Bound.Width - width) / 2,
                 Bound.Y + (Bound.Height - height) / 2,
                 width, height);
 
-            spriteBatch.FillRectangle(rect, new Color(0, 0, 0, 200) * animation.SinTwoPhases);
+            spriteBatch.FillRectangle(rect, new Color(0, 0, 0, 200) * animation.GetValue(EasingFunctions.ElasticEaseIn));
             spriteBatch.DrawString(Font, _text, new Vector2(Bound.X + (Bound.Width / 2 - _textSize.X / 2),
-                    Bound.Y + (Bound.Height / 2 - _textSize.Y / 2) + _textSize.Y * (1f - animation.SinTwoPhases)),
-                Color.White * animation.Linear);
+                    Bound.Y + (Bound.Height / 2 - _textSize.Y / 2) + _textSize.Y * (1f - animation.GetValue(EasingFunctions.ElasticEaseIn))),
+                Color.White * animation.GetValue(EasingFunctions.ElasticEaseIn));
         }
 
         protected override void OnUpdate(GameTime gameTime)

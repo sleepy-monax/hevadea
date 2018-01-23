@@ -1,4 +1,4 @@
-﻿using Maker.Rise.Enum;
+﻿using Maker.Rise.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,9 +115,6 @@ namespace Maker.Rise.Utils.FiniteStateMachine
             get { return currentState; }
             set
             {
-
-                Logger.Log(LoggerLevel.Debug ,string.Format("[FSM {0}] : Changing state from {1} to {2}", Name, currentState, value));
-
                 if (m_CurrentStateBehaviour != null)
                     m_CurrentStateBehaviour.TriggerLeave();
 

@@ -1,7 +1,7 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.UI;
-using Maker.Rise.Enum;
+using Maker.Rise.Enums;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 

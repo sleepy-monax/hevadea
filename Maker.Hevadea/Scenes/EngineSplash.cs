@@ -14,7 +14,7 @@ namespace Maker.Hevadea.Scenes
     {
         private SpriteBatch sb;
         private Texture2D logo;
-        public bool GoToGame = true;
+        public bool GoToGame = false;
 
         public override void Load()
         {
@@ -40,8 +40,8 @@ namespace Maker.Hevadea.Scenes
                 }
                 else
                 {
-                    //Engine.Scene.Switch(new MainMenu());
-                    Engine.Scene.Switch(new TestScene());
+                    Engine.Scene.Switch(new MainMenu());
+                    //Engine.Scene.Switch(new TestScene());
                 }
                 once = false;
             }

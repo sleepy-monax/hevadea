@@ -25,7 +25,7 @@ namespace Maker.Rise.Components
 
         public override void Initialize()
         {
-            sb = new SpriteBatch(Game.GraphicsDevice);
+            sb = Engine.Graphic.CreateSpriteBatch();
         }
 
         public override void Update(GameTime gameTime)

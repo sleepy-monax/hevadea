@@ -65,7 +65,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Enum\Direction.cs" />
+    <Compile Include="Enums\Direction.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
@@ -108,7 +108,10 @@
     <Compile Include="Game\Items\Tools\ToolItem.cs" />
     <Compile Include="Game\Items\Tools\ToolType.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
+    <Compile Include="Game\Player\InputHandler.cs" />
+    <Compile Include="Game\Player\PlayerHandler.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />
+    <Compile Include="Game\Registry\REGISTRY.cs" />
     <Compile Include="Game\Storage\WorldStorage.cs" />
     <Compile Include="Game\Tiles\Render\CompositConectedTileRender.cs" />
     <Compile Include="Game\Tiles\Render\ConnectedTileRender.cs" />
@@ -118,11 +121,10 @@
     <Compile Include="Menus\HUDMenu.cs" />
     <Compile Include="Menus\InventoryMenu.cs" />
     <Compile Include="Menus\Menu.cs" />
-    <Compile Include="Game\Entities\PlayerEntity.cs" />
+    <Compile Include="Game\Player\PlayerEntity.cs" />
     <Compile Include="Game\Entities\TreeEntity.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Level.cs" />
-    <Compile Include="Game\Registry\Init.cs" />
     <Compile Include="Game\Registry\ITEMS.cs" />
     <Compile Include="Game\Registry\RECIPIES.cs" />
     <Compile Include="Game\Registry\TILES.cs" />
@@ -131,10 +133,12 @@
     <Compile Include="Game\Tiles\DirtTile.cs" />
     <Compile Include="Game\Tiles\WoodFloorTile.cs" />
     <Compile Include="Game\Tiles\WoodWallTile.cs" />
+    <Compile Include="Networking\Client\GameClient.cs" />
+    <Compile Include="Networking\Server\GameServer.cs" />
     <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\WorldGenScene.cs" />
-    <Compile Include="UI\CraftingUi.cs" />
-    <Compile Include="UI\InventoryUi.cs" />
+    <Compile Include="UI\CraftingControl.cs" />
+    <Compile Include="UI\InventoryControl.cs" />
     <Compile Include="UI\PlayerInfoPanel.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Ressources.cs" />
@@ -240,6 +244,10 @@
     <ProjectReference Include="..\Maker.Rise\Maker.Rise.csproj">
       <Project>{8a64df5f-5501-44e9-8254-8ef37fe51f36}</Project>
       <Name>Maker.Rise</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maker.Utils\Maker.Utils.csproj">
+      <Project>{beec4be8-4e61-45c0-8586-65dc1da244e4}</Project>
+      <Name>Maker.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
