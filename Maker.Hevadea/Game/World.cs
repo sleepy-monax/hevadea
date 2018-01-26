@@ -85,8 +85,8 @@ namespace Maker.Hevadea.Game
             
             Engine.Graphic.SetRenderTarget(lightRT);
 
-            //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
-            Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
+            Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
+            //Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, null, null, null, camera.GetTransform());
             level.DrawLightMap(state, spriteBatch, gameTime);

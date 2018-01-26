@@ -13,7 +13,6 @@ namespace Maker.Hevadea.Game.Registry
 
         public static void Initialize()
         {
-
             OVERWORLD = new LevelGenerator
             {
                 LevelID = 0,
@@ -22,11 +21,11 @@ namespace Maker.Hevadea.Game.Registry
                 {
                     new BaseTerainFeature { Layers =
                         {
-                            new TerrainLayer { Priority = 0, Tile = TILES.WATER, Depth = 0f, Function = new FlatFunction(0f) },
-                            new TerrainLayer { Priority = 1, Tile = TILES.GRASS, Depth = 1f, Function = new IslandFunction()  },
-                            new TerrainLayer { Priority = 2, Tile = TILES.SAND,  Depth = 0.8f, Function = new CombinedFunction (new PerlinFunction(2, 0.5, 30), new IslandFunction()), TileRequired = { TILES.WATER }},
-                            new TerrainLayer { Priority = 3, Tile = TILES.GRASS, Depth = 0.95f, Function = new IslandFunction(), TileRequired = { TILES.WATER }},
-                            new TerrainLayer { Priority = 4, Tile = TILES.ROCK,  Depth = 0.9f, Function = new CombinedFunction (new PerlinFunction(2, 0.5, 15), new IslandFunction()), TileRequired = { TILES.GRASS }},
+                            new TerrainLayer { Priority = 0, Tile = TILES.WATER, Threashold = 0f, Function = new FlatFunction(0f) },
+                            new TerrainLayer { Priority = 1, Tile = TILES.GRASS, Threashold = 1f, Function = new IslandFunction()  },
+                            new TerrainLayer { Priority = 2, Tile = TILES.SAND,  Threashold = 0.8f, Function = new CombinedFunction (new PerlinFunction(2, 0.5, 30), new IslandFunction()), TileRequired = { TILES.WATER }},
+                            new TerrainLayer { Priority = 3, Tile = TILES.GRASS, Threashold = 0.95f, Function = new IslandFunction(), TileRequired = { TILES.WATER }},
+                            new TerrainLayer { Priority = 4, Tile = TILES.ROCK,  Threashold = 0.9f, Function = new CombinedFunction (new PerlinFunction(2, 0.5, 15), new IslandFunction()), TileRequired = { TILES.GRASS }},
                         }
                     },
                     new PlantFeature<TreeEntity>{ Chance = 3, CanBePlantOn = { TILES.GRASS }, PlacingFunction = new PerlinFunction(2,0.5,15), Threashold = 0.7f },

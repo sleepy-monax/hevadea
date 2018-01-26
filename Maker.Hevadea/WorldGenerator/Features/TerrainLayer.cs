@@ -9,7 +9,7 @@ namespace Maker.Hevadea.WorldGenerator.Features
     {
         public Tile Tile { get; set; } = TILES.WATER;
         public FunctionBase Function { get; set; } = new FlatFunction(1f);
-        public float Depth { get;  set; } = 1f;
+        public float Threashold { get;  set; } = 1f;
         public int Priority { get; set; } = 0;
         public List<Tile> TileRequired { get; set; } = new List<Tile>();
     }

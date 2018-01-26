@@ -28,7 +28,7 @@ namespace Maker.Hevadea.WorldGenerator.Features
                     {
                         var value = layer.Function.Compute((double)x, (double)y, gen, levelGen, level);
 
-                        bool canBeAdded = (value >= layer.Depth) && (layer.TileRequired.Count == 0 || layer.TileRequired.Contains(tile));
+                        bool canBeAdded = (value >= layer.Threashold) && (layer.TileRequired.Count == 0 || layer.TileRequired.Contains(tile));
 
                         if (canBeAdded)
                         {
