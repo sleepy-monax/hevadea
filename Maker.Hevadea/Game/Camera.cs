@@ -7,7 +7,7 @@ namespace Maker.Hevadea.Game
 {
     public class Camera
     {
-        public float Zoom = 4f;
+        public float Zoom = 1f;
         public Entity FocusEntity = null;
         public float X = 0f;
         public float Y = 0f;

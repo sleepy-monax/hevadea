@@ -54,7 +54,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
                 {
                     var eHealth = e.Components.Get<Health>();
 
-                    if (!eHealth?.Invicible ?? false)
+                    if (e != Owner && (!eHealth?.Invicible ?? false))
                     {
                         eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
 

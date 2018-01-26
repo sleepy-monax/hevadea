@@ -13,7 +13,7 @@ namespace Maker.Hevadea.Game.Registry
 
         public static void Initialize()
         {
-            // OVERWORLD ------------------------------------------------------
+
             OVERWORLD = new LevelGenerator
             {
                 LevelID = 0,
@@ -25,7 +25,7 @@ namespace Maker.Hevadea.Game.Registry
                             new TerrainLayer { Priority = 0, Tile = TILES.WATER, Depth = 0f, Function = new FlatFunction(0f) },
                             new TerrainLayer { Priority = 1, Tile = TILES.GRASS, Depth = 1f, Function = new IslandFunction()  },
                             new TerrainLayer { Priority = 2, Tile = TILES.SAND,  Depth = 0.8f, Function = new CombinedFunction (new PerlinFunction(2, 0.5, 30), new IslandFunction()), TileRequired = { TILES.WATER }},
-                            new TerrainLayer { Priority = 3, Tile = TILES.GRASS,  Depth = 0.95f, Function = new IslandFunction(), TileRequired = { TILES.WATER }},
+                            new TerrainLayer { Priority = 3, Tile = TILES.GRASS, Depth = 0.95f, Function = new IslandFunction(), TileRequired = { TILES.WATER }},
                             new TerrainLayer { Priority = 4, Tile = TILES.ROCK,  Depth = 0.9f, Function = new CombinedFunction (new PerlinFunction(2, 0.5, 15), new IslandFunction()), TileRequired = { TILES.GRASS }},
                         }
                     },
@@ -34,9 +34,6 @@ namespace Maker.Hevadea.Game.Registry
                 }
             };
 
-            // CAVES ----------------------------------------------------------
-
-            // GENERATORS
             DEFAULT = new Generator { Levels = { OVERWORLD }, Size = 256, Seed = 0 };
         }
 

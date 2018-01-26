@@ -1,5 +1,4 @@
 ﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise;
@@ -11,21 +10,26 @@ namespace Maker.Hevadea.Game.Items
     public class Item
     {
         public int Id { get; }
+        private readonly Sprite Sprite;
+        private readonly string Name;
 
-        public Item(byte id)
+        public Item(byte id, string name, Sprite sprite)
         {
-            Id = id;
             if (ITEMS.ById[id] != null) throw new Exception($"Duplicate item ID: {Id}!");
-            ITEMS.ById[Id] = this;
+            ITEMS.ById[id] = this;
+
+            Id = id;
+            Sprite = sprite;
+            Name = name;
         }
 
         public virtual string GetName()
         {
-            return "Item #" + Id;
+            return Name;
         }
         public virtual Sprite GetSprite()
         {
-            return new Sprite(Ressources.tile_items, 0);
+            return Sprite;
         }
 
         public virtual float GetAttackBonus(Entity target)
@@ -38,7 +42,7 @@ namespace Maker.Hevadea.Game.Items
         }
 
 
-        public void InteracteOn(Entity user, TilePosition pos)
+        public virtual void InteracteOn(Entity user, TilePosition pos)
         {
             var tile = user.Level.GetTile(pos);
             tile.Interacte(user, this, pos, user.Facing);

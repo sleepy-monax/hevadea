@@ -13,7 +13,7 @@ namespace Maker.Hevadea.Game.Menus
         public CraftingControl craft;
        
 
-        public InventoryMenu(Entity entity, GameManager game) : base(game)
+        public InventoryMenu(PlayerEntity entity, GameManager game) : base(game)
         {
             Layout = LayoutMode.Horizontal;
             var LeftPanel = new Panel() { Padding = new Padding(16), Color = Color.Black * 0.1f};
@@ -22,6 +22,15 @@ namespace Maker.Hevadea.Game.Menus
             inv = new InventoryUi(entity.Components.Get<Inventory>().Content)
             {
                 Dock = Dock.Fill
+            };
+
+            inv.OnMouseClick +=
+            (sender, args) =>
+            {
+                if (inv.SelectedItem != null )
+                {
+                    entity.HoldingItem = inv.SelectedItem;
+                }
             };
 
             craft = new CraftingControl(entity.Components.Get<Inventory>().Content)

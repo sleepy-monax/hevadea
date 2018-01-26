@@ -104,9 +104,8 @@
     <Compile Include="Game\Items\ItemStorage.cs" />
     <Compile Include="Game\Items\Materials\BaseMaterial.cs" />
     <Compile Include="Game\Items\Materials\Material.cs" />
+    <Compile Include="Game\Items\PlacableItem.cs" />
     <Compile Include="Game\Items\RessourceItem.cs" />
-    <Compile Include="Game\Items\Tools\ToolItem.cs" />
-    <Compile Include="Game\Items\Tools\ToolType.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
     <Compile Include="Game\Player\InputHandler.cs" />
     <Compile Include="Game\Player\PlayerHandler.cs" />

@@ -1,6 +1,7 @@
 ﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Menus;
+using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,6 +25,7 @@ namespace Maker.Hevadea.Game.Entities
                 (sender, arg) => 
                 {
                     Components.Get<Inventory>().Content.DropOnGround(Level, X + Origin.X, Y + Origin.Y);
+                    ITEMS.CHEST_ITEM.Drop(Level, X + Origin.X, Y + Origin.Y, 1);
                 };
 
             Components.Add(new Interactable()).OnInteracte += 

@@ -27,6 +27,9 @@ namespace Maker.Hevadea.Game.UI
 
             SelectedItem = null;
             spriteBatch.FillRectangle(Bound, Color.Black * 0.75f);
+            var text = $"({Inventory.Items.Count}/{Inventory.Capacity})";
+            var textSize = Ressources.fontRomulus.MeasureString(text);
+            spriteBatch.DrawString(Ressources.fontRomulus, text, new Vector2(Bound.X + Bound.Width - textSize.X - 4, Bound.Y + Bound.Height - textSize.Y), Color.Gold);
 
 
             foreach (var i in ITEMS.ById)

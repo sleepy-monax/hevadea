@@ -68,7 +68,7 @@ namespace Maker.Hevadea.Scenes
                 if (Engine.Input.KeyPress(Keys.D3)) { var z = new TorchEntity(); Game.Player.Level.SpawnEntity(z, pos.X, pos.Y); }
                 
                 if (Engine.Input.MouseLeft) Game.Player.Components.Get<Attack>().Do(Game.Player.HoldingItem);
-                if (Engine.Input.MouseRight) Game.Player.Components.Get<Interact>().Do(Game.Player.HoldingItem);
+                if (Engine.Input.MouseRightClick) Game.Player.Components.Get<Interact>().Do(Game.Player.HoldingItem);
 
                 //if (Engine.Input.KeyPress(Keys.P)) { File.WriteAllText("test.json", World[0].Save().ToJson()); }
             }
