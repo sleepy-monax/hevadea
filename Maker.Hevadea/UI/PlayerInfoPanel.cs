@@ -32,7 +32,7 @@ namespace Maker.Hevadea.Game.UI
             var energyV = (playerEnergy.Value / playerEnergy.MaxValue);
 
 
-            spriteBatch.FillRectangle(Bound, Color.Black * 0.5f);
+            //spriteBatch.FillRectangle(Bound, Color.Black * 0.5f);
 
             int i = 0;
 
@@ -49,14 +49,6 @@ namespace Maker.Hevadea.Game.UI
             }
 
             energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32), Color.White * (float)( 10 * energyV - Math.Floor(10 * energyV)));
-
-            var HoldingItem = Player.HoldingItem;
-            if (HoldingItem != null)
-            {
-                HoldingItem.GetSprite().Draw(spriteBatch, new Rectangle(Bound.X + 320 + 16, Bound.Y + 8, 48, 48), Color.White);
-                spriteBatch.DrawString(Ressources.fontRomulus, HoldingItem.GetName(), new Vector2(Bound.X + 320 + 16 + 48 + 8, Bound.Y + 8), Color.White);
-            }
-
         }
 
         protected override void OnUpdate(GameTime gameTime)

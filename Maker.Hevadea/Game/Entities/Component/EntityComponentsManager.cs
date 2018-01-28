@@ -34,6 +34,14 @@ namespace Maker.Hevadea.Game.Entities.Component
             return component;
         }
 
+        public void Adds(params EntityComponent[] components)
+        {
+            foreach (var c in components)
+            {
+                Add(c);
+            }
+        }
+
         public T Get<T>() where T : EntityComponent
         {
             foreach (var e in Components)

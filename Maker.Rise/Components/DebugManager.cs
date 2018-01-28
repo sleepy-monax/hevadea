@@ -79,7 +79,7 @@ Scene: {Engine.Scene.CurrentScene.GetType().FullName}
 DisplayMode: {Game.GraphicsDevice.Adapter.CurrentDisplayMode}
 Triangle: {Game.GraphicsDevice.Metrics.PrimitiveCount}
 --- Curent Scene Debug Info ---
-{Engine.Scene.CurrentScene.GetDebugInfo()}", new Vector2(32f, 16f), Color.White);
+{Engine.Scene.CurrentScene.GetDebugInfo()}", new Vector2(32f, 16f + 64), Color.White);
 
 
                 sb.End();

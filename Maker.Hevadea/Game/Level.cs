@@ -104,12 +104,18 @@ namespace Maker.Hevadea.Game
 
         public List<Entity> GetEntityOnTile(int tx, int ty)
         {
+            var result = new List<Entity>();
+
+
             if (tx < Width && ty < Height && tx >= 0 && ty >= 0)
             {
-                return EntitiesOnTiles[tx, ty];
+                foreach (var e in EntitiesOnTiles[tx, ty])
+                {
+                    result.Add(e);
+                }
             }
 
-            return new List<Entity>();
+            return result;
         }
 
         public List<Entity> GetEntitiesOnArea(Rectangle area)

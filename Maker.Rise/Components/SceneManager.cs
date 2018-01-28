@@ -120,7 +120,7 @@ namespace Maker.Rise.Components
             Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
 
             animation.Show = true;
-            animation.Speed = 0.5f;
+            animation.Speed = 0.3f;
             animation.Reset();
         }
 

@@ -16,13 +16,15 @@ namespace Maker.Hevadea.Game
         private SpriteBatch spriteBatch;
         private RenderTarget2D lightRT;
         private RenderTarget2D worldRT;
+        private RenderTarget2D finalRT;
         private BlendState lightBlend = new BlendState() { ColorBlendFunction = BlendFunction.Add, ColorSourceBlend = Blend.DestinationColor, ColorDestinationBlend = Blend.Zero };
 
         public World()
         {
             spriteBatch = Engine.Graphic.CreateSpriteBatch();
-            lightRT = Engine.Graphic.CreateRenderTarget();
-            worldRT = Engine.Graphic.CreateRenderTarget();
+            lightRT = Engine.Graphic.CreateFullscreenRenderTarget();
+            worldRT = Engine.Graphic.CreateFullscreenRenderTarget();
+            finalRT = Engine.Graphic.CreateFullscreenRenderTarget();
         }
 
         public void SpawnPlayer(PlayerEntity player)
@@ -85,8 +87,8 @@ namespace Maker.Hevadea.Game
             
             Engine.Graphic.SetRenderTarget(lightRT);
 
-            Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
-            //Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
+            //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
+            Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, null, null, null, camera.GetTransform());
             level.DrawLightMap(state, spriteBatch, gameTime);
@@ -105,8 +107,12 @@ namespace Maker.Hevadea.Game
             spriteBatch.Draw(lightRT, Engine.Graphic.GetResolutionRect(), Color.White);
 
             spriteBatch.End();
-            
-           
+
+            Engine.Graphic.SetRenderTarget(null);
+
+
+
+
         }
 
 

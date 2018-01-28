@@ -65,7 +65,7 @@ namespace Maker.Rise.Components
 
         public Vector2 GetCenter() { return GetResolutionRect().Center.ToVector2(); }
 
-        public RenderTarget2D CreateRenderTarget()
+        public RenderTarget2D CreateFullscreenRenderTarget()
         {
             return new RenderTarget2D(GetGraphicsDevice(), Engine.Graphic.GetWidth(),
                 Engine.Graphic.GetHeight());

@@ -19,10 +19,6 @@ namespace Maker.Hevadea.Game.UI
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var index = 0;
-            var maxY = Bound.Height / 64;
-            var maxX = Bound.Width / 64;
-
-            spriteBatch.FillRectangle(Bound, Color.Black * 0.75f);
 
             foreach (var c in RECIPIES.HAND_CRAFTED)
             {
@@ -32,21 +28,28 @@ namespace Maker.Hevadea.Game.UI
 
                     if (canBeCrafted)
                     {
-                        var sx = index % maxX;
-                        var sy = index / maxX;
+                        var p = new Point(Host.X + 4, Host.Y + index * 64 + 4);
 
-                        var rect = new Rectangle(Bound.X + sx * 64, Bound.Y + sy * 64, 48, 48);
-                        spriteBatch.FillRectangle(rect, Color.Black * 0.25f);
-                        c.Result.GetSprite().Draw(spriteBatch, rect, Color.White);
+                        var rect = new Rectangle(p.X, p.Y, Host.Width - 8, 48);
+                        var spriteRect = new Rectangle(p.X + 8, p.Y + 8, 32, 32);
+
+                        spriteBatch.FillRectangle(new Rectangle(rect.Location + new Point(4, 4), rect.Size), Color.Black * 0.25f);
+                        spriteBatch.FillRectangle(rect, Color.Gray);
+
+                        c.Result.GetSprite().Draw(spriteBatch, spriteRect, Color.White);
+                        spriteBatch.DrawString(Ressources.fontRomulus, $"{c.Quantity}x {c.Result.GetName()}", new Vector2(rect.X + 48, rect.Y + 2), Color.White);
+
+                        var costIndex = 0;
+                        foreach (var i in c.Costs)
+                        {
+                            var costRect = new Rectangle(rect.X + 48 + 16 * costIndex, rect.Y + 26, 16, 16);
+                            i.Item.GetSprite().Draw(spriteBatch, costRect, Color.White);
+                            costIndex++;
+                        }
 
                         if (rect.Contains(Engine.Input.MousePosition))
                         {
-                            spriteBatch.DrawString(Ressources.fontRomulus, $"x{c.Quantity}", new Vector2(rect.X + 32, rect.Y + 32), Color.White);
                             
-                            foreach (var i in c.Costs)
-                            {
-                                  
-                            }
                         
                             if (Engine.Input.MouseLeftClick)
                             {

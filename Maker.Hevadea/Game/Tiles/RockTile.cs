@@ -1,6 +1,7 @@
 ﻿using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Registry;
+using Maker.Rise;
 using Maker.Rise.Ressource;
 
 namespace Maker.Hevadea.Game.Tiles
@@ -18,6 +19,8 @@ namespace Maker.Hevadea.Game.Tiles
             if (dmg > 5)
             {
                 e.Level.SetTile(tilePosition.X, tilePosition.Y, TILES.DIRT);
+                ITEMS.STONE.Drop(e.Level, tilePosition, Engine.Random.Next(1, 4));
+                ITEMS.COAL.Drop(e.Level, tilePosition, Engine.Random.Next(0, 3));
             }
             else
             {

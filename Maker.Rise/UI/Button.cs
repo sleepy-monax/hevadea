@@ -20,7 +20,7 @@ namespace Maker.Rise.UI
         public Button()
         {
             animation.Speed = 1f;
-            clickAnimation.Speed = 0.1f;
+            clickAnimation.Speed = 0.5f;
         }
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -57,14 +57,10 @@ namespace Maker.Rise.UI
                 var iconY = (Bound.Height / 2 - Icon.Height / 2);
 
                 spriteBatch.Draw(Icon, new Vector2(Bound.X + iconY, Bound.Y + iconY), Color.White);
+            }
+
                 spriteBatch.DrawString(EngineRessources.FontBebas, Text, Bound, Alignement.Center, TextStyle.DropShadow,
                     Color.White);
-            }
-            else
-            {
-                spriteBatch.DrawString(EngineRessources.FontBebas, Text, Bound, Alignement.Center, TextStyle.DropShadow,
-                    Color.White, 1f + animation.GetValue(EasingFunctions.ElasticEaseIn) / 3f);
-            }
         }
 
         protected override void OnUpdate(GameTime gameTime)

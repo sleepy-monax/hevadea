@@ -57,5 +57,10 @@ namespace Maker.Hevadea.Game.Items
                 dropItem.SetPosition(x, y);
             }
         }
+
+        public void Drop(Level level, TilePosition tilePosition, int quantity)
+        {
+            Drop(level, tilePosition.X * ConstVal.TileSize + ConstVal.TileSize / 2, tilePosition.Y * ConstVal.TileSize + ConstVal.TileSize / 2, quantity);
+        }
     }
 }

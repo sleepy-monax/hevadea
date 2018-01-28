@@ -16,12 +16,17 @@ namespace Maker.Hevadea.Game.Items
             if (user.Level.GetEntityOnTile(pos).Count == 0)
             {
                 var inventory = user.Components.Get<Inventory>();
+
                 if (inventory != null) inventory.Content.Remove(this, 1);
+
                 user.Level.SpawnEntity(new T(), pos.X, pos.Y);
 
                 if (user is PlayerEntity p)
                 {
-                    p.HoldingItem = null;
+                    if (p.Components.Get<Inventory>().Content.Count(p.HoldingItem) == 0)
+                    {
+                        p.HoldingItem = null;
+                    }
                 }
 
             }

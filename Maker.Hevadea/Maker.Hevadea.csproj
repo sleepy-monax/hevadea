@@ -79,6 +79,8 @@
     <Compile Include="Game\Entities\Component\Ai\Ai.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\Breakable.cs" />
+    <Compile Include="Game\Entities\Component\Interaction\Drop.cs" />
     <Compile Include="Game\Entities\Component\Interaction\Interact.cs" />
     <Compile Include="Game\Entities\Component\Interaction\InteractEventArg.cs" />
     <Compile Include="Game\Entities\Component\ISaveLoadComponent.cs" />
@@ -138,6 +140,7 @@
     <Compile Include="Scenes\WorldGenScene.cs" />
     <Compile Include="UI\CraftingControl.cs" />
     <Compile Include="UI\InventoryControl.cs" />
+    <Compile Include="UI\ItemFrameControl.cs" />
     <Compile Include="UI\PlayerInfoPanel.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Ressources.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\PrettyPanel.cs" />
     <Compile Include="WorldGenerator\Features\BaseTerainFeature.cs" />
     <Compile Include="WorldGenerator\Features\Functions\CombinedFunction.cs" />
     <Compile Include="WorldGenerator\Features\Functions\FlatFunction.cs" />

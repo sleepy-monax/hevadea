@@ -52,14 +52,20 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
 
                 foreach (var e in facingEntities)
                 {
-                    var eHealth = e.Components.Get<Health>();
 
-                    if (e != Owner && (!eHealth?.Invicible ?? false))
+                    if (e != Owner)
                     {
-                        eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
+                        e.Components.Get<Breakable>()?.Break();
 
-                        break;
+                        var eHealth = e.Components.Get<Health>();
+                        if ((!eHealth?.Invicible ?? false))
+                        {
+                            eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
+
+                            break;
+                        }
                     }
+
                 }
             }
 

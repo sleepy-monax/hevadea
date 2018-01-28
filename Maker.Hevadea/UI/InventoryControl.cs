@@ -22,14 +22,12 @@ namespace Maker.Hevadea.Game.UI
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var index = 0;
-            var maxY = Bound.Height / 64;
-            var maxX = Bound.Width / 64;
 
             SelectedItem = null;
-            spriteBatch.FillRectangle(Bound, Color.Black * 0.75f);
+
             var text = $"({Inventory.Items.Count}/{Inventory.Capacity})";
             var textSize = Ressources.fontRomulus.MeasureString(text);
-            spriteBatch.DrawString(Ressources.fontRomulus, text, new Vector2(Bound.X + Bound.Width - textSize.X - 4, Bound.Y + Bound.Height - textSize.Y), Color.Gold);
+            spriteBatch.DrawString(Ressources.fontRomulus, text, new Vector2(Bound.X + Bound.Width - textSize.X - Padding.Left - 4, Bound.Y + Bound.Height - textSize.Y - Padding.Down), Color.Gold);
 
 
             foreach (var i in ITEMS.ById)
@@ -40,13 +38,15 @@ namespace Maker.Hevadea.Game.UI
 
                     if (itemCount > 0)
                     {
-                        var sx = index % maxX;
-                        var sy = index / maxX;
+                        var p = new Point(Host.X + 4, Host.Y + index * 64 + 4);
 
-                        var rect = new Rectangle(Bound.X + sx * 64, Bound.Y + sy * 64, 48, 48);
-                        spriteBatch.FillRectangle(rect, Color.Black * 0.25f);
-                        i.GetSprite().Draw(spriteBatch ,rect, Color.White);
-                        spriteBatch.DrawString(Ressources.fontRomulus, $"x{itemCount}", new Vector2(rect.X + 24, rect.Y + 32), Color.White);
+                        var rect = new Rectangle(p.X, p.Y, Host.Width - 8, 48);
+                        var sprite_rect = new Rectangle(p.X + 8, p.Y + 8,32,32);
+
+                        spriteBatch.FillRectangle(new Rectangle(rect.Location + new Point(4,4), rect.Size), Color.Black * 0.25f);
+                        spriteBatch.FillRectangle(rect, Color.Gray);
+                        i.GetSprite().Draw(spriteBatch, sprite_rect, Color.White);
+                        spriteBatch.DrawString(Ressources.fontRomulus, $"{i.GetName()} {itemCount,3}x", new Vector2(rect.X + 48, rect.Y + 12), Color.White);
 
                         if (rect.Contains(Engine.Input.MousePosition))
                         {
