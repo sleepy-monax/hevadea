@@ -45,6 +45,7 @@
     <Compile Include="Easings.cs" />
     <Compile Include="Enums\EasingFunctions.cs" />
     <Compile Include="Enums\LoggerLevel.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Json\Parser.cs" />
     <Compile Include="Json\Writer.cs" />
     <Compile Include="Logger.cs" />

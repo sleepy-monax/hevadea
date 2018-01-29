@@ -1,5 +1,6 @@
 using Maker.Rise.Enums;
 using Maker.Rise.Extension;
+using Maker.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -205,8 +206,10 @@ namespace Maker.Rise.UI
             OnUpdate(gameTime);
 
             mouse = Engine.Input.MouseLeft;
-            
-            foreach (var c in Childs)
+
+            var childCopy = Childs.Clone();
+
+            foreach (var c in childCopy)
             {
                 c.Update(gameTime);
             }

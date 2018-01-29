@@ -33,8 +33,8 @@ namespace Maker.Hevadea.Game.UI
                         var rect = new Rectangle(p.X, p.Y, Host.Width - 8, 48);
                         var spriteRect = new Rectangle(p.X + 8, p.Y + 8, 32, 32);
 
-                        spriteBatch.FillRectangle(new Rectangle(rect.Location + new Point(4, 4), rect.Size), Color.Black * 0.25f);
-                        spriteBatch.FillRectangle(rect, Color.Gray);
+                        spriteBatch.FillRectangle(rect, Color.White * 0.05f);
+                        spriteBatch.DrawRectangle(rect, Color.White * 0.05f);
 
                         c.Result.GetSprite().Draw(spriteBatch, spriteRect, Color.White);
                         spriteBatch.DrawString(Ressources.fontRomulus, $"{c.Quantity}x {c.Result.GetName()}", new Vector2(rect.X + 48, rect.Y + 2), Color.White);

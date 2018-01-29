@@ -14,17 +14,16 @@ namespace Maker.Hevadea.Game
         public string PlayerSpawnLevel = "overworld";
 
         private SpriteBatch spriteBatch;
-        private RenderTarget2D lightRT;
-        private RenderTarget2D worldRT;
-        private RenderTarget2D finalRT;
+        private RenderTarget2D RT0;
+        private RenderTarget2D RT1;
+        private RenderTarget2D RT2;
         private BlendState lightBlend = new BlendState() { ColorBlendFunction = BlendFunction.Add, ColorSourceBlend = Blend.DestinationColor, ColorDestinationBlend = Blend.Zero };
-
         public World()
         {
             spriteBatch = Engine.Graphic.CreateSpriteBatch();
-            lightRT = Engine.Graphic.CreateFullscreenRenderTarget();
-            worldRT = Engine.Graphic.CreateFullscreenRenderTarget();
-            finalRT = Engine.Graphic.CreateFullscreenRenderTarget();
+            RT0 = Engine.Graphic.CreateFullscreenRenderTarget();
+            RT1 = Engine.Graphic.CreateFullscreenRenderTarget();
+            RT2 = Engine.Graphic.CreateFullscreenRenderTarget();
         }
 
         public void SpawnPlayer(PlayerEntity player)
@@ -76,7 +75,7 @@ namespace Maker.Hevadea.Game
             var level = camera.FocusEntity.Level;
             var state = level.GetRenderState(camera);
 
-            Engine.Graphic.SetRenderTarget(worldRT);
+            Engine.Graphic.SetRenderTarget(RT1);
 
             Engine.Graphic.Begin(spriteBatch, false, camera.GetTransform());
             level.DrawTerrain(state, spriteBatch, gameTime);
@@ -85,7 +84,7 @@ namespace Maker.Hevadea.Game
             spriteBatch.End();
 
             
-            Engine.Graphic.SetRenderTarget(lightRT);
+            Engine.Graphic.SetRenderTarget(RT0);
 
             //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
             Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
@@ -94,22 +93,19 @@ namespace Maker.Hevadea.Game
             level.DrawLightMap(state, spriteBatch, gameTime);
             spriteBatch.End();
 
-            Engine.Graphic.SetRenderTarget(null);
+            Engine.Graphic.SetRenderTarget(Engine.Scene.RenderTarget);
 
             Engine.Graphic.Begin(spriteBatch);
 
-            spriteBatch.Draw(worldRT, Engine.Graphic.GetResolutionRect(), Color.White);
+            spriteBatch.Draw(RT1, Engine.Graphic.GetResolutionRect(), Color.White);
 
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.Immediate, lightBlend);
 
-            spriteBatch.Draw(lightRT, Engine.Graphic.GetResolutionRect(), Color.White);
+            spriteBatch.Draw(RT0, Engine.Graphic.GetResolutionRect(), Color.White);
 
             spriteBatch.End();
-
-            Engine.Graphic.SetRenderTarget(null);
-
 
 
 

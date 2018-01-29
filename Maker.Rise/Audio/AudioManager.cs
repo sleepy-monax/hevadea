@@ -11,7 +11,7 @@ namespace Maker.Rise.Components
         public float EffectVolume { get; set; } = 0.5f;
 
 
-        public AudioManager(RiseGame game) : base(game)
+        public AudioManager(InternalGame game) : base(game)
         {
             PlayingSoundEffects = new List<SoundEffectInstance>();
         }

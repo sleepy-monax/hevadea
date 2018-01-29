@@ -9,7 +9,7 @@ namespace Maker.Rise.Components
         private SpriteBatch uiSpriteBatch;
         public bool Debug => Engine.Debug.Visible;
 
-        public UiManager(RiseGame game) : base(game)
+        public UiManager(InternalGame game) : base(game)
         {
         }
 

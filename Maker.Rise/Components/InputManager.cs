@@ -11,7 +11,7 @@ namespace Maker.Rise.Components
         private MouseState oldMouseState;
         private MouseState newMouseState;
 
-        public InputManager(RiseGame game) : base(game)
+        public InputManager(InternalGame game) : base(game)
         {
         }
 

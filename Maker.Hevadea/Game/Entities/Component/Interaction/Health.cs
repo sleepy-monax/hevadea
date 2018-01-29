@@ -71,6 +71,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
         public virtual void Die()
         {
             OnDie?.Invoke(this, null);
+            Owner.Components.Get<Dropable>()?.Drop();
             Owner.Remove();
         }
 

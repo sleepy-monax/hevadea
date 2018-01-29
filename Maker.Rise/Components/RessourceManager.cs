@@ -10,7 +10,7 @@ namespace Maker.Rise.Components
         private Dictionary<string, SpriteFont> FontCache = new Dictionary<string, SpriteFont>();
         private Dictionary<string, Texture2D> TextureCache = new Dictionary<string, Texture2D>();
 
-        public RessourceManager(RiseGame game) : base(game)
+        public RessourceManager(InternalGame game) : base(game)
         {
         }
 

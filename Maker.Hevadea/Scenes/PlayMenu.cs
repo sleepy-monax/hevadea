@@ -1,7 +1,7 @@
 ﻿using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Registry;
-
+using Maker.Hevadea.UI;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enums;
@@ -26,6 +26,8 @@ namespace Maker.Hevadea.Scenes
         public override void Load()
         {
             UiRoot.Padding = new Padding(64, 64, 256, 265);
+
+            var container = new PrettyPanel { Dock = Dock.Fill};
 
             var menuButtonHost = new Panel
             {
@@ -80,9 +82,10 @@ namespace Maker.Hevadea.Scenes
             deleteButton.OnMouseClick +=
                 delegate { };
 
-            UiRoot.AddChild(titleLabel);
-            UiRoot.AddChild(menuButtonHost);
-            UiRoot.AddChild(gameListHost);
+            UiRoot.AddChild(container);
+            container.AddChild(titleLabel);
+            container.AddChild(menuButtonHost);
+            container.AddChild(gameListHost);
 
             menuButtonHost.AddChild(backButton);
             menuButtonHost.AddChild(newButton);
@@ -99,8 +102,7 @@ namespace Maker.Hevadea.Scenes
             var logo = Ressources.img_hevadea_logo;
 
             Engine.Graphic.Begin(sb);
-            sb.Draw(logo, Engine.Graphic.GetCenter() - logo.GetCenter(), Color.White);
-            sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black * 0.90f);
+            sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black * 0.25f);
             sb.End();
         }
 

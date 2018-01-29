@@ -15,9 +15,10 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
         public void Drop()
         {
             var pos = Owner.GetTilePosition();
+
             foreach (var d in Items)
             {
-                d.Item1.Drop(Owner.Level, pos, Engine.Random.Next(d.Item2, d.Item2));
+                d.Item1.Drop(Owner.Level, pos, Engine.Random.Next(d.Item2, d.Item3));
             }
         }
     }

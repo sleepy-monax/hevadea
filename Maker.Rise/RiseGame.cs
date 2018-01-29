@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Maker.Rise
 {
-    public sealed class RiseGame : Game
+    public sealed class InternalGame : Game
     {
         public int DrawTime { get; private set; } = 0;
         public int UpdateTime { get; private set; } = 0;
@@ -16,11 +16,11 @@ namespace Maker.Rise
         private readonly Stopwatch drawStopwatch;
         private readonly Stopwatch updateStopwatch;
 
-        public delegate void OnLoadHandler(RiseGame sender, EventArgs e);
+        public delegate void OnLoadHandler(InternalGame sender, EventArgs e);
 
         public event OnLoadHandler OnLoad;
 
-        public RiseGame()
+        public InternalGame()
         {
             drawStopwatch = new Stopwatch();
             updateStopwatch = new Stopwatch();
@@ -63,7 +63,7 @@ namespace Maker.Rise
         {
             IntializeGameEngine();
             OnLoad?.Invoke(this, new EventArgs());
-            Logger.Log<RiseGame>(LoggerLevel.Fine, "Game engine initialized, entering game loop...");
+            Logger.Log<InternalGame>(LoggerLevel.Fine, "Game engine initialized, entering game loop...");
 
             base.Initialize();
         }

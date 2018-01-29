@@ -18,11 +18,8 @@ namespace Maker.Hevadea.Game.Entities
             Origin = new Point(2,2);
             treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
 
-            Components.Add(new Health(5)).OnDie += (sender, args) =>
-            {
-                ITEMS.WOOD_LOG.Drop(Level, X + Origin.X, Y + Origin.Y, Engine.Random.Next(1, 5));
-                ITEMS.PINE_CONE.Drop(Level, X + Origin.X, Y + Origin.Y, Engine.Random.Next(0, 3));
-            };
+            Components.Add(new Health(5));
+            Components.Add(new Dropable { Items = { (ITEMS.WOOD_LOG, 1, 5), (ITEMS.PINE_CONE, 0, 3) } });
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

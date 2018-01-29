@@ -11,6 +11,7 @@ namespace Maker.Rise.UI
     {
         public string Text { get; set; } = "Button";
         public Texture2D Icon { get; set; } = null;
+        public bool EnableBlur { get; set; } = false;
 
         public bool Dancing { get; set; } = true;
         public FadingAnimation animation = new FadingAnimation();
@@ -45,11 +46,14 @@ namespace Maker.Rise.UI
                 
                                           clickRectWidth, clickRectHeight);
 
-            spriteBatch.FillRectangle(new Rectangle(rectX + 4, rectY + 4, width, height), Color.Black * 0.25f);
-            
-            spriteBatch.FillRectangle(rect, new Color(0, 74, 127));
-            spriteBatch.FillRectangle(rect, Color.Black * animation.GetValue(EasingFunctions.Linear));
+            //spriteBatch.FillRectangle(new Rectangle(rectX + 4, rectY + 4, width, height), Color.Black * 0.25f * animation.GetValue(EasingFunctions.Linear));
 
+            if (EnableBlur) spriteBatch.Draw(Engine.Scene.BlurRT, rect, rect, Color.White);
+            spriteBatch.FillRectangle(rect, Color.White * (1f - animation.GetValue(EasingFunctions.Linear)) * 0.05f);
+            spriteBatch.FillRectangle(rect, Color.Black * animation.GetValue(EasingFunctions.Linear) * 0.75f);
+            spriteBatch.DrawRectangle(rect, Color.White * 0.05f);
+
+            
             spriteBatch.FillRectangle(clickRect, Color.White * invClickanim);
 
             if (Icon != null)
@@ -59,7 +63,8 @@ namespace Maker.Rise.UI
                 spriteBatch.Draw(Icon, new Vector2(Bound.X + iconY, Bound.Y + iconY), Color.White);
             }
 
-                spriteBatch.DrawString(EngineRessources.FontBebas, Text, Bound, Alignement.Center, TextStyle.DropShadow,
+                
+                spriteBatch.DrawString(EngineRessources.FontBebas, Text, new Rectangle(Bound.Location + new Point(0, 4), Bound.Size) , Alignement.Center, TextStyle.Regular,
                     Color.White);
         }
 

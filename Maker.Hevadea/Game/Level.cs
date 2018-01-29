@@ -331,7 +331,7 @@ namespace Maker.Hevadea.Game
 
                 if (Engine.Debug.Visible)
                 {
-                    spriteBatch.DrawRectangle(e.Bound, Color.Aqua);
+                    spriteBatch.DrawRectangle(e.Bound, Color.Aqua * 0.5f, 0.4f);
                     spriteBatch.PutPixel(e.Position + e.Origin.ToVector2(), Color.Magenta);
                 }
             }

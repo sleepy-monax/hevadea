@@ -20,7 +20,7 @@ namespace Maker.Rise
         public static Version Version => Assembly.GetExecutingAssembly().GetName().Version;
         public static readonly Random Random = new Random();
         
-        private static RiseGame game;
+        public static InternalGame MonoGameHandle;
         private static Scene mainScene;
         
 
@@ -31,16 +31,16 @@ namespace Maker.Rise
             Logger.DefaultInitialization();
             
             // Initialize the game engine.
-            game = new RiseGame();
+            MonoGameHandle = new InternalGame();
 
-            Audio = new AudioManager(game);
-            Input = new InputManager(game);
-            Network = new NetworkManager(game);
-            Scene = new SceneManager(game);
-            Ui = new UiManager(game);
-            Ressource = new RessourceManager(game);
-            Debug = new DebugManager(game);
-            Graphic = new GraphicComponent(game);
+            Audio = new AudioManager(MonoGameHandle);
+            Input = new InputManager(MonoGameHandle);
+            Network = new NetworkManager(MonoGameHandle);
+            Scene = new SceneManager(MonoGameHandle);
+            Ui = new UiManager(MonoGameHandle);
+            Ressource = new RessourceManager(MonoGameHandle);
+            Debug = new DebugManager(MonoGameHandle);
+            Graphic = new GraphicComponent(MonoGameHandle);
             CommonRasterizerState = new RasterizerState {ScissorTestEnable = true};
             
         }
@@ -48,22 +48,22 @@ namespace Maker.Rise
         public static void Start(Scene mainScene)
         {
             Engine.mainScene = mainScene;
-            game.OnLoad += Game_OnLoad;
-            game.Run();
+            MonoGameHandle.OnLoad += Game_OnLoad;
+            MonoGameHandle.Run();
         }
 
         public static void Stop()
         {
-            game.Exit();
+            MonoGameHandle.Exit();
             Environment.Exit(0);
         }
 
         public static void SetMouseVisibility(bool visible)
         {
-            game.IsMouseVisible = visible;
+            MonoGameHandle.IsMouseVisible = visible;
         }
 
-        private static void Game_OnLoad(RiseGame sender, EventArgs e)
+        private static void Game_OnLoad(InternalGame sender, EventArgs e)
         {
             Scene.Switch(mainScene);
         }

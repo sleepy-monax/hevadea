@@ -68,6 +68,7 @@
     <Compile Include="Components\InputManager.cs" />
     <Compile Include="Components\NetworkManager.cs" />
     <Compile Include="Components\RessourceManager.cs" />
+    <Compile Include="Graphic\BlurEffect.cs" />
     <Compile Include="Ressource\ParalaxeBackground.cs" />
     <Compile Include="Components\SceneManager.cs" />
     <Compile Include="Components\Scene.cs" />

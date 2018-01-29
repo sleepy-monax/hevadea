@@ -1,5 +1,4 @@
-﻿using Maker.Rise.Utils;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Rise.Components
@@ -7,9 +6,9 @@ namespace Maker.Rise.Components
     public class GraphicComponent
     {
         private GraphicsDeviceManager g;
-        private RiseGame Game;
+        private InternalGame Game;
 
-        public GraphicComponent(RiseGame game)
+        public GraphicComponent(InternalGame game)
         {
             Game = game;
             g = new GraphicsDeviceManager(game);
@@ -41,6 +40,7 @@ namespace Maker.Rise.Components
             g.PreferredBackBufferWidth = width;
             g.PreferredBackBufferHeight = height;
             g.ApplyChanges();
+            Engine.Scene.ResetRenderTargets();
         }
 
         public Rectangle GetResolutionRect()
@@ -74,6 +74,11 @@ namespace Maker.Rise.Components
         public void SetRenderTarget(RenderTarget2D renderTarget)
         {
             g.GraphicsDevice.SetRenderTarget(renderTarget);   
+        }
+
+        public void SetDefaultRenderTarget()
+        {
+            g.GraphicsDevice.SetRenderTarget(Engine.Scene.RenderTarget);
         }
 
         public GraphicsDevice GetGraphicsDevice()

@@ -6,9 +6,12 @@ using Maker.Hevadea.UI;
 
 using Maker.Rise;
 using Maker.Rise.Enums;
+using Maker.Rise.Extension;
 using Maker.Rise.UI;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Maker.Hevadea.Game.Menus
 {
@@ -22,12 +25,18 @@ namespace Maker.Hevadea.Game.Menus
 
         public InventoryMenu(PlayerEntity entity, GameManager game) : base(game)
         {
+            var width = Math.Min(Engine.Graphic.GetWidth(), 800);
+            var height = Math.Min(Engine.Graphic.GetHeight(), 600);
+            var padX = Engine.Graphic.GetWidth() / 2 - width / 2;
+            var padY = Engine.Graphic.GetHeight() / 2 - height / 2;
+            Padding = new Padding(padY, padY, padX, padX);
+
             Player = entity;
             var HostPanel = new Panel { Dock = Dock.Fill, Layout = LayoutMode.Horizontal };
 
-            var upperPanel = new Panel() { Padding = new Padding(0, 0, 16, 16), Dock = Dock.Top, Bound = new Rectangle(64, 64, 64, 64) };
-            var RightPanel = new PrettyPanel() { Padding = new Padding(16) };
-            var LeftPanel = new PrettyPanel() { Padding = new Padding(16)};
+            var upperPanel = new PrettyPanel() {Dock = Dock.Top, Bound = new Rectangle(64, 64, 64, 64) };
+            var RightPanel = new PrettyPanel() {};
+            var LeftPanel = new PrettyPanel() { };
 
             HoldingItemFrame = new ItemFrameControl() { Padding = new Padding(8), Dock = Dock.Left, Item = Game.Player.HoldingItem, Bound = new Rectangle(64, 64, 64, 64) };
 
@@ -54,7 +63,8 @@ namespace Maker.Hevadea.Game.Menus
 
             craft = new CraftingControl(entity.Components.Get<Inventory>().Content)
             {
-                Dock = Dock.Fill
+                Dock = Dock.Fill,
+                Padding = new Padding(8)
             };
 
             PauseGame = true;
@@ -81,6 +91,11 @@ namespace Maker.Hevadea.Game.Menus
         private void CloseButtonMouseClick(object sender, System.EventArgs e)
         {
             Game.CurrentMenu = new HUDMenu(Game);
+        }
+
+        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            spriteBatch.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black * 0.1f);
         }
 
         protected override void OnUpdate(GameTime gameTime)

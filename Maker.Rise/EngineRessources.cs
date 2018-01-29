@@ -25,8 +25,12 @@ namespace Maker.Rise
         public static SoundEffect MenuSelect;
         public static SoundEffect MenuPick;
 
+        public static Effect effectBlur;
+
         public static void Load()
         {
+            effectBlur = Engine.MonoGameHandle.Content.Load<Effect>("Effects/Blur");
+
             FontArial = Engine.Ressource.GetSpriteFont("arial");
             FontArialTiny = Engine.Ressource.GetSpriteFont("arial_tiny");
             FontBebas = Engine.Ressource.GetSpriteFont("bebas");

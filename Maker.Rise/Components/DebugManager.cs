@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using Maker.Utils.Json;
 
 namespace Maker.Rise.Components
 {
@@ -17,7 +18,7 @@ namespace Maker.Rise.Components
 
         int MaxSample = 256;
 
-        public DebugManager(RiseGame game) : base(game)
+        public DebugManager(InternalGame game) : base(game)
         {
             renderTime = new Queue<int>();
             updateTime = new Queue<int>();
@@ -69,18 +70,20 @@ namespace Maker.Rise.Components
                         i > 10 ? Color.Magenta : Color.Blue);
                     index++;
                 }
-                
-                sb.DrawString(EngineRessources.FontHack,
-                    $@"
+
+                var debugText = $@"
 Render: {Game.DrawTime,3}ms (avr {avrRenderTime / renderTime.Count}ms)
 Tick: {Game.UpdateTime,3}ms
 Memory: {GC.GetTotalMemory(false)}
 Scene: {Engine.Scene.CurrentScene.GetType().FullName}
 DisplayMode: {Game.GraphicsDevice.Adapter.CurrentDisplayMode}
-Triangle: {Game.GraphicsDevice.Metrics.PrimitiveCount}
+{Engine.Graphic.GetGraphicsDevice().Metrics.ToJson().Replace(",", ",\n")}
 --- Curent Scene Debug Info ---
-{Engine.Scene.CurrentScene.GetDebugInfo()}", new Vector2(32f, 16f + 64), Color.White);
+{Engine.Scene.CurrentScene.GetDebugInfo()}";
 
+                var debugTextSize = EngineRessources.FontHack.MeasureString(debugText);
+
+                sb.DrawString(EngineRessources.FontHack, debugText, new Vector2(16, 16), Color.White);
 
                 sb.End();
             }

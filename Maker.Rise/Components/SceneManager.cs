@@ -1,5 +1,6 @@
-﻿using Maker.Rise.Ressource;
-using Maker.Rise.UI;
+﻿using Maker.Rise.Extension;
+using Maker.Rise.Graphic;
+using Maker.Rise.Ressource;
 using Maker.Utils;
 using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
@@ -10,16 +11,22 @@ namespace Maker.Rise.Components
 {
     public class SceneManager : GameComponent
     {
+        public int Timer = 0;
+        public bool IsSceneSwitching = false;
         public Scene CurrentScene;
         private Scene NextScene;
 
-        private FadingAnimation animation;
         public ParalaxeBackground Background = null;
         public SpriteBatch sb;
 
-        public SceneManager(RiseGame game) : base(game)
+        private RenderTarget2D RT0;
+        public RenderTarget2D RenderTarget { get; private set; }
+        public RenderTarget2D BlurRT { get; set; }
+
+        private BlurEffect blur;
+
+        public SceneManager(InternalGame game) : base(game)
         {
-            animation = new FadingAnimation();
             CurrentScene = null;
             NextScene = null;
         }
@@ -27,17 +34,38 @@ namespace Maker.Rise.Components
         public override void Initialize()
         {
             sb = Engine.Graphic.CreateSpriteBatch();
+
+            ResetRenderTargets();
+
+            blur = new BlurEffect();
+            blur.Setup(Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
+        }
+
+        public void ResetRenderTargets()
+        {
+            RenderTarget = Engine.Graphic.CreateFullscreenRenderTarget();
+            BlurRT = Engine.Graphic.CreateFullscreenRenderTarget();
+            RT0 = Engine.Graphic.CreateFullscreenRenderTarget();
         }
 
         public override void Update(GameTime gameTime)
         {
-            animation.Update(gameTime);
+            if (IsSceneSwitching)
+            {
+                Timer += 3;
+            }
 
-            if (animation.GetValue(EasingFunctions.Linear) == 1f)
+            if (Timer == 120)
             {
                 SwitchInternal();
-                animation.Show = false;
             }
+
+            if (Timer == 240)
+            {
+                IsSceneSwitching = false;
+                Timer = 0;
+            }
+
 
             if (CurrentScene != null)
             {
@@ -74,6 +102,10 @@ namespace Maker.Rise.Components
             Game.GraphicsDevice.ScissorRectangle =
                 new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
 
+
+            Engine.Graphic.SetRenderTarget(RenderTarget);
+
+            // Render the scene:
             Engine.Graphic.Begin(sb);
             Background?.Draw(sb, gameTime);
             sb.End();
@@ -81,23 +113,51 @@ namespace Maker.Rise.Components
             if (CurrentScene != null)
             {
                 CurrentScene.Draw(gameTime);
+            }
+
+            Engine.Graphic.SetRenderTarget(RT0);
+
+            sb.Begin(SpriteSortMode.Immediate, null, null, null, null, blur.Effect);
+            blur.Use(true);
+            sb.Draw(RenderTarget, Engine.Graphic.GetResolutionRect(), Color.White);
+            sb.End();
+
+
+            Engine.Graphic.SetRenderTarget(BlurRT);
+            sb.Begin(SpriteSortMode.Immediate, null, null, null, null, blur.Effect);
+            blur.Use(false);
+            sb.Draw(RT0, Engine.Graphic.GetResolutionRect(), Color.White);
+            sb.End();
+
+            Engine.Graphic.SetRenderTarget(null);
+            sb.Begin(SpriteSortMode.Immediate);
+            sb.Draw(RenderTarget, Engine.Graphic.GetResolutionRect(), Color.White);
+            sb.End();
+
+            if (CurrentScene != null)
+            {
                 Engine.Ui.DrawUiTree(gameTime, CurrentScene.UiRoot);
             }
 
-            var height = (int) (Engine.Graphic.GetHeight() * animation.GetValue(EasingFunctions.QuinticEaseOut));
-            var width = (int) (Engine.Graphic.GetWidth() * animation.GetValue(EasingFunctions.QuadraticEaseOut));
-            var rect = new Rectangle(Engine.Graphic.GetWidth() / 2 - width / 2,
-                Engine.Graphic.GetHeight() / 2 - height / 2, width, height);
-
-            Game.GraphicsDevice.ScissorRectangle = rect;
-
-            if (NextScene != null)
+            if (IsSceneSwitching)
             {
                 Engine.Graphic.Begin(sb);
-                Background?.Draw(sb, gameTime);
+
+                int sizeX = Engine.Graphic.GetWidth() / 80;
+                int sizeY = Engine.Graphic.GetWidth() / 60;
+
+                for (int x = 0; x < 80; x++)
+                {
+                    for (int y = 0; y < 60; y++)
+                    {
+                        int dd = (y + x % 2 * 2 + x / 3) - (Timer);
+                        if (dd < 0 && dd > -120)
+                        {
+                            sb.FillRectangle(new Rectangle(x * sizeX, y * sizeY, sizeX, sizeY), Color.Black);  
+                        }
+                    }
+                }
                 sb.End();
-                NextScene.Draw(gameTime);
-                Engine.Ui.DrawUiTree(gameTime, NextScene.UiRoot);
             }
         }
 
@@ -119,9 +179,8 @@ namespace Maker.Rise.Components
             s.Stop();
             Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
 
-            animation.Show = true;
-            animation.Speed = 0.3f;
-            animation.Reset();
+            Timer = 0;
+            IsSceneSwitching = true;
         }
 
         private void SwitchInternal()

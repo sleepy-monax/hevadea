@@ -17,7 +17,6 @@ namespace Maker.Hevadea.Scenes
     public class GameScene : Scene
     {
         public GameManager Game;
-        
 
         public GameScene(GameManager game)
         {
@@ -43,6 +42,7 @@ namespace Maker.Hevadea.Scenes
             Game.Initialize();
             UiRoot.Padding = new Padding(16);
             Engine.Scene.Background = null;
+
         }
 
 

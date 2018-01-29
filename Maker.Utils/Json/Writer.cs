@@ -75,7 +75,7 @@ namespace Maker.Utils.Json
             {
                 stringBuilder.Append(d.ToString(CultureInfo.InvariantCulture));
             }
-            else if (type == typeof(byte) || type == typeof(int))
+            else if (type == typeof(byte) || type == typeof(int) || type == typeof(long))
             {
                 stringBuilder.Append(item.ToString());
             }

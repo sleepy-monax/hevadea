@@ -30,27 +30,32 @@ namespace Maker.Hevadea.Scenes
                 Dock = Dock.Bottom,
                 Layout = LayoutMode.Horizontal,
                 Bound = new Rectangle(64, 64, 64, 72),
+                
             };
 
             var playButton = new Button
             {
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "play",
-                Icon = EngineRessources.IconPlay
+                Icon = EngineRessources.IconPlay,
+                EnableBlur = true
+                
             };
 
             var optionButton = new Button
             {
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "option",
-                Icon = EngineRessources.IconSettings
+                Icon = EngineRessources.IconSettings,
+                EnableBlur = true
             };
 
             var exitButton = new Button
             {
                 Bound = new Rectangle(64, 64, 64, 64),
                 Text = "exit",
-                Icon = EngineRessources.IconClose
+                Icon = EngineRessources.IconClose,
+                EnableBlur = true
             };
 
             playButton.OnMouseClick += PlayButtonOnOnMouseClick;
