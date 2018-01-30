@@ -17,7 +17,7 @@ namespace Maker.Rise.UI
 
         protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.DrawString(Font, Text, Bound, Alignement.Center, TextStyle.DropShadow, Color.White);
+            spriteBatch.DrawString(Font, Text, new Rectangle(Bound.Location + new Point(0, 4), Bound.Size), Alignement.Center, TextStyle.DropShadow, Color.White);
         }
 
         protected override void OnUpdate(GameTime gameTime)

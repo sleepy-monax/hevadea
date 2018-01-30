@@ -33,7 +33,8 @@ namespace Maker.Hevadea.Menus
 
         protected override void OnUpdate(GameTime gameTime)
         {
-
+            itemFrame.Item = Game.Player.HoldingItem;
+            itemFrame.Visible = Game.Player.HoldingItem != null;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Maker.Hevadea.Scenes
             REGISTRY.Initialize();
             Engine.SetMouseVisibility(true);
             Directory.CreateDirectory("Saves");
-            Engine.Graphic.SetResolution(1280, 720);
+            //Engine.Graphic.SetResolution(1280, 720);
             //Engine.Graphic.SetWindowedFullScreen();
 
             // Initialize the scene.

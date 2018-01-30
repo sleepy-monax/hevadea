@@ -45,6 +45,8 @@ namespace Maker.Hevadea.Game.Items
 
         public int Count(Item item)
         {
+            if (item == null) return 0;
+
             var count = 0;
             for (int i = 0; i < Items.Count; i++)
             {

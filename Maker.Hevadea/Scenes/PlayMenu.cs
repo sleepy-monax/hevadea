@@ -11,6 +11,7 @@ using Maker.Rise.Utils;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Maker.Hevadea.Scenes
 {
@@ -25,7 +26,9 @@ namespace Maker.Hevadea.Scenes
 
         public override void Load()
         {
-            UiRoot.Padding = new Padding(64, 64, 256, 265);
+            var width = Math.Min(Engine.Graphic.GetWidth(), 1200);
+            var padX = Engine.Graphic.GetWidth() / 2 - width / 2;
+            UiRoot.Padding = new Padding(0, 0, padX, padX);
 
             var container = new PrettyPanel { Dock = Dock.Fill};
 

@@ -11,14 +11,14 @@ namespace Maker.Hevadea.Game.Entities
     public class ChestEntity : Entity
     {
 
-        private Sprite closeSprite;
+        private Sprite sprite;
 
         public ChestEntity()
         {
             Width       = 12;
             Height      = 9;
             Origin      = new Point(8, 6);
-            closeSprite = new Sprite(Ressources.tile_entities, new Point(1, 1));
+            sprite      = new Sprite(Ressources.tile_entities, new Point(1, 1));
 
             Components.Add(new Inventory(512));
             Components.Add(new Health(10)).OnDie +=
@@ -40,7 +40,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            closeSprite.Draw(spriteBatch, new Rectangle((int)X - 2, (int)Y - 5, 16, 16), Color.White);
+            sprite.Draw(spriteBatch, new Rectangle((int)X - 2, (int)Y - 5, 16, 16), Color.White);
         }
 
         public override bool IsBlocking(Entity e)

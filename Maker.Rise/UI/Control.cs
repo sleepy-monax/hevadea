@@ -32,21 +32,17 @@ namespace Maker.Rise.UI
     public abstract class Control
     {
         public List<Control> Childs = new List<Control>();
-        public Rectangle Bound { get; set; } = Rectangle.Empty;
 
-        public bool Enabled { get; set; } = true;
-        public bool Visible { get; set; } = true;
-
-        public Padding Padding { get; set; } = new Padding(0);
-        public Anchor Anchor { get; set; } = Anchor.Center;
-        public Dock Dock { get; set; } = Dock.None;
+        public Rectangle Bound   { get; set; } = Rectangle.Empty;
+        public bool Enabled      { get; set; } = true;
+        public bool Visible      { get; set; } = true;
+        public Padding Padding   { get; set; } = new Padding(0);
+        public Anchor Anchor     { get; set; } = Anchor.Center;
+        public Dock Dock         { get; set; } = Dock.None;
         public LayoutMode Layout { get; set; } = LayoutMode.Dock;
-
         public Point MaximumSize { get; set; } = Point.Zero;
 
-        public Rectangle Host
-            => new Rectangle(Bound.X + Padding.Left, Bound.Y + Padding.Up,
-                Bound.Width - Padding.Left - Padding.Right, Bound.Height - Padding.Up - Padding.Down);
+        public Rectangle Host => new Rectangle(Bound.X + Padding.Left, Bound.Y + Padding.Up, Bound.Width - Padding.Left - Padding.Right, Bound.Height - Padding.Up - Padding.Down);
 
         public MouseState MouseState = MouseState.None;
         public MouseState OldMouseState = MouseState.None;
@@ -75,10 +71,12 @@ namespace Maker.Rise.UI
             Rectangle host = Host;
 
             if (Layout == LayoutMode.Dock)
-            {
+            { 
                 foreach (var c in Childs)
                 {
-                    switch (c.Dock)
+                    if (c.Visible)
+                    {
+                        switch (c.Dock)
                     {
                         case Dock.Top:
                             c.Bound = new Rectangle(host.X, host.Y,
@@ -117,8 +115,10 @@ namespace Maker.Rise.UI
                             break;
                     }
 
-                    c.RefreshLayout();
+                        c.RefreshLayout();
+                    }
                 }
+
             }
             else if (Layout == LayoutMode.Horizontal || Layout == LayoutMode.Vertical)
             {

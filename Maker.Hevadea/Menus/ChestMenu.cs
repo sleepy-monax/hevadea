@@ -16,8 +16,8 @@ namespace Maker.Hevadea.Game.Menus
         public ChestMenu(Entity entity, ChestEntity chest, GameManager game) : base(game)
         {
             Layout = LayoutMode.Horizontal;
-            var LeftPanel = new PrettyPanel { Padding = new Padding(16) };
-            var RightPanel = new PrettyPanel { Padding = new Padding(16) };
+            var LeftPanel = new PrettyPanel { Padding = new Padding(8) };
+            var RightPanel = new PrettyPanel { Padding = new Padding(8) };
 
             inv = new InventoryUi(entity.Components.Get<Inventory>().Content)
             {
@@ -51,10 +51,10 @@ namespace Maker.Hevadea.Game.Menus
                 }
             };
             
-            LeftPanel.AddChild(new Label { Dock = Dock.Top, Text = "Inventory", Bound = new Rectangle(0,0,48,48)});
+            LeftPanel.AddChild(new Label { Font = Ressources.fontAlagard, Dock = Dock.Top, Text = "Inventory", Bound = new Rectangle(0,0,48,48)});
             LeftPanel.AddChild(inv);
             
-            RightPanel.AddChild(new Label { Dock = Dock.Top, Text = "Chest", Bound = new Rectangle(0, 0, 48, 48) });
+            RightPanel.AddChild(new Label { Font = Ressources.fontAlagard, Dock = Dock.Top, Text = "Chest", Bound = new Rectangle(0, 0, 48, 48) });
             RightPanel.AddChild(chestInv);
             
             AddChild(LeftPanel);

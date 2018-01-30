@@ -28,7 +28,7 @@ namespace Maker.Rise.Components
 
         public void DrawUiTree(GameTime gameTime, Control UiRoot)
         {
-            uiSpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, Engine.CommonRasterizerState);
+            uiSpriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, Engine.CommonRasterizerState);
             UiRoot.Draw(uiSpriteBatch, gameTime);
             uiSpriteBatch.End();
         }

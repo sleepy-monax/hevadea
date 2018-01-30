@@ -20,6 +20,7 @@ namespace Maker.Hevadea.Game.Registry
         public static RessourceItem PINE_CONE;
         public static PlacableItem<ChestEntity> CHEST_ITEM;
         public static PlacableItem<TorchEntity> TORCH_ITEM;
+        public static PlacableItem<CraftingBenchEntity> CRAFTINGBENCH_ITEM;
         public static RessourceItem STONE;
         public static RessourceItem COAL;
 
@@ -37,6 +38,7 @@ namespace Maker.Hevadea.Game.Registry
             STONE = new RessourceItem(5, "Stone", new Sprite(Ressources.tile_items, new Point(7, 0)));
             COAL = new RessourceItem(6, "Coal", new Sprite(Ressources.tile_items, new Point(6, 2)));
             TORCH_ITEM = new PlacableItem<TorchEntity>(7, "Torch", new Sprite(Ressources.tile_entities, new Point(1, 3)));
+            CRAFTINGBENCH_ITEM = new PlacableItem<CraftingBenchEntity>(9, "Bench", new Sprite(Ressources.tile_entities, new Point(2, 2)));
         }
     }
 }

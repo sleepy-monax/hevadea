@@ -23,8 +23,10 @@ namespace Maker.Hevadea.Scenes
         public override void Load()
         {
             Engine.Scene.Background = Ressources.paralaxe_forest;
-            UiRoot.Padding = new Padding(64, 64, 256, 265);
-            
+            var width = Math.Min(Engine.Graphic.GetWidth(), 1200);
+            var padX = Engine.Graphic.GetWidth() / 2 - width / 2;
+            UiRoot.Padding = new Padding(0, 0, padX, padX);
+
             var menuButtonHost = new Panel
             {
                 Dock = Dock.Bottom,
