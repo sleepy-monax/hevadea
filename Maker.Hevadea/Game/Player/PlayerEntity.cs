@@ -2,7 +2,6 @@
 using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Entities.Component.Render;
 using Maker.Hevadea.Game.Items;
-using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 

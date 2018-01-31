@@ -1,7 +1,6 @@
 ﻿using Maker.Hevadea.Game.Tiles.Render;
 using Maker.Rise;
 using Maker.Rise.Components;
-using Maker.Rise.Extension;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

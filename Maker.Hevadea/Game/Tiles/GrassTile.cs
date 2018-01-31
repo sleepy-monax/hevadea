@@ -1,6 +1,4 @@
-﻿using Maker.Hevadea.Enums;
-using Maker.Hevadea.Game.Registry;
-using Maker.Rise.Ressource;
+﻿using Maker.Rise.Ressource;
 using System;
 
 namespace Maker.Hevadea.Game.Tiles

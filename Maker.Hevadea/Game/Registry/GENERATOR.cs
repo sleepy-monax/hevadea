@@ -15,7 +15,7 @@ namespace Maker.Hevadea.Game.Registry
         {
             OVERWORLD = new LevelGenerator
             {
-                LevelID = 0,
+                LevelId = 0,
                 LevelName = "overworld",
                 Features =
                 {

@@ -21,7 +21,7 @@ namespace Maker.Hevadea.Game.UI
             spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
             var index = 0;
 
-            foreach (var c in RECIPIES.HAND_CRAFTED)
+            foreach (var c in RECIPIES.HandCrafted)
             {
                 if (c != null)
                 {

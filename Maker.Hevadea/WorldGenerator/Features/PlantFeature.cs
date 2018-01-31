@@ -22,9 +22,9 @@ namespace Maker.Hevadea.WorldGenerator.Features
                 for (int y = 0; y < gen.Size; y++)
                 {
                     if ((gen.Random.Next(0,Chance) == 0) &&
-                        (PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold) &&
                         (CanBePlantOn.Contains(level.GetTile(x, y)))&&
-                        (level.GetEntityOnTile(x,y).Count() == 0))
+                        (PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold) &&
+                        (!level.GetEntityOnTile(x,y).Any()))
                     {
                         level.SpawnEntity(new T(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));
                     }
@@ -34,7 +34,7 @@ namespace Maker.Hevadea.WorldGenerator.Features
 
         public override string GetName()
         {
-            return $"{new T().GetType().Name}";
+            return $"Planting [{new T().GetType().Name}]";
         }
     }
 }

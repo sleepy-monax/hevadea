@@ -1,11 +1,8 @@
 ﻿using Maker.Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maker.Hevadea.Game.Entities.Component
 {
@@ -21,9 +18,9 @@ namespace Maker.Hevadea.Game.Entities.Component
 
         public T Add<T>(T component) where T : EntityComponent
         {
-            foreach (var e in Components)
+            if (Components.Any(e => e == component))
             {
-                if (e == component) return null;
+                return null;
             }
 
             Components.Add(component);

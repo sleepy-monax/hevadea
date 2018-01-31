@@ -25,7 +25,7 @@ namespace Maker.Hevadea.Game.Entities
                 (sender, arg) => 
                 {
                     Components.Get<Inventory>().Content.DropOnGround(Level, X + Origin.X, Y + Origin.Y);
-                    ITEMS.CHEST_ITEM.Drop(Level, X + Origin.X, Y + Origin.Y, 1);
+                    ITEMS.ChestItem.Drop(Level, X + Origin.X, Y + Origin.Y, 1);
                 };
 
             Components.Add(new Interactable()).OnInteracte += 

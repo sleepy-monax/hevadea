@@ -72,6 +72,9 @@
     <Compile Include="Game\Craftings\Recipe.cs" />
     <Compile Include="Game\Craftings\RecipeCost.cs" />
     <Compile Include="Game\Entities\ChestEntity.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Actions\AttackAction.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Behavior\BehaviorBase.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Behavior\ZombieBehavior.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\EntityComponentsManager.cs" />
     <Compile Include="Game\Entities\Component\Ai\Actions\Action.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Game\Entities\Component\Render\ParticleEmiter.cs" />
     <Compile Include="Game\Entities\CraftingBenchEntity.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
+    <Compile Include="Game\Entities\FurnaceEntity.cs" />
     <Compile Include="Game\Entities\GrassEntity.cs" />
     <Compile Include="Game\Entities\ItemEntity.cs" />
     <Compile Include="Game\Entities\Particles\DotParticle.cs" />

@@ -109,10 +109,7 @@ namespace Maker.Hevadea.Game
 
             if (tx < Width && ty < Height && tx >= 0 && ty >= 0)
             {
-                foreach (var e in EntitiesOnTiles[tx, ty])
-                {
-                    result.Add(e);
-                }
+                result.AddRange(EntitiesOnTiles[tx, ty]);
             }
 
             return result;

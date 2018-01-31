@@ -3,6 +3,7 @@ using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Maker.Hevadea.Game
 {
@@ -36,28 +37,12 @@ namespace Maker.Hevadea.Game
 
         public Level GetLevel(string name)
         {
-            foreach (var l in Levels)
-            {
-                if (l.Name == name)
-                {
-                    return l;
-                }
-            }
-
-            return null;
+            return Levels.FirstOrDefault(l => l.Name == name);
         }
 
         public Level GetLevel(int id)
         {
-            foreach (var l in Levels)
-            {
-                if (l.Id == id)
-                {
-                    return l;
-                }
-            }
-
-            return null;
+            return Levels.FirstOrDefault(l => l.Id == id);
         }
 
         public void AddLevel(Level level)

@@ -2,7 +2,6 @@
 using Maker.Rise.Components;
 using Maker.Rise.Enums;
 using Maker.Rise.Extension;
-using Maker.Rise.Ressource;
 using Maker.Rise.UI;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;

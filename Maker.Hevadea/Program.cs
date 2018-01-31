@@ -1,7 +1,5 @@
-﻿using Maker.Hevadea.Game.Registry;
-using Maker.Hevadea.Scenes;
+﻿using Maker.Hevadea.Scenes;
 using Maker.Rise;
-using Maker.Rise.Utils.FiniteStateMachine;
 using System;
 
 namespace Maker.Hevadea

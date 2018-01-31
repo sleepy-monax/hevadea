@@ -6,15 +6,15 @@ namespace Maker.Hevadea.Game.Registry
     public static class RECIPIES
     {
 
-        public static List<Recipe> HAND_CRAFTED = new List<Recipe>();
+        public static readonly List<Recipe> HandCrafted = new List<Recipe>();
 
         public static void InitializeHandCraftedRecipe()
         {
-            HAND_CRAFTED.Add(new Recipe(ITEMS.WOOD_PLANK, 2).AddCost(ITEMS.WOOD_LOG, 1));
-            HAND_CRAFTED.Add(new Recipe(ITEMS.WOOD_STICK, 4).AddCost(ITEMS.WOOD_PLANK, 1));
-            HAND_CRAFTED.Add(new Recipe(ITEMS.CHEST_ITEM, 1).AddCost(ITEMS.WOOD_PLANK, 8));
-            HAND_CRAFTED.Add(new Recipe(ITEMS.TORCH_ITEM, 4).AddCost(ITEMS.COAL, 1).AddCost(ITEMS.WOOD_STICK, 1));
-            HAND_CRAFTED.Add(new Recipe(ITEMS.CRAFTINGBENCH_ITEM, 1).AddCost(ITEMS.WOOD_STICK, 4).AddCost(ITEMS.WOOD_PLANK, 4));
+            HandCrafted.Add(new Recipe(ITEMS.WoodPlank, 2).AddCost(ITEMS.WoodLog, 1));
+            HandCrafted.Add(new Recipe(ITEMS.WoodStick, 4).AddCost(ITEMS.WoodPlank, 1));
+            HandCrafted.Add(new Recipe(ITEMS.ChestItem, 1).AddCost(ITEMS.WoodPlank, 8));
+            HandCrafted.Add(new Recipe(ITEMS.TorchItem, 4).AddCost(ITEMS.Coal, 1).AddCost(ITEMS.WoodStick, 1));
+            HandCrafted.Add(new Recipe(ITEMS.CraftingbenchItem, 1).AddCost(ITEMS.WoodStick, 4).AddCost(ITEMS.WoodPlank, 4));
         }
     }
 }

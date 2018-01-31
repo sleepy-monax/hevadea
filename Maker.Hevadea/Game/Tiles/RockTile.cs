@@ -19,8 +19,8 @@ namespace Maker.Hevadea.Game.Tiles
             if (dmg > 5)
             {
                 e.Level.SetTile(tilePosition.X, tilePosition.Y, TILES.DIRT);
-                ITEMS.STONE.Drop(e.Level, tilePosition, Engine.Random.Next(1, 4));
-                ITEMS.COAL.Drop(e.Level, tilePosition, Engine.Random.Next(0, 3));
+                ITEMS.Stone.Drop(e.Level, tilePosition, Engine.Random.Next(1, 4));
+                ITEMS.Coal.Drop(e.Level, tilePosition, Engine.Random.Next(0, 3));
             }
             else
             {

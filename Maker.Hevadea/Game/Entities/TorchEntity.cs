@@ -19,7 +19,7 @@ namespace Maker.Hevadea.Game.Entities
             sprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
             Components.Adds(
                 new Light { On = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 72 },
-                new Dropable { Items = { (ITEMS.TORCH_ITEM, 1, 1) } },
+                new Dropable { Items = { (ITEMS.TorchItem, 1, 1) } },
                 new Breakable()
                 );
         }

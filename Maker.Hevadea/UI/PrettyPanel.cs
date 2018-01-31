@@ -3,11 +3,6 @@ using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maker.Hevadea.UI
 {

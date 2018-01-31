@@ -1,8 +1,4 @@
-﻿using Maker.Hevadea.Game.Registry;
-using Maker.Hevadea.WorldGenerator;
-using Maker.Hevadea.WorldGenerator.Features;
-using Maker.Hevadea.WorldGenerator.Features.Functions;
-using Maker.Rise.Components;
+﻿using Maker.Rise.Components;
 using Microsoft.Xna.Framework;
 using System.Threading;
 

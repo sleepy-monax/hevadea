@@ -1,10 +1,6 @@
 ﻿using Maker.Hevadea.Game.Items;
 using Maker.Rise;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Maker.Hevadea.Game.Entities.Component.Interaction
 {

@@ -1,6 +1,5 @@
 ﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
 using Maker.Hevadea.Game.Registry;
-using Maker.Rise;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +18,7 @@ namespace Maker.Hevadea.Game.Entities
             treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
 
             Components.Add(new Health(5));
-            Components.Add(new Dropable { Items = { (ITEMS.WOOD_LOG, 1, 5), (ITEMS.PINE_CONE, 0, 3) } });
+            Components.Add(new Dropable { Items = { (ITEMS.WoodLog, 1, 5), (ITEMS.PineCone, 0, 3) } });
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

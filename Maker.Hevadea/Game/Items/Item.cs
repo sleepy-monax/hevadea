@@ -13,12 +13,11 @@ namespace Maker.Hevadea.Game.Items
         private readonly Sprite Sprite;
         private readonly string Name;
 
-        public Item(byte id, string name, Sprite sprite)
+        public Item(string name, Sprite sprite)
         {
-            if (ITEMS.ById[id] != null) throw new Exception($"Duplicate item ID: {Id}!");
-            ITEMS.ById[id] = this;
+            Id = ITEMS.ById.Count;
+            ITEMS.ById.Add(this);
 
-            Id = id;
             Sprite = sprite;
             Name = name;
         }

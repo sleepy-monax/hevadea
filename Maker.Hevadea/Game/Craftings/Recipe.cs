@@ -1,19 +1,21 @@
-﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Items;
+﻿using Maker.Hevadea.Game.Items;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Maker.Hevadea.Game.Craftings
 {
     public class Recipe
     {
-        public Item Result;
-        public int Quantity;
-        public List<RecipeCost> Costs = new List<RecipeCost>();
+        public  Item Result { get; }
+        public  int Quantity { get; }
+        public List<RecipeCost> Costs { get; }
 
-        public Recipe(Item result, int quantity)
+        public Recipe(Item result, int quantity, params RecipeCost[] costs)
         {
             Result = result;
             Quantity = quantity;
+            Costs = new List<RecipeCost>();
+            Costs.AddRange(costs);
         }
 
         public Recipe AddCost(Item item, int quantity)
@@ -23,32 +25,22 @@ namespace Maker.Hevadea.Game.Craftings
             return this;
         }
 
-        public virtual bool CanBeCrafted(ItemStorage i)
+        public bool CanBeCrafted(ItemStorage i)
         {
-            var canBeCrafted = true;
-            foreach (var c in Costs)
-            {
-                canBeCrafted = canBeCrafted && i.Count(c.Item) >= c.Count;
-            }
-            return canBeCrafted;
+            return Costs.Aggregate(true, (current, c) => current && i.Count(c.Item) >= c.Count);
         }
 
-        public virtual bool Craft(ItemStorage i)
+        public bool Craft(ItemStorage i)
         {
-            if (CanBeCrafted(i) && i.GetFreeSpace() >= Quantity)
+            if (!CanBeCrafted(i) || i.GetFreeSpace() < Quantity) return false;
+            
+            i.Add(Result, Quantity);
+            foreach (var c in Costs)
             {
-
-                i.Add(Result, Quantity);
-
-                foreach (var c in Costs)
-                {
-                    i.Remove(c.Item, c.Count);
-                }
-
-                return true;
+                i.Remove(c.Item, c.Count);
             }
 
-            return false;
+            return true;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Maker.Hevadea.Game.Items
     {
 
 
-        public RessourceItem(byte id, string name, Sprite sprite) : base(id, name, sprite) { }
+        public RessourceItem(string name, Sprite sprite) : base(name, sprite) { }
 
     }
 }

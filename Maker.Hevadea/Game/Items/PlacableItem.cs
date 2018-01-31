@@ -7,7 +7,7 @@ namespace Maker.Hevadea.Game.Items
 {
     public class PlacableItem<T> : Item where T : Entity, new() 
     {
-        public PlacableItem(byte id, string name, Sprite sprite) : base(id, name, sprite)
+        public PlacableItem(string name, Sprite sprite) : base(name, sprite)
         {
         }
 

@@ -1,6 +1,5 @@
 ﻿using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Storage;
-using Maker.Rise.Enums;
 using Maker.Rise.UI;
 using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
