@@ -17,7 +17,7 @@ namespace Maker.Hevadea.Menus
         {
             var panelHost = new Panel() { Dock = Dock.Bottom, Bound = new Rectangle(64, 64, 64, 64), Padding = new Padding(0,0,8,8) };
 
-            itemFrame = new ItemFrameControl() { Padding = new Padding(8), Dock = Dock.Left, Item = Game.Player.HoldingItem, Bound = new Rectangle(64, 64, 64, 64) };
+            itemFrame = new ItemFrameControl() { Padding = new Padding(4), Dock = Dock.Left, Item = Game.Player.HoldingItem, Bound = new Rectangle(64, 64, 64, 64) };
             playerInfo = new PlayerInfoPanel(Game.Player) { Dock = Dock.Top, Bound = new Rectangle(64, 64, 64, 64) };
 
             panelHost.AddChild(itemFrame);

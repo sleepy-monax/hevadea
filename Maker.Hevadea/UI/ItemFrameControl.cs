@@ -1,4 +1,5 @@
 ﻿using Maker.Hevadea.Game.Items;
+using Maker.Rise;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
@@ -23,8 +24,9 @@ namespace Maker.Hevadea.UI
                 var size = Math.Min(Host.Width, Host.Height);
                 int minSize = (int)(size - 4);
 
-                spriteBatch.FillRectangle(new Rectangle(Host.X + 4, Host.Y + 4, size, size), Color.Black * 0.25f);
-                spriteBatch.FillRectangle(new Rectangle(Host.X, Host.Y, size, size), Color.Gray);
+                spriteBatch.Draw(Engine.Scene.BlurRT, Bound, Bound, Color.White);
+                spriteBatch.FillRectangle(Bound, Color.Gold * 0.5f);
+                spriteBatch.DrawRectangle(Bound, Color.Gold * 0.5f);
 
                 Item.GetSprite().Draw(spriteBatch, new Rectangle(Host.Location + new Point(size / 2) - new Point(minSize / 2),new Point( minSize, minSize)), Color.White);
             }

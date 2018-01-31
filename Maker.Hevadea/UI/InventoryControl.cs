@@ -33,7 +33,8 @@ namespace Maker.Hevadea.Game.UI
             spriteBatch.DrawString(Ressources.fontRomulus, text, new Vector2(Bound.X + Bound.Width - textSize.X - Padding.Left - 4, Bound.Y + Bound.Height - textSize.Y - Padding.Down), Color.Gold);
             var maxScroll = 0;
 
-            Engine.Graphic.GetGraphicsDevice().ScissorRectangle = Host;
+            Engine.Graphic.GetGraphicsDevice().ScissorRectangle = Bound;
+
             foreach (var i in ITEMS.ById)
             {
                 if (i != null)
@@ -71,12 +72,13 @@ namespace Maker.Hevadea.Game.UI
                 }
             }
 
+            Engine.Graphic.GetGraphicsDevice().ScissorRectangle = Engine.Graphic.GetResolutionRect();
+
             if (index == 0)
             {
                 spriteBatch.DrawString(Ressources.fontRomulus, "Empty", Bound, Alignement.Center, TextStyle.DropShadow, Color.White);
             }
 
-            Engine.Graphic.GetGraphicsDevice().ScissorRectangle = Engine.Graphic.GetResolutionRect();
 
             if (Bound.Contains(Engine.Input.MousePosition))
             {
@@ -93,14 +95,8 @@ namespace Maker.Hevadea.Game.UI
 
 
             var contentHeight = Math.Max(maxScroll, Host.Height);
-
-            var viewableRatio = Host.Height / (float)contentHeight;
-            var scrollBarArea = Host.Height;
-            var thumbHeight = scrollBarArea * viewableRatio;
-
-            var scrollTrackSpace = contentHeight - Host.Height; // (600 - 200) = 400 
-            var scrollThumbSpace = Host.Height - thumbHeight; // (200 - 50) = 150
-            var scrollJump = scrollTrackSpace / scrollThumbSpace; //  (400 / 150 ) = 2.666666666666667
+            var thumbHeight = Host.Height * (Host.Height / (float)contentHeight);
+            var scrollJump = (contentHeight - Host.Height) / (Host.Height - thumbHeight);
 
             spriteBatch.FillRectangle(new Rectangle(Host.X + Host.Width - 2, Host.Y + (int)(-scrollOffset / scrollJump), 2, (int)(thumbHeight)), Color.Gold);
         }

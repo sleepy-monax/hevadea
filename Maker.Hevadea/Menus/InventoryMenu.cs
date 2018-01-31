@@ -27,16 +27,8 @@ namespace Maker.Hevadea.Game.Menus
             Player = entity;
             var HostPanel = new Panel { Dock = Dock.Fill, Layout = LayoutMode.Horizontal };
 
-            var upperPanel = new PrettyPanel() {Dock = Dock.Bottom, Bound = new Rectangle(64, 64, 64, 64) };
             var RightPanel = new PrettyPanel() { Padding = new Padding(8) };
             var LeftPanel = new PrettyPanel() { Padding = new Padding(8) };
-
-
-
-            var playerInfo = new PlayerInfoPanel(Game.Player) { Dock = Dock.Left, Bound = new Rectangle(64, 64, 64, 64) };
-
-
-
 
             inv = new InventoryUi(entity.Components.Get<Inventory>().Content)
             {
@@ -61,10 +53,8 @@ namespace Maker.Hevadea.Game.Menus
 
             PauseGame = true;
 
-            upperPanel.AddChild(playerInfo);
 
             LeftPanel.AddChild(new Label(){Font = Ressources.fontAlagard, Dock = Dock.Top, Text = "Inventory", Bound = new Rectangle(0,0,32,48)});
-            LeftPanel.AddChild(upperPanel);
             LeftPanel.AddChild(inv);
             HostPanel.AddChild(LeftPanel);
 
