@@ -19,7 +19,7 @@ namespace Maker.Hevadea.Scenes
         public override void Load()
         {
             sb = Engine.Graphic.CreateSpriteBatch();
-            logo = Ressources.img_engine_logo;;
+            logo = Ressources.img_engine_logo;
         }
 
         public override void Unload()

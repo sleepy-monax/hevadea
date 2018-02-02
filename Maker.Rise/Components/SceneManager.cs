@@ -69,32 +69,16 @@ namespace Maker.Rise.Components
 
             if (CurrentScene != null)
             {
-                CurrentScene.UiRoot.Bound = new Rectangle(
-                    0, 0,
-                    Engine.Graphic.GetWidth(),
-                    Engine.Graphic.GetHeight());
-
-                CurrentScene.UiRoot.RefreshLayout();
+                CurrentScene.Container.RefreshLayout(Engine.Graphic.GetResolutionRect());
 
                 if (NextScene == null)
                 {
-                    CurrentScene.UiRoot.Update(gameTime);
+                    CurrentScene.Container.Update(gameTime);
                     CurrentScene.Update(gameTime);
                 }
             }
 
-            if (NextScene != null)
-            {
-                NextScene.UiRoot.Bound = new Rectangle(
-                    0, 0,
-                    Engine.Graphic.GetWidth(),
-                    Engine.Graphic.GetHeight());
-
-                NextScene.UiRoot.RefreshLayout();
-
-                //NextScene.UiRoot.Update(gameTime);
-                //NextScene.Update(gameTime);
-            }
+            NextScene?.Container.RefreshLayout(Engine.Graphic.GetResolutionRect());
         }
 
         public override void Draw(GameTime gameTime)
@@ -136,7 +120,7 @@ namespace Maker.Rise.Components
 
             if (CurrentScene != null)
             {
-                Engine.Ui.DrawUiTree(gameTime, CurrentScene.UiRoot);
+                Engine.Ui.DrawUiTree(gameTime, CurrentScene.Container);
             }
 
             if (IsSceneSwitching)
@@ -175,7 +159,6 @@ namespace Maker.Rise.Components
 
             s.Start();
             NextScene.Load();
-            NextScene.UiRoot.RefreshLayout();
             s.Stop();
             Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
 

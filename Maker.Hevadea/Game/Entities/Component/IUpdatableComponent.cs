@@ -2,7 +2,7 @@
 
 namespace Maker.Hevadea.Game.Entities.Component
 {
-    interface IUpdatableComponent
+    public interface IUpdatableComponent
     {
         void Update(GameTime gameTime);
     }

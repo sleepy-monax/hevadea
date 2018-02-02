@@ -1,11 +1,10 @@
 ﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Component.Interaction;
-using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Rise.Ressource;
 using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Maker.Hevadea.Game.Entities.Component;
 
 namespace Maker.Hevadea.Game.UI
 {
@@ -27,13 +26,13 @@ namespace Maker.Hevadea.Game.UI
             var playerHealth = Player.Components.Get<Health>();
             var playerEnergy = Player.Components.Get<Energy>();
 
-            var health = (playerHealth.Value / playerHealth.MaxValue);
+            var health = playerHealth.GetValue();
             var energyV = (playerEnergy.Value / playerEnergy.MaxValue);
 
 
             //spriteBatch.FillRectangle(Bound, Color.Black * 0.5f);
 
-            int i = 0;
+            var i = 0;
 
             for (i = 0; i <= 10 * health - 1; i++)
             {

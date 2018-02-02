@@ -6,8 +6,8 @@ namespace Maker.Hevadea.Game.Craftings
 {
     public class Recipe
     {
-        public  Item Result { get; }
-        public  int Quantity { get; }
+        public Item Result { get; }
+        public int Quantity { get; }
         public List<RecipeCost> Costs { get; }
 
         public Recipe(Item result, int quantity, params RecipeCost[] costs)
@@ -21,7 +21,6 @@ namespace Maker.Hevadea.Game.Craftings
         public Recipe AddCost(Item item, int quantity)
         {
             Costs.Add(new RecipeCost(item, quantity));
-
             return this;
         }
 

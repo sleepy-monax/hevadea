@@ -3,7 +3,7 @@ using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.UI
+namespace Maker.Rise.UI.Widgets
 {
     public class Label : Control
     {

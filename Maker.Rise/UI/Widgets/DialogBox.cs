@@ -1,10 +1,9 @@
-﻿using Maker.Rise.Enums;
-using Maker.Rise.Extension;
+﻿using Maker.Rise.Extension;
 using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Rise.UI
+namespace Maker.Rise.UI.Widgets
 {
     public class DialogBox : Control
     {

@@ -2,14 +2,14 @@
 {
     public enum Anchor
     {
-        UpLeft,
-        Up,
-        UpRight,
+        TopLeft,
+        Top,
+        TopRight,
         Left,
         Center,
         Right,
-        DownLeft,
-        Down,
-        DownRight
+        BottomLeft,
+        Bottom,
+        BottomRight
     }
 }

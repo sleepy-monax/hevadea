@@ -9,32 +9,42 @@ namespace Maker.Rise.UI
     {
         public bool Show { get; set; } = false;
         public float Speed = 1f;
-        private float debugSpeed = 1f;
+        private const float DebugSpeed = 1f;
 
-        private float animation = 0f;
+        private float _value = 0f;
+        private bool _ended;
 
+        public AnimationEndedHandler AnimationEnded;
+        public delegate void AnimationEndedHandler (FadingAnimation sender);
 
         public void Reset()
         {
-            animation = 0f;
+            _value = 0f;
+            _ended = false;
         }
 
         public float GetValue(EasingFunctions function)
         {
-            return Easings.Interpolate(animation, function);
+            return Easings.Interpolate(_value, function);
         }
 
         public void Update(GameTime gameTime)
         {
             if (Show)
             {
-                animation = Math.Min(1f,
-                    animation + (float) (gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * debugSpeed);
+                _value = Math.Min(1f,
+                    _value + (float) (gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
             }
             else
             {
-                animation = Math.Max(0f,
-                    animation - (float) (gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * debugSpeed);
+                _value = Math.Max(0f,
+                    _value - (float) (gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
+            }
+
+            if (_value == 1f && !_ended)
+            {
+                _ended = true;
+                AnimationEnded?.Invoke(this);
             }
         }
     }

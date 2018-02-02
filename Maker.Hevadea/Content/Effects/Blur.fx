@@ -7,7 +7,7 @@
 	#define PS_SHADERMODEL ps_4_0_level_9_1
 #endif
 
-#define RADIUS  25
+#define RADIUS  16
 #define KERNEL_SIZE (RADIUS * 2 + 1)
 
 float weights[KERNEL_SIZE];

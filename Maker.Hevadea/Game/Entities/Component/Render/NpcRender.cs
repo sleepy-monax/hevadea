@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Misc;
-using Maker.Rise.Ressource;
+﻿using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

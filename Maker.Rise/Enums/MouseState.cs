@@ -4,6 +4,6 @@
     {
         None,
         Over,
-        Down
+        Down,
     }
 }

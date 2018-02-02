@@ -31,6 +31,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -75,26 +76,26 @@
     <Compile Include="Game\Entities\Component\Ai\Actions\AttackAction.cs" />
     <Compile Include="Game\Entities\Component\Ai\Behavior\BehaviorBase.cs" />
     <Compile Include="Game\Entities\Component\Ai\Behavior\ZombieBehavior.cs" />
+    <Compile Include="Game\Entities\Component\Attack.cs" />
+    <Compile Include="Game\Entities\Component\Breakable.cs" />
+    <Compile Include="Game\Entities\Component\Dropable.cs" />
+    <Compile Include="Game\Entities\Component\Energy.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\EntityComponentsManager.cs" />
     <Compile Include="Game\Entities\Component\Ai\Actions\Action.cs" />
     <Compile Include="Game\Entities\Component\Ai\Actions\MoveToAction.cs" />
     <Compile Include="Game\Entities\Component\Ai\Ai.cs" />
+    <Compile Include="Game\Entities\Component\Health.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\Breakable.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\Drop.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\Interact.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\InteractEventArg.cs" />
+    <Compile Include="Game\Entities\Component\Interact.cs" />
+    <Compile Include="Game\Entities\Component\Interactable.cs" />
+    <Compile Include="Game\Entities\Component\InteractEventArg.cs" />
+    <Compile Include="Game\Entities\Component\Inventory.cs" />
     <Compile Include="Game\Entities\Component\ISaveLoadComponent.cs" />
     <Compile Include="Game\Entities\Component\IUpdatableComponent.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\Attack.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\Health.cs" />
-    <Compile Include="Game\Entities\Component\Interaction\Interactable.cs" />
-    <Compile Include="Game\Entities\Component\Misc\Energy.cs" />
-    <Compile Include="Game\Entities\Component\Misc\Inventory.cs" />
-    <Compile Include="Game\Entities\Component\Misc\Light.cs" />
-    <Compile Include="Game\Entities\Component\Misc\Move.cs" />
+    <Compile Include="Game\Entities\Component\Light.cs" />
+    <Compile Include="Game\Entities\Component\Move.cs" />
     <Compile Include="Game\Entities\Component\Render\NpcRender.cs" />
     <Compile Include="Game\Entities\Component\Render\ParticleEmiter.cs" />
     <Compile Include="Game\Entities\CraftingBenchEntity.cs" />
@@ -163,7 +164,6 @@
     <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\PrettyPanel.cs" />
     <Compile Include="WorldGenerator\Features\BaseTerainFeature.cs" />
     <Compile Include="WorldGenerator\Features\Functions\CombinedFunction.cs" />
     <Compile Include="WorldGenerator\Features\Functions\FlatFunction.cs" />

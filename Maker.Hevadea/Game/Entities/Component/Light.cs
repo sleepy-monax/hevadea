@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Maker.Hevadea.Game.Entities.Component.Misc
+namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Light : EntityComponent
     {

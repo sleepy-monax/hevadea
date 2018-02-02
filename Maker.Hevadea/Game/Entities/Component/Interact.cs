@@ -1,11 +1,11 @@
-﻿using Maker.Hevadea.Game.Items;
+﻿using System;
+using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
-namespace Maker.Hevadea.Game.Entities.Component.Interaction
+namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Interact : EntityComponent, IDrawableOverlayComponent, IUpdatableComponent
     {

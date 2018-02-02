@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Rise", "Maker.Rise\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Utils", "Maker.Utils\Maker.Utils.csproj", "{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Rise.Inspector", "Maker.Rise.Inspector\Maker.Rise.Inspector.csproj", "{BE166A39-96C1-442C-9B85-49A22D40AE80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE166A39-96C1-442C-9B85-49A22D40AE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE166A39-96C1-442C-9B85-49A22D40AE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE166A39-96C1-442C-9B85-49A22D40AE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE166A39-96C1-442C-9B85-49A22D40AE80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

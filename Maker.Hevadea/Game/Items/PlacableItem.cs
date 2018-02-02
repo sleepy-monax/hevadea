@@ -1,5 +1,5 @@
 ﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
 

@@ -1,11 +1,10 @@
-﻿using Maker.Rise.Enums;
+﻿using System;
 using Maker.Rise.Extension;
 using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
-namespace Maker.Rise.UI
+namespace Maker.Rise.UI.Widgets
 {
     public class TextInput : Control
     {
@@ -89,6 +88,8 @@ namespace Maker.Rise.UI
             {
                 spriteBatch.DrawString(Font, Text, new Vector2(posX, posY), Color.White);
             }
+            
+            
         }
 
         protected override void OnUpdate(GameTime gameTime)

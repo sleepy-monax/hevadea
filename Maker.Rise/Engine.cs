@@ -3,6 +3,7 @@ using Maker.Utils;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
+using Maker.Rise.UI;
 
 namespace Maker.Rise
 {
@@ -21,7 +22,7 @@ namespace Maker.Rise
         public static readonly Random Random = new Random();
         
         public static InternalGame MonoGameHandle;
-        private static Scene mainScene;
+        private static Scene MainScene;
         
 
         public static void Initialize()
@@ -47,7 +48,7 @@ namespace Maker.Rise
 
         public static void Start(Scene mainScene)
         {
-            Engine.mainScene = mainScene;
+            Engine.MainScene = mainScene;
             MonoGameHandle.OnLoad += Game_OnLoad;
             MonoGameHandle.Run();
         }
@@ -65,7 +66,7 @@ namespace Maker.Rise
 
         private static void Game_OnLoad(InternalGame sender, EventArgs e)
         {
-            Scene.Switch(mainScene);
+            Scene.Switch(MainScene);
         }
     }
 }

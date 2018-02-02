@@ -4,7 +4,7 @@ namespace Maker.Hevadea.Game.Entities.Component
 {
     public interface ISaveLoadComponent
      {
-        void OnSave(EntityStorage store);
-        void OnLoad(EntityStorage store);
+        void OnGameSave(EntityStorage store);
+        void OnGameLoad(EntityStorage store);
     }
  }

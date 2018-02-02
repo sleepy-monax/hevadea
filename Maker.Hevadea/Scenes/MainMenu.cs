@@ -7,95 +7,67 @@ using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Runtime.Remoting.Channels;
+using Maker.Rise.UI.Containers;
+using Maker.Rise.UI.Layout;
+using Maker.Rise.UI.Widgets;
 
 namespace Maker.Hevadea.Scenes
 {
     public class MainMenu : Scene
     {
-        private readonly SpriteBatch sb;
-
-        public MainMenu()
-        {
-            sb = Engine.Graphic.CreateSpriteBatch();
-        }
-
         public override void Load()
         {
             Engine.Scene.Background = Ressources.paralaxe_forest;
-            var width = Math.Min(Engine.Graphic.GetWidth(), 1200);
-            var padX = Engine.Graphic.GetWidth() / 2 - width / 2;
-            UiRoot.Padding = new Padding(0, 0, padX, padX);
-
-            var menuButtonHost = new Panel
-            {
-                Dock = Dock.Bottom,
-                Layout = LayoutMode.Horizontal,
-                Bound = new Rectangle(64, 64, 64, 72),
-                
-            };
-
-            var playButton = new Button
-            {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "play",
-                Icon = EngineRessources.IconPlay,
-                EnableBlur = true
-                
-            };
-
-            var optionButton = new Button
-            {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "option",
-                Icon = EngineRessources.IconSettings,
-                EnableBlur = true
-            };
-
-            var exitButton = new Button
-            {
-                Bound = new Rectangle(64, 64, 64, 64),
-                Text = "exit",
-                Icon = EngineRessources.IconClose,
-                EnableBlur = true
-            };
-
-            playButton.OnMouseClick += PlayButtonOnOnMouseClick;
-            exitButton.OnMouseClick += ExitButtonOnOnMouseClick;
-
-            UiRoot.AddChild(menuButtonHost);
             
-            menuButtonHost.AddChild(playButton);
-            menuButtonHost.AddChild(optionButton);
-            menuButtonHost.AddChild(exitButton);
+            var buttonPlay   = new Button { EnableBlur = true, Padding = new Padding(2), Icon = EngineRessources.IconPlay,     Text = "Play" };
+            buttonPlay.MouseClick += (sender, args) => { Engine.Scene.Switch(new PlayMenu()); };
+            
+            var buttonOption = new Button { EnableBlur = true, Padding = new Padding(2), Icon = EngineRessources.IconSettings, Text = "Option" };
+            buttonOption.MouseClick += (sender, args) => { /*TODO: option scene*/};
+            
+            var buttonExit   = new Button { EnableBlur = true, Padding = new Padding(2), Icon = EngineRessources.IconClose,     Text = "Exit" };
+            buttonExit.MouseClick += (sender, args) => { Engine.Stop();};
+            
+            var pictureBoxLogo = new PictureBox {Picture = Ressources.img_hevadea_logo, Dock = Dock.Fill};
 
-            UiRoot.RefreshLayout();
+            Container = new Container<CenterLayout>
+            {
+                Childs =
+                {
+                    new Panel(new Container<DockLayout>())
+                    {
+                        Size = new Point(600, 480),
+                        Origine = Anchor.Center,
+                        Anchor = Anchor.Center,
+                        Padding = new Padding(8),
+                        Childs =
+                        {
+                            pictureBoxLogo,
+                            new Panel(new Container<HorizontalTileLayout>())
+                            {
+                                Dock = Dock.Bottom,
+                                Size = new Point(64),
+                                Padding = new Padding(0),
+                                Childs = {buttonPlay, buttonOption, buttonExit}
+                            }
+                        }
+                    }
+                }
+            };
         }
-
-        private void PlayButtonOnOnMouseClick(object sender, EventArgs eventArgs)
-        {
-            Engine.Scene.Switch(new PlayMenu());
-        }
-
-        private void ExitButtonOnOnMouseClick(object sender, EventArgs eventArgs)
-        {
-            Engine.Stop();
-        }
-
+        
         public override void Unload()
         {
-        }
 
-        public override void Draw(GameTime gameTime)
-        {
-            var logo = Ressources.img_hevadea_logo;
-
-            Engine.Graphic.Begin(sb);
-            sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black * 0.25f);
-            sb.Draw(logo, Engine.Graphic.GetCenter() - logo.GetCenter(), Color.White);
-            sb.End();
         }
 
         public override void Update(GameTime gameTime)
+        {
+            
+        }
+
+        public override void Draw(GameTime gameTime)
         {
         }
     }

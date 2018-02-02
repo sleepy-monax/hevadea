@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Misc;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.Game.Entities.Component.Ai.Actions
 {

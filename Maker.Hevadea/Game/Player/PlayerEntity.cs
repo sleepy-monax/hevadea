@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+﻿using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Entities.Component.Render;
 using Maker.Hevadea.Game.Items;
 using Maker.Rise.Ressource;
@@ -20,7 +19,7 @@ namespace Maker.Hevadea.Game.Entities
             HoldingItem = null;
 
             Components.Add(new Health(20));
-            Components.Add(new Attack(1));
+            Components.Add(new Attack());
             Components.Add(new Energy());
             Components.Add(new NpcRender(new Sprite(Ressources.tile_creatures, 0, new Point(16, 32))));
             Components.Add(new Inventory(512) { AlowPickUp = true });

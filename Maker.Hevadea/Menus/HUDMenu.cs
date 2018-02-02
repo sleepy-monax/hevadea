@@ -11,30 +11,9 @@ namespace Maker.Hevadea.Menus
 {
     public class HUDMenu : Menu
     {
-        ItemFrameControl itemFrame;
-        PlayerInfoPanel playerInfo;
         public HUDMenu(GameManager game) : base(game)
         {
-            var panelHost = new Panel() { Dock = Dock.Bottom, Bound = new Rectangle(64, 64, 64, 64), Padding = new Padding(0,0,8,8) };
 
-            itemFrame = new ItemFrameControl() { Padding = new Padding(4), Dock = Dock.Left, Item = Game.Player.HoldingItem, Bound = new Rectangle(64, 64, 64, 64) };
-            playerInfo = new PlayerInfoPanel(Game.Player) { Dock = Dock.Top, Bound = new Rectangle(64, 64, 64, 64) };
-
-            panelHost.AddChild(itemFrame);
-            panelHost.AddChild(playerInfo);
-
-            AddChild(panelHost);
-        }
-
-        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-
-        }
-
-        protected override void OnUpdate(GameTime gameTime)
-        {
-            itemFrame.Item = Game.Player.HoldingItem;
-            itemFrame.Visible = Game.Player.HoldingItem != null;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Maker.Rise.Graphic
     {
 
         public Effect Effect { get; }
-        public int BlurRadius { get; set; } = 25;
+        public int BlurRadius { get; set; } = 16;
         public float BlurAmount { get; set; } = 2.0f;
 
         public Vector2[] TextureOffsetsX;

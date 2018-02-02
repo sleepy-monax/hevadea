@@ -2,7 +2,7 @@
 using Maker.Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 
-namespace Maker.Hevadea.Game.Entities.Component.Misc
+namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Move : EntityComponent, IUpdatableComponent
     {

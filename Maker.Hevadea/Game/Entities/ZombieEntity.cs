@@ -1,10 +1,9 @@
 ﻿using Maker.Hevadea.Enums;
-using Maker.Hevadea.Game.Entities.Component.Interaction;
-using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Entities.Component.Render;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using System;
+using Maker.Hevadea.Game.Entities.Component;
 
 namespace Maker.Hevadea.Game.Entities
 {
@@ -19,7 +18,7 @@ namespace Maker.Hevadea.Game.Entities
 
             Components.Add(new Move());
             Components.Add(new Health(10));
-            Components.Add(new Attack(1));
+            Components.Add(new Attack());
             Components.Add(new NpcRender(new Sprite(Ressources.tile_creatures, 2, new Point(16, 32))));
         }
 

@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Misc;
+﻿using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Registry;
 using Microsoft.Xna.Framework;

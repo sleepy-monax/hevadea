@@ -1,8 +1,8 @@
-﻿using Maker.Hevadea.Enums;
+﻿using System;
+using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game.Items;
-using System;
 
-namespace Maker.Hevadea.Game.Entities.Component.Interaction
+namespace Maker.Hevadea.Game.Entities.Component
 {
     public class InteractEventArg : EventArgs
     {

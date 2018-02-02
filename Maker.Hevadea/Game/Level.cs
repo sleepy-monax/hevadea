@@ -1,5 +1,4 @@
 ﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Component.Misc;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
@@ -12,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Maker.Hevadea.Game.Entities.Component;
 
 namespace Maker.Hevadea.Game
 {

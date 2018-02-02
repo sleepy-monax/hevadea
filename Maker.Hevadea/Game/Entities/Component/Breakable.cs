@@ -1,4 +1,4 @@
-﻿namespace Maker.Hevadea.Game.Entities.Component.Interaction
+﻿namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Breakable : EntityComponent
     {

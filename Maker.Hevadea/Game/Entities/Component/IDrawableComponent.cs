@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component
 {
-    interface IDrawableComponent
+    public interface IDrawableComponent
     {
         void Draw(SpriteBatch spriteBatch, GameTime gameTime);
     }

@@ -8,30 +8,40 @@ namespace Maker.Rise.Components
         private KeyboardState oldKeyState;
         private KeyboardState newKeyState;
 
-        private MouseState oldMouseState;
-        private MouseState newMouseState;
+        private MouseState _oldMouseState;
+        private MouseState _mouseState;
+
+        public MouseState GetMouseState()
+        {
+            return _mouseState;
+        }
+
+        public MouseState GetOldMouseState()
+        {
+            return _oldMouseState;
+        }
 
         public InputManager(InternalGame game) : base(game)
         {
         }
 
-        public Point MousePosition => newMouseState.Position;
+        public Point MousePosition => _mouseState.Position;
 
-        public bool MouseLeft => newMouseState.LeftButton == ButtonState.Pressed;
-        public bool MouseRight => newMouseState.RightButton == ButtonState.Pressed;
-        public bool MouseMiddle => newMouseState.MiddleButton == ButtonState.Pressed;
+        public bool MouseLeft => _mouseState.LeftButton == ButtonState.Pressed;
+        public bool MouseRight => _mouseState.RightButton == ButtonState.Pressed;
+        public bool MouseMiddle => _mouseState.MiddleButton == ButtonState.Pressed;
 
-        public bool MouseLeftClick => newMouseState.LeftButton == ButtonState.Released
-                                      && oldMouseState.LeftButton == ButtonState.Pressed;
+        public bool MouseLeftClick => _mouseState.LeftButton == ButtonState.Released
+                                      && _oldMouseState.LeftButton == ButtonState.Pressed;
 
-        public bool MouseRightClick => newMouseState.RightButton == ButtonState.Released
-                                       && oldMouseState.RightButton == ButtonState.Pressed;
+        public bool MouseRightClick => _mouseState.RightButton == ButtonState.Released
+                                       && _oldMouseState.RightButton == ButtonState.Pressed;
 
-        public bool MouseMiddleClick => newMouseState.MiddleButton == ButtonState.Released
-                                        && oldMouseState.MiddleButton == ButtonState.Pressed;
+        public bool MouseMiddleClick => _mouseState.MiddleButton == ButtonState.Released
+                                        && _oldMouseState.MiddleButton == ButtonState.Pressed;
 
-        public bool MouseScrollDown => newMouseState.ScrollWheelValue < oldMouseState.ScrollWheelValue;
-        public bool MouseScrollUp => newMouseState.ScrollWheelValue > oldMouseState.ScrollWheelValue;
+        public bool MouseScrollDown => _mouseState.ScrollWheelValue < _oldMouseState.ScrollWheelValue;
+        public bool MouseScrollUp => _mouseState.ScrollWheelValue > _oldMouseState.ScrollWheelValue;
 
         public bool KeyDown(Keys key)
         {
@@ -46,7 +56,7 @@ namespace Maker.Rise.Components
         public override void Initialize()
         {
             oldKeyState = newKeyState = Keyboard.GetState();
-            oldMouseState = newMouseState = Mouse.GetState(Game.Window);
+            _oldMouseState = _mouseState = Mouse.GetState(Game.Window);
         }
 
         public override void Draw(GameTime gameTime)
@@ -56,9 +66,9 @@ namespace Maker.Rise.Components
         public override void Update(GameTime gameTime)
         {
             oldKeyState = newKeyState;
-            oldMouseState = newMouseState;
+            _oldMouseState = _mouseState;
             newKeyState = Keyboard.GetState();
-            newMouseState = Mouse.GetState(Game.Window);
+            _mouseState = Mouse.GetState(Game.Window);
         }
     }
 }

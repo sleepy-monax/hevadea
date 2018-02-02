@@ -1,28 +1,22 @@
-﻿using Maker.Hevadea.Enums;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+﻿using System;
+using Maker.Hevadea.Enums;
 using Maker.Hevadea.Game.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
-namespace Maker.Hevadea.Game.Entities.Component.Interaction
+namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Attack : EntityComponent, IUpdatableComponent, IDrawableComponent
     {
-        public bool IsAttacking = false;
-        public Direction AttackDirection  { get; private set; } = Direction.Up;
-        public double AttackCooldownTimer { get; private set; } = 0;
-        public double BaseAttackCooldown { get; set; } = 1;
-        public double AttackCouldown { get; private set; } = 1;
-
-        public float BaseDamages { get; set; }
+        public float BaseDamages { get; set; } = 1f;
         public bool CanAttackTile { get; set; } = true;
         public bool CanAttackEntities { get; set; } = true;
+        public double AttackCooldown { get; set; } = 1;
 
-        public Attack(float baseDamages)
-        {
-            BaseDamages = baseDamages;
-        }
+        private Direction _lastDirection = Direction.Up;
+        private bool _isAttacking = false;
+        private double _speedFactor = 1;
+        private double _timer = 0;
 
         public float GetBaseDamages()
         {
@@ -40,7 +34,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
 
         public void Do(Item weapon)
         {
-            if (IsAttacking) return;
+            if (_isAttacking) return;
             if (!Owner.Components.Get<Energy>()?.Reduce(1f) ?? false) return;
 
             var damages = GetBaseDamages();
@@ -69,41 +63,46 @@ namespace Maker.Hevadea.Game.Entities.Component.Interaction
                 }
             }
 
-            if (CanAttackTile && !IsAttacking)
+            if (CanAttackTile && !_isAttacking)
             {
             
                 var tile = Owner.Level.GetTile(facingTile);
                 tile.Hurt(Owner, damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Facing);
             }
 
-            IsAttacking = true;
-            AttackDirection = Owner.Facing;
-            AttackCooldownTimer = AttackCouldown;
+            _isAttacking = true;
+            _lastDirection = Owner.Facing;
+            _timer = _speedFactor;
         }
 
+        public bool IsAttacking()
+        {
+            return _isAttacking;
+        }
+        
         public void Update(GameTime gameTime)
         {
-            AttackCooldownTimer = Math.Max(0.0, AttackCooldownTimer - gameTime.ElapsedGameTime.TotalSeconds * 5);
+            _timer = Math.Max(0.0, _timer - gameTime.ElapsedGameTime.TotalSeconds * 5);
 
-            if (!IsAttacking)
+            if (!_isAttacking)
             {
-                AttackCouldown = BaseAttackCooldown;
+                _speedFactor = AttackCooldown;
             }
 
-            if (IsAttacking && AttackCooldownTimer < 0.1)
+            if (_isAttacking && _timer < 0.1)
             {
-                AttackCouldown = AttackCouldown * 0.9;
-                IsAttacking = false;
+                _speedFactor = _speedFactor * 0.9;
+                _isAttacking = false;
             }
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (IsAttacking)
+            if (_isAttacking)
             {
-                var invTimer =  1f - AttackCooldownTimer;
+                var invTimer =  1f - _timer;
                 
-                switch (AttackDirection)
+                switch (_lastDirection)
                 {
                     case Direction.Up:
                         spriteBatch.Draw(Ressources.img_swing, new Rectangle((int)(Owner.X), (int)(Owner.Y - Owner.Height), (int)(Owner.Width * invTimer), Owner.Height), Color.White);

@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Game.Entities.Component.Interaction;
-using Maker.Hevadea.Game.Entities.Component.Misc;
+﻿using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Menus;
 using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;

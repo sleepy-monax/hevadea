@@ -2,7 +2,7 @@
 using Maker.Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 
-namespace Maker.Hevadea.Game.Entities.Component.Misc
+namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Energy : EntityComponent, IUpdatableComponent, ISaveLoadComponent
     {
@@ -12,17 +12,17 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
         public float Regeneration { get; set; }    = 0.01f;
         public float MaxRegeneration { get; set; } = 1f;
 
-        public void OnSave(EntityStorage store)
+        public void OnGameSave(EntityStorage store)
         {
             store.Set(nameof(Value), Value);
             store.Set(nameof(Regeneration), Regeneration);
         }
 
-        public void OnLoad(EntityStorage store)
+        public void OnGameLoad(EntityStorage store)
         {
-
+            Value = store.Get(nameof(Value), Value);
+            Regeneration = store.Get(nameof(Regeneration), Regeneration);
         }
-
 
         public bool Reduce(float value)
         {
@@ -32,7 +32,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Misc
                 Regeneration = 0.01f;
                 return true;
             }
-
+            
             return false;
         }
 

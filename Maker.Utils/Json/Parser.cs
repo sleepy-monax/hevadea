@@ -336,6 +336,7 @@ namespace Maker.Utils.Json
                 return true;
             if (json == "false")
                 return false;
+
             // handles json == "null" as well as invalid JSON
             return null;
         }

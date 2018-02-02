@@ -1,8 +1,8 @@
-﻿using Maker.Hevadea.Game.Items;
+﻿using System.Collections.Generic;
+using Maker.Hevadea.Game.Items;
 using Maker.Rise;
-using System.Collections.Generic;
 
-namespace Maker.Hevadea.Game.Entities.Component.Interaction
+namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Dropable : EntityComponent
     {

@@ -1,4 +1,5 @@
 ﻿using Maker.Rise.UI;
+using Maker.Rise.UI.Containers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -6,7 +7,7 @@ namespace Maker.Rise.Components
 {
     public class UiManager : GameComponent
     {
-        private SpriteBatch uiSpriteBatch;
+        private SpriteBatch _spriteBatch;
         public bool Debug => Engine.Debug.Visible;
 
         public UiManager(InternalGame game) : base(game)
@@ -15,7 +16,7 @@ namespace Maker.Rise.Components
 
         public override void Initialize()
         {
-            uiSpriteBatch = new SpriteBatch(Game.GraphicsDevice);
+            _spriteBatch = new SpriteBatch(Game.GraphicsDevice);
         }
 
         public override void Draw(GameTime gameTime)
@@ -26,11 +27,11 @@ namespace Maker.Rise.Components
         {
         }
 
-        public void DrawUiTree(GameTime gameTime, Control UiRoot)
+        public void DrawUiTree(GameTime gameTime, Container container)
         {
-            uiSpriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, Engine.CommonRasterizerState);
-            UiRoot.Draw(uiSpriteBatch, gameTime);
-            uiSpriteBatch.End();
+            _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, Engine.CommonRasterizerState);
+            container.Draw(_spriteBatch, gameTime);
+            _spriteBatch.End();
         }
     }
 }

@@ -64,7 +64,7 @@ namespace Maker.Hevadea.Game.Entities.Component
             {
                 if (c is ISaveLoadComponent s)
                 {
-                    s.OnSave(store);
+                    s.OnGameSave(store);
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace Maker.Hevadea.Game.Entities.Component
             {
                 if (c is ISaveLoadComponent s)
                 {
-                    s.OnLoad(store);
+                    s.OnGameLoad(store);
                 }
             }
         }
