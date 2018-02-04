@@ -1,10 +1,8 @@
-﻿using Maker.Rise.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Maker.Rise.UI.Widgets;
 
 namespace Maker.Hevadea.Game.Menus
 {
-    public class Menu : Control
+    public class Menu : Widget
     {
         public bool PauseGame = false;
         public GameManager Game;
@@ -17,16 +15,6 @@ namespace Maker.Hevadea.Game.Menus
 
         public void Show()
         {
-        }
-
-        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-
-        }
-
-        protected override void OnUpdate(GameTime gameTime)
-        {
-
         }
 
         public void Close()

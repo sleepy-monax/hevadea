@@ -1,17 +1,16 @@
 ﻿using Maker.Rise.UI;
-using Maker.Rise.UI.Containers;
-using Maker.Rise.UI.Layout;
+using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 
 namespace Maker.Rise.Components
 {
     public abstract class Scene
     {
-        public IContainer Container { get; set; }
+        public Container Container { get; set; }
 
         protected Scene()
         {
-            Container = new Container<DockLayout>();
+            Container = new FloatingContainer();
         }
 
         public virtual string GetDebugInfo()

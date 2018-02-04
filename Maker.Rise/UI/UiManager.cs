@@ -1,37 +1,23 @@
-﻿using Maker.Rise.UI.Containers;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using GameComponent = Maker.Rise.Components.GameComponent;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Maker.Rise.UI
 {
-    public class UiManager : GameComponent
+    public class UiManager
     {
-        private SpriteBatch _spriteBatch;
-        public bool Debug => Engine.Debug.Visible;
+        private InternalGame _monogameHandler;
 
-        public UiManager(InternalGame game) : base(game)
+        public UiManager(InternalGame monogameHandler)
         {
+            _monogameHandler = monogameHandler;
         }
 
-        public override void Initialize()
+        public void Initialize()
         {
-            _spriteBatch = new SpriteBatch(Game.GraphicsDevice);
-        }
 
-        public override void Draw(GameTime gameTime)
-        {
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-        }
-
-        public void DrawUiTree(GameTime gameTime, IContainer container)
-        {
-            _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, Engine.CommonRasterizerState);
-            container.Draw(_spriteBatch, gameTime);
-            _spriteBatch.End();
         }
     }
 }

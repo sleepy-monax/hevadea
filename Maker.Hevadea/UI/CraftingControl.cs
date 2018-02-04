@@ -3,12 +3,13 @@ using Maker.Hevadea.Game.Registry;
 using Maker.Rise;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
+using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.UI
 {
-    public class CraftingControl : Control
+    public class CraftingControl : Widget
     {
         ItemStorage Inventory;
         public CraftingControl(ItemStorage i)
@@ -16,7 +17,7 @@ namespace Maker.Hevadea.Game.UI
             Inventory = i;
         }
 
-        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
             var index = 0;
@@ -74,11 +75,6 @@ namespace Maker.Hevadea.Game.UI
                     
                 }
             }
-        }
-
-        protected override void OnUpdate(GameTime gameTime)
-        {
-
         }
     }
 }

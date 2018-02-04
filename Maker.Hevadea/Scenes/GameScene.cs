@@ -31,7 +31,7 @@ namespace Maker.Hevadea.Scenes
             }
 
             // Add the menu to the ui tree.
-            newMenu.Dock = Dock.Fill;
+            //newMenu.Dock = Dock.Fill;
             //Container.AddChild(newMenu);
             //Container.RefreshLayout();
         }

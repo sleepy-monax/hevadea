@@ -69,7 +69,8 @@ namespace Maker.Rise.Components
 
             if (CurrentScene != null)
             {
-                CurrentScene.Container.RefreshLayout(Engine.Graphic.GetResolutionRect());
+                CurrentScene.Container.Bound = Engine.Graphic.GetResolutionRect();
+                CurrentScene.Container.RefreshLayout();
 
                 if (NextScene == null)
                 {
@@ -78,7 +79,6 @@ namespace Maker.Rise.Components
                 }
             }
 
-            NextScene?.Container.RefreshLayout(Engine.Graphic.GetResolutionRect());
         }
 
         public override void Draw(GameTime gameTime)
@@ -120,7 +120,9 @@ namespace Maker.Rise.Components
 
             if (CurrentScene != null)
             {
-                Engine.Ui.DrawUiTree(gameTime, CurrentScene.Container);
+                Engine.Graphic.Begin(sb);
+                CurrentScene.Container.Draw(sb, gameTime);
+                sb.End();
             }
 
             if (IsSceneSwitching)

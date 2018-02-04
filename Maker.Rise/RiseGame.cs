@@ -54,7 +54,6 @@ namespace Maker.Rise
             Engine.Input.Update(gameTime);
             Engine.Network.Update(gameTime);
             Engine.Scene.Update(gameTime);
-            Engine.Ui.Update(gameTime);
             Engine.Ressource.Update(gameTime);
             Engine.Debug.Update(gameTime);
         }

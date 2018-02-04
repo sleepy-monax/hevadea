@@ -2,10 +2,14 @@
 using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Maker.Rise.UI
 {
-    public class FadingAnimation
+    public class EasingManager
     {
         public bool Show { get; set; } = false;
         public float Speed = 1f;
@@ -15,7 +19,7 @@ namespace Maker.Rise.UI
         private bool _ended;
 
         public AnimationEndedHandler AnimationEnded;
-        public delegate void AnimationEndedHandler (FadingAnimation sender);
+        public delegate void AnimationEndedHandler(EasingManager sender);
 
         public void Reset()
         {
@@ -33,12 +37,12 @@ namespace Maker.Rise.UI
             if (Show)
             {
                 _value = Math.Min(1f,
-                    _value + (float) (gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
+                    _value + (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
             }
             else
             {
                 _value = Math.Max(0f,
-                    _value - (float) (gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
+                    _value - (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
             }
 
             if (_value == 1f && !_ended)

@@ -4,13 +4,14 @@ using Maker.Rise;
 using Maker.Rise.Enums;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
+using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Maker.Hevadea.Game.UI
 {
-    public class InventoryUi : Control
+    public class InventoryUi : Widget
     {
         public ItemStorage Inventory;
         public Item SelectedItem { get; set; }
@@ -22,7 +23,7 @@ namespace Maker.Hevadea.Game.UI
             Inventory = i;
         }
 
-        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var index = 0;
 
@@ -99,11 +100,6 @@ namespace Maker.Hevadea.Game.UI
             var scrollJump = (contentHeight - Host.Height) / (Host.Height - thumbHeight);
 
             spriteBatch.FillRectangle(new Rectangle(Host.X + Host.Width - 2, Host.Y + (int)(-scrollOffset / scrollJump), 2, (int)(thumbHeight)), Color.Gold);
-        }
-
-        protected override void OnUpdate(GameTime gameTime)
-        {
-
         }
     }
 }

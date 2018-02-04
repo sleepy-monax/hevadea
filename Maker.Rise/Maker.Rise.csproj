@@ -77,30 +77,14 @@
     <Compile Include="Ressource\Sprite.cs" />
     <Compile Include="Ressource\SpriteSheet.cs" />
     <Compile Include="Ressource\SpriteSheetData.cs" />
-    <Compile Include="UI\Animation.cs" />
-    <Compile Include="UI\Containers\Container.cs" />
-    <Compile Include="UI\Containers\IContainer.cs" />
-    <Compile Include="UI\Containers\ScrollableContainer.cs" />
-    <Compile Include="UI\Control.cs" />
-    <Compile Include="UI\Layout\CenterLayout.cs" />
-    <Compile Include="UI\Layout\DockLayout.cs" />
-    <Compile Include="UI\Layout\FloatingLayout.cs" />
-    <Compile Include="UI\Layout\FlowLayout.cs" />
-    <Compile Include="UI\Layout\HorizontalTileLayout.cs" />
-    <Compile Include="UI\Layout\ILayout.cs" />
-    <Compile Include="UI\Layout\TileLayout.cs" />
-    <Compile Include="UI\Layout\VerticalTileLayout.cs" />
-    <Compile Include="UI\MouseEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\EasingManager.cs" />
     <Compile Include="UI\UiManager.cs" />
-    <Compile Include="UI\Widgets\BlurPanel.cs" />
     <Compile Include="UI\Widgets\Button.cs" />
-    <Compile Include="UI\Widgets\CheckBox.cs" />
-    <Compile Include="UI\Widgets\DialogBox.cs" />
-    <Compile Include="UI\Widgets\Label.cs" />
-    <Compile Include="UI\Widgets\Panel.cs" />
-    <Compile Include="UI\Widgets\PictureBox.cs" />
-    <Compile Include="UI\Widgets\TextInput.cs" />
+    <Compile Include="UI\Widgets\Container.cs" />
+    <Compile Include="UI\Widgets\FloatingContainer.cs" />
+    <Compile Include="UI\Widgets\TileContainer.cs" />
+    <Compile Include="UI\Widgets\Widget.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Extension\GameExtension.cs" />
     <Compile Include="Utils\FiniteStateMachine\FSM.cs" />
@@ -127,5 +111,6 @@
     <None Include="packages.config" />
     <None Include="Utils\FiniteStateMachine\FSM.md" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

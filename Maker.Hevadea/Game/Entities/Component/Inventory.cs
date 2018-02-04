@@ -13,7 +13,7 @@ namespace Maker.Hevadea.Game.Entities.Component
         public bool AlowPickUp { get; set; } = false;
         
         private Item _lastAdded;
-        private readonly FadingAnimation _pickUpAnimation = new FadingAnimation();
+        private readonly EasingManager _pickUpAnimation = new EasingManager();
 
         public Inventory(int slotCount)
         {

@@ -5,10 +5,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Maker.Hevadea.Game.Entities.Component;
+using Maker.Rise.UI.Widgets;
 
 namespace Maker.Hevadea.Game.UI
 {
-    public class PlayerInfoPanel : Control
+    public class PlayerInfoPanel : Widget
     {
         private PlayerEntity Player;
         private Sprite hearth;
@@ -21,7 +22,7 @@ namespace Maker.Hevadea.Game.UI
             energy = new Sprite(Ressources.tile_icons, 1);
         }
 
-        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var playerHealth = Player.Components.Get<Health>();
             var playerEnergy = Player.Components.Get<Energy>();
@@ -47,10 +48,6 @@ namespace Maker.Hevadea.Game.UI
             }
 
             energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32), Color.White * (float)( 10 * energyV - Math.Floor(10 * energyV)));
-        }
-
-        protected override void OnUpdate(GameTime gameTime)
-        {
         }
     }
 }

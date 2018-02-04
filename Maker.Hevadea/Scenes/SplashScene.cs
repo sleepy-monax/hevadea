@@ -43,7 +43,7 @@ namespace Maker.Hevadea.Scenes
         {
             if (gameTime.TotalGameTime.TotalSeconds > 3 && once)
             {
-                Engine.Scene.Switch(new MainMenu());
+                Engine.Scene.Switch(new EngineSplash());
                 once = false;
             }
         }

@@ -2,18 +2,19 @@
 using Maker.Rise;
 using Maker.Rise.Extension;
 using Maker.Rise.UI;
+using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Maker.Hevadea.UI
 {
-    public class ItemFrameControl : Control
+    public class ItemFrameControl : Widget
     {
 
         public Item Item { get; set; } = null;
 
-        protected override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (Item != null)
             {
@@ -26,11 +27,6 @@ namespace Maker.Hevadea.UI
 
                 Item.GetSprite().Draw(spriteBatch, new Rectangle(Host.Location + new Point(size / 2) - new Point(minSize / 2),new Point( minSize, minSize)), Color.White);
             }
-        }
-
-        protected override void OnUpdate(GameTime gameTime)
-        {
-            
         }
     }
 }

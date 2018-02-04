@@ -14,7 +14,7 @@ namespace Maker.Hevadea.Scenes
     {
         private SpriteBatch sb;
         private Texture2D logo;
-        public bool GoToGame = false;
+        public bool GoToGame = true;
 
         public override void Load()
         {
