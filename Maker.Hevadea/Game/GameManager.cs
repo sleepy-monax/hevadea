@@ -13,7 +13,7 @@ namespace Maker.Hevadea.Game
         public Camera Camera { get; private set; }
         public Random Random { get; private set; } = new Random();
 
-        private Menu currentMenu;
+        private Menu _currentMenu;
         public int Time { get; set; } = 0;
 
         public GameManager(World world, PlayerEntity player)
@@ -32,11 +32,11 @@ namespace Maker.Hevadea.Game
 
         public Menu CurrentMenu
         {
-            get => currentMenu;
+            get => _currentMenu;
             set 
             {
-                CurrentMenuChange?.Invoke(currentMenu, value);
-                currentMenu = value;
+                CurrentMenuChange?.Invoke(_currentMenu, value);
+                _currentMenu = value;
             }
         }
 

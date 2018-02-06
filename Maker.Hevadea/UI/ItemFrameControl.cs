@@ -21,7 +21,7 @@ namespace Maker.Hevadea.UI
                 var size = Math.Min(Host.Width, Host.Height);
                 int minSize = (int)(size - 4);
 
-                spriteBatch.Draw(Engine.Scene.BlurRT, Bound, Bound, Color.White);
+                spriteBatch.Draw(Engine.Scene.BluredScene, Bound, Bound, Color.White);
                 spriteBatch.FillRectangle(Bound, Color.Gold * 0.5f);
                 spriteBatch.DrawRectangle(Bound, Color.Gold * 0.5f);
 

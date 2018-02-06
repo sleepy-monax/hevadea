@@ -25,12 +25,12 @@ namespace Maker.Hevadea.Scenes
 
         }
 
-        public override void Update(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime)
         {
 
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void OnDraw(GameTime gameTime)
         {
             Engine.Graphic.Begin(sb, false);
 

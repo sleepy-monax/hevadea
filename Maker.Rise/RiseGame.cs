@@ -58,12 +58,24 @@ namespace Maker.Rise
             Engine.Debug.Update(gameTime);
         }
 
+        private bool WindowSizeIsBeingChanged = false;
         protected override void Initialize()
         {
             IntializeGameEngine();
             OnLoad?.Invoke(this, new EventArgs());
             Logger.Log<InternalGame>(LoggerLevel.Fine, "Game engine initialized, entering game loop...");
-
+            Window.AllowUserResizing = true;
+            
+            Window.ClientSizeChanged += (sender, args) =>
+            {
+                WindowSizeIsBeingChanged = !WindowSizeIsBeingChanged;
+                if(WindowSizeIsBeingChanged){
+                    Engine.Graphic.g.PreferredBackBufferWidth = Window.ClientBounds.Width;
+                    Engine.Graphic.g.PreferredBackBufferHeight = Window.ClientBounds.Height;
+                    Engine.Graphic.g.ApplyChanges();
+                    Engine.Graphic.ResetRenderTargets();
+                }
+            };
             base.Initialize();
         }
 

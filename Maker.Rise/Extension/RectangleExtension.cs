@@ -1,5 +1,5 @@
 ﻿using System;
-using Maker.Rise.Enums;
+using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 
 namespace Maker.Rise.Extension
@@ -10,15 +10,15 @@ namespace Maker.Rise.Extension
         {
             switch (anchor)
             {
-                case Anchor.TopLeft: return new Point(rect.Left, rect.Top);                   
-                case Anchor.Top: return new Point(rect.Center.X, rect.Top);
-                case Anchor.TopRight: return new Point(rect.Right, rect.Top);
-                case Anchor.Left: return new Point(rect.Left, rect.Center.Y);
-                case Anchor.Center: return rect.Center;
-                case Anchor.Right: return new Point(rect.Right, rect.Center.Y);
-                case Anchor.BottomLeft: return new Point(rect.Left, rect.Bottom);
-                case Anchor.Bottom: return new Point(rect.Center.X, rect.Bottom);
-                case Anchor.BottomRight: return new Point(rect.Right, rect.Bottom);
+                case Anchor.TopLeft: return new Point(0, 0);                   
+                case Anchor.Top: return new Point(rect.Width / 2, 0);
+                case Anchor.TopRight: return new Point(rect.Width, 0);
+                case Anchor.Left: return new Point(0, rect.Height / 2);
+                case Anchor.Center: return new Point(rect.Width / 2, rect.Height / 2);
+                case Anchor.Right: return new Point(rect.Width, rect.Width / 2);
+                case Anchor.BottomLeft: return new Point(0, rect.Height);
+                case Anchor.Bottom: return new Point(rect.Width / 2, rect.Height);
+                case Anchor.BottomRight: return new Point(rect.Width, rect.Height);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(anchor), anchor, null);
             }

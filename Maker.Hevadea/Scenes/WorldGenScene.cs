@@ -13,7 +13,7 @@ namespace Maker.Hevadea.Scenes
 
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void OnDraw(GameTime gameTime)
         {
 
         }
@@ -28,7 +28,7 @@ namespace Maker.Hevadea.Scenes
 
         }
 
-        public override void Update(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime)
         {
 
         }

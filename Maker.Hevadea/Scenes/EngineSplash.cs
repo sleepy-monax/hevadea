@@ -10,11 +10,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Scenes
 {
-    class EngineSplash : Scene
+    public class EngineSplash : Scene
     {
         private SpriteBatch sb;
         private Texture2D logo;
-        public bool GoToGame = true;
+        public bool GoToGame = false;
 
         public override void Load()
         {
@@ -28,9 +28,9 @@ namespace Maker.Hevadea.Scenes
 
         bool once = true;
 
-        public override void Update(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalSeconds > 2 && once)
+            if (gameTime.TotalGameTime.TotalSeconds > 10 && once)
             {
                 if (GoToGame)
                 {
@@ -47,7 +47,7 @@ namespace Maker.Hevadea.Scenes
             }
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void OnDraw(GameTime gameTime)
         {
             Engine.Graphic.Begin(sb);
             sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black);

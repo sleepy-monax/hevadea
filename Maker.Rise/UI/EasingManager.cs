@@ -32,6 +32,8 @@ namespace Maker.Rise.UI
             return Easings.Interpolate(_value, function);
         }
 
+        public float GetValueInv(EasingFunctions function) => (1f - GetValue(function)); 
+
         public void Update(GameTime gameTime)
         {
             if (Show)

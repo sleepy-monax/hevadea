@@ -39,16 +39,16 @@ namespace Maker.Hevadea.Scenes
         }
 
         bool once = true;
-        public override void Update(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalSeconds > 3 && once)
             {
-                Engine.Scene.Switch(new EngineSplash());
+                Engine.Scene.Switch(new MainMenu());
                 once = false;
             }
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void OnDraw(GameTime gameTime)
         {
             Engine.Graphic.Begin(sb);
             sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.White);

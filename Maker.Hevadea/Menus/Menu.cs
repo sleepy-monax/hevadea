@@ -2,15 +2,14 @@
 
 namespace Maker.Hevadea.Game.Menus
 {
-    public class Menu : Widget
+    public class Menu : Panel
     {
-        public bool PauseGame = false;
+        public bool PauseGame { get; set; } = false;
         public GameManager Game;
 
         public Menu(GameManager game)
         {
             Game = game;
-            Padding = new Padding(8);
         }
 
         public void Show()

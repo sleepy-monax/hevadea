@@ -10,26 +10,39 @@ using Maker.Rise.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.ComponentModel;
+using Maker.Rise.UI.Widgets;
+using Maker.Rise.UI.Widgets.Containers;
 
 namespace Maker.Hevadea.Scenes
 {
     public class PlayMenu : Scene
     {
-        public PlayMenu()
-        {
-
-        }
-
         public override void Load()
         {
+            var backButton = new Button {Text = "Back", Bound = new Rectangle(0, 0, 120, 48), Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, BlurBackground = true, Offset = new Point(16, -16)};
+            backButton.MouseClick += sender => Engine.Scene.Switch(new MainMenu());
+            
+            var newButton = new Button {Text = "New", Bound = new Rectangle(0, 0, 120, 48), Origine = Anchor.BottomRight, Anchor = Anchor.BottomRight, BlurBackground = true, Offset = new Point(-16, -16)};
+            newButton.MouseClick += sender =>
+            {
+                var world = GENERATOR.DEFAULT.Generate();
+                var player = new PlayerEntity();
+                Engine.Scene.Switch(new GameScene(new GameManager(world, player)));
+            }; 
+            
+            Container = new AnchoredContainer
+            {
+                Childrens = { backButton, newButton }
+            };
         }
 
 
-        public override void Update(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime)
         {
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void OnDraw(GameTime gameTime)
         {
 
         }

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Maker.Rise.Graphic;
 
 namespace Maker.Rise.Extension
 {
@@ -569,6 +570,27 @@ namespace Maker.Rise.Extension
 
             spriteBatch.DrawString(font, text, pos - origin, color, 0f, Vector2.Zero, new Vector2(scale, scale),
                 SpriteEffects.None, 1f);
+        }
+
+        public static void Begin(this SpriteBatch spriteBatch, SpriteBatchBeginState spriteBatchBeginState)
+        {
+            spriteBatch.Begin(spriteBatchBeginState.SortMode, spriteBatchBeginState.BlendState, spriteBatchBeginState.SamplerState, spriteBatchBeginState.DepthStencilState, spriteBatchBeginState.RasterizerState, spriteBatchBeginState.Effect, spriteBatchBeginState.TransformMatrix);
+        }
+        
+        public delegate void DrawTask(SpriteBatch spriteBatch, GameTime gameTime);
+        public static void BeginDrawEnd(this SpriteBatch sb, DrawTask task, GameTime gameTime = null, SpriteBatchBeginState state = null)
+        {
+            if (state != null)
+            {
+                sb.Begin(state);
+            }
+            else
+            {
+                Engine.Graphic.Begin(sb);
+            }
+            
+            task(sb, gameTime);
+            sb.End();
         }
     }
 }

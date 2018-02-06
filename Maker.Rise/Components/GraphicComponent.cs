@@ -1,17 +1,36 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Rise.Components
 {
     public class GraphicComponent
     {
-        private GraphicsDeviceManager g;
+        internal GraphicsDeviceManager g;
         private InternalGame Game;
 
+        public RenderTarget2D[] RenderTarget = new RenderTarget2D[4];
+        
         public GraphicComponent(InternalGame game)
         {
             Game = game;
             g = new GraphicsDeviceManager(game);
+        }
+
+
+        public void ResetRenderTargets()
+        {
+            Logger.Log<GraphicComponent>($"Reseting render targets... ({GetWidth()}/{GetHeight()})");
+            for (var i = 0; i < 4; i++)
+            {
+                if (RenderTarget[i] != null)
+                {
+                    RenderTarget[i].Dispose();
+                }
+
+                RenderTarget[i] = CreateFullscreenRenderTarget();
+            }
+            Engine.Scene.ResetRenderTargets();
         }
 
         public void SetFullscreen()
@@ -40,7 +59,7 @@ namespace Maker.Rise.Components
             g.PreferredBackBufferWidth = width;
             g.PreferredBackBufferHeight = height;
             g.ApplyChanges();
-            Engine.Scene.ResetRenderTargets();
+            ResetRenderTargets();
         }
 
         public Rectangle GetResolutionRect()
@@ -50,25 +69,26 @@ namespace Maker.Rise.Components
 
         public Point GetResolution()
         {
-            return new Point(g.PreferredBackBufferWidth, g.PreferredBackBufferHeight);
-        }
-
-        public int GetHeight()
-        {
-            return g.PreferredBackBufferHeight;
+            return new Point(GetWidth(), GetHeight());
         }
 
         public int GetWidth()
         {
             return g.PreferredBackBufferWidth;
         }
+        
+        public int GetHeight()
+        {
+            return g.PreferredBackBufferHeight;
+        }
+
 
         public Vector2 GetCenter() { return GetResolutionRect().Center.ToVector2(); }
 
         public RenderTarget2D CreateFullscreenRenderTarget()
         {
-            return new RenderTarget2D(GetGraphicsDevice(), Engine.Graphic.GetWidth(),
-                Engine.Graphic.GetHeight());
+            Logger.Log<GraphicComponent>($"Generating render target {GetWidth()}/{GetHeight()}");
+            return new RenderTarget2D(GetGraphicsDevice(), GetWidth(), GetHeight());
         }
 
         public void SetRenderTarget(RenderTarget2D renderTarget)

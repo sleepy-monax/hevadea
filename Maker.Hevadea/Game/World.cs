@@ -15,16 +15,10 @@ namespace Maker.Hevadea.Game
         public string PlayerSpawnLevel = "overworld";
 
         private SpriteBatch spriteBatch;
-        private RenderTarget2D RT0;
-        private RenderTarget2D RT1;
-        private RenderTarget2D RT2;
         private BlendState lightBlend = new BlendState() { ColorBlendFunction = BlendFunction.Add, ColorSourceBlend = Blend.DestinationColor, ColorDestinationBlend = Blend.Zero };
         public World()
         {
             spriteBatch = Engine.Graphic.CreateSpriteBatch();
-            RT0 = Engine.Graphic.CreateFullscreenRenderTarget();
-            RT1 = Engine.Graphic.CreateFullscreenRenderTarget();
-            RT2 = Engine.Graphic.CreateFullscreenRenderTarget();
         }
 
         public void SpawnPlayer(PlayerEntity player)
@@ -60,7 +54,7 @@ namespace Maker.Hevadea.Game
             var level = camera.FocusEntity.Level;
             var state = level.GetRenderState(camera);
 
-            Engine.Graphic.SetRenderTarget(RT1);
+            //Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[1]);
 
             Engine.Graphic.Begin(spriteBatch, false, camera.GetTransform());
             level.DrawTerrain(state, spriteBatch, gameTime);
@@ -68,8 +62,9 @@ namespace Maker.Hevadea.Game
             level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
             spriteBatch.End();
 
+            return;
             
-            Engine.Graphic.SetRenderTarget(RT0);
+            Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
 
             //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
             Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
@@ -82,13 +77,13 @@ namespace Maker.Hevadea.Game
 
             Engine.Graphic.Begin(spriteBatch);
 
-            spriteBatch.Draw(RT1, Engine.Graphic.GetResolutionRect(), Color.White);
+            spriteBatch.Draw(Engine.Graphic.RenderTarget[1], Engine.Graphic.GetResolutionRect(), Color.White);
 
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.Immediate, lightBlend);
 
-            spriteBatch.Draw(RT0, Engine.Graphic.GetResolutionRect(), Color.White);
+            spriteBatch.Draw(Engine.Graphic.RenderTarget[0], Engine.Graphic.GetResolutionRect(), Color.White);
 
             spriteBatch.End();
 

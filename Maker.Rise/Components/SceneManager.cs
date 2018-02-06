@@ -19,9 +19,8 @@ namespace Maker.Rise.Components
         public ParalaxeBackground Background = null;
         public SpriteBatch sb;
 
-        private RenderTarget2D RT0;
         public RenderTarget2D RenderTarget { get; private set; }
-        public RenderTarget2D BlurRT { get; set; }
+        public RenderTarget2D BluredScene { get; set; }
 
         private BlurEffect blur;
 
@@ -43,9 +42,10 @@ namespace Maker.Rise.Components
 
         public void ResetRenderTargets()
         {
+            RenderTarget?.Dispose();
+            BluredScene?.Dispose();
             RenderTarget = Engine.Graphic.CreateFullscreenRenderTarget();
-            BlurRT = Engine.Graphic.CreateFullscreenRenderTarget();
-            RT0 = Engine.Graphic.CreateFullscreenRenderTarget();
+            BluredScene = Engine.Graphic.CreateFullscreenRenderTarget();
         }
 
         public override void Update(GameTime gameTime)
@@ -69,13 +69,16 @@ namespace Maker.Rise.Components
 
             if (CurrentScene != null)
             {
-                CurrentScene.Container.Bound = Engine.Graphic.GetResolutionRect();
-                CurrentScene.Container.RefreshLayout();
+                if (CurrentScene.Container != null)
+                {   
+                    CurrentScene.Container.Bound = Engine.Graphic.GetResolutionRect();
+                    CurrentScene.Container?.RefreshLayout();
+                    CurrentScene.Container?.UpdateInternal(gameTime);
+                }
 
                 if (NextScene == null)
                 {
-                    CurrentScene.Container.Update(gameTime);
-                    CurrentScene.Update(gameTime);
+                    CurrentScene.OnUpdate(gameTime);
                 }
             }
 
@@ -83,45 +86,45 @@ namespace Maker.Rise.Components
 
         public override void Draw(GameTime gameTime)
         {
-            Game.GraphicsDevice.ScissorRectangle =
-                new Rectangle(0, 0, Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
-
-
+            // Todo move all of this to Scene.Draw
             Engine.Graphic.SetRenderTarget(RenderTarget);
-
-            // Render the scene:
-            Engine.Graphic.Begin(sb);
-            Background?.Draw(sb, gameTime);
-            sb.End();
-
+            
+            
+            if (Background != null)
+                sb.BeginDrawEnd(Background.Draw, gameTime);
+            
             if (CurrentScene != null)
             {
-                CurrentScene.Draw(gameTime);
+                CurrentScene.OnDraw(gameTime);
             }
 
-            Engine.Graphic.SetRenderTarget(RT0);
-
-            sb.Begin(SpriteSortMode.Immediate, null, null, null, null, blur.Effect);
-            blur.Use(true);
-            sb.Draw(RenderTarget, Engine.Graphic.GetResolutionRect(), Color.White);
-            sb.End();
-
-
-            Engine.Graphic.SetRenderTarget(BlurRT);
-            sb.Begin(SpriteSortMode.Immediate, null, null, null, null, blur.Effect);
-            blur.Use(false);
-            sb.Draw(RT0, Engine.Graphic.GetResolutionRect(), Color.White);
-            sb.End();
+            Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
+            sb.BeginDrawEnd((sb, gt) =>
+            {
+                blur.Use(true);
+                sb.Draw(RenderTarget, Engine.Graphic.GetResolutionRect(), Color.White);
+            }, gameTime, new SpriteBatchBeginState { SortMode = SpriteSortMode.Immediate, Effect = blur.Effect});
+            
+            Engine.Graphic.SetRenderTarget(BluredScene);
+            sb.BeginDrawEnd((sb, gt) =>
+            {
+                blur.Use(false);
+                sb.Draw(Engine.Graphic.RenderTarget[0], Engine.Graphic.GetResolutionRect(), Color.White);
+            }, gameTime, new SpriteBatchBeginState { SortMode = SpriteSortMode.Immediate, Effect = blur.Effect});
 
             Engine.Graphic.SetRenderTarget(null);
-            sb.Begin(SpriteSortMode.Immediate);
-            sb.Draw(RenderTarget, Engine.Graphic.GetResolutionRect(), Color.White);
-            sb.End();
+            
+            sb.BeginDrawEnd((sb, gt) =>
+            {
+                var bound = new Rectangle(0, 0, RenderTarget.Width, RenderTarget.Height);
+                sb.Draw(RenderTarget, bound, Color.White);
+            });
+            
 
-            if (CurrentScene != null)
+            if (CurrentScene != null && CurrentScene.Container != null)
             {
                 Engine.Graphic.Begin(sb);
-                CurrentScene.Container.Draw(sb, gameTime);
+                CurrentScene.Container.DrawIternal(sb, gameTime);
                 sb.End();
             }
 

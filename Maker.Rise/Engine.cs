@@ -67,6 +67,7 @@ namespace Maker.Rise
         private static void Game_OnLoad(InternalGame sender, EventArgs e)
         {
             Scene.Switch(MainScene);
+            Graphic.ResetRenderTargets();
         }
     }
 }

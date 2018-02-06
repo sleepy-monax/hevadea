@@ -8,6 +8,8 @@ using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Enums;
 using Maker.Rise.UI;
+using Maker.Rise.UI.Widgets;
+using Maker.Rise.UI.Widgets.Containers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -21,30 +23,25 @@ namespace Maker.Hevadea.Scenes
         {
             _game = game;
             _game.CurrentMenuChange += Game_CurrentMenuChange;
+            Container = new Panel();
         }
 
         private void Game_CurrentMenuChange(Menu oldMenu, Menu newMenu)
         {
-            if (oldMenu != null)
-            {
-                //Container.RemoveChild(oldMenu);
-            }
-
             // Add the menu to the ui tree.
-            //newMenu.Dock = Dock.Fill;
-            //Container.AddChild(newMenu);
-            //Container.RefreshLayout();
+            var p  = (Panel)Container;
+            p.Content = newMenu;
+            Container.RefreshLayout();
         }
 
         public override void Load()
         {
             _game.Initialize();
-            //Container.Padding = new Padding(16);
             Engine.Scene.Background = null;
         }
 
 
-        public override void Update(GameTime gameTime)
+        public override void OnUpdate(GameTime gameTime)
         {
             if (_game.CurrentMenu == null || !_game.CurrentMenu.PauseGame)
             {
@@ -86,7 +83,7 @@ namespace Maker.Hevadea.Scenes
             }
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void OnDraw(GameTime gameTime)
         {
             _game.Draw(gameTime);
         }
