@@ -15,7 +15,7 @@ namespace Maker.Rise.UI.Widgets.Containers
                 switch (c.Dock)
                 {
                     case Dock.Top:
-                        b = new Rectangle(h.X, h.Y, b.Height, h.Width);
+                        b = new Rectangle(h.X, h.Y, h.Width, b.Height);
                         h = new Rectangle(h.X, h.Y + b.Height, h.Width, h.Height - b.Height);
                         break;
                     case Dock.Right:
@@ -23,7 +23,7 @@ namespace Maker.Rise.UI.Widgets.Containers
                         h = new Rectangle(h.X, h.Y , h.Width - b.Width, h.Height);
                         break;
                     case Dock.Bottom:
-                        b = new Rectangle(h.X, h.Y + h.Height - b.Height, b.Height, h.Width);
+                        b = new Rectangle(h.X, h.Y + h.Height - b.Height, h.Width, b.Height);
                         h = new Rectangle(h.X, h.Y, h.Width, h.Height - b.Height);
                         break;
                     case Dock.Left:

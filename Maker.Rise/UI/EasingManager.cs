@@ -27,6 +27,13 @@ namespace Maker.Rise.UI
             _ended = false;
         }
 
+        public float GetValueInv(EasingFunctions show, EasingFunctions hide) => (1f - GetValue(show, hide));
+        
+        public float GetValue(EasingFunctions show, EasingFunctions hide)
+        {
+            return GetValue(Show ? show : hide);
+        }
+        
         public float GetValue(EasingFunctions function)
         {
             return Easings.Interpolate(_value, function);

@@ -20,7 +20,8 @@ namespace Maker.Hevadea.Scenes
     {
         public override void Load()
         {
-            var backButton = new Button {Text = "Back", Bound = new Rectangle(0, 0, 120, 48), Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, BlurBackground = true, Offset = new Point(16, -16)};
+            var backButton = new BackButton 
+                { Bound = new Rectangle(0, 0, 48, 48), Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, BlurBackground = true, Offset = new Point(0, -16)};
             backButton.MouseClick += sender => Engine.Scene.Switch(new MainMenu());
             
             var newButton = new Button {Text = "New", Bound = new Rectangle(0, 0, 120, 48), Origine = Anchor.BottomRight, Anchor = Anchor.BottomRight, BlurBackground = true, Offset = new Point(-16, -16)};

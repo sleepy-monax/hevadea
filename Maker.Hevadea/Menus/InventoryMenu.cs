@@ -19,18 +19,23 @@ namespace Maker.Hevadea.Game.Menus
     {
         public InventoryMenu(Entity entity, GameManager game) : base(game)
         {
+            var player = (PlayerEntity) entity;
             PauseGame = true;
-            var inventory = new InventoryUi(entity.Components.Get<Inventory>().Content){ Padding = new Padding(4, 4) };
-            var crafting = new CraftingControl(entity.Components.Get<Inventory>().Content){ Padding  = new Padding(4, 4)};
+            var inventory = new InventoryUi(entity.Components.Get<Inventory>().Content)
+                { Padding = new Padding(4, 4), Dock = Dock.Fill };
+            
+            var crafting = new CraftingControl(entity.Components.Get<Inventory>().Content)
+                { Padding  = new Padding(4, 4), Dock = Dock.Fill };
+            
             Content = new AnchoredContainer
             {
                 Childrens =
                 {
-                    new BlurPanel()
+                    new Panel()
                     {
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
-                        Bound = new Rectangle(0, 0, 800, 600),
+                        Bound = new Rectangle(0, 0, 800, 480),
                         Content = new TileContainer
                         {
                             Childrens =
@@ -38,17 +43,38 @@ namespace Maker.Hevadea.Game.Menus
                                 new BlurPanel
                                 {
                                     Padding = new Padding(4),
-                                    Content = inventory
+                                    Content = new DockContainer
+                                    {
+                                        Childrens =
+                                        {
+                                            new Label{ Text = "Inventory", Font = Ressources.fontAlagard, Dock = Dock.Top},
+                                            inventory
+                                        }
+                                    }
                                 },
                                 new BlurPanel
                                 {
                                     Padding = new Padding(4),
-                                    Content = crafting
+                                    Content = new DockContainer
+                                    {
+                                        Childrens =
+                                        {
+                                            new Label  { Text = "Crafting", Font = Ressources.fontAlagard, Dock = Dock.Top },
+                                            new Button { Text = "Craft", Dock = Dock.Bottom , Padding = new Padding(8), BlurBackground = false},
+                                            crafting,
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            };
+
+            inventory.MouseClick += sender => 
+            {
+                inventory.HighlightedItem = inventory.SelectedItem;
+                player.HoldingItem = inventory.SelectedItem;
             };
         } 
     }

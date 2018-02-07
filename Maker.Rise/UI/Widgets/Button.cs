@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
+﻿// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Local
+
 using Maker.Rise.Extension;
 using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
@@ -34,13 +31,15 @@ namespace Maker.Rise.UI.Widgets
             spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
             spriteBatch.DrawRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
 
-            var bounceW = (int) (Host.Width * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
+            var bounceW = (int) (Host.Width *  _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
             var bounceH = (int) (Host.Height * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
+            
             var rect = new Rectangle(Host.X + Host.Width / 2 - bounceW / 2,
-                                     Host.Y + Host.Height / 2 - bounceH / 2, 
+                Host.Y + Host.Height / 2 - bounceH / 2, 
                                      bounceW, bounceH);
-            spriteBatch.FillRectangle(rect, OverColor * 0.25f * _easing.GetValue(EasingFunctions.Linear));
-            spriteBatch.DrawRectangle(rect, OverColor * 0.25f * _easing.GetValue(EasingFunctions.Linear));
+            
+            spriteBatch.FillRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
+            spriteBatch.DrawRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
 
             var texSize = Font.MeasureString(Text);
             spriteBatch.DrawString(Font, Text, Bound.Center.ToVector2() - (new Vector2(texSize.X / 2, (texSize.Y / 2) - 4f)), Color.Black * 0.1f);

@@ -21,6 +21,8 @@ namespace Maker.Rise
         public static Version Version => Assembly.GetExecutingAssembly().GetName().Version;
         public static readonly Random Random = new Random();
         
+        public static EngineConfig Configuration = new EngineConfig();
+        
         public static InternalGame MonoGameHandle;
         private static Scene MainScene;
         

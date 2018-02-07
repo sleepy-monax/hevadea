@@ -13,6 +13,11 @@ namespace Maker.Hevadea.Game.Entities.Component.Ai.Actions
             Speed = speed;
         }
 
+        public override bool IsRunning()
+        {
+            return true;
+        }
+
         public override void Update(GameTime gameTime)
         {
             var move = Owner.Components.Get<Move>();
@@ -23,7 +28,7 @@ namespace Maker.Hevadea.Game.Entities.Component.Ai.Actions
             }
             else
             {
-                Ai.NextAction();
+                
             }
         }
     }

@@ -25,7 +25,8 @@ namespace Maker.Hevadea.Game.Registry
         public static PlacableItem<ChestEntity> ChestItem;
         public static PlacableItem<TorchEntity> TorchItem;
         public static PlacableItem<CraftingBenchEntity> CraftingbenchItem;
-
+        public static PlacableItem<FurnaceEntity> FurnaceItem;
+        
         public static void Initialize()
         {   
             WoodMaterial = new BaseMaterial(2f);
@@ -42,6 +43,7 @@ namespace Maker.Hevadea.Game.Registry
             ChestItem = new PlacableItem<ChestEntity>("Chest", new Sprite(Ressources.tile_entities, new Point(1, 1)));
             TorchItem = new PlacableItem<TorchEntity>("Torch", new Sprite(Ressources.tile_entities, new Point(1, 3)));
             CraftingbenchItem = new PlacableItem<CraftingBenchEntity>("Bench", new Sprite(Ressources.tile_entities, new Point(2, 2)));
+            FurnaceItem = new PlacableItem<FurnaceEntity>("Furnace", new Sprite(Ressources.tile_entities, new Point(2, 3)));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Maker.Hevadea.Game.Entities
 
             Components.Adds(
                 new Breakable(),
-                new Dropable() { Items = { (ITEMS.CraftingbenchItem, 1,1)} }
+                new Dropable() { Items = { (ITEMS.CraftingbenchItem, 1, 1)} }
                 );
         }
 

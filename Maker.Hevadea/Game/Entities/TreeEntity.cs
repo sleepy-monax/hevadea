@@ -17,8 +17,10 @@ namespace Maker.Hevadea.Game.Entities
             Origin = new Point(2,2);
             treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
 
-            Components.Add(new Health(5));
-            Components.Add(new Dropable { Items = { (ITEMS.WoodLog, 1, 5), (ITEMS.PineCone, 0, 3) } });
+            Components.Adds(
+                new Health(5),
+                new Dropable { Items = { (ITEMS.WoodLog, 1, 5), (ITEMS.PineCone, 0, 3) } }
+                );
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

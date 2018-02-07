@@ -6,20 +6,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component.Ai
 {
-    public class Ai : EntityComponent, IUpdatableComponent, IDrawableComponent, IDrawableOverlayComponent
+    public abstract class Ai : EntityComponent, IUpdatableComponent, IDrawableComponent, IDrawableOverlayComponent
     {
+        public BehaviorBase Behavior { get; set; }
 
-        public Stack<Action> ActionStack;
-        public BehaviorBase Behavior;
-        
-        public void NextAction()
+        private Stack<Action> _actionStack = new Stack<Action>();
+        public Action CurrentAction => _actionStack.Peek();
+
+        public void PushAction(Action action)
         {
-            
+            _actionStack.Push(action);
         }
-        
+
+                
         public void Update(GameTime gameTime)
         {
-
+            
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

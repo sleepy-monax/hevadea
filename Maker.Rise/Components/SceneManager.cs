@@ -92,25 +92,27 @@ namespace Maker.Rise.Components
             
             if (Background != null)
                 sb.BeginDrawEnd(Background.Draw, gameTime);
-            
-            if (CurrentScene != null)
-            {
-                CurrentScene.OnDraw(gameTime);
-            }
+
+            CurrentScene?.OnDraw(gameTime);
 
             Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
-            sb.BeginDrawEnd((sb, gt) =>
-            {
+
+            if (Engine.Configuration.EnableBlur)
+            {                
+                var blurBeginState = new SpriteBatchBeginState {SortMode = SpriteSortMode.Immediate, Effect = blur.Effect};
+                
+                sb.Begin(blurBeginState);
                 blur.Use(true);
                 sb.Draw(RenderTarget, Engine.Graphic.GetResolutionRect(), Color.White);
-            }, gameTime, new SpriteBatchBeginState { SortMode = SpriteSortMode.Immediate, Effect = blur.Effect});
-            
-            Engine.Graphic.SetRenderTarget(BluredScene);
-            sb.BeginDrawEnd((sb, gt) =>
-            {
+                sb.End();
+
+                Engine.Graphic.SetRenderTarget(BluredScene);
+                
+                sb.Begin(blurBeginState);
                 blur.Use(false);
-                sb.Draw(Engine.Graphic.RenderTarget[0], Engine.Graphic.GetResolutionRect(), Color.White);
-            }, gameTime, new SpriteBatchBeginState { SortMode = SpriteSortMode.Immediate, Effect = blur.Effect});
+                sb.Draw(Engine.Graphic.RenderTarget[0], Engine.Graphic.GetResolutionRect(), Color.White); 
+                sb.End();
+            }
 
             Engine.Graphic.SetRenderTarget(null);
             
@@ -121,35 +123,41 @@ namespace Maker.Rise.Components
             });
             
 
-            if (CurrentScene != null && CurrentScene.Container != null)
+            if (CurrentScene?.Container != null)
             {
-                Engine.Graphic.Begin(sb);
-                CurrentScene.Container.DrawIternal(sb, gameTime);
-                sb.End();
+                sb.BeginDrawEnd(
+                    CurrentScene.Container.DrawIternal,
+                    gameTime,
+                    new SpriteBatchBeginState{ SortMode = SpriteSortMode.Immediate, SamplerState = SamplerState.PointWrap, RasterizerState = Engine.CommonRasterizerState});
             }
 
             if (IsSceneSwitching)
             {
-                Engine.Graphic.Begin(sb);
-
-                int sizeX = Engine.Graphic.GetWidth() / 80;
-                int sizeY = Engine.Graphic.GetWidth() / 60;
-
-                for (int x = 0; x < 80; x++)
-                {
-                    for (int y = 0; y < 60; y++)
-                    {
-                        int dd = (y + x % 2 * 2 + x / 3) - (Timer);
-                        if (dd < 0 && dd > -120)
-                        {
-                            sb.FillRectangle(new Rectangle(x * sizeX, y * sizeY, sizeX, sizeY), Color.Black);  
-                        }
-                    }
-                }
-                sb.End();
+                DrawTransition();
             }
         }
 
+        private void DrawTransition()
+        {
+            Engine.Graphic.Begin(sb);
+
+            int sizeX = Engine.Graphic.GetWidth() / 80;
+            int sizeY = Engine.Graphic.GetWidth() / 60;
+
+            for (int x = 0; x < 80; x++)
+            {
+                for (int y = 0; y < 60; y++)
+                {
+                    int dd = (y + x % 2 * 2 + x / 3) - (Timer);
+                    if (dd < 0 && dd > -120)
+                    {
+                        sb.FillRectangle(new Rectangle(x * sizeX, y * sizeY, sizeX, sizeY), Color.Black);  
+                    }
+                }
+            }
+            sb.End();
+        }
+        
         /// <summary>
         /// Switch the current scene to a another one.
         /// </summary>
