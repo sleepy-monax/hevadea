@@ -2,6 +2,6 @@
 {
     public class EngineConfig
     {
-        public bool EnableBlur { get; set; } = false;
+        public bool EnableBlur { get; set; } = true;
     }
 }
