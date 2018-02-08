@@ -60,8 +60,8 @@ namespace Maker.Hevadea.Game
 
             Engine.Graphic.Begin(spriteBatch, false, camera.GetTransform());
             level.DrawTerrain(state, spriteBatch, gameTime);
-            level.DrawEntities(state, spriteBatch, gameTime);
             level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
+            level.DrawEntities(state, spriteBatch, gameTime);
             spriteBatch.End();
 
             Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
