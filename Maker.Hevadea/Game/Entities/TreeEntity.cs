@@ -8,19 +8,19 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class TreeEntity : Entity
     {
-        Sprite treeSprite;
+        private readonly Sprite treeSprite;
 
         public TreeEntity()
         {
             Width = 4;
             Height = 4;
-            Origin = new Point(2,2);
-            treeSprite = new Sprite(Ressources.tile_entities, 0, new Point(16, 16));
+            Origin = new Point(2, 2);
+            treeSprite = new Sprite(Ressources.TileEntities, 0, new Point(16, 16));
 
             Components.Adds(
                 new Health(5),
-                new Dropable { Items = { (ITEMS.WoodLog, 1, 5), (ITEMS.PineCone, 0, 3) } }
-                );
+                new Dropable {Items = {(ITEMS.WoodLog, 1, 5), (ITEMS.PineCone, 0, 3)}}
+            );
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

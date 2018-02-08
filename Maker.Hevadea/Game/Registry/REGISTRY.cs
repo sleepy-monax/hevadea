@@ -4,7 +4,6 @@ namespace Maker.Hevadea.Game.Registry
 {
     public static class REGISTRY
     {
-
         public static void Initialize()
         {
             Logger.Log("Initializing game registery.");
@@ -15,6 +14,5 @@ namespace Maker.Hevadea.Game.Registry
                 GENERATOR.Initialize();
             }
         }
-
     }
 }

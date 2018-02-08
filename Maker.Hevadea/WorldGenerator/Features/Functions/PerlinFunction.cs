@@ -3,23 +3,25 @@ using Maker.Rise.Utils;
 
 namespace Maker.Hevadea.WorldGenerator.Features.Functions
 {
-    public class PerlinFunction : FunctionBase
+    public class PerlinFunction : IFunction
     {
-        public int Octaves { get; set; } = 1;
-        public double Persistance { get; set; } = 1;
-        public double Scretch { get; set; } = 10d;
+        private readonly int _octaves = 1;
+        private readonly double _persistance = 1;
+        private readonly double _scretch = 10d;
 
 
-        public PerlinFunction() { /* Do nothing */ }
-        public PerlinFunction(int octaves, double persistance, double scretch)
+        public PerlinFunction(int octaves = 1, double persistance = 1, double scretch = 10)
         {
-            Octaves = octaves;
-            Persistance = persistance;
-            Scretch = scretch;
+            _octaves = octaves;
+            _persistance = persistance;
+            _scretch = scretch;
         }
 
 
-        public override double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
-        => Perlin.OctavePerlin((x + (gen.Seed^2)) / Scretch, (y +(gen.Seed^2)) / Scretch, 0, Octaves, Persistance);
+        public double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
+        {
+            return Perlin.OctavePerlin((x + (gen.Seed ^ 2)) / _scretch, (y + (gen.Seed ^ 2)) / _scretch, 0, _octaves,
+                _persistance);
+        }
     }
 }

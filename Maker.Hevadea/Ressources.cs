@@ -7,79 +7,78 @@ namespace Maker.Hevadea
 {
     public static class Ressources
     {
-        public static SpriteFont fontAlagard;
-        public static SpriteFont fontAlagardBig;
-        public static SpriteFont fontRomulus;
+        public static SpriteFont FontAlagard;
+        public static SpriteFont FontAlagardBig;
+        public static SpriteFont FontRomulus;
 
-        public static Texture2D img_icons;
-        public static Texture2D img_tiles;
-        public static Texture2D img_items;
-        public static Texture2D img_entities;
-        public static Texture2D img_creatures;
-        public static Texture2D img_rock;
-        public static Texture2D img_light;
-        public static Texture2D img_shadow;
-        public static Texture2D img_swing;
+        public static Texture2D ImgIcons;
+        public static Texture2D ImgTiles;
+        public static Texture2D ImgItems;
+        public static Texture2D ImgEntities;
+        public static Texture2D ImgCreatures;
+        public static Texture2D ImgRock;
+        public static Texture2D ImgLight;
+        public static Texture2D ImgShadow;
+        public static Texture2D ImgSwing;
 
 
-        public static Texture2D img_maker_logo;
-        public static Texture2D img_engine_logo;
-        public static Texture2D img_hevadea_logo;
+        public static Texture2D ImgMakerLogo;
+        public static Texture2D ImgEngineLogo;
+        public static Texture2D ImgHevadeaLogo;
 
-        public static Texture2D img_forest_background;
-        public static Texture2D img_forest_light;
-        public static Texture2D img_forest_trees0;
-        public static Texture2D img_forest_trees1;
+        public static Texture2D ImgForestBackground;
+        public static Texture2D ImgForestLight;
+        public static Texture2D ImgForestTrees0;
+        public static Texture2D ImgForestTrees1;
 
-        public static SpriteSheet tile_tiles;
-        public static SpriteSheet tile_icons;
-        public static SpriteSheet tile_items;
-        public static SpriteSheet tile_entities;
-        public static SpriteSheet tile_creatures;
-        public static SpriteSheet tile_rock;
+        public static SpriteSheet TileTiles;
+        public static SpriteSheet TileIcons;
+        public static SpriteSheet TileItems;
+        public static SpriteSheet TileEntities;
+        public static SpriteSheet TileCreatures;
+        public static SpriteSheet TileRock;
 
-        public static ParalaxeBackground paralaxe_forest;
-
+        public static ParalaxeBackground ParalaxeForest;
 
 
         public static void Load()
         {
-            fontAlagard = Engine.Ressource.GetSpriteFont("alagard");
-            fontAlagardBig = Engine.Ressource.GetSpriteFont("alagard_big");
-            fontRomulus = Engine.Ressource.GetSpriteFont("romulus");
+            FontAlagard = Engine.Ressource.GetSpriteFont("alagard");
+            FontAlagardBig = Engine.Ressource.GetSpriteFont("alagard_big");
+            FontRomulus = Engine.Ressource.GetSpriteFont("romulus");
 
-            img_tiles = Engine.Ressource.GetImage("tiles");
-            img_items = Engine.Ressource.GetImage("items");
-            img_icons = Engine.Ressource.GetImage("icons");
-            img_entities = Engine.Ressource.GetImage("entities");
-            img_creatures = Engine.Ressource.GetImage("creatures");
-            img_rock = Engine.Ressource.GetImage("rock");
+            ImgTiles = Engine.Ressource.GetImage("tiles");
+            ImgItems = Engine.Ressource.GetImage("items");
+            ImgIcons = Engine.Ressource.GetImage("icons");
+            ImgEntities = Engine.Ressource.GetImage("entities");
+            ImgCreatures = Engine.Ressource.GetImage("creatures");
+            ImgRock = Engine.Ressource.GetImage("rock");
 
-            img_light = Engine.Ressource.GetImage("light");
-            img_shadow = Engine.Ressource.GetImage("shadow");
-            img_swing = Engine.Ressource.GetImage("swing");
+            ImgLight = Engine.Ressource.GetImage("light");
+            ImgShadow = Engine.Ressource.GetImage("shadow");
+            ImgSwing = Engine.Ressource.GetImage("swing");
 
-            img_maker_logo = Engine.Ressource.GetImage("logo/maker");
-            img_engine_logo = Engine.Ressource.GetImage("logo/engine");
-            img_hevadea_logo = Engine.Ressource.GetImage("logo/hevadea");
+            ImgMakerLogo = Engine.Ressource.GetImage("logo/maker");
+            ImgEngineLogo = Engine.Ressource.GetImage("logo/engine");
+            ImgHevadeaLogo = Engine.Ressource.GetImage("logo/hevadea");
 
-            img_forest_background = Engine.Ressource.GetImage("background/forest");
-            img_forest_light = Engine.Ressource.GetImage("background/forest_light");
-            img_forest_trees0 = Engine.Ressource.GetImage("background/forest_trees0");
-            img_forest_trees1 = Engine.Ressource.GetImage("background/forest_trees1");
+            ImgForestBackground = Engine.Ressource.GetImage("background/forest");
+            ImgForestLight = Engine.Ressource.GetImage("background/forest_light");
+            ImgForestTrees0 = Engine.Ressource.GetImage("background/forest_trees0");
+            ImgForestTrees1 = Engine.Ressource.GetImage("background/forest_trees1");
 
-            tile_tiles = new SpriteSheet(img_tiles, new Point(32, 32));
-            tile_icons = new SpriteSheet(img_icons, new Point(16, 16));
-            tile_items = new SpriteSheet(img_items, new Point(16, 16));
-            tile_entities = new SpriteSheet(img_entities, new Point(16, 16));
-            tile_creatures = new SpriteSheet(img_creatures, new Point(48, 128));
-            tile_rock = new SpriteSheet(img_rock, new Point(16, 16));
+            TileTiles = new SpriteSheet(ImgTiles, new Point(32, 32));
+            TileIcons = new SpriteSheet(ImgIcons, new Point(16, 16));
+            TileItems = new SpriteSheet(ImgItems, new Point(16, 16));
+            TileEntities = new SpriteSheet(ImgEntities, new Point(16, 16));
+            TileCreatures = new SpriteSheet(ImgCreatures, new Point(48, 128));
+            TileRock = new SpriteSheet(ImgRock, new Point(16, 16));
 
-            paralaxe_forest = new ParalaxeBackground(
-                new ParalaxeLayer(img_forest_background, 1.1f),
-                new ParalaxeLayer(img_forest_trees0, 1.5f),
-                new ParalaxeLayer(img_forest_light, 2f),
-                new ParalaxeLayer(img_forest_trees1, 2.5f)
+            ParalaxeForest = new ParalaxeBackground(
+                new ParalaxeLayer(ImgForestBackground, 1.1f),
+                new ParalaxeLayer(ImgForestTrees0, 1.5f),
+                new ParalaxeLayer(ImgForestLight, 2f),
+                new ParalaxeLayer(ImgForestTrees1, 2.5f)
             );
         }
     }

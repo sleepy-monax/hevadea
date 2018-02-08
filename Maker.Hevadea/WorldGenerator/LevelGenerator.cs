@@ -1,5 +1,5 @@
-﻿using Maker.Hevadea.Game;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Maker.Hevadea.Game;
 using Maker.Utils;
 
 namespace Maker.Hevadea.WorldGenerator
@@ -9,16 +9,18 @@ namespace Maker.Hevadea.WorldGenerator
         public int LevelId { get; set; } = 0;
         public string LevelName { get; set; } = "none";
 
-        private List<GenFeature> features;
-        public List<GenFeature> Features => features ?? (features = new List<GenFeature>());
+
+        public List<GenFeature> Features { get; set; } = new List<GenFeature>();
+        public GenFeature CurrentFeature = null;
 
         public Level Generate(Generator gen)
         {
-            var level = new Level(gen.Size, gen.Size) { Id = LevelId, Name = LevelName};
-            
-            foreach (var f in features)
+            var level = new Level(gen.Size, gen.Size) {Id = LevelId, Name = LevelName};
+
+            foreach (var f in Features)
             {
                 Logger.Log<LevelGenerator>($"Applying feature '{f.GetName()}'...");
+                CurrentFeature = f;
                 f.Apply(gen, this, level);
             }
 

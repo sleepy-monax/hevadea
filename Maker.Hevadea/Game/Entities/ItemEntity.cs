@@ -28,13 +28,12 @@ namespace Maker.Hevadea.Game.Entities
             Components.Add(new Move());
         }
 
-        public ItemEntity(int itemId) : this(ITEMS.ById[itemId], 0,0)
+        public ItemEntity(int itemId) : this(ITEMS.ById[itemId], 0, 0)
         {
         }
 
         public ItemEntity(int itemId, float speedx, float speedy) : this(ITEMS.ById[itemId], speedx, speedy)
         {
-
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -48,11 +47,7 @@ namespace Maker.Hevadea.Game.Entities
             {
                 var inv = e.Components.Get<Inventory>();
 
-                if (inv != null && inv.Pickup(Item))
-                {
-                    Remove();
-                }
-                
+                if (inv != null && inv.Pickup(Item)) Remove();
             }
         }
 

@@ -9,17 +9,42 @@ namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Inventory : EntityComponent, IDrawableComponent, IUpdatableComponent, ISaveLoadComponent
     {
-        public ItemStorage Content { get; private set; }
-        public bool AlowPickUp { get; set; } = false;
-        
-        private Item _lastAdded;
         private readonly EasingManager _pickUpAnimation = new EasingManager();
+
+        private Item _lastAdded;
 
         public Inventory(int slotCount)
         {
             Content = new ItemStorage(slotCount);
         }
-        
+
+        public ItemStorage Content { get; }
+        public bool AlowPickUp { get; set; } = false;
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (_lastAdded == null) return;
+            var size = 1f - _pickUpAnimation.GetValue(EasingFunctions.QuadraticEaseOut);
+            _lastAdded.GetSprite().Draw(spriteBatch,
+                new Vector2(Owner.X + Owner.Width / 2f - 8 * size, Owner.Y + Owner.Height / 2 - 24 * size), size,
+                Color.White);
+        }
+
+        public void OnGameSave(EntityStorage store)
+        {
+            store.Set(nameof(Content), Content.Items);
+        }
+
+        public void OnGameLoad(EntityStorage store)
+        {
+            Content.Items = store.Get(nameof(Content), Content.Items);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            _pickUpAnimation.Update(gameTime);
+        }
+
         public bool Pickup(Item item)
         {
             if (AlowPickUp && Content.Add(item))
@@ -33,30 +58,6 @@ namespace Maker.Hevadea.Game.Entities.Component
             }
 
             return false;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            _pickUpAnimation.Update(gameTime);
-        }
-
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            if (_lastAdded != null)
-            {
-                float size = 1f - _pickUpAnimation.GetValue(EasingFunctions.QuadraticEaseOut);
-                _lastAdded.GetSprite().Draw(spriteBatch, new Vector2(Owner.X + Owner.Width / 2f - 8 * size, Owner.Y + Owner.Height / 2 - 24 * size),  size, Color.White);
-            }            
-        }
-
-        public void OnGameSave(EntityStorage store)
-        {
-            store.Set(nameof(Content), Content.Items);
-        }
-
-        public void OnGameLoad(EntityStorage store)
-        {
-            Content.Items = store.Get(nameof(Content), Content.Items);
         }
     }
 }

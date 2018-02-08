@@ -4,28 +4,28 @@ using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Hevadea.Game.Entities
+namespace Maker.Hevadea.Game.Entities.Furnitures
 {
     public class CraftingBenchEntity : Entity
     {
-        private Sprite sprite;
+        private readonly Sprite _sprite;
 
         public CraftingBenchEntity()
         {
             Width = 12;
             Height = 9;
             Origin = new Point(8, 6);
-            sprite = new Sprite(Ressources.tile_entities, new Point(2, 2));
+            _sprite = new Sprite(Ressources.TileEntities, new Point(2, 2));
 
             Components.Adds(
                 new Breakable(),
-                new Dropable() { Items = { (ITEMS.CraftingbenchItem, 1, 1)} }
-                );
+                new Dropable {Items = {(ITEMS.CraftingbenchItem, 1, 1)}}
+            );
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            sprite.Draw(spriteBatch, new Rectangle((int)X - 2, (int)Y - 5, 16, 16), Color.White);
+            _sprite.Draw(spriteBatch, new Rectangle((int) X - 2, (int) Y - 5, 16, 16), Color.White);
         }
 
         public override bool IsBlocking(Entity e)

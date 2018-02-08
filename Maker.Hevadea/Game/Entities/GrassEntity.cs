@@ -6,14 +6,14 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class GrassEntity : Entity
     {
-        Sprite Sprite;
+        private readonly Sprite Sprite;
 
         public GrassEntity()
         {
             Height = 16;
             Width = 16;
 
-            Sprite = new Sprite(Ressources.tile_entities, new Point(1, 2));
+            Sprite = new Sprite(Ressources.TileEntities, new Point(1, 2));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

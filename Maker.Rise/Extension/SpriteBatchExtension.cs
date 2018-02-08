@@ -425,6 +425,24 @@ namespace Maker.Rise.Extension
 
             spriteBatch.Draw(pixel, position, color);
         }
+        
+        public static void PutPixel(this SpriteBatch spriteBatch, Vector2 position, Color color, float size)
+        {
+            if (pixel == null)
+            {
+                CreateThePixel(spriteBatch);
+            }
+
+            spriteBatch.Draw(pixel,
+                position,
+                null,
+                color,
+                0,
+                Vector2.Zero,
+                new Vector2(size, size),
+                SpriteEffects.None,
+                0);
+        }
 
         #endregion
 

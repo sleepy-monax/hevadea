@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Maker.Rise.Enums;
+using Maker.Rise.Extension;
 
 namespace Maker.Rise.UI.Widgets
 {
@@ -119,6 +120,11 @@ namespace Maker.Rise.UI.Widgets
         public void DrawIternal(SpriteBatch spriteBatch, GameTime gameTime)
         {
             Draw(spriteBatch, gameTime);
+            if (Engine.Configuration.DebugUI)
+            {
+                spriteBatch.DrawRectangle(Host, Color.Cyan);
+                spriteBatch.DrawRectangle(Bound, Color.Black);
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)

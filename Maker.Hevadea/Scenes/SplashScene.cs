@@ -1,22 +1,20 @@
-﻿using Maker.Hevadea.Game.Registry;
+﻿using System.IO;
+using Maker.Hevadea.Game.Registry;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Extension;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.IO;
 
 namespace Maker.Hevadea.Scenes
 {
     public class SplashScene : Scene
     {
-        private SpriteBatch sb;
-        private Texture2D logo;
+        private Texture2D _logo;
 
-        public SplashScene()
-        {
-        }
+        private bool _once = true;
+        private SpriteBatch _sb;
 
 
         public override void Load()
@@ -30,30 +28,28 @@ namespace Maker.Hevadea.Scenes
             //Engine.Graphic.SetWindowedFullScreen();
 
             // Initialize the scene.
-            sb = Engine.Graphic.CreateSpriteBatch();
-            logo = Ressources.img_maker_logo;
+            _sb = Engine.Graphic.CreateSpriteBatch();
+            _logo = Ressources.ImgMakerLogo;
         }
 
         public override void Unload()
         {
         }
 
-        bool once = true;
         public override void OnUpdate(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalSeconds > 3 && once)
-            {
-                Engine.Scene.Switch(new MainMenu());
-                once = false;
-            }
+            if (!(gameTime.TotalGameTime.TotalSeconds > 3) || !_once) return;
+
+            Engine.Scene.Switch(new MainMenu());
+            _once = false;
         }
 
         public override void OnDraw(GameTime gameTime)
         {
-            Engine.Graphic.Begin(sb);
-            sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.White);
-            sb.Draw(logo,Engine.Graphic.GetCenter() - logo.GetCenter(), Color.White * 10f);
-            sb.End();
+            Engine.Graphic.Begin(_sb);
+            _sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.White);
+            _sb.Draw(_logo, Engine.Graphic.GetCenter() - _logo.GetCenter(), Color.White * 10f);
+            _sb.End();
         }
     }
 }

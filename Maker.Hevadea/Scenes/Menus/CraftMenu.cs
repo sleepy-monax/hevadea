@@ -1,4 +1,6 @@
-﻿namespace Maker.Hevadea.Game.Menus
+﻿using Maker.Hevadea.Game;
+
+namespace Maker.Hevadea.Scenes.Menus
 {
     public class CraftMenu : Menu
     {

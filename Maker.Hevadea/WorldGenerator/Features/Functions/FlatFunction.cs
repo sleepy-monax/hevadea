@@ -2,18 +2,18 @@
 
 namespace Maker.Hevadea.WorldGenerator.Features.Functions
 {
-    public class FlatFunction : FunctionBase
+    public class FlatFunction : IFunction
     {
-        private double Value;
+        private readonly double _value;
 
         public FlatFunction(double value)
         {
-            Value = value;
+            _value = value;
         }
 
-        public override double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
+        public double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
         {
-            return Value;
+            return _value;
         }
     }
 }

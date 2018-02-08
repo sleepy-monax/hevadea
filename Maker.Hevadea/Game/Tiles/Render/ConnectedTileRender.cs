@@ -6,7 +6,7 @@ namespace Maker.Hevadea.Game.Tiles.Render
 {
     public class ConnectedTileRender
     {
-        private SpriteSheet Sprites;
+        private readonly SpriteSheet Sprites;
 
         public ConnectedTileRender(SpriteSheet sprites)
         {
@@ -16,8 +16,8 @@ namespace Maker.Hevadea.Game.Tiles.Render
         public void Draw(SpriteBatch spriteBatch, Vector2 position, TileConection connection)
         {
             var index = connection.ToByte();
-            int x = (index % 8);
-            int y = (index / 8);
+            var x = index % 8;
+            var y = index / 8;
 
             new Sprite(Sprites, new Point(x, y)).Draw(spriteBatch, position, Color.White);
         }

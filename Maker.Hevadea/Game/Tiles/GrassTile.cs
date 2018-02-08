@@ -1,15 +1,15 @@
-﻿using Maker.Rise.Ressource;
-using System;
+﻿using System;
+using Maker.Rise.Ressource;
 
 namespace Maker.Hevadea.Game.Tiles
 {
     public class GrassTile : Tile
     {
-        Random rnd = new Random();
+        private Random rnd = new Random();
 
         public GrassTile(byte id) : base(id)
         {
-            Sprite = new Sprite(Ressources.tile_tiles, 2);
+            Sprite = new Sprite(Ressources.TileTiles, 2);
         }
     }
 }

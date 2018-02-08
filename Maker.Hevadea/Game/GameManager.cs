@@ -1,26 +1,37 @@
-﻿using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Menus;
-using Maker.Hevadea.Menus;
+﻿using System;
+using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace Maker.Hevadea.Game
 {
     public class GameManager
     {
-        public World World { get; private set; }
-        public PlayerEntity Player { get; private set; }
-        public Camera Camera { get; private set; }
-        public Random Random { get; private set; } = new Random();
+        public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
 
         private Menu _currentMenu;
-        public int Time { get; set; } = 0;
 
         public GameManager(World world, PlayerEntity player)
         {
             World = world;
             Player = player;
             Camera = new Camera(Player);
+        }
+
+        public World World { get; }
+        public PlayerEntity Player { get; }
+        public Camera Camera { get; }
+        public Random Random { get; } = new Random();
+        public int Time { get; set; } = 0;
+
+        public Menu CurrentMenu
+        {
+            get => _currentMenu;
+            set
+            {
+                CurrentMenuChange?.Invoke(_currentMenu, value);
+                _currentMenu = value;
+            }
         }
 
         public void Initialize()
@@ -30,17 +41,6 @@ namespace Maker.Hevadea.Game
             World.SpawnPlayer(Player);
         }
 
-        public Menu CurrentMenu
-        {
-            get => _currentMenu;
-            set 
-            {
-                CurrentMenuChange?.Invoke(_currentMenu, value);
-                _currentMenu = value;
-            }
-        }
-
-        public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
         public event CurrentMenuChangeHandler CurrentMenuChange;
 
         public void Draw(GameTime gameTime)
@@ -50,10 +50,7 @@ namespace Maker.Hevadea.Game
 
         public void Update(GameTime gameTime)
         {
-            foreach (var l in World.Levels)
-            {
-                l.Update(gameTime);
-            }
+            foreach (var l in World.Levels) l.Update(gameTime);
 
             World.Time++;
         }
@@ -61,12 +58,10 @@ namespace Maker.Hevadea.Game
 
         public static void Save()
         {
-
         }
 
         public static void Load()
         {
-
         }
     }
 }

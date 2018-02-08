@@ -22,10 +22,7 @@ namespace Maker.Hevadea.Game.Entities
 
             var interaction = new Interactable();
             Components.Add(interaction);
-            interaction.OnInteracte += (sender, arg) =>
-            {
-
-            };
+            interaction.OnInteracte += (sender, arg) => { };
         }
 
 

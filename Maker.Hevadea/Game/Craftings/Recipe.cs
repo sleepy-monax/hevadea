@@ -1,15 +1,11 @@
-﻿using Maker.Hevadea.Game.Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Maker.Hevadea.Game.Items;
 
 namespace Maker.Hevadea.Game.Craftings
 {
     public class Recipe
     {
-        public Item Result { get; }
-        public int Quantity { get; }
-        public List<RecipeCost> Costs { get; }
-
         public Recipe(Item result, int quantity, params RecipeCost[] costs)
         {
             Result = result;
@@ -17,6 +13,10 @@ namespace Maker.Hevadea.Game.Craftings
             Costs = new List<RecipeCost>();
             Costs.AddRange(costs);
         }
+
+        public Item Result { get; }
+        public int Quantity { get; }
+        public List<RecipeCost> Costs { get; }
 
         public Recipe AddCost(Item item, int quantity)
         {
@@ -32,12 +32,9 @@ namespace Maker.Hevadea.Game.Craftings
         public bool Craft(ItemStorage i)
         {
             if (!CanBeCrafted(i) || i.GetFreeSpace() < Quantity) return false;
-            
+
             i.Add(Result, Quantity);
-            foreach (var c in Costs)
-            {
-                i.Remove(c.Item, c.Count);
-            }
+            foreach (var c in Costs) i.Remove(c.Item, c.Count);
 
             return true;
         }

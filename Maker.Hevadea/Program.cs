@@ -1,13 +1,13 @@
-﻿using Maker.Hevadea.Scenes;
+﻿using System;
+using Maker.Hevadea.Scenes;
 using Maker.Rise;
-using System;
 
 namespace Maker.Hevadea
 {
     public static class Program
     {
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Engine.Initialize();
             Engine.Start(new SplashScene());

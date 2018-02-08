@@ -2,20 +2,20 @@
 
 namespace Maker.Hevadea.WorldGenerator.Features.Functions
 {
-    public class CombinedFunction : FunctionBase
+    public class CombinedFunction : IFunction
     {
-        FunctionBase FuncA;
-        FunctionBase FuncB;
+        private readonly IFunction _functionA;
+        private readonly IFunction _functionB;
 
-        public CombinedFunction(FunctionBase funcA, FunctionBase funcB)
+        public CombinedFunction(IFunction functionA, IFunction functionB)
         {
-            FuncA = funcA;
-            FuncB = funcB;
+            _functionA = functionA;
+            _functionB = functionB;
         }
 
-        public override double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
+        public double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
         {
-            return FuncA.Compute(x, y, gen, levelGen, level) * FuncB.Compute(x, y, gen, levelGen, level);
+            return _functionA.Compute(x, y, gen, levelGen, level) * _functionB.Compute(x, y, gen, levelGen, level);
         }
     }
 }

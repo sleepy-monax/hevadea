@@ -27,13 +27,7 @@ namespace Maker.Rise.UI.Widgets.Containers
         public abstract void Layout();
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            if (Engine.Debug.Visible)
-            {
-                spriteBatch.DrawRectangle(Bound, Color.Red);
-                spriteBatch.DrawRectangle(Bound, Color.Cyan);
-            }
-            
+        {            
             foreach (var c in Childrens)
             {
                 c.DrawIternal(spriteBatch, gameTime);

@@ -1,6 +1,6 @@
-﻿using Maker.Hevadea.Game.Entities;
+﻿using System.Collections.Generic;
+using Maker.Hevadea.Game.Entities;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 namespace Maker.Hevadea.Game
 {

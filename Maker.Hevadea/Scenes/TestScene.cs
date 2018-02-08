@@ -9,25 +9,23 @@ namespace Maker.Hevadea.Scenes
 {
     public class TestScene : Scene
     {
-        Sprite sprite;
-        CompositConectedTileRender render;
-        SpriteBatch sb;
+        private CompositConectedTileRender render;
+        private SpriteBatch sb;
+        private Sprite sprite;
 
         public override void Load()
         {
-            sprite = new Sprite(Ressources.tile_tiles, 7);
+            sprite = new Sprite(Ressources.TileTiles, 7);
             render = new CompositConectedTileRender(sprite);
             sb = Engine.Graphic.CreateSpriteBatch();
         }
 
         public override void Unload()
         {
-
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-
         }
 
         public override void OnDraw(GameTime gameTime)
@@ -35,15 +33,15 @@ namespace Maker.Hevadea.Scenes
             Engine.Graphic.Begin(sb, false);
 
 
-            for (int i = 0; i < 256; i++)
+            for (var i = 0; i < 256; i++)
             {
                 var conection = new TileConection(i);
                 var index = conection.ToByte();
-                int x = (index % 8);
-                int y = (index / 8);
+                var x = index % 8;
+                var y = index / 8;
 
 
-                render.Draw(sb, new Vector2(x * 16, y*16), conection);
+                render.Draw(sb, new Vector2(x * 16, y * 16), conection);
             }
 
 

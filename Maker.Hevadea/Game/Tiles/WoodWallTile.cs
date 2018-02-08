@@ -7,7 +7,7 @@ namespace Maker.Hevadea.Game.Tiles
     {
         public WoodWallTile(byte id) : base(id)
         {
-            Sprite = new Sprite(Ressources.tile_tiles, 6);
+            Sprite = new Sprite(Ressources.TileTiles, 6);
         }
 
         public override bool IsBlocking(Entity e, TilePosition pos)

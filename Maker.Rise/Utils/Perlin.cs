@@ -1,4 +1,6 @@
-﻿namespace Maker.Rise.Utils
+﻿using System.Collections.Generic;
+
+namespace Maker.Rise.Utils
 {
     public class Perlin
     {
@@ -47,6 +49,8 @@
             }
         }
 
+        
+        
         public static double perlin(double x, double y, double z)
         {
             int xi = (int) x & 255; // Calculate the "unit cube" that the point asked will be located in

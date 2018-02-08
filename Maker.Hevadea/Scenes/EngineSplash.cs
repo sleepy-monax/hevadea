@@ -12,21 +12,21 @@ namespace Maker.Hevadea.Scenes
 {
     public class EngineSplash : Scene
     {
-        private SpriteBatch sb;
-        private Texture2D logo;
         public bool GoToGame = false;
+        private Texture2D logo;
+
+        private bool once = true;
+        private SpriteBatch sb;
 
         public override void Load()
         {
             sb = Engine.Graphic.CreateSpriteBatch();
-            logo = Ressources.img_engine_logo;
+            logo = Ressources.ImgEngineLogo;
         }
 
         public override void Unload()
         {
         }
-
-        bool once = true;
 
         public override void OnUpdate(GameTime gameTime)
         {
@@ -43,6 +43,7 @@ namespace Maker.Hevadea.Scenes
                     Engine.Scene.Switch(new MainMenu());
                     //Engine.Scene.Switch(new TestScene());
                 }
+
                 once = false;
             }
         }
@@ -51,7 +52,7 @@ namespace Maker.Hevadea.Scenes
         {
             Engine.Graphic.Begin(sb);
             sb.FillRectangle(Engine.Graphic.GetResolutionRect(), Color.Black);
-            sb.Draw(logo, Engine.Graphic.GetCenter() - logo.GetCenter() , Color.White);
+            sb.Draw(logo, Engine.Graphic.GetCenter() - logo.GetCenter(), Color.White);
             sb.End();
         }
     }

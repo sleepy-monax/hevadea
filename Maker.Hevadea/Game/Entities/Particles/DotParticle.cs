@@ -6,9 +6,9 @@ namespace Maker.Hevadea.Game.Entities.Particles
 {
     public class DotParticle : Particle
     {
-        private float Time;
-        private Color Color;
+        private readonly Color Color;
         private Vector2 Speed;
+        private float Time;
 
         public DotParticle(Color color, float lifeTime, Vector2 speed)
         {
@@ -22,10 +22,7 @@ namespace Maker.Hevadea.Game.Entities.Particles
         {
             Time -= gameTime.ElapsedGameTime.Seconds;
 
-            if (Time < 0)
-            {
-                Remove();
-            }
+            if (Time < 0) Remove();
 
             SetPosition((int) (ConstVal.TileSize * Speed.X),
                 (int) (ConstVal.TileSize * Speed.Y));

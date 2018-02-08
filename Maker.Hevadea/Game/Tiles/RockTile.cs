@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Enums;
-using Maker.Hevadea.Game.Entities;
+﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Registry;
 using Maker.Rise;
 using Maker.Rise.Ressource;
@@ -10,7 +9,7 @@ namespace Maker.Hevadea.Game.Tiles
     {
         public RockTile(byte id) : base(id)
         {
-            Sprite = new Sprite(Ressources.tile_tiles, 1);
+            Sprite = new Sprite(Ressources.TileTiles, 1);
         }
 
         public override void Hurt(Entity e, float damages, TilePosition tilePosition, Direction attackDirection)

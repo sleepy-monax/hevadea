@@ -1,5 +1,4 @@
-﻿using Maker.Hevadea.Enums;
-using Maker.Hevadea.Game.Entities.Component;
+﻿using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
@@ -9,24 +8,6 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class Entity
     {
-        public Level Level { get; private set; }
-        public World World { get; private set; }
-        public GameManager Game { get; private set; }
-        public EntityComponentsManager Components { get; private set; }
-
-        public float X          { get; private set; }
-        public float Y          { get; private set; }
-        public Point Origin     { get; set; }
-        public int Width        { get; set; }
-        public int Height       { get; set; }
-        public Direction Facing { get; set; }
-
-        public bool Removed     { get; set; } = true;
-
-        public Point Size => new Point(Width, Height);
-        public Vector2 Position => new Vector2(X, Y);
-        public Rectangle Bound => new Rectangle(Position.ToPoint(), Size);
-
         public Entity()
         {
             Components = new EntityComponentsManager(this);
@@ -35,6 +16,24 @@ namespace Maker.Hevadea.Game.Entities
             Width = 32;
             Height = 32;
         }
+
+        public Level Level { get; private set; }
+        public World World { get; private set; }
+        public GameManager Game { get; private set; }
+        public EntityComponentsManager Components { get; }
+
+        public float X { get; private set; }
+        public float Y { get; private set; }
+        public Point Origin { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public Direction Facing { get; set; }
+
+        public bool Removed { get; set; } = true;
+
+        public Point Size => new Point(Width, Height);
+        public Vector2 Position => new Vector2(X, Y);
+        public Rectangle Bound => new Rectangle(Position.ToPoint(), Size);
 
         internal void Initialize(Level level, World world, GameManager game)
         {
@@ -45,13 +44,13 @@ namespace Maker.Hevadea.Game.Entities
 
         public EntityStorage Save()
         {
-            var store = new EntityStorage(this.GetType().FullName);
+            var store = new EntityStorage(GetType().FullName);
 
             store.Set("X", X);
             store.Set("Y", Y);
             store.Set("Width", Width);
             store.Set("Height", Height);
-            store.Set("Facing", (int)Facing);
+            store.Set("Facing", (int) Facing);
 
             Components.Save(store);
             OnSave(store);
@@ -66,14 +65,19 @@ namespace Maker.Hevadea.Game.Entities
             Width = store.Get("Width", Width);
             Height = store.Get("Height", Height);
 
-            Facing = (Direction)store.Get("Facing", (int)Facing);
+            Facing = (Direction) store.Get("Facing", (int) Facing);
 
             Components.Load(store);
             OnLoad(store);
         }
 
-        public virtual void OnSave(EntityStorage store) {}
-        public virtual void OnLoad(EntityStorage store) {}
+        public virtual void OnSave(EntityStorage store)
+        {
+        }
+
+        public virtual void OnLoad(EntityStorage store)
+        {
+        }
 
         public void Remove()
         {
@@ -89,6 +93,7 @@ namespace Maker.Hevadea.Game.Entities
         {
             return IsColliding(rect.X, rect.Y, rect.Width, rect.Height);
         }
+
         public bool IsColliding(float x, float y, int width1, int height1)
         {
             return X < x + width1 &&
@@ -102,11 +107,13 @@ namespace Maker.Hevadea.Game.Entities
             Components.Update(gameTime);
             OnUpdate(gameTime);
         }
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             Components.Draw(spriteBatch, gameTime);
             OnDraw(spriteBatch, gameTime);
         }
+
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             Components.DrawOverlay(spriteBatch, gameTime);
@@ -115,6 +122,7 @@ namespace Maker.Hevadea.Game.Entities
         public virtual void OnUpdate(GameTime gameTime)
         {
         }
+
         public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             // Do nothing.
@@ -123,11 +131,10 @@ namespace Maker.Hevadea.Game.Entities
         public TilePosition GetTilePosition(bool onOrigine = false)
         {
             if (onOrigine)
-            {
-                return new TilePosition((int)((X + Origin.X) / ConstVal.TileSize), (int)((Y + Origin.Y) / ConstVal.TileSize));
-            }
+                return new TilePosition((int) ((X + Origin.X) / ConstVal.TileSize),
+                    (int) ((Y + Origin.Y) / ConstVal.TileSize));
 
-            return new TilePosition((int)(X / ConstVal.TileSize), (int)(Y / ConstVal.TileSize));
+            return new TilePosition((int) (X / ConstVal.TileSize), (int) (Y / ConstVal.TileSize));
         }
 
         public TilePosition GetFacingTile()

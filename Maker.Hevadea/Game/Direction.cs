@@ -1,4 +1,4 @@
-﻿namespace Maker.Hevadea.Enums
+﻿namespace Maker.Hevadea.Game
 {
     public enum Direction
     {

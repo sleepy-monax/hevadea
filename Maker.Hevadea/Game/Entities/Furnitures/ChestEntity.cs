@@ -1,45 +1,42 @@
 ﻿using Maker.Hevadea.Game.Entities.Component;
-using Maker.Hevadea.Game.Menus;
 using Maker.Hevadea.Game.Registry;
+using Maker.Hevadea.Scenes.Menus;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Hevadea.Game.Entities
+namespace Maker.Hevadea.Game.Entities.Furnitures
 {
     public class ChestEntity : Entity
     {
-
-        private Sprite sprite;
+        private readonly Sprite _sprite;
 
         public ChestEntity()
         {
-            Width       = 12;
-            Height      = 9;
-            Origin      = new Point(8, 6);
-            sprite      = new Sprite(Ressources.tile_entities, new Point(1, 1));
+            Width = 12;
+            Height = 9;
+            Origin = new Point(8, 6);
+            _sprite = new Sprite(Ressources.TileEntities, new Point(1, 1));
 
             Components.Add(new Inventory(512));
             Components.Add(new Health(10)).OnDie +=
-                (sender, arg) => 
+                (sender, arg) =>
                 {
                     Components.Get<Inventory>().Content.DropOnGround(Level, X + Origin.X, Y + Origin.Y);
                     ITEMS.ChestItem.Drop(Level, X + Origin.X, Y + Origin.Y, 1);
                 };
 
-            Components.Add(new Interactable()).OnInteracte += 
+            Components.Add(new Interactable()).OnInteracte +=
                 (sender, arg) =>
                 {
                     if (arg.Entity.Components.Has<Inventory>())
-                    {
                         Game.CurrentMenu = new ChestMenu(arg.Entity, this, Game);
-                    }
                 };
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            sprite.Draw(spriteBatch, new Rectangle((int)X - 2, (int)Y - 5, 16, 16), Color.White);
+            _sprite.Draw(spriteBatch, new Rectangle((int) X - 2, (int) Y - 5, 16, 16), Color.White);
         }
 
         public override bool IsBlocking(Entity e)

@@ -5,7 +5,7 @@ using Maker.Rise.Ressource;
 
 namespace Maker.Hevadea.Game.Items
 {
-    public class PlacableItem<T> : Item where T : Entity, new() 
+    public class PlacableItem<T> : Item where T : Entity, new()
     {
         public PlacableItem(string name, Sprite sprite) : base(name, sprite)
         {
@@ -22,13 +22,8 @@ namespace Maker.Hevadea.Game.Items
                 user.Level.SpawnEntity(new T(), pos.X, pos.Y);
 
                 if (user is PlayerEntity p)
-                {
                     if (p.Components.Get<Inventory>().Content.Count(p.HoldingItem) == 0)
-                    {
                         p.HoldingItem = null;
-                    }
-                }
-
             }
             else
             {

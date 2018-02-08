@@ -142,10 +142,10 @@
     <Compile Include="Networking\Server\GameServer.cs" />
     <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\WorldGenScene.cs" />
-    <Compile Include="Scenes\UI\CraftingControl.cs" />
-    <Compile Include="Scenes\UI\InventoryControl.cs" />
-    <Compile Include="Scenes\UI\ItemFrameControl.cs" />
-    <Compile Include="Scenes\UI\PlayerInfoPanel.cs" />
+    <Compile Include="Scenes\Widgets\CraftingWidget.cs" />
+    <Compile Include="Scenes\Widgets\InventoryWidget.cs" />
+    <Compile Include="Scenes\Widgets\ItemWidget.cs" />
+    <Compile Include="Scenes\Widgets\StatesWidget.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Ressources.cs" />
     <Compile Include="Game\Tiles\GrassTile.cs" />
@@ -165,7 +165,7 @@
     <Compile Include="WorldGenerator\Features\BaseTerainFeature.cs" />
     <Compile Include="WorldGenerator\Features\Functions\CombinedFunction.cs" />
     <Compile Include="WorldGenerator\Features\Functions\FlatFunction.cs" />
-    <Compile Include="WorldGenerator\Features\Functions\FunctionBase.cs" />
+    <Compile Include="WorldGenerator\Features\Functions\IFunction.cs" />
     <Compile Include="WorldGenerator\Features\Functions\IslandFunction.cs" />
     <Compile Include="WorldGenerator\Features\Functions\PerlinFunction.cs" />
     <Compile Include="WorldGenerator\Features\PlantFeature.cs" />

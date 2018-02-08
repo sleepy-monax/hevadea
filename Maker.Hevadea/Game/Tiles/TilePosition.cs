@@ -4,14 +4,14 @@ namespace Maker.Hevadea.Game.Tiles
 {
     public class TilePosition
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-
         public TilePosition(int x, int y)
         {
             X = x;
             Y = y;
         }
+
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public Point ToOnScreenPosition()
         {
@@ -25,7 +25,7 @@ namespace Maker.Hevadea.Game.Tiles
 
         public static bool operator ==(TilePosition left, TilePosition right)
         {
-            return left.X == right.X | left.Y == right.Y;
+            return (left.X == right.X) | (left.Y == right.Y);
         }
 
         protected bool Equals(TilePosition other)
@@ -37,8 +37,8 @@ namespace Maker.Hevadea.Game.Tiles
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((TilePosition)obj);
+            if (obj.GetType() != GetType()) return false;
+            return Equals((TilePosition) obj);
         }
 
         public override int GetHashCode()

@@ -53,31 +53,24 @@ namespace Maker.Rise.Components
                 sb.Begin();
                 int avrRenderTime = 0;
                 var index = 0;
+                var update = updateTime.ToArray();
                 foreach (var i in renderTime)
                 {
                     avrRenderTime += i;
-                    sb.FillRectangle(new Rectangle(index, Engine.Graphic.GetHeight() - i * 5, 1, i * 5),
+                    sb.FillRectangle(new Rectangle(index, Engine.Graphic.GetHeight() - i * 5 - update[index] * 5, 1, i * 5),
                         i > 10 ? Color.Red : Color.Green);
-                    index++;
-                }
-
-                sb.DrawString(EngineRessources.FontArialTiny, "Render",
-                    new Vector2(16, Engine.Graphic.GetHeight() - 256), Color.White);
-                index = 0;
-                foreach (var i in updateTime)
-                {
-                    sb.FillRectangle(new Rectangle(index + 264, Engine.Graphic.GetHeight() - i * 5, 1, i * 5),
+                    sb.FillRectangle(new Rectangle(index, Engine.Graphic.GetHeight() - update[index] * 5, 1, update[index] * 5),
                         i > 10 ? Color.Magenta : Color.Blue);
                     index++;
                 }
 
+
+
                 var debugText = $@"
 Render: {Game.DrawTime,3}ms (avr {avrRenderTime / renderTime.Count}ms)
 Tick: {Game.UpdateTime,3}ms
-Memory: {GC.GetTotalMemory(false)}
 Scene: {Engine.Scene.CurrentScene.GetType().FullName}
 DisplayMode: {Game.GraphicsDevice.Adapter.CurrentDisplayMode}
-{Engine.Graphic.GetGraphicsDevice().Metrics.ToJson().Replace(",", ",\n")}
 --- Curent Scene Debug Info ---
 {Engine.Scene.CurrentScene.GetDebugInfo()}";
 

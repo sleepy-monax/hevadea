@@ -5,7 +5,6 @@ namespace Maker.Hevadea.Game.Entities.Component.Ai.Actions
     public abstract class Action
     {
         public Ai Ai;
-        public Entity Owner { get; }
 
         public Action(Ai ai)
         {
@@ -13,12 +12,13 @@ namespace Maker.Hevadea.Game.Entities.Component.Ai.Actions
             Owner = ai.Owner;
         }
 
+        public Entity Owner { get; }
+
         public abstract bool IsRunning();
-        
-        
+
+
         public virtual void Update(GameTime gameTime)
         {
-
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Maker.Hevadea.Game.Tiles
     {
         public SandTile(byte id) : base(id)
         {
-            Sprite = new Sprite(Ressources.tile_tiles, 3);
+            Sprite = new Sprite(Ressources.TileTiles, 3);
         }
     }
 }
