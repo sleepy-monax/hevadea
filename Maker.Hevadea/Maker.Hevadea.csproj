@@ -162,16 +162,17 @@
     <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorldGenerator\Features\BaseTerainFeature.cs" />
-    <Compile Include="WorldGenerator\Features\Functions\CombinedFunction.cs" />
-    <Compile Include="WorldGenerator\Features\Functions\FlatFunction.cs" />
-    <Compile Include="WorldGenerator\Features\Functions\IFunction.cs" />
-    <Compile Include="WorldGenerator\Features\Functions\IslandFunction.cs" />
-    <Compile Include="WorldGenerator\Features\Functions\PerlinFunction.cs" />
-    <Compile Include="WorldGenerator\Features\PlantFeature.cs" />
-    <Compile Include="WorldGenerator\Features\TerrainLayer.cs" />
+    <Compile Include="WorldGenerator\Functions\CombinedFunction.cs" />
+    <Compile Include="WorldGenerator\Functions\FlatFunction.cs" />
+    <Compile Include="WorldGenerator\Functions\IFunction.cs" />
+    <Compile Include="WorldGenerator\Functions\IslandFunction.cs" />
+    <Compile Include="WorldGenerator\Functions\PerlinFunction.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\BaseTerainFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\HouseFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\PlantFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\TerrainLayer.cs" />
     <Compile Include="WorldGenerator\Generator.cs" />
-    <Compile Include="WorldGenerator\GenFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeature.cs" />
     <Compile Include="WorldGenerator\LevelGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

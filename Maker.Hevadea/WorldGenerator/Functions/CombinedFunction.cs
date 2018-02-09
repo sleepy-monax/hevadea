@@ -1,6 +1,6 @@
 ﻿using Maker.Hevadea.Game;
 
-namespace Maker.Hevadea.WorldGenerator.Features.Functions
+namespace Maker.Hevadea.WorldGenerator.Functions
 {
     public class CombinedFunction : IFunction
     {

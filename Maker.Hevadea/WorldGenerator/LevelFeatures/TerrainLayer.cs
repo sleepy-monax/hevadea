@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
-using Maker.Hevadea.WorldGenerator.Features.Functions;
+using Maker.Hevadea.WorldGenerator.Functions;
 
-namespace Maker.Hevadea.WorldGenerator.Features
+namespace Maker.Hevadea.WorldGenerator.LevelFeatures
 {
     public class TerrainLayer
     {

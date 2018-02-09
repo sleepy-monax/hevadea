@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 
-namespace Maker.Hevadea.WorldGenerator.Features
+namespace Maker.Hevadea.WorldGenerator.LevelFeatures
 {
-    public class BaseTerainFeature : GenFeature
+    public class BaseTerainFeature : LevelFeature
     {
         public List<TerrainLayer> Layers { get; set; } = new List<TerrainLayer>();
         private float _progress = 0;

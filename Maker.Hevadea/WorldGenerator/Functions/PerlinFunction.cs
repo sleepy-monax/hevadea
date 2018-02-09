@@ -1,7 +1,7 @@
 ﻿using Maker.Hevadea.Game;
 using Maker.Rise.Utils;
 
-namespace Maker.Hevadea.WorldGenerator.Features.Functions
+namespace Maker.Hevadea.WorldGenerator.Functions
 {
     public class PerlinFunction : IFunction
     {

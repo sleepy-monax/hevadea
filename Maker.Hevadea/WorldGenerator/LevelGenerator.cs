@@ -10,8 +10,8 @@ namespace Maker.Hevadea.WorldGenerator
         public string LevelName { get; set; } = "none";
 
 
-        public List<GenFeature> Features { get; set; } = new List<GenFeature>();
-        public GenFeature CurrentFeature = null;
+        public List<LevelFeature> Features { get; set; } = new List<LevelFeature>();
+        public LevelFeature CurrentFeature = null;
 
         public Level Generate(Generator gen)
         {

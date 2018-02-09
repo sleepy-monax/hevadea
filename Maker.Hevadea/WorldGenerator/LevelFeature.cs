@@ -2,7 +2,7 @@
 
 namespace Maker.Hevadea.WorldGenerator
 {
-    public abstract class GenFeature
+    public abstract class LevelFeature
     {
         public abstract string GetName();
         public abstract float GetProgress();

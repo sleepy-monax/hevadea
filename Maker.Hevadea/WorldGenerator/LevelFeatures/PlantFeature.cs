@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Tiles;
-using Maker.Hevadea.WorldGenerator.Features.Functions;
+using Maker.Hevadea.WorldGenerator.Functions;
 
-namespace Maker.Hevadea.WorldGenerator.Features
+namespace Maker.Hevadea.WorldGenerator.LevelFeatures
 {
-    public class PlantFeature<T> : GenFeature where T : Entity, new()
+    public class PlantFeature<T> : LevelFeature where T : Entity, new()
     {
         public List<Tile> CanBePlantOn { get; set; } = new List<Tile>();
         public IFunction PlacingFunction { get; set; } = new FlatFunction(0.9f);

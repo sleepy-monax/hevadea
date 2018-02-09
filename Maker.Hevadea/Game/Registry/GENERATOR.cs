@@ -1,7 +1,7 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.WorldGenerator;
-using Maker.Hevadea.WorldGenerator.Features;
-using Maker.Hevadea.WorldGenerator.Features.Functions;
+using Maker.Hevadea.WorldGenerator.Functions;
+using Maker.Hevadea.WorldGenerator.LevelFeatures;
 
 namespace Maker.Hevadea.Game.Registry
 {
@@ -63,6 +63,7 @@ namespace Maker.Hevadea.Game.Registry
                             }
                         }
                     },
+                    new HouseFeature(),
                     new PlantFeature<TreeEntity>
                     {
                         Chance = 3,
@@ -80,7 +81,7 @@ namespace Maker.Hevadea.Game.Registry
                 }
             };
 
-            DEFAULT = new Generator {Levels = {OVERWORLD}, Size = 512, Seed = 0};
+            DEFAULT = new Generator {Levels = {OVERWORLD}, Size = 256, Seed = 0};
         }
     }
 }
