@@ -6,6 +6,8 @@ namespace Maker.Rise.UI.Widgets.Containers
     public class TileContainer : Container
     {
         public FlowDirection Flow { get; set; } = FlowDirection.LeftToRight;
+        public Padding Marging { get; set; } = new Padding(0);
+
         public override void Layout()
         {
             var itemWidth = Host.Width / Childrens.Count;
@@ -17,16 +19,16 @@ namespace Maker.Rise.UI.Widgets.Containers
                 switch (Flow)
                 {
                     case FlowDirection.TopToBottom:
-                        c.Bound = new Rectangle(Host.X, Host.Y + itemHeight * index, Host.Width, itemHeight);
+                        c.Bound = Marging.Apply(new Rectangle(Host.X, Host.Y + itemHeight * index, Host.Width, itemHeight));
                         break;
                     case FlowDirection.BottomToTop:
-                        c.Bound = new Rectangle(Host.X, Host.Y + Host.Height - (itemHeight * index), Host.Width, itemHeight);
+                        c.Bound = Marging.Apply(new Rectangle(Host.X, Host.Y + Host.Height - (itemHeight * index), Host.Width, itemHeight));
                         break;
                     case FlowDirection.LeftToRight:
-                        c.Bound = new Rectangle(Host.X + itemWidth * index, Host.Y, itemWidth, Host.Height);
+                        c.Bound = Marging.Apply(new Rectangle(Host.X + itemWidth * index, Host.Y, itemWidth, Host.Height));
                         break;
                     case FlowDirection.RightToLeft:
-                        c.Bound = new Rectangle(Host.X + Host.Width - (itemWidth * index), Host.Y, itemWidth, Host.Height);
+                        c.Bound = Marging.Apply(new Rectangle(Host.X + Host.Width - (itemWidth * index), Host.Y, itemWidth, Host.Height));
                         break;
                 }
                 

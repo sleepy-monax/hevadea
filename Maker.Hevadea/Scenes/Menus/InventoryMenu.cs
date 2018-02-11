@@ -4,7 +4,7 @@ using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Scenes.Widgets;
 using Maker.Rise.UI.Widgets;
-using Maker.Rise.UI.Widgets.Containers;
+using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.Scenes.Menus
 {
@@ -20,44 +20,7 @@ namespace Maker.Hevadea.Scenes.Menus
             var crafting = new CraftingWidget(entity.Components.Get<Inventory>().Content)
                 {Padding = new Padding(4, 4), Dock = Dock.Fill};
 
-
-            Content = new TileContainer
-            {
-                Childrens =
-                {
-                    new BlurPanel
-                    {
-                        Padding = new Padding(4),
-                        Content = new DockContainer
-                        {
-                            Childrens =
-                            {
-                                new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
-                                inventory
-                            }
-                        }
-                    },
-                    new BlurPanel
-                    {
-                        Padding = new Padding(4),
-                        Content = new DockContainer
-                        {
-                            Childrens =
-                            {
-                                new Label {Text = "Crafting", Font = Ressources.FontAlagard, Dock = Dock.Top},
-                                new Button
-                                {
-                                    Text = "Craft",
-                                    Dock = Dock.Bottom,
-                                    Padding = new Padding(8),
-                                    BlurBackground = false
-                                },
-                                crafting
-                            }
-                        }
-                    }
-                }
-            };
+            Content = GUIHelper.CreateSplitContainer(new Rectangle(0, 0, 800, 600), "Invertory", inventory, "Crafting", crafting);
 
 
             inventory.MouseClick += sender =>

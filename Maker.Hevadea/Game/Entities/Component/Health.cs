@@ -40,8 +40,10 @@ namespace Maker.Hevadea.Game.Entities.Component
 
                 spriteBatch.FillRectangle(new Rectangle((int) barX + 1, (int) barY + 1, rect.Width, rect.Height),
                     Color.Black * 0.45f);
-                spriteBatch.FillRectangle(rect, Color.Red);
-                spriteBatch.FillRectangle(rect, Color.SeaGreen * (float) _valuePercent);
+
+                int red = (int)Math.Sqrt(255 * 255 * (1 - _valuePercent));
+                int green = (int)Math.Sqrt(255 * 255 * (_valuePercent));
+                spriteBatch.FillRectangle(rect, new Color(red, green, 0));
             }
         }
 

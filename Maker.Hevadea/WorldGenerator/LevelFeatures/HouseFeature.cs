@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
+using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.WorldGenerator.LevelFeatures
 {

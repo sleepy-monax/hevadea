@@ -40,5 +40,11 @@ namespace Maker.Rise.UI.Widgets.Containers
                 c.UpdateInternal(gameTime);
             }
         }
+
+        public Container AddChild(Widget child)
+        {
+            Childrens.Add(child);
+            return this;
+        }
     }
 }

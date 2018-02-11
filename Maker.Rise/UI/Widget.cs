@@ -63,12 +63,17 @@ namespace Maker.Rise.UI.Widgets
             Up = Down = vertical;
             Left = Right = horizontal;
         }
+
+        public Rectangle Apply(Rectangle rect)
+        {
+            return new Rectangle(rect.X + Left, rect.Y + Up, rect.Width - Left - Right, rect.Height - Up - Down);
+        }
     }
 
     public class Widget
     {
         public Rectangle Bound { get; set; } = new Rectangle(0, 0, 64, 64);
-        public Rectangle Host  { get { return new Rectangle(Bound.X + Padding.Left, Bound.Y + Padding.Up, Bound.Width - Padding.Left - Padding.Right, Bound.Height - Padding.Up - Padding.Down); } }
+        public Rectangle Host  { get { return Padding.Apply(Bound); } }
         public Point Offset { get; set; } = Point.Zero;
         public Padding Padding { get; set; } = new Padding(0);
         

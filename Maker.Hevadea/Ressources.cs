@@ -16,11 +16,13 @@ namespace Maker.Hevadea
         public static Texture2D ImgItems;
         public static Texture2D ImgEntities;
         public static Texture2D ImgCreatures;
+        public static Texture2D ImgGui;
+
         public static Texture2D ImgRock;
+
         public static Texture2D ImgLight;
         public static Texture2D ImgShadow;
         public static Texture2D ImgSwing;
-
 
         public static Texture2D ImgMakerLogo;
         public static Texture2D ImgEngineLogo;
@@ -36,6 +38,7 @@ namespace Maker.Hevadea
         public static SpriteSheet TileItems;
         public static SpriteSheet TileEntities;
         public static SpriteSheet TileCreatures;
+        public static SpriteSheet TileGui;
         public static SpriteSheet TileRock;
 
         public static ParalaxeBackground ParalaxeForest;
@@ -52,6 +55,8 @@ namespace Maker.Hevadea
             ImgIcons = Engine.Ressource.GetImage("icons");
             ImgEntities = Engine.Ressource.GetImage("entities");
             ImgCreatures = Engine.Ressource.GetImage("creatures");
+            ImgGui = Engine.Ressource.GetImage("gui");
+
             ImgRock = Engine.Ressource.GetImage("rock");
 
             ImgLight = Engine.Ressource.GetImage("light");
@@ -72,6 +77,8 @@ namespace Maker.Hevadea
             TileItems = new SpriteSheet(ImgItems, new Point(16, 16));
             TileEntities = new SpriteSheet(ImgEntities, new Point(16, 16));
             TileCreatures = new SpriteSheet(ImgCreatures, new Point(48, 128));
+            TileGui = new SpriteSheet(ImgGui, new Point(32, 32));
+
             TileRock = new SpriteSheet(ImgRock, new Point(16, 16));
 
             ParalaxeForest = new ParalaxeBackground(

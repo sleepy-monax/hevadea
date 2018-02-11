@@ -124,6 +124,7 @@
     <Compile Include="Game\Tiles\Render\CompositConectedTileRender.cs" />
     <Compile Include="Game\Tiles\Render\ConnectedTileRender.cs" />
     <Compile Include="Game\Tiles\Render\TileConection.cs" />
+    <Compile Include="Scenes\GUIHelper.cs" />
     <Compile Include="Scenes\Menus\ChestMenu.cs" />
     <Compile Include="Scenes\Menus\CraftMenu.cs" />
     <Compile Include="Scenes\Menus\HUDMenu.cs" />
@@ -142,7 +143,9 @@
     <Compile Include="Game\Tiles\WoodWallTile.cs" />
     <Compile Include="Networking\Client\GameClient.cs" />
     <Compile Include="Networking\Server\GameServer.cs" />
+    <Compile Include="Scenes\Menus\PauseMenu.cs" />
     <Compile Include="Scenes\TestScene.cs" />
+    <Compile Include="Scenes\Widgets\FancyPanel.cs" />
     <Compile Include="Scenes\WorldGenScene.cs" />
     <Compile Include="Scenes\Widgets\CraftingWidget.cs" />
     <Compile Include="Scenes\Widgets\InventoryWidget.cs" />
@@ -185,11 +188,9 @@
       <HintPath>C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
