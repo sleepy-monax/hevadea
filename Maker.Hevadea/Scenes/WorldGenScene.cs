@@ -2,6 +2,7 @@
 using System.Threading;
 using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.WorldGenerator;
 using Maker.Rise;

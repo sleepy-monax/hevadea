@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

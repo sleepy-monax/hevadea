@@ -64,19 +64,25 @@ namespace Maker.Hevadea.Game.Registry
                         }
                     },
                     new HouseFeature(),
-                    new PlantFeature<TreeEntity>
+                    new CompoundFeature("Adding plants...")
                     {
-                        Chance = 3,
-                        CanBePlantOn = {TILES.GRASS},
-                        PlacingFunction = new PerlinFunction(2, 0.5, 15),
-                        Threashold = 0.7f
-                    },
-                    new PlantFeature<GrassEntity>
-                    {
-                        Chance = 5,
-                        CanBePlantOn = {TILES.GRASS},
-                        PlacingFunction = new PerlinFunction(2, 0.5, 7),
-                        Threashold = 0.7f
+                        Content =
+                        {
+                            new PlantFeature<TreeEntity>
+                            {
+                                Chance = 3,
+                                CanBePlantOn = {TILES.GRASS},
+                                PlacingFunction = new PerlinFunction(2, 0.5, 15),
+                                Threashold = 0.7f
+                            },
+                            new PlantFeature<GrassEntity>
+                            {
+                                Chance = 5,
+                                CanBePlantOn = {TILES.GRASS},
+                                PlacingFunction = new PerlinFunction(2, 0.5, 7),
+                                Threashold = 0.7f
+                            }
+                        }
                     }
                 }
             };

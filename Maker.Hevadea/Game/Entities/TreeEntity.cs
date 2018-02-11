@@ -1,4 +1,5 @@
 ﻿using Maker.Hevadea.Game.Entities.Component;
+using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
@@ -15,7 +16,7 @@ namespace Maker.Hevadea.Game.Entities
             Width = 4;
             Height = 4;
             Origin = new Point(2, 2);
-            treeSprite = new Sprite(Ressources.TileEntities, 0, new Point(16, 16));
+            treeSprite = new Sprite(Ressources.TileEntities, new Point(7, 0), new Point(1, 3) );
 
             Components.Adds(
                 new Health(5),
@@ -27,9 +28,7 @@ namespace Maker.Hevadea.Game.Entities
         {
             var offx = -6;
             var offy = -10;
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 32), new Point(0, 1), Color.White);
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 16), new Point(0, 2), Color.White);
-            treeSprite.DrawSubSprite(spriteBatch, new Vector2(X + offx, Y + offy - 0), new Point(0, 3), Color.White);
+            treeSprite.Draw(spriteBatch, new Vector2(X + offx, Y + offy - 32), Color.White);
         }
 
         public override bool IsBlocking(Entity e)

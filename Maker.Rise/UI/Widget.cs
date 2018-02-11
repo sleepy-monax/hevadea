@@ -120,7 +120,7 @@ namespace Maker.Rise.UI.Widgets
         public void DrawIternal(SpriteBatch spriteBatch, GameTime gameTime)
         {
             Draw(spriteBatch, gameTime);
-            if (Engine.Configuration.DebugUI)
+            if (Engine.Configuration.DebugUi)
             {
                 spriteBatch.DrawRectangle(Host, Color.Cyan);
                 spriteBatch.DrawRectangle(Bound, Color.Black);

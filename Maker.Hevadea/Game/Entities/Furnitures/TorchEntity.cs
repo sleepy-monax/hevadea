@@ -8,14 +8,14 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class TorchEntity : Entity
     {
-        private readonly Sprite sprite;
+        private readonly Sprite _sprite;
 
         public TorchEntity()
         {
             Height = 2;
             Width = 2;
 
-            sprite = new Sprite(Ressources.TileEntities, 0, new Point(16, 16));
+            _sprite = new Sprite(Ressources.TileEntities, new Point(4, 0));
             Components.Adds(
                 new Light {On = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 72},
                 new Dropable {Items = {(ITEMS.TorchItem, 1, 1)}},
@@ -25,7 +25,7 @@ namespace Maker.Hevadea.Game.Entities
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            sprite.DrawSubSprite(spriteBatch, new Vector2(X - 7, Y - 14), new Point(1, 3), Color.White);
+            _sprite.Draw(spriteBatch, new Vector2(X - 7, Y - 14), Color.White);
         }
     }
 }

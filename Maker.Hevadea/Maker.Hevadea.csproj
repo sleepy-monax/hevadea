@@ -66,24 +66,24 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameConfig.cs" />
     <Compile Include="Game\Direction.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Craftings\Recipe.cs" />
     <Compile Include="Game\Craftings\RecipeCost.cs" />
-    <Compile Include="Game\Entities\Component\Ai\Actions\AttackAction.cs" />
-    <Compile Include="Game\Entities\Component\Ai\Behavior\BehaviorBase.cs" />
-    <Compile Include="Game\Entities\Component\Ai\Behavior\FollowBehavior.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Actions\Action.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Actions\FindTargetAction.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Agent.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Goal.cs" />
+    <Compile Include="Game\Entities\Component\Ai\Plan.cs" />
     <Compile Include="Game\Entities\Component\Attack.cs" />
     <Compile Include="Game\Entities\Component\Breakable.cs" />
     <Compile Include="Game\Entities\Component\Dropable.cs" />
     <Compile Include="Game\Entities\Component\Energy.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\EntityComponentsManager.cs" />
-    <Compile Include="Game\Entities\Component\Ai\Actions\Action.cs" />
-    <Compile Include="Game\Entities\Component\Ai\Actions\MoveToAction.cs" />
-    <Compile Include="Game\Entities\Component\Ai\Ai.cs" />
     <Compile Include="Game\Entities\Component\Health.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />
@@ -97,17 +97,20 @@
     <Compile Include="Game\Entities\Component\Move.cs" />
     <Compile Include="Game\Entities\Component\Render\NpcRender.cs" />
     <Compile Include="Game\Entities\Component\Render\ParticleEmiter.cs" />
+    <Compile Include="Game\Entities\Component\Target.cs" />
+    <Compile Include="Game\Entities\Creatures\NpcEntity.cs" />
+    <Compile Include="Game\Entities\Creatures\PlayerEntity.cs" />
+    <Compile Include="Game\Entities\Creatures\ZombieEntity.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Entities\Furnitures\ChestEntity.cs" />
     <Compile Include="Game\Entities\Furnitures\CraftingBenchEntity.cs" />
     <Compile Include="Game\Entities\Furnitures\FurnaceEntity.cs" />
+    <Compile Include="Game\Entities\Furnitures\TorchEntity.cs" />
     <Compile Include="Game\Entities\GrassEntity.cs" />
     <Compile Include="Game\Entities\ItemEntity.cs" />
     <Compile Include="Game\Entities\Particles\DotParticle.cs" />
     <Compile Include="Game\Entities\Particles\Particle.cs" />
     <Compile Include="Game\Entities\StairsEntity.cs" />
-    <Compile Include="Game\Entities\TorchEntity.cs" />
-    <Compile Include="Game\Entities\ZombieEntity.cs" />
     <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\Items\ItemStorage.cs" />
     <Compile Include="Game\Items\Materials\BaseMaterial.cs" />
@@ -126,7 +129,6 @@
     <Compile Include="Scenes\Menus\HUDMenu.cs" />
     <Compile Include="Scenes\Menus\InventoryMenu.cs" />
     <Compile Include="Scenes\Menus\Menu.cs" />
-    <Compile Include="Game\Entities\PlayerEntity.cs" />
     <Compile Include="Game\Entities\TreeEntity.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Level.cs" />
@@ -168,12 +170,14 @@
     <Compile Include="WorldGenerator\Functions\IslandFunction.cs" />
     <Compile Include="WorldGenerator\Functions\PerlinFunction.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\BaseTerainFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\CompoundFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\HouseFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\PlantFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\TerrainLayer.cs" />
     <Compile Include="WorldGenerator\Generator.cs" />
     <Compile Include="WorldGenerator\LevelFeature.cs" />
     <Compile Include="WorldGenerator\LevelGenerator.cs" />
+    <Compile Include="WorldGenerator\WorldFeatures\StairCaseFeature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
@@ -264,7 +268,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

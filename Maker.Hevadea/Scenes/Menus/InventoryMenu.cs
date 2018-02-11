@@ -1,6 +1,7 @@
 ﻿using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component;
+using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Scenes.Widgets;
 using Maker.Rise.UI.Widgets;
 using Maker.Rise.UI.Widgets.Containers;

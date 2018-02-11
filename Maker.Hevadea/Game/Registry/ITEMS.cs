@@ -10,7 +10,7 @@ namespace Maker.Hevadea.Game.Registry
 {
     public static class ITEMS
     {
-        public static List<Item> ById = new List<Item>();
+        public static readonly List<Item> ById = new List<Item>();
 
         public static Material WoodMaterial;
         public static Material IronMaterial;
@@ -41,12 +41,10 @@ namespace Maker.Hevadea.Game.Registry
             Stone = new RessourceItem("Stone", new Sprite(Ressources.TileItems, new Point(7, 0)));
             Coal = new RessourceItem("Coal", new Sprite(Ressources.TileItems, new Point(6, 2)));
 
-            ChestItem = new PlacableItem<ChestEntity>("Chest", new Sprite(Ressources.TileEntities, new Point(1, 1)));
-            TorchItem = new PlacableItem<TorchEntity>("Torch", new Sprite(Ressources.TileEntities, new Point(1, 3)));
-            CraftingbenchItem =
-                new PlacableItem<CraftingBenchEntity>("Bench", new Sprite(Ressources.TileEntities, new Point(2, 2)));
-            FurnaceItem =
-                new PlacableItem<FurnaceEntity>("Furnace", new Sprite(Ressources.TileEntities, new Point(2, 3)));
+            ChestItem = new PlacableItem<ChestEntity>("Chest", new Sprite(Ressources.TileEntities, new Point(0, 1)));
+            CraftingbenchItem = new PlacableItem<CraftingBenchEntity>("Bench", new Sprite(Ressources.TileEntities, new Point(1, 0)));
+            FurnaceItem = new PlacableItem<FurnaceEntity>("Furnace", new Sprite(Ressources.TileEntities, new Point(1, 1)));
+            TorchItem = new PlacableItem<TorchEntity>("Torch", new Sprite(Ressources.TileEntities, new Point(4, 0)));
         }
     }
 }

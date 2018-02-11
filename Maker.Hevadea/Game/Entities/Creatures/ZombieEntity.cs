@@ -4,14 +4,13 @@ using Maker.Hevadea.Game.Entities.Component.Render;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 
-namespace Maker.Hevadea.Game.Entities
+namespace Maker.Hevadea.Game.Entities.Creatures
 {
     public class ZombieEntity : Entity
     {
-        private int counter = 16;
-        private Direction direction = Direction.Down;
-
-        private readonly Random rnd = new Random();
+        private int _counter = 16;
+        private Direction _direction = Direction.Down;
+        private Random _rnd = new Random();
 
         public ZombieEntity()
         {
@@ -28,16 +27,16 @@ namespace Maker.Hevadea.Game.Entities
 
         public override void OnUpdate(GameTime gameTime)
         {
-            counter--;
+            _counter--;
 
-            if (counter == 0)
+            if (_counter == 0)
             {
-                direction = (Direction) rnd.Next(0, 4);
-                counter = rnd.Next(8, 48);
+                _direction = (Direction) _rnd.Next(0, 4);
+                _counter = _rnd.Next(8, 48);
             }
 
-            var v = direction.ToPoint();
-            Components.Get<Move>().Do(v.X * 0.25f, v.Y * 0.25f, direction);
+            var v = _direction.ToPoint();
+            Components.Get<Move>().Do(v.X * 0.25f, v.Y * 0.25f, _direction);
         }
 
         public override bool IsBlocking(Entity entity)

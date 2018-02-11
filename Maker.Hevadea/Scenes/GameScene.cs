@@ -1,6 +1,7 @@
 ﻿using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component;
+using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Game.Entities.Furnitures;
 using Maker.Hevadea.Scenes.Menus;
 using Maker.Rise;

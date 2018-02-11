@@ -4,7 +4,7 @@ using Maker.Hevadea.Game.Items;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 
-namespace Maker.Hevadea.Game.Entities
+namespace Maker.Hevadea.Game.Entities.Creatures
 {
     public class PlayerEntity : Entity
     {
@@ -12,7 +12,7 @@ namespace Maker.Hevadea.Game.Entities
         {
             Width = 8;
             Height = 8;
-            Origin = new Point(4, 7);
+            Origin = new Point(4, 4);
 
             HoldingItem = null;
 

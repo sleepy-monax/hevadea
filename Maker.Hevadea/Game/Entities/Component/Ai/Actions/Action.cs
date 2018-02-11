@@ -4,21 +4,8 @@ namespace Maker.Hevadea.Game.Entities.Component.Ai.Actions
 {
     public abstract class Action
     {
-        public Ai Ai;
-
-        public Action(Ai ai)
-        {
-            Ai = ai;
-            Owner = ai.Owner;
-        }
-
-        public Entity Owner { get; }
-
-        public abstract bool IsRunning();
-
-
-        public virtual void Update(GameTime gameTime)
-        {
-        }
+        public abstract bool IsValid(Entity e);
+        public abstract int  GetCost(Entity e);
+        public abstract bool Do(Entity e, GameTime gameTime);
     }
 }

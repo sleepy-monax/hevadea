@@ -12,6 +12,8 @@ namespace Maker.Hevadea.Game.Tiles
 
         public int X { get; set; }
         public int Y { get; set; }
+        public int WorldX => X * ConstVal.TileSize;
+        public int WorldY => Y * ConstVal.TileSize;
 
         public Point ToOnScreenPosition()
         {

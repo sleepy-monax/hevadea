@@ -1,5 +1,6 @@
 ﻿using System;
 using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 

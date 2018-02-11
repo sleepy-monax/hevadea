@@ -2,7 +2,7 @@
 {
     public class EngineConfig
     {
-        public bool EnableBlur { get; set; } = false;
-        public bool DebugUI { get; set; } = false;
+        public bool EnableBlur { get; set; } = true;
+        public bool DebugUi { get; set; } = false;
     }
 }
