@@ -6,17 +6,23 @@ namespace Maker.Hevadea.Game.Craftings
 {
     public class Recipe
     {
+        public Item Result { get; set; }
+        public int Quantity { get; set; }
+        public double CraftingTime { get; set; } = 0f;
+        public List<RecipeCost> Costs { get; set; } = new List<RecipeCost>();
+
+        public Recipe(Item result, int quantity)
+        {
+            Result = result;
+            Quantity = quantity;
+        }
+        
         public Recipe(Item result, int quantity, params RecipeCost[] costs)
         {
             Result = result;
             Quantity = quantity;
-            Costs = new List<RecipeCost>();
             Costs.AddRange(costs);
         }
-
-        public Item Result { get; }
-        public int Quantity { get; }
-        public List<RecipeCost> Costs { get; }
 
         public Recipe AddCost(Item item, int quantity)
         {
@@ -24,6 +30,12 @@ namespace Maker.Hevadea.Game.Craftings
             return this;
         }
 
+        public Recipe SetCraftingTime(double time)
+        {
+            CraftingTime = time;
+            return this;
+        }
+        
         public bool CanBeCrafted(ItemStorage i)
         {
             return Costs.Aggregate(true, (current, c) => current && i.Count(c.Item) >= c.Count);

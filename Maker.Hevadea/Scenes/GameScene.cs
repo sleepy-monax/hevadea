@@ -1,12 +1,15 @@
-﻿using Maker.Hevadea.Game;
+﻿using System.IO;
+using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Game.Entities.Furnitures;
+using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Scenes.Menus;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.UI.Widgets;
+using Maker.Utils.Json;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -42,15 +45,13 @@ namespace Maker.Hevadea.Scenes
             if (_game.CurrentMenu == null || !_game.CurrentMenu.PauseGame)
             {
                 _game.Update(gameTime);
-
-
                 var playerMovement = _game.Player.Components.Get<Move>();
 
                 if (Engine.Input.KeyDown(Keys.Q)) playerMovement.Do(-1, 0, Direction.Left);
                 if (Engine.Input.KeyDown(Keys.D)) playerMovement.Do(1, 0, Direction.Right);
                 if (Engine.Input.KeyDown(Keys.Z)) playerMovement.Do(0, -1, Direction.Up);
                 if (Engine.Input.KeyDown(Keys.S)) playerMovement.Do(0, 1, Direction.Down);
-                if (Engine.Input.KeyPress(Keys.I)) _game.CurrentMenu = new InventoryMenu(_game.Player, _game);
+                if (Engine.Input.KeyPress(Keys.I)) _game.CurrentMenu = new InventoryMenu(_game.Player, RECIPIES.HandCrafted,_game);
                 if (Engine.Input.KeyPress(Keys.N)) playerMovement.NoClip = !playerMovement.NoClip;
 
                 var pos = _game.Player.GetFacingTile();
@@ -81,11 +82,19 @@ namespace Maker.Hevadea.Scenes
 
                     _game.Player.Components.Get<Interact>().Do(_game.Player.HoldingItem);
                 }
-
-                //if (Engine.Input.KeyPress(Keys.P)) { File.WriteAllText("test.json", World[0].Save().ToJson()); }
             }
 
-            if (Engine.Input.KeyPress(Keys.Escape) && _game.CurrentMenu != null) _game.CurrentMenu = new HUDMenu(_game);
+            if (Engine.Input.KeyPress(Keys.Escape))
+            {
+                if (_game.CurrentMenu is HUDMenu)
+                {
+                    _game.CurrentMenu = new PauseMenu(_game);
+                }
+                else
+                {
+                    _game.CurrentMenu = new HUDMenu(_game);
+                }
+            }
         }
 
         public override void OnDraw(GameTime gameTime)

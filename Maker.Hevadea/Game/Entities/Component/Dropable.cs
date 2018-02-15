@@ -6,13 +6,13 @@ namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Dropable : EntityComponent
     {
-        public List<(Item, int, int)> Items { get; set; } = new List<(Item, int, int)>();
+        public List<(Item Item, int Min, int Max)> Items { get; set; } = new List<(Item, int, int)>();
 
         public void Drop()
         {
             var pos = Owner.GetTilePosition();
 
-            foreach (var d in Items) d.Item1.Drop(Owner.Level, pos, Engine.Random.Next(d.Item2, d.Item3));
+            foreach (var d in Items) d.Item.Drop(Owner.Level, pos, Engine.Random.Next(d.Min, d.Max));
         }
     }
 }

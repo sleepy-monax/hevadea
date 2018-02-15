@@ -54,23 +54,29 @@ namespace Maker.Rise.Components
                 int avrRenderTime = 0;
                 var index = 0;
                 var update = updateTime.ToArray();
+                
+                var dp = new Point();
+                var up = new Point();
+                
+                sb.FillRectangle(0, Engine.Graphic.GetHeight() - MaxSample / 2, MaxSample, MaxSample / 2, Color.White * 0.5f);
+                
                 foreach (var i in renderTime)
                 {
                     avrRenderTime += i;
-                    sb.FillRectangle(new Rectangle(index, Engine.Graphic.GetHeight() - i * 5 - update[index] * 5, 1, i * 5),
-                        i > 10 ? Color.Red : Color.Green);
-                    sb.FillRectangle(new Rectangle(index, Engine.Graphic.GetHeight() - update[index] * 5, 1, update[index] * 5),
-                        i > 10 ? Color.Magenta : Color.Blue);
+                    sb.DrawLine(dp.X, dp.Y, index, Engine.Graphic.GetHeight() - i * 5, Color.Green);
+                    dp = new Point(index, Engine.Graphic.GetHeight() - i * 5);
+                    
+                    sb.DrawLine(up.X, up.Y, index, Engine.Graphic.GetHeight() - update[index] * 5, Color.Blue);
+                    up = new Point(index, Engine.Graphic.GetHeight() - update[index] * 5);
                     index++;
                 }
 
-
-
+                
+                sb.FillRectangle(0, Engine.Graphic.GetHeight() - (avrRenderTime / renderTime.Count * 5), MaxSample, avrRenderTime / renderTime.Count * 5, Color.Gold * 0.5f);
+                
                 var debugText = $@"
-Render: {Game.DrawTime,3}ms (avr {avrRenderTime / renderTime.Count}ms)
-Tick: {Game.UpdateTime,3}ms
-Scene: {Engine.Scene.CurrentScene.GetType().FullName}
-DisplayMode: {Game.GraphicsDevice.Adapter.CurrentDisplayMode}
+d: {Game.DrawTime,3}ms (avr {avrRenderTime / renderTime.Count, 3}ms)
+u: {Game.UpdateTime,3}ms
 --- Curent Scene Debug Info ---
 {Engine.Scene.CurrentScene.GetDebugInfo()}";
 

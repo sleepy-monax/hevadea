@@ -8,6 +8,7 @@ namespace Maker.Rise.UI.Widgets
     public class BackButton : Widget
     {
         public bool BlurBackground { get; set; } = true;
+        public bool EnableBorder { get; set; } = false;
         public Color OverColor { get; set; } = Color.Gold;
         public Color IdleColor { get; set; } = Color.White;
         public Color TextColor { get; set; } = Color.White;
@@ -31,9 +32,13 @@ namespace Maker.Rise.UI.Widgets
             {
                 spriteBatch.Draw(Engine.Scene.BluredScene, rect, rect, Color.White * _easing.GetValue(EasingFunctions.Linear));
             }
+
+            if (EnableBorder)
+            {
+                spriteBatch.FillRectangle(rect, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
+                spriteBatch.DrawRectangle(rect, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
+            }
             
-            spriteBatch.FillRectangle(rect, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
-            spriteBatch.DrawRectangle(rect, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
             spriteBatch.FillRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
             spriteBatch.DrawRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
             

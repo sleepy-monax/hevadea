@@ -16,12 +16,17 @@ namespace Maker.Hevadea.Game.Entities.Component
             _targetTile = null;
         }
 
-        public void SetTaget(int tx, int ty)
+        public void SetTarget(int tx, int ty)
         {
             _targetEntity = null;
             _targetTile = new TilePosition(tx, ty);
         }
 
+        public Entity GetTargetEntity()
+        {
+            return _targetEntity;
+        }
+        
         public TilePosition GetTargetLocation()
         {
             if (!HasTarget()) return null;

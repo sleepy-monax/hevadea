@@ -37,8 +37,6 @@ namespace Maker.Rise
             Engine.Input.Initialize();
             Engine.Network.Initialize();
             Engine.Scene.Initialize();
-
-            Engine.Ui.Initialize();
             Engine.Debug.Initialize();
         }
 

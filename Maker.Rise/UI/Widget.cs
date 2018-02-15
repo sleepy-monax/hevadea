@@ -136,5 +136,11 @@ namespace Maker.Rise.UI.Widgets
         {
 
         }
+
+        public Widget RegisterMouseClickEvent(WidgetEventHandler func)
+        {
+            MouseClick += func;
+            return this;
+        }
     }
 }

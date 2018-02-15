@@ -1,5 +1,6 @@
 ﻿using System;
 using Maker.Hevadea.Game.Items;
+using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,45 +10,49 @@ namespace Maker.Hevadea.Game.Entities.Component
     {
         private bool _isAttacking;
 
-        private Direction _lastDirection = Direction.Up;
-        private double _speedFactor = 1;
-        private double _timer;
         public float BaseDamages { get; set; } = 1f;
         public bool CanAttackTile { get; set; } = true;
         public bool CanAttackEntities { get; set; } = true;
         public double AttackCooldown { get; set; } = 1;
+        
+        private Direction _lastDirection = Direction.Up;
+        private double _speedFactor = 1;
+        private double _timer;
 
+        private Sprite _swingUP;
+        private Sprite _swingDown;
+        private Sprite _swingLeft;
+        private Sprite _swingRight;
+
+        public Attack()
+        {
+            _swingUP = new Sprite(Ressources.TileIcons, 5);
+            _swingDown = new Sprite(Ressources.TileIcons, 3);
+            _swingLeft = new Sprite(Ressources.TileIcons, 6);
+            _swingRight = new Sprite(Ressources.TileIcons, 4);
+        }
+        
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (_isAttacking)
-            {
-                var invTimer = 1f - _timer;
+            if (!_isAttacking) return;
+            var invTimer = 1f - _timer;
 
-                switch (_lastDirection)
-                {
-                    case Direction.Up:
-                        spriteBatch.Draw(Ressources.ImgSwing,
-                            new Rectangle((int) Owner.X, (int) (Owner.Y - Owner.Height), (int) (Owner.Width * invTimer),
-                                Owner.Height), Color.White);
-                        break;
-                    case Direction.Right:
-                        spriteBatch.Draw(Ressources.ImgSwing,
-                            new Rectangle((int) (Owner.X + Owner.Width), (int) Owner.Y, Owner.Width,
-                                (int) (Owner.Height * invTimer)), Color.White);
-                        break;
-                    case Direction.Down:
-                        spriteBatch.Draw(Ressources.ImgSwing,
-                            new Rectangle((int) Owner.X, (int) (Owner.Y + Owner.Height), (int) (Owner.Width * invTimer),
-                                Owner.Height), Color.White);
-                        break;
-                    case Direction.Left:
-                        spriteBatch.Draw(Ressources.ImgSwing,
-                            new Rectangle((int) (Owner.X - Owner.Width), (int) Owner.Y, Owner.Width,
-                                (int) (Owner.Height * invTimer)), Color.White);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+            switch (_lastDirection)
+            {
+                case Direction.Up:
+                    _swingUP.Draw(spriteBatch, new Rectangle((int) Owner.X, (int) (Owner.Y - Owner.Height), (int) (Owner.Width * invTimer), Owner.Height), Color.White);
+                    break;
+                case Direction.Right:
+                    _swingRight.Draw(spriteBatch, new Rectangle((int) (Owner.X + Owner.Width), (int) Owner.Y, Owner.Width, (int) (Owner.Height * invTimer)), Color.White);
+                    break;
+                case Direction.Down:
+                    _swingDown.Draw(spriteBatch, new Rectangle((int) Owner.X, (int) (Owner.Y + Owner.Height), (int) (Owner.Width * invTimer), Owner.Height), Color.White);
+                    break;
+                case Direction.Left:
+                    _swingLeft.Draw(spriteBatch, new Rectangle((int) (Owner.X - Owner.Width), (int) Owner.Y, Owner.Width, (int) (Owner.Height * invTimer)), Color.White);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             //spriteBatch.FillRectangle(new Rectangle((int)Owner.X, (int)Owner.Y, (int)(64 * AttackCooldownTimer), 16), Color.Red);

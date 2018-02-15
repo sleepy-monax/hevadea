@@ -1,5 +1,6 @@
-﻿using Maker.Hevadea.Game.Items;
-using Maker.Hevadea.Game.Registry;
+﻿using System.Collections.Generic;
+using Maker.Hevadea.Game.Craftings;
+using Maker.Hevadea.Game.Items;
 using Maker.Rise;
 using Maker.Rise.Extension;
 using Maker.Rise.UI.Widgets;
@@ -11,10 +12,12 @@ namespace Maker.Hevadea.Scenes.Widgets
     public class CraftingWidget : Widget
     {
         private readonly ItemStorage _inventory;
+        private readonly List<Recipe> _recipies;
 
-        public CraftingWidget(ItemStorage i)
+        public CraftingWidget(ItemStorage i, List<Recipe> recipies)
         {
             _inventory = i;
+            _recipies = recipies;
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -22,7 +25,7 @@ namespace Maker.Hevadea.Scenes.Widgets
             spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
             var index = 0;
 
-            foreach (var c in RECIPIES.HandCrafted)
+            foreach (var c in _recipies)
                 if (c != null)
                 {
                     var canBeCrafted = c.CanBeCrafted(_inventory);
@@ -34,12 +37,22 @@ namespace Maker.Hevadea.Scenes.Widgets
 
                     var costIndex = 0;
                     foreach (var i in c.Costs)
+                    {
+                        var ressourceCout = _inventory.Count(i.Item);
                         for (var v = 0; v < i.Count; v++)
                         {
                             var costRect = new Rectangle(rect.X + 48 + 16 * costIndex, rect.Y + 26, 16, 16);
-                            i.Item.GetSprite().Draw(spriteBatch, costRect, Color.White);
+                            if (v < ressourceCout)
+                            {
+                                i.Item.GetSprite().Draw(spriteBatch, costRect, Color.White);
+                            }
+                            else
+                            {
+                                i.Item.GetSprite().Draw(spriteBatch, costRect, Color.White * 0.25f);
+                            }
                             costIndex++;
                         }
+                    }
 
                     if (rect.Contains(Engine.Input.MousePosition) && canBeCrafted)
                     {

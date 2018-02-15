@@ -14,7 +14,7 @@ namespace Maker.Hevadea.Scenes.Widgets
 {
     public class FancyPanel : Panel
     {
-        public Color Color { get; set; } = Color.Black * 0.5f;
+        public Color Color { get; set; } = Color.Black * 0.9f;
 
         Sprite TopLeft;
         Sprite TopRight;

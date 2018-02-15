@@ -14,7 +14,7 @@ namespace Maker.Hevadea.Game.Entities.Furnitures
         {
             Width = 12;
             Height = 9;
-            _sprite = new Sprite(Ressources.TileEntities, new Point(1, 2));
+            _sprite = new Sprite(Ressources.TileEntities, new Point(1, 1));
             Origin = new Point(8, 6);
             Components.Adds(
                 new Breakable(),

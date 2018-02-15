@@ -24,14 +24,8 @@ namespace Maker.Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var playerHealth = _player.Components.Get<Health>();
-            var playerEnergy = _player.Components.Get<Energy>();
-
-            var health = playerHealth.GetValue();
-            var energyV = playerEnergy.Value / playerEnergy.MaxValue;
-
-
-            //spriteBatch.FillRectangle(Bound, Color.Black * 0.5f);
+            var health = _player.Components.Get<Health>().ValuePercent;
+            var energy = _player.Components.Get<Energy>().ValuePercent;
 
             var i = 0;
 
@@ -41,11 +35,11 @@ namespace Maker.Hevadea.Scenes.Widgets
             _hearth.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y, 32, 32),
                 Color.White * (float) (10 * health - Math.Floor(10 * health)));
 
-            for (i = 0; i <= 10 * energyV - 1; i++)
+            for (i = 0; i <= 10 * energy - 1; i++)
                 _energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32), Color.White);
 
             _energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32),
-                Color.White * (float) (10 * energyV - Math.Floor(10 * energyV)));
+                Color.White * (float) (10 * energy - Math.Floor(10 * energy)));
         }
     }
 }

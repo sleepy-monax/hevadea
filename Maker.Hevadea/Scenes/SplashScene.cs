@@ -4,6 +4,7 @@ using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Extension;
 using Maker.Rise.Utils;
+using Maker.Utils.Json;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -16,7 +17,6 @@ namespace Maker.Hevadea.Scenes
         private bool _once = true;
         private SpriteBatch _sb;
 
-
         public override void Load()
         {
             // Initialize the game engine
@@ -24,8 +24,6 @@ namespace Maker.Hevadea.Scenes
             REGISTRY.Initialize();
             Engine.SetMouseVisibility(true);
             Directory.CreateDirectory("Saves");
-            //Engine.Graphic.SetResolution(1280, 720);
-            //Engine.Graphic.SetWindowedFullScreen();
 
             // Initialize the scene.
             _sb = Engine.Graphic.CreateSpriteBatch();
@@ -39,8 +37,8 @@ namespace Maker.Hevadea.Scenes
         public override void OnUpdate(GameTime gameTime)
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 3) || !_once) return;
-
-            Engine.Scene.Switch(new MainMenu());
+            Engine.Scene.Switch(new SampleScene());
+            //Engine.Scene.Switch(new MainMenu());
             _once = false;
         }
 

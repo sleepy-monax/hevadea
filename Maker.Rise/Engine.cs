@@ -2,8 +2,10 @@
 using Maker.Utils;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using System.Reflection;
 using Maker.Rise.UI;
+using Maker.Utils.Json;
 
 namespace Maker.Rise
 {
@@ -16,20 +18,17 @@ namespace Maker.Rise
         public static NetworkManager Network;
         public static RessourceManager Ressource;
         public static SceneManager Scene;
-        public static UiManager Ui;
         public static RasterizerState CommonRasterizerState;
         public static Version Version => Assembly.GetExecutingAssembly().GetName().Version;
         public static readonly Random Random = new Random();
         
         public static EngineConfig Configuration = new EngineConfig();
-        
         public static InternalGame MonoGameHandle;
         private static Scene MainScene;
         
 
         public static void Initialize()
         {
-            
             // Initialize the logger
             Logger.DefaultInitialization();
             
@@ -40,12 +39,15 @@ namespace Maker.Rise
             Input = new InputManager(MonoGameHandle);
             Network = new NetworkManager(MonoGameHandle);
             Scene = new SceneManager(MonoGameHandle);
-            Ui = new UiManager(MonoGameHandle);
             Ressource = new RessourceManager(MonoGameHandle);
             Debug = new DebugManager(MonoGameHandle);
             Graphic = new GraphicComponent(MonoGameHandle);
             CommonRasterizerState = new RasterizerState {ScissorTestEnable = true};
-            
+
+            if (File.Exists("engine.json"))
+            {
+                Configuration = File.ReadAllText("engine.json").FromJson<EngineConfig>();
+            }
         }
 
         public static void Start(Scene mainScene)
@@ -57,6 +59,7 @@ namespace Maker.Rise
 
         public static void Stop()
         {
+            File.WriteAllText("engine.json", Configuration.ToJson());
             MonoGameHandle.Exit();
             Environment.Exit(0);
         }

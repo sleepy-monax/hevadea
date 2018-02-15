@@ -7,17 +7,27 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Maker.Hevadea.Game.Entities.Component
 {
-    public sealed class Health : EntityComponent, IDrawableComponent, IUpdatableComponent, ISaveLoadComponent
+    public sealed class Health : EntityComponent, IDrawableOverlayComponent, IUpdatableComponent, ISaveLoadComponent
     {
-        public delegate void GetHurtByEntityHandle(Entity entity, float damages, Direction attackDirection);
-
-        public delegate void GetHurtByTileHandler(Tile tile, float damages, int tX, int tY);
-
-        public delegate void OnDieHandler(object sender, EventArgs e);
+        public bool ShowHealthBar { get; set; } = true;
+        
+        public bool Invicible { get; set; } = false;
+        public bool NaturalRegeneration { get; set; } = false;
+        public double NaturalregenerationSpeed { get; set; } = 1.0;
+        
+        public float Value => _value;
+        public float MaxValue => _maxValue;
+        public float ValuePercent => _value / _maxValue;
 
         private readonly float _maxValue;
-
         private float _value;
+
+        public delegate void GetHurtByEntityHandle(Entity entity, float damages, Direction attackDirection);
+        public delegate void GetHurtByTileHandler(Tile tile, float damages, int tX, int tY);
+        public delegate void OnDieHandler(object sender, EventArgs e);
+        public event OnDieHandler OnDie;
+        public event GetHurtByTileHandler GetHurtByTile;
+        public event GetHurtByEntityHandle GetHurtByEntity;
 
         public Health(float maxHealth)
         {
@@ -25,24 +35,20 @@ namespace Maker.Hevadea.Game.Entities.Component
             _maxValue = maxHealth;
         }
 
-        public bool Invicible { get; set; } = false;
-        public bool ShowHealthBar { get; set; } = true;
-        public bool NaturalRegeneration { get; set; } = false;
-        private double _valuePercent => _value / _maxValue;
-
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (ShowHealthBar && Math.Abs(_value - _maxValue) > 0.05)
             {
                 var barY = Owner.Y + Owner.Origin.Y + 8;
                 var barX = Owner.X + Owner.Origin.X - 16;
-                var rect = new Rectangle((int) barX, (int) barY, (int) (30 * _valuePercent), 6);
+                
+                var rect = new Rectangle((int) barX, (int) barY, (int) (30 * ValuePercent), 6);
 
                 spriteBatch.FillRectangle(new Rectangle((int) barX + 1, (int) barY + 1, rect.Width, rect.Height),
                     Color.Black * 0.45f);
 
-                int red = (int)Math.Sqrt(255 * 255 * (1 - _valuePercent));
-                int green = (int)Math.Sqrt(255 * 255 * (_valuePercent));
+                var red =   (int)Math.Sqrt(255 * 255 * (1 - ValuePercent));
+                var green = (int)Math.Sqrt(255 * 255 * (ValuePercent));
                 spriteBatch.FillRectangle(rect, new Color(red, green, 0));
             }
         }
@@ -61,16 +67,8 @@ namespace Maker.Hevadea.Game.Entities.Component
         {
             if (NaturalRegeneration)
             {
+                _value = (float)Math.Min(_maxValue, _value + NaturalregenerationSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
-        }
-
-        public event OnDieHandler OnDie;
-        public event GetHurtByTileHandler GetHurtByTile;
-        public event GetHurtByEntityHandle GetHurtByEntity;
-
-        public double GetValue()
-        {
-            return _valuePercent;
         }
 
         // Entity get hurt by a other entity (ex: Zombie)
@@ -114,5 +112,6 @@ namespace Maker.Hevadea.Game.Entities.Component
             Owner.Components.Get<Dropable>()?.Drop();
             Owner.Remove();
         }
+
     }
 }

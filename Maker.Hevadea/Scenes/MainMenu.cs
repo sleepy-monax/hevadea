@@ -1,4 +1,5 @@
-﻿using Maker.Rise;
+﻿using Maker.Hevadea.Scenes.Widgets;
+using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.UI.Widgets;
 using Maker.Rise.UI.Widgets.Containers;
@@ -12,10 +13,9 @@ namespace Maker.Hevadea.Scenes
         {
             Engine.Scene.Background = Ressources.ParalaxeForest;
 
-            var singleplayerButton = new Button {Padding = new Padding(4, 0), Text = "Singleplayer"};
-            var multiplayerButton = new Button {Padding = new Padding(4, 0), Text = "Multiplayer"};
-            var optionButton = new Button {Padding = new Padding(4, 0), Text = "Option"};
-            var quitButton = new Button {Padding = new Padding(4, 0), Text = "Quit"};
+            var singleplayerButton = new Button {BlurBackground = false, Font = Ressources.FontRomulus, Text = "Play"};
+            var optionButton = new Button {BlurBackground = false, Font = Ressources.FontRomulus, Text = "Option"};
+            var quitButton = new Button {BlurBackground = false, Font = Ressources.FontRomulus, Text = "Quit"};
 
             singleplayerButton.MouseClick += sender => { Engine.Scene.Switch(new PlayMenu()); };
             quitButton.MouseClick += sender => Engine.Stop();
@@ -24,25 +24,36 @@ namespace Maker.Hevadea.Scenes
             {
                 Childrens =
                 {
-                    new PictureWidget
+                    new FancyPanel
                     {
-                        Picture = Ressources.ImgHevadeaLogo,
+                        Bound = new Rectangle(0, 0, 720, 416),
+                        Origine = Anchor.Center,
                         Anchor = Anchor.Center,
-                        Origine = Anchor.Center
-                    },
-                    new Panel
-                    {
-                        Bound = new Rectangle(0, 0, 720, 64),
-                        Origine = Anchor.Bottom,
-                        Anchor = Anchor.Bottom,
-                        Offset = new Point(0, -16),
-                        Padding = new Padding(4, 8),
+                        Padding = new Padding(15),
 
-                        Content = new TileContainer
+                        Content = new DockContainer
                         {
-                            Flow = FlowDirection.LeftToRight,
-                            Childrens = {singleplayerButton, multiplayerButton, optionButton, quitButton}
-                        }
+                            Childrens =
+                            {
+                                new TileContainer
+                                {
+                                    Dock = Dock.Bottom,
+                                    Flow = FlowDirection.LeftToRight,
+                                    Padding = new Padding(4),
+                                    Marging = new Padding(2),
+                                    Bound = new Rectangle(0, 0, 64, 64),
+                                    Childrens = {singleplayerButton, optionButton, quitButton}
+                                },                                
+                                new PictureWidget
+                                {
+                                    Picture = Ressources.ImgHevadeaLogo,
+                                    Anchor = Anchor.Center,
+                                    Origine = Anchor.Center,
+                                    Dock = Dock.Fill
+                                }
+                            }
+                        } 
+                            
                     }
                 }
             };

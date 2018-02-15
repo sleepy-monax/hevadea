@@ -1,7 +1,4 @@
-﻿using Maker.Hevadea.Game;
-using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Creatures;
-using Maker.Hevadea.Game.Registry;
+﻿using Maker.Hevadea.Scenes.Widgets;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.UI.Widgets;
@@ -13,13 +10,13 @@ namespace Maker.Hevadea.Scenes
     public class PlayMenu : Scene
     {
         public override void Load()
-        {
+        {         
             var backButton = new BackButton
             {
                 Bound = new Rectangle(0, 0, 48, 48),
                 Origine = Anchor.BottomLeft,
                 Anchor = Anchor.BottomLeft,
-                BlurBackground = true,
+                BlurBackground = false,
                 Offset = new Point(0, -16)
             };
             backButton.MouseClick += sender => Engine.Scene.Switch(new MainMenu());
@@ -27,27 +24,29 @@ namespace Maker.Hevadea.Scenes
             var newButton = new Button
             {
                 Text = "New",
-                Bound = new Rectangle(0, 0, 240, 48),
+                Bound = new Rectangle(0, 0, 200, 48),
                 Origine = Anchor.BottomRight,
                 Anchor = Anchor.BottomRight,
-                BlurBackground = true,
+                BlurBackground = false,
                 Offset = new Point(-16, -16)
             };
-            newButton.MouseClick += sender =>
+            newButton.MouseClick += sender => Engine.Scene.Switch(new WorldGenScene());
+            
+            var savesList = new FancyPanel
             {
-                Engine.Scene.Switch(new WorldGenScene());
-                return;
-                var world = GENERATOR.DEFAULT.Generate();
-                var player = new PlayerEntity();
-                Engine.Scene.Switch(new GameScene(new GameManager(world, player)));
+                Anchor  = Anchor.Center,
+                Origine = Anchor.Center,
+                Bound   = new Rectangle(0, 0, 720, 416),
+                Padding = new Padding(16),
+                Content = new AnchoredContainer{Childrens = {backButton, newButton}}
             };
 
-            Container = new AnchoredContainer
+            Container = new AnchoredContainer()
             {
-                Childrens = {backButton, newButton}
+                Padding = new Padding(16),
+                Childrens = {savesList}
             };
         }
-
 
         public override void OnUpdate(GameTime gameTime)
         {

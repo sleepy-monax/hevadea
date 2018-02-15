@@ -23,7 +23,7 @@ namespace Maker.Hevadea.Game
         public string PlayerSpawnLevel = "overworld";
 
         private readonly SpriteBatch spriteBatch;
-        public int Time;
+        public double Time;
 
         public World()
         {
@@ -61,8 +61,8 @@ namespace Maker.Hevadea.Game
 
             Engine.Graphic.Begin(spriteBatch, false, camera.GetTransform());
             level.DrawTerrain(state, spriteBatch, gameTime);
-            level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
             level.DrawEntities(state, spriteBatch, gameTime);
+            level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
             spriteBatch.End();
 
             Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);

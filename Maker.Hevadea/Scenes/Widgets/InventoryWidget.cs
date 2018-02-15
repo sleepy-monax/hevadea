@@ -12,12 +12,12 @@ namespace Maker.Hevadea.Scenes.Widgets
 {
     public class InventoryWidget : Widget
     {
-        private readonly ItemStorage _inventory;
+        public ItemStorage Content { get; }
         private int _scrollOffset;
 
         public InventoryWidget(ItemStorage i)
         {
-            _inventory = i;
+            Content = i;
         }
 
         public Item SelectedItem { get; set; }
@@ -28,7 +28,7 @@ namespace Maker.Hevadea.Scenes.Widgets
             var index = 0;
 
             SelectedItem = null;
-            var text = $"({_inventory.Items.Count}/{_inventory.Capacity})";
+            var text = $"({Content.Items.Count}/{Content.Capacity})";
             var textSize = Ressources.FontRomulus.MeasureString(text);
             spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
             spriteBatch.DrawString(Ressources.FontRomulus, text,
@@ -41,7 +41,7 @@ namespace Maker.Hevadea.Scenes.Widgets
             foreach (var i in ITEMS.ById)
                 if (i != null)
                 {
-                    var itemCount = _inventory.Count(i);
+                    var itemCount = Content.Count(i);
 
                     if (itemCount > 0)
                     {

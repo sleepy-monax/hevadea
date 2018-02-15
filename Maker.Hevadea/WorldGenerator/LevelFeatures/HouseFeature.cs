@@ -11,8 +11,8 @@ namespace Maker.Hevadea.WorldGenerator.LevelFeatures
     {
         public Tile Wall     { get; set; } = TILES.WOOD_WALL;
         public Tile Floor    { get; set; } = TILES.WOOD_FLOOR;
-        public Point MinSize { get; set; } = new Point(5, 5);
-        public Point MaxSize { get; set; } = new Point(9, 9);
+        public Point MinSize { get; set; } = new Point(4, 4);
+        public Point MaxSize { get; set; } = new Point(7, 5);
         public List<Tile> CanBePlacedOn { get; set; } = new List<Tile>(){ TILES.GRASS, TILES.ROCK };
         
         private float _progress = 0f;
@@ -60,6 +60,8 @@ namespace Maker.Hevadea.WorldGenerator.LevelFeatures
                         }   
                     }  
                 }
+
+                _progress = i / 50f;
             }
         }
     }

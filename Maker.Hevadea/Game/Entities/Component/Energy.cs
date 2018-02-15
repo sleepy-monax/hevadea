@@ -8,6 +8,8 @@ namespace Maker.Hevadea.Game.Entities.Component
     {
         public float Value { get; set; } = 10f;
         public float MaxValue { get; set; } = 10f;
+        public float ValuePercent => Value / MaxValue;
+        
         public float Regeneration { get; set; } = 0.01f;
         public float MaxRegeneration { get; set; } = 1f;
 

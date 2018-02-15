@@ -11,6 +11,7 @@ namespace Maker.Rise.UI.Widgets
     public class Button : Widget
     {
         public bool BlurBackground { get; set; } = true;
+        public bool EnableBorder { get; set; } = false;
         public Color OverColor { get; set; } = Color.Gold;
         public Color IdleColor { get; set; } = Color.White;
         public Color TextColor { get; set; } = Color.White;
@@ -27,9 +28,12 @@ namespace Maker.Rise.UI.Widgets
             {
                 spriteBatch.Draw(Engine.Scene.BluredScene, Host, Host, Color.White * _easing.GetValue(EasingFunctions.Linear));
             }
-            
-            spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
-            spriteBatch.DrawRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
+
+            if (EnableBorder)
+            {
+                spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
+                spriteBatch.DrawRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
+            }
 
             var bounceW = (int) (Host.Width *  _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
             var bounceH = (int) (Host.Height * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
