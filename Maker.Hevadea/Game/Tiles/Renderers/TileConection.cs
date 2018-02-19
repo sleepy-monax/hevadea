@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Maker.Utils;
 
-namespace Maker.Hevadea.Game.Tiles.Render
+namespace Maker.Hevadea.Game.Tiles.Renderers
 {
     public class TileConection
     {

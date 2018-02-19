@@ -79,7 +79,7 @@ namespace Maker.Hevadea.Game.Registry
                             {
                                 Chance = 5,
                                 CanBePlantOn = {TILES.GRASS},
-                                PlacingFunction = new PerlinFunction(2, 0.5, 7),
+                                PlacingFunction = new PerlinFunction(),
                                 Threashold = 0.7f
                             }
                         }
@@ -87,7 +87,43 @@ namespace Maker.Hevadea.Game.Registry
                 }
             };
 
-            DEFAULT = new Generator {Levels = {OVERWORLD}, Size = 256, Seed = 0};
+
+            CAVE = new LevelGenerator
+            {
+                LevelId = 1,
+                LevelName = "cave",
+
+                Features =
+                {
+                    new BaseTerainFeature
+                    {
+                        Layers =
+                        {
+                            new TerrainLayer
+                            {
+                                Priority = 0,
+                                Tile = TILES.ROCK,
+                                Threashold = 0f,
+                                Function = new FlatFunction(0f)
+                            },
+                            new TerrainLayer
+                            {
+                                Priority = 1,
+                                Tile = TILES.DIRT,
+                                Threashold = 1.1f,
+                                Function = new PerlinFunction(2, 1, 15)
+                            },
+                        }
+                    },
+                    new HouseFeature
+                    {
+                        CanBePlacedOn = { TILES.DIRT, TILES.ROCK },
+                        Wall = TILES.ROCK
+                    },
+                }
+            };
+
+            DEFAULT = new Generator {Levels = {OVERWORLD, CAVE}, Size = 256, Seed = 0};
         }
     }
 }

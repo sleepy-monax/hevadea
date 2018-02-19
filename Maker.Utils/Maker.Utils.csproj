@@ -61,6 +61,7 @@
     <Compile Include="Logging\LogPublisher.cs" />
     <Compile Include="Logging\Module\LoggerModule.cs" />
     <Compile Include="Logging\Module\ModuleManager.cs" />
+    <Compile Include="Mathf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

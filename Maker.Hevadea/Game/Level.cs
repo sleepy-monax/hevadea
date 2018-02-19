@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Maker.Hevadea.Game.Entities;
+﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Storage;
@@ -13,6 +9,10 @@ using Maker.Utils;
 using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace Maker.Hevadea.Game
 {
@@ -23,7 +23,7 @@ namespace Maker.Hevadea.Game
         public List<Entity> EntitiesToRemove = new List<Entity>();
         private GameManager Game;
 
-        private byte[] Tiles;
+        private int[] Tiles;
         private Dictionary<string, object>[] TilesData;
 
         private World World;
@@ -33,7 +33,7 @@ namespace Maker.Hevadea.Game
             Width = width;
             Height = height;
 
-            Tiles = new byte[Width * Height];
+            Tiles = new int[Width * Height];
             TilesData = new Dictionary<string, object>[Width * Height];
             Entities = new List<Entity>();
             EntitiesOnTiles = new List<Entity>[Width, Height];
@@ -143,12 +143,17 @@ namespace Maker.Hevadea.Game
             return TILES.ById[Tiles[tx + ty * Width]];
         }
 
-        public void SetTile(int tx, int ty, Tile tile)
+        public void SetTile(TilePosition pos, Tile tile)
         {
-            SetTile(tx, ty, tile.ID);
+            SetTile(pos.X, pos.Y, tile.Id);
         }
 
-        public void SetTile(int tx, int ty, byte id)
+        public void SetTile(int tx, int ty, Tile tile)
+        {
+            SetTile(tx, ty, tile.Id);
+        }
+
+        public void SetTile(int tx, int ty, int id)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return;
             Tiles[tx + ty * Width] = id;
@@ -232,7 +237,7 @@ namespace Maker.Hevadea.Game
             {
                 var tx = Engine.Random.Next(Width);
                 var ty = Engine.Random.Next(Height);
-                GetTile(tx, ty).Update(this, tx, ty);
+                GetTile(tx, ty).Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
             }
 
             // Update entities
@@ -280,7 +285,7 @@ namespace Maker.Hevadea.Game
         {
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
-                GetTile(tx, ty).Draw(spriteBatch, gameTime, this, new TilePosition(tx, ty));
+                GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
         }
 
         public void DrawEntities(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)

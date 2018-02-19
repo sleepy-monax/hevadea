@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Hevadea.Game.Tiles.Render
+namespace Maker.Hevadea.Game.Tiles.Renderers
 {
-    public class ConnectedTileRender
+    public class ConnectedTileRender : TileRenderer
     {
         private readonly SpriteSheet Sprites;
 
@@ -13,7 +13,7 @@ namespace Maker.Hevadea.Game.Tiles.Render
             Sprites = sprites;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, TileConection connection)
+        public override void Draw(SpriteBatch spriteBatch, Vector2 position, TileConection connection)
         {
             var index = connection.ToByte();
             var x = index % 8;

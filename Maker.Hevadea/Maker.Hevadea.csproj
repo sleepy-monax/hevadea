@@ -120,9 +120,12 @@
     <Compile Include="Game\Registry\GENERATOR.cs" />
     <Compile Include="Game\Registry\REGISTRY.cs" />
     <Compile Include="Game\Storage\WorldStorage.cs" />
-    <Compile Include="Game\Tiles\Render\CompositConectedTileRender.cs" />
-    <Compile Include="Game\Tiles\Render\ConnectedTileRender.cs" />
-    <Compile Include="Game\Tiles\Render\TileConection.cs" />
+    <Compile Include="Game\Tiles\Renderers\CompositConectedTileRender.cs" />
+    <Compile Include="Game\Tiles\Renderers\ConnectedTileRender.cs" />
+    <Compile Include="Game\Tiles\Renderers\TileConection.cs" />
+    <Compile Include="Game\Tiles\Renderers\TileRender.cs" />
+    <Compile Include="Game\Tiles\Tags.cs" />
+    <Compile Include="Game\Tiles\TileTag.cs" />
     <Compile Include="Scenes\GUIHelper.cs" />
     <Compile Include="Scenes\Menus\ChestMenu.cs" />
     <Compile Include="Scenes\Menus\CraftMenu.cs" />
@@ -136,9 +139,6 @@
     <Compile Include="Game\Registry\TILES.cs" />
     <Compile Include="Game\Storage\EntityStorage.cs" />
     <Compile Include="Game\Storage\LevelStorage.cs" />
-    <Compile Include="Game\Tiles\DirtTile.cs" />
-    <Compile Include="Game\Tiles\WoodFloorTile.cs" />
-    <Compile Include="Game\Tiles\WoodWallTile.cs" />
     <Compile Include="Networking\Client\GameClient.cs" />
     <Compile Include="Networking\Server\GameServer.cs" />
     <Compile Include="Scenes\Menus\PauseMenu.cs" />
@@ -152,13 +152,8 @@
     <Compile Include="Scenes\Widgets\StatesWidget.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Ressources.cs" />
-    <Compile Include="Game\Tiles\GrassTile.cs" />
-    <Compile Include="Game\Tiles\RockTile.cs" />
-    <Compile Include="Game\Tiles\SandTile.cs" />
     <Compile Include="Game\Tiles\Tile.cs" />
     <Compile Include="Game\Tiles\TilePosition.cs" />
-    <Compile Include="Game\Tiles\VoidTile.cs" />
-    <Compile Include="Game\Tiles\WaterTile.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Scenes\PlayMenu.cs" />
@@ -268,8 +263,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Game\Entities\Component\Ai\States" />
-    <Folder Include="Game\Entities\Component\Ai\Triggers" />
+    <Folder Include="Game\Entities\Component\Ai\States\" />
+    <Folder Include="Game\Entities\Component\Ai\Triggers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

@@ -61,7 +61,7 @@ namespace Maker.Hevadea.Scenes
         {
             if (worldgen?.CurrentLevel?.CurrentFeature != null)
             {
-                _progressLabel.Text = worldgen.CurrentLevel.CurrentFeature.GetName();
+                _progressLabel.Text = $"{worldgen.CurrentLevel.LevelName}: {worldgen.CurrentLevel.CurrentFeature.GetName()}";
                 _progressBar.Value = worldgen.CurrentLevel.CurrentFeature.GetProgress();
             }
         }

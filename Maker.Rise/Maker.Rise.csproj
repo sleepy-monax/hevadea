@@ -67,7 +67,11 @@
     <Compile Include="Components\RessourceManager.cs" />
     <Compile Include="Extension\RectangleExtension.cs" />
     <Compile Include="Graphic\BlurEffect.cs" />
+    <Compile Include="Graphic\Particles\ColoredParticle.cs" />
+    <Compile Include="Graphic\Particles\Particle.cs" />
+    <Compile Include="Graphic\Particles\ParticleSystem.cs" />
     <Compile Include="Graphic\SpriteBatchBeginState.cs" />
+    <Compile Include="MathHelper.cs" />
     <Compile Include="Ressource\ParalaxeBackground.cs" />
     <Compile Include="Components\SceneManager.cs" />
     <Compile Include="Components\Scene.cs" />

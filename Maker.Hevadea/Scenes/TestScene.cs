@@ -1,4 +1,4 @@
-﻿using Maker.Hevadea.Game.Tiles.Render;
+﻿using Maker.Hevadea.Game.Tiles.Renderers;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Ressource;

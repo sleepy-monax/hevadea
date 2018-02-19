@@ -2,22 +2,26 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Maker.Hevadea.Game.Tiles.Render
+namespace Maker.Hevadea.Game.Tiles.Renderers
 {
-    public class CompositConectedTileRender
+    public class CompositConectedTileRender : TileRenderer
     {
+        public Sprite Sprite { get; }
+        public Sprite _dirtSprite;
+
         public CompositConectedTileRender(Sprite sprite)
         {
             Sprite = sprite;
+            _dirtSprite = new Sprite(Ressources.TileTiles, 0);
         }
 
-        public Sprite Sprite { get; }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, TileConection connection)
+        public override void Draw(SpriteBatch spriteBatch, Vector2 position, TileConection connection)
         {
-            DrawCorner(spriteBatch, connection.Left, connection.UpLeft, connection.Up, new Point(0, 0), new Point(0, 2),
-                new Point(0, 3), new Point(2, 0),
-                new Point(2, 2), (int) (position.X + 0), (int) (position.Y + 0));
+            DrawCorner(spriteBatch, connection.Left, connection.UpLeft, connection.Up, 
+                new Point(0, 0), new Point(0, 2), new Point(0, 3), new Point(2, 0), new Point(2, 2),
+                (int) (position.X + 0), (int) (position.Y + 0));
+
             DrawCorner(spriteBatch, connection.Up, connection.UpRight, connection.Right, new Point(1, 0),
                 new Point(1, 2), new Point(0, 2), new Point(3, 0),
                 new Point(2, 2), (int) (position.X + 8), (int) (position.Y + 0));
@@ -35,6 +39,11 @@ namespace Maker.Hevadea.Game.Tiles.Render
             Point case1, Point case2, Point case3, Point case4, Point case5,
             int x, int y)
         {
+            if (!a || !b || !c)
+            {
+                _dirtSprite.DrawSubSprite(spriteBatch, new Vector2(x, y), new Point(0, 0), Color.White);
+            }
+
             if (!a & !c)
                 Sprite.DrawSubSprite(spriteBatch, new Vector2(x, y), case1, Color.White);
             else if (a & !c)

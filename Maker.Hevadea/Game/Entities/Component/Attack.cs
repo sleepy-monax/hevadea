@@ -1,8 +1,9 @@
-﻿using System;
-using Maker.Hevadea.Game.Items;
+﻿using Maker.Hevadea.Game.Items;
+using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Maker.Hevadea.Game.Entities.Component
 {
@@ -97,13 +98,17 @@ namespace Maker.Hevadea.Game.Entities.Component
                 foreach (var e in facingEntities)
                     if (e != Owner)
                     {
-                        e.Components.Get<Breakable>()?.Break();
+                        if (e.Components.Has<Breakable>())
+                        {
+                            e.Components.Get<Breakable>()?.Break(weapon);
+                            _isAttacking = true;
+                        }
 
                         var eHealth = e.Components.Get<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
                             eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
-
+                            _isAttacking = true;
                             break;
                         }
                     }
@@ -112,10 +117,19 @@ namespace Maker.Hevadea.Game.Entities.Component
             if (CanAttackTile && !_isAttacking)
             {
                 var tile = Owner.Level.GetTile(facingTile);
-                tile.Hurt(Owner, damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Facing);
+                if (tile.HasTag<Tags.Damage>())
+                {
+                    tile.Tag<Tags.Damage>().Hurt(damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Level);
+                    _isAttacking = true;
+                }
+
+                if (tile.HasTag<Tags.Breakable>())
+                {
+                    tile.Tag<Tags.Breakable>().Break(facingTile, Owner.Level);
+                    _isAttacking = true;
+                }
             }
 
-            _isAttacking = true;
             _lastDirection = Owner.Facing;
             _timer = _speedFactor;
         }

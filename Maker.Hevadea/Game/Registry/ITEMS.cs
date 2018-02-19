@@ -16,6 +16,8 @@ namespace Maker.Hevadea.Game.Registry
         public static Material IronMaterial;
         public static Material GoldMaterial;
 
+        public static Item ANY;
+
         public static RessourceItem WoodLog;
         public static RessourceItem WoodPlank;
         public static RessourceItem WoodStick;
@@ -33,6 +35,8 @@ namespace Maker.Hevadea.Game.Registry
             WoodMaterial = new BaseMaterial(2f);
             IronMaterial = new BaseMaterial(4f);
             GoldMaterial = new BaseMaterial(8f);
+
+            ANY = new Item("any", new Sprite(Ressources.TileItems, 0));
 
             WoodLog = new RessourceItem("Wood Log", new Sprite(Ressources.TileItems, 6));
             WoodPlank = new RessourceItem("Wood Plank", new Sprite(Ressources.TileItems, new Point(6, 1)));

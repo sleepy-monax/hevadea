@@ -1,11 +1,12 @@
 ﻿using Maker.Rise.Components;
 using Maker.Utils;
+using Maker.Utils.Enums;
+using Maker.Utils.Json;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using System.Reflection;
-using Maker.Rise.UI;
-using Maker.Utils.Json;
+using System.Threading;
 
 namespace Maker.Rise
 {
@@ -46,6 +47,26 @@ namespace Maker.Rise
 
             if (File.Exists("engine.json"))
             {
+                var watcher = new FileSystemWatcher(".", "engine.json")
+                {
+                    EnableRaisingEvents = true,
+                    NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.CreationTime,
+                };
+                watcher.Changed += (sender, args) =>
+                    {
+                        Logger.Log(LoggerLevel.Info,"Reloading engine configs...");
+                        try
+                        {
+                            Thread.Sleep(200);
+                            Configuration = File.ReadAllText("engine.json").FromJson<EngineConfig>();
+                            Logger.Log(LoggerLevel.Fine, "Config reloaded!");
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Log(LoggerLevel.Error, "Failled to reload configs...");
+                            Logger.Log(ex);
+                        }
+                    };
                 Configuration = File.ReadAllText("engine.json").FromJson<EngineConfig>();
             }
         }

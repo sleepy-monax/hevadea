@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Maker.Hevadea.Game.Entities;
+using Maker.Rise.Utils;
+using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.Game.Tiles
 {
@@ -18,6 +20,26 @@ namespace Maker.Hevadea.Game.Tiles
         public Point ToOnScreenPosition()
         {
             return new Point(X * ConstVal.TileSize, Y * ConstVal.TileSize);
+        }
+
+        public bool IsColiding(Entity e, int width, int height)
+        {
+            return Colision.Check(X * ConstVal.TileSize,
+                Y * ConstVal.TileSize,
+                ConstVal.TileSize, ConstVal.TileSize,
+                e.X,
+                e.Y,
+                width, height);
+        }
+
+        public bool IsColiding(float x, float y, int width, int height)
+        {
+            return Colision.Check(X * ConstVal.TileSize,
+                Y * ConstVal.TileSize,
+                ConstVal.TileSize, ConstVal.TileSize,
+                x,
+                y,
+                width, height);
         }
 
         public static bool operator !=(TilePosition left, TilePosition right)

@@ -46,7 +46,7 @@ namespace Maker.Hevadea.Game.Items
         public virtual void InteracteOn(Entity user, TilePosition pos)
         {
             var tile = user.Level.GetTile(pos);
-            tile.Interacte(user, this, pos, user.Facing);
+            //tile.Interacte(user, this, pos, user.Facing);
         }
 
         public void Drop(Level level, float x, float y, int quantity)

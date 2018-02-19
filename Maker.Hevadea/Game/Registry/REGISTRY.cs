@@ -7,12 +7,13 @@ namespace Maker.Hevadea.Game.Registry
         public static void Initialize()
         {
             Logger.Log("Initializing game registery.");
-            {
-                TILES.Initialize();
-                ITEMS.Initialize();
-                RECIPIES.InitializeHandCraftedRecipe();
-                GENERATOR.Initialize();
-            }
+            
+            TILES.Initialize();
+            ITEMS.Initialize();
+            RECIPIES.InitializeHandCraftedRecipe();
+            GENERATOR.Initialize();
+
+            TILES.AttachTags();
         }
     }
 }

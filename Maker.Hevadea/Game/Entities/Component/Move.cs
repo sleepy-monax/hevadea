@@ -14,17 +14,31 @@ namespace Maker.Hevadea.Game.Entities.Component
         }
 
         /// <summary>
-        ///     Move the entity relative to him.
-        ///     With colision detection.
+        /// Move the entity relative to him With colision detection.
         /// </summary>
         public virtual bool Do(float accelerationX, float accelerationY, Direction facing)
         {
+            // Handle the move speed tag on a tile.
+            var curpos = Owner.GetTilePosition();
+            if (Owner.Level.GetTile(curpos.X, curpos.Y).HasTag<Tags.Ground>())
+            {
+                var ground = Owner.Level.GetTile(curpos.X, curpos.Y).Tag<Tags.Ground>();
+
+                accelerationX *= ground.MoveSpeed;
+                accelerationY *= ground.MoveSpeed;
+            }
+
+            // Apply the movement.
             if (accelerationX == 0 && accelerationY == 0
                 || !(MoveInternal(accelerationX, 0) | MoveInternal(0, accelerationY))) return false;
 
+            // Update the entity facing.
             Owner.Facing = facing;
+
+            // Tell the tile we walked on it.
             var pos = Owner.GetTilePosition();
-            Owner.Level.GetTile(pos.X, pos.Y).SteppedOn(Owner, pos);
+            Owner.Level.GetTile(pos.X, pos.Y).Tag<Tags.Ground>()?.SteppedOn(Owner, pos);
+
             IsMoving = true;
 
             return true;
@@ -44,13 +58,13 @@ namespace Maker.Hevadea.Game.Entities.Component
             {
                 var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
 
-                if (Owner.Level.GetTile(t.X, t.Y).IsBlocking(Owner, t) & !NoClip)
+                if (Owner.Level.GetTile(t.X, t.Y).HasTag<Tags.Solide>() & !NoClip)
                 {
-                    if (Tile.IsColiding(t, Owner.X, Owner.Y + aY, Owner.Width, Owner.Height)) aY = 0;
+                    if (t.IsColiding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height)) aY = 0;
 
-                    if (Tile.IsColiding(t, Owner.X + aX, Owner.Y, Owner.Width, Owner.Height)) aX = 0;
+                    if (t.IsColiding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height)) aX = 0;
 
-                    if (Tile.IsColiding(t, Owner.X + aX, Owner.Y + aY, Owner.Width, Owner.Height))
+                    if (t.IsColiding(Owner.X + aX, Owner.Y + aY, Owner.Width, Owner.Height))
                     {
                         aX = 0;
                         aY = 0;
