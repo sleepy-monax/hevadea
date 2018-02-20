@@ -35,13 +35,15 @@ namespace Maker.Hevadea.Game.Registry
 
         public static void AttachTags()
         {
+            VOID.AddTag(new Tags.Solide());
+
             ROCK.AddTag(new Tags.Solide(), new Tags.Breakable { ReplacementTile = DIRT });
             ROCK.AddTag(new Tags.Droppable((ITEMS.Stone, 2, 5), (ITEMS.Coal, 0, 3)));
 
             SAND.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
 
             GRASS.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
-            GRASS.AddTag(new Tags.Spread { SpreadChance = 10, SpreadTo = { DIRT } });
+            GRASS.AddTag(new Tags.Spread { SpreadChance = 50, SpreadTo = { DIRT } });
 
             WATER.AddTag(new Tags.Spread { SpreadChance = 1, SpreadTo = { VOID } });
             WATER.AddTag(new Tags.Liquide());

@@ -38,8 +38,8 @@ namespace Maker.Hevadea.Scenes
         public override void OnUpdate(GameTime gameTime)
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 1) || !_once) return;
-            Engine.Scene.Switch(new PhysicTest());
-            //Engine.Scene.Switch(new WorldGenScene());
+            //Engine.Scene.Switch(new PhysicTest());
+            Engine.Scene.Switch(new WorldGenScene());
             _once = false;
         }
 

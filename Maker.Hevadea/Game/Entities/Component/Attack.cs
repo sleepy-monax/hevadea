@@ -52,11 +52,7 @@ namespace Maker.Hevadea.Game.Entities.Component
                 case Direction.Left:
                     _swingLeft.Draw(spriteBatch, new Rectangle((int) (Owner.X - Owner.Width), (int) Owner.Y, Owner.Width, (int) (Owner.Height * invTimer)), Color.White);
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
-
-            //spriteBatch.FillRectangle(new Rectangle((int)Owner.X, (int)Owner.Y, (int)(64 * AttackCooldownTimer), 16), Color.Red);
         }
 
         public void Update(GameTime gameTime)
@@ -119,15 +115,15 @@ namespace Maker.Hevadea.Game.Entities.Component
                 var tile = Owner.Level.GetTile(facingTile);
                 if (tile.HasTag<Tags.Damage>())
                 {
-                    tile.Tag<Tags.Damage>().Hurt(damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Level);
-                    _isAttacking = true;
+                    tile.Tag<Tags.Damage>().Hurt(damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Level);   
                 }
 
                 if (tile.HasTag<Tags.Breakable>())
                 {
                     tile.Tag<Tags.Breakable>().Break(facingTile, Owner.Level);
-                    _isAttacking = true;
                 }
+
+                _isAttacking = true;
             }
 
             _lastDirection = Owner.Facing;

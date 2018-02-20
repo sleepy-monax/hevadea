@@ -12,7 +12,7 @@ namespace Maker.Hevadea.Game.Entities.Creatures
         {
             Width = 8;
             Height = 8;
-            Origin = new Point(4, 7);
+            Origin = new Point(4, 4);
 
             HoldingItem = null;
 
