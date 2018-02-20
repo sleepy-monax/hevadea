@@ -130,6 +130,48 @@ namespace Maker.Hevadea.Game
             return result;
         }
 
+        public bool IsAll(Tile tile, Rectangle rectangle)
+        {
+            bool result = true;
+
+            var beginX = rectangle.X / ConstVal.TileSize - 1;
+            var beginY = rectangle.Y / ConstVal.TileSize - 1;
+
+            var endX = (rectangle.X + rectangle.Width) / ConstVal.TileSize + 1;
+            var endY = (rectangle.Y + rectangle.Height) / ConstVal.TileSize + 1;
+
+
+            for (var x = beginX; x < endX; x++)
+            for (var y = beginY; y < endY; y++)
+            {
+                if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
+                result &= GetTile(x, y) == tile;
+            }
+
+            return result;
+        }
+        
+        public bool IsAll<T>(Rectangle rectangle) where T: TileTag
+        {
+
+            var beginX = rectangle.X / ConstVal.TileSize;
+            var beginY = rectangle.Y / ConstVal.TileSize;
+
+            var endX = (rectangle.X + rectangle.Width) / ConstVal.TileSize;
+            var endY = (rectangle.Y + rectangle.Height) / ConstVal.TileSize;
+
+
+            bool result =  GetTile(beginX, beginY).HasTag<T>();;
+            for (var x = beginX; x <= endX; x++)
+            for (var y = beginY; y <= endY; y++)
+            {
+                if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
+                result &= GetTile(x, y).HasTag<T>();
+            }
+
+            return result;
+        }
+
         // TILES --------------------------------------------------------------
 
         public Tile GetTile(TilePosition tPos)

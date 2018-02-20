@@ -1,4 +1,5 @@
 ﻿using Maker.Rise.Extension;
+using Maker.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -10,7 +11,8 @@ namespace Maker.Rise.Graphic.Particles
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.PutPixel(new Vector2(X, Y) - new Vector2(Size, Size) / 2, Color * (Life / FadeOut), Size);
+            var s = Size * Easings.Interpolate(FadeOutAnimation, FadeOutEasing);
+            spriteBatch.PutPixel(new Vector2(X, Y) - new Vector2(s, s) / 2, Color, s);
         }
     }
 }

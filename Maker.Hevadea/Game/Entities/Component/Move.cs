@@ -57,8 +57,10 @@ namespace Maker.Hevadea.Game.Entities.Component
             for (var oy = -1; oy < 2; oy++)
             {
                 var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
-
-                if (Owner.Level.GetTile(t.X, t.Y).HasTag<Tags.Solide>() & !NoClip)
+                
+                bool canPass = Owner.Level.GetTile(t.X, t.Y).Tag<Tags.Solide>()?.CanPassThrought(Owner) ?? true;
+                
+                if (!canPass & !NoClip)
                 {
                     if (t.IsColiding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height)) aY = 0;
 

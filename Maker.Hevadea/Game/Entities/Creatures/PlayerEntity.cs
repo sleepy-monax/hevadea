@@ -12,11 +12,11 @@ namespace Maker.Hevadea.Game.Entities.Creatures
         {
             Width = 8;
             Height = 8;
-            Origin = new Point(4, 4);
+            Origin = new Point(4, 7);
 
             HoldingItem = null;
 
-            Components.Add(new Health(20));
+            Components.Add(new Health(20){ShowHealthBar = false});
             Components.Add(new Attack());
             Components.Add(new Energy());
             Components.Add(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
@@ -24,6 +24,7 @@ namespace Maker.Hevadea.Game.Entities.Creatures
             Components.Add(new Interact());
             Components.Add(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
             Components.Add(new Move());
+            Components.Add(new Swim());
         }
 
         public Item HoldingItem { get; set; }

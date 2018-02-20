@@ -73,9 +73,9 @@ namespace Maker.Hevadea.Scenes
                     _game.Player.Level.SpawnEntity(z, pos.X, pos.Y);
                 }
 
-                if (Engine.Input.MouseLeft) _game.Player.Components.Get<Attack>().Do(_game.Player.HoldingItem);
+                if (Engine.Input.KeyDown(Keys.J)) _game.Player.Components.Get<Attack>().Do(_game.Player.HoldingItem);
 
-                if (Engine.Input.MouseRightClick)
+                if (Engine.Input.KeyPress(Keys.K))
                 {
                     if (_game.Player.Components.Get<Inventory>().Content.Count(_game.Player.HoldingItem) == 0)
                         _game.Player.HoldingItem = null;

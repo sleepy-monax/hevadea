@@ -125,7 +125,6 @@ namespace Maker.Hevadea.Game.Entities
 
         public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            // Do nothing.
         }
 
         public TilePosition GetTilePosition(bool onOrigine = false)
@@ -137,10 +136,16 @@ namespace Maker.Hevadea.Game.Entities
             return new TilePosition((int) (X / ConstVal.TileSize), (int) (Y / ConstVal.TileSize));
         }
 
+        public Tile GetTileOnMyOrigin()
+        {
+            return Level.GetTile(GetTilePosition(true));
+        }
+
         public TilePosition GetFacingTile()
         {
             var dir = Facing.ToPoint();
             var pos = GetTilePosition(true);
+            
             return new TilePosition(dir.X + pos.X, dir.Y + pos.Y);
         }
 
@@ -148,12 +153,10 @@ namespace Maker.Hevadea.Game.Entities
         {
             var oldPosition = GetTilePosition();
 
-            X = x;
-            Y = y;
+            X = x; Y = y;
 
             var pos = GetTilePosition();
 
-            //TODO: make this smarter
             Level?.RemoveEntityFromTile(oldPosition, this);
             Level?.AddEntityToTile(pos, this);
         }

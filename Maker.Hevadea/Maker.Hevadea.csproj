@@ -95,6 +95,7 @@
     <Compile Include="Game\Entities\Component\Move.cs" />
     <Compile Include="Game\Entities\Component\Render\NpcRender.cs" />
     <Compile Include="Game\Entities\Component\Render\ParticleEmiter.cs" />
+    <Compile Include="Game\Entities\Component\Swim.cs" />
     <Compile Include="Game\Entities\Component\Target.cs" />
     <Compile Include="Game\Entities\Creatures\NpcEntity.cs" />
     <Compile Include="Game\Entities\Creatures\PlayerEntity.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Game\Items\Materials\Material.cs" />
     <Compile Include="Game\Items\PlacableItem.cs" />
     <Compile Include="Game\Items\RessourceItem.cs" />
+    <Compile Include="Game\Items\TileItem.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />
     <Compile Include="Game\Registry\REGISTRY.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="Scenes\Menus\PauseMenu.cs" />
     <Compile Include="Scenes\SampleScene.cs" />
     <Compile Include="Scenes\TestScene.cs" />
+    <Compile Include="Scenes\Toys\PhysicTest.cs" />
     <Compile Include="Scenes\Widgets\FancyPanel.cs" />
     <Compile Include="Scenes\WorldGenScene.cs" />
     <Compile Include="Scenes\Widgets\CraftingWidget.cs" />

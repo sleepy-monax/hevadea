@@ -8,9 +8,10 @@ namespace Maker.Hevadea.Game.Tiles
 {
     public class Tile
     {
-        public int Id { get; private set; }
-        private List<TileTag> _tags;
-        private TileRenderer _renderer;
+        public int Id { get; }
+        
+        private readonly List<TileTag> _tags;
+        private readonly TileRenderer _renderer;
 
         public Tile(TileRenderer renderer)
         {
@@ -53,7 +54,7 @@ namespace Maker.Hevadea.Game.Tiles
         {
             foreach (var t in _tags)
             {
-                if (t is T) return (T)t;
+                if (t is T variable) return variable;
             }
 
             return null;
@@ -61,7 +62,6 @@ namespace Maker.Hevadea.Game.Tiles
 
         public void AddTag(TileTag tag) {tag.AttachedTile = this; _tags.Add(tag); }
         public void AddTag(params TileTag[] tags) { foreach (var t in tags) AddTag(t); }
-
         #endregion
     }
 }

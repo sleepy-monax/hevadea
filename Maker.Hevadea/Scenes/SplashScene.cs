@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Maker.Hevadea.Game.Registry;
+using Maker.Hevadea.Scenes.Toys;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Extension;
@@ -37,8 +38,8 @@ namespace Maker.Hevadea.Scenes
         public override void OnUpdate(GameTime gameTime)
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 1) || !_once) return;
-            //Engine.Scene.Switch(new SampleScene());
-            Engine.Scene.Switch(new WorldGenScene());
+            Engine.Scene.Switch(new PhysicTest());
+            //Engine.Scene.Switch(new WorldGenScene());
             _once = false;
         }
 

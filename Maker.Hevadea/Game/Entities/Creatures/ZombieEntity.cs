@@ -14,7 +14,7 @@ namespace Maker.Hevadea.Game.Entities.Creatures
             Width = 8;
             Height = 8;
 
-            Origin = new Point(4, 4);
+            Origin = new Point(4, 7);
 
             Components.Add(new Move());
             Components.Add(new Health(10));

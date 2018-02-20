@@ -319,5 +319,10 @@ namespace Maker.Utils
         /// </summary>
         /// <param name="f">The value</param>
         public static float Tan(float f) { return (float)Math.Tan(f); }
+
+        public static float Distance(float aX, float aY, float bX, float bY)
+        {
+            return Sqrt((aX - bX) * (aX - bX) + (aY - bY) * (aY - bY));
+        }
     }
 }

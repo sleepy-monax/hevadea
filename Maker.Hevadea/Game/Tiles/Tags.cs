@@ -1,9 +1,11 @@
-﻿using Maker.Hevadea.Game.Entities;
+﻿using System;
+using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Registry;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Maker.Hevadea.Game.Entities.Component;
 
 namespace Maker.Hevadea.Game.Tiles
 {
@@ -86,15 +88,27 @@ namespace Maker.Hevadea.Game.Tiles
         /// </summary>
         public class Solide : TileTag
         {
+            public virtual bool CanPassThrought(Entity entity)
+            {
+                return false;
+            }
         }
 
+        public class Liquide : Solide
+        {
+            public override bool CanPassThrought(Entity entity)
+            {
+                return entity.Components.Has<Swim>();
+            }
+        }
+        
         /// <summary>
         /// Allow to set te movement speed on the tile.
         /// </summary>
         public class Ground : TileTag
         {
             public float MoveSpeed { get; set; } = 1f;
-            public void SteppedOn(Entity entity, TilePosition position) { }
+            public virtual void SteppedOn(Entity entity, TilePosition position) { }
         }
         #endregion
 

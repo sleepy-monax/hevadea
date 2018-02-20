@@ -9,7 +9,8 @@ namespace Maker.Hevadea.Game.Entities.Component
         public float Value { get; set; } = 10f;
         public float MaxValue { get; set; } = 10f;
         public float ValuePercent => Value / MaxValue;
-        
+
+        public bool EnableNaturalRegeneration { get; set; } = true;
         public float Regeneration { get; set; } = 0.01f;
         public float MaxRegeneration { get; set; } = 1f;
 
@@ -27,8 +28,11 @@ namespace Maker.Hevadea.Game.Entities.Component
 
         public void Update(GameTime gameTime)
         {
-            Value = Math.Min(MaxValue, Value + Regeneration);
-            Regeneration = Math.Min(MaxRegeneration, Regeneration * 1.02f);
+            if (EnableNaturalRegeneration)
+            {   
+                Value = Math.Min(MaxValue, Value + Regeneration);
+                Regeneration = Math.Min(MaxRegeneration, Regeneration * 1.02f);
+            }
         }
 
         public bool Reduce(float value)

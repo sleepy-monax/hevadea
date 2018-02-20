@@ -1,4 +1,7 @@
-﻿using Maker.Rise.Extension;
+﻿using System;
+using Maker.Rise.Extension;
+using Maker.Utils;
+using Maker.Utils.Enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,6 +18,8 @@ namespace Maker.Rise.Graphic.Particles
         public float Size { get; set; } = 2f;
         public float Life { get; set; } = 3f;
         public float FadeOut { get; set; } = 3f;
+        public float FadeOutAnimation => Mathf.Min(1f, Life / FadeOut);
+        public EasingFunctions FadeOutEasing { get; set; } = EasingFunctions.Linear;
 
         public bool IsAffectedByGravity { get; set; } = false;
 
@@ -48,7 +53,8 @@ namespace Maker.Rise.Graphic.Particles
 
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.PutPixel(new Vector2(X, Y) - new Vector2(Size, Size) / 2, Color.White * (Life / FadeOut), Size);
+            var s = Size * Easings.Interpolate(FadeOutAnimation, FadeOutEasing);
+            spriteBatch.PutPixel(new Vector2(X, Y) - new Vector2(s, s) / 2, Color.White, s);
         }
     }
 }

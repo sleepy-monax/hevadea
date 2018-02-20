@@ -2,6 +2,7 @@
 using Maker.Hevadea.Game.Tiles.Renderers;
 using Maker.Rise.Ressource;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Maker.Hevadea.Game.Registry
 {
@@ -43,6 +44,7 @@ namespace Maker.Hevadea.Game.Registry
             GRASS.AddTag(new Tags.Spread { SpreadChance = 10, SpreadTo = { DIRT } });
 
             WATER.AddTag(new Tags.Spread { SpreadChance = 1, SpreadTo = { VOID } });
+            WATER.AddTag(new Tags.Liquide());
 
             DIRT.AddTag(new Tags.Breakable { ReplacementTile = VOID });
 

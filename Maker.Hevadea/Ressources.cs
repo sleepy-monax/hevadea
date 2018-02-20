@@ -43,6 +43,7 @@ namespace Maker.Hevadea
 
         public static ParalaxeBackground ParalaxeForest;
 
+        public static Sprite SprUnderWater;
 
         public static void Load()
         {
@@ -87,6 +88,8 @@ namespace Maker.Hevadea
                 new ParalaxeLayer(ImgForestLight, 2f),
                 new ParalaxeLayer(ImgForestTrees1, 2.5f)
             );
+
+            SprUnderWater = new Sprite(Ressources.TileCreatures, 3, new Point(16, 32));
         }
     }
 }
