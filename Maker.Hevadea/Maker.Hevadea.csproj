@@ -119,6 +119,7 @@
     <Compile Include="Game\Items\RessourceItem.cs" />
     <Compile Include="Game\Items\TileItem.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
+    <Compile Include="Game\Registry\ENTITIES.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />
     <Compile Include="Game\Registry\REGISTRY.cs" />
     <Compile Include="Game\Storage\WorldStorage.cs" />

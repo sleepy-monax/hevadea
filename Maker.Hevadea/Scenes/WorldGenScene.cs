@@ -31,7 +31,7 @@ namespace Maker.Hevadea.Scenes
                 worldgen = GENERATOR.DEFAULT;
                 var world = worldgen.Generate();
                 var player = new PlayerEntity();
-                Engine.Scene.Switch(new GameScene(new GameManager("testWorld", world, player)));
+                Engine.Scene.Switch(new GameScene(new GameManager(world, player)));
             });
 
             _progressLabel = new Label { Text = "Generating world...", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontRomulus, Offset = new Point(0, -24) };

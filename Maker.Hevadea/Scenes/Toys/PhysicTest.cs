@@ -53,8 +53,6 @@ namespace Maker.Hevadea.Scenes.Toys
                 ba.Y += 0.5f;
                 foreach (var bb in _balls)
                 {
-                    
-                    
                     if (ba == bb) continue;
                     
                     var dist = Mathf.Distance(ba.X, ba.Y, bb.X, bb.Y);

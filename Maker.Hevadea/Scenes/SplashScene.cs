@@ -25,7 +25,6 @@ namespace Maker.Hevadea.Scenes
             REGISTRY.Initialize();
             Engine.SetMouseVisibility(true);
             Directory.CreateDirectory("Saves");
-
             // Initialize the scene.
             _sb = Engine.Graphic.CreateSpriteBatch();
             _logo = Ressources.ImgMakerLogo;
@@ -39,7 +38,7 @@ namespace Maker.Hevadea.Scenes
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 1) || !_once) return;
             //Engine.Scene.Switch(new PhysicTest());
-            Engine.Scene.Switch(new WorldGenScene());
+            Engine.Scene.Switch(new MainMenu());
             _once = false;
         }
 

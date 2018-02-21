@@ -20,7 +20,6 @@ namespace Maker.Hevadea.Game
     {
         public List<Entity> Entities;
         public List<Entity>[,] EntitiesOnTiles;
-        public List<Entity> EntitiesToRemove = new List<Entity>();
         private GameManager Game;
 
         private int[] Tiles;
@@ -78,7 +77,9 @@ namespace Maker.Hevadea.Game
 
         public void RemoveEntity(Entity e)
         {
-            EntitiesToRemove.Add(e);
+            Entities.Remove(e);
+            RemoveEntityFromTile(e.GetTilePosition(), e);
+            e.Removed = true;
         }
 
         public void AddEntityToTile(TilePosition p, Entity e)
@@ -246,7 +247,7 @@ namespace Maker.Hevadea.Game
                 Tiles = Tiles,
                 TilesData = TilesData,
                 Name = Name,
-                Id = Id
+                Id = Id, 
             };
 
             Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
@@ -270,6 +271,7 @@ namespace Maker.Hevadea.Game
             Height = store.Height;
             Tiles = store.Tiles;
             TilesData = store.TilesData;
+            Name = store.Name;
         }
 
         public void Update(GameTime gameTime)
@@ -283,17 +285,8 @@ namespace Maker.Hevadea.Game
             }
 
             // Update entities
-            foreach (var e in Entities) e.Update(gameTime);
-
-            // Remove removed entities.
-            foreach (var er in EntitiesToRemove)
-            {
-                Entities.Remove(er);
-                RemoveEntityFromTile(er.GetTilePosition(), er);
-                er.Removed = true;
-            }
-
-            EntitiesToRemove.Clear();
+            var entities = Entities.Clone();
+            foreach (var e in entities) e.Update(gameTime);
         }
 
         public LevelRenderState GetRenderState(Camera camera)

@@ -9,8 +9,8 @@ namespace Maker.Hevadea.Game.Entities.Component
 {
     public class Attack : EntityComponent, IUpdatableComponent, IDrawableComponent
     {
-        private bool _isAttacking;
-
+        public bool IsAttacking { get; private set; }
+     
         public float BaseDamages { get; set; } = 1f;
         public bool CanAttackTile { get; set; } = true;
         public bool CanAttackEntities { get; set; } = true;
@@ -35,7 +35,7 @@ namespace Maker.Hevadea.Game.Entities.Component
         
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (!_isAttacking) return;
+            if (!IsAttacking) return;
             var invTimer = 1f - _timer;
 
             switch (_lastDirection)
@@ -59,12 +59,12 @@ namespace Maker.Hevadea.Game.Entities.Component
         {
             _timer = Math.Max(0.0, _timer - gameTime.ElapsedGameTime.TotalSeconds * 5);
 
-            if (!_isAttacking) _speedFactor = AttackCooldown;
+            if (!IsAttacking) _speedFactor = AttackCooldown;
 
-            if (_isAttacking && _timer < 0.1)
+            if (IsAttacking && _timer < 0.1)
             {
                 _speedFactor = _speedFactor * 0.9;
-                _isAttacking = false;
+                IsAttacking = false;
             }
         }
 
@@ -81,7 +81,7 @@ namespace Maker.Hevadea.Game.Entities.Component
 
         public void Do(Item weapon)
         {
-            if (_isAttacking) return;
+            if (IsAttacking) return;
             if (!Owner.Components.Get<Energy>()?.Reduce(1f) ?? false) return;
 
             var damages = GetBaseDamages();
@@ -97,20 +97,20 @@ namespace Maker.Hevadea.Game.Entities.Component
                         if (e.Components.Has<Breakable>())
                         {
                             e.Components.Get<Breakable>()?.Break(weapon);
-                            _isAttacking = true;
+                            IsAttacking = true;
                         }
 
                         var eHealth = e.Components.Get<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
                             eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
-                            _isAttacking = true;
+                            IsAttacking = true;
                             break;
                         }
                     }
             }
 
-            if (CanAttackTile && !_isAttacking)
+            if (CanAttackTile && !IsAttacking)
             {
                 var tile = Owner.Level.GetTile(facingTile);
                 if (tile.HasTag<Tags.Damage>())
@@ -123,16 +123,11 @@ namespace Maker.Hevadea.Game.Entities.Component
                     tile.Tag<Tags.Breakable>().Break(facingTile, Owner.Level);
                 }
 
-                _isAttacking = true;
+                IsAttacking = true;
             }
 
             _lastDirection = Owner.Facing;
             _timer = _speedFactor;
-        }
-
-        public bool IsAttacking()
-        {
-            return _isAttacking;
         }
     }
 }

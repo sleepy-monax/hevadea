@@ -1,5 +1,5 @@
-﻿using System;
-using Maker.Hevadea.Game.Storage;
+﻿using Maker.Hevadea.Game.Storage;
+using Maker.Utils;
 using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.Game.Entities.Component
@@ -16,22 +16,22 @@ namespace Maker.Hevadea.Game.Entities.Component
 
         public void OnGameSave(EntityStorage store)
         {
-            store.Set(nameof(Value), Value);
-            store.Set(nameof(Regeneration), Regeneration);
+            store.Set(nameof(Energy), Value);
+            store.Set(nameof(Energy) + nameof(Regeneration), Regeneration);
         }
 
         public void OnGameLoad(EntityStorage store)
         {
-            Value = store.Get(nameof(Value), Value);
-            Regeneration = store.Get(nameof(Regeneration), Regeneration);
+            Value = store.GetFloat(nameof(Energy), Value);
+            Regeneration = store.GetFloat(nameof(Energy) + nameof(Regeneration), Regeneration);
         }
 
         public void Update(GameTime gameTime)
         {
             if (EnableNaturalRegeneration)
             {   
-                Value = Math.Min(MaxValue, Value + Regeneration);
-                Regeneration = Math.Min(MaxRegeneration, Regeneration * 1.02f);
+                Value = Mathf.Min(MaxValue, Value + Regeneration);
+                Regeneration = Mathf.Min(MaxRegeneration, Mathf.Max(Regeneration, 0.01f) * 1.02f);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Maker.Hevadea.Game.Entities.Component
                 return true;
             }
 
-            return false;
+            return Value >= value;
         }
     }
 }

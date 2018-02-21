@@ -55,12 +55,12 @@ namespace Maker.Hevadea.Game.Entities.Component
 
         public void OnGameSave(EntityStorage store)
         {
-            store.Set(nameof(_value), _value);
+            store.Set(nameof(Heal), _value);
         }
 
         public void OnGameLoad(EntityStorage store)
         {
-            _value = store.Get(nameof(_value), _value);
+            _value = store.GetFloat(nameof(Heal), _value);
         }
 
         public void Update(GameTime gameTime)

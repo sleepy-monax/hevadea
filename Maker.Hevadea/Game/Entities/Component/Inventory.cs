@@ -1,4 +1,7 @@
-﻿using Maker.Hevadea.Game.Items;
+﻿using System.Linq;
+using System;
+using System.Collections.Generic;
+using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Storage;
 using Maker.Rise.UI;
 using Maker.Utils.Enums;
@@ -37,9 +40,11 @@ namespace Maker.Hevadea.Game.Entities.Component
 
         public void OnGameLoad(EntityStorage store)
         {
-            Content.Items = store.Get(nameof(Content), Content.Items);
+            var l = (List<object>)store.Get<List<object>>(nameof(Content), new List<object>());
+            Content.Items = (List<int>)l.Cast<int>().ToList();
         }
 
+        
         public void Update(GameTime gameTime)
         {
             _pickUpAnimation.Update(gameTime);

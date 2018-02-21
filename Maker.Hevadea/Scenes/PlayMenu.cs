@@ -1,4 +1,6 @@
-﻿using Maker.Hevadea.Scenes.Widgets;
+﻿using System.IO;
+using Maker.Hevadea.Game;
+using Maker.Hevadea.Scenes.Widgets;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.UI.Widgets;
@@ -38,14 +40,26 @@ namespace Maker.Hevadea.Scenes
                 Origine = Anchor.Center,
                 Bound   = new Rectangle(0, 0, 720, 416),
                 Padding = new Padding(16),
-                Content = new AnchoredContainer{Childrens = {backButton, newButton}}
+                Content = new DockContainer()
             };
 
-            Container = new AnchoredContainer()
+            Container = new AnchoredContainer
             {
                 Padding = new Padding(16),
-                Childrens = {savesList}
+                Childrens = {savesList, backButton, newButton}
             };
+
+            var s = Directory.GetDirectories("Saves");
+            var list = (DockContainer) savesList.Content;
+            foreach (var save in s)
+            {
+                list.AddChild(new Button {Text = save, Dock = Dock.Top}
+                .RegisterMouseClickEvent(sender =>
+                    {
+                        var button = (Button) (sender);
+                        Engine.Scene.Switch(new GameScene(GameManager.Load(button.Text)));
+                    }));
+            }
         }
 
         public override void OnUpdate(GameTime gameTime)

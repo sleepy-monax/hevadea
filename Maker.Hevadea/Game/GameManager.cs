@@ -1,7 +1,13 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Remoting.Messaging;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Creatures;
+using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Scenes.Menus;
+using Maker.Utils;
+using Maker.Utils.Enums;
+using Maker.Utils.Json;
 using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.Game
@@ -9,7 +15,6 @@ namespace Maker.Hevadea.Game
     public class GameManager
     {
         private Menu _currentMenu;
-        private string _saveName;
         
         public World World { get; }
         public PlayerEntity Player { get; }
@@ -29,9 +34,8 @@ namespace Maker.Hevadea.Game
             }
         }
 
-        public GameManager(string saveName, World world, PlayerEntity player)
+        public GameManager(World world, PlayerEntity player)
         {
-            _saveName = saveName;
             World = world;
             Player = player;
             Camera = new Camera(Player);
@@ -58,13 +62,36 @@ namespace Maker.Hevadea.Game
         }
 
 
-        public void Save()
+        public static void Save(string path, GameManager game)
         {
-            World.Save();
+            Logger.Log<GameManager>(LoggerLevel.Info, $"Saving world to '{path}'.");
+            
+            Directory.CreateDirectory(path);
+            var p = game.Player;
+            var player = p.Save();
+            p.Level.RemoveEntity(p);
+            var world = game.World.Save();
+            p.Level.AddEntity(p);
+            
+            File.WriteAllText($"{path}\\world.json", world.ToJson());
+            File.WriteAllText($"{path}\\player.json", player.ToJson());
+            
+            Logger.Log<GameManager>(LoggerLevel.Fine, "Done!");
         }
 
-        public void Load()
+        public static GameManager Load(string path)
         {
+            Logger.Log<GameManager>(LoggerLevel.Info, $"Loading world from '{path}'.");
+            
+            var world = new World();
+            world.Load(File.ReadAllText($"{path}\\world.json").FromJson<WorldStorage>());
+                
+            var player = new PlayerEntity();
+            player.Load(File.ReadAllText($"{path}\\player.json").FromJson<EntityStorage>());
+            
+            Logger.Log<GameManager>(LoggerLevel.Fine, "Done!");
+            
+            return new GameManager(world, player);
         }
     }
 }

@@ -16,6 +16,6 @@ namespace Maker.Hevadea.Game.Tiles
 
     public class TileTag
     {
-        public Tile AttachedTile { get; set; }
+        internal Tile AttachedTile { get; set; }
     }
 }

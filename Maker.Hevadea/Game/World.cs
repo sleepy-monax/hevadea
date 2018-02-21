@@ -2,6 +2,7 @@
 using System.Linq;
 using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Creatures;
+using Maker.Hevadea.Game.Storage;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -96,12 +97,30 @@ namespace Maker.Hevadea.Game
             foreach (var l in Levels) l.Initialize(this, game);
         }
 
-        public void Save()
+        public WorldStorage Save()
         {
+            var w = new WorldStorage();
+            foreach (var l in Levels)
+            {
+                w.Levels.Add(l.Save());
+            }
+
+            w.Time = Time;
+            w.PlayerSpawnLevel = PlayerSpawnLevel;
+            return w;
         }
 
-        public void Load()
+        public void Load(WorldStorage store)
         {
+            Time = store.Time;
+            PlayerSpawnLevel = store.PlayerSpawnLevel;
+            
+            foreach (var levelData in store.Levels)
+            {
+                var level = new Level(levelData.Width, levelData.Height);
+                level.Load(levelData);
+                Levels.Add(level);
+            }
         }
     }
 }

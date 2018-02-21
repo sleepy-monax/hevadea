@@ -9,7 +9,7 @@ namespace Maker.Hevadea.Game.Tiles
     public class Tile
     {
         public int Id { get; }
-        
+        public List<TileTag> Tags => _tags;
         private readonly List<TileTag> _tags;
         private readonly TileRenderer _renderer;
 

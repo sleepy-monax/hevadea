@@ -34,8 +34,8 @@ namespace Maker.Hevadea.Game.Entities
 
         public override void OnLoad(EntityStorage store)
         {
-            Destination = store.Get(nameof(Destination), Destination);
-            GoUp = store.Get(nameof(GoUp), GoUp);
+            Destination = store.GetInt(nameof(Destination), Destination);
+            GoUp = store.GetBool(nameof(GoUp), GoUp);
         }
     }
 }

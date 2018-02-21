@@ -199,7 +199,7 @@ namespace Maker.Utils.Json
 
             if (type == typeof(double))
             {
-                double.TryParse(json, out double result);
+                double result = double.Parse(json, CultureInfo.InvariantCulture);
                 return result;
             }
 
@@ -322,12 +322,12 @@ namespace Maker.Utils.Json
             {
                 if (json.Contains("."))
                 {
-                    double.TryParse(json, out var result);
+                    double.TryParse(json,NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
                     return result;
                 }
                 else
                 {
-                    int.TryParse(json, out var result);
+                    int.TryParse(json,NumberStyles.Integer, CultureInfo.InvariantCulture, out var result);
                     return result;
                 }
             }
