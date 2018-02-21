@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Maker.Hevadea.Game.Entities;
-using Maker.Hevadea.Game.Entities.Creatures;
+﻿using Maker.Hevadea.Game.Entities.Creatures;
 using Maker.Hevadea.Game.Storage;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Maker.Hevadea.Game
 {

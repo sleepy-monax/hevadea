@@ -1,6 +1,7 @@
 ﻿using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Items;
 using Maker.Hevadea.Game.Registry;
+using Maker.Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,13 +9,14 @@ namespace Maker.Hevadea.Game.Entities
 {
     public class ItemEntity : Entity
     {
-        public readonly Item Item;
+        public Item Item;
         private float sx;
         private float sy;
 
-        public ItemEntity(Item item) : this(item, 0, 0)
-        {
-        }
+        public ItemEntity() : this(0, 0, 0) { }
+        public ItemEntity(Item item) : this(item, 0, 0) { }
+        public ItemEntity(int itemId) : this(ITEMS.ById[itemId], 0, 0) { }
+        public ItemEntity(int itemId, float speedx, float speedy) : this(ITEMS.ById[itemId], speedx, speedy) {}
 
         public ItemEntity(Item item, float speedx, float speedy)
         {
@@ -26,14 +28,6 @@ namespace Maker.Hevadea.Game.Entities
             sy = speedy;
 
             Components.Add(new Move());
-        }
-
-        public ItemEntity(int itemId) : this(ITEMS.ById[itemId], 0, 0)
-        {
-        }
-
-        public ItemEntity(int itemId, float speedx, float speedy) : this(ITEMS.ById[itemId], speedx, speedy)
-        {
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -56,6 +50,20 @@ namespace Maker.Hevadea.Game.Entities
             var s = Item.GetSprite();
             s.Draw(spriteBatch, new Vector2(X + 1 - 3, Y + 1 - 3), 0.50f, Color.Black * 0.10f);
             s.Draw(spriteBatch, new Vector2(X - 3, Y - 3), 0.50f, Color.White);
+        }
+
+        public override void OnSave(EntityStorage store)
+        {
+            store.Set("item", Item.Id);
+            store.Set("sx", sx);
+            store.Set("sy", sy);
+        }
+
+        public override void OnLoad(EntityStorage store)
+        {
+            Item = ITEMS.ById[store.GetInt("item")];
+            sx = store.GetFloat("sx", sx);
+            sy = store.GetFloat("sy", sy);
         }
     }
 }

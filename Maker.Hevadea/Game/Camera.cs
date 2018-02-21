@@ -1,7 +1,7 @@
-﻿using System;
-using Maker.Hevadea.Game.Entities;
+﻿using Maker.Hevadea.Game.Entities;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace Maker.Hevadea.Game
 {
