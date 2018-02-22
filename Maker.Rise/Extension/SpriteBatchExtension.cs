@@ -261,12 +261,12 @@ namespace Maker.Rise.Extension
             // TODO: Figure out the pattern for the offsets required and then handle it in the line instead of here
             DrawLine(spriteBatch, new Vector2(rect.X, rect.Y), new Vector2(rect.Right, rect.Y), color,
                 thickness); // top
-            DrawLine(spriteBatch, new Vector2(rect.X + thickness, rect.Y), new Vector2(rect.X + thickness, rect.Bottom + thickness - 1f),
+            DrawLine(spriteBatch, new Vector2(rect.X + thickness, rect.Y + thickness), new Vector2(rect.X + thickness, rect.Bottom - thickness),
                 color, thickness); // left
-            DrawLine(spriteBatch, new Vector2(rect.X, rect.Bottom - 1f), new Vector2(rect.Right, rect.Bottom - 1f), color,
+            DrawLine(spriteBatch, new Vector2(rect.X, rect.Bottom - thickness), new Vector2(rect.Right, rect.Bottom - thickness), color,
                 thickness); // bottom
-            DrawLine(spriteBatch, new Vector2(rect.Right, rect.Y),
-                new Vector2(rect.Right, rect.Bottom + thickness - 1f), color, thickness); // right
+            DrawLine(spriteBatch, new Vector2(rect.Right, rect.Y + thickness),
+                new Vector2(rect.Right, rect.Bottom - thickness), color, thickness); // right
         }
 
 

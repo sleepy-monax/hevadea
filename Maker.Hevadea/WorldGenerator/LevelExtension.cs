@@ -10,10 +10,10 @@ namespace Maker.Hevadea.WorldGenerator
 
         public static void Rectangle(this Level level, int x, int y, int w, int h, Tile tile)
         {
-            level.PlotLine(x, y, x, y + h, tile);
-            level.PlotLine(x, y, x + w, y, tile);
-            level.PlotLine(x, y + h, x + w, y + h, tile);
-            level.PlotLine(x + w, y, x + w, y + h, tile);
+            level.PlotLine(x, y, x, y + h - 1, tile);
+            level.PlotLine(x, y, x + w - 1, y, tile);
+            level.PlotLine(x, y + h - 1, x + w - 1, y + h - 1, tile);
+            level.PlotLine(x + w - 1, y, x + w - 1, y + h - 1, tile);
         }
         
         public static void FillRectangle(this Level level, int x, int y, int w, int h, Tile tile)
