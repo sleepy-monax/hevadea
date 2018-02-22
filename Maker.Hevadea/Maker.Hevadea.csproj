@@ -169,6 +169,7 @@
     <Compile Include="WorldGenerator\Functions\IFunction.cs" />
     <Compile Include="WorldGenerator\Functions\IslandFunction.cs" />
     <Compile Include="WorldGenerator\Functions\PerlinFunction.cs" />
+    <Compile Include="WorldGenerator\LevelExtension.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\BaseTerainFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\CompoundFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\HouseFeature.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="WorldGenerator\Generator.cs" />
     <Compile Include="WorldGenerator\LevelFeature.cs" />
     <Compile Include="WorldGenerator\LevelGenerator.cs" />
+    <Compile Include="WorldGenerator\WorldFeature.cs" />
     <Compile Include="WorldGenerator\WorldFeatures\StairCaseFeature.cs" />
   </ItemGroup>
   <ItemGroup>

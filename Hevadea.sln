@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Utils", "Maker.Utils\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maker.Rise.Inspector", "Maker.Rise.Inspector\Maker.Rise.Inspector.csproj", "{BE166A39-96C1-442C-9B85-49A22D40AE80}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{F11E204A-0C25-4348-A54C-288813B44535}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,5 +41,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B701A65-9C79-434A-BE23-58E6C3096259}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A64DF5F-5501-44E9-8254-8EF37FE51F36} = {F11E204A-0C25-4348-A54C-288813B44535}
+		{BE166A39-96C1-442C-9B85-49A22D40AE80} = {F11E204A-0C25-4348-A54C-288813B44535}
+		{BEEC4BE8-4E61-45C0-8586-65DC1DA244E4} = {F11E204A-0C25-4348-A54C-288813B44535}
 	EndGlobalSection
 EndGlobal

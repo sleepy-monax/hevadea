@@ -73,6 +73,16 @@ namespace Maker.Hevadea.Scenes
                     _game.Player.Level.SpawnEntity(z, pos.X, pos.Y);
                 }
 
+                if (Engine.Input.KeyPress(Keys.Up))
+                {
+                    _game.Camera.Zoom *= 2;
+                }
+                
+                if (Engine.Input.KeyPress(Keys.Down))
+                {
+                    _game.Camera.Zoom /= 2;
+                }
+                
                 if (Engine.Input.KeyDown(Keys.J)) _game.Player.Components.Get<Attack>().Do(_game.Player.HoldingItem);
 
                 if (Engine.Input.KeyPress(Keys.K))

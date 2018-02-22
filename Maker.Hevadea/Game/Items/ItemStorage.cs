@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using Maker.Hevadea.Game.Registry;
 
 namespace Maker.Hevadea.Game.Items
-{
+{    
     public class ItemStorage
     {
+        public Dictionary<int, int> Items { get; set; }
+        public int Capacity { get; }
+        
         public ItemStorage(int capacity = 256)
         {
-            Items = new List<int>(capacity);
+            Items = new Dictionary<int, int>();
             Capacity = capacity;
         }
 
-        public List<int> Items { get; set; }
-        public int Capacity { get; }
-
-
         public int Add(Item item, int quantity)
         {
+            if (item == null) return quantity;
+            
             var count = quantity;
             for (var i = 0; i < quantity; i++)
                 if (Add(item))
@@ -28,9 +29,19 @@ namespace Maker.Hevadea.Game.Items
 
         public bool Add(Item item)
         {
+            if (item == null) return false;
+            
             if (HasFreeSlot())
             {
-                Items.Add(item.Id);
+                if (Items.ContainsKey(item.Id))
+                {
+                    Items[item.Id] = Items[item.Id] + 1;
+                }
+                else
+                {
+                    Items.Add(item.Id, 1);    
+                }
+                
                 return true;
             }
 
@@ -39,29 +50,45 @@ namespace Maker.Hevadea.Game.Items
 
         public bool HasFreeSlot()
         {
-            return Items.Count < Capacity;
+            return Count() < Capacity;
         }
 
+        public int Count()
+        {
+            int result = 0;
+
+            foreach (var i in Items)
+            {
+                result += i.Value;
+            }
+
+            return result;
+        }
+        
         public int Count(Item item)
         {
             if (item == null) return 0;
+            
+            if (Items.ContainsKey(item.Id))
+            {
+                return Items[item.Id];
+            }
 
-            var count = 0;
-            for (var i = 0; i < Items.Count; i++)
-                if (Items[i] == item.Id)
-                    count++;
-            return count;
+            return 0;
         }
 
         public void Remove(Item item, int quantity)
         {
-            for (var i = 0; i < Items.Count; i++)
-                if (Items[i] == item.Id && quantity > 0)
+            if (item == null) return;
+            if (Items.ContainsKey(item.Id))
+            {
+                Items[item.Id] = Math.Max(Items[item.Id] - quantity, 0);
+
+                if (Items[item.Id] == 0)
                 {
                     Items.Remove(item.Id);
-                    quantity--;
-                    i--;
                 }
+            }
         }
 
         public int GetFreeSpace()
@@ -71,7 +98,10 @@ namespace Maker.Hevadea.Game.Items
 
         public void DropOnGround(Level level, float x, float y)
         {
-            for (var i = 0; i < Items.Count; i++) ITEMS.ById[Items[i]].Drop(level, x, y, 1);
+            foreach (var i in Items)
+            {
+                ITEMS.ById[i.Key].Drop(level, x, y, i.Value);
+            }
 
             Items.Clear();
         }

@@ -186,20 +186,21 @@ namespace Maker.Hevadea.Game
             return TILES.ById[Tiles[tx + ty * Width]];
         }
 
-        public void SetTile(TilePosition pos, Tile tile)
+        public bool SetTile(TilePosition pos, Tile tile)
         {
-            SetTile(pos.X, pos.Y, tile.Id);
+            return SetTile(pos.X, pos.Y, tile.Id);
         }
 
-        public void SetTile(int tx, int ty, Tile tile)
+        public bool SetTile(int tx, int ty, Tile tile)
         {
-            SetTile(tx, ty, tile.Id);
+            return SetTile(tx, ty, tile.Id);
         }
 
-        public void SetTile(int tx, int ty, int id)
+        public bool SetTile(int tx, int ty, int id)
         {
-            if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return;
+            if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return false;
             Tiles[tx + ty * Width] = id;
+            return true;
         }
 
         internal T GetTileData<T>(TilePosition tilePosition, string dataName, T defaultValue)
@@ -274,7 +275,7 @@ namespace Maker.Hevadea.Game
             Name = store.Name;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(LevelRenderState state, GameTime gameTime)
         {
             // Randome tick tiles.
             for (var i = 0; i < Width * Height / 50; i++)
@@ -285,8 +286,7 @@ namespace Maker.Hevadea.Game
             }
 
             // Update entities
-            var entities = Entities.Clone();
-            foreach (var e in entities) e.Update(gameTime);
+            foreach (var e in state.OnScreenEntities) e.Update(gameTime);
         }
 
         public LevelRenderState GetRenderState(Camera camera)
@@ -302,7 +302,7 @@ namespace Maker.Hevadea.Game
                     Math.Max(0, focusEntity.Y - dist.Y + 1)),
 
                 End = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
-                    Math.Min(Height, focusEntity.Y + dist.Y + 1))
+                    Math.Min(Height, focusEntity.Y + dist.Y + 6))
             };
 
             for (var tx = state.Begin.X; tx < state.End.X; tx++)

@@ -16,11 +16,11 @@ namespace Maker.Hevadea.Game.Entities.Creatures
 
             HoldingItem = null;
 
-            Components.Add(new Health(20){ShowHealthBar = false});
+            Components.Add(new Health(20){ ShowHealthBar = false });
             Components.Add(new Attack());
             Components.Add(new Energy());
             Components.Add(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
-            Components.Add(new Inventory(512) {AlowPickUp = true});
+            Components.Add(new Inventory(64) {AlowPickUp = true});
             Components.Add(new Interact());
             Components.Add(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
             Components.Add(new Move());

@@ -2,6 +2,7 @@
 using Maker.Hevadea.WorldGenerator;
 using Maker.Hevadea.WorldGenerator.Functions;
 using Maker.Hevadea.WorldGenerator.LevelFeatures;
+using Maker.Hevadea.WorldGenerator.WorldFeatures;
 
 namespace Maker.Hevadea.Game.Registry
 {
@@ -123,7 +124,12 @@ namespace Maker.Hevadea.Game.Registry
                 }
             };
 
-            DEFAULT = new Generator {Levels = {OVERWORLD, CAVE}, Size = 256, Seed = 0};
+            DEFAULT = new Generator
+            {
+                Size = 256, Seed = 0,
+                Levels = {OVERWORLD, CAVE},
+                WorldFeatures = {new StairCaseFeature(OVERWORLD, CAVE)}
+            };
         }
     }
 }

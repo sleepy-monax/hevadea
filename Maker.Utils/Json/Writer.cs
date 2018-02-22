@@ -101,27 +101,38 @@ namespace Maker.Utils.Json
             }
             else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Dictionary<,>))
             {
-                Type keyType = type.GetGenericArguments()[0];
+                var keyType = type.GetGenericArguments()[0];
 
                 //Refuse to output dictionary keys that aren't of type string
-                if (keyType != typeof(string))
+                if (keyType != typeof(string) && keyType != typeof(int))
                 {
                     stringBuilder.Append("{}");
                     return;
                 }
 
                 stringBuilder.Append('{');
-                IDictionary dict = item as IDictionary;
-                bool isFirst = true;
+                var dict = item as IDictionary;
+                var isFirst = true;
+                
                 foreach (object key in dict.Keys)
                 {
                     if (isFirst)
                         isFirst = false;
                     else
                         stringBuilder.Append(',');
+                    
                     stringBuilder.Append('\"');
-                    stringBuilder.Append((string)key);
+                    if (keyType == typeof(string))
+                    {
+                        stringBuilder.Append((string)key);
+                    }
+                    else
+                    {
+                        stringBuilder.Append(key.ToString());
+                    }
                     stringBuilder.Append("\":");
+                    
+                    
                     AppendValue(stringBuilder, dict[key]);
                 }
 

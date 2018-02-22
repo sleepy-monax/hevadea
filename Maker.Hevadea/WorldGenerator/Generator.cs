@@ -7,6 +7,7 @@ namespace Maker.Hevadea.WorldGenerator
     public class Generator
     {
         public List<LevelGenerator> Levels { get; set; } = new List<LevelGenerator>();
+        public List<WorldFeature> WorldFeatures { get; set; } = new List<WorldFeature>();
         public int Seed { get; set; } = 0;
         public int Size { get; set; } = 256;
         public Random Random { get; private set; }
@@ -24,6 +25,11 @@ namespace Maker.Hevadea.WorldGenerator
                 w.AddLevel(l.Generate(this));
             }
 
+            foreach (var wf in WorldFeatures)
+            {
+                wf.Apply(this, w);
+            }
+            
             return w;
         }
     }

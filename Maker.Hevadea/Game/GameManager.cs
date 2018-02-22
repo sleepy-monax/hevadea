@@ -55,7 +55,12 @@ namespace Maker.Hevadea.Game
 
         public void Update(GameTime gameTime)
         {
-            foreach (var l in World.Levels) l.Update(gameTime);
+
+            foreach (var l in World.Levels)
+            {
+                var state = l.GetRenderState(Camera);
+                l.Update(state, gameTime);
+            }
 
             World.Time += gameTime.ElapsedGameTime.TotalSeconds;
             

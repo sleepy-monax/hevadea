@@ -9,6 +9,7 @@ namespace Maker.Utils.Logging.Handlers
         private readonly string _fileName;
         private readonly string _directory;
         private readonly ILoggerFormatter _loggerFormatter;
+        private object fileLock = new object();
 
         public FileLoggerHandler() : this(CreateFileName()) { }
 
@@ -36,16 +37,18 @@ namespace Maker.Utils.Logging.Handlers
                     directoryInfo.Create();
             }
 
-            using (var writer = new StreamWriter(File.Open(Path.Combine(_directory, _fileName), FileMode.Append)))
-                writer.WriteLine(_loggerFormatter.ApplyFormat(logMessage));
+            lock (fileLock)
+            {   
+                using (var writer = new StreamWriter(File.Open(Path.Combine(_directory, _fileName), FileMode.Append)))
+                    writer.WriteLine(_loggerFormatter.ApplyFormat(logMessage));
+            }
         }
 
         private static string CreateFileName()
         {
             var currentDate = DateTime.Now;
             var guid = Guid.NewGuid();
-            return string.Format("Log_{0:0000}{1:00}{2:00}-{3:00}{4:00}_{5}.log",
-                currentDate.Year, currentDate.Month, currentDate.Day, currentDate.Hour, currentDate.Minute, guid);
+            return $"Log_{currentDate.Year:0000}{currentDate.Month:00}{currentDate.Day:00}-{currentDate.Hour:00}{currentDate.Minute:00}_{guid}.log";
         }
     }
 }

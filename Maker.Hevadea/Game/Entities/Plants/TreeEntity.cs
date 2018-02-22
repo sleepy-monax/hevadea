@@ -16,7 +16,7 @@ namespace Maker.Hevadea.Game.Entities
             Width = 4;
             Height = 4;
             Origin = new Point(2, 2);
-            treeSprite = new Sprite(Ressources.TileEntities, new Point(7, 0), new Point(1, 3) );
+            treeSprite = new Sprite(Ressources.TileEntities, new Point(6, 4), new Point(2, 6) );
 
             Components.Adds(
                 new Health(5),
@@ -26,9 +26,9 @@ namespace Maker.Hevadea.Game.Entities
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var offx = -6;
-            var offy = -10;
-            treeSprite.Draw(spriteBatch, new Vector2(X + offx, Y + offy - 32), Color.White);
+            var offx = -14;
+            var offy = -24;
+            treeSprite.Draw(spriteBatch, new Vector2(X + offx, Y + offy - 64), Color.White);
         }
 
         public override bool IsBlocking(Entity e)

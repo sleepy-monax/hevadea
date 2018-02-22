@@ -19,7 +19,7 @@ namespace Maker.Hevadea.Game.Entities.Furnitures
             Origin = new Point(8, 6);
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
 
-            Components.Add(new Inventory(512));
+            Components.Add(new Inventory(128));
             Components.Add(new Health(10)).OnDie +=
                 (sender, arg) =>
                 {

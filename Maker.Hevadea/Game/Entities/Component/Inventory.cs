@@ -40,8 +40,11 @@ namespace Maker.Hevadea.Game.Entities.Component
 
         public void OnGameLoad(EntityStorage store)
         {
-            var l = (List<object>)store.Get<List<object>>(nameof(Content), new List<object>());
-            Content.Items = (List<int>)l.Cast<int>().ToList();
+            var l = (Dictionary<string,object>)store.Get(nameof(Content), new Dictionary<string,object>());
+            foreach (var i in l)
+            {
+                Content.Items.Add(int.Parse(i.Key), (int)i.Value);
+            }
         }
 
         
