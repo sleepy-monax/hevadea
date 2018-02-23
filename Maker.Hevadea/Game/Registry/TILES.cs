@@ -47,6 +47,7 @@ namespace Maker.Hevadea.Game.Registry
 
             WATER.AddTag(new Tags.Spread { SpreadChance = 1, SpreadTo = { VOID } });
             WATER.AddTag(new Tags.Liquide());
+            WATER.AddTag(new Tags.Ground{MoveSpeed = 0.5f});
 
             DIRT.AddTag(new Tags.Breakable { ReplacementTile = VOID });
 

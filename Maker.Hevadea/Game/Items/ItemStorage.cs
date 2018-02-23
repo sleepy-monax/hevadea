@@ -93,7 +93,7 @@ namespace Maker.Hevadea.Game.Items
 
         public int GetFreeSpace()
         {
-            return Math.Max(0, Capacity - Items.Count);
+            return Math.Max(0, Capacity - Count());
         }
 
         public void DropOnGround(Level level, float x, float y)

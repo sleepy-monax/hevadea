@@ -1,6 +1,8 @@
 ﻿using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Entities.Component.Render;
 using Maker.Hevadea.Game.Items;
+using Maker.Rise;
+using Maker.Rise.Graphic.Particles;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 
@@ -32,6 +34,11 @@ namespace Maker.Hevadea.Game.Entities.Creatures
         public override bool IsBlocking(Entity entity)
         {
             return true;
+        }
+
+        public override void OnUpdate(GameTime gameTime)
+        {
+            Level.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.Red}, X, Y, Engine.Random.Next() - 0.5f, Engine.Random.Next() - 0.5f);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Maker.Hevadea.Scenes.Menus
             
             if (Engine.Input.KeyDown(Keys.LeftShift))
             {
-                while (invA.Content.Count(item) > 0 && invB.Content.GetFreeSpace() >= 1)
+                while (invA.Content.Count(item) > 0 && invB.Content.HasFreeSlot())
                 {
                     invA.Content.Remove(item, 1);
                     invB.Content.Add(item, 1);
@@ -46,7 +46,7 @@ namespace Maker.Hevadea.Scenes.Menus
             }
             else
             {
-                if (item != null && invB.Content.GetFreeSpace() >= 1)
+                if (item != null && invB.Content.HasFreeSlot())
                 {
                     invA.Content.Remove(item, 1);
                     invB.Content.Add(item, 1);

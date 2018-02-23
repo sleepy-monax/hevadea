@@ -15,7 +15,7 @@ namespace Maker.Hevadea.WorldGenerator.WorldFeatures
         private LevelGenerator _to;
         
         public List<Tile> CanbegeneratedOn { get; set; } = new List<Tile>();
-        public int TryCount { get; set; } = 50; 
+        public int TryCount { get; set; } = 300; 
         
         public StairCaseFeature(LevelGenerator from, LevelGenerator to)
         {
@@ -38,20 +38,16 @@ namespace Maker.Hevadea.WorldGenerator.WorldFeatures
                 var x = gen.Random.Next(0, gen.Size);
                 var y = gen.Random.Next(0, gen.Size);
 
-                from.FillRectangle(x, y, 3, 3, TILES.WOOD_FLOOR);
-                from.Rectangle(x - 1, y - 1, 5, 5, TILES.WOOD_WALL);
-                to.FillRectangle(x, y, 3, 3, TILES.WOOD_FLOOR);
-                to.Rectangle(x - 1, y - 1, 5, 5, TILES.WOOD_WALL);
-                
-                from.SpawnEntity(new StairsEntity(false, to.Id), x + 1, y + 1);
-                to.SpawnEntity(new StairsEntity(true, from.Id), x + 1, y + 1);
+                if (from.IsValid(x, y, 5, 5, true, new List<Tile> {TILES.ROCK}) 
+                   && to.IsValid(x, y, 5, 5, true, new List<Tile> {TILES.ROCK, TILES.DIRT}))
+                {
+                    from.FillRectangle(x + 1, y + 1, 3, 3, TILES.DIRT);
+                    to.FillRectangle(x + 1, y + 1, 3, 3, TILES.DIRT);
+                    
+                    from.SpawnEntity(new StairsEntity(false, to.Id), x + 2, y + 2);
+                    to.SpawnEntity(new StairsEntity(true, from.Id), x + 2, y + 2);
+                }
             }
-        }
-
-        public bool CheckSpace(Level level, int x, int y, int sx, int sy)
-        {
-            bool result = true;
-            return result;
         }
     }
 }

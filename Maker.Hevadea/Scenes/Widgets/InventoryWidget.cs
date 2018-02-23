@@ -28,7 +28,7 @@ namespace Maker.Hevadea.Scenes.Widgets
             var index = 0;
 
             SelectedItem = null;
-            var text = $"({Content.Items.Count}/{Content.Capacity})";
+            var text = $"({Content.Count()}/{Content.Capacity})";
             var textSize = Ressources.FontRomulus.MeasureString(text);
             spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
             spriteBatch.DrawString(Ressources.FontRomulus, text,

@@ -2,6 +2,7 @@
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using System;
+using Maker.Utils;
 
 namespace Maker.Hevadea.Game
 {
@@ -37,8 +38,8 @@ namespace Maker.Hevadea.Game
 
         public void Update()
         {
-            X = (float) Math.Floor(FocusEntity.X + FocusEntity.Width / 2f);
-            Y = (float) Math.Floor(FocusEntity.Y + FocusEntity.Height / 2f);
+            X -= (X - Mathf.Floor(FocusEntity.X + FocusEntity.Width / 2f)) * 0.01f;
+            Y -= (Y - Mathf.Floor(FocusEntity.Y + FocusEntity.Height / 2f)) * 0.01f;
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Maker.Hevadea.Scenes.Widgets
                         }
                     }
 
-                    if (rect.Contains(Engine.Input.MousePosition) && canBeCrafted)
+                    if (rect.Contains(Engine.Input.MousePosition) && canBeCrafted && _inventory.GetFreeSpace() >= c.Quantity)
                     {
                         spriteBatch.FillRectangle(rect, Color.White * 0.05f);
                         spriteBatch.DrawRectangle(rect, Color.White * 0.05f);

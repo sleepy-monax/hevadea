@@ -13,12 +13,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Maker.Rise.Graphic.Particles;
 
 namespace Maker.Hevadea.Game
 {
     public class Level
     {
         public List<Entity> Entities;
+        public ParticleSystem ParticleSystem { get; }
         public List<Entity>[,] EntitiesOnTiles;
         private GameManager Game;
 
@@ -36,7 +38,7 @@ namespace Maker.Hevadea.Game
             TilesData = new Dictionary<string, object>[Width * Height];
             Entities = new List<Entity>();
             EntitiesOnTiles = new List<Entity>[Width, Height];
-
+            ParticleSystem = new ParticleSystem();
             for (var x = 0; x < Width; x++)
             for (var y = 0; y < Height; y++)
             {
@@ -273,6 +275,7 @@ namespace Maker.Hevadea.Game
             Tiles = store.Tiles;
             TilesData = store.TilesData;
             Name = store.Name;
+            Id = store.Id;
         }
 
         public void Update(LevelRenderState state, GameTime gameTime)
@@ -285,6 +288,8 @@ namespace Maker.Hevadea.Game
                 GetTile(tx, ty).Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
             }
 
+            ParticleSystem.Update(gameTime);
+            
             // Update entities
             foreach (var e in state.OnScreenEntities) e.Update(gameTime);
         }
@@ -321,6 +326,8 @@ namespace Maker.Hevadea.Game
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
                 GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+            
+            ParticleSystem.Draw(spriteBatch, gameTime);
         }
 
         public void DrawEntities(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)

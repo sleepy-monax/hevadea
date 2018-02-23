@@ -27,8 +27,12 @@ namespace Maker.Hevadea.Game.Entities
 
             var interaction = new Interactable();
             Components.Add(interaction);
-            interaction.OnInteracte += 
-                (sender, arg) => { Level.RemoveEntity(arg.Entity); World.GetLevel(Destination).AddEntity(arg.Entity); };
+            interaction.OnInteracte +=
+                (sender, arg) =>
+                {
+                    Level.RemoveEntity(arg.Entity);
+                    World.GetLevel(Destination).AddEntity(arg.Entity);
+                };
             
             _spriteUp = new Sprite(Ressources.TileEntities, new Point(8, 0));
             _spriteDown = new Sprite(Ressources.TileEntities, new Point(8, 1));
