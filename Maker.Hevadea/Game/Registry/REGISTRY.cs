@@ -9,6 +9,7 @@ namespace Maker.Hevadea.Game.Registry
             Logger.Log("Initializing game registery.");
             
             TILES.Initialize();
+            ENTITIES.Initialize();
             ITEMS.Initialize();
             RECIPIES.InitializeHandCraftedRecipe();
             GENERATOR.Initialize();

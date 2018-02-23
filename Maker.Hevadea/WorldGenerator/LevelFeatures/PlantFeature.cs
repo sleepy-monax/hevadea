@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using Maker.Hevadea.Game;
 using Maker.Hevadea.Game.Entities;
+using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Hevadea.WorldGenerator.Functions;
 
 namespace Maker.Hevadea.WorldGenerator.LevelFeatures
 {
-    public class PlantFeature<T> : LevelFeature where T : Entity, new()
+    public class PlantFeature : LevelFeature
     {
         public List<Tile> CanBePlantOn { get; set; } = new List<Tile>();
         public IFunction PlacingFunction { get; set; } = new FlatFunction(0.9f);
@@ -14,7 +15,13 @@ namespace Maker.Hevadea.WorldGenerator.LevelFeatures
         public int Chance { get; set; } = 1;
         public int RandomOffset { get; set; } = 4;
         
-        public float _progress = 0;
+        private float _progress = 0;
+        private EntityBlueprint _blueprint;
+        
+        public PlantFeature(EntityBlueprint blueprint)
+        {
+            _blueprint = blueprint;
+        }
         
         public override float GetProgress()
         {
@@ -28,7 +35,7 @@ namespace Maker.Hevadea.WorldGenerator.LevelFeatures
                 for (var y = 0; y < gen.Size; y++)
                 {   
                     if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(x, y)) && PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold && level.GetEntityOnTile(x, y).Count == 0)
-                        level.SpawnEntity(new T(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));
+                        level.SpawnEntity(_blueprint.Build(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));
                 }
                 
                 _progress = (x / (float) gen.Size);
@@ -37,7 +44,7 @@ namespace Maker.Hevadea.WorldGenerator.LevelFeatures
 
         public override string GetName()
         {
-            return $"Planting [{new T().GetType().Name}]";
+            return $"Planting [{_blueprint.Name}]";
         }
     }
 }

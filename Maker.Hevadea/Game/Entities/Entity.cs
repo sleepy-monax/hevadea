@@ -1,4 +1,5 @@
 ﻿using Maker.Hevadea.Game.Entities.Component;
+using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
@@ -18,7 +19,8 @@ namespace Maker.Hevadea.Game.Entities
         public Direction Facing { get; set; }
         public bool Removed { get; set; } = true;
         public EntityComponentsManager Components { get; }
-
+        public EntityBlueprint Blueprint { get; set; } = null;
+        
         public Level Level { get; private set; }
         public World World { get; private set; }
         public GameManager Game { get; private set; }

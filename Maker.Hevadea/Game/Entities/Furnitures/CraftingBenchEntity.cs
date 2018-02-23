@@ -21,7 +21,7 @@ namespace Maker.Hevadea.Game.Entities.Furnitures
 
             Components.Adds(
                 new Breakable(),
-                new Dropable {Items = {(ITEMS.CraftingbenchItem, 1, 1)}}
+                new Dropable {Items = {(ITEMS.CRAFTING_BENCH, 1, 1)}}
             );
             
             Components.Add(new Interactable()).OnInteracte +=

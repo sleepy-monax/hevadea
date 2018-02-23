@@ -10,13 +10,13 @@ namespace Maker.Hevadea.Game.Registry
 
         public static void InitializeHandCraftedRecipe()
         {
-            HandCrafted.Add(new Recipe(ITEMS.WoodPlank, 2).AddCost(ITEMS.WoodLog, 1));
-            HandCrafted.Add(new Recipe(ITEMS.WoodStick, 4).AddCost(ITEMS.WoodPlank, 1));
-            HandCrafted.Add(new Recipe(ITEMS.TorchItem, 4).AddCost(ITEMS.Coal, 1).AddCost(ITEMS.WoodStick, 1));
-            HandCrafted.Add(new Recipe(ITEMS.CraftingbenchItem, 1).AddCost(ITEMS.WoodStick, 4).AddCost(ITEMS.WoodPlank, 4));
+            HandCrafted.Add(new Recipe(ITEMS.WOOD_PLANK, 2).AddCost(ITEMS.WOOD_LOG, 1));
+            HandCrafted.Add(new Recipe(ITEMS.WOOD_STICK, 4).AddCost(ITEMS.WOOD_PLANK, 1));
+            HandCrafted.Add(new Recipe(ITEMS.TORCH, 4).AddCost(ITEMS.COAL, 1).AddCost(ITEMS.WOOD_STICK, 1));
+            HandCrafted.Add(new Recipe(ITEMS.CRAFTING_BENCH, 1).AddCost(ITEMS.WOOD_STICK, 4).AddCost(ITEMS.WOOD_PLANK, 4));
             
-            BenchCrafted.Add(new Recipe(ITEMS.ChestItem, 1).AddCost(ITEMS.WoodPlank, 8));
-            BenchCrafted.Add(new Recipe(ITEMS.FurnaceItem, 1, new RecipeCost(ITEMS.Stone, 8)));
+            BenchCrafted.Add(new Recipe(ITEMS.CHEST, 1).AddCost(ITEMS.WOOD_PLANK, 8));
+            BenchCrafted.Add(new Recipe(ITEMS.FURNACE, 1, new RecipeCost(ITEMS.STONE, 8)));
         }
     }
 }

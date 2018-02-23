@@ -1,15 +1,19 @@
 ﻿using Maker.Hevadea.Game.Entities;
 using Maker.Hevadea.Game.Entities.Component;
 using Maker.Hevadea.Game.Entities.Creatures;
+using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
 using Maker.Rise.Ressource;
 
 namespace Maker.Hevadea.Game.Items
 {
-    public class PlacableItem<T> : Item where T : Entity, new()
+    public class PlacableItem : Item
     {
-        public PlacableItem(string name, Sprite sprite) : base(name, sprite)
+        private readonly EntityBlueprint _blueprint;
+        
+        public PlacableItem(string name, EntityBlueprint blueprint, Sprite sprite) : base(name, sprite)
         {
+            _blueprint = blueprint;
         }
 
         public override void InteracteOn(Entity user, TilePosition pos)
@@ -20,7 +24,7 @@ namespace Maker.Hevadea.Game.Items
 
                 if (inventory != null) inventory.Content.Remove(this, 1);
 
-                user.Level.SpawnEntity(new T(), pos.X, pos.Y);
+                user.Level.SpawnEntity(_blueprint.Build(), pos.X, pos.Y);
 
                 if (user is PlayerEntity p)
                     if (p.Components.Get<Inventory>().Content.Count(p.HoldingItem) == 0)

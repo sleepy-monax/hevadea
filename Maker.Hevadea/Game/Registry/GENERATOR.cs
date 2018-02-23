@@ -69,14 +69,14 @@ namespace Maker.Hevadea.Game.Registry
                     {
                         Content =
                         {
-                            new PlantFeature<TreeEntity>
+                            new PlantFeature(ENTITIES.TREE)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = new PerlinFunction(2, 0.5, 15),
                                 Threashold = 0.7f
                             },
-                            new PlantFeature<GrassEntity>
+                            new PlantFeature(ENTITIES.GRASS)
                             {
                                 Chance = 5,
                                 CanBePlantOn = {TILES.GRASS},

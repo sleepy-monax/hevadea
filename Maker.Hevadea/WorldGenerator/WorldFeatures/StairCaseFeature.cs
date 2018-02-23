@@ -43,9 +43,14 @@ namespace Maker.Hevadea.WorldGenerator.WorldFeatures
                 {
                     from.FillRectangle(x + 1, y + 1, 3, 3, TILES.DIRT);
                     to.FillRectangle(x + 1, y + 1, 3, 3, TILES.DIRT);
+
+                    var downStaire = (StairsEntity)from.SpawnEntity(ENTITIES.STAIRES, x + 2, y + 2);
+                    downStaire.GoUp = false;
+                    downStaire.Destination = to.Id;
                     
-                    from.SpawnEntity(new StairsEntity(false, to.Id), x + 2, y + 2);
-                    to.SpawnEntity(new StairsEntity(true, from.Id), x + 2, y + 2);
+                    var upStaire = (StairsEntity)to.SpawnEntity(ENTITIES.STAIRES, x + 2, y + 2);
+                    upStaire.GoUp = true;
+                    upStaire.Destination = from.Id;
                 }
             }
         }

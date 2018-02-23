@@ -12,6 +12,7 @@ namespace Maker.Hevadea.Game
         public float X;
         public float Y;
         public float Zoom = 4f;
+        private float _zoom = 1f;
 
         public Camera(Entity focusEntity)
         {
@@ -20,26 +21,25 @@ namespace Maker.Hevadea.Game
 
         public int GetWidth()
         {
-            return (int) (Engine.Graphic.GetWidth() / Zoom);
+            return (int) (Engine.Graphic.GetWidth() / _zoom);
         }
 
         public int GetHeight()
         {
-            return (int) (Engine.Graphic.GetHeight() / Zoom);
+            return (int) (Engine.Graphic.GetHeight() / _zoom);
         }
 
         public Matrix GetTransform()
         {
             Update();
-            return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
-                       (float) Math.Floor(-(X * Zoom - Engine.Graphic.GetWidth() / 2f)),
-                       (float) Math.Floor(-(Y * Zoom - Engine.Graphic.GetHeight() / 2f)), 0f);
+            return Matrix.CreateScale(_zoom) * Matrix.CreateTranslation(-(X * _zoom - Engine.Graphic.GetWidth() / 2f), -(Y * _zoom - Engine.Graphic.GetHeight() / 2f), 0f);
         }
 
         public void Update()
         {
-            X -= (X - Mathf.Floor(FocusEntity.X + FocusEntity.Width / 2f)) * 0.01f;
-            Y -= (Y - Mathf.Floor(FocusEntity.Y + FocusEntity.Height / 2f)) * 0.01f;
+            X -= (X - (FocusEntity.X + FocusEntity.Width / 2f)) * 0.05f;
+            Y -= (Y - (FocusEntity.Y + FocusEntity.Height / 2f)) * 0.05f;
+            _zoom -= (_zoom - Zoom) * 0.05f;
         }
     }
 }

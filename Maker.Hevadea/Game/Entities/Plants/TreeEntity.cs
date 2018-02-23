@@ -20,7 +20,7 @@ namespace Maker.Hevadea.Game.Entities
 
             Components.Adds(
                 new Health(5),
-                new Dropable {Items = {(ITEMS.WoodLog, 1, 5), (ITEMS.PineCone, 0, 3)}}
+                new Dropable {Items = {(ITEMS.WOOD_LOG, 1, 5), (ITEMS.PINE_CONE, 0, 3)}}
             );
         }
 

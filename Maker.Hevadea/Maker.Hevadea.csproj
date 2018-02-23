@@ -106,8 +106,6 @@
     <Compile Include="Game\Entities\Furnitures\FurnaceEntity.cs" />
     <Compile Include="Game\Entities\Furnitures\TorchEntity.cs" />
     <Compile Include="Game\Entities\ItemEntity.cs" />
-    <Compile Include="Game\Entities\Particles\DotParticle.cs" />
-    <Compile Include="Game\Entities\Particles\Particle.cs" />
     <Compile Include="Game\Entities\Plants\GrassEntity.cs" />
     <Compile Include="Game\Entities\Plants\TreeEntity.cs" />
     <Compile Include="Game\Entities\StairsEntity.cs" />

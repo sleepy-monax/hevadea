@@ -19,7 +19,7 @@ namespace Maker.Hevadea.Game.Entities.Furnitures
             Components.Adds(
                 new Breakable(),
                 new Light(),
-                new Dropable {Items = {(ITEMS.FurnaceItem, 1, 1)}}
+                new Dropable {Items = {(ITEMS.FURNACE, 1, 1)}}
             );
         }
 

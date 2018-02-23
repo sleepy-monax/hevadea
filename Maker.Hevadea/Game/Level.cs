@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Maker.Rise.Graphic.Particles;
+using Maker.Utils.Json;
 
 namespace Maker.Hevadea.Game
 {
@@ -61,13 +62,20 @@ namespace Maker.Hevadea.Game
             e.SetPosition(x, y);
         }
 
-        public void SpawnEntity(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
+        public Entity SpawnEntity(Entity entity, int tx, int ty, float offX = 0f, float offY = 0f)
         {
-            AddEntity(e);
-            e.SetPosition(tx * ConstVal.TileSize + (ConstVal.TileSize / 2 - e.Width / 2) + offX,
-                ty * ConstVal.TileSize + (ConstVal.TileSize / 2 - e.Height / 2) + offY);
+            AddEntity(entity);
+            entity.SetPosition(tx * ConstVal.TileSize + (ConstVal.TileSize / 2 - entity.Width / 2) + offX, ty * ConstVal.TileSize + (ConstVal.TileSize / 2 - entity.Height / 2) + offY);
+            return entity;
         }
 
+        public Entity SpawnEntity(EntityBlueprint blueprint, int tx, int ty, float offX = 0f, float offY = 0f)
+        {
+            var entity = blueprint.Build();
+            SpawnEntity(entity, tx, ty, offX, offY);
+            return entity;
+        }
+        
         public void AddEntity(Entity e)
         {
             e.Removed = false;

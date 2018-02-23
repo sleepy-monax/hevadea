@@ -47,10 +47,38 @@ namespace Maker.Hevadea.Scenes
                 _game.Update(gameTime);
                 var playerMovement = _game.Player.Components.Get<Move>();
 
-                if (Engine.Input.KeyDown(Keys.Q)) playerMovement.Do(-1, 0, Direction.Left);
-                if (Engine.Input.KeyDown(Keys.D)) playerMovement.Do(1, 0, Direction.Right);
-                if (Engine.Input.KeyDown(Keys.Z)) playerMovement.Do(0, -1, Direction.Up);
-                if (Engine.Input.KeyDown(Keys.S)) playerMovement.Do(0, 1, Direction.Down);
+                float x = 0;
+                float y = 0;
+                Direction dir = Direction.Down;
+                
+                if (Engine.Input.KeyDown(Keys.Q))
+                {
+                    x -= 1;
+                    dir = Direction.Left;
+                }
+                if (Engine.Input.KeyDown(Keys.D))
+                {
+                    x += 1;
+                    dir = Direction.Right;
+                }
+                if (Engine.Input.KeyDown(Keys.Z))
+                {
+                    y -= 1;
+                    dir = Direction.Up;
+                }
+                if (Engine.Input.KeyDown(Keys.S))
+                {
+                    y += 1;
+                    dir = Direction.Down;
+                }
+
+                if (x != 0 || y != 0)
+                {
+                    var vec = new Vector2(x, y);
+                    vec.Normalize();
+                    playerMovement.Do(vec.X, vec.Y, dir);
+                }
+                
                 if (Engine.Input.KeyPress(Keys.I)) _game.CurrentMenu = new InventoryMenu(_game.Player, RECIPIES.HandCrafted,_game);
                 if (Engine.Input.KeyPress(Keys.N)) playerMovement.NoClip = !playerMovement.NoClip;
 

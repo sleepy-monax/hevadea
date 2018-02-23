@@ -38,7 +38,7 @@ namespace Maker.Hevadea.Game.Registry
             VOID.AddTag(new Tags.Solide());
 
             ROCK.AddTag(new Tags.Solide(), new Tags.Breakable { ReplacementTile = DIRT });
-            ROCK.AddTag(new Tags.Droppable((ITEMS.Stone, 2, 5), (ITEMS.Coal, 0, 3)));
+            ROCK.AddTag(new Tags.Droppable((ITEMS.STONE, 2, 5), (ITEMS.COAL, 0, 3)));
 
             SAND.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
 
