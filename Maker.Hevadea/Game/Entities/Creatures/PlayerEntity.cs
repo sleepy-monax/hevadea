@@ -38,7 +38,6 @@ namespace Maker.Hevadea.Game.Entities.Creatures
 
         public override void OnUpdate(GameTime gameTime)
         {
-            Level.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.Red}, X, Y, Engine.Random.Next() - 0.5f, Engine.Random.Next() - 0.5f);
         }
     }
 }

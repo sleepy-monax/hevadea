@@ -120,6 +120,8 @@
     <Compile Include="Game\Registry\ENTITIES.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />
     <Compile Include="Game\Registry\REGISTRY.cs" />
+    <Compile Include="Game\Storage\GameLoader.cs" />
+    <Compile Include="Game\Storage\GameSaver.cs" />
     <Compile Include="Game\Storage\WorldStorage.cs" />
     <Compile Include="Game\Tiles\Renderers\CompositConectedTileRender.cs" />
     <Compile Include="Game\Tiles\Renderers\ConnectedTileRender.cs" />

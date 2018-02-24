@@ -9,9 +9,8 @@ namespace Maker.Rise.Graphic.Particles
     {
         public Vector2 Gravity { get; set; } = new Vector2(0, 1000);
 
-        private List<Particle> _particles = new List<Particle>();
+        private readonly List<Particle> _particles = new List<Particle>();
         private int _counter = 0;
-
 
         public void EmiteAt(Particle particle, float x, float y, float ax, float ay)
         {

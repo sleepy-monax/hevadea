@@ -56,10 +56,13 @@ namespace Maker.Hevadea.Game
         {
             var level = camera.FocusEntity.Level;
             var state = level.GetRenderState(camera);
-
+            var cameraTransform = camera.GetTransform(gameTime);
+            
             Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[1]);
 
-            Engine.Graphic.Begin(spriteBatch, false, camera.GetTransform());
+            
+            
+            Engine.Graphic.Begin(spriteBatch, false, cameraTransform);
             level.DrawTerrain(state, spriteBatch, gameTime);
             level.DrawEntities(state, spriteBatch, gameTime);
             level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
@@ -70,8 +73,7 @@ namespace Maker.Hevadea.Game
             //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
             Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, null, null, null,
-                camera.GetTransform());
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
             level.DrawLightMap(state, spriteBatch, gameTime);
             spriteBatch.End();
 

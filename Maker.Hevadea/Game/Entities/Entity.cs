@@ -2,6 +2,7 @@
 using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Storage;
 using Maker.Hevadea.Game.Tiles;
+using Maker.Rise.Graphic.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,6 +21,7 @@ namespace Maker.Hevadea.Game.Entities
         public bool Removed { get; set; } = true;
         public EntityComponentsManager Components { get; }
         public EntityBlueprint Blueprint { get; set; } = null;
+        public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
         
         public Level Level { get; private set; }
         public World World { get; private set; }
@@ -142,12 +144,14 @@ namespace Maker.Hevadea.Game.Entities
         {
             Components.Update(gameTime);
             OnUpdate(gameTime);
+            ParticleSystem.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             Components.Draw(spriteBatch, gameTime);
             OnDraw(spriteBatch, gameTime);
+            ParticleSystem.Draw(spriteBatch, gameTime);
         }
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)

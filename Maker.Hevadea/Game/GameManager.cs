@@ -63,40 +63,17 @@ namespace Maker.Hevadea.Game
             }
 
             World.Time += gameTime.ElapsedGameTime.TotalSeconds;
-            
         }
 
 
         public static void Save(string path, GameManager game)
         {
-            Logger.Log<GameManager>(LoggerLevel.Info, $"Saving world to '{path}'.");
-            
-            Directory.CreateDirectory(path);
-            var p = game.Player;
-            var player = p.Save();
-            p.Level.RemoveEntity(p);
-            var world = game.World.Save();
-            p.Level.AddEntity(p);
-            
-            File.WriteAllText($"{path}\\world.json", world.ToJson());
-            File.WriteAllText($"{path}\\player.json", player.ToJson());
-            
-            Logger.Log<GameManager>(LoggerLevel.Fine, "Done!");
+            new GameSaver().Save(path,game);
         }
 
         public static GameManager Load(string path)
         {
-            Logger.Log<GameManager>(LoggerLevel.Info, $"Loading world from '{path}'.");
-            
-            var world = new World();
-            world.Load(File.ReadAllText($"{path}\\world.json").FromJson<WorldStorage>());
-                
-            var player = new PlayerEntity();
-            player.Load(File.ReadAllText($"{path}\\player.json").FromJson<EntityStorage>());
-            
-            Logger.Log<GameManager>(LoggerLevel.Fine, "Done!");
-            
-            return new GameManager(world, player);
+            return new GameLoader().Load(path);
         }
     }
 }

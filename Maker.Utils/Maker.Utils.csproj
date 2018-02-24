@@ -48,6 +48,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Json\Parser.cs" />
     <Compile Include="Json\Writer.cs" />
+    <Compile Include="Localization\LocalizedString.cs" />
+    <Compile Include="Localizer.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Logging\DebugLogger.cs" />
     <Compile Include="Logging\Formatters\DefaultLoggerFormatter.cs" />

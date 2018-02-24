@@ -1,5 +1,7 @@
 ﻿using Maker.Hevadea.Game.Registry;
 using Maker.Hevadea.Game.Tiles;
+using Maker.Rise;
+using Maker.Rise.Graphic.Particles;
 using Microsoft.Xna.Framework;
 
 namespace Maker.Hevadea.Game.Entities.Component
@@ -7,6 +9,7 @@ namespace Maker.Hevadea.Game.Entities.Component
     public class Swim : EntityComponent, IUpdatableComponent
     {
         public bool IsSwiming         { get; set; } = false;
+        private bool wasSwiming { get; set; } = false;
         public bool IsSwimingPainfull { get; set; } = true;
         
         public void Update(GameTime gameTime)
@@ -33,6 +36,17 @@ namespace Maker.Hevadea.Game.Entities.Component
                 IsSwiming = false;
                 if (energy!=null) energy.EnableNaturalRegeneration = true;
             }
+
+            if (!wasSwiming && IsSwiming)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Owner.Level.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.Azure, Life = 0.5f, FadeOut = 0.15f}, Owner.X + Owner.Origin.X, Owner.Y + Owner.Height, (float)(Engine.Random.NextDouble() - 0.5f) * 64f, (float)(Engine.Random.NextDouble() - 0.75f) * 20f);
+                    Owner.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.LightBlue, Life = 0.5f, FadeOut = 0.15f}, Owner.X + Owner.Origin.X, Owner.Y + Owner.Height, (float)(Engine.Random.NextDouble() - 0.5f) * 64f, (float)(Engine.Random.NextDouble() - 0.75f) * 20f);
+                }
+            }
+            
+            wasSwiming = IsSwiming;
         }
     }
 }
