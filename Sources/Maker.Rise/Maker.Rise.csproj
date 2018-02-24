@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A64DF5F-5501-44E9-8254-8EF37FE51F36}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maker.Rise</RootNamespace>
+    <AssemblyName>Maker.Rise</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\EffectSource.cs" />
+    <Compile Include="Components\GraphicComponent.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="EngineConfig.cs" />
+    <Compile Include="EngineRessources.cs" />
+    <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Components\DebugManager.cs" />
+    <Compile Include="Components\GameComponent.cs" />
+    <Compile Include="Enums\Alignement.cs" />
+    <Compile Include="Enums\TextStyle.cs" />
+    <Compile Include="Extension\GraphicsDeviceExtension.cs" />
+    <Compile Include="Components\InputManager.cs" />
+    <Compile Include="Components\NetworkManager.cs" />
+    <Compile Include="Components\RessourceManager.cs" />
+    <Compile Include="Extension\RectangleExtension.cs" />
+    <Compile Include="Graphic\BlurEffect.cs" />
+    <Compile Include="Graphic\Particles\ColoredParticle.cs" />
+    <Compile Include="Graphic\Particles\Particle.cs" />
+    <Compile Include="Graphic\Particles\ParticleSystem.cs" />
+    <Compile Include="Graphic\SpriteBatchBeginState.cs" />
+    <Compile Include="MathHelper.cs" />
+    <Compile Include="Ressource\ParalaxeBackground.cs" />
+    <Compile Include="Components\SceneManager.cs" />
+    <Compile Include="Components\Scene.cs" />
+    <Compile Include="Ressource\Sprite.cs" />
+    <Compile Include="Ressource\SpriteSheet.cs" />
+    <Compile Include="Ressource\SpriteSheetData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Containers\AnchoredContainer.cs" />
+    <Compile Include="UI\Containers\Container.cs" />
+    <Compile Include="UI\Containers\DockContainer.cs" />
+    <Compile Include="UI\Containers\FloatingContainer.cs" />
+    <Compile Include="UI\Containers\TileContainer.cs" />
+    <Compile Include="UI\EasingManager.cs" />
+    <Compile Include="UI\Widget.cs" />
+    <Compile Include="UI\Widgets\BackButton.cs" />
+    <Compile Include="UI\Widgets\BlurPanel.cs" />
+    <Compile Include="UI\Widgets\Button.cs" />
+    <Compile Include="UI\Widgets\Label.cs" />
+    <Compile Include="UI\Widgets\Panel.cs" />
+    <Compile Include="UI\Widgets\PictureWidget.cs" />
+    <Compile Include="UI\Widgets\ProgressBar.cs" />
+    <Compile Include="UI\Widgets\Scroller.cs" />
+    <Compile Include="Utils\Colision.cs" />
+    <Compile Include="Extension\GameExtension.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FSM.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FsmSnapshot.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FsmStateBehaviour.cs" />
+    <Compile Include="Utils\FiniteStateMachine\FsmStateData.cs" />
+    <Compile Include="Utils\Pair.cs" />
+    <Compile Include="Utils\Perlin.cs" />
+    <Compile Include="Utils\RectangleF.cs" />
+    <Compile Include="Screen.cs" />
+    <Compile Include="Extension\SpriteBatchExtension.cs" />
+    <Compile Include="RiseGame.cs" />
+    <Compile Include="Extension\Texture2D.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hevadea.Framework\Hevadea.Framework.csproj">
+      <Project>{44b79eaf-5584-4176-97ad-5bc358a52ae3}</Project>
+      <Name>Hevadea.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Utils\FiniteStateMachine\FSM.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,4 +1,0 @@
-﻿namespace Maker.Rise.Enums
-{
-
-}

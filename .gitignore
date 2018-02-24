@@ -1,6 +1,6 @@
-/.vscode
+.vscode
 bin
 obj
 packages
-/.vs
-/.idea
+.vs
+.idea
