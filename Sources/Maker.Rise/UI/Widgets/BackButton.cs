@@ -7,7 +7,6 @@ namespace Maker.Rise.UI.Widgets
 {
     public class BackButton : Widget
     {
-        public bool BlurBackground { get; set; } = true;
         public bool EnableBorder { get; set; } = false;
         public Color OverColor { get; set; } = Color.Gold;
         public Color IdleColor { get; set; } = Color.White;
@@ -27,11 +26,6 @@ namespace Maker.Rise.UI.Widgets
             
             var rect = new Rectangle(Host.X,Host.Y, 
                                      bounceW, Host.Height);
-            
-            if (BlurBackground)
-            {
-                spriteBatch.Draw(Engine.Scene.BluredScene, rect, rect, Color.White * _easing.GetValue(EasingFunctions.Linear));
-            }
 
             if (EnableBorder)
             {

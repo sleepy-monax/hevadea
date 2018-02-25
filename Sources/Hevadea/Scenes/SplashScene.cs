@@ -23,7 +23,7 @@ namespace Hevadea.Scenes
             REGISTRY.Initialize();
             Engine.SetMouseVisibility(true);
             Directory.CreateDirectory("Saves");
-            //Engine.Graphic.SetWindowedFullScreen();
+            //Engine.Graphic.SetFullscreen();
             // Initialize the scene.
             _sb = Engine.Graphic.CreateSpriteBatch();
             _logo = Ressources.ImgMakerLogo;

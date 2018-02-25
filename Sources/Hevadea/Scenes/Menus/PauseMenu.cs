@@ -31,7 +31,8 @@ namespace Hevadea.Scenes.Menus
                                 { Font  = Ressources.FontRomulus, BlurBackground = false, Text = "Continue", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new HUDMenu(Game);}),
                             new Button
-                                { Font  = Ressources.FontRomulus, BlurBackground = false, Text = "Restart", Padding = new Padding(4) },
+                                { Font  = Ressources.FontRomulus, BlurBackground = false, Text = "Restart", Padding = new Padding(4) }
+                                .RegisterMouseClickEvent(sender => Engine.Scene.Switch(new WorldGenScene())),
                             new Button
                                 { Font  = Ressources.FontRomulus, BlurBackground = false, Text = "Quick save", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves\\test", game); Game.CurrentMenu = new HUDMenu(Game);}),

@@ -32,8 +32,9 @@ namespace Hevadea.WorldGenerator.WorldFeatures
         {
             var from = world.GetLevel(_from.LevelName);
             var to = world.GetLevel(_to.LevelName);
+            bool staireGenerated = false;
             
-            for (var i = 0; i < TryCount; i++)
+            for (var i = 0; i < TryCount || !staireGenerated; i++)
             {
                 var x = gen.Random.Next(0, gen.Size);
                 var y = gen.Random.Next(0, gen.Size);
@@ -51,6 +52,8 @@ namespace Hevadea.WorldGenerator.WorldFeatures
                     var upStaire = (StairsEntity)to.SpawnEntity(ENTITIES.STAIRES, x + 2, y + 2);
                     upStaire.GoUp = true;
                     upStaire.Destination = from.Id;
+
+                    staireGenerated = true;
                 }
             }
         }

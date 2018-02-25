@@ -57,7 +57,7 @@ namespace Hevadea.Game.Registry
                             {
                                 Priority = 4,
                                 Tile = TILES.ROCK,
-                                Threashold = 0.9f,
+                                Threashold = 1f,
                                 Function = new CombinedFunction(new PerlinFunction(2, 0.5, 15), new IslandFunction()),
                                 TileRequired = {TILES.GRASS}
                             }

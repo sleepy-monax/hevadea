@@ -56,7 +56,7 @@ namespace Hevadea.Game
         {
             var level = camera.FocusEntity.Level;
             var state = level.GetRenderState(camera);
-            var cameraTransform = camera.GetTransform(gameTime);
+            var cameraTransform = camera.GetTransform();
             
             Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[1]);
 
@@ -77,7 +77,7 @@ namespace Hevadea.Game
             level.DrawLightMap(state, spriteBatch, gameTime);
             spriteBatch.End();
 
-            Engine.Graphic.SetRenderTarget(Engine.Scene.RenderTarget);
+            Engine.Graphic.SetDefaultRenderTarget();
 
             Engine.Graphic.Begin(spriteBatch);
 

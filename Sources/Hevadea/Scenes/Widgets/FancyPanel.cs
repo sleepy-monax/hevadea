@@ -36,7 +36,6 @@ namespace Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(Engine.Scene.BluredScene, Host, Host, Color.White);
             spriteBatch.FillRectangle(Host, Color);
 
             base.Draw(spriteBatch, gameTime);

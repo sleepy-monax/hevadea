@@ -28,9 +28,9 @@ namespace Hevadea.Scenes
                 Thread.Sleep(1000);
                 GC.AddMemoryPressure(600 * 1024 * 1024);
                 worldgen = GENERATOR.DEFAULT;
-                worldgen.Seed = Engine.Random.Next(256);
+                worldgen.Seed = new Random().Next();
                 var world = worldgen.Generate();
-                var player = new PlayerEntity();
+                var player = (PlayerEntity)ENTITIES.PLAYER.Build();
                 Engine.Scene.Switch(new GameScene(new GameManager(world, player)));
             });
 

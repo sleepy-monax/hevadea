@@ -31,34 +31,15 @@ namespace Hevadea.WorldGenerator.LevelFeatures
         {
             for (var i = 0; i < 50; i++)
             {
-                var px = gen.Random.Next(0, gen.Size);
-                var py = gen.Random.Next(0, gen.Size);
-                var sx = gen.Random.Next(MinSize.X, MaxSize.X + 1);
-                var sy = gen.Random.Next(MinSize.Y, MaxSize.Y + 1);
+                var houseX = gen.Random.Next(0, gen.Size);
+                var houseY = gen.Random.Next(0, gen.Size);
+                var houseWidth = gen.Random.Next(MinSize.X, MaxSize.X + 1);
+                var houseHeight = gen.Random.Next(MinSize.Y, MaxSize.Y + 1);
 
-                var canBePlaced = true;
-                
-                for (var x = px; x < px + sx; x++)
+                if (level.IsValid(houseX, houseY, houseWidth, houseHeight, true, CanBePlacedOn))
                 {
-                    for (var y = py; y < py + sy; y++)
-                    {
-                        canBePlaced &= CanBePlacedOn.Contains(level.GetTile(x, y));
-                    }   
-                }
-
-                if ( canBePlaced )
-                {
-                    Console.WriteLine($"House generated {px}:{py}");
-                    for (var x = 0; x < sx; x++)
-                    {
-                        for (var y = 0; y < sy; y++)
-                        {
-                            if (x == 0 || y == 0 || x == sx - 1 || y == sy - 1)
-                                level.SetTile(px + x, py + y, Wall);
-                            else
-                                level.SetTile(px + x, py + y, Floor);
-                        }   
-                    }  
+                    level.FillRectangle(houseX, houseY, houseWidth, houseHeight, Floor);
+                    level.Rectangle(houseX, houseY, houseWidth, houseHeight, Wall);
                 }
 
                 _progress = i / 50f;

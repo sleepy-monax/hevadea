@@ -18,6 +18,7 @@ namespace Hevadea.Game.Entities.Component
         /// </summary>
         public virtual bool Do(float accelerationX, float accelerationY, Direction facing)
         {
+            if (Owner.Removed) return false;
             // Handle the move speed tag on a tile.
             var curpos = Owner.GetTilePosition();
             if (Owner.Level.GetTile(curpos.X, curpos.Y).HasTag<Tags.Ground>())

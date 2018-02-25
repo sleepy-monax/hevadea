@@ -51,6 +51,8 @@ namespace Hevadea.Game.Registry
             DIRT.AddTag(new Tags.Damage { ReplacementTile = VOID });
 
             WOOD_WALL.AddTag(new Tags.Solide());
+            WOOD_WALL.AddTag(new Tags.Damage { ReplacementTile = DIRT });
+            WOOD_WALL.AddTag(new Tags.Droppable((ITEMS.WOOD_PLANK, 2, 5)));
         }
     }
 }

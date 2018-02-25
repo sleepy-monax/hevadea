@@ -2,6 +2,7 @@
 using Hevadea.Game.Entities;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace Hevadea.Game
 {
@@ -11,8 +12,6 @@ namespace Hevadea.Game
         public float X;
         public float Y;
         public float Zoom = 4f;
-        public float Trauma = 0f;
-        private float _zoom = 1f;
 
         public Camera(Entity focusEntity)
         {
@@ -21,27 +20,26 @@ namespace Hevadea.Game
 
         public int GetWidth()
         {
-            return (int) (Engine.Graphic.GetWidth() / _zoom);
+            return (int)(Engine.Graphic.GetWidth() / Zoom);
         }
 
         public int GetHeight()
         {
-            return (int) (Engine.Graphic.GetHeight() / _zoom);
+            return (int)(Engine.Graphic.GetHeight() / Zoom);
         }
 
-        public Matrix GetTransform(GameTime gameTime)
+        public Matrix GetTransform()
         {
-            Update(gameTime);
-            return Matrix.CreateScale(_zoom) * Matrix.CreateTranslation(-(X * _zoom - Engine.Graphic.GetWidth() / 2f), -(Y * _zoom - Engine.Graphic.GetHeight() / 2f), 0f);
+            Update();
+            return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
+                       (float)Math.Floor(-(X * Zoom - Engine.Graphic.GetWidth() / 2f)),
+                       (float)Math.Floor(-(Y * Zoom - Engine.Graphic.GetHeight() / 2f)), 0f);
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
-            X -= (X - (FocusEntity.X + FocusEntity.Width / 2f)) * 0.05f;
-            Y -= (Y - (FocusEntity.Y + FocusEntity.Height / 2f)) * 0.05f;
-            _zoom -= (_zoom - Zoom) * 0.05f;
-            
-            Trauma = Mathf.Clamp((float)gameTime.ElapsedGameTime.TotalSeconds, 0f, 1f);
+            X -= (X - Mathf.Floor(FocusEntity.X + FocusEntity.Width / 2f)) * 0.1f;
+            Y -= (Y - Mathf.Floor(FocusEntity.Y + FocusEntity.Height / 2f)) * 0.1f;
         }
     }
 }

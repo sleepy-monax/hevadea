@@ -18,7 +18,6 @@ namespace Hevadea.Scenes
                 Bound = new Rectangle(0, 0, 48, 48),
                 Origine = Anchor.BottomLeft,
                 Anchor = Anchor.BottomLeft,
-                BlurBackground = false,
                 Offset = new Point(0, -16)
             };
             backButton.MouseClick += sender => Engine.Scene.Switch(new MainMenu());

@@ -108,7 +108,7 @@ namespace Hevadea.Game.Entities
         
         public EntityStorage Save()
         {
-            var store = new EntityStorage(GetType().FullName);
+            var store = new EntityStorage(Blueprint.Name);
 
             store.Set("X", X);
             store.Set("Y", Y);

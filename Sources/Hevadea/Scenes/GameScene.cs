@@ -74,6 +74,7 @@ namespace Hevadea.Scenes
                 {
                     var vec = new Vector2(x, y);
                     vec.Normalize();
+                    vec = vec * 1.5f;
                     playerMovement.Do(vec.X, vec.Y, dir);
                 }
                 

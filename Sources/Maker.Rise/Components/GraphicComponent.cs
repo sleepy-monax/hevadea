@@ -30,13 +30,14 @@ namespace Maker.Rise.Components
 
                 RenderTarget[i] = CreateFullscreenRenderTarget();
             }
-            Engine.Scene.ResetRenderTargets();
         }
 
         public void SetFullscreen()
         {
-            SetWindowedFullScreen();
             g.HardwareModeSwitch = true;
+            g.IsFullScreen = true;
+            g.SynchronizeWithVerticalRetrace = true;
+            SetResolution(Screen.GetWidth(), Screen.GetHeight());
             g.ApplyChanges();
         }
 
@@ -46,13 +47,6 @@ namespace Maker.Rise.Components
             g.ApplyChanges();
         }
 
-        public void SetWindowedFullScreen()
-        {
-            g.HardwareModeSwitch = false;
-            g.IsFullScreen = true;
-            g.ApplyChanges();
-            SetResolution(Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height);
-        }
 
         public void SetResolution(int width, int height)
         {
@@ -98,7 +92,7 @@ namespace Maker.Rise.Components
 
         public void SetDefaultRenderTarget()
         {
-            g.GraphicsDevice.SetRenderTarget(Engine.Scene.RenderTarget);
+            g.GraphicsDevice.SetRenderTarget(null);
         }
 
         public GraphicsDevice GetGraphicsDevice()

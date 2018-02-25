@@ -278,7 +278,7 @@ namespace Hevadea.Game
             var asm = Assembly.GetExecutingAssembly();
             foreach (var item in store.Entities)
             {
-                var e = (Entity) asm.CreateInstance(item.Type);
+                var e = ENTITIES.GetBlueprint(item.Type).Build();
                 e.Load(item);
                 AddEntity(e);
             }
@@ -356,7 +356,7 @@ namespace Hevadea.Game
 
                 if (Engine.Debug.Visible)
                 {
-                    spriteBatch.DrawRectangle(e.Bound, Color.Aqua * 0.5f, 0.1f);
+                    spriteBatch.DrawRectangle(e.Bound, Color.Aqua * 0.5f, 0.4f);
                     spriteBatch.PutPixel(e.Position + e.Origin.ToVector2(), Color.Magenta);
                 }
             }

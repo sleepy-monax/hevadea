@@ -20,8 +20,7 @@ namespace Hevadea.WorldGenerator.Functions
 
         public double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
         {
-            return Perlin.OctavePerlin((x + (gen.Seed ^ 2)) / _scretch, (y + (gen.Seed ^ 2)) / _scretch, 0, _octaves,
-                _persistance);
+            return gen.Perlin.OctavePerlin(x / _scretch, y / _scretch, 0, _octaves, _persistance);
         }
     }
 }

@@ -18,6 +18,8 @@ namespace Hevadea.Game.Entities.Creatures
             Components.Add(new Move());
             Components.Add(new Health(10));
             Components.Add(new Attack());
+            Components.Add(new Swim());
+            Components.Add(new Energy());
             Components.Add(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
 
             var aiAgent = new Agent<GenericAgentStates>()

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphic\OpenGL\GlObject.cs" />
     <Compile Include="Graphic\Shader.cs" />
     <Compile Include="Graphic\ShaderProgram.cs" />
+    <Compile Include="Graphic\SpriteAtlas.cs" />
     <Compile Include="Graphic\Spritebatch.cs" />
+    <Compile Include="Graphic\Texture2D.cs" />
     <Compile Include="Utils\Json\Parser.cs" />
     <Compile Include="Utils\Json\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,11 +57,16 @@
     <Compile Include="Utils\GenericExtension.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\Mathf.cs" />
+    <Compile Include="Utils\PerlinNoise.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />
     <Folder Include="Input\" />
     <Folder Include="Ressource\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

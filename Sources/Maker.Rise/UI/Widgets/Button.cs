@@ -20,11 +20,6 @@ namespace Maker.Rise.UI.Widgets
         {
             _easing.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
             _easing.Update(gameTime);
-            
-            if (BlurBackground)
-            {
-                spriteBatch.Draw(Engine.Scene.BluredScene, Host, Host, Color.White * _easing.GetValue(EasingFunctions.Linear));
-            }
 
             if (EnableBorder)
             {

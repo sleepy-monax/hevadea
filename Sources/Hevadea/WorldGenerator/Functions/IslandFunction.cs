@@ -1,5 +1,5 @@
-﻿using Hevadea.Game;
-using Maker.Rise.Utils;
+﻿using Hevadea.Framework.Utils;
+using Hevadea.Game;
 using System;
 
 namespace Hevadea.WorldGenerator.Functions
@@ -8,10 +8,8 @@ namespace Hevadea.WorldGenerator.Functions
     {
         public double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
         {
-            var ground = Perlin.OctavePerlin(x / 50d + gen.Seed, y / 50d + gen.Seed, 0, 10, 0.5);
-            return ground * Math.Min(1d, Math.Sin((float) x / gen.Size * Math.PI)
-                                         * Math.Sin((float) y / gen.Size * Math.PI)
-                                         * 4);
+            var ground = gen.Perlin.OctavePerlin(x / 50d, y / 50d, 0, 10, 0.5);
+            return ground * Mathf.Min(1, Mathf.Sin((float) x / gen.Size * Mathf.PI) * Mathf.Sin((float) y / gen.Size * Mathf.PI) * 4);
         }
     }
 }
