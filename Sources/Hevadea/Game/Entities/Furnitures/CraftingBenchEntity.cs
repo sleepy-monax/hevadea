@@ -1,5 +1,6 @@
 ﻿using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Creatures;
+using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Menus;
 using Maker.Rise.Ressource;
@@ -21,7 +22,7 @@ namespace Hevadea.Game.Entities.Furnitures
 
             Components.Adds(
                 new Breakable(),
-                new Dropable {Items = {(ITEMS.CRAFTING_BENCH, 1, 1)}}
+                new Dropable {Items = {new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1)}}
             );
             
             Components.Add(new Interactable()).OnInteracte +=

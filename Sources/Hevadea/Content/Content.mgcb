@@ -381,12 +381,6 @@
 /processorParam:TextureFormat=Color
 /build:Images/rock.png
 
-#begin Effects/Blur.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Effects/Blur.fx
-
 #begin Images/gui.png
 /importer:TextureImporter
 /processor:TextureProcessor

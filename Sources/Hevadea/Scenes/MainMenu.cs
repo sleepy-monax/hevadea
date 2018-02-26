@@ -13,9 +13,9 @@ namespace Hevadea.Scenes
         {
             Engine.Scene.Background = Ressources.ParalaxeForest;
 
-            var singleplayerButton = new Button {BlurBackground = false, Font = Ressources.FontRomulus, Text = "Play"};
-            var optionButton = new Button {BlurBackground = false, Font = Ressources.FontRomulus, Text = "Option"};
-            var quitButton = new Button {BlurBackground = false, Font = Ressources.FontRomulus, Text = "Quit"};
+            var singleplayerButton = new Button { Font = Ressources.FontRomulus, Text = "Play"};
+            var optionButton = new Button { Font = Ressources.FontRomulus, Text = "Option"};
+            var quitButton = new Button { Font = Ressources.FontRomulus, Text = "Quit"};
 
             singleplayerButton.MouseClick += sender => { Engine.Scene.Switch(new PlayMenu()); };
             quitButton.MouseClick += sender => Engine.Stop();

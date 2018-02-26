@@ -7,7 +7,6 @@ namespace Maker.Rise.UI.Widgets
 {
     public class Button : Widget
     {
-        public bool BlurBackground { get; set; } = true;
         public bool EnableBorder { get; set; } = false;
         public Color OverColor { get; set; } = Color.Gold;
         public Color IdleColor { get; set; } = Color.White;

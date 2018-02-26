@@ -16,6 +16,6 @@ namespace Hevadea.Game.Tiles
 
     public class TileTag
     {
-        internal Tile AttachedTile { get; set; }
+        public Tile AttachedTile { get; set; }
     }
 }

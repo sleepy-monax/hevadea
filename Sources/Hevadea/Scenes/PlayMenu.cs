@@ -28,7 +28,6 @@ namespace Hevadea.Scenes
                 Bound = new Rectangle(0, 0, 200, 48),
                 Origine = Anchor.BottomRight,
                 Anchor = Anchor.BottomRight,
-                BlurBackground = false,
                 Offset = new Point(-16, -16)
             };
             newButton.MouseClick += sender => Engine.Scene.Switch(new WorldGenScene());

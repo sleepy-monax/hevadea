@@ -18,10 +18,10 @@ namespace Hevadea.Game
 {
     public class Level
     {
-        public List<Entity> Entities;
         public ParticleSystem ParticleSystem { get; }
-        public List<Entity>[,] EntitiesOnTiles;
-        private GameManager Game;
+        public GameManager Game;
+        private List<Entity> _entities;
+        private List<Entity>[,] _entitiesOnTiles;
 
         private int[] Tiles;
         private Dictionary<string, object>[] TilesData;
@@ -35,13 +35,13 @@ namespace Hevadea.Game
 
             Tiles = new int[Width * Height];
             TilesData = new Dictionary<string, object>[Width * Height];
-            Entities = new List<Entity>();
-            EntitiesOnTiles = new List<Entity>[Width, Height];
+            _entities = new List<Entity>();
+            _entitiesOnTiles = new List<Entity>[Width, Height];
             ParticleSystem = new ParticleSystem();
             for (var x = 0; x < Width; x++)
             for (var y = 0; y < Height; y++)
             {
-                EntitiesOnTiles[x, y] = new List<Entity>();
+                _entitiesOnTiles[x, y] = new List<Entity>();
                 TilesData[x + y * Width] = new Dictionary<string, object>();
             }
         }
@@ -53,7 +53,6 @@ namespace Hevadea.Game
         public int Height { get; private set; }
 
         // ENTITIES -----------------------------------------------------------
-
         public void AddEntity(Entity e, float x, float y)
         {
             AddEntity(e);
@@ -77,7 +76,7 @@ namespace Hevadea.Game
         public void AddEntity(Entity e)
         {
             e.Removed = false;
-            if (!Entities.Contains(e)) Entities.Add(e);
+            if (!_entities.Contains(e)) _entities.Add(e);
 
             e.Initialize(this, World, Game);
             AddEntityToTile(e.GetTilePosition(), e);
@@ -85,7 +84,7 @@ namespace Hevadea.Game
 
         public void RemoveEntity(Entity e)
         {
-            Entities.Remove(e);
+            _entities.Remove(e);
             RemoveEntityFromTile(e.GetTilePosition(), e);
             e.Removed = true;
         }
@@ -93,13 +92,13 @@ namespace Hevadea.Game
         public void AddEntityToTile(TilePosition p, Entity e)
         {
             if (p.X < 0 || p.Y < 0 || p.X >= Width || p.Y >= Height) return;
-            EntitiesOnTiles[p.X, p.Y].Add(e);
+            _entitiesOnTiles[p.X, p.Y].Add(e);
         }
 
         public void RemoveEntityFromTile(TilePosition p, Entity e)
         {
             if (p.X < 0 || p.Y < 0 || p.X >= Width || p.Y >= Height) return;
-            EntitiesOnTiles[p.X, p.Y].Remove(e);
+            _entitiesOnTiles[p.X, p.Y].Remove(e);
         }
 
         internal List<Entity> GetEntityOnTile(TilePosition selectedTile)
@@ -112,7 +111,7 @@ namespace Hevadea.Game
             var result = new List<Entity>();
 
 
-            if (tx < Width && ty < Height && tx >= 0 && ty >= 0) result.AddRange(EntitiesOnTiles[tx, ty]);
+            if (tx < Width && ty < Height && tx >= 0 && ty >= 0) result.AddRange(_entitiesOnTiles[tx, ty]);
 
             return result;
         }
@@ -132,7 +131,7 @@ namespace Hevadea.Game
             for (var y = beginY; y < endY; y++)
             {
                 if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
-                var entities = EntitiesOnTiles[x, y];
+                var entities = _entitiesOnTiles[x, y];
                 result.AddRange(entities.Where(i => i.IsColliding(area)));
             }
 
@@ -249,7 +248,7 @@ namespace Hevadea.Game
             World = world;
             Game = game;
             Logger.Log<Level>(LoggerLevel.Info, "Initializing entities...");
-            foreach (var e in Entities) e.Initialize(this, world, Game);
+            foreach (var e in _entities) e.Initialize(this, world, Game);
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
         }
 
@@ -267,7 +266,7 @@ namespace Hevadea.Game
             };
 
             Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
-            foreach (var e in Entities) store.Entities.Add(e.Save());
+            foreach (var e in _entities) store.Entities.Add(e.Save());
 
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
             return store;
@@ -325,7 +324,7 @@ namespace Hevadea.Game
 
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
-                entitiesOnScreen.AddRange(EntitiesOnTiles[tx, ty]);
+                entitiesOnScreen.AddRange(_entitiesOnTiles[tx, ty]);
 
             entitiesOnScreen.Sort((a, b) => (a.Y + a.Origin.Y).CompareTo(b.Y + b.Origin.Y));
 

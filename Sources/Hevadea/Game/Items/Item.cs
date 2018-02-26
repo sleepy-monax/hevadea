@@ -1,4 +1,5 @@
-﻿using Hevadea.Game.Entities;
+﻿using System.Collections.Generic;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
 using Maker.Rise;
@@ -8,30 +9,54 @@ namespace Hevadea.Game.Items
 {
     public class Item
     {
-        private readonly string Name;
-        private readonly Sprite Sprite;
-
+        public int Id { get; }
+        private readonly string _name;
+        private readonly Sprite _sprite;
+        private List<ItemTag> _tags;
+        
         public Item(string name, Sprite sprite)
         {
             Id = ITEMS.ById.Count;
             ITEMS.ById.Add(this);
 
-            Sprite = sprite;
-            Name = name;
+            _sprite = sprite;
+            _name = name;
+            _tags = new List<ItemTag>();
         }
-
-        public int Id { get; }
 
         public virtual string GetName()
         {
-            return Name;
+            return _name;
         }
 
         public virtual Sprite GetSprite()
         {
-            return Sprite;
+            return _sprite;
         }
 
+        public bool HasTag<T>() where T : ItemTag
+        {
+            foreach (var t in _tags)
+            {
+                if (t is T) return true;
+            }
+
+            return false;
+        }
+
+        public T Tag<T>() where T : ItemTag
+        {
+            foreach (var t in _tags)
+            {
+                if (t is T variable) return variable;
+            }
+
+            return null;
+        }
+
+        public void AddTag(ItemTag tag) {tag.AttachedItem = this; _tags.Add(tag); }
+        public void AddTag(params TileTag[] tags) { foreach (var t in tags) AddTag(t); }
+        
         public virtual float GetAttackBonus(Entity target)
         {
             return 1f;
@@ -40,13 +65,6 @@ namespace Hevadea.Game.Items
         public virtual float GetAttackBonus(Tile target)
         {
             return 1f;
-        }
-
-
-        public virtual void InteracteOn(Entity user, TilePosition pos)
-        {
-            var tile = user.Level.GetTile(pos);
-            //tile.Interacte(user, this, pos, user.Facing);
         }
 
         public void Drop(Level level, float x, float y, int quantity)

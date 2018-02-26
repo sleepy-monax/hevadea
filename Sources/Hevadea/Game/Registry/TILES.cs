@@ -2,6 +2,7 @@
 using Hevadea.Game.Tiles.Renderers;
 using Maker.Rise.Ressource;
 using System.Collections.Generic;
+using Hevadea.Game.Items;
 
 namespace Hevadea.Game.Registry
 {
@@ -37,12 +38,14 @@ namespace Hevadea.Game.Registry
             VOID.AddTag(new Tags.Solide());
 
             ROCK.AddTag(new Tags.Solide(), new Tags.Damage { ReplacementTile = DIRT });
-            ROCK.AddTag(new Tags.Droppable((ITEMS.STONE, 2, 5), (ITEMS.COAL, 0, 3)));
+            ROCK.AddTag(new Tags.Droppable(new Drop(ITEMS.STONE,1f, 2, 5), new Drop(ITEMS.COAL,1f, 0, 3)));
 
             SAND.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
+            SAND.AddTag(new Tags.Droppable(new Drop(ITEMS.SAND, 1f, 1, 2)));
 
             GRASS.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
             GRASS.AddTag(new Tags.Spread { SpreadChance = 50, SpreadTo = { DIRT } });
+            GRASS.AddTag(new Tags.Droppable(new Drop(ITEMS.GRASS_PATCH, 1f, 1, 2)));
 
             WATER.AddTag(new Tags.Spread { SpreadChance = 1, SpreadTo = { VOID } });
             WATER.AddTag(new Tags.Liquide());
@@ -51,8 +54,6 @@ namespace Hevadea.Game.Registry
             DIRT.AddTag(new Tags.Damage { ReplacementTile = VOID });
 
             WOOD_WALL.AddTag(new Tags.Solide());
-            WOOD_WALL.AddTag(new Tags.Damage { ReplacementTile = DIRT });
-            WOOD_WALL.AddTag(new Tags.Droppable((ITEMS.WOOD_PLANK, 2, 5)));
         }
     }
 }

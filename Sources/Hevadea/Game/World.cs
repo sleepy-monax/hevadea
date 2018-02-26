@@ -12,6 +12,7 @@ namespace Hevadea.Game
     {
         public GameManager Game;
         public List<Level> Levels = new List<Level>();
+        public DayNightCicle DayNightCicle { get; } = new DayNightCicle();
 
         private readonly BlendState _lightBlend = new BlendState
         {
@@ -23,7 +24,6 @@ namespace Hevadea.Game
         public string PlayerSpawnLevel = "overworld";
 
         private readonly SpriteBatch spriteBatch;
-        public double Time;
 
         public World()
         {
@@ -70,8 +70,7 @@ namespace Hevadea.Game
 
             Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
 
-            //Engine.Graphic.GetGraphicsDevice().Clear(Color.Blue * 0.1f);
-            Engine.Graphic.GetGraphicsDevice().Clear(Color.White);
+            Engine.Graphic.GetGraphicsDevice().Clear(DayNightCicle.GetAmbiantLight());
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
             level.DrawLightMap(state, spriteBatch, gameTime);
@@ -106,14 +105,15 @@ namespace Hevadea.Game
                 w.Levels.Add(l.Save());
             }
 
-            w.Time = Time;
+            
+            w.Time = DayNightCicle.Time;
             w.PlayerSpawnLevel = PlayerSpawnLevel;
             return w;
         }
 
         public void Load(WorldStorage store)
         {
-            Time = store.Time;
+            DayNightCicle.Time = store.Time;
             PlayerSpawnLevel = store.PlayerSpawnLevel;
             
             foreach (var levelData in store.Levels)

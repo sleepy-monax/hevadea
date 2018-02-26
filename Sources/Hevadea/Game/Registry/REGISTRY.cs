@@ -15,6 +15,7 @@ namespace Hevadea.Game.Registry
             GENERATOR.Initialize();
 
             TILES.AttachTags();
+            ITEMS.AttachTags();
         }
     }
 }
