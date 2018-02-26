@@ -1,4 +1,5 @@
 ﻿using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
@@ -19,7 +20,7 @@ namespace Hevadea.Game.Entities.Furnitures
             Components.Adds(
                 new Breakable(),
                 new Light(),
-                new Dropable {Items = {(ITEMS.FURNACE, 1, 1)}}
+                new Dropable {Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1)}}
             );
         }
 

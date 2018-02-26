@@ -6,13 +6,14 @@ namespace Hevadea.Game.Entities.Component
 {
     public class Dropable : EntityComponent
     {
-        public List<(Item Item, int Min, int Max)> Items { get; set; } = new List<(Item, int, int)>();
+        public List<Drop> Items { get; set; } = new List<Drop>();
 
         public void Drop()
         {
             var pos = Owner.GetTilePosition();
 
-            foreach (var d in Items) d.Item.Drop(Owner.Level, pos, Engine.Random.Next(d.Min, d.Max));
+            foreach (var d in Items)
+                if (Engine.Random.NextDouble() < d.Chance) d.Item.Drop(Owner.Level, pos, Engine.Random.Next(d.Min, d.Max));
         }
     }
 }

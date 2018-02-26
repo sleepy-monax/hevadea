@@ -30,7 +30,6 @@ namespace Maker.Rise.Components
 
                 RenderTarget[i] = CreateFullscreenRenderTarget();
             }
-            Engine.Scene.ResetRenderTargets();
         }
 
         public void SetFullscreen()
@@ -98,7 +97,7 @@ namespace Maker.Rise.Components
 
         public void SetDefaultRenderTarget()
         {
-            g.GraphicsDevice.SetRenderTarget(Engine.Scene.RenderTarget);
+            g.GraphicsDevice.SetRenderTarget(null);
         }
 
         public GraphicsDevice GetGraphicsDevice()

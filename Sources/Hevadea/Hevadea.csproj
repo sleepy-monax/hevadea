@@ -113,6 +113,7 @@
     <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\Items\ItemStorage.cs" />
     <Compile Include="Game\Items\ItemTag.cs" />
+    <Compile Include="Game\Items\Loot.cs" />
     <Compile Include="Game\Items\Materials\BaseMaterial.cs" />
     <Compile Include="Game\Items\Materials\Material.cs" />
     <Compile Include="Game\Items\Tags\InteractItemTag.cs" />
@@ -185,14 +186,10 @@
     <Compile Include="WorldGenerator\WorldFeatures\StairCaseFeature.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

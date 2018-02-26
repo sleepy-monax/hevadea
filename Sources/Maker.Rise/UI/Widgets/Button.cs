@@ -7,7 +7,6 @@ namespace Maker.Rise.UI.Widgets
 {
     public class Button : Widget
     {
-        public bool BlurBackground { get; set; } = true;
         public bool EnableBorder { get; set; } = false;
         public Color OverColor { get; set; } = Color.Gold;
         public Color IdleColor { get; set; } = Color.White;
@@ -21,11 +20,6 @@ namespace Maker.Rise.UI.Widgets
             _easing.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
             _easing.Update(gameTime);
             
-            if (BlurBackground)
-            {
-                spriteBatch.Draw(Engine.Scene.BluredScene, Host, Host, Color.White * _easing.GetValue(EasingFunctions.Linear));
-            }
-
             if (EnableBorder)
             {
                 spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));

@@ -76,7 +76,7 @@ namespace Hevadea.Game
             level.DrawLightMap(state, spriteBatch, gameTime);
             spriteBatch.End();
 
-            Engine.Graphic.SetRenderTarget(Engine.Scene.RenderTarget);
+            Engine.Graphic.SetDefaultRenderTarget();
 
             Engine.Graphic.Begin(spriteBatch);
 

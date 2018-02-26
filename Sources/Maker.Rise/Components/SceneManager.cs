@@ -18,11 +18,6 @@ namespace Maker.Rise.Components
         public ParalaxeBackground Background = null;
         public SpriteBatch sb;
 
-        public RenderTarget2D RenderTarget { get; private set; }
-        public RenderTarget2D BluredScene { get; set; }
-
-        private BlurEffect blur;
-
         public SceneManager(InternalGame game) : base(game)
         {
             CurrentScene = null;
@@ -32,19 +27,6 @@ namespace Maker.Rise.Components
         public override void Initialize()
         {
             sb = Engine.Graphic.CreateSpriteBatch();
-
-            ResetRenderTargets();
-
-            blur = new BlurEffect();
-            blur.Setup(Engine.Graphic.GetWidth(), Engine.Graphic.GetHeight());
-        }
-
-        public void ResetRenderTargets()
-        {
-            RenderTarget?.Dispose();
-            BluredScene?.Dispose();
-            RenderTarget = Engine.Graphic.CreateFullscreenRenderTarget();
-            BluredScene = Engine.Graphic.CreateFullscreenRenderTarget();
         }
 
         public override void Update(GameTime gameTime)
@@ -85,42 +67,10 @@ namespace Maker.Rise.Components
 
         public override void Draw(GameTime gameTime)
         {
-            // Todo move all of this to Scene.Draw
-            Engine.Graphic.SetRenderTarget(RenderTarget);
-            
-            
             if (Background != null)
                 sb.BeginDrawEnd(Background.Draw, gameTime);
 
             CurrentScene?.OnDraw(gameTime);
-
-            Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
-
-            if (Engine.Configuration.EnableBlur)
-            {                
-                var blurBeginState = new SpriteBatchBeginState {SortMode = SpriteSortMode.Immediate, Effect = blur.Effect};
-                
-                sb.Begin(blurBeginState);
-                blur.Use(true);
-                sb.Draw(RenderTarget, Engine.Graphic.GetResolutionRect(), Color.White);
-                sb.End();
-
-                Engine.Graphic.SetRenderTarget(BluredScene);
-                
-                sb.Begin(blurBeginState);
-                blur.Use(false);
-                sb.Draw(Engine.Graphic.RenderTarget[0], Engine.Graphic.GetResolutionRect(), Color.White); 
-                sb.End();
-            }
-
-            Engine.Graphic.SetRenderTarget(null);
-            
-            sb.BeginDrawEnd((sb, gt) =>
-            {
-                var bound = new Rectangle(0, 0, RenderTarget.Width, RenderTarget.Height);
-                sb.Draw(RenderTarget, bound, Color.White);
-            });
-            
 
             if (CurrentScene?.Container != null)
             {

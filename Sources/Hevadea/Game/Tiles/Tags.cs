@@ -64,10 +64,10 @@ namespace Hevadea.Game.Tiles
         /// </summary>
         public class Droppable : TileTag
         {
-            public List<(Item Item, int Min, int Max)> Items { get; set; } = new List<(Item, int, int)>();
+            public List<Drop> Items { get; set; } = new List<Drop>();
 
             public Droppable() { }
-            public Droppable(params (Item Item, int Min, int Max)[] items)
+            public Droppable(params Drop[] items)
             {
                 foreach (var item in items)
                 {
@@ -77,7 +77,8 @@ namespace Hevadea.Game.Tiles
 
             public void Drop(TilePosition position, Level level)
             {
-                foreach (var d in Items) d.Item.Drop(level, position, Engine.Random.Next(d.Min, d.Max));
+                foreach (var d in Items)
+                    if (Engine.Random.NextDouble() < d.Chance) d.Item.Drop(level, position, Engine.Random.Next(d.Min, d.Max + 1));
             }
         }
         #endregion
@@ -95,6 +96,9 @@ namespace Hevadea.Game.Tiles
             }
         }
 
+        /// <summary>
+        /// Only Entity with the Swim component can pass throught.
+        /// </summary>
         public class Liquide : Solide
         {
             public override bool CanPassThrought(Entity entity)

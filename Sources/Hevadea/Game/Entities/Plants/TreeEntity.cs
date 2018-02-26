@@ -1,5 +1,6 @@
 ﻿using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Creatures;
+using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
@@ -20,7 +21,7 @@ namespace Hevadea.Game.Entities
 
             Components.Adds(
                 new Health(5),
-                new Dropable {Items = {(ITEMS.WOOD_LOG, 1, 5), (ITEMS.PINE_CONE, 0, 3)}}
+                new Dropable {Items = {new Drop(ITEMS.WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3)}}
             );
         }
 

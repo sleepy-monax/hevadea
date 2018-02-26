@@ -19,7 +19,6 @@ namespace Hevadea.Scenes.Widgets
                 var size = Math.Min(Host.Width, Host.Height);
                 var minSize = size - 4;
 
-                spriteBatch.Draw(Engine.Scene.BluredScene, Bound, Bound, Color.White);
                 spriteBatch.FillRectangle(Bound, Color.Gold * 0.5f);
                 spriteBatch.DrawRectangle(Bound, Color.Gold * 0.5f);
 

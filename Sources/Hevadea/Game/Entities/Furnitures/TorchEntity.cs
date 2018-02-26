@@ -1,4 +1,5 @@
 ﻿using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
@@ -18,7 +19,7 @@ namespace Hevadea.Game.Entities
             _sprite = new Sprite(Ressources.TileEntities, new Point(4, 0));
             Components.Adds(
                 new Light {On = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 72},
-                new Dropable {Items = {(ITEMS.TORCH, 1, 1)}},
+                new Dropable {Items = {new Drop(ITEMS.TORCH, 1f, 1, 1)}},
                 new Breakable()
             );
         }
