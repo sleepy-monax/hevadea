@@ -38,14 +38,14 @@ namespace Hevadea.Game.Registry
             VOID.AddTag(new Tags.Solide());
 
             ROCK.AddTag(new Tags.Solide(), new Tags.Damage { ReplacementTile = DIRT });
-            ROCK.AddTag(new Tags.Droppable(new Drop(ITEMS.STONE,1f, 2, 5), new Drop(ITEMS.COAL,1f, 0, 3)));
+            ROCK.AddTag(new Tags.Droppable(new Drop(ITEMS.STONE,1f, 2, 4), new Drop(ITEMS.COAL,1f, 0, 2)));
 
             SAND.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
-            SAND.AddTag(new Tags.Droppable(new Drop(ITEMS.SAND, 1f, 1, 2)));
+            SAND.AddTag(new Tags.Droppable(new Drop(ITEMS.SAND, 1f, 1, 1)));
 
             GRASS.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
             GRASS.AddTag(new Tags.Spread { SpreadChance = 50, SpreadTo = { DIRT } });
-            GRASS.AddTag(new Tags.Droppable(new Drop(ITEMS.GRASS_PATCH, 1f, 1, 2)));
+            GRASS.AddTag(new Tags.Droppable(new Drop(ITEMS.GRASS_PATCH, 1f, 1, 1)));
 
             WATER.AddTag(new Tags.Spread { SpreadChance = 1, SpreadTo = { VOID } });
             WATER.AddTag(new Tags.Liquide());
