@@ -56,7 +56,7 @@ namespace Hevadea.Game
                 l.Update(state, gameTime);
             }
 
-            World.Time += gameTime.ElapsedGameTime.TotalSeconds;
+            World.DayNightCicle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
         }
 
 

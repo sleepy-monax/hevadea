@@ -145,7 +145,10 @@ namespace Hevadea.Scenes
         public override string GetDebugInfo()
         {
             return
-                $@"World time: {_game.World.Time}
+                $@"World time: {_game.World.DayNightCicle.Time}
+Time of the day: {_game.World.DayNightCicle.TimeOfTheDay}
+Day : {_game.World.DayNightCicle.DayCount}
+Is day: {_game.World.DayNightCicle.IsDay()}
 Player pos {_game.Player.X} {_game.Player.Y}
 ";
         }

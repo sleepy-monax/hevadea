@@ -37,7 +37,7 @@ namespace Hevadea.Game.Storage
             player.Load(playerData);
             
             Logger.Log<GameManager>(LoggerLevel.Fine, "Done!");
-            
+            _isDone = true;
             return new GameManager(world, player);
         }
 

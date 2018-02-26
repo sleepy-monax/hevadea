@@ -4,6 +4,7 @@ using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Game.Items.Tags;
 
 namespace Hevadea.Game.Entities.Component
 {
@@ -51,8 +52,10 @@ namespace Hevadea.Game.Entities.Component
                         break;
                     }
                 }
-            else if (item != null)
-                item.InteracteOn(Owner, SelectedTile);
+            else
+            {
+                item?.Tag<InteractItemTag>()?.InteracteOn(Owner, SelectedTile);
+            }
         }
     }
 }

@@ -67,6 +67,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameConfig.cs" />
+    <Compile Include="Game\DayNightCicle.cs" />
     <Compile Include="Game\Direction.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
@@ -111,11 +112,13 @@
     <Compile Include="Game\Entities\StairsEntity.cs" />
     <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\Items\ItemStorage.cs" />
+    <Compile Include="Game\Items\ItemTag.cs" />
     <Compile Include="Game\Items\Materials\BaseMaterial.cs" />
     <Compile Include="Game\Items\Materials\Material.cs" />
-    <Compile Include="Game\Items\PlacableItem.cs" />
-    <Compile Include="Game\Items\RessourceItem.cs" />
-    <Compile Include="Game\Items\TileItem.cs" />
+    <Compile Include="Game\Items\Tags\InteractItemTag.cs" />
+    <Compile Include="Game\Items\Tags\PlacableItemTag.cs" />
+    <Compile Include="Game\Items\Tags\PlaceEntity.cs" />
+    <Compile Include="Game\Items\Tags\PlaceTile.cs" />
     <Compile Include="Game\LevelRenderState.cs" />
     <Compile Include="Game\Registry\ENTITIES.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />

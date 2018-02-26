@@ -40,9 +40,11 @@ namespace Hevadea.Game.Registry
             ROCK.AddTag(new Tags.Droppable((ITEMS.STONE, 2, 5), (ITEMS.COAL, 0, 3)));
 
             SAND.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
+            SAND.AddTag(new Tags.Droppable((ITEMS.SAND, 1, 2)));
 
             GRASS.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
             GRASS.AddTag(new Tags.Spread { SpreadChance = 50, SpreadTo = { DIRT } });
+            GRASS.AddTag(new Tags.Droppable((ITEMS.GRASS_PATCH, 1, 2)));
 
             WATER.AddTag(new Tags.Spread { SpreadChance = 1, SpreadTo = { VOID } });
             WATER.AddTag(new Tags.Liquide());
@@ -51,6 +53,11 @@ namespace Hevadea.Game.Registry
             DIRT.AddTag(new Tags.Damage { ReplacementTile = VOID });
 
             WOOD_WALL.AddTag(new Tags.Solide());
+            WOOD_WALL.AddTag(new Tags.Damage { ReplacementTile = DIRT });
+            WOOD_WALL.AddTag(new Tags.Droppable((ITEMS.WOOD_WALL, 1, 2)));
+            
+            WOOD_FLOOR.AddTag(new Tags.Damage{ ReplacementTile = DIRT });
+            WOOD_FLOOR.AddTag(new Tags.Droppable((ITEMS.WOOD_FLOOR, 1, 2)));
         }
     }
 }

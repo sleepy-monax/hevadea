@@ -54,24 +54,24 @@ namespace Hevadea.Game.Registry
             TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<TreeEntity>("tree"));
             
             // Furnitures
-            CHEST = RegisterEntityBlueprint(new GenericEntityBlueprint<ChestEntity>("chest"));
+            CHEST          = RegisterEntityBlueprint(new GenericEntityBlueprint<ChestEntity>("chest"));
             CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<CraftingBenchEntity>("crafting_bench"));
-            FURNACE = RegisterEntityBlueprint(new GenericEntityBlueprint<FurnaceEntity>("furnace"));
-            STAIRES = RegisterEntityBlueprint(new GenericEntityBlueprint<StairsEntity>("staires"));
-            TORCH = RegisterEntityBlueprint(new GenericEntityBlueprint<GrassEntity>("torch"));
+            FURNACE        = RegisterEntityBlueprint(new GenericEntityBlueprint<FurnaceEntity>("furnace"));
+            STAIRES        = RegisterEntityBlueprint(new GenericEntityBlueprint<StairsEntity>("staires"));
+            TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<TorchEntity>("torch"));
         }
         
-        private static Dictionary<string, EntityBlueprint> _library = new Dictionary<string, EntityBlueprint>();
+        private static Dictionary<string, EntityBlueprint> _blueprintLibrary = new Dictionary<string, EntityBlueprint>();
 
         public static EntityBlueprint RegisterEntityBlueprint(EntityBlueprint blueprint)
         {
-            if (_library.ContainsKey(blueprint.Name))
+            if (_blueprintLibrary.ContainsKey(blueprint.Name))
             {
-                _library[blueprint.Name] = blueprint;
+                _blueprintLibrary[blueprint.Name] = blueprint;
             }
             else
             {
-                _library.Add(blueprint.Name, blueprint);
+                _blueprintLibrary.Add(blueprint.Name, blueprint);
             }
 
             return blueprint;
@@ -79,7 +79,7 @@ namespace Hevadea.Game.Registry
 
         public static EntityBlueprint GetBlueprint(string name)
         {
-            return _library.ContainsKey(name) ? _library[name] : null;
+            return _blueprintLibrary.ContainsKey(name) ? _blueprintLibrary[name] : null;
         }
     }
 }

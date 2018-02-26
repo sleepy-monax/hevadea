@@ -112,6 +112,5 @@ namespace Hevadea.Game.Entities.Component
             Owner.Components.Get<Dropable>()?.Drop();
             Owner.Remove();
         }
-
     }
 }

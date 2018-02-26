@@ -13,7 +13,8 @@ namespace Maker.Rise
 
         private readonly Stopwatch drawStopwatch;
         private readonly Stopwatch updateStopwatch;
-
+        private SpriteBatch sb;
+        
         public delegate void OnLoadHandler(InternalGame sender, EventArgs e);
 
         public event OnLoadHandler OnLoad;
@@ -36,6 +37,8 @@ namespace Maker.Rise
             Engine.Network.Initialize();
             Engine.Scene.Initialize();
             Engine.Debug.Initialize();
+
+            
         }
 
         private static void DrawGameComponent(GameTime gameTime)
@@ -74,6 +77,7 @@ namespace Maker.Rise
                     Engine.Graphic.ResetRenderTargets();
                 }
             };
+            sb = Engine.Graphic.CreateSpriteBatch();
             base.Initialize();
         }
 
@@ -87,6 +91,7 @@ namespace Maker.Rise
             updateStopwatch.Reset();
         }
 
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
@@ -97,6 +102,12 @@ namespace Maker.Rise
 
             DrawTime = drawStopwatch.Elapsed.Milliseconds;
             drawStopwatch.Reset();
+
+            sb.Begin();
+            
+            sb.DrawString(EngineRessources.FontArial, "Hevadea 0.1.0", new Vector2(16, Engine.Graphic.GetHeight() - 48), Color.White * 0.5f);
+            
+            sb.End();
         }
     }
 }
