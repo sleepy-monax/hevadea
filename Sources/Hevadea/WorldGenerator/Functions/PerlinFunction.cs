@@ -1,4 +1,5 @@
 ﻿using Hevadea.Game;
+using Hevadea.Game.Worlds;
 using Maker.Rise.Utils;
 
 namespace Hevadea.WorldGenerator.Functions

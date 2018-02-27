@@ -1,8 +1,8 @@
-﻿using Hevadea.Game.Entities;
+﻿using System.Collections.Generic;
+using Hevadea.Game.Entities;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
-namespace Hevadea.Game
+namespace Hevadea.Game.Worlds
 {
     public class LevelRenderState
     {

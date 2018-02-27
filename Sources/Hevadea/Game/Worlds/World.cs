@@ -1,18 +1,19 @@
-﻿using Hevadea.Game.Entities.Creatures;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Hevadea.Game.Entities.Creatures;
+using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Hevadea.Game
+namespace Hevadea.Game.Worlds
 {
     public class World
     {
         public GameManager Game;
         public List<Level> Levels = new List<Level>();
-        public DayNightCicle DayNightCicle { get; }
+        public DayNightCycle DayNightCycle { get; }
 
         private readonly BlendState _lightBlend = new BlendState
         {
@@ -28,7 +29,7 @@ namespace Hevadea.Game
         public World()
         {
             spriteBatch = Engine.Graphic.CreateSpriteBatch();
-            DayNightCicle = new DayNightCicle(
+            DayNightCycle = new DayNightCycle(
                 new DayStage("Dawn", 30, new Color(217, 151, 179)),
                 new DayStage("Day", 5 * 60, Color.White),
                 new DayStage("Dusk", 30, new Color(217, 151, 179)),
@@ -77,7 +78,14 @@ namespace Hevadea.Game
 
             Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
 
-            Engine.Graphic.GetGraphicsDevice().Clear(DayNightCicle.GetAmbiantLight());
+            if (level.Properties.AffectedByDayNightCycle)
+            {
+                Engine.Graphic.GetGraphicsDevice().Clear(DayNightCycle.GetAmbiantLight());
+            }
+            else
+            {
+                Engine.Graphic.GetGraphicsDevice().Clear(level.Properties.AmbiantLight);
+            }
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
             level.DrawLightMap(state, spriteBatch, gameTime);
@@ -113,19 +121,19 @@ namespace Hevadea.Game
             }
 
             
-            w.Time = DayNightCicle.Time;
+            w.Time = DayNightCycle.Time;
             w.PlayerSpawnLevel = PlayerSpawnLevel;
             return w;
         }
 
         public void Load(WorldStorage store)
         {
-            DayNightCicle.Time = store.Time;
+            DayNightCycle.Time = store.Time;
             PlayerSpawnLevel = store.PlayerSpawnLevel;
             
             foreach (var levelData in store.Levels)
             {
-                var level = new Level(levelData.Width, levelData.Height);
+                var level = new Level(LEVELS.GetProperties(levelData.Type), levelData.Width, levelData.Height);
                 level.Load(levelData);
                 Levels.Add(level);
             }

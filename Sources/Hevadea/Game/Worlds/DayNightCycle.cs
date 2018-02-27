@@ -1,10 +1,9 @@
-﻿using Hevadea.Framework.Utils;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Hevadea.Framework.Utils;
+using Microsoft.Xna.Framework;
 
-namespace Hevadea.Game
+namespace Hevadea.Game.Worlds
 {
     public class DayStage
     {
@@ -20,30 +19,28 @@ namespace Hevadea.Game
         }
     }
 
-    public class DayNightCicle
+    public class DayNightCycle
     {
-
         private List<DayStage> _stages;
         private DayStage _previousStage;
         private DayStage _currentStage;
 
         public double Time { get; set; }
-        public double CicleDuration { get; }
+        public double CycleDuration { get; }
         public double Transition { get; set; } = 5;
-        public double TimeOfTheDay => (Time % CicleDuration);
-        public int DayCount => (int) (Time / CicleDuration);
+        public double TimeOfTheDay => (Time % CycleDuration);
+        public int DayCount => (int) (Time / CycleDuration);
 
-
-        public DayNightCicle(params DayStage[] dayStages)
+        public DayNightCycle(params DayStage[] dayStages)
         {
             Time = 0;
             _stages = dayStages.ToList();
-            CicleDuration = _stages.Select(x=>x.Duration).Aggregate((a, b) => a + b);
+            CycleDuration = _stages.Select(x=>x.Duration).Aggregate((a, b) => a + b);
         }
 
         public DayStage GetDayStage(double time)
         {
-            time = time % CicleDuration;
+            time = time % CycleDuration;
             double counter = 0;
 
             foreach (var s in _stages)

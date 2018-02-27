@@ -2,6 +2,7 @@
 using Hevadea.Game;
 using System;
 using System.Collections.Generic;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.WorldGenerator
 {

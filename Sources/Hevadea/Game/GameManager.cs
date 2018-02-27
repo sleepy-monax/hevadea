@@ -3,6 +3,7 @@ using Hevadea.Game.Storage;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 using System;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game
 {
@@ -56,7 +57,7 @@ namespace Hevadea.Game
                 l.Update(state, gameTime);
             }
 
-            World.DayNightCicle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
+            World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
         }
 
 

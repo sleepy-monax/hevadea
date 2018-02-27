@@ -33,8 +33,8 @@ namespace Hevadea.Game.Storage
             string playerJson = player.ToJson();
             
             SetStatus("Saving to files");
-            File.WriteAllText($"{path}\\world.json", worldJson);
-            File.WriteAllText($"{path}\\player.json", playerJson);
+            File.WriteAllText($"{path}/world.json", worldJson);
+            File.WriteAllText($"{path}/player.json", playerJson);
             
             Logger.Log<GameManager>(LoggerLevel.Fine, "Done!");
             _isDone = true;

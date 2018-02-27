@@ -2,6 +2,7 @@
 using Hevadea.Framework.Utils.Json;
 using Hevadea.Game.Entities.Creatures;
 using System.IO;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game.Storage
 {
@@ -21,8 +22,8 @@ namespace Hevadea.Game.Storage
             Logger.Log<GameManager>(LoggerLevel.Info, $"Loading world from '{path}'.");
             
             SetStatus("read_files");
-            string worldStr = File.ReadAllText($"{path}\\world.json");
-            string playerStr = File.ReadAllText($"{path}\\player.json");
+            string worldStr = File.ReadAllText($"{path}/world.json");
+            string playerStr = File.ReadAllText($"{path}/player.json");
             
             SetStatus("create_game_objects");
             var world = new World();

@@ -17,6 +17,7 @@ namespace Hevadea.Game.Registry
             {
                 LevelId = 0,
                 LevelName = "overworld",
+                Properties = LEVELS.SURFACE,
                 Features =
                 {
                     new BaseTerainFeature
@@ -92,7 +93,7 @@ namespace Hevadea.Game.Registry
             {
                 LevelId = 1,
                 LevelName = "cave",
-
+                Properties = LEVELS.UNDERGROUND,
                 Features =
                 {
                     new BaseTerainFeature

@@ -5,6 +5,7 @@ using Hevadea.Game.Registry;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game.Tiles
 {

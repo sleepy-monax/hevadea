@@ -1,4 +1,8 @@
-﻿using Hevadea.Framework.Utils;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Registry;
@@ -9,40 +13,41 @@ using Maker.Rise.Extension;
 using Maker.Rise.Graphic.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
-namespace Hevadea.Game
+namespace Hevadea.Game.Worlds
 {
     public class Level
     {
+        private int[] _tiles;
+        private Dictionary<string, object>[] _tilesData;
+        public LevelProperties Properties { get; }
+        
         public ParticleSystem ParticleSystem { get; }
         public GameManager Game;
         private List<Entity> _entities;
         private List<Entity>[,] _entitiesOnTiles;
 
-        private int[] Tiles;
-        private Dictionary<string, object>[] TilesData;
 
         private World World;
 
-        public Level(int width, int height)
+        public Level(LevelProperties properties, int width, int height)
         {
+            Properties = properties;
             Width = width;
             Height = height;
+            
+            ParticleSystem = new ParticleSystem();
 
-            Tiles = new int[Width * Height];
-            TilesData = new Dictionary<string, object>[Width * Height];
+            _tiles = new int[Width * Height];
+            _tilesData = new Dictionary<string, object>[Width * Height];
             _entities = new List<Entity>();
             _entitiesOnTiles = new List<Entity>[Width, Height];
-            ParticleSystem = new ParticleSystem();
+            
             for (var x = 0; x < Width; x++)
             for (var y = 0; y < Height; y++)
             {
                 _entitiesOnTiles[x, y] = new List<Entity>();
-                TilesData[x + y * Width] = new Dictionary<string, object>();
+                _tilesData[x + y * Width] = new Dictionary<string, object>();
             }
         }
 
@@ -190,7 +195,7 @@ namespace Hevadea.Game
         public Tile GetTile(int tx, int ty)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return TILES.WATER;
-            return TILES.ById[Tiles[tx + ty * Width]];
+            return TILES.ById[_tiles[tx + ty * Width]];
         }
 
         public bool SetTile(TilePosition pos, Tile tile)
@@ -206,7 +211,7 @@ namespace Hevadea.Game
         public bool SetTile(int tx, int ty, int id)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return false;
-            Tiles[tx + ty * Width] = id;
+            _tiles[tx + ty * Width] = id;
             return true;
         }
 
@@ -214,7 +219,7 @@ namespace Hevadea.Game
 
         public void ClearTileData(int tx, int ty)
         {
-            TilesData[tx + ty * Width].Clear();
+            _tilesData[tx + ty * Width].Clear();
         }
 
         public T GetTileData<T>(TilePosition tilePosition, string dataName, T defaultValue)
@@ -224,9 +229,9 @@ namespace Hevadea.Game
 
         public T GetTileData<T>(int tx, int ty, string dataName, T defaultValue)
         {
-            if (TilesData[tx + ty * Width].ContainsKey(dataName)) return (T) TilesData[tx + ty * Width][dataName];
+            if (_tilesData[tx + ty * Width].ContainsKey(dataName)) return (T) _tilesData[tx + ty * Width][dataName];
 
-            TilesData[tx + ty * Width].Add(dataName, defaultValue);
+            _tilesData[tx + ty * Width].Add(dataName, defaultValue);
             return defaultValue;
         }
 
@@ -237,7 +242,7 @@ namespace Hevadea.Game
 
         public void SetTileData<T>(int tx, int ty, string dataName, T value)
         {
-            TilesData[tx + ty * Width][dataName] = value;
+            _tilesData[tx + ty * Width][dataName] = value;
         }
 
         // GAME LOOPS ---------------------------------------------------------
@@ -259,10 +264,11 @@ namespace Hevadea.Game
             {
                 Width = Width,
                 Height = Height,
-                Tiles = Tiles,
-                TilesData = TilesData,
+                Tiles = _tiles,
+                TilesData = _tilesData,
                 Name = Name,
                 Id = Id, 
+                Type = Properties.Name
             };
 
             Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
@@ -284,8 +290,8 @@ namespace Hevadea.Game
 
             Width = store.Width;
             Height = store.Height;
-            Tiles = store.Tiles;
-            TilesData = store.TilesData;
+            _tiles = store.Tiles;
+            _tilesData = store.TilesData;
             Name = store.Name;
             Id = store.Id;
         }
@@ -297,7 +303,7 @@ namespace Hevadea.Game
             {
                 var tx = Engine.Random.Next(Width);
                 var ty = Engine.Random.Next(Height);
-                GetTile(tx, ty).Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+                GetTile(tx, ty).Update(new TilePosition(tx, ty), _tilesData[tx + ty * Width], this, gameTime);
             }
 
             ParticleSystem.Update(gameTime);
@@ -337,7 +343,7 @@ namespace Hevadea.Game
         {
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
-                GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+                GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), _tilesData[tx + ty * Width], this, gameTime);
             
             ParticleSystem.Draw(spriteBatch, gameTime);
         }

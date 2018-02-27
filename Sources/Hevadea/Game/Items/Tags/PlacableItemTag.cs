@@ -3,6 +3,7 @@ using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Tiles;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game.Items.Tags
 {

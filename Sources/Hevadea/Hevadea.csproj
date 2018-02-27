@@ -67,7 +67,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameConfig.cs" />
-    <Compile Include="Game\DayNightCicle.cs" />
     <Compile Include="Game\Direction.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
@@ -120,9 +119,9 @@
     <Compile Include="Game\Items\Tags\PlacableItemTag.cs" />
     <Compile Include="Game\Items\Tags\PlaceEntity.cs" />
     <Compile Include="Game\Items\Tags\PlaceTile.cs" />
-    <Compile Include="Game\LevelRenderState.cs" />
     <Compile Include="Game\Registry\ENTITIES.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />
+    <Compile Include="Game\Registry\LEVELS.cs" />
     <Compile Include="Game\Registry\REGISTRY.cs" />
     <Compile Include="Game\Storage\GameLoader.cs" />
     <Compile Include="Game\Storage\GameSaver.cs" />
@@ -133,6 +132,11 @@
     <Compile Include="Game\Tiles\Renderers\TileRender.cs" />
     <Compile Include="Game\Tiles\Tags.cs" />
     <Compile Include="Game\Tiles\TileTag.cs" />
+    <Compile Include="Game\Worlds\DayNightCycle.cs" />
+    <Compile Include="Game\Worlds\Level.cs" />
+    <Compile Include="Game\Worlds\LevelProperties.cs" />
+    <Compile Include="Game\Worlds\LevelRenderState.cs" />
+    <Compile Include="Game\Worlds\World.cs" />
     <Compile Include="Scenes\GUIHelper.cs" />
     <Compile Include="Scenes\Menus\ChestMenu.cs" />
     <Compile Include="Scenes\Menus\CraftMenu.cs" />
@@ -140,7 +144,6 @@
     <Compile Include="Scenes\Menus\InventoryMenu.cs" />
     <Compile Include="Scenes\Menus\Menu.cs" />
     <Compile Include="Game\Items\Item.cs" />
-    <Compile Include="Game\Level.cs" />
     <Compile Include="Game\Registry\ITEMS.cs" />
     <Compile Include="Game\Registry\RECIPIES.cs" />
     <Compile Include="Game\Registry\TILES.cs" />
@@ -158,7 +161,6 @@
     <Compile Include="Scenes\Widgets\InventoryWidget.cs" />
     <Compile Include="Scenes\Widgets\ItemWidget.cs" />
     <Compile Include="Scenes\Widgets\StatesWidget.cs" />
-    <Compile Include="Game\World.cs" />
     <Compile Include="Ressources.cs" />
     <Compile Include="Game\Tiles\Tile.cs" />
     <Compile Include="Game\Tiles\TilePosition.cs" />

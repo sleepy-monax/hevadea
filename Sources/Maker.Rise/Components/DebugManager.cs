@@ -74,7 +74,6 @@ namespace Maker.Rise.Components
                 var debugText = $@"
 d: {Game.DrawTime,3}ms (avr {avrRenderTime / renderTime.Count, 3}ms)
 u: {Game.UpdateTime,3}ms
---- Curent Scene Debug Info ---
 {Engine.Scene.CurrentScene.GetDebugInfo()}";
 
                 var debugTextSize = EngineRessources.FontHack.MeasureString(debugText);

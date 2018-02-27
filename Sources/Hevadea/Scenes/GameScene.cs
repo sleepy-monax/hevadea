@@ -146,10 +146,10 @@ namespace Hevadea.Scenes
         public override string GetDebugInfo()
         {
             return
-                $@"World time: {_game.World.DayNightCicle.Time}
-Time of the day: {_game.World.DayNightCicle.TimeOfTheDay} / {_game.World.DayNightCicle.CicleDuration}
-Days : {_game.World.DayNightCicle.DayCount}
-Current Stage: {_game.World.DayNightCicle.GetCurrentStage().Name} : {(int)_game.World.DayNightCicle.GetTimeOfTheCurrentStage()}/{(int)_game.World.DayNightCicle.GetCurrentStage().Duration}
+                $@"World time: {_game.World.DayNightCycle.Time}
+Time of the day: {_game.World.DayNightCycle.TimeOfTheDay} / {_game.World.DayNightCycle.CycleDuration}
+Days : {_game.World.DayNightCycle.DayCount}
+Current Stage: {_game.World.DayNightCycle.GetCurrentStage().Name} : {(int)_game.World.DayNightCycle.GetTimeOfTheCurrentStage()}/{(int)_game.World.DayNightCycle.GetCurrentStage().Duration}
 Player pos {_game.Player.X} {_game.Player.Y}
 ";
         }

@@ -4,6 +4,7 @@ using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {

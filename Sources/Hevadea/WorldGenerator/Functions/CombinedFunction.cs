@@ -1,4 +1,5 @@
 ﻿using Hevadea.Game;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.WorldGenerator.Functions
 {
