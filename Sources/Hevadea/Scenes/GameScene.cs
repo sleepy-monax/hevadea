@@ -147,9 +147,9 @@ namespace Hevadea.Scenes
         {
             return
                 $@"World time: {_game.World.DayNightCicle.Time}
-Time of the day: {_game.World.DayNightCicle.TimeOfTheDay}
-Day : {_game.World.DayNightCicle.DayCount}
-Is day: {_game.World.DayNightCicle.IsDay()}
+Time of the day: {_game.World.DayNightCicle.TimeOfTheDay} / {_game.World.DayNightCicle.CicleDuration}
+Days : {_game.World.DayNightCicle.DayCount}
+Current Stage: {_game.World.DayNightCicle.GetCurrentStage().Name} : {(int)_game.World.DayNightCicle.GetTimeOfTheCurrentStage()}/{(int)_game.World.DayNightCicle.GetCurrentStage().Duration}
 Player pos {_game.Player.X} {_game.Player.Y}
 ";
         }

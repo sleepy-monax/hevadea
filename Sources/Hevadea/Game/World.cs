@@ -12,7 +12,7 @@ namespace Hevadea.Game
     {
         public GameManager Game;
         public List<Level> Levels = new List<Level>();
-        public DayNightCicle DayNightCicle { get; } = new DayNightCicle();
+        public DayNightCicle DayNightCicle { get; }
 
         private readonly BlendState _lightBlend = new BlendState
         {
@@ -28,6 +28,13 @@ namespace Hevadea.Game
         public World()
         {
             spriteBatch = Engine.Graphic.CreateSpriteBatch();
+            DayNightCicle = new DayNightCicle(
+                new DayStage("Dawn", 30, new Color(217, 151, 179)),
+                new DayStage("Day", 5 * 60, Color.White),
+                new DayStage("Dusk", 30, new Color(217, 151, 179)),
+                new DayStage("Night", 5 * 30, Color.Blue * 0.1f)
+                )
+            { Transition = 30 };
         }
 
         public void SpawnPlayer(PlayerEntity player)

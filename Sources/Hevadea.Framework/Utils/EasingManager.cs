@@ -1,8 +1,6 @@
-﻿using Hevadea.Framework.Utils;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 
-namespace Maker.Rise.UI
+namespace Hevadea.Framework.Utils
 {
     public class EasingManager
     {
@@ -36,17 +34,15 @@ namespace Maker.Rise.UI
 
         public float GetValueInv(EasingFunctions function) => (1f - GetValue(function)); 
 
-        public void Update(GameTime gameTime)
+        public void Update(double deltaTime)
         {
             if (Show)
             {
-                _value = Math.Min(1f,
-                    _value + (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
+                _value = Math.Min(1f, _value + (float)deltaTime * Speed * DebugSpeed);
             }
             else
             {
-                _value = Math.Max(0f,
-                    _value - (float)(gameTime.ElapsedGameTime.Milliseconds) / 100f * Speed * DebugSpeed);
+                _value = Math.Max(0f, _value - (float)deltaTime * Speed * DebugSpeed);
             }
 
             if (_value == 1f && !_ended)

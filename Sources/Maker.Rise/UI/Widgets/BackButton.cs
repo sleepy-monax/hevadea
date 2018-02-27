@@ -12,12 +12,12 @@ namespace Maker.Rise.UI.Widgets
         public Color IdleColor { get; set; } = Color.White;
         public Color TextColor { get; set; } = Color.White;
         public SpriteFont Font { get; set; } = EngineRessources.FontBebas;
-        private EasingManager _easing = new EasingManager { Speed = 0.25f };
+        private EasingManager _easing = new EasingManager { Speed = 2.5f };
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             _easing.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
-            _easing.Update(gameTime);
+            _easing.Update(gameTime.ElapsedGameTime.TotalSeconds);
             
             
 

@@ -13,12 +13,12 @@ namespace Maker.Rise.UI.Widgets
         public Color TextColor { get; set; } = Color.White;
         public SpriteFont Font { get; set; } = EngineRessources.FontBebas;
         public string Text { get; set; } = "Button";
-        private EasingManager _easing = new EasingManager { Speed = 0.5f };
+        private EasingManager _easing = new EasingManager { Speed = 5f };
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             _easing.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
-            _easing.Update(gameTime);
+            _easing.Update(gameTime.ElapsedGameTime.TotalSeconds);
 
             if (EnableBorder)
             {
