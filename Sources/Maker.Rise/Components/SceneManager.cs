@@ -80,7 +80,7 @@ namespace Maker.Rise.Components
 
             if (IsSceneSwitching)
             {
-                //DrawTransition();
+                DrawTransition();
             }
         }
 
