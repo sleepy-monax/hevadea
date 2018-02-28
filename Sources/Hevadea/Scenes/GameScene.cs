@@ -78,7 +78,7 @@ namespace Hevadea.Scenes
                     playerMovement.Do(vec.X, vec.Y, dir);
                 }
                 
-                if (Engine.Input.KeyPress(Keys.I)) _game.CurrentMenu = new InventoryMenu(_game.Player, RECIPIES.HandCrafted,_game);
+                if (Engine.Input.KeyPress(Keys.E)) _game.CurrentMenu = new InventoryMenu(_game.Player, RECIPIES.HandCrafted,_game);
                 if (Engine.Input.KeyPress(Keys.N)) playerMovement.NoClip = !playerMovement.NoClip;
 
                 var pos = _game.Player.GetFacingTile();
@@ -123,13 +123,13 @@ namespace Hevadea.Scenes
 
             if (Engine.Input.KeyPress(Keys.Escape))
             {
-                if (_game.CurrentMenu is HUDMenu)
+                if (_game.CurrentMenu is HudMenu)
                 {
                     _game.CurrentMenu = new PauseMenu(_game);
                 }
                 else
                 {
-                    _game.CurrentMenu = new HUDMenu(_game);
+                    _game.CurrentMenu = new HudMenu(_game);
                 }
             }
         }

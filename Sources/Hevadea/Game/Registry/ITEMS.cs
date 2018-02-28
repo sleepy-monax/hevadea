@@ -32,6 +32,7 @@ namespace Hevadea.Game.Registry
         public static Item CRAFTING_BENCH;
         public static Item FURNACE;
 
+        public static Item BELT;
         
         public static void Initialize()
         {
@@ -55,6 +56,8 @@ namespace Hevadea.Game.Registry
             CRAFTING_BENCH = new Item("crafting_bench", new Sprite(Ressources.TileEntities, new Point(1, 0)));
             FURNACE        = new Item("furnace",        new Sprite(Ressources.TileEntities, new Point(1, 1)));
             TORCH          = new Item("torch",          new Sprite(Ressources.TileEntities, new Point(4, 0)));
+            
+            BELT = new Item("belt", new Sprite(Ressources.TileEntities, new Point(0, 0)));
         }
 
         public static void AttachTags()
@@ -68,6 +71,8 @@ namespace Hevadea.Game.Registry
             WOOD_WALL.AddTag(new PlaceTile(TILES.WOOD_WALL){CanBePlaceOn = {TILES.DIRT}});
             GRASS_PATCH.AddTag(new PlaceTile(TILES.GRASS){CanBePlaceOn = {TILES.DIRT}});
             SAND.AddTag(new PlaceTile(TILES.SAND){CanBePlaceOn = {TILES.DIRT}});
+            
+            BELT.AddTag(new PlaceEntity(ENTITIES.BELT));
         }
     }
 }

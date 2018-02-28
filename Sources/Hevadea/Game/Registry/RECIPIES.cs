@@ -14,7 +14,8 @@ namespace Hevadea.Game.Registry
             HandCrafted.Add(new Recipe(ITEMS.WOOD_STICK, 4).AddCost(ITEMS.WOOD_PLANK, 1));
             HandCrafted.Add(new Recipe(ITEMS.TORCH, 4).AddCost(ITEMS.COAL, 1).AddCost(ITEMS.WOOD_STICK, 1));
             HandCrafted.Add(new Recipe(ITEMS.CRAFTING_BENCH, 1).AddCost(ITEMS.WOOD_STICK, 4).AddCost(ITEMS.WOOD_PLANK, 4));
-            
+            HandCrafted.Add(new Recipe(ITEMS.BELT, 4));
+
             BenchCrafted.Add(new Recipe(ITEMS.CHEST, 1).AddCost(ITEMS.WOOD_PLANK, 8));
             BenchCrafted.Add(new Recipe(ITEMS.FURNACE, 1, new RecipeCost(ITEMS.STONE, 8)));
             BenchCrafted.Add(new Recipe(ITEMS.WOOD_FLOOR, 1, new RecipeCost(ITEMS.WOOD_PLANK, 4)));

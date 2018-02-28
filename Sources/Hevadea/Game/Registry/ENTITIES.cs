@@ -42,6 +42,8 @@ namespace Hevadea.Game.Registry
         public static EntityBlueprint FURNACE;
         public static EntityBlueprint STAIRES;
         public static EntityBlueprint TORCH;
+
+        public static EntityBlueprint BELT;
         
         public static void Initialize()
         {
@@ -59,6 +61,8 @@ namespace Hevadea.Game.Registry
             FURNACE        = RegisterEntityBlueprint(new GenericEntityBlueprint<FurnaceEntity>("furnace"));
             STAIRES        = RegisterEntityBlueprint(new GenericEntityBlueprint<StairsEntity>("staires"));
             TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<TorchEntity>("torch"));
+
+            BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<BeltEntity>("belt"));
         }
         
         private static Dictionary<string, EntityBlueprint> _blueprintLibrary = new Dictionary<string, EntityBlueprint>();

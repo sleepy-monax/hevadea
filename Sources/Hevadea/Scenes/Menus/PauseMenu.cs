@@ -29,13 +29,13 @@ namespace Hevadea.Scenes.Menus
                                 { Text = "Game Paused", Font = Ressources.FontAlagard},
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Continue", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new HUDMenu(Game);}),
+                                .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new HudMenu(Game);}),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Restart", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent(sender => Engine.Scene.Switch(new WorldGenScene())),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Quick save", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Game.CurrentMenu = new HUDMenu(Game);}),
+                                .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Game.CurrentMenu = new HudMenu(Game);}),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Save and exit", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Engine.Scene.Switch(new MainMenu());}),

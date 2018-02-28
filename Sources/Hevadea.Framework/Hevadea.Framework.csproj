@@ -50,6 +50,7 @@
     <Compile Include="Graphic\SpriteAtlas.cs" />
     <Compile Include="Graphic\Spritebatch.cs" />
     <Compile Include="Graphic\Texture2D.cs" />
+    <Compile Include="Utils\Compression.cs" />
     <Compile Include="Utils\EasingManager.cs" />
     <Compile Include="Utils\Json\Parser.cs" />
     <Compile Include="Utils\Json\Writer.cs" />

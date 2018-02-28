@@ -1,6 +1,8 @@
 ﻿using Hevadea.Game.Registry;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game.Items
@@ -30,23 +32,18 @@ namespace Hevadea.Game.Items
 
         public bool Add(Item item)
         {
-            if (item == null) return false;
+            if (item == null || !HasFreeSlot()) return false;
             
-            if (HasFreeSlot())
+            if (Items.ContainsKey(item.Id))
             {
-                if (Items.ContainsKey(item.Id))
-                {
-                    Items[item.Id] = Items[item.Id] + 1;
-                }
-                else
-                {
-                    Items.Add(item.Id, 1);    
-                }
-                
-                return true;
+                Items[item.Id] = Items[item.Id] + 1;
             }
-
-            return false;
+            else
+            {
+                Items.Add(item.Id, 1);    
+            }
+                
+            return true;
         }
 
         public bool HasFreeSlot()
@@ -56,7 +53,7 @@ namespace Hevadea.Game.Items
 
         public int Count()
         {
-            int result = 0;
+            var result = 0;
 
             foreach (var i in Items)
             {
@@ -68,27 +65,29 @@ namespace Hevadea.Game.Items
         
         public int Count(Item item)
         {
-            if (item == null) return 0;
-            
-            if (Items.ContainsKey(item.Id))
-            {
-                return Items[item.Id];
-            }
-
-            return 0;
+            if (item == null || !Items.ContainsKey(item.Id)) return 0;
+            return Items[item.Id];
         }
 
+        public int GetStackCount()
+        {
+            return Items.Count;
+        }
+
+        public Item GetStack(int index)
+        {
+            return ITEMS.ById[Items.Keys.ElementAt(index)];
+        }
+        
         public void Remove(Item item, int quantity)
         {
-            if (item == null) return;
-            if (Items.ContainsKey(item.Id))
-            {
-                Items[item.Id] = Math.Max(Items[item.Id] - quantity, 0);
+            if (item == null || !Items.ContainsKey(item.Id)) return;
 
-                if (Items[item.Id] == 0)
-                {
-                    Items.Remove(item.Id);
-                }
+            Items[item.Id] = Math.Max(Items[item.Id] - quantity, 0);
+
+            if (Items[item.Id] == 0)
+            {
+                Items.Remove(item.Id);
             }
         }
 
@@ -105,6 +104,16 @@ namespace Hevadea.Game.Items
             }
 
             Items.Clear();
+        }
+        
+        public void DropOnGround(Level level, Item item, TilePosition pos , int count)
+        {
+            for (var i = 0; i < count; i++)
+            {
+                if (Count(item) <= 0) break;
+                item.Drop(level, pos, 1);
+                Remove(item, 1);
+            }
         }
     }
 }

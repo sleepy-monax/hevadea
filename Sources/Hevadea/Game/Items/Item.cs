@@ -56,7 +56,7 @@ namespace Hevadea.Game.Items
         }
 
         public void AddTag(ItemTag tag) {tag.AttachedItem = this; _tags.Add(tag); }
-        public void AddTag(params TileTag[] tags) { foreach (var t in tags) AddTag(t); }
+        public void AddTags(params ItemTag[] tags) { foreach (var t in tags) AddTag(t); }
         
         public virtual float GetAttackBonus(Entity target)
         {

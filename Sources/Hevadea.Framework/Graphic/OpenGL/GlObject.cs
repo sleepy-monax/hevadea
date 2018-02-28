@@ -9,7 +9,6 @@ namespace Hevadea.Framework.Graphic.OpenGL
     public abstract class GlObject
     {
         public int Handle { get; private set; }
-
         public GlObject(int handle) { Handle = handle; }
     }
 }

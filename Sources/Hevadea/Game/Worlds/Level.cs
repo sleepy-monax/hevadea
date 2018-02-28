@@ -18,26 +18,27 @@ namespace Hevadea.Game.Worlds
 {
     public class Level
     {
+        private GameManager _game;
+        private World _world;
         private int[] _tiles;
         private Dictionary<string, object>[] _tilesData;
-        public LevelProperties Properties { get; }
-        
-        public ParticleSystem ParticleSystem { get; }
-        public GameManager Game;
         private List<Entity> _entities;
         private List<Entity>[,] _entitiesOnTiles;
-
-
-        private World World;
+        
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public LevelProperties Properties { get; }
+        public ParticleSystem ParticleSystem { get; }
 
         public Level(LevelProperties properties, int width, int height)
         {
             Properties = properties;
             Width = width;
             Height = height;
-            
             ParticleSystem = new ParticleSystem();
-
+            
             _tiles = new int[Width * Height];
             _tilesData = new Dictionary<string, object>[Width * Height];
             _entities = new List<Entity>();
@@ -51,13 +52,6 @@ namespace Hevadea.Game.Worlds
             }
         }
 
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public int Width { get; private set; }
-        public int Height { get; private set; }
-
-        // ENTITIES -----------------------------------------------------------
         public void AddEntity(Entity e, float x, float y)
         {
             AddEntity(e);
@@ -83,7 +77,7 @@ namespace Hevadea.Game.Worlds
             e.Removed = false;
             if (!_entities.Contains(e)) _entities.Add(e);
 
-            e.Initialize(this, World, Game);
+            e.Initialize(this, _world, _game);
             AddEntityToTile(e.GetTilePosition(), e);
         }
 
@@ -145,7 +139,7 @@ namespace Hevadea.Game.Worlds
 
         public bool IsAll(Tile tile, Rectangle rectangle)
         {
-            bool result = true;
+            var result = true;
 
             var beginX = rectangle.X / ConstVal.TileSize - 1;
             var beginY = rectangle.Y / ConstVal.TileSize - 1;
@@ -184,8 +178,6 @@ namespace Hevadea.Game.Worlds
 
             return result;
         }
-
-        // TILES --------------------------------------------------------------
 
         public Tile GetTile(TilePosition tPos)
         {
@@ -245,15 +237,13 @@ namespace Hevadea.Game.Worlds
             _tilesData[tx + ty * Width][dataName] = value;
         }
 
-        // GAME LOOPS ---------------------------------------------------------
-
         public void Initialize(World world, GameManager game)
         {
             Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
-            World = world;
-            Game = game;
+            _world = world;
+            _game = game;
             Logger.Log<Level>(LoggerLevel.Info, "Initializing entities...");
-            foreach (var e in _entities) e.Initialize(this, world, Game);
+            foreach (var e in _entities) e.Initialize(this, world, _game);
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
         }
 
@@ -298,7 +288,6 @@ namespace Hevadea.Game.Worlds
 
         public void Update(LevelRenderState state, GameTime gameTime)
         {
-            // Randome tick tiles.
             for (var i = 0; i < Width * Height / 50; i++)
             {
                 var tx = Engine.Random.Next(Width);
@@ -308,7 +297,6 @@ namespace Hevadea.Game.Worlds
 
             ParticleSystem.Update(gameTime);
             
-            // Update entities
             foreach (var e in state.OnScreenEntities) e.Update(gameTime);
         }
 

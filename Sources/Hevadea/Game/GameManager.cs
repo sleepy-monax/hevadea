@@ -39,7 +39,7 @@ namespace Hevadea.Game
         public void Initialize()
         {
             World.Initialize(this);
-            CurrentMenu = new HUDMenu(this);
+            CurrentMenu = new HudMenu(this);
             World.SpawnPlayer(Player);
         }
 

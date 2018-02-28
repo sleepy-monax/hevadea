@@ -73,6 +73,7 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Craftings\Recipe.cs" />
     <Compile Include="Game\Craftings\RecipeCost.cs" />
+    <Compile Include="Game\Entities\BeltEntity.cs" />
     <Compile Include="Game\Entities\Component\Ai\Agent.cs" />
     <Compile Include="Game\Entities\Component\Ai\StateBahevior.cs" />
     <Compile Include="Game\Entities\Component\Ai\Trigger.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\Toys\PhysicTest.cs" />
     <Compile Include="Scenes\Widgets\FancyPanel.cs" />
+    <Compile Include="Scenes\Widgets\HotBarWidget.cs" />
     <Compile Include="Scenes\WorldGenScene.cs" />
     <Compile Include="Scenes\Widgets\CraftingWidget.cs" />
     <Compile Include="Scenes\Widgets\InventoryWidget.cs" />

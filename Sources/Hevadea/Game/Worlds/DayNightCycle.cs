@@ -7,9 +7,9 @@ namespace Hevadea.Game.Worlds
 {
     public class DayStage
     {
-        public string Name;
-        public double Duration;
-        public Color LightColor;
+        public readonly string Name;
+        public readonly double Duration;
+        public readonly Color  LightColor;
 
         public DayStage(string name, double duration, Color lightColor)
         {
