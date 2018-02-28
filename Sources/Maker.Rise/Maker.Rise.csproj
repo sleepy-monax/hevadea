@@ -38,7 +38,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,7 +57,6 @@
     <Compile Include="Components\GameComponent.cs" />
     <Compile Include="Enums\Alignement.cs" />
     <Compile Include="Enums\TextStyle.cs" />
-    <Compile Include="Extension\GraphicsDeviceExtension.cs" />
     <Compile Include="Components\InputManager.cs" />
     <Compile Include="Components\NetworkManager.cs" />
     <Compile Include="Components\RessourceManager.cs" />
@@ -68,6 +66,7 @@
     <Compile Include="Graphic\Particles\ParticleSystem.cs" />
     <Compile Include="Graphic\SpriteBatchBeginState.cs" />
     <Compile Include="MathHelper.cs" />
+    <Compile Include="Platform\IPlatform.cs" />
     <Compile Include="Ressource\ParalaxeBackground.cs" />
     <Compile Include="Components\SceneManager.cs" />
     <Compile Include="Components\Scene.cs" />
@@ -98,7 +97,6 @@
     <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\Perlin.cs" />
     <Compile Include="Utils\RectangleF.cs" />
-    <Compile Include="Screen.cs" />
     <Compile Include="Extension\SpriteBatchExtension.cs" />
     <Compile Include="RiseGame.cs" />
     <Compile Include="Extension\Texture2D.cs" />

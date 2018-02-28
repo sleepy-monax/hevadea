@@ -40,7 +40,7 @@ namespace Hevadea.Game.Entities.Component
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (!HasTarget() || !Program.Configuration.ShowAIDebug) return;
+            if (!HasTarget()) return;
             
             var target = GetTargetLocation();
             spriteBatch.DrawLine(Owner.X, Owner.Y, target.WorldX, target.WorldY, Color.Blue);

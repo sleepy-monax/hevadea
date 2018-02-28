@@ -37,7 +37,7 @@ namespace Maker.Rise.Components
             g.HardwareModeSwitch = true;
             g.IsFullScreen = true;
             g.SynchronizeWithVerticalRetrace = true;
-            SetResolution(Screen.GetWidth(), Screen.GetHeight());
+            SetResolution(Engine.Platform.GetHardwareWidth(), Engine.Platform.GetHardwareHeight());
             g.ApplyChanges();
         }
 
@@ -70,7 +70,7 @@ namespace Maker.Rise.Components
         {
             return g.PreferredBackBufferWidth;
         }
-        
+
         public int GetHeight()
         {
             return g.PreferredBackBufferHeight;

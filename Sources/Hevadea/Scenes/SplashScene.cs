@@ -1,4 +1,5 @@
 ﻿using Hevadea.Game.Registry;
+using Hevadea.Scenes.Toys;
 using Maker.Rise;
 using Maker.Rise.Components;
 using Maker.Rise.Extension;
@@ -22,7 +23,7 @@ namespace Hevadea.Scenes
             Ressources.Load();
             REGISTRY.Initialize();
             Engine.SetMouseVisibility(true);
-            Directory.CreateDirectory("Saves");
+            //Directory.CreateDirectory("Saves");
             //Engine.Graphic.SetFullscreen();
             // Initialize the scene.
             _sb = Engine.Graphic.CreateSpriteBatch();
@@ -37,7 +38,8 @@ namespace Hevadea.Scenes
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 1) || !_once) return;
             //Engine.Scene.Switch(new PhysicTest());
-            Engine.Scene.Switch(new MainMenu());
+            //Engine.Scene.Switch(new MainMenu());
+            Engine.Scene.Switch(new WorldGenScene());
             _once = false;
         }
 

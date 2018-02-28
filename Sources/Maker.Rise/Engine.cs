@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
 using Maker.Rise.Components;
+using Maker.Rise.Platform;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -11,6 +12,7 @@ namespace Maker.Rise
 {
     public static class Engine
     {
+        public static IPlatform Platform;
         public static GraphicComponent Graphic;
         public static AudioManager Audio;
         public static DebugManager Debug;
@@ -27,8 +29,9 @@ namespace Maker.Rise
         private static Scene MainScene;
         
 
-        public static void Initialize()
-        {            
+        public static void Initialize(IPlatform platform)
+        {
+            Platform = platform;
             // Initialize the game engine.
             MonoGameHandle = new InternalGame();
 
@@ -39,7 +42,7 @@ namespace Maker.Rise
             Ressource = new RessourceManager(MonoGameHandle);
             Debug = new DebugManager(MonoGameHandle);
             Graphic = new GraphicComponent(MonoGameHandle);
-            CommonRasterizerState = new RasterizerState {ScissorTestEnable = true};
+            CommonRasterizerState = new RasterizerState {ScissorTestEnable = false};
 
             if (File.Exists("engine.json"))
             {

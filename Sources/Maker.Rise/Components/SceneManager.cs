@@ -70,8 +70,6 @@ namespace Maker.Rise.Components
                 sb.BeginDrawEnd(Background.Draw, gameTime);
 
             CurrentScene?.OnDraw(gameTime);
-
-                        
             if (CurrentScene?.Container != null)
             {
                 sb.BeginDrawEnd(
@@ -82,7 +80,7 @@ namespace Maker.Rise.Components
 
             if (IsSceneSwitching)
             {
-                DrawTransition();
+                //DrawTransition();
             }
         }
 

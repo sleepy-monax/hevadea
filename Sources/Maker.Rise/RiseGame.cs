@@ -38,7 +38,7 @@ namespace Maker.Rise
             Engine.Scene.Initialize();
             Engine.Debug.Initialize();
 
-            
+            Engine.Platform.Initialize();
         }
 
         private static void DrawGameComponent(GameTime gameTime)

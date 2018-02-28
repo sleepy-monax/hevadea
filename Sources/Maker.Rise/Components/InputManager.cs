@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Maker.Rise.Components
 {
@@ -10,6 +11,9 @@ namespace Maker.Rise.Components
 
         private MouseState _oldMouseState;
         private MouseState _mouseState;
+
+        private TouchCollection _oldToucheState;
+        private TouchCollection _newToucheState;
 
         public MouseState GetMouseState()
         {
@@ -25,15 +29,28 @@ namespace Maker.Rise.Components
         {
         }
 
-        public Point MousePosition => _mouseState.Position;
+        public Point MousePosition => GetMousePosition();
+
+        private Point GetMousePosition()
+        {
+            if (_newToucheState.Count > 0)
+            {
+                return _newToucheState[0].Position.ToPoint();
+            }
+
+            return _mouseState.Position;
+        }
 
         public bool MouseLeft => _mouseState.LeftButton == ButtonState.Pressed;
         public bool MouseRight => _mouseState.RightButton == ButtonState.Pressed;
         public bool MouseMiddle => _mouseState.MiddleButton == ButtonState.Pressed;
 
-        public bool MouseLeftClick => _mouseState.LeftButton == ButtonState.Released
+        public bool MouseLeftClick => GetLeftClick();
+        private bool GetLeftClick()
+        {
+            return _mouseState.LeftButton == ButtonState.Released
                                       && _oldMouseState.LeftButton == ButtonState.Pressed;
-
+        }
         public bool MouseRightClick => _mouseState.RightButton == ButtonState.Released
                                        && _oldMouseState.RightButton == ButtonState.Pressed;
 
@@ -65,6 +82,8 @@ namespace Maker.Rise.Components
 
         public override void Update(GameTime gameTime)
         {
+            _oldToucheState = _newToucheState;
+            _newToucheState = TouchPanel.GetState();
             oldKeyState = newKeyState;
             _oldMouseState = _mouseState;
             newKeyState = Keyboard.GetState();

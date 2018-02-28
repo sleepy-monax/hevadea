@@ -74,12 +74,13 @@ namespace Maker.Rise.Components
                 var debugText = $@"
 d: {Game.DrawTime,3}ms (avr {avrRenderTime / renderTime.Count, 3}ms)
 u: {Game.UpdateTime,3}ms
-{Engine.Scene.CurrentScene.GetDebugInfo()}";
+s: {Engine.Graphic.GetWidth()} {Engine.Graphic.GetHeight()}
+{Engine.Scene.CurrentScene?.GetDebugInfo() ?? "null"}";
 
                 var debugTextSize = EngineRessources.FontHack.MeasureString(debugText);
 
                 sb.DrawString(EngineRessources.FontHack, debugText, new Vector2(16, 16), Color.White);
-
+                sb.FillRectangle(new Rectangle(Engine.Input.MousePosition, new Point(16,16)), Color.Red);
                 sb.End();
             }
         }
