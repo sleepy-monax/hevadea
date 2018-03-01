@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Hevadea.Framework;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
@@ -11,24 +12,22 @@ namespace Hevadea.Game.Worlds
 {
     public class World
     {
-        public GameManager Game;
-        public List<Level> Levels = new List<Level>();
-        public DayNightCycle DayNightCycle { get; }
-
+        private readonly SpriteBatch _spriteBatch;
         private readonly BlendState _lightBlend = new BlendState
         {
             ColorBlendFunction = BlendFunction.Add,
             ColorSourceBlend = Blend.DestinationColor,
             ColorDestinationBlend = Blend.Zero
         };
-
+        
+        public GameManager Game;
+        public List<Level> Levels = new List<Level>();
+        public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
-
-        private readonly SpriteBatch spriteBatch;
 
         public World()
         {
-            spriteBatch = Engine.Graphic.CreateSpriteBatch();
+            _spriteBatch = Rise.Graphic.CreateSpriteBatch();
             DayNightCycle = new DayNightCycle(
                 new DayStage("Dawn", 30, new Color(217, 151, 179)),
                 new DayStage("Day", 5 * 60, Color.White),
@@ -66,44 +65,39 @@ namespace Hevadea.Game.Worlds
             var state = level.GetRenderState(camera);
             var cameraTransform = camera.GetTransform();
             
-            Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[1]);
+            Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[1]);
 
-            
-            
-            Engine.Graphic.Begin(spriteBatch, false, cameraTransform);
-            level.DrawTerrain(state, spriteBatch, gameTime);
-            level.DrawEntities(state, spriteBatch, gameTime);
-            level.DrawEntitiesOverlay(state, spriteBatch, gameTime);
-            spriteBatch.End();
+            _spriteBatch.Begin(samplerState: SamplerState.LinearWrap, transformMatrix: cameraTransform);
+            level.DrawTerrain(state, _spriteBatch, gameTime);
+            level.DrawEntities(state, _spriteBatch, gameTime);
+            level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
+            _spriteBatch.End();
 
-            Engine.Graphic.SetRenderTarget(Engine.Graphic.RenderTarget[0]);
+            Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
 
-            if (level.Properties.AffectedByDayNightCycle)
-            {
-                Engine.Graphic.GetGraphicsDevice().Clear(DayNightCycle.GetAmbiantLight());
-            }
-            else
-            {
-                Engine.Graphic.GetGraphicsDevice().Clear(level.Properties.AmbiantLight);
-            }
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
-            level.DrawLightMap(state, spriteBatch, gameTime);
-            spriteBatch.End();
+            var ambiantColor = level.Properties.AffectedByDayNightCycle
+                ? DayNightCycle.GetAmbiantLight()
+                : level.Properties.AmbiantLight;
+            Rise.Graphic.Clear(ambiantColor);
 
-            Engine.Graphic.SetDefaultRenderTarget();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
+            level.DrawLightMap(state, _spriteBatch, gameTime);
+            _spriteBatch.End();
 
-            Engine.Graphic.Begin(spriteBatch);
+            Rise.Graphic.SetDefaultRenderTarget();
 
-            spriteBatch.Draw(Engine.Graphic.RenderTarget[1], Engine.Graphic.GetResolutionRect(), Color.White);
+            _spriteBatch.Begin();
 
-            spriteBatch.End();
+            _spriteBatch.Draw(Rise.Graphic.RenderTarget[1], Rise.Graphic.GetBound(), Color.White);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, _lightBlend);
+            _spriteBatch.End();
 
-            spriteBatch.Draw(Engine.Graphic.RenderTarget[0], Engine.Graphic.GetResolutionRect(), Color.White);
+            _spriteBatch.Begin(SpriteSortMode.Immediate, _lightBlend);
 
-            spriteBatch.End();
+            _spriteBatch.Draw(Rise.Graphic.RenderTarget[0], Rise.Graphic.GetBound(), Color.White);
+
+            _spriteBatch.End();
         }
 
         public void Initialize(GameManager game)

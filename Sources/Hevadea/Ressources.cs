@@ -1,5 +1,6 @@
-﻿using Maker.Rise;
-using Maker.Rise.Ressource;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -47,31 +48,31 @@ namespace Hevadea
 
         public static void Load()
         {
-            FontAlagard = Engine.Ressource.GetSpriteFont("alagard");
-            FontAlagardBig = Engine.Ressource.GetSpriteFont("alagard_big");
-            FontRomulus = Engine.Ressource.GetSpriteFont("romulus");
+            FontAlagard = Rise.Ressource.GetSpriteFont("alagard");
+            FontAlagardBig = Rise.Ressource.GetSpriteFont("alagard_big");
+            FontRomulus = Rise.Ressource.GetSpriteFont("romulus");
 
-            ImgTiles = Engine.Ressource.GetImage("tiles");
-            ImgItems = Engine.Ressource.GetImage("items");
-            ImgIcons = Engine.Ressource.GetImage("icons");
-            ImgEntities = Engine.Ressource.GetImage("entities");
-            ImgCreatures = Engine.Ressource.GetImage("creatures");
-            ImgGui = Engine.Ressource.GetImage("gui");
+            ImgTiles = Rise.Ressource.GetImage("tiles");
+            ImgItems = Rise.Ressource.GetImage("items");
+            ImgIcons = Rise.Ressource.GetImage("icons");
+            ImgEntities = Rise.Ressource.GetImage("entities");
+            ImgCreatures = Rise.Ressource.GetImage("creatures");
+            ImgGui = Rise.Ressource.GetImage("gui");
 
-            ImgRock = Engine.Ressource.GetImage("rock");
+            ImgRock = Rise.Ressource.GetImage("rock");
 
-            ImgLight = Engine.Ressource.GetImage("light");
-            ImgShadow = Engine.Ressource.GetImage("shadow");
-            ImgSwing = Engine.Ressource.GetImage("swing");
+            ImgLight = Rise.Ressource.GetImage("light");
+            ImgShadow = Rise.Ressource.GetImage("shadow");
+            ImgSwing = Rise.Ressource.GetImage("swing");
 
-            ImgMakerLogo = Engine.Ressource.GetImage("logo/maker");
-            ImgEngineLogo = Engine.Ressource.GetImage("logo/engine");
-            ImgHevadeaLogo = Engine.Ressource.GetImage("logo/hevadea");
+            ImgMakerLogo = Rise.Ressource.GetImage("logo/maker");
+            ImgEngineLogo = Rise.Ressource.GetImage("logo/engine");
+            ImgHevadeaLogo = Rise.Ressource.GetImage("logo/hevadea");
 
-            ImgForestBackground = Engine.Ressource.GetImage("background/forest");
-            ImgForestLight = Engine.Ressource.GetImage("background/forest_light");
-            ImgForestTrees0 = Engine.Ressource.GetImage("background/forest_trees0");
-            ImgForestTrees1 = Engine.Ressource.GetImage("background/forest_trees1");
+            ImgForestBackground = Rise.Ressource.GetImage("background/forest");
+            ImgForestLight = Rise.Ressource.GetImage("background/forest_light");
+            ImgForestTrees0 = Rise.Ressource.GetImage("background/forest_trees0");
+            ImgForestTrees1 = Rise.Ressource.GetImage("background/forest_trees1");
 
             TileTiles = new SpriteSheet(ImgTiles, new Point(32, 32));
             TileIcons = new SpriteSheet(ImgIcons, new Point(16, 16));

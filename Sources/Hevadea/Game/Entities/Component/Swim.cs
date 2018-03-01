@@ -1,13 +1,13 @@
-﻿using Hevadea.Game.Tiles;
-using Maker.Rise;
-using Maker.Rise.Graphic.Particles;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic.Particles;
+using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Entities.Component
 {
     public class Swim : EntityComponent, IUpdatableComponent
     {
-        public bool IsSwiming         { get; set; } = false;
+        public bool IsSwiming   { get; set; } = false;
         private bool wasSwiming { get; set; } = false;
         public bool IsSwimingPainfull { get; set; } = true;
         
@@ -40,8 +40,8 @@ namespace Hevadea.Game.Entities.Component
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    Owner.Level.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.Azure, Life = 0.5f, FadeOut = 0.15f}, Owner.X + Owner.Origin.X, Owner.Y + Owner.Height, (float)(Engine.Random.NextDouble() - 0.5f) * 64f, (float)(Engine.Random.NextDouble() - 0.75f) * 20f);
-                    Owner.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.LightBlue, Life = 0.5f, FadeOut = 0.15f}, Owner.X + Owner.Origin.X, Owner.Y + Owner.Height, (float)(Engine.Random.NextDouble() - 0.5f) * 64f, (float)(Engine.Random.NextDouble() - 0.75f) * 20f);
+                    Owner.Level.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.Azure, Life = 0.5f, FadeOut = 0.15f}, Owner.X + Owner.Origin.X, Owner.Y + Owner.Height, (float)(Rise.Random.NextDouble() - 0.5f) * 64f, (float)(Rise.Random.NextDouble() - 0.75f) * 20f);
+                    Owner.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.LightBlue, Life = 0.5f, FadeOut = 0.15f}, Owner.X + Owner.Origin.X, Owner.Y + Owner.Height, (float)(Rise.Random.NextDouble() - 0.5f) * 64f, (float)(Rise.Random.NextDouble() - 0.75f) * 20f);
                 }
             }
             

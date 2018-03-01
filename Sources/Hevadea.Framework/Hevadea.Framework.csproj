@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,14 +44,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphic\OpenGL\GlObject.cs" />
-    <Compile Include="Graphic\Shader.cs" />
-    <Compile Include="Graphic\ShaderProgram.cs" />
-    <Compile Include="Graphic\SpriteAtlas.cs" />
-    <Compile Include="Graphic\Spritebatch.cs" />
-    <Compile Include="Graphic\Texture2D.cs" />
+    <Compile Include="Debug\DebugManager.cs" />
+    <Compile Include="Graphic\Camera.cs" />
+    <Compile Include="Graphic\GraphicManager.cs" />
+    <Compile Include="Graphic\ParalaxeBackground.cs" />
+    <Compile Include="Graphic\Particles\ColoredParticle.cs" />
+    <Compile Include="Graphic\Particles\Particle.cs" />
+    <Compile Include="Graphic\Particles\ParticleSystem.cs" />
+    <Compile Include="Graphic\Primitives.cs" />
+    <Compile Include="Graphic\SpriteAtlas\Sprite.cs" />
+    <Compile Include="Graphic\SpriteAtlas\SpriteSheet.cs" />
+    <Compile Include="Graphic\SpriteBatchBeginState.cs" />
+    <Compile Include="Graphic\SpriteBatchExtension.cs" />
+    <Compile Include="Graphic\Text.cs" />
+    <Compile Include="Input\KeyBinding.cs" />
+    <Compile Include="Input\LegacyInputManager.cs" />
+    <Compile Include="MonoGameHandler.cs" />
+    <Compile Include="Ressource\RessourceManager.cs" />
+    <Compile Include="Rise.cs" />
+    <Compile Include="Input\Controller.cs" />
+    <Compile Include="Input\Pointing.cs" />
+    <Compile Include="Platform\IPlatform.cs" />
+    <Compile Include="Scening\Scene.cs" />
+    <Compile Include="Scening\SceneManager.cs" />
+    <Compile Include="UI\Containers\AnchoredContainer.cs" />
+    <Compile Include="UI\Containers\Container.cs" />
+    <Compile Include="UI\Containers\DockContainer.cs" />
+    <Compile Include="UI\Containers\FloatingContainer.cs" />
+    <Compile Include="UI\Containers\TileContainer.cs" />
+    <Compile Include="UI\UiManager.cs" />
+    <Compile Include="UI\Widget.cs" />
+    <Compile Include="UI\Widgets\BackButton.cs" />
+    <Compile Include="UI\Widgets\BlurPanel.cs" />
+    <Compile Include="UI\Widgets\Button.cs" />
+    <Compile Include="UI\Widgets\Label.cs" />
+    <Compile Include="UI\Widgets\Panel.cs" />
+    <Compile Include="UI\Widgets\PictureWidget.cs" />
+    <Compile Include="UI\Widgets\ProgressBar.cs" />
+    <Compile Include="UI\Widgets\Scroller.cs" />
+    <Compile Include="Utils\Anchore.cs" />
+    <Compile Include="Utils\Colision.cs" />
     <Compile Include="Utils\Compression.cs" />
     <Compile Include="Utils\EasingManager.cs" />
+    <Compile Include="Utils\Geometry.cs" />
     <Compile Include="Utils\Json\Parser.cs" />
     <Compile Include="Utils\Json\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,16 +94,13 @@
     <Compile Include="Utils\GenericExtension.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\Mathf.cs" />
+    <Compile Include="Utils\Mathv.cs" />
+    <Compile Include="Utils\Pair.cs" />
     <Compile Include="Utils\PerlinNoise.cs" />
+    <Compile Include="Utils\Texture2DUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />
-    <Folder Include="Input\" />
-    <Folder Include="Ressource\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OpenTK.dll.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

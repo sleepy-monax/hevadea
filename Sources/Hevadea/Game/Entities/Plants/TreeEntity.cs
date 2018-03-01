@@ -1,12 +1,12 @@
-﻿using Hevadea.Game.Entities.Component;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
-using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Game.Entities
+namespace Hevadea.Game.Entities.Plants
 {
     public class TreeEntity : Entity
     {

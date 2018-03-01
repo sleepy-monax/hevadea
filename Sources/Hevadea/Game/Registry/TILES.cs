@@ -1,8 +1,8 @@
-﻿using Hevadea.Game.Tiles;
-using Hevadea.Game.Tiles.Renderers;
-using Maker.Rise.Ressource;
-using System.Collections.Generic;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Items;
+using Hevadea.Game.Tiles;
+using Hevadea.Game.Tiles.Renderers;
+using System.Collections.Generic;
 
 namespace Hevadea.Game.Registry
 {

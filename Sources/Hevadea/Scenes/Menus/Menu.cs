@@ -1,5 +1,5 @@
-﻿using Hevadea.Game;
-using Maker.Rise.UI.Widgets;
+﻿using Hevadea.Framework.UI.Widgets;
+using Hevadea.Game;
 
 namespace Hevadea.Scenes.Menus
 {

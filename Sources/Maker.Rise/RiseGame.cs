@@ -34,7 +34,6 @@ namespace Maker.Rise
 
             Engine.Audio.Initialize();
             Engine.Input.Initialize();
-            Engine.Network.Initialize();
             Engine.Scene.Initialize();
             Engine.Debug.Initialize();
 
@@ -51,7 +50,6 @@ namespace Maker.Rise
         {
             Engine.Audio.Update(gameTime);
             Engine.Input.Update(gameTime);
-            Engine.Network.Update(gameTime);
             Engine.Scene.Update(gameTime);
             Engine.Ressource.Update(gameTime);
             Engine.Debug.Update(gameTime);

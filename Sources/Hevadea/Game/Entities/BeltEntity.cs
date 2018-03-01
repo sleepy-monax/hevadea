@@ -1,5 +1,5 @@
-﻿using Hevadea.Game.Entities.Component;
-using Maker.Rise.Extension;
+﻿using Hevadea.Framework.Graphic;
+using Hevadea.Game.Entities.Component;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

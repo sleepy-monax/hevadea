@@ -1,9 +1,9 @@
 ﻿using Hevadea.Game.Storage;
 using Hevadea.Game.Tiles;
-using Maker.Rise.Extension;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Framework.Graphic;
 
 namespace Hevadea.Game.Entities.Component
 {

@@ -48,56 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\EffectSource.cs" />
-    <Compile Include="Components\GraphicComponent.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="EngineConfig.cs" />
     <Compile Include="EngineRessources.cs" />
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Components\DebugManager.cs" />
     <Compile Include="Components\GameComponent.cs" />
-    <Compile Include="Enums\Alignement.cs" />
-    <Compile Include="Enums\TextStyle.cs" />
     <Compile Include="Components\InputManager.cs" />
-    <Compile Include="Components\NetworkManager.cs" />
     <Compile Include="Components\RessourceManager.cs" />
-    <Compile Include="Extension\RectangleExtension.cs" />
-    <Compile Include="Graphic\Particles\ColoredParticle.cs" />
-    <Compile Include="Graphic\Particles\Particle.cs" />
-    <Compile Include="Graphic\Particles\ParticleSystem.cs" />
-    <Compile Include="Graphic\SpriteBatchBeginState.cs" />
-    <Compile Include="MathHelper.cs" />
     <Compile Include="Platform\IPlatform.cs" />
-    <Compile Include="Ressource\ParalaxeBackground.cs" />
-    <Compile Include="Components\SceneManager.cs" />
-    <Compile Include="Components\Scene.cs" />
-    <Compile Include="Ressource\Sprite.cs" />
-    <Compile Include="Ressource\SpriteSheet.cs" />
-    <Compile Include="Ressource\SpriteSheetData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Containers\AnchoredContainer.cs" />
-    <Compile Include="UI\Containers\Container.cs" />
-    <Compile Include="UI\Containers\DockContainer.cs" />
-    <Compile Include="UI\Containers\FloatingContainer.cs" />
-    <Compile Include="UI\Containers\TileContainer.cs" />
-    <Compile Include="UI\Widget.cs" />
-    <Compile Include="UI\Widgets\BackButton.cs" />
-    <Compile Include="UI\Widgets\BlurPanel.cs" />
-    <Compile Include="UI\Widgets\Button.cs" />
-    <Compile Include="UI\Widgets\Label.cs" />
-    <Compile Include="UI\Widgets\Panel.cs" />
-    <Compile Include="UI\Widgets\PictureWidget.cs" />
-    <Compile Include="UI\Widgets\ProgressBar.cs" />
-    <Compile Include="UI\Widgets\Scroller.cs" />
-    <Compile Include="Utils\Colision.cs" />
-    <Compile Include="Extension\GameExtension.cs" />
-    <Compile Include="Utils\FiniteStateMachine\FSM.cs" />
-    <Compile Include="Utils\FiniteStateMachine\FsmSnapshot.cs" />
-    <Compile Include="Utils\FiniteStateMachine\FsmStateBehaviour.cs" />
-    <Compile Include="Utils\FiniteStateMachine\FsmStateData.cs" />
-    <Compile Include="Utils\Pair.cs" />
-    <Compile Include="Utils\Perlin.cs" />
-    <Compile Include="Utils\RectangleF.cs" />
-    <Compile Include="Extension\SpriteBatchExtension.cs" />
     <Compile Include="RiseGame.cs" />
     <Compile Include="Extension\Texture2D.cs" />
   </ItemGroup>
@@ -109,7 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Utils\FiniteStateMachine\FSM.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graphic" />
+    <Folder Include="UI" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

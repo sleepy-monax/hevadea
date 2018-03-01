@@ -1,11 +1,13 @@
 ﻿using Hevadea.Game;
 using Hevadea.Scenes.Widgets;
 using Maker.Rise;
-using Maker.Rise.Components;
-using Maker.Rise.UI.Widgets;
-using Maker.Rise.UI.Widgets.Containers;
 using Microsoft.Xna.Framework;
 using System.IO;
+using Hevadea.Framework;
+using Hevadea.Framework.Scening;
+using Hevadea.Framework.UI;
+using Hevadea.Framework.UI.Containers;
+using Hevadea.Framework.UI.Widgets;
 
 namespace Hevadea.Scenes
 {
@@ -20,7 +22,7 @@ namespace Hevadea.Scenes
                 Anchor = Anchor.BottomLeft,
                 Offset = new Point(0, -16)
             };
-            backButton.MouseClick += sender => Engine.Scene.Switch(new MainMenu());
+            backButton.MouseClick += sender => Rise.Scene.Switch(new MainMenu());
 
             var newButton = new Button
             {
@@ -30,7 +32,7 @@ namespace Hevadea.Scenes
                 Anchor = Anchor.BottomRight,
                 Offset = new Point(-16, -16)
             };
-            newButton.MouseClick += sender => Engine.Scene.Switch(new WorldGenScene());
+            newButton.MouseClick += sender => Rise.Scene.Switch(new WorldGenScene());
             
             var savesList = new FancyPanel
             {
@@ -55,7 +57,7 @@ namespace Hevadea.Scenes
                 .RegisterMouseClickEvent(sender =>
                     {
                         var button = (Button) (sender);
-                        Engine.Scene.Switch(new GameScene(GameManager.Load(button.Text)));
+                        Rise.Scene.Switch(new GameScene(GameManager.Load(button.Text)));
                     }));
             }
         }

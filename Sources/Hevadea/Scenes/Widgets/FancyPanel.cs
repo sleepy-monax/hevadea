@@ -1,7 +1,6 @@
-﻿using Maker.Rise;
-using Maker.Rise.Extension;
-using Maker.Rise.Ressource;
-using Maker.Rise.UI.Widgets;
+﻿using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

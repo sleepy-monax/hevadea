@@ -1,9 +1,5 @@
-﻿using Hevadea.Framework.Utils;
-using Hevadea.Game.Items;
+﻿using Hevadea.Game.Items;
 using Hevadea.Game.Storage;
-using Maker.Rise.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Hevadea.Game.Entities.Component

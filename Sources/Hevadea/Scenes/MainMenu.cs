@@ -1,8 +1,10 @@
-﻿using Hevadea.Scenes.Widgets;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Scening;
+using Hevadea.Framework.UI;
+using Hevadea.Framework.UI.Containers;
+using Hevadea.Framework.UI.Widgets;
+using Hevadea.Scenes.Widgets;
 using Maker.Rise;
-using Maker.Rise.Components;
-using Maker.Rise.UI.Widgets;
-using Maker.Rise.UI.Widgets.Containers;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes
@@ -11,14 +13,13 @@ namespace Hevadea.Scenes
     {
         public override void Load()
         {
-            Engine.Scene.Background = Ressources.ParalaxeForest;
+            Rise.Scene.SetBackground(Ressources.ParalaxeForest);
 
             var singleplayerButton = new Button { Font = Ressources.FontRomulus, Text = "Play"};
             var optionButton = new Button { Font = Ressources.FontRomulus, Text = "Option"};
             var quitButton = new Button { Font = Ressources.FontRomulus, Text = "Quit"};
 
-            singleplayerButton.MouseClick += sender => { Engine.Scene.Switch(new PlayMenu()); };
-            quitButton.MouseClick += sender => Engine.Stop();
+            singleplayerButton.MouseClick += sender => { Rise.Scene.Switch(new PlayMenu()); };
 
             Container = new AnchoredContainer
             {

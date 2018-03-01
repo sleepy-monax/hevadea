@@ -4,9 +4,9 @@ using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Scenes.Widgets;
-using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.Framework.UI;
 
 namespace Hevadea.Scenes.Menus
 {
@@ -20,7 +20,7 @@ namespace Hevadea.Scenes.Menus
             var inventory = new InventoryWidget(entity.Components.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
             var crafting  = new CraftingWidget(entity.Components.Get<Inventory>().Content, recipies) {Padding = new Padding(4, 4), Dock = Dock.Fill};
 
-            Content = GUIHelper.CreateSplitContainer(new Rectangle(0, 0, 800, 600), "Inventory", inventory, "Crafting", crafting);
+            Content = GuiHelper.CreateSplitContainer(new Rectangle(0, 0, 800, 600), "Inventory", inventory, "Crafting", crafting);
             
             inventory.MouseClick += sender =>
             {

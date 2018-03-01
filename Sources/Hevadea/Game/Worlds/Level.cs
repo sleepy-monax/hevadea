@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Tiles;
-using Maker.Rise;
-using Maker.Rise.Extension;
-using Maker.Rise.Graphic.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -290,8 +290,8 @@ namespace Hevadea.Game.Worlds
         {
             for (var i = 0; i < Width * Height / 50; i++)
             {
-                var tx = Engine.Random.Next(Width);
-                var ty = Engine.Random.Next(Height);
+                var tx = Rise.Random.Next(Width);
+                var ty = Rise.Random.Next(Height);
                 GetTile(tx, ty).Update(new TilePosition(tx, ty), _tilesData[tx + ty * Width], this, gameTime);
             }
 
@@ -347,7 +347,7 @@ namespace Hevadea.Game.Worlds
             {
                 e.DrawOverlay(spriteBatch, gameTime);
 
-                if (Engine.Debug.Visible)
+                if (Rise.ShowDebug)
                 {
                     spriteBatch.DrawRectangle(e.Bound, Color.Aqua * 0.5f, 0.4f);
                     spriteBatch.PutPixel(e.Position + e.Origin.ToVector2(), Color.Magenta);

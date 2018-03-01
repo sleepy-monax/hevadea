@@ -1,22 +1,17 @@
 ﻿using Hevadea.Scenes;
 using Maker.Rise;
 using System;
+using Hevadea.Framework;
 
 namespace OpenGLPlatform
 {
-    /// <summary>
-    /// The main class.
-    /// </summary>
     public static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            Engine.Initialize(new RiseOpenGLPlatform());
-            Engine.Start(new SplashScene());
+            Rise.Initialize(new RiseOpenGLPlatform());
+            Rise.Start(new SplashScene());
             Environment.Exit(0);
         }
     }

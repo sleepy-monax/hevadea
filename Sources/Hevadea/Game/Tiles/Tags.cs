@@ -1,11 +1,11 @@
-﻿using Hevadea.Game.Entities;
+﻿using Hevadea.Framework;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
-using Maker.Rise;
+using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game.Tiles
 {
@@ -79,7 +79,7 @@ namespace Hevadea.Game.Tiles
             public void Drop(TilePosition position, Level level)
             {
                 foreach (var d in Items)
-                    if (Engine.Random.NextDouble() < d.Chance) d.Item.Drop(level, position, Engine.Random.Next(d.Min, d.Max + 1));
+                    if (Rise.Random.NextDouble() < d.Chance) d.Item.Drop(level, position, Rise.Random.Next(d.Min, d.Max + 1));
             }
         }
         #endregion
@@ -132,9 +132,9 @@ namespace Hevadea.Game.Tiles
 
             public void Update(Tile tile, TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
             {
-                if (Engine.Random.Next(SpreadChance) == 0)
+                if (Rise.Random.Next(SpreadChance) == 0)
                 {
-                    var d = (Direction)Engine.Random.Next(0, 4);
+                    var d = (Direction)Rise.Random.Next(0, 4);
                     var p = d.ToPoint();
 
                     if (SpreadTo.Contains(level.GetTile(position.X + p.X, position.Y + p.Y))) level.SetTile(position.X + p.X, position.Y + p.Y, AttachedTile);

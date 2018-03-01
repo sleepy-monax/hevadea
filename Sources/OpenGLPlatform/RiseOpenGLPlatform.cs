@@ -1,27 +1,15 @@
-﻿using Maker.Rise.Platform;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hevadea.Framework.Platform;
 
 namespace OpenGLPlatform
 {
     public class RiseOpenGLPlatform : IPlatform
     {
-        public int GetHardwareHeight()
-        {
-            return 720;
-        }
+        public void Initialize() { }
 
-        public int GetHardwareWidth()
-        {
-            return 1280;
-        }
+        public string GetPlatformName() => "OpenGl";
 
-        public void Initialize()
-        {
-            // do nothing
-        }
+        public int GetScreenWidth() => 1280;
+
+        public int GetScreenHeight() => 720;
     }
 }

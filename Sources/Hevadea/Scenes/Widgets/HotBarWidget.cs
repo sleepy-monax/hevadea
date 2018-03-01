@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Items;
-using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

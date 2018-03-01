@@ -1,9 +1,10 @@
-﻿using Hevadea.Game;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.UI;
+using Hevadea.Framework.UI.Containers;
+using Hevadea.Game;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Scenes.Widgets;
 using Maker.Rise;
-using Maker.Rise.UI.Widgets;
-using Maker.Rise.UI.Widgets.Containers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -46,10 +47,10 @@ namespace Hevadea.Scenes.Menus
 
         public override void Update(GameTime gameTime)
         {            
-            if (Engine.Input.KeyPress(Keys.U)) _hotBar.Previouse();
-            if (Engine.Input.KeyPress(Keys.I)) _hotBar.Next();
-            Game.Player.Components.Get<Inventory>().AlowPickUp = Engine.Input.KeyDown(Keys.F);
-            if (Engine.Input.KeyPress(Keys.A))
+            if (Rise.Input.KeyPress(Keys.U)) _hotBar.Previouse();
+            if (Rise.Input.KeyPress(Keys.I)) _hotBar.Next();
+            Game.Player.Components.Get<Inventory>().AlowPickUp = Rise.Input.KeyDown(Keys.F);
+            if (Rise.Input.KeyPress(Keys.A))
             {
                 var level = Game.Player.Level;
                 var item = Game.Player.HoldingItem;

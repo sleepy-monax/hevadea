@@ -1,9 +1,9 @@
 ﻿using Hevadea.Game.Items;
 using Hevadea.Game.Tiles;
-using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Items.Tags;
 
 namespace Hevadea.Game.Entities.Component

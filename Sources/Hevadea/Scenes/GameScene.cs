@@ -1,13 +1,12 @@
-﻿using Hevadea.Game;
-using Hevadea.Game.Entities;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Scening;
+using Hevadea.Framework.UI.Widgets;
+using Hevadea.Game;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Entities.Furnitures;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Menus;
-using Maker.Rise;
-using Maker.Rise.Components;
-using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -49,22 +48,22 @@ namespace Hevadea.Scenes
                 float y = 0;
                 Direction dir = Direction.Down;
                 
-                if (Engine.Input.KeyDown(Keys.Q))
+                if (Rise.Input.KeyDown(Keys.Q))
                 {
                     x -= 1;
                     dir = Direction.Left;
                 }
-                if (Engine.Input.KeyDown(Keys.D))
+                if (Rise.Input.KeyDown(Keys.D))
                 {
                     x += 1;
                     dir = Direction.Right;
                 }
-                if (Engine.Input.KeyDown(Keys.Z))
+                if (Rise.Input.KeyDown(Keys.Z))
                 {
                     y -= 1;
                     dir = Direction.Up;
                 }
-                if (Engine.Input.KeyDown(Keys.S))
+                if (Rise.Input.KeyDown(Keys.S))
                 {
                     y += 1;
                     dir = Direction.Down;
@@ -78,41 +77,41 @@ namespace Hevadea.Scenes
                     playerMovement.Do(vec.X, vec.Y, dir);
                 }
                 
-                if (Engine.Input.KeyPress(Keys.E)) _game.CurrentMenu = new InventoryMenu(_game.Player, RECIPIES.HandCrafted,_game);
-                if (Engine.Input.KeyPress(Keys.N)) playerMovement.NoClip = !playerMovement.NoClip;
+                if (Rise.Input.KeyPress(Keys.E)) _game.CurrentMenu = new InventoryMenu(_game.Player, RECIPIES.HandCrafted,_game);
+                if (Rise.Input.KeyPress(Keys.N)) playerMovement.NoClip = !playerMovement.NoClip;
 
                 var pos = _game.Player.GetFacingTile();
-                if (Engine.Input.KeyPress(Keys.D1))
+                if (Rise.Input.KeyPress(Keys.D1))
                 {
                     var z = new ZombieEntity();
                     _game.Player.Level.SpawnEntity(z, pos.X, pos.Y);
                 }
 
-                if (Engine.Input.KeyPress(Keys.D2))
+                if (Rise.Input.KeyPress(Keys.D2))
                 {
                     var z = new ChestEntity();
                     _game.Player.Level.SpawnEntity(z, pos.X, pos.Y);
                 }
 
-                if (Engine.Input.KeyPress(Keys.D3))
+                if (Rise.Input.KeyPress(Keys.D3))
                 {
                     var z = new TorchEntity();
                     _game.Player.Level.SpawnEntity(z, pos.X, pos.Y);
                 }
 
-                if (Engine.Input.KeyPress(Keys.Up))
+                if (Rise.Input.KeyPress(Keys.Up))
                 {
                     _game.Camera.Zoom *= 2;
                 }
                 
-                if (Engine.Input.KeyPress(Keys.Down))
+                if (Rise.Input.KeyPress(Keys.Down))
                 {
                     _game.Camera.Zoom /= 2;
                 }
                 
-                if (Engine.Input.KeyDown(Keys.J)) _game.Player.Components.Get<Attack>().Do(_game.Player.HoldingItem);
+                if (Rise.Input.KeyDown(Keys.J)) _game.Player.Components.Get<Attack>().Do(_game.Player.HoldingItem);
 
-                if (Engine.Input.KeyPress(Keys.K))
+                if (Rise.Input.KeyPress(Keys.K))
                 {
                     if (_game.Player.Components.Get<Inventory>().Content.Count(_game.Player.HoldingItem) == 0)
                         _game.Player.HoldingItem = null;
@@ -121,7 +120,7 @@ namespace Hevadea.Scenes
                 }
             }
 
-            if (Engine.Input.KeyPress(Keys.Escape))
+            if (Rise.Input.KeyPress(Keys.Escape))
             {
                 if (_game.CurrentMenu is HudMenu)
                 {

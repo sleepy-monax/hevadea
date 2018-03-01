@@ -1,7 +1,6 @@
-﻿using Hevadea.Game.Items;
-using Maker.Rise;
-using Maker.Rise.Extension;
-using Maker.Rise.UI.Widgets;
+﻿using Hevadea.Framework.Graphic;
+using Hevadea.Framework.UI;
+using Hevadea.Game.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

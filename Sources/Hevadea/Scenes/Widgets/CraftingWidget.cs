@@ -1,11 +1,11 @@
 ﻿using Hevadea.Game.Craftings;
 using Hevadea.Game.Items;
-using Maker.Rise;
-using Maker.Rise.Extension;
-using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
+using Hevadea.Framework.UI;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -54,12 +54,12 @@ namespace Hevadea.Scenes.Widgets
                         }
                     }
 
-                    if (rect.Contains(Engine.Input.MousePosition) && canBeCrafted && _inventory.GetFreeSpace() >= c.Quantity)
+                    if (Rise.Pointing.AreaOver(rect) && canBeCrafted && _inventory.GetFreeSpace() >= c.Quantity)
                     {
                         spriteBatch.FillRectangle(rect, Color.White * 0.05f);
                         spriteBatch.DrawRectangle(rect, Color.White * 0.05f);
 
-                        if (Engine.Input.MouseLeftClick) c.Craft(_inventory);
+                        if (Rise.Pointing.AreaClick(rect)) c.Craft(_inventory);
                     }
 
                     if (canBeCrafted)

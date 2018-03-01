@@ -1,4 +1,4 @@
-﻿using Maker.Rise.Ressource;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

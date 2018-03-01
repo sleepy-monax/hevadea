@@ -2,36 +2,36 @@
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Registry;
 using Hevadea.WorldGenerator;
-using Maker.Rise;
-using Maker.Rise.Components;
-using Maker.Rise.UI.Widgets;
-using Maker.Rise.UI.Widgets.Containers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Threading;
+using Hevadea.Framework;
+using Hevadea.Framework.Scening;
+using Hevadea.Framework.UI;
+using Hevadea.Framework.UI.Containers;
+using Hevadea.Framework.UI.Widgets;
 
 namespace Hevadea.Scenes
 {
     public class WorldGenScene : Scene
     {
-        public Thread GeneratorThread;
-        public Generator worldgen;
-        private SpriteBatch _sb;
+        private Thread _generatorThread;
+        private Generator _worldgen;
         private Label _progressLabel;
         private ProgressBar _progressBar;
+        
         public WorldGenScene()
         {
-            _sb = Engine.Graphic.CreateSpriteBatch();
-            GeneratorThread = new Thread(() =>
+            _generatorThread = new Thread(() =>
             {
                 Thread.Sleep(1000);
                 GC.AddMemoryPressure(600 * 1024 * 1024);
-                worldgen = GENERATOR.DEFAULT;
-                worldgen.Seed = new Random().Next();
-                var world = worldgen.Generate();
+                _worldgen = GENERATOR.DEFAULT;
+                _worldgen.Seed = new Random().Next();
+                var world = _worldgen.Generate();
                 var player = (PlayerEntity)ENTITIES.PLAYER.Build();
-                Engine.Scene.Switch(new GameScene(new GameManager(world, player)));
+                Rise.Scene.Switch(new GameScene(new GameManager(world, player)));
             });
 
             _progressLabel = new Label { Text = "Generating world...", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontRomulus, Offset = new Point(0, -24) };
@@ -50,7 +50,7 @@ namespace Hevadea.Scenes
 
         public override void Load()
         {
-            GeneratorThread.Start();
+            _generatorThread.Start();
         }
 
         public override void Unload()
@@ -59,10 +59,10 @@ namespace Hevadea.Scenes
 
         public override void OnUpdate(GameTime gameTime)
         {
-            if (worldgen?.CurrentLevel?.CurrentFeature != null)
+            if (_worldgen?.CurrentLevel?.CurrentFeature != null)
             {
-                _progressLabel.Text = $"{worldgen.CurrentLevel.LevelName}: {worldgen.CurrentLevel.CurrentFeature.GetName()}";
-                _progressBar.Value = worldgen.CurrentLevel.CurrentFeature.GetProgress();
+                _progressLabel.Text = $"{_worldgen.CurrentLevel.LevelName}: {_worldgen.CurrentLevel.CurrentFeature.GetName()}";
+                _progressBar.Value = _worldgen.CurrentLevel.CurrentFeature.GetProgress();
             }
         }
     }

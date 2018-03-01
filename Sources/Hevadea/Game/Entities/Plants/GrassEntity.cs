@@ -1,9 +1,9 @@
-﻿using Hevadea.Game.Entities.Component;
-using Maker.Rise.Ressource;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Entities.Component;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Game.Entities
+namespace Hevadea.Game.Entities.Plants
 {
     public class GrassEntity : Entity
     {

@@ -1,12 +1,11 @@
-﻿using Hevadea.Game.Items;
+﻿using Hevadea.Framework.Graphic;
+using Hevadea.Framework.UI;
+using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
-using Maker.Rise;
-using Maker.Rise.Enums;
-using Maker.Rise.Extension;
-using Maker.Rise.UI.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Framework;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -36,7 +35,7 @@ namespace Hevadea.Scenes.Widgets
                     Bound.Y + Bound.Height - textSize.Y - Padding.Down), Color.Gold);
             var maxScroll = 0;
 
-            Engine.Graphic.GetGraphicsDevice().ScissorRectangle = Bound;
+            Rise.Graphic.SetScissor(Bound);
 
             foreach (var i in ITEMS.ById)
                 if (i != null)
@@ -50,7 +49,7 @@ namespace Hevadea.Scenes.Widgets
                         var rect = new Rectangle(p.X, p.Y, Host.Width - 8, 48);
                         var sprite_rect = new Rectangle(p.X + 8, p.Y + 8, 32, 32);
 
-                        if (rect.Contains(Engine.Input.MousePosition))
+                        if (Rise.Pointing.AreaOver(rect))
                         {
                             SelectedItem = i;
 
@@ -73,18 +72,18 @@ namespace Hevadea.Scenes.Widgets
                     }
                 }
 
-            Engine.Graphic.GetGraphicsDevice().ScissorRectangle = Engine.Graphic.GetResolutionRect();
-
+            Rise.Graphic.ResetScissor();
+            
             if (index == 0)
-                spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, Alignement.Center, TextStyle.DropShadow,
+                spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, Text.Alignement.Center, Text.TextStyle.DropShadow,
                     Color.White);
 
 
-            if (Bound.Contains(Engine.Input.MousePosition))
+            if (Rise.Pointing.AreaOver(Bound))
             {
-                if (Engine.Input.MouseScrollUp) _scrollOffset = Math.Min(_scrollOffset + 16, 0);
+                if (Rise.Input.MouseScrollUp) _scrollOffset = Math.Min(_scrollOffset + 16, 0);
 
-                if (Engine.Input.MouseScrollDown)
+                if (Rise.Input.MouseScrollDown)
                     _scrollOffset = Math.Max(_scrollOffset - 16, -maxScroll + Math.Min(maxScroll, Host.Height));
             }
 

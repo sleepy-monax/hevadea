@@ -1,8 +1,8 @@
-﻿using Maker.Rise.Extension;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
+using Hevadea.Framework.Graphic;
 
 namespace Hevadea.Game.Entities.Component.Render
 {

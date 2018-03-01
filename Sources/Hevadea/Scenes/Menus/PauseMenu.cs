@@ -1,8 +1,9 @@
-﻿using Hevadea.Game;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.UI;
+using Hevadea.Framework.UI.Containers;
+using Hevadea.Framework.UI.Widgets;
+using Hevadea.Game;
 using Hevadea.Scenes.Widgets;
-using Maker.Rise;
-using Maker.Rise.UI.Widgets;
-using Maker.Rise.UI.Widgets.Containers;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes.Menus
@@ -32,16 +33,16 @@ namespace Hevadea.Scenes.Menus
                                 .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new HudMenu(Game);}),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Restart", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent(sender => Engine.Scene.Switch(new WorldGenScene())),
+                                .RegisterMouseClickEvent(sender => Rise.Scene.Switch(new WorldGenScene())),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Quick save", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Game.CurrentMenu = new HudMenu(Game);}),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Save and exit", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Engine.Scene.Switch(new MainMenu());}),
+                                .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Rise.Scene.Switch(new MainMenu());}),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Exit", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {Engine.Scene.Switch(new MainMenu());}),
+                                .RegisterMouseClickEvent((sender) => {Rise.Scene.Switch(new MainMenu());}),
                         }
                         
                     }

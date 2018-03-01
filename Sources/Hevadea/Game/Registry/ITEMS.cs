@@ -1,9 +1,9 @@
-﻿using Hevadea.Game.Items;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Items;
 using Hevadea.Game.Items.Materials;
-using Maker.Rise.Ressource;
+using Hevadea.Game.Items.Tags;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Hevadea.Game.Items.Tags;
 
 namespace Hevadea.Game.Registry
 {

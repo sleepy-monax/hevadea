@@ -3,6 +3,7 @@ using Hevadea.Game.Entities;
 using Maker.Rise;
 using Microsoft.Xna.Framework;
 using System;
+using Hevadea.Framework;
 
 namespace Hevadea.Game
 {
@@ -20,20 +21,20 @@ namespace Hevadea.Game
 
         public int GetWidth()
         {
-            return (int)(Engine.Graphic.GetWidth() / Zoom);
+            return (int)(Rise.Graphic.GetWidth() / Zoom);
         }
 
         public int GetHeight()
         {
-            return (int)(Engine.Graphic.GetHeight() / Zoom);
+            return (int)(Rise.Graphic.GetHeight() / Zoom);
         }
 
         public Matrix GetTransform()
         {
             Update();
             return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
-                       (float)Math.Floor(-(X * Zoom - Engine.Graphic.GetWidth() / 2f)),
-                       (float)Math.Floor(-(Y * Zoom - Engine.Graphic.GetHeight() / 2f)), 0f);
+                       (float)Math.Floor(-(X * Zoom - Rise.Graphic.GetWidth() / 2f)),
+                       (float)Math.Floor(-(Y * Zoom - Rise.Graphic.GetHeight() / 2f)), 0f);
         }
 
         public void Update()

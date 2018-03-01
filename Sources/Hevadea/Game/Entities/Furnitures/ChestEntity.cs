@@ -1,8 +1,8 @@
-﻿using Hevadea.Game.Entities.Component;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Menus;
-using Maker.Rise.Ressource;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
