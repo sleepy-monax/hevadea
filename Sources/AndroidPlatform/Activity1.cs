@@ -5,6 +5,7 @@ using Android.Views;
 using Hevadea.Framework;
 using Hevadea.Scenes;
 using Maker.Rise;
+using Microsoft.Xna.Framework;
 
 namespace AndroidPlatform
 {
@@ -14,9 +15,9 @@ namespace AndroidPlatform
         , Theme = "@style/Theme.Splash"
         , AlwaysRetainTaskState = true
         , LaunchMode = LaunchMode.SingleInstance
-        , ScreenOrientation = ScreenOrientation.Landscape
+        , ScreenOrientation = ScreenOrientation.Landscape | ScreenOrientation.ReverseLandscape
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
-    public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity
+    public class Activity1 : AndroidGameActivity
     {
         protected override void OnCreate(Bundle bundle)
         {

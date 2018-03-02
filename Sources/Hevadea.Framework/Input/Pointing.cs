@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Hevadea.Framework.Graphic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
@@ -19,6 +22,19 @@ namespace Hevadea.Framework.Input
             _oldMouseState = _mouseState;
             _mouseState = Mouse.GetState();
         }
+
+        public void DrawDebug(SpriteBatch spritebatch)
+        {
+            foreach (var f in _oldTouchState)
+            {
+                spritebatch.PutPixel(f.Position, Color.Blue, 4);
+            }
+
+            foreach (var f in _touchState)
+            {
+                spritebatch.PutPixel(f.Position, Color.Red, 4);
+            }
+        }
         
         public bool AreaDown(Rectangle area)
         {
@@ -33,6 +49,19 @@ namespace Hevadea.Framework.Input
             return area.Contains(_mouseState.Position) && _mouseState.LeftButton == ButtonState.Pressed;
         }
 
+        public bool WasAreaDown(Rectangle area)
+        {
+            foreach (var finger in _oldTouchState)
+            {
+                if (area.Contains(finger.Position))
+                {
+                    return true;
+                }
+            }
+
+            return area.Contains(_oldMouseState.Position) && _oldMouseState.LeftButton == ButtonState.Pressed;
+        }
+
         public bool AreaUp(Rectangle area)
         {
             return !AreaDown(area);
@@ -40,12 +69,13 @@ namespace Hevadea.Framework.Input
 
         public bool AreaClick(Rectangle area)
         {
+
             if (_touchState.Count > 0)
             {
                 return _touchState.Where((t, i) => 
                     area.Contains(t.Position) &&
-                    (t.State == TouchLocationState.Moved &&
-                     _oldTouchState[i].State == TouchLocationState.Pressed)).Any();
+                    (t.State == TouchLocationState.Released &&
+                     _oldTouchState[i].State == TouchLocationState.Moved)).Any();
             }
 
             if (area.Contains(_mouseState.Position) && 
@@ -54,7 +84,27 @@ namespace Hevadea.Framework.Input
             
             return false;
         }
-        
+
+        public List<Point> GetAreaOver(Rectangle area)
+        {
+            var result = new List<Point>();
+
+            foreach (var finger in _touchState)
+            {
+                if (area.Contains(finger.Position))
+                {
+                    result.Add(finger.Position.ToPoint());
+                }
+            }
+
+            if (area.Contains(_mouseState.Position))
+            {
+                result.Add(_mouseState.Position);
+            }
+
+            return result;
+        }
+
         public bool AreaOver(Rectangle area)
         {
             foreach (var finger in _touchState)
@@ -66,6 +116,19 @@ namespace Hevadea.Framework.Input
             }
 
             return area.Contains(_mouseState.Position);
+        }
+
+        public bool WasOver(Rectangle area)
+        {
+            foreach (var finger in _oldTouchState)
+            {
+                if (area.Contains(finger.Position))
+                {
+                    return true;
+                }
+            }
+
+            return area.Contains(_oldMouseState.Position);
         }
     }
 }

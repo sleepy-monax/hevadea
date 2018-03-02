@@ -34,8 +34,8 @@ namespace Hevadea.Scenes
                 Rise.Scene.Switch(new GameScene(new GameManager(world, player)));
             });
 
-            _progressLabel = new Label { Text = "Generating world...", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontRomulus, Offset = new Point(0, -24) };
-            _progressBar = new ProgressBar { Bound = new Rectangle(0, 0, 320, 8), Anchor = Anchor.Center, Origine = Anchor.Center};
+            _progressLabel = new Label { Text = "Generating world...", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontRomulus, UnitOffset = new Point(0, -24) };
+            _progressBar = new ProgressBar { UnitBound = new Rectangle(0, 0, 320, 8), Anchor = Anchor.Center, Origine = Anchor.Center};
             
             Container = new AnchoredContainer
             {
@@ -62,7 +62,7 @@ namespace Hevadea.Scenes
             if (_worldgen?.CurrentLevel?.CurrentFeature != null)
             {
                 _progressLabel.Text = $"{_worldgen.CurrentLevel.LevelName}: {_worldgen.CurrentLevel.CurrentFeature.GetName()}";
-                _progressBar.Value = _worldgen.CurrentLevel.CurrentFeature.GetProgress();
+                _progressBar.Value = _worldgen.CurrentLevel.GetProgress();
             }
         }
     }

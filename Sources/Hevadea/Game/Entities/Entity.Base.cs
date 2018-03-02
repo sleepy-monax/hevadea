@@ -1,8 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.Particles;
-using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
-using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -53,12 +51,6 @@ namespace Hevadea.Game.Entities
             Width = 32;
             Height = 32;
         }
-        
-        #endregion
-
-        #region Methodes
-
-        
         
         #endregion
 

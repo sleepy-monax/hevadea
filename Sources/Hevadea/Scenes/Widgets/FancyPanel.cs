@@ -38,16 +38,18 @@ namespace Hevadea.Scenes.Widgets
             spriteBatch.FillRectangle(Host, Color);
 
             base.Draw(spriteBatch, gameTime);
-            TopLeft.Draw(spriteBatch, new Rectangle(Bound.X, Bound.Y, 32, 32), Color.White);
-            TopRight.Draw(spriteBatch, new Rectangle(Bound.Right - 32, Bound.Y, 32, 32), Color.White);
-            BottomLeft.Draw(spriteBatch, new Rectangle(Bound.X, Bound.Bottom - 32, 32, 32), Color.White);
-            BottomRight.Draw(spriteBatch, new Rectangle(Bound.Right - 32, Bound.Bottom - 32, 32, 32), Color.White);
 
-            Top.Draw(spriteBatch, new Rectangle(Bound.X + 32, Bound.Y, Bound.Width - 64, 32), Color.White);
-            Bottom.Draw(spriteBatch, new Rectangle(Bound.X + 32, Bound.Y + Bound.Height - 32, Bound.Width - 64, 32), Color.White);
+            var size = Scale(32);
+            TopLeft.Draw(spriteBatch, new Rectangle(Bound.X, Bound.Y, size, size), Color.White);
+            TopRight.Draw(spriteBatch, new Rectangle(Bound.Right - size, Bound.Y, size, size), Color.White);
+            BottomLeft.Draw(spriteBatch, new Rectangle(Bound.X, Bound.Bottom - size, size, size), Color.White);
+            BottomRight.Draw(spriteBatch, new Rectangle(Bound.Right - size, Bound.Bottom - size, size, size), Color.White);
 
-            Left.Draw(spriteBatch, new Rectangle(Bound.X, Bound.Y + 32, 32, Bound.Height - 64), Color.White);
-            Right.Draw(spriteBatch, new Rectangle(Bound.X + Bound.Width - 32, Bound.Y + 32, 32, Bound.Height - 64), Color.White);
+            Top.Draw(spriteBatch, new Rectangle(Bound.X + size, Bound.Y, Bound.Width - size * 2, size), Color.White);
+            Bottom.Draw(spriteBatch, new Rectangle(Bound.X + size, Bound.Y + Bound.Height - size, Bound.Width - size * 2, size), Color.White);
+
+            Left.Draw(spriteBatch, new Rectangle(Bound.X, Bound.Y + size, size, Bound.Height - size * 2), Color.White);
+            Right.Draw(spriteBatch, new Rectangle(Bound.X + Bound.Width - size, Bound.Y + size, size, Bound.Height - size * 2), Color.White);
         }
     }
 }

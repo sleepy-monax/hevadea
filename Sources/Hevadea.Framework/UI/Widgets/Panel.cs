@@ -11,7 +11,7 @@ namespace Hevadea.Framework.UI.Widgets
         {
             if (Content != null)
             {
-                Content.Bound = Host;
+                Content.UnitBound = UnitHost;
                 Content.RefreshLayout();
             }
         }

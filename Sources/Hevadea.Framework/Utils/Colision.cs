@@ -1,4 +1,6 @@
-﻿namespace Maker.Rise.Utils
+﻿using Microsoft.Xna.Framework;
+
+namespace Maker.Rise.Utils
 {
     public static class Colision
     {
@@ -8,6 +10,11 @@
                    x2 < x1 + w1 &&
                    y1 < y2 + h2 &&
                    y2 < y1 + h1;
+        }
+
+        public static bool IsColiding(this Rectangle recta, Rectangle rectb)
+        {
+            return Check(recta.X, recta.Y, recta.Width, recta.Height, rectb.X, rectb.Y, rectb.Width, rectb.Height);
         }
     }
 }

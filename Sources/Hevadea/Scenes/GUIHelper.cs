@@ -13,7 +13,7 @@ namespace Hevadea.Scenes
         {
             return new TileContainer
             {
-                Bound = bound,
+                UnitBound = bound,
                 Marging = new Padding(16),
                 Childrens =
                 {

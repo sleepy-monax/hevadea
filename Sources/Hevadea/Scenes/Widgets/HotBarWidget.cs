@@ -1,4 +1,5 @@
 ﻿using System;
+using Hevadea.Framework;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Items;
@@ -10,7 +11,6 @@ namespace Hevadea.Scenes.Widgets
     public class HotBarWidget : Widget
     {
         public ItemStorage Inventory { get; set; }
-        public int ItemSize { get; set; } = 32;
         private float _offset = 0f;
         private int _selected = 0;
         public event EventHandler ItemSelected;
@@ -28,14 +28,25 @@ namespace Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            var ItemSize = Host.Height;
+            int newSlected = _selected;
+
             for (var i = 0; i < Inventory.GetStackCount(); i++)
             {
                 var item = Inventory.GetStack(i);
                 var pos = new Point((int)(Host.X + (i - _offset) * ItemSize) + Host.Width / 2 - ItemSize / 2, Host.Y);
-                item.GetSprite().Draw(spriteBatch, new Rectangle(pos.X, pos.Y, ItemSize, ItemSize), i == _selected ? Color.White : Color.White * 0.5f);
+                var Rect = new Rectangle(pos.X, pos.Y, ItemSize, ItemSize);
+
+                if (Rise.Pointing.AreaClick(Rect))
+                {
+                    newSlected = i;
+                }
+
+                item.GetSprite().Draw(spriteBatch, Rect, i == _selected ? Color.White : Color.White * 0.5f);
                 spriteBatch.DrawString(Ressources.FontRomulus, Inventory.Count(item).ToString(), pos.ToVector2(), Color.White);
             }
 
+            _selected = newSlected;
         }
 
         public Item GetSelectedItem()

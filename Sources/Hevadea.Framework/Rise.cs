@@ -16,8 +16,8 @@ namespace Hevadea.Framework
     public static class Rise
     {
         // Configs
-        public static bool DebugUI { get; set; }
-        public static bool ShowDebug { get; set; }
+        public static bool DebugUI { get; set; } = false;
+        public static bool ShowDebug { get; set; } = false;
         
         // Components
         [Obsolete] public static LegacyInputManager Input;

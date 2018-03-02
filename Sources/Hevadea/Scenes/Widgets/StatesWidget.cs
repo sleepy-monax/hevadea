@@ -28,17 +28,17 @@ namespace Hevadea.Scenes.Widgets
             var energy = _player.Get<Energy>().ValuePercent;
 
             var i = 0;
-
+            var size = Scale(32);
             for (i = 0; i <= 10 * health - 1; i++)
-                _hearth.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y, 32, 32), Color.White);
+                _hearth.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y, size, size), Color.White);
 
-            _hearth.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y, 32, 32),
+            _hearth.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y, size, size),
                 Color.White * (float) (10 * health - Math.Floor(10 * health)));
 
             for (i = 0; i <= 10 * energy - 1; i++)
-                _energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32), Color.White);
+                _energy.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y + size, size, size), Color.White);
 
-            _energy.Draw(spriteBatch, new Rectangle(Bound.X + 32 * i, Bound.Y + 32, 32, 32),
+            _energy.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y + size, size, size),
                 Color.White * (float) (10 * energy - Math.Floor(10 * energy)));
         }
     }

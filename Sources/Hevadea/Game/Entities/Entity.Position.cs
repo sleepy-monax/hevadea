@@ -1,4 +1,5 @@
 ﻿using Hevadea.Game.Tiles;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Entities
@@ -12,12 +13,12 @@ namespace Hevadea.Game.Entities
         
         public bool IsColliding(Rectangle rect)
         {
-            return Bound.Contains(rect);
+            return Bound.IsColiding(rect);
         }
 
         public bool IsColliding(float x, float y, int width, int height)
         {
-            return Bound.Contains(new Rectangle((int)x, (int)y, width, height));
+            return Bound.IsColiding(new Rectangle((int)x, (int)y, width, height));
         }
         
         public TilePosition GetTilePosition(bool onOrigine = false)

@@ -53,11 +53,14 @@ namespace Hevadea.Framework.UI
 
     public class Widget
     {
-        public Rectangle Bound { get; set; } = new Rectangle(0, 0, 64, 64);
-        public Rectangle Host  { get { return Padding.Apply(Bound); } }
-        public Point Offset { get; set; } = Point.Zero;
+
+        public int Scale(int val) =>  (int)(val * Rise.Ui.ScaleFactor);
+
+        public Rectangle UnitBound { get; set; } = new Rectangle(0, 0, 64, 64);
+        public Rectangle UnitHost { get { return Padding.Apply(UnitBound); } }
+        public Point UnitOffset { get; set; } = Point.Zero;
         public Padding Padding { get; set; } = new Padding(0);
-        
+
         public Anchor Anchor  { get; set; } = Anchor.TopLeft;
         public Anchor Origine { get; set; } = Anchor.TopLeft;
 
@@ -67,6 +70,10 @@ namespace Hevadea.Framework.UI
         public Dock Dock { get; set; } = Dock.None;
         public MouseState MouseState { get; set; } = MouseState.None;
 
+        protected Rectangle Bound => new Rectangle((int)(UnitBound.X * Rise.Ui.ScaleFactor), (int)(UnitBound.Y * Rise.Ui.ScaleFactor), (int)(UnitBound.Width * Rise.Ui.ScaleFactor), (int)(UnitBound.Height * Rise.Ui.ScaleFactor));
+        protected Rectangle Host => new Rectangle((int)(UnitHost.X * Rise.Ui.ScaleFactor), (int)(UnitHost.Y * Rise.Ui.ScaleFactor), (int)(UnitHost.Width * Rise.Ui.ScaleFactor), (int)(UnitHost.Height * Rise.Ui.ScaleFactor));
+        protected Point Offset => new Point((int)(UnitOffset.X * Rise.Ui.ScaleFactor), (int)(UnitOffset.Y * Rise.Ui.ScaleFactor));
+        
         public virtual void RefreshLayout()
         {
             

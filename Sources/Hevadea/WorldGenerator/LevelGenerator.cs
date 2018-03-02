@@ -3,6 +3,7 @@ using Hevadea.Game;
 using System.Collections.Generic;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Worlds;
+using System.Linq;
 
 namespace Hevadea.WorldGenerator
 {
@@ -28,6 +29,12 @@ namespace Hevadea.WorldGenerator
             }
 
             return level;
+        }
+
+        public float GetProgress()
+        {
+            var sum = Features.Aggregate(0f, (a, b) => a + b.GetProgress());
+            return sum / Features.Count;
         }
     }
 }

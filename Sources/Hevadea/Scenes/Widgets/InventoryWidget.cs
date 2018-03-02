@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Hevadea.Framework;
+using Hevadea.Framework.Utils;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -26,14 +27,12 @@ namespace Hevadea.Scenes.Widgets
         {
             var index = 0;
 
-            SelectedItem = null;
             var text = $"({Content.Count()}/{Content.Capacity})";
             var textSize = Ressources.FontRomulus.MeasureString(text);
             spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
             spriteBatch.DrawString(Ressources.FontRomulus, text,
-                new Vector2(Bound.X + Bound.Width - textSize.X - Padding.Left - 4,
+                new Vector2(Bound.X + Bound.Width - textSize.X - Padding.Left - Scale(4),
                     Bound.Y + Bound.Height - textSize.Y - Padding.Down), Color.Gold);
-            var maxScroll = 0;
 
             Rise.Graphic.SetScissor(Bound);
 
@@ -44,10 +43,10 @@ namespace Hevadea.Scenes.Widgets
 
                     if (itemCount > 0)
                     {
-                        var p = new Point(Host.X + 4, Host.Y + index * 52 + _scrollOffset);
+                        var p = new Point(Host.X + Scale(4), Host.Y + index * Scale(52) + _scrollOffset);
 
-                        var rect = new Rectangle(p.X, p.Y, Host.Width - 8, 48);
-                        var sprite_rect = new Rectangle(p.X + 8, p.Y + 8, 32, 32);
+                        var rect = new Rectangle(p.X, p.Y, Host.Width - Scale(8), Scale(48));
+                        var sprite_rect = new Rectangle(p.X + Scale(8), p.Y + Scale(8), Scale(32), Scale(32));
 
                         if (Rise.Pointing.AreaOver(rect))
                         {
@@ -65,36 +64,71 @@ namespace Hevadea.Scenes.Widgets
 
                         i.GetSprite().Draw(spriteBatch, sprite_rect, Color.White);
                         spriteBatch.DrawString(Ressources.FontRomulus, $"{i.GetName()} {itemCount,3}x",
-                            new Vector2(rect.X + 48, rect.Y + 12), Color.White);
+                            new Vector2(rect.X + Scale(48), rect.Y + Scale(12)), Color.White);
 
-                        maxScroll += 52;
                         index++;
                     }
                 }
 
-            Rise.Graphic.ResetScissor();
             
-            if (index == 0)
+            if (Content.GetStackCount() == 0)
                 spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, Text.Alignement.Center, Text.TextStyle.DropShadow,
                     Color.White);
 
 
             if (Rise.Pointing.AreaOver(Bound))
             {
-                if (Rise.Input.MouseScrollUp) _scrollOffset = Math.Min(_scrollOffset + 16, 0);
+                if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
+                if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
 
-                if (Rise.Input.MouseScrollDown)
-                    _scrollOffset = Math.Max(_scrollOffset - 16, -maxScroll + Math.Min(maxScroll, Host.Height));
+
+                var maxScroll = Content.GetStackCount() * Scale(52);
+                var contentHeight = Math.Max(maxScroll, Host.Height);
+                var thumbHeight = Host.Height * (Host.Height / (float) contentHeight);
+                var scrollJump = (contentHeight - Host.Height) / (Host.Height - thumbHeight);
+
+                spriteBatch.FillRectangle(
+                    new Rectangle(Host.X + Host.Width - Scale(2), Host.Y + (int) (-_scrollOffset / scrollJump), Scale(2),
+                        (int) thumbHeight), Color.Gold);
             }
 
+            Rise.Graphic.ResetScissor();
+        }
 
-            var contentHeight = Math.Max(maxScroll, Host.Height);
-            var thumbHeight = Host.Height * (Host.Height / (float) contentHeight);
-            var scrollJump = (contentHeight - Host.Height) / (Host.Height - thumbHeight);
+        bool IsDown = false;
+        private Point _lastPoint = Point.Zero;
 
-            spriteBatch.FillRectangle(
-                new Rectangle(Host.X + Host.Width - 2, Host.Y + (int) (-_scrollOffset / scrollJump), 2,
-                    (int) thumbHeight), Color.Gold);
+        public override void Update(GameTime gameTime)
+        {
+            if (Rise.Pointing.AreaDown(Bound) && !IsDown)
+            {
+                IsDown = true;
+
+                _lastPoint = Rise.Pointing.GetAreaOver(Bound)[0];
+            }
+
+            if (!Rise.Pointing.AreaDown(Bound) && IsDown)
+            {
+                IsDown = false;
+                _lastPoint = Point.Zero;
+            }
+
+            if (Rise.Pointing.AreaDown(Bound) && IsDown)
+            {
+                var newPoint = Rise.Pointing.GetAreaOver(Bound)[0];
+                var delta = _lastPoint.Y - newPoint.Y;
+                _lastPoint = newPoint;
+
+                _scrollOffset -= delta;
+            }
+
+            if (Rise.Pointing.AreaClick(Bound))
+            {
+                IsDown = false;
+            }
+
+            var maxScroll = Content.GetStackCount() * Scale(52);
+            _scrollOffset = Mathf.Clamp(_scrollOffset, -maxScroll + Math.Min(maxScroll, Host.Height), 0);
         }
     }
 }

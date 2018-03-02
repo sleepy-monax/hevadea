@@ -27,7 +27,7 @@ namespace Hevadea.Scenes
                 {
                     new FancyPanel
                     {
-                        Bound = new Rectangle(0, 0, 720, 416),
+                        UnitBound = new Rectangle(0, 0, 720, 416),
                         Origine = Anchor.Center,
                         Anchor = Anchor.Center,
                         Padding = new Padding(15),
@@ -42,7 +42,7 @@ namespace Hevadea.Scenes
                                     Flow = FlowDirection.LeftToRight,
                                     Padding = new Padding(4),
                                     Marging = new Padding(2),
-                                    Bound = new Rectangle(0, 0, 64, 64),
+                                    UnitBound = new Rectangle(0, 0, 64, 64),
                                     Childrens = {singleplayerButton, optionButton, quitButton}
                                 },                                
                                 new PictureWidget

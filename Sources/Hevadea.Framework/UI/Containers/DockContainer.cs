@@ -6,11 +6,11 @@ namespace Hevadea.Framework.UI.Containers
     {
         public override void Layout()
         {
-            var h = new Rectangle(Host.Location, Host.Size);
+            var h = new Rectangle(UnitHost.Location, UnitHost.Size);
 
             foreach (var c in Childrens)
             {
-                var b = c.Bound;
+                var b = c.UnitBound;
                 switch (c.Dock)
                 {
                     case Dock.Top:
@@ -36,7 +36,7 @@ namespace Hevadea.Framework.UI.Containers
                         break;
                 }
                 
-                c.Bound = b;
+                c.UnitBound = b;
             }
         }
     }

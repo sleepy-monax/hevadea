@@ -8,6 +8,7 @@ namespace Hevadea.Game.Storage
     {
         private string _status;
         private bool _isDone = false;
+        private float _progress = 0f;
 
         private void SetStatus(string status)
         {
@@ -24,20 +25,30 @@ namespace Hevadea.Game.Storage
             var p = game.Player;
             var player = p.Save();
             p.Level.RemoveEntity(p);
+            _progress = 0.25f;
+
             SetStatus("Saving world");
             var world = game.World.Save();
             p.Level.AddEntity(p);
+            _progress = 0.50f;
 
             SetStatus("Serialization");
             string worldJson = world.ToJson();
             string playerJson = player.ToJson();
-            
+            _progress = 0.75f;
+
             SetStatus("Saving to files");
             File.WriteAllText($"{path}/world.json", worldJson);
             File.WriteAllText($"{path}/player.json", playerJson);
-            
+            _progress = 1f;
+
             Logger.Log<GameManager>(LoggerLevel.Fine, "Done!");
             _isDone = true;
+        }
+
+        public float GetProgress()
+        {
+            return _progress;
         }
 
         public string GetStatus()

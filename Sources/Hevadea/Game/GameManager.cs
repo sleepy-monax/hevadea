@@ -10,12 +10,14 @@ namespace Hevadea.Game
     public class GameManager
     {
         private Menu _currentMenu;
-        
+
+
         public World World { get; }
         public PlayerEntity Player { get; }
         public Camera Camera { get; }
         public Random Random { get; } = new Random();
-        
+        public PlayerInputHandler PlayerInput { get; }
+
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
         public event CurrentMenuChangeHandler CurrentMenuChange;
         
@@ -34,6 +36,7 @@ namespace Hevadea.Game
             World = world;
             Player = player;
             Camera = new Camera(Player);
+            PlayerInput = new PlayerInputHandler(player);
         }
 
         public void Initialize()
@@ -58,17 +61,6 @@ namespace Hevadea.Game
             }
 
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
-        }
-
-
-        public static void Save(string path, GameManager game)
-        {
-            new GameSaver().Save(path,game);
-        }
-
-        public static GameManager Load(string path)
-        {
-            return new GameLoader().Load(path);
         }
     }
 }

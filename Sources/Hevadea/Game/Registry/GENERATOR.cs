@@ -128,7 +128,7 @@ namespace Hevadea.Game.Registry
             {
                 Size = 256, Seed = 0,
                 Levels = {OVERWORLD, CAVE},
-                WorldFeatures = {new StairCaseFeature(OVERWORLD, CAVE)}
+                WorldFeatures = {new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature()}
             };
         }
     }

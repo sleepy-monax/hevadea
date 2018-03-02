@@ -24,7 +24,7 @@ namespace Hevadea.Framework.UI.Widgets
             
 
             var bounce = (int) (24 * _easing.GetValue(EasingFunctions.ElasticEaseOut, EasingFunctions.ElasticEaseIn));
-            var bounceW = (int) (Host.Width + bounce);
+            var bounceW = (int) (UnitHost.Width + bounce);
             
             var rect = new Rectangle(Host.X,Host.Y, 
                                      bounceW, Host.Height);

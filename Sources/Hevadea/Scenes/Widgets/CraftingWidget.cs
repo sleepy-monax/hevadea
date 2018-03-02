@@ -30,10 +30,10 @@ namespace Hevadea.Scenes.Widgets
                 {
                     var canBeCrafted = c.CanBeCrafted(_inventory);
 
-                    var p = new Point(Host.X + 4, Host.Y + index * 52 + 4);
+                    var p = new Point(Host.X + Scale(4), Host.Y + index * Scale( 56));
 
-                    var rect = new Rectangle(p.X, p.Y, Host.Width - 8, 48);
-                    var spriteRect = new Rectangle(p.X + 8, p.Y + 8, 32, 32);
+                    var rect = new Rectangle(p.X, p.Y, Host.Width - Scale(8), Scale(48));
+                    var spriteRect = new Rectangle(p.X + Scale(8), p.Y + Scale(8), Scale(32), Scale(32));
 
                     var costIndex = 0;
                     foreach (var i in c.Costs)
@@ -41,7 +41,7 @@ namespace Hevadea.Scenes.Widgets
                         var ressourceCout = _inventory.Count(i.Item);
                         for (var v = 0; v < i.Count; v++)
                         {
-                            var costRect = new Rectangle(rect.X + 48 + 16 * costIndex, rect.Y + 26, 16, 16);
+                            var costRect = new Rectangle(rect.X + Scale(48 + 16 * costIndex), rect.Y + Scale(26), Scale(16), Scale(16));
                             if (v < ressourceCout)
                             {
                                 i.Item.GetSprite().Draw(spriteBatch, costRect, Color.White);

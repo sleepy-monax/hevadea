@@ -16,20 +16,20 @@ namespace Hevadea.Scenes
         {         
             var backButton = new BackButton
             {
-                Bound = new Rectangle(0, 0, 48, 48),
+                UnitBound = new Rectangle(0, 0, 48, 48),
                 Origine = Anchor.BottomLeft,
                 Anchor = Anchor.BottomLeft,
-                Offset = new Point(0, -16)
+                UnitOffset = new Point(0, -16)
             };
             backButton.MouseClick += sender => Rise.Scene.Switch(new MainMenu());
 
             var newButton = new Button
             {
                 Text = "New",
-                Bound = new Rectangle(0, 0, 200, 48),
+                UnitBound = new Rectangle(0, 0, 200, 48),
                 Origine = Anchor.BottomRight,
                 Anchor = Anchor.BottomRight,
-                Offset = new Point(-16, -16)
+                UnitOffset = new Point(-16, -16)
             };
             newButton.MouseClick += sender => Rise.Scene.Switch(new WorldGenScene());
             
@@ -37,7 +37,7 @@ namespace Hevadea.Scenes
             {
                 Anchor  = Anchor.Center,
                 Origine = Anchor.Center,
-                Bound   = new Rectangle(0, 0, 720, 416),
+                UnitBound = new Rectangle(0, 0, 720, 416),
                 Padding = new Padding(16),
                 Content = new DockContainer()
             };
@@ -56,7 +56,7 @@ namespace Hevadea.Scenes
                 .RegisterMouseClickEvent(sender =>
                     {
                         var button = (Button) (sender);
-                        Rise.Scene.Switch(new GameScene(GameManager.Load(button.Text)));
+                        Rise.Scene.Switch(new WorldLoadingScene(button.Text));
                     }));
             }
         }

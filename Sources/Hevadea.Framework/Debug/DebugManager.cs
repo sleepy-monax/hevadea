@@ -23,7 +23,7 @@ namespace Hevadea.Framework.Debug
             _spriteBatch.Begin();
             
             _spriteBatch.DrawString(Rise.Ui.DebugFont, $"Hevadea\nRunning on platform: '{Rise.Platform.GetPlatformName()}'", new Vector2(16, 16), Color.White);
-            
+            Rise.Pointing.DrawDebug(_spriteBatch);
             _spriteBatch.End();
         }
     }

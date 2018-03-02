@@ -9,8 +9,8 @@ namespace Hevadea.Framework.UI.Containers
 
         public override void Layout()
         {
-            var itemWidth = Host.Width / Childrens.Count;
-            var itemHeight = Host.Height / Childrens.Count;
+            var itemWidth = UnitHost.Width / Childrens.Count;
+            var itemHeight = UnitHost.Height / Childrens.Count;
             var index = 0;
             
             foreach (var c in Childrens)
@@ -18,16 +18,16 @@ namespace Hevadea.Framework.UI.Containers
                 switch (Flow)
                 {
                     case FlowDirection.TopToBottom:
-                        c.Bound = Marging.Apply(new Rectangle(Host.X, Host.Y + itemHeight * index, Host.Width, itemHeight));
+                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X, UnitHost.Y + itemHeight * index, UnitHost.Width, itemHeight));
                         break;
                     case FlowDirection.BottomToTop:
-                        c.Bound = Marging.Apply(new Rectangle(Host.X, Host.Y + Host.Height - (itemHeight * index), Host.Width, itemHeight));
+                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X, UnitHost.Y + UnitHost.Height - (itemHeight * index), UnitHost.Width, itemHeight));
                         break;
                     case FlowDirection.LeftToRight:
-                        c.Bound = Marging.Apply(new Rectangle(Host.X + itemWidth * index, Host.Y, itemWidth, Host.Height));
+                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X + itemWidth * index, UnitHost.Y, itemWidth, UnitHost.Height));
                         break;
                     case FlowDirection.RightToLeft:
-                        c.Bound = Marging.Apply(new Rectangle(Host.X + Host.Width - (itemWidth * index), Host.Y, itemWidth, Host.Height));
+                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X + UnitHost.Width - (itemWidth * index), UnitHost.Y, itemWidth, UnitHost.Height));
                         break;
                 }
                 

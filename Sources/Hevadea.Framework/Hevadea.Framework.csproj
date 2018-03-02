@@ -78,10 +78,10 @@
     <Compile Include="UI\Widgets\BlurPanel.cs" />
     <Compile Include="UI\Widgets\Button.cs" />
     <Compile Include="UI\Widgets\Label.cs" />
+    <Compile Include="UI\Widgets\ListWidget.cs" />
     <Compile Include="UI\Widgets\Panel.cs" />
     <Compile Include="UI\Widgets\PictureWidget.cs" />
     <Compile Include="UI\Widgets\ProgressBar.cs" />
-    <Compile Include="UI\Widgets\Scroller.cs" />
     <Compile Include="Utils\Anchore.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Utils\Compression.cs" />

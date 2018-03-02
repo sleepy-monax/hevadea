@@ -8,8 +8,8 @@ namespace Hevadea.Framework.UI.Containers
         {
             foreach (var c in Childrens)
             {
-                var position = Host.Location + Host.GetAnchorPoint(c.Anchor) - c.Bound.GetAnchorPoint(c.Origine) + c.Offset;
-                c.Bound = new Rectangle(position, c.Bound.Size);
+                var position = UnitHost.Location + UnitHost.GetAnchorPoint(c.Anchor) - c.UnitBound.GetAnchorPoint(c.Origine) + c.UnitOffset;
+                c.UnitBound = new Rectangle(position, c.UnitBound.Size);
             }
         }
     }
