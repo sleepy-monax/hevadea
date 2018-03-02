@@ -16,6 +16,7 @@ namespace Hevadea.Framework.Input
         {
             _oldTouchState = _touchState;
             _touchState = TouchPanel.GetState();
+            _oldMouseState = _mouseState;
             _mouseState = Mouse.GetState();
         }
         
@@ -43,7 +44,7 @@ namespace Hevadea.Framework.Input
             {
                 return _touchState.Where((t, i) => 
                     area.Contains(t.Position) &&
-                    (t.State == TouchLocationState.Released &&
+                    (t.State == TouchLocationState.Moved &&
                      _oldTouchState[i].State == TouchLocationState.Pressed)).Any();
             }
 

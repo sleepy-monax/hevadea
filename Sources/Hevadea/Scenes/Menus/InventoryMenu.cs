@@ -7,6 +7,8 @@ using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Hevadea.Framework.UI;
+using Hevadea.Framework.UI.Containers;
+using Hevadea.Framework.UI.Widgets;
 
 namespace Hevadea.Scenes.Menus
 {
@@ -20,7 +22,13 @@ namespace Hevadea.Scenes.Menus
             var inventory = new InventoryWidget(entity.Components.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
             var crafting  = new CraftingWidget(entity.Components.Get<Inventory>().Content, recipies) {Padding = new Padding(4, 4), Dock = Dock.Fill};
 
-            Content = GuiHelper.CreateSplitContainer(new Rectangle(0, 0, 800, 600), "Inventory", inventory, "Crafting", crafting);
+            Content = GuiHelper.CreateSplitContainer(new Rectangle(0, 0, 800, 600),
+                "Inventory", inventory, 
+                "Crafting", new DockContainer() { Childrens = {                             new Button
+                                { Font  = Ressources.FontRomulus, Text = "Back", Padding = new Padding(4) }
+                                .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new HudMenu(Game);}),crafting },
+                    Dock = Dock.Fill
+                });
             
             inventory.MouseClick += sender =>
             {

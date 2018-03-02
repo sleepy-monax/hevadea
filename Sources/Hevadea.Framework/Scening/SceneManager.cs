@@ -67,6 +67,7 @@ namespace Hevadea.Framework.Scening
                 _timer = 0;
             }
 
+
             _currentScene?.Update(gameTime);
 
         }
@@ -75,13 +76,9 @@ namespace Hevadea.Framework.Scening
         {            
             if (_background != null)
                 _spritebatch.BeginDrawEnd(_background.Draw, gameTime);
+     
+            _currentScene?.Draw(_spritebatch, gameTime);
 
-            if (_currentScene != null)
-            {   
-                _spritebatch.Begin(new SpriteBatchBeginState{ SortMode = SpriteSortMode.Immediate, SamplerState = SamplerState.PointWrap, RasterizerState = new RasterizerState(){ScissorTestEnable = true}});
-                _currentScene.Draw(_spritebatch, gameTime);
-                _spritebatch.End();
-            }
 
             if (_isSceneSwitching)
             {

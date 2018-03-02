@@ -36,10 +36,10 @@ namespace Hevadea.Scenes.Menus
                                 .RegisterMouseClickEvent(sender => Rise.Scene.Switch(new WorldGenScene())),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Quick save", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Game.CurrentMenu = new HudMenu(Game);}),
+                                .RegisterMouseClickEvent((sender) => {GameManager.Save(Rise.Platform.GetStorageFolder() + "/Saves/test", game); Game.CurrentMenu = new HudMenu(Game);}),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Save and exit", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {GameManager.Save("Saves/test", game); Rise.Scene.Switch(new MainMenu());}),
+                                .RegisterMouseClickEvent((sender) => {GameManager.Save(Rise.Platform.GetStorageFolder() + "/Saves/test", game); Rise.Scene.Switch(new MainMenu());}),
                             new Button
                                 { Font  = Ressources.FontRomulus, Text = "Exit", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {Rise.Scene.Switch(new MainMenu());}),

@@ -67,7 +67,7 @@ namespace Hevadea.Game.Worlds
             
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[1]);
 
-            _spriteBatch.Begin(samplerState: SamplerState.LinearWrap, transformMatrix: cameraTransform);
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawTerrain(state, _spriteBatch, gameTime);
             level.DrawEntities(state, _spriteBatch, gameTime);
             level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);

@@ -58,7 +58,7 @@ namespace Hevadea.Framework.Graphic
         
         public Point GetSize()
         {
-            return new Point(GetWidth(), GetWidth());
+            return new Point(GetWidth(), GetHeight());
         }
 
         public int GetWidth()

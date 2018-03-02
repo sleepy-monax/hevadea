@@ -11,5 +11,10 @@ namespace OpenGLPlatform
         public int GetScreenWidth() => 1280;
 
         public int GetScreenHeight() => 720;
+
+        public string GetStorageFolder()
+        {
+            return "";
+        }
     }
 }

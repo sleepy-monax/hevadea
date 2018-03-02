@@ -21,8 +21,10 @@ namespace Hevadea.Scenes
             // Initialize the game engine
             Ressources.Load();
             REGISTRY.Initialize();
+            Directory.CreateDirectory(Rise.Platform.GetStorageFolder() + "/Saves/");
             _sb = Rise.Graphic.CreateSpriteBatch();
             _logo = Ressources.ImgMakerLogo;
+            Rise.Ui.DefaultFont = Ressources.FontRomulus;
         }
 
         public override void Unload()
@@ -32,7 +34,7 @@ namespace Hevadea.Scenes
         public override void OnUpdate(GameTime gameTime)
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 1) || !_once) return;
-            Rise.Scene.Switch(new WorldGenScene());
+            Rise.Scene.Switch(new MainMenu());
             _once = false;
         }
 

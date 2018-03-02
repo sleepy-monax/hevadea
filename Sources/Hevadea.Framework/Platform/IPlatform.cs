@@ -6,5 +6,6 @@
         string GetPlatformName();
         int GetScreenWidth();
         int GetScreenHeight();
+        string GetStorageFolder();
     }
 }

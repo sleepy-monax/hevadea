@@ -6,7 +6,7 @@ namespace Hevadea.Framework
     public class MonoGameHandler : Game
     {
         public delegate void GameEventHandler(Game sender, GameTime gameTime);
-
+        public GraphicsDeviceManager Graphics;
         public event EventHandler OnInitialize;
         public event EventHandler OnLoadContent;
         public event EventHandler OnUnloadContent;
@@ -15,11 +15,23 @@ namespace Hevadea.Framework
 
         public MonoGameHandler()
         {
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-        
+
+        private bool WindowSizeIsBeingChanged = false;
         protected override void Initialize()
         {
+            Window.AllowUserResizing = true;
+            IsMouseVisible = true;
+            Window.ClientSizeChanged += (sender, args) =>
+            {
+                WindowSizeIsBeingChanged = !WindowSizeIsBeingChanged;
+                if (WindowSizeIsBeingChanged)
+                {
+                    Rise.Graphic.SetSize(new Point(Window.ClientBounds.Width, Window.ClientBounds.Height));
+                }
+            };
             OnInitialize?.Invoke(this, EventArgs.Empty);   
         }
 

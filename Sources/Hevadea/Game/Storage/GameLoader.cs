@@ -3,6 +3,7 @@ using Hevadea.Framework.Utils.Json;
 using Hevadea.Game.Entities.Creatures;
 using System.IO;
 using Hevadea.Game.Worlds;
+using Hevadea.Game.Registry;
 
 namespace Hevadea.Game.Storage
 {
@@ -28,6 +29,7 @@ namespace Hevadea.Game.Storage
             SetStatus("create_game_objects");
             var world = new World();
             var player = new PlayerEntity();
+            player.Blueprint = ENTITIES.PLAYER;
             
             SetStatus("deserialize_game_data");
             var worldDara = worldStr.FromJson<WorldStorage>();

@@ -1,6 +1,5 @@
 ﻿using Hevadea.Game;
 using Hevadea.Scenes.Widgets;
-using Maker.Rise;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Hevadea.Framework;
@@ -49,7 +48,7 @@ namespace Hevadea.Scenes
                 Childrens = {savesList, backButton, newButton}
             };
 
-            var s = Directory.GetDirectories("Saves");
+            var s = Directory.GetDirectories(Rise.Platform.GetStorageFolder() + "/Saves/");
             var list = (DockContainer) savesList.Content;
             foreach (var save in s)
             {

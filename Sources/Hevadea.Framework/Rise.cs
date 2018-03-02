@@ -60,14 +60,21 @@ namespace Hevadea.Framework
             Controller = new Controller();
             Pointing = new Pointing();
             Debug = new DebugManager();
-            Graphic = new GraphicManager(new GraphicsDeviceManager(MonoGame) , MonoGame.GraphicsDevice);
+            Graphic = new GraphicManager(MonoGame.Graphics, MonoGame.GraphicsDevice);
             Scene = new SceneManager();
+            Input = new LegacyInputManager();
+            Ui = new UiManager();
+
+            Graphic.ResetRenderTargets();
+            Scene.Initialize();
+            Input.Initialize();
+            Scene.Switch(_startScene);
+            
         }
         
         private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)
         {
-            Input.Initialize();
-            Scene.Switch(_startScene);
+
         }
 
         private static void MonoGameOnUnloadContent(object sender, EventArgs eventArgs)
@@ -77,13 +84,16 @@ namespace Hevadea.Framework
 
         private static void MonoGameOnUpdate(Game sender, GameTime gameTime)
         {
+            Pointing.Update();
             Input.Update(gameTime);
-            Scene.Draw(gameTime);
+            Scene.Update(gameTime);
         }
 
         private static void MonoGameOnDraw(Game sender, GameTime gameTime)
         {
-            Scene.Update(gameTime);
+            Graphic.ResetScissor();
+            Graphic.Clear(Color.Black);
+            Scene.Draw(gameTime);
         }
     }
 }

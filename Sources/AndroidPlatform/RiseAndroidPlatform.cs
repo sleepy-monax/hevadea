@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Maker.Rise.Platform;
+﻿using Hevadea.Framework.Platform;
 
 namespace AndroidPlatform
 {
@@ -23,19 +12,20 @@ namespace AndroidPlatform
             _screenHeight = screenHeight;
         }
 
-        public int GetHardwareHeight()
-        {
-            return _screenHeight;
-        }
 
-        public int GetHardwareWidth()
-        {
-            return _screenWidth;
-        }
+        public string GetPlatformName() => "Android";
+
+        public int GetScreenWidth() => _screenWidth;
+        public int GetScreenHeight() => _screenHeight;
 
         public void Initialize()
         {
 
+        }
+
+        public string GetStorageFolder()
+        {
+            return Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
         }
     }
 }

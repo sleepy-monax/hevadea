@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.UI;
+﻿using Hevadea.Framework.Graphic;
+using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,7 +35,13 @@ namespace Hevadea.Framework.Scening
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             OnDraw(gameTime);
-            Container?.Draw(spriteBatch, gameTime);
+
+            if (Container != null)
+            {
+                spriteBatch.Begin(new SpriteBatchBeginState { SortMode = SpriteSortMode.Immediate, BlendState = BlendState.AlphaBlend, SamplerState = SamplerState.PointWrap, RasterizerState = new RasterizerState() { ScissorTestEnable = true } });
+                Container.Draw(spriteBatch, gameTime);
+                spriteBatch.End();
+            }
         }
         
         public abstract void Load();

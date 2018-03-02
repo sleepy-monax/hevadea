@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Framework.UI
-{    
+{
     public enum Dock
     {
         Top,
@@ -63,6 +63,7 @@ namespace Hevadea.Framework.UI
 
         public delegate void WidgetEventHandler(Widget sender);
         public event WidgetEventHandler MouseClick;
+        public event WidgetEventHandler MouseHold;
         public Dock Dock { get; set; } = Dock.None;
         public MouseState MouseState { get; set; } = MouseState.None;
 
@@ -79,6 +80,7 @@ namespace Hevadea.Framework.UI
                 if (Rise.Pointing.AreaDown(Bound))
                 {
                     MouseState = MouseState.Down;
+                    MouseHold?.Invoke(this);
                 }
                 
                 if (Rise.Pointing.AreaClick(Bound))

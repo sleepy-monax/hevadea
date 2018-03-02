@@ -12,7 +12,7 @@ namespace Hevadea.Game
         public Entity FocusEntity;
         public float X;
         public float Y;
-        public float Zoom = 4f;
+        public float Zoom = 6f;
 
         public Camera(Entity focusEntity)
         {

@@ -101,10 +101,6 @@
       <Project>{76037d71-10ca-4c2e-a64e-563b595ca88f}</Project>
       <Name>Hevadea</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Maker.Rise\Maker.Rise.csproj">
-      <Project>{8a64df5f-5501-44e9-8254-8ef37fe51f36}</Project>
-      <Name>Maker.Rise</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

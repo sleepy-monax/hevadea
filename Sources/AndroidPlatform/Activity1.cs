@@ -2,6 +2,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Hevadea.Framework;
 using Hevadea.Scenes;
 using Maker.Rise;
 
@@ -23,9 +24,10 @@ namespace AndroidPlatform
             var metrics = Resources.DisplayMetrics;
             var platform = new RiseAndroidPlatform(metrics.WidthPixels, metrics.HeightPixels);
 
-            Engine.Initialize(platform);
-            SetContentView((View)Engine.MonoGameHandle.Services.GetService(typeof(View)));
-            Engine.Start(new SplashScene());
+            Rise.Initialize(platform);
+  
+            SetContentView((View)Rise.MonoGame.Services.GetService(typeof(View)));
+            Rise.Start(new SplashScene());
         }
     }
 }
