@@ -14,7 +14,7 @@ namespace Hevadea.Game.Entities.Plants
             Height = 8;
             Width = 8;
             _sprite = new Sprite(Ressources.TileEntities, new Point(6, 3));
-            Components.Add(new Breakable());
+            Add(new Breakable());
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

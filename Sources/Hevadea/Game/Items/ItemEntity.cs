@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
@@ -11,29 +12,22 @@ namespace Hevadea.Game.Entities
     public class ItemEntity : Entity
     {
         public Item Item;
-        private float sx;
-        private float sy;
+        public float sx;
+        public float sy;
 
-        public ItemEntity() : this(0, 0, 0) { }
-        public ItemEntity(Item item) : this(item, 0, 0) { }
-        public ItemEntity(int itemId) : this(ITEMS.ById[itemId], 0, 0) { }
-        public ItemEntity(int itemId, float speedx, float speedy) : this(ITEMS.ById[itemId], speedx, speedy) {}
-
-        public ItemEntity(Item item, float speedx, float speedy)
+        public ItemEntity()
         {
-            Item = item;
+            Item = ITEMS.COAL;
             Height = 4;
             Width = 4;
             Origin = new Point(2, 2);
-            sx = speedx;
-            sy = speedy;
 
-            Components.Add(new Move());
+            Add(new Move());
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            var move = Components.Get<Move>();
+            var move = Get<Move>();
             move.Do(sx, sy, Facing);
             sx = sx / 2;
             sy = sy / 2;
@@ -42,7 +36,7 @@ namespace Hevadea.Game.Entities
 
             foreach (var e in magnetEntity)
             {
-                var inventory = e.Components.Get<Inventory>();
+                var inventory = e.Get<Inventory>();
 
                 if (inventory != null && inventory.AlowPickUp && inventory.Content.HasFreeSlot())
                 {
@@ -59,7 +53,7 @@ namespace Hevadea.Game.Entities
             var entities = Level.GetEntitiesOnArea(Bound);
             foreach (var e in entities)
             {
-                var inv = e.Components.Get<Inventory>();
+                var inv = e.Get<Inventory>();
 
                 if (inv != null && inv.Pickup(Item)) Remove();
             }

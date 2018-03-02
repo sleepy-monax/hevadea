@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Entities.Component.Attributes;
 
 namespace Hevadea.Game.Entities.Component
 {
@@ -72,7 +73,7 @@ namespace Hevadea.Game.Entities.Component
         {
             var damages = BaseDamages;
 
-            var energy = Owner.Components.Get<Energy>();
+            var energy = Owner.Get<Energy>();
 
             if (energy != null) damages = damages * (energy.Value / energy.MaxValue);
 
@@ -82,7 +83,7 @@ namespace Hevadea.Game.Entities.Component
         public void Do(Item weapon)
         {
             if (IsAttacking) return;
-            if (!Owner.Components.Get<Energy>()?.Reduce(1f) ?? false) return;
+            if (!Owner.Get<Energy>()?.Reduce(1f) ?? false) return;
 
             var damages = GetBaseDamages();
             var facingTile = Owner.GetFacingTile();
@@ -94,13 +95,13 @@ namespace Hevadea.Game.Entities.Component
                 foreach (var e in facingEntities)
                     if (e != Owner)
                     {
-                        if (e.Components.Has<Breakable>())
+                        if (e.Has<Breakable>())
                         {
-                            e.Components.Get<Breakable>()?.Break(weapon);
+                            e.Get<Breakable>()?.Break(weapon);
                             IsAttacking = true;
                         }
 
-                        var eHealth = e.Components.Get<Health>();
+                        var eHealth = e.Get<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
                             eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.Game.Entities.Component.Attributes;
 
 namespace Hevadea.Game.Entities.Component.Ai
 {
@@ -21,7 +22,7 @@ namespace Hevadea.Game.Entities.Component.Ai
 
         public void MoveTo(float x, float y, float speed = 1f)
         {
-            var moveComponent = Owner.Components.Get<Move>();
+            var moveComponent = Owner.Get<Move>();
             
             if (moveComponent != null)
             {

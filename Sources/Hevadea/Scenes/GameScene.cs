@@ -3,6 +3,7 @@ using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Game;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Entities.Furnitures;
 using Hevadea.Game.Registry;
@@ -42,7 +43,7 @@ namespace Hevadea.Scenes
             if (_game.CurrentMenu == null || !_game.CurrentMenu.PauseGame)
             {
                 _game.Update(gameTime);
-                var playerMovement = _game.Player.Components.Get<Move>();
+                var playerMovement = _game.Player.Get<Move>();
 
                 float x = 0;
                 float y = 0;
@@ -109,14 +110,14 @@ namespace Hevadea.Scenes
                     _game.Camera.Zoom /= 2;
                 }
                 
-                if (Rise.Input.KeyDown(Keys.J)) _game.Player.Components.Get<Attack>().Do(_game.Player.HoldingItem);
+                if (Rise.Input.KeyDown(Keys.J)) _game.Player.Get<Attack>().Do(_game.Player.HoldingItem);
 
                 if (Rise.Input.KeyPress(Keys.K))
                 {
-                    if (_game.Player.Components.Get<Inventory>().Content.Count(_game.Player.HoldingItem) == 0)
+                    if (_game.Player.Get<Inventory>().Content.Count(_game.Player.HoldingItem) == 0)
                         _game.Player.HoldingItem = null;
 
-                    _game.Player.Components.Get<Interact>().Do(_game.Player.HoldingItem);
+                    _game.Player.Get<Interact>().Do(_game.Player.HoldingItem);
                 }
             }
 

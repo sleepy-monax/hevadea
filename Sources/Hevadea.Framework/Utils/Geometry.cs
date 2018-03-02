@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Hevadea.Framework.Utils;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Framework.Graphic
+namespace Hevadea.Framework.Utils
 {
     public static class Geometry
     {
@@ -25,9 +23,9 @@ namespace Hevadea.Framework.Graphic
             }
 
             var vectors = new List<Vector2>();
-            var step = Mathf.TAU / sides;
+            var step = Mathf.TwoPI / sides;
 
-            for (var theta = 0f; theta < Mathf.TAU; theta += step)
+            for (var theta = 0f; theta < Mathf.TwoPI; theta += step)
             {
                 vectors.Add(new Vector2(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta)));
             }

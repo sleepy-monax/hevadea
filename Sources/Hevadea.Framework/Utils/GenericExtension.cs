@@ -27,10 +27,8 @@ namespace Hevadea.Framework.Utils
                 return (byte)(value | (1 << selectedBit));
 
             }
-            else
-            {
-                return (byte)(value & ~(1 << selectedBit));
-            }
+
+            return (byte)(value & ~(1 << selectedBit));
         }
 
         public static int WriteBit(this int value, byte selectedBit, bool bit)
@@ -40,10 +38,8 @@ namespace Hevadea.Framework.Utils
                 return (value | (1 << selectedBit));
 
             }
-            else
-            {
-                return (value & ~(1 << selectedBit));
-            }
+
+            return (value & ~(1 << selectedBit));
         }
 
         public static bool ReadBit(this byte value, int selectedBit)

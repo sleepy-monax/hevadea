@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Component.Render;
 using Hevadea.Game.Items;
 using Microsoft.Xna.Framework;
@@ -16,23 +17,22 @@ namespace Hevadea.Game.Entities.Creatures
 
             HoldingItem = null;
 
-            Components.Add(new Health(20){ ShowHealthBar = false });
-            Components.Add(new Attack());
-            Components.Add(new Energy());
-            Components.Add(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
-            Components.Add(new Inventory(64) {AlowPickUp = true});
-            Components.Add(new Interact());
-            Components.Add(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
-            Components.Add(new Move());
-            Components.Add(new Swim());
+            Add(new Health(20){ ShowHealthBar = false });
+            Add(new Attack());
+            Add(new Energy());
+            Add(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
+            Add(new Inventory(64) {AlowPickUp = true});
+            Add(new Interact());
+            Add(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
+            Add(new Move());
+            Add(new Swim());
         }
 
         public Item HoldingItem { get; set; }
 
         public override bool IsBlocking(Entity entity)
         {
-            if (entity is ItemEntity) return false;
-            return true;
+            return !(entity is ItemEntity);
         }
 
         public override void OnUpdate(GameTime gameTime)

@@ -25,6 +25,7 @@ namespace Hevadea.Scenes
             _sb = Rise.Graphic.CreateSpriteBatch();
             _logo = Ressources.ImgMakerLogo;
             Rise.Ui.DefaultFont = Ressources.FontRomulus;
+            Rise.Ui.DebugFont = Ressources.FontHack;
         }
 
         public override void Unload()

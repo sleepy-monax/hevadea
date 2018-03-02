@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Microsoft.Xna.Framework;
@@ -17,7 +18,7 @@ namespace Hevadea.Game.Entities.Furnitures
             Width = 2;
 
             _sprite = new Sprite(Ressources.TileEntities, new Point(4, 0));
-            Components.Adds(
+            Adds(
                 new Light {On = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 72},
                 new Dropable {Items = {new Drop(ITEMS.TORCH, 1f, 1, 1)}},
                 new Breakable()

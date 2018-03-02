@@ -8,6 +8,7 @@ using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Tiles;
@@ -359,7 +360,7 @@ namespace Hevadea.Game.Worlds
         {
             foreach (var e in state.OnScreenEntities)
             {
-                var light = e.Components.Get<Light>();
+                var light = e.Get<Light>();
 
                 if (light != null)
                     spriteBatch.Draw(Ressources.ImgLight,

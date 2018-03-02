@@ -5,5 +5,6 @@ namespace Hevadea.Framework.UI
     public class UiManager
     {
         public SpriteFont DefaultFont { get; set; }
+        public SpriteFont DebugFont { get; set; }
     }
 }

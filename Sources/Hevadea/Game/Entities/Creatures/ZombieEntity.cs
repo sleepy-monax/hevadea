@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Component.Ai;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Component.Render;
 using Microsoft.Xna.Framework;
 
@@ -15,12 +16,12 @@ namespace Hevadea.Game.Entities.Creatures
 
             Origin = new Point(4, 4);
 
-            Components.Add(new Move());
-            Components.Add(new Health(10));
-            Components.Add(new Attack());
-            Components.Add(new Swim());
-            Components.Add(new Energy());
-            Components.Add(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
+            Add(new Move());
+            Add(new Health(10));
+            Add(new Attack());
+            Add(new Swim());
+            Add(new Energy());
+            Add(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
 
             var aiAgent = new Agent<GenericAgentStates>()
             {
@@ -30,7 +31,7 @@ namespace Hevadea.Game.Entities.Creatures
                 }
             };
             
-            Components.Add(aiAgent);
+            Add(aiAgent);
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,7 +21,7 @@ namespace Hevadea.Game.Entities
             
             foreach (var e in entity)
             {
-                e.Components.Get<Move>()?.Do(dir.X, dir.Y, Facing);
+                e.Get<Move>()?.Do(dir.X, dir.Y, Facing);
             }
         }
 

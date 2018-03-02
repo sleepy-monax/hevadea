@@ -1,11 +1,11 @@
-﻿using Hevadea.Game.Storage;
+﻿using System;
+using Hevadea.Framework.Graphic;
+using Hevadea.Game.Storage;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using Hevadea.Framework.Graphic;
 
-namespace Hevadea.Game.Entities.Component
+namespace Hevadea.Game.Entities.Component.Attributes
 {
     public sealed class Health : EntityComponent, IDrawableOverlayComponent, IUpdatableComponent, ISaveLoadComponent
     {
@@ -109,7 +109,7 @@ namespace Hevadea.Game.Entities.Component
         public void Die()
         {
             OnDie?.Invoke(this, null);
-            Owner.Components.Get<Dropable>()?.Drop();
+            Owner.Get<Dropable>()?.Drop();
             Owner.Remove();
         }
     }

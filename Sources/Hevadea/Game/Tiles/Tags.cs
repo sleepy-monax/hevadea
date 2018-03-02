@@ -104,7 +104,7 @@ namespace Hevadea.Game.Tiles
         {
             public override bool CanPassThrought(Entity entity)
             {
-                return entity.Components.Has<Swim>();
+                return entity.Has<Swim>();
             }
         }
         

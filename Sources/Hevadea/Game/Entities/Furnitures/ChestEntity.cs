@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Menus;
@@ -19,18 +20,18 @@ namespace Hevadea.Game.Entities.Furnitures
             Origin = new Point(8, 6);
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
 
-            Components.Add(new Inventory(128));
-            Components.Add(new Health(10)).OnDie +=
+            Add(new Inventory(128));
+            Add(new Health(10)).OnDie +=
                 (sender, arg) =>
                 {
-                    Components.Get<Inventory>().Content.DropOnGround(Level, X + Origin.X, Y + Origin.Y);
+                    Get<Inventory>().Content.DropOnGround(Level, X + Origin.X, Y + Origin.Y);
                     ITEMS.CHEST.Drop(Level, X + Origin.X, Y + Origin.Y, 1);
                 };
 
-            Components.Add(new Interactable()).OnInteracte +=
+            Add(new Interactable()).OnInteracte +=
                 (sender, arg) =>
                 {
-                    if (arg.Entity.Components.Has<Inventory>())
+                    if (arg.Entity.Has<Inventory>())
                         Game.CurrentMenu = new ChestMenu(arg.Entity, this, Game);
                 };
         }

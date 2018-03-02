@@ -26,7 +26,7 @@ namespace Hevadea.Game.Entities
             Origin = new Point(0, 0);
 
             var interaction = new Interactable();
-            Components.Add(interaction);
+            Add(interaction);
             interaction.OnInteracte +=
                 (sender, arg) =>
                 {

@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.Particles;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 
@@ -13,8 +14,8 @@ namespace Hevadea.Game.Entities.Component
         
         public void Update(GameTime gameTime)
         {
-            var health   = Owner.Components.Get<Health>();
-            var energy   = Owner.Components.Get<Energy>();
+            var health   = Owner.Get<Health>();
+            var energy   = Owner.Get<Energy>();
             var position = Owner.GetTilePosition(true);
             
             if (Owner.Level.IsAll<Tags.Liquide>(Owner.Bound))

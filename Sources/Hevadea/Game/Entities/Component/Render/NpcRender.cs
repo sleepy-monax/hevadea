@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Entities.Component.Attributes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -19,7 +20,7 @@ namespace Hevadea.Game.Entities.Component.Render
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            bool isSwiming = Owner.Components.Has<Swim>() && Owner.Components.Get<Swim>().IsSwiming;
+            bool isSwiming = Owner.Has<Swim>() && Owner.Get<Swim>().IsSwiming;
             walkingFrame = new[] {0, 2, 1, 2}[(int) (gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
             if (isSwiming)
             {
@@ -58,7 +59,7 @@ namespace Hevadea.Game.Entities.Component.Render
 
         public void Update(GameTime gameTime)
         {
-            var move = Owner.Components.Get<Move>();
+            var move = Owner.Get<Move>();
             if (move != null) isWalking = move.IsMoving;
         }
     }

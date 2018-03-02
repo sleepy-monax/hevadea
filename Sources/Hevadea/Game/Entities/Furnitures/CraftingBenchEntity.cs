@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
@@ -20,15 +21,15 @@ namespace Hevadea.Game.Entities.Furnitures
             Origin = new Point(8, 6);
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 0));
 
-            Components.Adds(
+            Adds(
                 new Breakable(),
                 new Dropable {Items = {new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1)}}
             );
             
-            Components.Add(new Interactable()).OnInteracte +=
+            Add(new Interactable()).OnInteracte +=
                 (sender, arg) =>
                 {
-                    if (arg.Entity.Components.Has<Inventory>())
+                    if (arg.Entity.Has<Inventory>())
                         Game.CurrentMenu = new InventoryMenu(arg.Entity, RECIPIES.BenchCrafted, Game);
                 };
         }

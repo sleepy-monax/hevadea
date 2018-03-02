@@ -14,7 +14,7 @@ namespace OpenGLPlatform
 
         public string GetStorageFolder()
         {
-            return "";
+            return ".";
         }
     }
 }

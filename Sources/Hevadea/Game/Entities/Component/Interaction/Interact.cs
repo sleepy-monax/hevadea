@@ -44,7 +44,7 @@ namespace Hevadea.Game.Entities.Component
             if (entities.Count > 0)
                 foreach (var e in entities)
                 {
-                    var interactable = e.Components.Get<Interactable>();
+                    var interactable = e.Get<Interactable>();
 
                     if (interactable != null)
                     {

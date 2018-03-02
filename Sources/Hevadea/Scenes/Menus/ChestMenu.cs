@@ -22,8 +22,8 @@ namespace Hevadea.Scenes.Menus
         {
             PauseGame = true;
             
-            _inventoryA = new InventoryWidget(entity.Components.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
-            _inventoryB = new InventoryWidget(chest.Components.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
+            _inventoryA = new InventoryWidget(entity.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
+            _inventoryB = new InventoryWidget(chest.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
             
             _inventoryA.MouseClick += Tranfer;
             _inventoryB.MouseClick += Tranfer;

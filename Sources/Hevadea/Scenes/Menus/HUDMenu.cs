@@ -4,6 +4,7 @@ using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Game;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -78,7 +79,7 @@ namespace Hevadea.Scenes.Menus
                 Offset = new Point(-16, 16)
             };
             
-            _hotBar = new HotBarWidget(game.Player.Components.Get<Inventory>().Content)
+            _hotBar = new HotBarWidget(game.Player.Get<Inventory>().Content)
             {
                 Bound = new Rectangle(0, 0, 320, 64),
                 Anchor = Anchor.Bottom,
@@ -107,7 +108,7 @@ namespace Hevadea.Scenes.Menus
         private void Command(Widget sender)
         {
 
-            var playerMovement = Game.Player.Components.Get<Move>();
+            var playerMovement = Game.Player.Get<Move>();
 
             if (sender == btnLeft)
             {
@@ -126,14 +127,14 @@ namespace Hevadea.Scenes.Menus
                 playerMovement.Do(0, +1, Direction.Down);
             }
 
-            if (sender == btnAttack) Game.Player.Components.Get<Attack>().Do(Game.Player.HoldingItem);
+            if (sender == btnAttack) Game.Player.Get<Attack>().Do(Game.Player.HoldingItem);
 
             if (sender == btnAction)
             {
-                if (Game.Player.Components.Get<Inventory>().Content.Count(Game.Player.HoldingItem) == 0)
+                if (Game.Player.Get<Inventory>().Content.Count(Game.Player.HoldingItem) == 0)
                     Game.Player.HoldingItem = null;
 
-                Game.Player.Components.Get<Interact>().Do(Game.Player.HoldingItem);
+                Game.Player.Get<Interact>().Do(Game.Player.HoldingItem);
             }
         }
 
@@ -141,13 +142,13 @@ namespace Hevadea.Scenes.Menus
         {            
             if (Rise.Input.KeyPress(Keys.U)) _hotBar.Previouse();
             if (Rise.Input.KeyPress(Keys.I)) _hotBar.Next();
-            Game.Player.Components.Get<Inventory>().AlowPickUp = true; //Rise.Input.KeyDown(Keys.F);
+            Game.Player.Get<Inventory>().AlowPickUp = true; //Rise.Input.KeyDown(Keys.F);
             if (Rise.Input.KeyPress(Keys.A))
             {
                 var level = Game.Player.Level;
                 var item = Game.Player.HoldingItem;
                 var facingTile = Game.Player.GetFacingTile();
-                Game.Player.Components.Get<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
+                Game.Player.Get<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
             }
             
             base.Update(gameTime);

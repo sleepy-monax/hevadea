@@ -1,8 +1,8 @@
-﻿using Hevadea.Game.Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Hevadea.Framework;
+using Hevadea.Game.Items;
 
-namespace Hevadea.Game.Entities.Component
+namespace Hevadea.Game.Entities.Component.Attributes
 {
     public class Dropable : EntityComponent
     {

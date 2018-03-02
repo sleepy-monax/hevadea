@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
@@ -19,7 +20,7 @@ namespace Hevadea.Game.Entities.Plants
             Origin = new Point(2, 2);
             treeSprite = new Sprite(Ressources.TileEntities, new Point(6, 4), new Point(2, 6) );
 
-            Components.Adds(
+            Adds(
                 new Health(5),
                 new Dropable {Items = {new Drop(ITEMS.WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3)}}
             );

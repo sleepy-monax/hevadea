@@ -32,6 +32,8 @@ namespace Hevadea.Game.Registry
     
     public static class ENTITIES
     {
+        public static EntityBlueprint ITEM;
+        
         public static EntityBlueprint PLAYER;
         public static EntityBlueprint ZOMBIE;
 
@@ -48,6 +50,8 @@ namespace Hevadea.Game.Registry
         
         public static void Initialize()
         {
+            ITEM = RegisterEntityBlueprint(new GenericEntityBlueprint<ItemEntity>("item"));
+            
             // Creatures
             PLAYER = RegisterEntityBlueprint(new GenericEntityBlueprint<PlayerEntity>("player"));
             ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<ZombieEntity>("zombie"));

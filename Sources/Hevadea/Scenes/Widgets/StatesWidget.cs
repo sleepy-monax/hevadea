@@ -5,6 +5,7 @@ using Hevadea.Game.Entities.Creatures;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Game.Entities.Component.Attributes;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -23,8 +24,8 @@ namespace Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var health = _player.Components.Get<Health>().ValuePercent;
-            var energy = _player.Components.Get<Energy>().ValuePercent;
+            var health = _player.Get<Health>().ValuePercent;
+            var energy = _player.Get<Energy>().ValuePercent;
 
             var i = 0;
 

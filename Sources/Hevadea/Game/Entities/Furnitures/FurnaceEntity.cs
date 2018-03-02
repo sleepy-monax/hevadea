@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Microsoft.Xna.Framework;
@@ -17,7 +18,7 @@ namespace Hevadea.Game.Entities.Furnitures
             Height = 9;
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 1));
             Origin = new Point(8, 6);
-            Components.Adds(
+            Adds(
                 new Breakable(),
                 new Light(),
                 new Dropable {Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1)}}

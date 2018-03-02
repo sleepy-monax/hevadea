@@ -1,7 +1,7 @@
 ﻿using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Game.Entities.Component
+namespace Hevadea.Game.Entities.Component.Attributes
 {
     public class Move : EntityComponent, IUpdatableComponent
     {

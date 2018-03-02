@@ -45,12 +45,14 @@ namespace Hevadea
         public static ParalaxeBackground ParalaxeForest;
 
         public static Sprite SprUnderWater;
+        public static SpriteFont FontHack;
 
         public static void Load()
         {
             FontAlagard = Rise.Ressource.GetSpriteFont("alagard");
             FontAlagardBig = Rise.Ressource.GetSpriteFont("alagard_big");
             FontRomulus = Rise.Ressource.GetSpriteFont("romulus");
+            FontHack = Rise.Ressource.GetSpriteFont("hack");
 
             ImgTiles = Rise.Ressource.GetImage("tiles");
             ImgItems = Rise.Ressource.GetImage("items");

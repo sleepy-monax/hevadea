@@ -63,7 +63,7 @@ namespace Hevadea.Framework.Utils
         /// <summary>
         /// The not-so-infamous TAU value.
         /// </summary>
-        public const float TAU = PI * 2;
+        public const float TwoPI = PI * 2;
 
         /// <summary>
         /// Returns the absolute value of a.
