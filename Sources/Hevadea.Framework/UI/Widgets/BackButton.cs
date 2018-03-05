@@ -12,9 +12,7 @@ namespace Hevadea.Framework.UI.Widgets
         public Color IdleColor { get; set; } = Color.White;
         public Color TextColor { get; set; } = Color.White;
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
-        public Texture2D Icon { get; set; } = null;
         private EasingManager _easing = new EasingManager { Speed = 2.5f };
-
         
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -23,8 +21,8 @@ namespace Hevadea.Framework.UI.Widgets
             
             
 
-            var bounce = (int) (24 * _easing.GetValue(EasingFunctions.ElasticEaseOut, EasingFunctions.ElasticEaseIn));
-            var bounceW = (int) (UnitHost.Width + bounce);
+            var bounce = (int) (Scale(24) * _easing.GetValue(EasingFunctions.ElasticEaseOut, EasingFunctions.ElasticEaseIn));
+            var bounceW = Host.Width + bounce;
             
             var rect = new Rectangle(Host.X,Host.Y, 
                                      bounceW, Host.Height);
@@ -38,8 +36,6 @@ namespace Hevadea.Framework.UI.Widgets
             spriteBatch.FillRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
             spriteBatch.DrawRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
             
-            if (Icon != null)
-                spriteBatch.Draw(Icon, new Rectangle(Host.X + bounce / 2, Host.Y, Host.Height, Host.Height), Color.White);
-        }
+            }
     }
 }

@@ -4,20 +4,11 @@ using Hevadea.Game.Entities.Component.Attributes;
 
 namespace Hevadea.Game.Entities.Component.Ai
 {
-    public enum GenericAgentStates
+    public class Agent: EntityComponent, IUpdatableComponent
     {
-        Idle,
-    }
-    public class Agent<TState> : EntityComponent, IUpdatableComponent
-    {
-        public Entity Taget { get; set; }
-        public Dictionary<TState, StateBahevior> States { get; set; } = new Dictionary<TState, StateBahevior>();
-        public List<Trigger> Triggers { get; set; } = new List<Trigger>();
-        public TState CurrentState { get; set; } = default(TState);
-
         public void Update(GameTime gameTime)
         {
-            MoveTo(Owner.Game.Player.X, Owner.Game.Player.Y);
+           
         }
 
         public void MoveTo(float x, float y, float speed = 1f)

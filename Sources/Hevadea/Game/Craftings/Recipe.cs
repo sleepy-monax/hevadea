@@ -8,7 +8,6 @@ namespace Hevadea.Game.Craftings
     {
         public Item Result { get; set; }
         public int Quantity { get; set; }
-        public double CraftingTime { get; set; } = 0f;
         public List<RecipeCost> Costs { get; set; } = new List<RecipeCost>();
 
         public Recipe(Item result, int quantity)
@@ -29,19 +28,13 @@ namespace Hevadea.Game.Craftings
             Costs.Add(new RecipeCost(item, quantity));
             return this;
         }
-
-        public Recipe SetCraftingTime(double time)
-        {
-            CraftingTime = time;
-            return this;
-        }
         
-        public bool CanBeCrafted(ItemStorage i)
+        public virtual bool CanBeCrafted(ItemStorage i)
         {
             return Costs.Aggregate(true, (current, c) => current && i.Count(c.Item) >= c.Count);
         }
 
-        public bool Craft(ItemStorage i)
+        public virtual bool Craft(ItemStorage i)
         {
             if (!CanBeCrafted(i) || i.GetFreeSpace() < Quantity) return false;
 

@@ -40,22 +40,7 @@ namespace Hevadea.Scenes
 
         public override void OnUpdate(GameTime gameTime)
         {
-            if (Game.CurrentMenu == null || !Game.CurrentMenu.PauseGame)
-            {
-                Game.Update(gameTime);
-
-                if (Rise.Input.KeyDown(Keys.Z)) Game.PlayerInput.HandleInput(PlayerInput.MoveUp);
-                if (Rise.Input.KeyDown(Keys.S)) Game.PlayerInput.HandleInput(PlayerInput.MoveDown);
-                if (Rise.Input.KeyDown(Keys.Q)) Game.PlayerInput.HandleInput(PlayerInput.MoveLeft);
-                if (Rise.Input.KeyDown(Keys.D)) Game.PlayerInput.HandleInput(PlayerInput.MoveRight);
-                
-                if (Rise.Input.KeyPress(Keys.E)) Game.PlayerInput.HandleInput(PlayerInput.OpenInventory);
-
-                if (Rise.Input.KeyDown(Keys.J)) Game.PlayerInput.HandleInput(PlayerInput.Attack);
-                if (Rise.Input.KeyPress(Keys.K)) Game.PlayerInput.HandleInput(PlayerInput.Action);
-            }
-
-            if (Rise.Input.KeyPress(Keys.Escape)) Game.PlayerInput.HandleInput(PlayerInput.OpenPauseMenu);
+            Game.Update(gameTime);
         }
 
         public override void OnDraw(GameTime gameTime)

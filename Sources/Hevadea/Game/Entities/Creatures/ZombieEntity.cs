@@ -21,17 +21,8 @@ namespace Hevadea.Game.Entities.Creatures
             Add(new Attack());
             Add(new Swim());
             Add(new Energy());
-            Add(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
-
-            var aiAgent = new Agent<GenericAgentStates>()
-            {
-                States =
-                {
-                    { GenericAgentStates.Idle, null }
-                }
-            };
-            
-            Add(aiAgent);
+            Add(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));            
+            Add(new Agent());
         }
 
 

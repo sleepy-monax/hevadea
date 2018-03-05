@@ -3,11 +3,10 @@ using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Menus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hevadea.Framework;
+using Hevadea.Game.Entities.Component.Ai;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Hevadea.Game
 {
@@ -24,12 +23,42 @@ namespace Hevadea.Game
         {
             _player = player;
             
+
         }
 
+        public void Update(GameTime gameTime)
+        {
+            var game = _player.Game;
+            
+            var input = Rise.Input;
+            var screenBound = Rise.Graphic.GetBound();
+            
+            if (Rise.Pointing.AreaDown(screenBound))
+            {
+                var mousePositionInWorld = game.Camera.ToWorldSpace(Rise.Pointing.GetAreaOver(screenBound)[0].ToVector2());
+                _player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f);
+            }
+            
+            if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
+            {                
+                if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
+                if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
+                if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
+                if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
+                
+                if (input.KeyPress(Keys.E)) HandleInput(PlayerInput.OpenInventory);
+
+                if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
+                if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
+            }
+
+            if (input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenPauseMenu);
+        }
+        
         public void HandleInput(PlayerInput input)
         {
+            var game = _player.Game;
             var playerMovement = _player.Get<Move>();
-            var _game = _player.Game;
             switch (input)
             {
                 case PlayerInput.MoveLeft:
@@ -54,20 +83,19 @@ namespace Hevadea.Game
                     _player.Get<Attack>().Do(_player.HoldingItem);
                     break;
                 case PlayerInput.OpenInventory:
-                    _game.CurrentMenu = new InventoryMenu(_player, RECIPIES.HandCrafted, _game);
+                    game.CurrentMenu = new InventoryMenu(_player, RECIPIES.HandCrafted, game);
                     break;
                 case PlayerInput.OpenPauseMenu:
-                    if (_game.CurrentMenu is HudMenu)
+                    if (game.CurrentMenu is HudMenu)
                     {
-                        _game.CurrentMenu = new PauseMenu(_game);
+                        game.CurrentMenu = new PauseMenu(game);
                     }
                     else
                     {
-                        _game.CurrentMenu = new HudMenu(_game);
+                        game.CurrentMenu = new HudMenu(game);
                     }
                     break;
-                default:
-                    break;
+              
             }
         }
     }

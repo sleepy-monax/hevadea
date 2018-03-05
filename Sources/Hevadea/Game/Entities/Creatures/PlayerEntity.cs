@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Component.Ai;
 using Hevadea.Game.Entities.Component.Attributes;
 using Hevadea.Game.Entities.Component.Render;
 using Hevadea.Game.Items;
@@ -26,6 +27,7 @@ namespace Hevadea.Game.Entities.Creatures
             Add(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
             Add(new Move());
             Add(new Swim());
+            Add(new Agent());
         }
 
         public Item HoldingItem { get; set; }

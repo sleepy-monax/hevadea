@@ -72,8 +72,6 @@
     <Compile Include="Game\Craftings\Recipe.cs" />
     <Compile Include="Game\Craftings\RecipeCost.cs" />
     <Compile Include="Game\Entities\Component\Ai\Agent.cs" />
-    <Compile Include="Game\Entities\Component\Ai\StateBahevior.cs" />
-    <Compile Include="Game\Entities\Component\Ai\Trigger.cs" />
     <Compile Include="Game\Entities\Component\Attributes\Colider.cs" />
     <Compile Include="Game\Entities\Component\Attributes\Dropable.cs" />
     <Compile Include="Game\Entities\Component\Attributes\Energy.cs" />
@@ -268,10 +266,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Entities\Component\Ai\States\" />
-    <Folder Include="Game\Entities\Component\Ai\Triggers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

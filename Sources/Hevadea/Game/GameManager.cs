@@ -11,7 +11,6 @@ namespace Hevadea.Game
     {
         private Menu _currentMenu;
 
-
         public World World { get; }
         public PlayerEntity Player { get; }
         public Camera Camera { get; }
@@ -54,6 +53,8 @@ namespace Hevadea.Game
         public void Update(GameTime gameTime)
         {
 
+            PlayerInput.Update(gameTime);
+            
             foreach (var l in World.Levels)
             {
                 var state = l.GetRenderState(Camera);

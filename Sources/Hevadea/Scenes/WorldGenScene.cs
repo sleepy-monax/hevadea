@@ -26,7 +26,6 @@ namespace Hevadea.Scenes
             _generatorThread = new Thread(() =>
             {
                 Thread.Sleep(1000);
-                GC.AddMemoryPressure(600 * 1024 * 1024);
                 _worldgen = GENERATOR.DEFAULT;
                 _worldgen.Seed = new Random().Next();
                 var world = _worldgen.Generate();

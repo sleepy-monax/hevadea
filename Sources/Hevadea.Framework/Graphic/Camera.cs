@@ -9,6 +9,16 @@ namespace Hevadea.Framework.Graphic
         public float Y { get; set; } = 0;
         public float Zoom { get; set; } = 1f;
         
+        public int GetWidth()
+        {
+            return (int)(Rise.Graphic.GetWidth() / Zoom);
+        }
+
+        public int GetHeight()
+        {
+            return (int)(Rise.Graphic.GetHeight() / Zoom);
+        }
+        
         public Matrix GetTransform()
         {
             return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
