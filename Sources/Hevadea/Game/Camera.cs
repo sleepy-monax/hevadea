@@ -14,6 +14,7 @@ namespace Hevadea.Game
         public Camera(Entity focusEntity)
         {
             FocusEntity = focusEntity;
+            Zoom = 4f;
         }
 
         public override void Animate(GameTime gameTime)

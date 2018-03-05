@@ -16,39 +16,10 @@ namespace Hevadea.Scenes.Menus
     {
         private readonly StatesWidget _playerStats;
 
-        private readonly Button btnUp, btnDown, btnLeft, btnRight, btnAttack, btnAction;
+        private readonly Button btnAttack, btnAction;
 
         public HudMenu(GameManager game) : base(game)
         {
-            btnUp = new Button
-            {
-                Text = "UP",
-                Anchor = Anchor.BottomLeft,
-                Origine = Anchor.BottomLeft,
-                UnitBound = new Rectangle(0,0,128,128),
-                UnitOffset = new Point(128, -128)
-            };
-
-            btnDown = new Button { Text = "DOWN",
-                Anchor = Anchor.BottomLeft,
-                Origine = Anchor.BottomLeft,
-                UnitBound = new Rectangle(0, 0, 128, 128),
-                UnitOffset = new Point(128, 0)
-            };
-
-            btnLeft = new Button { Text = "LEFT",
-                Anchor = Anchor.BottomLeft,
-                Origine = Anchor.BottomLeft,
-                UnitBound = new Rectangle(0, 0, 128, 128)
-            };
-
-            btnRight = new Button { Text = "RIGHT",
-                Anchor = Anchor.BottomLeft,
-                Origine = Anchor.BottomLeft,
-                UnitBound = new Rectangle(0, 0, 128, 128),
-                UnitOffset = new Point(256, 0)
-            };
-
             btnAttack = new Button { Text = "ATTACK",
                 Anchor = Anchor.BottomRight,
                 Origine = Anchor.BottomRight,
@@ -61,11 +32,6 @@ namespace Hevadea.Scenes.Menus
                 Origine = Anchor.BottomRight,
                 UnitBound = new Rectangle(0, 0, 128, 128)
             };
-
-            btnUp.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.MoveUp); };
-            btnDown.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.MoveDown); };
-            btnLeft.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.MoveLeft); };
-            btnRight.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.MoveRight); };
 
             btnAction.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Action); };
             btnAttack.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Attack); };
@@ -84,7 +50,7 @@ namespace Hevadea.Scenes.Menus
                 Childrens =
                 {
                     _playerStats,
-                    btnUp, btnDown, btnLeft, btnRight, btnAttack, btnAction,
+                    btnAttack, btnAction,
                     new Button{ Text = "Pause", Origine = Anchor.TopLeft, Anchor = Anchor.TopLeft, UnitOffset = new Point(16,16)}
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new PauseMenu(Game); }),
                     

@@ -28,8 +28,8 @@ namespace Hevadea.Framework.Graphic
 
         public Vector2 ToWorldSpace(Vector2 screen)
         {
-             return new Vector2((screen.X / Zoom) + (X - Rise.Graphic.GetWidth() / Zoom),
-                                (screen.Y / Zoom) + (Y - Rise.Graphic.GetHeight() / Zoom));
+             return new Vector2((screen.X / Zoom) + (X - Rise.Graphic.GetWidth() / Zoom) + (Rise.Graphic.GetWidth() / Zoom) / 2, 
+                                (screen.Y / Zoom) + (Y - Rise.Graphic.GetHeight() / Zoom) + (Rise.Graphic.GetHeight() / Zoom) /2);
         }
 
         public Vector2 ToScreenSpace(Vector2 world)

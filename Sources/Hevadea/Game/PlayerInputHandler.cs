@@ -7,6 +7,7 @@ using Hevadea.Framework;
 using Hevadea.Game.Entities.Component.Ai;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Hevadea.Framework.Utils;
 
 namespace Hevadea.Game
 {
@@ -22,8 +23,6 @@ namespace Hevadea.Game
         public PlayerInputHandler(PlayerEntity player)
         {
             _player = player;
-            
-
         }
 
         public void Update(GameTime gameTime)
@@ -35,8 +34,14 @@ namespace Hevadea.Game
             
             if (Rise.Pointing.AreaDown(screenBound))
             {
-                var mousePositionInWorld = game.Camera.ToWorldSpace(Rise.Pointing.GetAreaOver(screenBound)[0].ToVector2());
-                _player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f);
+                var mousePositionOnScreen = Rise.Pointing.GetAreaOver(screenBound)[0].ToVector2();
+                var mousePositionInWorld = game.Camera.ToWorldSpace(mousePositionOnScreen);
+                var screenCenter = Rise.Graphic.GetCenter();
+
+                if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Rise.Graphic.GetHeight() / 2)
+                {
+                    _player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f);
+                }
             }
             
             if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)

@@ -52,13 +52,16 @@ namespace Hevadea.Game
 
         public void Update(GameTime gameTime)
         {
-
-            PlayerInput.Update(gameTime);
-            
-            foreach (var l in World.Levels)
+            if (!CurrentMenu?.PauseGame ?? false)
             {
-                var state = l.GetRenderState(Camera);
-                l.Update(state, gameTime);
+                Camera.Update(gameTime);
+                PlayerInput.Update(gameTime);
+            
+                foreach (var l in World.Levels)
+                {
+                    var state = l.GetRenderState(Camera);
+                    l.Update(state, gameTime);
+                }
             }
 
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
