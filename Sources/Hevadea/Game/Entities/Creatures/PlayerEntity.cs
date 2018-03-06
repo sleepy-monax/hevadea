@@ -28,6 +28,7 @@ namespace Hevadea.Game.Entities.Creatures
             Add(new Move());
             Add(new Swim());
             Add(new Agent());
+            Add(new Pushable());
         }
 
         public Item HoldingItem { get; set; }

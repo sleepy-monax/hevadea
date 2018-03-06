@@ -78,6 +78,7 @@
     <Compile Include="Game\Entities\Component\Attributes\Health.cs" />
     <Compile Include="Game\Entities\Component\Attributes\Light.cs" />
     <Compile Include="Game\Entities\Component\Attributes\Move.cs" />
+    <Compile Include="Game\Entities\Component\Attributes\Pushable.cs" />
     <Compile Include="Game\Entities\Component\EntityComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableComponent.cs" />
     <Compile Include="Game\Entities\Component\IDrawableOverlayComponent.cs" />

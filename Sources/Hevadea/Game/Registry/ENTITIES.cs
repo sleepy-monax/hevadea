@@ -3,6 +3,7 @@ using Hevadea.Game.Entities.Creatures;
 using Hevadea.Game.Entities.Furnitures;
 using System.Collections.Generic;
 using Hevadea.Game.Entities.Plants;
+using Hevadea.Game.Items;
 
 namespace Hevadea.Game.Registry
 {

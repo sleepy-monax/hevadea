@@ -11,7 +11,6 @@ namespace Hevadea.Game.Registry
         public static List<Tile> ById = new List<Tile>();
 
         public static Tile VOID;
-        public static Tile NULL;
         public static Tile GRASS;
         public static Tile SAND;
         public static Tile WATER;
@@ -28,7 +27,6 @@ namespace Hevadea.Game.Registry
             WATER      = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 4)));
             WOOD_FLOOR = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 5)));
             WOOD_WALL  = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 6)));
-            NULL       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 7)));
             VOID       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 8)));
             DIRT       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 9)));
         }
@@ -54,10 +52,10 @@ namespace Hevadea.Game.Registry
             DIRT.AddTag(new Tags.Damage { ReplacementTile = VOID });
 
             WOOD_WALL.AddTag(new Tags.Solide());
-            WOOD_WALL.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
+            WOOD_WALL.AddTag(new Tags.Damage { ReplacementTile = DIRT });
             WOOD_WALL.AddTag(new Tags.Droppable(new Drop(ITEMS.WOOD_WALL, 1f, 1, 1)));
 
-            WOOD_FLOOR.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
+            WOOD_FLOOR.AddTag(new Tags.Damage { ReplacementTile = DIRT });
             WOOD_FLOOR.AddTag(new Tags.Droppable(new Drop(ITEMS.WOOD_FLOOR, 1f, 1, 1)));
         }
     }

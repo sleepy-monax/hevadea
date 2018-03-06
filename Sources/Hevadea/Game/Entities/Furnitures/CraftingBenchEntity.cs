@@ -23,6 +23,8 @@ namespace Hevadea.Game.Entities.Furnitures
 
             Adds(
                 new Breakable(),
+                new Pushable(),
+                new Move(),
                 new Dropable {Items = {new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1)}}
             );
             

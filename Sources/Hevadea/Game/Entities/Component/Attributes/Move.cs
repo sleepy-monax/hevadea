@@ -19,6 +19,7 @@ namespace Hevadea.Game.Entities.Component.Attributes
         public virtual bool Do(float accelerationX, float accelerationY, Direction facing)
         {
             if (Owner.Removed) return false;
+            Owner.Facing = facing;
             // Handle the move speed tag on a tile.
             var curpos = Owner.GetTilePosition();
             if (Owner.Level.GetTile(curpos.X, curpos.Y).HasTag<Tags.Ground>())
@@ -32,9 +33,6 @@ namespace Hevadea.Game.Entities.Component.Attributes
             // Apply the movement.
             if (accelerationX == 0 && accelerationY == 0
                 || !(MoveInternal(accelerationX, 0) | MoveInternal(0, accelerationY))) return false;
-
-            // Update the entity facing.
-            Owner.Facing = facing;
 
             // Tell the tile we walked on it.
             var pos = Owner.GetTilePosition();
@@ -78,12 +76,24 @@ namespace Hevadea.Game.Entities.Component.Attributes
                 {
                     if (e == Owner || !e.IsBlocking(Owner) || NoClip) continue;
 
+                    if (e.IsColliding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height))
+                    {
+                        e.Get<Pushable>()?.Push(Owner, Owner.Facing, 1f);
+                    }
+                    
+                    
+                    if (e.IsColliding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height))
+                    {
+                        e.Get<Pushable>()?.Push(Owner, Owner.Facing, 1f);
+                    }
+                    
+                    if (e.IsColliding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height)) aX = 0f;
                     if (e.IsColliding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height)) aY = 0f;
 
-                    if (e.IsColliding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height)) aX = 0f;
 
                     if (e.IsColliding(Owner.X + aX, Owner.Y + aY, Owner.Width, Owner.Height))
                     {
+                        e.Get<Pushable>()?.Push(Owner, Owner.Facing, 1f);
                         aX = 0f;
                         aY = 0f;
                     }

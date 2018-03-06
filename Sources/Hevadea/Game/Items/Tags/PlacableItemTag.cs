@@ -20,7 +20,7 @@ namespace Hevadea.Game.Items.Tags
             {
                 inventory?.Content.Remove(AttachedItem, 1);
 
-                Place(level, pos);
+                Place(level, pos, user.Facing);
                 
                 if (user is PlayerEntity p)
                     if (p.Get<Inventory>().Content.Count(p.HoldingItem) == 0)
@@ -28,6 +28,6 @@ namespace Hevadea.Game.Items.Tags
             }
         }
 
-        public abstract void Place(Level level, TilePosition tile);
+        public abstract void Place(Level level, TilePosition tile, Direction facing);
     }
 }

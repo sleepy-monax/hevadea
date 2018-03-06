@@ -1,13 +1,12 @@
-﻿using Hevadea.Framework.Utils;
+﻿using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Component;
 using Hevadea.Game.Entities.Component.Attributes;
-using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Game.Entities
+namespace Hevadea.Game.Items
 {
     public class ItemEntity : Entity
     {
@@ -31,25 +30,7 @@ namespace Hevadea.Game.Entities
             move.Do(sx, sy, Facing);
             sx = sx / 2;
             sy = sy / 2;
-
-            var magnetEntity = Level.GetEntitiesOnArea(new Rectangle((int)X - 28, (int)Y - 28, 64, 64));
-
-            foreach (var e in magnetEntity)
-            {
-                var inventory = e.Get<Inventory>();
-
-                if (inventory != null && inventory.AlowPickUp && inventory.Content.HasFreeSlot())
-                {
-                    var dir = new Vector2(e.X - X, e.Y - Y);
-                    var dist = Mathf.Distance(e.X, e.Y, X, Y);
-
-                    dir.Normalize();
-                    dir = dir * (1.1f/dist * dist);
-
-                    move.Do(dir.X, dir.Y, Direction.Down);
-                }
-            }
-
+            
             var entities = Level.GetEntitiesOnArea(Bound);
             foreach (var e in entities)
             {
