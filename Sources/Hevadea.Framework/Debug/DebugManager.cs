@@ -24,6 +24,7 @@ namespace Hevadea.Framework.Debug
             _spriteBatch.DrawString(Rise.Ui.DebugFont, 
             $@"Hevadea
 Running on platform: '{Rise.Platform.GetPlatformName()}'
+Screen: {Rise.Graphic.GetWidth()}, {Rise.Graphic.GetHeight()} 
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}", new Vector2(16, 16), Color.White);
             Rise.Pointing.DrawDebug(_spriteBatch);
             _spriteBatch.End();
