@@ -66,7 +66,6 @@ namespace Hevadea.Framework.Utils.Json
                     }
                 stringBuilder.Append('"');
             }
-            // Fix float and double formating
             else if (item is float f)
             {
                 stringBuilder.Append(f.ToString(CultureInfo.InvariantCulture));

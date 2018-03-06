@@ -17,7 +17,7 @@ namespace Hevadea.Framework
     {
         // Configs
         public static bool DebugUI { get; set; } = false;
-        public static bool ShowDebug { get; set; } = false;
+        public static bool ShowDebug { get; set; } = true;
         
         // Components
         [Obsolete] public static LegacyInputManager Input;
@@ -95,7 +95,9 @@ namespace Hevadea.Framework
             Graphic.ResetScissor();
             Graphic.Clear(Color.Black);
             Scene.Draw(gameTime);
-            Debug.Draw(gameTime);
+            
+            if (ShowDebug)
+                Debug.Draw(gameTime);
         }
     }
 }

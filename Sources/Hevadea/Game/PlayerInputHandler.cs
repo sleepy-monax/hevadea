@@ -28,33 +28,35 @@ namespace Hevadea.Game
         public void Update(GameTime gameTime)
         {
             var game = _player.Game;
-            
             var input = Rise.Input;
             var screenBound = Rise.Graphic.GetBound();
             
-            if (Rise.Pointing.AreaDown(screenBound))
-            {
-                var mousePositionOnScreen = Rise.Pointing.GetAreaOver(screenBound)[0].ToVector2();
-                var mousePositionInWorld = game.Camera.ToWorldSpace(mousePositionOnScreen);
-                var screenCenter = Rise.Graphic.GetCenter();
-
-                if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Rise.Graphic.GetHeight() / 2)
+            if (!game.CurrentMenu?.PauseGame ?? false)
+            {  
+                if (Rise.Pointing.AreaDown(screenBound))
                 {
-                    _player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f);
+                    var mousePositionOnScreen = Rise.Pointing.GetAreaOver(screenBound)[0].ToVector2();
+                    var mousePositionInWorld = game.Camera.ToWorldSpace(mousePositionOnScreen);
+                    var screenCenter = Rise.Graphic.GetCenter();
+    
+                    if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Rise.Graphic.GetHeight() / 2)
+                    {
+                        _player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f);
+                    }
                 }
-            }
-            
-            if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
-            {                
-                if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
-                if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
-                if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
-                if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
                 
-                if (input.KeyPress(Keys.E)) HandleInput(PlayerInput.OpenInventory);
-
-                if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
-                if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
+                if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
+                {                
+                    if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
+                    if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
+                    if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
+                    if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
+                    
+                    if (input.KeyPress(Keys.E)) HandleInput(PlayerInput.OpenInventory);
+    
+                    if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
+                    if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
+                }
             }
 
             if (input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenPauseMenu);

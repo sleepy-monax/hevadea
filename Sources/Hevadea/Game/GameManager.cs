@@ -52,10 +52,11 @@ namespace Hevadea.Game
 
         public void Update(GameTime gameTime)
         {
+            Camera.Update(gameTime);
+            PlayerInput.Update(gameTime);
+            
             if (!CurrentMenu?.PauseGame ?? false)
             {
-                Camera.Update(gameTime);
-                PlayerInput.Update(gameTime);
             
                 foreach (var l in World.Levels)
                 {
