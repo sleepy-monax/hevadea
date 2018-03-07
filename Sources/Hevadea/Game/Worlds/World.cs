@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hevadea.Framework;
-using Hevadea.Game.Entities.Creatures;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Maker.Rise;
@@ -37,7 +37,7 @@ namespace Hevadea.Game.Worlds
             { Transition = 30 };
         }
 
-        public void SpawnPlayer(PlayerEntity player)
+        public void SpawnPlayer(EntityPlayer player)
         {
             var level = GetLevel(PlayerSpawnLevel);
             level.SpawnEntity(player, level.Width / 2, level.Height / 2);

@@ -21,23 +21,23 @@ namespace Hevadea.Game.Storage
             Logger.Log<GameManager>(LoggerLevel.Info, $"Saving world to '{path}'.");
             Directory.CreateDirectory(path);
 
-            SetStatus("Saving player data");
+            SetStatus("Saving player data...");
             var p = game.Player;
             var player = p.Save();
             p.Level.RemoveEntity(p);
             _progress = 0.25f;
 
-            SetStatus("Saving world");
+            SetStatus("Saving world data...");
             var world = game.World.Save();
             p.Level.AddEntity(p);
             _progress = 0.50f;
 
-            SetStatus("Serialization");
+            SetStatus("Encoding data...");
             string worldJson = world.ToJson();
             string playerJson = player.ToJson();
             _progress = 0.75f;
 
-            SetStatus("Saving to files");
+            SetStatus("Saving to files...");
             File.WriteAllText($"{path}/world.json", worldJson);
             File.WriteAllText($"{path}/player.json", playerJson);
             _progress = 1f;

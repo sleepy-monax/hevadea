@@ -1,7 +1,7 @@
 ﻿using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
-using Hevadea.Game.Entities.Creatures;
 using System.IO;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Worlds;
 using Hevadea.Game.Registry;
 
@@ -23,23 +23,23 @@ namespace Hevadea.Game.Storage
         {
             Logger.Log<GameManager>(LoggerLevel.Info, $"Loading world from '{path}'.");
             
-            SetStatus("read_files");
+            SetStatus("Loading file...");
             string worldStr = File.ReadAllText($"{path}/world.json");
             string playerStr = File.ReadAllText($"{path}/player.json");
             _progress = 0.25f;
 
-            SetStatus("create_game_objects");
+            SetStatus("Creating game objects...");
             var world = new World();
-            var player = new PlayerEntity();
+            var player = new EntityPlayer();
             player.Blueprint = ENTITIES.PLAYER;
             _progress = 0.5f;
 
-            SetStatus("deserialize_game_data");
+            SetStatus("Loading game data...");
             var worldDara = worldStr.FromJson<WorldStorage>();
             var playerData = playerStr.FromJson<EntityStorage>();
             _progress = 0.75f;
 
-            SetStatus("loading_game_data");
+            SetStatus("Initialization...");
             world.Load(worldDara);
             player.Load(playerData);
             _progress = 1f;

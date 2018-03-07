@@ -1,9 +1,5 @@
 ﻿using Hevadea.Game.Entities;
-using Hevadea.Game.Entities.Creatures;
-using Hevadea.Game.Entities.Furnitures;
 using System.Collections.Generic;
-using Hevadea.Game.Entities.Mecanics;
-using Hevadea.Game.Entities.Plants;
 using Hevadea.Game.Items;
 
 namespace Hevadea.Game.Registry
@@ -55,21 +51,21 @@ namespace Hevadea.Game.Registry
             ITEM = RegisterEntityBlueprint(new GenericEntityBlueprint<ItemEntity>("item"));
             
             // Creatures
-            PLAYER = RegisterEntityBlueprint(new GenericEntityBlueprint<PlayerEntity>("player"));
-            ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<ZombieEntity>("zombie"));
+            PLAYER = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityPlayer>("player"));
+            ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityZombie>("zombie"));
 
             // Plants
-            GRASS = RegisterEntityBlueprint(new GenericEntityBlueprint<GrassEntity>("grass"));
-            TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<TreeEntity>("tree"));
+            GRASS = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityGrass>("grass"));
+            TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
             
             // Furnitures
-            CHEST          = RegisterEntityBlueprint(new GenericEntityBlueprint<ChestEntity>("chest"));
-            CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<CraftingBenchEntity>("crafting_bench"));
-            FURNACE        = RegisterEntityBlueprint(new GenericEntityBlueprint<FurnaceEntity>("furnace"));
-            STAIRES        = RegisterEntityBlueprint(new GenericEntityBlueprint<StairsEntity>("staires"));
-            TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<TorchEntity>("torch"));
+            CHEST          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChest>("chest"));
+            CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityCraftingBench>("crafting_bench"));
+            FURNACE        = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFurnace>("furnace"));
+            STAIRES        = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityStairs>("staires"));
+            TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTorch>("torch"));
 
-            BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<BeltEntity>("belt"));
+            BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityBelt>("belt"));
         }
         
         private static Dictionary<string, EntityBlueprint> _blueprintLibrary = new Dictionary<string, EntityBlueprint>();

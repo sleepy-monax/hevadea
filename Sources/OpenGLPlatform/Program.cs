@@ -11,7 +11,7 @@ namespace OpenGLPlatform
         static void Main()
         {
             Rise.Initialize(new RiseOpenGLPlatform());
-            Rise.Start(new SplashScene());
+            Rise.Start(new SceneGameSplash());
             Environment.Exit(0);
         }
     }

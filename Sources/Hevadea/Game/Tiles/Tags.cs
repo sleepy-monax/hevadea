@@ -1,11 +1,12 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Game.Entities;
-using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.Game.Entities.Components.Interaction;
 
 namespace Hevadea.Game.Tiles
 {

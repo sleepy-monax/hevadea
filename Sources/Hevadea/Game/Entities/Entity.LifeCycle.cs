@@ -1,4 +1,4 @@
-﻿using Hevadea.Game.Entities.Component;
+﻿using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
@@ -24,7 +24,7 @@ namespace Hevadea.Game.Entities
             store.Set("Facing", (int) Facing);
 
             foreach (var c in _components)
-                if (c is ISaveLoadComponent s)
+                if (c is IEntityComponentSaveLoad s)
                     s.OnGameSave(store);
             OnSave(store);
 
@@ -39,7 +39,7 @@ namespace Hevadea.Game.Entities
             Facing = (Direction)(int)store.Get("Facing", (int) Facing);
 
             foreach (var c in _components)
-                if (c is ISaveLoadComponent s)
+                if (c is IEntityComponentSaveLoad s)
                     s.OnGameLoad(store);
             
             OnLoad(store);
@@ -53,7 +53,7 @@ namespace Hevadea.Game.Entities
         public void Update(GameTime gameTime)
         {
             foreach (var c in _components)
-                if (c is IUpdatableComponent updatable)
+                if (c is IEntityComponentUpdatable updatable)
                     updatable.Update(gameTime);
             
             OnUpdate(gameTime);
@@ -63,7 +63,7 @@ namespace Hevadea.Game.Entities
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (var c in _components)
-                if (c is IDrawableComponent drawable)
+                if (c is IEntityComponentDrawable drawable)
                     drawable.Draw(spriteBatch, gameTime);
             
             OnDraw(spriteBatch, gameTime);
@@ -73,7 +73,7 @@ namespace Hevadea.Game.Entities
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (var c in _components)
-                if (c is IDrawableOverlayComponent drawable)
+                if (c is IEntityComponentDrawableOverlay drawable)
                     drawable.DrawOverlay(spriteBatch, gameTime);
         } 
     }

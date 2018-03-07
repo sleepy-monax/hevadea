@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Hevadea.Game.Entities.Component;
+using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

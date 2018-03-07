@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Game.Entities;
-using Hevadea.Game.Entities.Component;
-using Hevadea.Game.Entities.Creatures;
+using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 
@@ -22,7 +21,7 @@ namespace Hevadea.Game.Items.Tags
 
                 Place(level, pos, user.Facing);
                 
-                if (user is PlayerEntity p)
+                if (user is EntityPlayer p)
                     if (p.Get<Inventory>().Content.Count(p.HoldingItem) == 0)
                         p.HoldingItem = null;
             }

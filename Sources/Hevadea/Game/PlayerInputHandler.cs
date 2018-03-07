@@ -1,13 +1,14 @@
-﻿using Hevadea.Game.Entities.Component;
-using Hevadea.Game.Entities.Component.Attributes;
-using Hevadea.Game.Entities.Creatures;
+﻿using Hevadea.Game.Entities.Components;
+using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Menus;
 using Hevadea.Framework;
-using Hevadea.Game.Entities.Component.Ai;
+using Hevadea.Game.Entities.Components.Ai;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Hevadea.Framework.Utils;
+using Hevadea.Game.Entities;
+using Hevadea.Game.Entities.Components.Interaction;
 
 namespace Hevadea.Game
 {
@@ -18,16 +19,16 @@ namespace Hevadea.Game
 
     public class PlayerInputHandler
     {
-        public PlayerEntity _player;
+        public EntityPlayer Player;
 
-        public PlayerInputHandler(PlayerEntity player)
+        public PlayerInputHandler(EntityPlayer player)
         {
-            _player = player;
+            Player = player;
         }
 
         public void Update(GameTime gameTime)
         {
-            var game = _player.Game;
+            var game = Player.Game;
             var input = Rise.Input;
             var screenBound = Rise.Graphic.GetBound();
             
@@ -41,7 +42,7 @@ namespace Hevadea.Game
     
                     if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Rise.Graphic.GetHeight() / 2)
                     {
-                        _player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f);
+                        Player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y);
                     }
                 }
                 
@@ -64,8 +65,8 @@ namespace Hevadea.Game
         
         public void HandleInput(PlayerInput input)
         {
-            var game = _player.Game;
-            var playerMovement = _player.Get<Move>();
+            var game = Player.Game;
+            var playerMovement = Player.Get<Move>();
             switch (input)
             {
                 case PlayerInput.MoveLeft:
@@ -81,25 +82,25 @@ namespace Hevadea.Game
                     playerMovement.Do(0, +1, Direction.Down);
                     break;
                 case PlayerInput.Action:
-                    if (_player.Get<Inventory>().Content.Count(_player.HoldingItem) == 0)
-                        _player.HoldingItem = null;
+                    if (Player.Get<Inventory>().Content.Count(Player.HoldingItem) == 0)
+                        Player.HoldingItem = null;
 
-                    _player.Get<Interact>().Do(_player.HoldingItem);
+                    Player.Get<Interact>().Do(Player.HoldingItem);
                     break;
                 case PlayerInput.Attack:
-                    _player.Get<Attack>().Do(_player.HoldingItem);
+                    Player.Get<Attack>().Do(Player.HoldingItem);
                     break;
                 case PlayerInput.OpenInventory:
-                    game.CurrentMenu = new InventoryMenu(_player, RECIPIES.HandCrafted, game);
+                    game.CurrentMenu = new MenuPlayerInventory(Player, RECIPIES.HandCrafted, game);
                     break;
                 case PlayerInput.OpenPauseMenu:
-                    if (game.CurrentMenu is HudMenu)
+                    if (game.CurrentMenu is MenuInGame)
                     {
-                        game.CurrentMenu = new PauseMenu(game);
+                        game.CurrentMenu = new MenuGamePaused(game);
                     }
                     else
                     {
-                        game.CurrentMenu = new HudMenu(game);
+                        game.CurrentMenu = new MenuInGame(game);
                     }
                     break;
               

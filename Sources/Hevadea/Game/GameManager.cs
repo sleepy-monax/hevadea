@@ -1,8 +1,8 @@
-﻿using Hevadea.Game.Entities.Creatures;
-using Hevadea.Game.Storage;
+﻿using Hevadea.Game.Storage;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 using System;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game
@@ -12,7 +12,7 @@ namespace Hevadea.Game
         private Menu _currentMenu;
 
         public World World { get; }
-        public PlayerEntity Player { get; }
+        public EntityPlayer Player { get; }
         public Camera Camera { get; }
         public Random Random { get; } = new Random();
         public PlayerInputHandler PlayerInput { get; }
@@ -30,7 +30,7 @@ namespace Hevadea.Game
             }
         }
 
-        public GameManager(World world, PlayerEntity player)
+        public GameManager(World world, EntityPlayer player)
         {
             World = world;
             Player = player;
@@ -41,7 +41,7 @@ namespace Hevadea.Game
         public void Initialize()
         {
             World.Initialize(this);
-            CurrentMenu = new HudMenu(this);
+            CurrentMenu = new MenuInGame(this);
             World.SpawnPlayer(Player);
         }
 
