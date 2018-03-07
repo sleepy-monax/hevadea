@@ -13,9 +13,19 @@ namespace Hevadea.Game.Entities.Components.Attributes
             IsMoving = false;
         }
 
+        public void MoveTo(float x, float y, Direction? direction = null, float speed = 1f)
+        {
+            var dir = new Vector2(x - Owner.X, y - Owner.Y);
+            dir.Normalize();
+            dir = dir * speed;
+
+            Do(dir.X, dir.Y, direction ?? dir.ToDirection());
+        }
+
         /// <summary>
         /// Move the entity relative to him With colision detection.
         /// </summary>
+        /// 
         public virtual bool Do(float accelerationX, float accelerationY, Direction facing)
         {
             if (Owner.Removed) return false;

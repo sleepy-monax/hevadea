@@ -42,7 +42,7 @@ namespace Hevadea.Game
     
                     if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Rise.Graphic.GetHeight() / 2)
                     {
-                        Player.Get<Agent>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y);
+                        Player.Get<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y);
                     }
                 }
                 

@@ -328,5 +328,10 @@ namespace Hevadea.Framework.Utils
         {
             return Sqrt((aX - bX) * (aX - bX) + (aY - bY) * (aY - bY));
         }
+
+        public static float DistanceManhattan(float aX, float aY, float bX, float bY)
+        {
+            return Abs(aX- bX) + Abs(aY - bY);
+        }
     }
 }

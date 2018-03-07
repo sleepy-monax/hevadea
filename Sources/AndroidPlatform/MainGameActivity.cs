@@ -28,7 +28,7 @@ namespace AndroidPlatform
             Rise.Initialize(platform);
   
             SetContentView((View)Rise.MonoGame.Services.GetService(typeof(View)));
-            Rise.Start(new SplashScene());
+            Rise.Start(new SceneLoadGame());
         }
     }
 }

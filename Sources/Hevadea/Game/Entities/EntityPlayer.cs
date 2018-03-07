@@ -31,7 +31,6 @@ namespace Hevadea.Game.Entities
             Add(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
             Add(new Move());
             Add(new Swim());
-            Add(new Agent());
             Add(new Pushable());
         }
 

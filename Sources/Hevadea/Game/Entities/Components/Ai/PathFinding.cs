@@ -12,109 +12,38 @@ namespace Hevadea.Game.Entities.Components.Ai
     {
         public class Node
         {
-            public bool IsWalkable;
-            public int X;
-            public int Y;
-            public float Penalty;
+            public bool IsWalkable { get; }
+            public int X { get; }
+            public int Y { get; }
+            public float Penalty { get; }
 
             // calculated values while finding path
             public int gCost;
             public int hCost;
-            public Node parent;
+            public int fCost => gCost + hCost;
+            public Node Parent;
 
-            // create the node
-            // _price - how much does it cost to pass this tile. less is better, but 0.0f is for non-walkable.
-            // _gridX, _gridY - tile location in grid.
             public Node(bool isWalkable, int x, int y) : this(isWalkable ? 1f: 0f, x, y){}
             
-            public Node(float price, int x, int y)
+            public Node(float penalty, int x, int y)
             {
-                IsWalkable = price != 0.0f;
-                Penalty = price;
+                IsWalkable = penalty != 0.0f;
+                Penalty = penalty;
                 X = x;
                 Y = y;
             }
 
-            public int fCost
-            {
-                get
-                {
-                    return gCost + hCost;
-                }
-            }
         }
         
-        private Node[,] _cache;
+        private Node[,] _nodes;
         private Level _level;
-        
+
         public PathFinder(Level level)
         {
-            _cache = new Node[level.Width,level.Height];
+            _nodes = new Node[level.Width,level.Height];
             _level = level;
         }
-        
-        private Node GetNode(int tx, int ty)
-        {
-            if (_cache[tx, ty] == null)
-            {
-                _cache[tx, ty] = new Node(!(_level.GetTile(tx, ty).HasTag<Tags.Solide>() || _level.GetEntityOnTile(tx, ty).Count > 0), tx, ty);
-            }
 
-            return _cache[tx, ty];
-        }
-        
-        private List<Node> GetNeighbours(int tx, int ty)
-        {
-            var neighbours = new List<Node>();
-
-            for (int x = -1; x <= 1; x++)
-            {
-                for (int y = -1; y <= 1; y++)
-                {
-                    if (x == 0 && y == 0)
-                        continue;
-
-                    int checkX = tx + x;
-                    int checkY = ty + y;
-
-                    if (checkX >= 0 && checkX < _level.Width && checkY >= 0 && checkY < _level.Height)
-                    {
-                        neighbours.Add(GetNode( checkX, checkY));
-                    }
-                }
-            }
-
-            return neighbours;
-        }
-        
-                
-        private static List<Node> RetracePath(Node startNode, Node endNode)
-        {
-            var path = new List<Node>();
-            var currentNode = endNode;
-
-            while (currentNode != startNode)
-            {
-                path.Add(currentNode);
-                currentNode = currentNode.parent;
-            }
-            path.Reverse();
-            return path;
-        }
-        
-        private static int GetDistance(Node nodeA, Node nodeB)
-        {
-            return Mathf.Abs(nodeA.X - nodeB.X) + Mathf.Abs(nodeA.Y - nodeB.Y);
-        }
-
-        public static void DrawPath(SpriteBatch sb, List<Node> path, Color color)
-        {
-            foreach (var n in path)
-            {
-                sb.FillRectangle(new Rectangle(n.X * 16 + 4, n.Y * 16 + 4, 8, 8), color);
-            }
-        }
-        
         public List<Node> PathFinding(TilePosition start, TilePosition end)
         {
             var startNode = GetNode(start.X, start.Y);
@@ -150,12 +79,12 @@ namespace Hevadea.Game.Entities.Components.Ai
                         continue;
                     }
 
-                    int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour) * (int)(10.0f * neighbour.Penalty);
+                    int newMovementCostToNeighbour = currentNode.gCost + (int)Mathf.DistanceManhattan(currentNode.X, currentNode.Y, neighbour.X, neighbour.Y) * (int)(10.0f * neighbour.Penalty);
                     if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                     {
                         neighbour.gCost = newMovementCostToNeighbour;
-                        neighbour.hCost = GetDistance(neighbour, targetNode);
-                        neighbour.parent = currentNode;
+                        neighbour.hCost = (int)Mathf.DistanceManhattan(neighbour.X, neighbour.Y, targetNode.X, targetNode.Y);
+                        neighbour.Parent = currentNode;
 
                         if (!openSet.Contains(neighbour))
                             openSet.Add(neighbour);
@@ -165,5 +94,73 @@ namespace Hevadea.Game.Entities.Components.Ai
 
             return null;
         }
+
+        private Node GetNode(int tx, int ty)
+        {
+            if (_nodes[tx, ty] == null)
+            {
+                _nodes[tx, ty] = new Node(!(_level.GetTile(tx, ty).HasTag<Tags.Solide>() ), tx, ty);
+            }
+
+            return _nodes[tx, ty];
+        }
+        
+        private List<Node> GetNeighbours(int tx, int ty)
+        {
+            var neighbours = new List<Node>();
+
+            for (int x = -1; x <= 1; x++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    if ((x == 0 && y == 0) )
+                        continue;
+
+                    if (x == 0 || y == 0)
+                    {
+                        int checkX = tx + x;
+                        int checkY = ty + y;
+
+                        if (checkX >= 0 && checkX < _level.Width && checkY >= 0 && checkY < _level.Height)
+                        {
+                            neighbours.Add(GetNode( checkX, checkY));
+                        }
+                    }
+                }
+            }
+
+            return neighbours;
+        }
+        
+                
+        private static List<Node> RetracePath(Node startNode, Node endNode)
+        {
+            var path = new List<Node>();
+            var currentNode = endNode;
+
+            while (currentNode != startNode)
+            {
+                path.Add(currentNode);
+                currentNode = currentNode.Parent;
+            }
+            path.Reverse();
+            return path;
+        }
+        
+        public static void DrawPath(SpriteBatch sb, List<Node> path, Color color)
+        {
+            Node lastNode = null;
+            foreach (var n in path)
+            {
+                if (lastNode != null)
+                {
+                    sb.DrawLine(lastNode.X * 16 + 8, lastNode.Y * 16 + 8, n.X * 16 + 8, n.Y * 16 + 8, color);
+                }
+                sb.FillRectangle(new Rectangle(n.X * 16 + 6, n.Y * 16 + 6, 4, 4), color);
+                lastNode = n;
+            }
+        }
+        
+       
     }
 }

@@ -49,7 +49,9 @@ namespace Hevadea.Game.Tiles
 
         public static bool operator ==(TilePosition left, TilePosition right)
         {
-            return (left.X == right.X) | (left.Y == right.Y);
+            if (left is null)
+                return right is null;
+            return left.Equals(right);
         }
 
         protected bool Equals(TilePosition other)
