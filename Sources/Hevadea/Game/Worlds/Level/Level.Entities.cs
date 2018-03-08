@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities;
+using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Game.Worlds
 {
@@ -18,13 +20,13 @@ namespace Hevadea.Game.Worlds
         public Entity SpawnEntity(Entity entity, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(entity);
-            entity.SetPosition(tx * ConstVal.TileSize + (ConstVal.TileSize / 2 - entity.Width / 2) + offX, ty * ConstVal.TileSize + (ConstVal.TileSize / 2 - entity.Height / 2) + offY);
+            entity.SetPosition(tx * ConstVal.TileSize + (ConstVal.TileSize / 2) + offX, ty * ConstVal.TileSize + (ConstVal.TileSize / 2) + offY);
             return entity;
         }
 
         public Entity SpawnEntity(EntityBlueprint blueprint, int tx, int ty, float offX = 0f, float offY = 0f)
         {
-            var entity = blueprint.Build();
+            var entity = blueprint.Construct();
             SpawnEntity(entity, tx, ty, offX, offY);
             return entity;
         }
@@ -72,7 +74,7 @@ namespace Hevadea.Game.Worlds
             return result;
         }
 
-        public List<Entity> GetEntitiesOnArea(Rectangle area)
+        public List<Entity> GetEntitiesOnArea(RectangleF area)
         {
             var result = new List<Entity>();
 
@@ -83,15 +85,25 @@ namespace Hevadea.Game.Worlds
             var endY = (area.Y + area.Height) / ConstVal.TileSize + 1;
 
 
-            for (var x = beginX; x < endX; x++)
-            for (var y = beginY; y < endY; y++)
+            for (int x = (int)beginX; x < endX; x++)
+            for (int y = (int)beginY; y < endY; y++)
             {
                 if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
                 var entities = _entitiesOnTiles[x, y];
-                result.AddRange(entities.Where(i => i.IsColliding(area)));
+
+                result.AddRange(entities.Where(i => 
+                {
+                    return i.Get<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position);
+                }
+                ));
             }
 
             return result;
+        }
+
+        public List<Entity> GetEntitiesOnArea(Rectangle area)
+        {
+            return GetEntitiesOnArea(new RectangleF(area.X, area.Y, area.Width, area.Height));
         }
     }
 }

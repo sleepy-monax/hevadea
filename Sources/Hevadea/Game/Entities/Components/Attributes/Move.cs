@@ -1,5 +1,8 @@
-﻿using Hevadea.Game.Tiles;
+﻿using Hevadea.Framework.Utils;
+using Hevadea.Game.Tiles;
+using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {
@@ -24,99 +27,90 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
         public void MoveTo(TilePosition tilePosition, Direction? direction = null, float speed = 1f)
         {
-            MoveTo(tilePosition.WorldX + ConstVal.TileSize / 2 - Owner.Width / 2, tilePosition.WorldY + ConstVal.TileSize / 2 - Owner.Height / 2, direction, speed);
+            MoveTo(tilePosition.WorldX + ConstVal.TileSize / 2, tilePosition.WorldY + ConstVal.TileSize / 2, direction, speed);
         }
-        
-        /// <summary>
-        /// Move the entity relative to him With colision detection.
-        /// </summary>
-        /// 
-        public virtual bool Do(float accelerationX, float accelerationY, Direction facing)
+
+
+        public bool Do(float sx, float sy, Direction facing)
         {
             if (Owner.Removed) return false;
-            Owner.Facing = facing;
-            // Handle the move speed tag on a tile.
-            var curpos = Owner.GetTilePosition();
-            if (Owner.Level.GetTile(curpos.X, curpos.Y).HasTag<Tags.Ground>())
-            {
-                var ground = Owner.Level.GetTile(curpos.X, curpos.Y).Tag<Tags.Ground>();
 
-                accelerationX *= ground.MoveSpeed;
-                accelerationY *= ground.MoveSpeed;
+            if (Owner.Level.GetTile(Owner.GetTilePosition()).HasTag<Tags.Ground>())
+            {
+                var ground = Owner.Level.GetTile(Owner.GetTilePosition()).Tag<Tags.Ground>();
+
+                sx *= ground.MoveSpeed;
+                sy *= ground.MoveSpeed;
             }
 
-            // Apply the movement.
-            if (accelerationX == 0 && accelerationY == 0
-                || !(MoveInternal(accelerationX, 0) | MoveInternal(0, accelerationY))) return false;
+            // Stop the entity on world borders.
+            if (Owner.X + sx >= Owner.Level.Width * ConstVal.TileSize) sx = 0;
+            if (Owner.Y + sy >= Owner.Level.Height * ConstVal.TileSize) sy = 0;
+            if (Owner.X + sx < 0) sx = 0;
+            if (Owner.Y + sy < 0) sy = 0;
 
-            // Tell the tile we walked on it.
-            var pos = Owner.GetTilePosition();
-            Owner.Level.GetTile(pos.X, pos.Y).Tag<Tags.Ground>()?.SteppedOn(Owner, pos);
+            var level = Owner.Level;
+            var ownerColider = Owner.Get<Colider>();
 
-            IsMoving = true;
-
-            return true;
-        }
-
-        private bool MoveInternal(float aX, float aY)
-        {
-            var onTilePosition = Owner.GetTilePosition();
-
-            if (Owner.X + aX + Owner.Width >= Owner.Level.Width * ConstVal.TileSize) aX = 0;
-            if (Owner.Y + aY + Owner.Height >= Owner.Level.Height * ConstVal.TileSize) aY = 0;
-            if (Owner.X + aX < 0) aX = 0;
-            if (Owner.Y + aY < 0) aY = 0;
-
-            for (var ox = -1; ox < 2; ox++)
-            for (var oy = -1; oy < 2; oy++)
+            if (ownerColider != null)
             {
-                var t = new TilePosition(onTilePosition.X + ox, onTilePosition.Y + oy);
-                
-                bool canPass = Owner.Level.GetTile(t.X, t.Y).Tag<Tags.Solide>()?.CanPassThrought(Owner) ?? true;
-                
-                if (!canPass & !NoClip)
+                var ownerhitbox = ownerColider.GetHitBox();
+                var futurPositionX = new RectangleF(ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height);
+                var futurPositionY = new RectangleF(ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
+                var futurPosition = new RectangleF(ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
+
+                HashSet<Entity> colidingEntity = new HashSet<Entity>();
+
+                colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPosition));
+                colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPositionX));
+                colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPositionY));
+
+                foreach (var e in colidingEntity)
                 {
-                    if (t.IsColiding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height)) aY = 0;
+                    var eColider = e.Get<Colider>();
+                    if (e == Owner || !(eColider?.CanCollideWith(e) ?? false)) continue;
 
-                    if (t.IsColiding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height)) aX = 0;
+                    var eHitbox = eColider.GetHitBox();
 
-                    if (t.IsColiding(Owner.X + aX, Owner.Y + aY, Owner.Width, Owner.Height))
-                    {
-                        aX = 0;
-                        aY = 0;
-                    }
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, Owner.Facing, sy); }
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
+
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, Owner.Facing, sx); }
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
+
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; sx = 0; }
                 }
 
-                foreach (var e in Owner.Level.GetEntityOnTile(t.X, t.Y))
+                var entityTilePosition = Owner.GetTilePosition();
+
+                for (int x = -1; x <= 1; x++)
                 {
-                    if (e == Owner || !e.IsBlocking(Owner) || NoClip) continue;
-
-                    if (e.IsColliding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height))
+                    for (int y = -1; y <= 1; y++)
                     {
-                        e.Get<Pushable>()?.Push(Owner, Owner.Facing, 1f);
-                    }
-                    
-                    
-                    if (e.IsColliding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height))
-                    {
-                        e.Get<Pushable>()?.Push(Owner, Owner.Facing, 1f);
-                    }
-                    
-                    if (e.IsColliding(Owner.X + aX, Owner.Y, Owner.Width, Owner.Height)) aX = 0f;
-                    if (e.IsColliding(Owner.X, Owner.Y + aY, Owner.Width, Owner.Height)) aY = 0f;
+                        var tile = new TilePosition(entityTilePosition.X + x, entityTilePosition.Y + y);
+                        bool isPassableTile = level.GetTile(tile).Tag<Tags.Solide>()?.CanPassThrought(Owner) ?? true;
 
-
-                    if (e.IsColliding(Owner.X + aX, Owner.Y + aY, Owner.Width, Owner.Height))
-                    {
-                        e.Get<Pushable>()?.Push(Owner, Owner.Facing, 1f);
-                        aX = 0f;
-                        aY = 0f;
+                        if (!isPassableTile)
+                        {
+                            var tileRect = tile.ToRectangle();
+                            if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
+                            if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
+                            if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; sx = 0; }
+                        }
                     }
                 }
             }
 
-            Owner.SetPosition(Owner.X + aX, Owner.Y + aY);
-            return !(aX == 0f && aY == 0f);
+            if (sx != 0 || sy != 0)
+            {
+                Owner.SetPosition(Owner.X + sx, Owner.Y + sy);
+                Owner.Level.GetTile(Owner.GetTilePosition()).Tag<Tags.Ground>()?.SteppedOn(Owner, Owner.GetTilePosition());
+                Owner.Facing = facing;
+                IsMoving = true;
+                return true;
+            }
+
+            return false;
         }
     }
 }

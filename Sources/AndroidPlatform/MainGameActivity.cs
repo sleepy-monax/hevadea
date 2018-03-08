@@ -4,7 +4,6 @@ using Android.OS;
 using Android.Views;
 using Hevadea.Framework;
 using Hevadea.Scenes;
-using Maker.Rise;
 using Microsoft.Xna.Framework;
 
 namespace AndroidPlatform

@@ -17,11 +17,8 @@ namespace Hevadea.Game.Items
         public ItemEntity()
         {
             Item = ITEMS.COAL;
-            Height = 4;
-            Width = 4;
-            Origin = new Point(2, 2);
 
-            Add(new Move());
+            Attach(new Move());
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -31,7 +28,7 @@ namespace Hevadea.Game.Items
             sx = sx / 2;
             sy = sy / 2;
             
-            var entities = Level.GetEntitiesOnArea(Bound);
+            var entities = Level.GetEntitiesOnArea(new Rectangle((int)X - 8, (int)Y - 8, 16, 16));
             foreach (var e in entities)
             {
                 var inv = e.Get<Inventory>();

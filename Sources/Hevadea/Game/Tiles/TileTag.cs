@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Game.Worlds;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game.Tiles
 {

@@ -1,7 +1,6 @@
-﻿using Hevadea.Scenes;
-using Maker.Rise;
+﻿using Hevadea.Framework;
+using Hevadea.Scenes;
 using System;
-using Hevadea.Framework;
 
 namespace OpenGLPlatform
 {

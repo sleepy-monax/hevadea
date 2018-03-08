@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Hevadea.Game.Entities.Components;
+using System.Collections.Generic;
 using System.Linq;
-using Hevadea.Game.Entities.Components;
-using Hevadea.Game.Storage;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Game.Entities
 {
@@ -11,7 +8,12 @@ namespace Hevadea.Game.Entities
     {
         private readonly List<EntityComponent> _components = new List<EntityComponent>();
 
-        public T Add<T>(T component) where T : EntityComponent
+        public void Attachs(params EntityComponent[] components)
+        {
+            foreach (var c in components) Attach(c);
+        }
+
+        public T Attach<T>(T component) where T : EntityComponent
         {
             if (_components.Any(e => e == component)) return null;
 
@@ -21,11 +23,6 @@ namespace Hevadea.Game.Entities
             _components.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
 
             return component;
-        }
-
-        public void Adds(params EntityComponent[] components)
-        {
-            foreach (var c in components) Add(c);
         }
 
         public T Get<T>() where T : EntityComponent
@@ -41,6 +38,5 @@ namespace Hevadea.Game.Entities
         {
             return _components.OfType<T>().Any();
         }
-
     }
 }

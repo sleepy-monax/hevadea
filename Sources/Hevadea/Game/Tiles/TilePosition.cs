@@ -27,7 +27,7 @@ namespace Hevadea.Game.Tiles
             return new Rectangle(ToOnScreenPosition(), new Point(ConstVal.TileSize, ConstVal.TileSize));
         }
 
-        public bool IsColiding(Entity e, int width, int height)
+        public bool IsColliding(Entity e, int width, int height)
         {
             return Colision.Check(X * ConstVal.TileSize,
                 Y * ConstVal.TileSize,
@@ -37,7 +37,12 @@ namespace Hevadea.Game.Tiles
                 width, height);
         }
 
-        public bool IsColiding(float x, float y, int width, int height)
+        public bool IsColliding(Rectangle rect)
+        {
+            return IsColliding(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        public bool IsColliding(float x, float y, int width, int height)
         {
             return Colision.Check(X * ConstVal.TileSize,
                 Y * ConstVal.TileSize,

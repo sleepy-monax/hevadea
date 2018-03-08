@@ -7,7 +7,6 @@ using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Items;
 using Hevadea.Scenes.Widgets;
-using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 

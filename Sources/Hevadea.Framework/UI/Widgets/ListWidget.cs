@@ -4,9 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Framework.UI.Widgets
 {
@@ -90,8 +87,9 @@ namespace Hevadea.Framework.UI.Widgets
 
         public override void Update(GameTime gameTime)
         {
-            if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
-            if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
+            //TODO reimplement mouse scolling
+            //if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
+            //if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
 
             if (Rise.Pointing.AreaDown(Bound) && !IsDown)
             {

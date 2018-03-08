@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
-using Maker.Rise;
+using System.Collections.Generic;
 
 namespace Hevadea.Game.Items
 {
@@ -73,7 +72,7 @@ namespace Hevadea.Game.Items
         {
             for (var i = 0; i < quantity; i++)
             {
-                var dropItem = (ItemEntity)ENTITIES.ITEM.Build();
+                var dropItem = (ItemEntity)ENTITIES.ITEM.Construct();
                 dropItem.Item = this;
                 dropItem.sx = Rise.Random.Next(-50, 50) / 10f;
                 dropItem.sy = Rise.Random.Next(-50, 50) / 10f;

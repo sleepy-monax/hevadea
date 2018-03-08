@@ -16,19 +16,16 @@ namespace Hevadea.Game.Entities
 
         public EntityCraftingBench()
         {
-            Width = 12;
-            Height = 9;
-            Origin = new Point(8, 6);
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 0));
 
-            Adds(
+            Attachs(
                 new Breakable(),
                 new Pushable(),
                 new Move(),
                 new Dropable {Items = {new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1)}}
             );
             
-            Add(new Interactable()).OnInteracte +=
+            Attach(new Interactable()).OnInteracte +=
                 (sender, arg) =>
                 {
                     if (arg.Entity.Has<Inventory>())

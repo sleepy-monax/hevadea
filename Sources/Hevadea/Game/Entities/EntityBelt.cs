@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Game.Entities.Components;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.Game.Entities
 {
@@ -16,11 +15,8 @@ namespace Hevadea.Game.Entities
         
         public EntityBelt()
         {
-            Height = 16;
-            Width = 16;
-
-            Add(new Breakable());
-            Add(new Dropable{ Items = { new Drop(ITEMS.BELT, 1f, 1, 1) } });
+            Attach(new Breakable());
+            Attach(new Dropable{ Items = { new Drop(ITEMS.BELT, 1f, 1, 1) } });
 
             if (_sprites == null)
             {
@@ -45,7 +41,7 @@ namespace Hevadea.Game.Entities
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {            
-            _sprites[(int)Facing].Draw(spriteBatch, Bound, Color.White);
+            _sprites[(int)Facing].Draw(spriteBatch, new Rectangle((int)X - 8, (int)Y - 8, 16,16), Color.White);
         }
     }
 }

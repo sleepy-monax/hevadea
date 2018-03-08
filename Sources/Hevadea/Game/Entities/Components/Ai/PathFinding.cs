@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.Game.Entities.Components.Ai
 {
@@ -18,7 +18,6 @@ namespace Hevadea.Game.Entities.Components.Ai
             public int Y { get; }
             public float Penalty { get; }
 
-            // calculated values while finding path
             public int gCost;
             public int hCost;
             public int fCost => gCost + hCost;
@@ -41,7 +40,6 @@ namespace Hevadea.Game.Entities.Components.Ai
         private Entity _entity;
         
         public List<EntityBlueprint> IngnoredEntity { get; set; } = new List<EntityBlueprint>();
-        
         
         public PathFinder(Level level, Entity entity)
         {
@@ -122,16 +120,15 @@ namespace Hevadea.Game.Entities.Components.Ai
                     if ((x == 0 && y == 0) )
                         continue;
 
-                    if (x == 0 || y == 0)
-                    {
-                        int checkX = tx + x;
-                        int checkY = ty + y;
 
-                        if (checkX >= 0 && checkX < _level.Width && checkY >= 0 && checkY < _level.Height)
-                        {
-                            neighbours.Add(GetNode( checkX, checkY));
-                        }
+                    int checkX = tx + x;
+                    int checkY = ty + y;
+
+                    if (checkX >= 0 && checkX < _level.Width && checkY >= 0 && checkY < _level.Height)
+                    {
+                        neighbours.Add(GetNode( checkX, checkY));
                     }
+                    
                 }
             }
 

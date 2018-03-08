@@ -12,9 +12,9 @@ namespace Maker.Rise.Utils
                    y2 < y1 + h1;
         }
 
-        public static bool IsColiding(this Rectangle recta, Rectangle rectb)
+        public static bool IsColliding(this Rectangle recta, Rectangle rectb)
         {
-            return Check(recta.X, recta.Y, recta.Width, recta.Height, rectb.X, rectb.Y, rectb.Width, rectb.Height);
+            return recta.Intersects(rectb);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
@@ -23,11 +22,8 @@ namespace Hevadea.Game.Entities
 
         public EntityStairs()
         {
-            Width = Height = 16;
-            Origin = new Point(0, 0);
-
             var interaction = new Interactable();
-            Add(interaction);
+            Attach(interaction);
             interaction.OnInteracte +=
                 (sender, arg) =>
                 {
@@ -43,11 +39,11 @@ namespace Hevadea.Game.Entities
         {
             if (GoUp)
             {
-                _spriteUp.Draw(spriteBatch, new Rectangle((int)X, (int) Y, 16, 16), Color.White);
+                _spriteUp.Draw(spriteBatch, new Rectangle((int)X - 8, (int) Y - 8, 16, 16), Color.White);
             }
             else
             {
-                _spriteDown.Draw(spriteBatch, new Rectangle((int) X, (int) Y, 16, 16), Color.White);
+                _spriteDown.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
             }
         }
 

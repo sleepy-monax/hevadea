@@ -15,20 +15,17 @@ namespace Hevadea.Game.Entities
 
         public EntityChest()
         {
-            Width = 12;
-            Height = 9;
-            Origin = new Point(8, 6);
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
 
-            Add(new Inventory(128));
-            Add(new Health(10)).OnDie +=
+            Attach(new Inventory(128));
+            Attach(new Health(10)).OnDie +=
                 (sender, arg) =>
                 {
-                    Get<Inventory>().Content.DropOnGround(Level, X + Origin.X, Y + Origin.Y);
-                    ITEMS.CHEST.Drop(Level, X + Origin.X, Y + Origin.Y, 1);
+                    Get<Inventory>().Content.DropOnGround(Level, X, Y);
+                    ITEMS.CHEST.Drop(Level, X, Y, 1);
                 };
 
-            Add(new Interactable()).OnInteracte +=
+            Attach(new Interactable()).OnInteracte +=
                 (sender, arg) =>
                 {
                     if (arg.Entity.Has<Inventory>())
