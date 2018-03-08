@@ -9,7 +9,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
     public class Swim : EntityComponent, IEntityComponentUpdatable
     {
         public bool IsSwiming   { get; set; } = false;
-        private bool wasSwiming { get; set; } = false;
+        public bool WasSwiming { get; set; } = false;
         public bool IsSwimingPainfull { get; set; } = true;
         
         public void Update(GameTime gameTime)
@@ -37,7 +37,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
                 if (energy!=null) energy.EnableNaturalRegeneration = true;
             }
 
-            if (!wasSwiming && IsSwiming)
+            if (!WasSwiming && IsSwiming)
             {
                 for (int i = 0; i < 10; i++)
                 {
@@ -46,7 +46,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
                 }
             }
             
-            wasSwiming = IsSwiming;
+            WasSwiming = IsSwiming;
         }
     }
 }
