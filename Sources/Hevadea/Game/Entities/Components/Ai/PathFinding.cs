@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
+using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
@@ -37,11 +38,16 @@ namespace Hevadea.Game.Entities.Components.Ai
         
         private Node[,] _nodes;
         private Level _level;
-
-        public PathFinder(Level level)
+        private Entity _entity;
+        
+        public List<EntityBlueprint> IngnoredEntity { get; set; } = new List<EntityBlueprint>();
+        
+        
+        public PathFinder(Level level, Entity entity)
         {
             _nodes = new Node[level.Width,level.Height];
             _level = level;
+            _entity = entity;
         }
 
         public List<Node> PathFinding(TilePosition start, TilePosition end)
@@ -99,7 +105,7 @@ namespace Hevadea.Game.Entities.Components.Ai
         {
             if (_nodes[tx, ty] == null)
             {
-                _nodes[tx, ty] = new Node(!(_level.GetTile(tx, ty).HasTag<Tags.Solide>() ), tx, ty);
+                _nodes[tx, ty] = new Node(_level.GetTile(tx, ty).Tag<Tags.Solide>()?.CanPassThrought(_entity) ?? true, tx, ty);
             }
 
             return _nodes[tx, ty];

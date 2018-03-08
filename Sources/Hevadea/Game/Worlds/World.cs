@@ -31,7 +31,9 @@ namespace Hevadea.Game.Worlds
             DayNightCycle = new DayNightCycle(
                 new DayStage("Dawn", 30, new Color(217, 151, 179)),
                 new DayStage("Day", 5 * 60, Color.White),
-                new DayStage("Dusk", 30, new Color(217, 151, 179)),
+                new DayStage("Dusk1", 30, new Color(217, 151, 179)),
+                new DayStage("Dusk2", 30, new Color(217, 151, 179)),
+                new DayStage("Dusk3", 30, new Color(217, 151, 179)),
                 new DayStage("Night", 5 * 30, Color.Blue * 0.1f)
                 )
             { Transition = 30 };

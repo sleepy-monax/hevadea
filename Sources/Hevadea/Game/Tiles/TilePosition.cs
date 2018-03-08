@@ -22,6 +22,11 @@ namespace Hevadea.Game.Tiles
             return new Point(X * ConstVal.TileSize, Y * ConstVal.TileSize);
         }
 
+        public Rectangle ToRectangle()
+        {
+            return new Rectangle(ToOnScreenPosition(), new Point(ConstVal.TileSize, ConstVal.TileSize));
+        }
+
         public bool IsColiding(Entity e, int width, int height)
         {
             return Colision.Check(X * ConstVal.TileSize,

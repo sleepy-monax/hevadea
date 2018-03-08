@@ -22,6 +22,11 @@ namespace Hevadea.Game.Entities.Components.Attributes
             Do(dir.X, dir.Y, direction ?? dir.ToDirection());
         }
 
+        public void MoveTo(TilePosition tilePosition, Direction? direction = null, float speed = 1f)
+        {
+            MoveTo(tilePosition.WorldX + ConstVal.TileSize / 2 - Owner.Width / 2, tilePosition.WorldY + ConstVal.TileSize / 2 - Owner.Height / 2, direction, speed);
+        }
+        
         /// <summary>
         /// Move the entity relative to him With colision detection.
         /// </summary>

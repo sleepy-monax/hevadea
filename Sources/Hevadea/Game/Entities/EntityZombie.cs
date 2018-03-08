@@ -7,6 +7,7 @@ using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Hevadea.Game.Entities.Components.Ai.Actions;
 
 namespace Hevadea.Game.Entities
 {
@@ -26,25 +27,32 @@ namespace Hevadea.Game.Entities
             Add(new Energy());
             Add(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));            
             Add(new Agent());
+            Add(new Pushable());
         }
 
-        TilePosition _tagetPosition = null;
-        List<PathFinder.Node> _path = null;
-        int _pathIndex = 0;
 
         public override void OnUpdate(GameTime gameTime)
         {
-            var playerPosition = Game.Player.GetTilePosition();
-            _path = new PathFinder(Level).PathFinding(GetTilePosition(), playerPosition);
+            var agent = Get<Agent>();
+
+            if (!agent.IsBusy())
+            {
+                var playerPosition = Game.Player.GetTilePosition();
+                List<PathFinder.Node> _path = null;
+                _path = new PathFinder(Level, this).PathFinding(GetTilePosition(), playerPosition);
+
+                if (_path != null)
+                foreach (var n in _path)
+                {
+                    agent.ActionQueue.Enqueue(new ActionMoveToLocation(new TilePosition(n.X, n.Y)));
+                }
+            }
+            
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
-            if (_path != null)
-            {
-                PathFinder.DrawPath(spriteBatch, _path, Color.Red);
-            }
         }
 
         public override bool IsBlocking(Entity entity)

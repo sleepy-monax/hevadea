@@ -17,7 +17,7 @@ namespace Hevadea.Framework
     {
         // Configs
         public static bool DebugUI { get; set; } = false;
-        public static bool ShowDebug { get; set; } = true;
+        public static bool ShowDebug { get; set; } = false;
         
         // Components
         [Obsolete] public static LegacyInputManager Input;

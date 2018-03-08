@@ -40,21 +40,5 @@ namespace Hevadea.Game.Entities
         {
             return !(entity is ItemEntity);
         }
-
-        public override void OnUpdate(GameTime gameTime)
-        {
-        }
-
-        public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            var start = GetTilePosition();
-            var end = new TilePosition(Level.Width / 2, Level.Height / 2);
-            
-            var pathfinder = new PathFinder(Level);
-            var path =  pathfinder.PathFinding(start, end);
-            
-            if (path != null)
-                PathFinder.DrawPath(spriteBatch, path, Color.Blue);
-        }
     }
 }
