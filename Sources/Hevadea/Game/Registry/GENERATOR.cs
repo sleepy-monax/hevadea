@@ -62,6 +62,7 @@ namespace Hevadea.Game.Registry
                                 Function = new CombinedFunction(new PerlinFunction(2, 0.5, 15), new IslandFunction()),
                                 TileRequired = {TILES.GRASS}
                             }
+                            
                         }
                     },
                     new HouseFeature(),
@@ -112,8 +113,17 @@ namespace Hevadea.Game.Registry
                                 Priority = 1,
                                 Tile = TILES.DIRT,
                                 Threashold = 1.1f,
-                                Function = new PerlinFunction(2, 1, 15)
+                                Function = new PerlinFunction(2, 1, 30)
                             },
+
+                            new TerrainLayer
+                            {
+                                Priority = 2,
+                                Tile = TILES.IRON_ORE,
+                                Threashold = 1.2f,
+                                TileRequired = { TILES.ROCK},
+                                Function = new PerlinFunction(2, 1, 3),
+                            }
                         }
                     },
                     new HouseFeature

@@ -25,7 +25,7 @@ namespace Hevadea.Game.Registry
         public static void Initialize()
         {
             SURFACE = Register(new LevelProperties("surface", true, Color.White));
-            UNDERGROUND = Register(new LevelProperties("underground", false, Color.Black));
+            UNDERGROUND = Register(new LevelProperties("underground", true, Color.Black));
         }
     }
 }

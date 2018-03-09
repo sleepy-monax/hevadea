@@ -15,6 +15,7 @@ namespace Hevadea.Game.Registry
         public static Material IronMaterial;
         public static Material GoldMaterial;
 
+        public static Item IRON_ORE;
         public static Item COAL;
         public static Item WOOD_LOG;
         public static Item WOOD_PLANK;
@@ -40,6 +41,7 @@ namespace Hevadea.Game.Registry
             IronMaterial = new BaseMaterial(4f);
             GoldMaterial = new BaseMaterial(8f);
 
+            IRON_ORE       = new Item("iron_ore",       new Sprite(Ressources.TileItems, new Point(8, 0)));  
             COAL           = new Item("coal",           new Sprite(Ressources.TileItems, new Point(6, 2)));
             STONE          = new Item("stone",          new Sprite(Ressources.TileItems, new Point(7, 0)));
             PINE_CONE      = new Item("pine_cone",      new Sprite(Ressources.TileItems, new Point(5, 2)));

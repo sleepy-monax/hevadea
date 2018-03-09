@@ -18,6 +18,7 @@ namespace Hevadea.Game.Registry
         public static Tile WOOD_FLOOR;
         public static Tile WOOD_WALL;
         public static Tile DIRT;
+        public static Tile IRON_ORE;
 
         public static void Initialize()
         {
@@ -29,6 +30,7 @@ namespace Hevadea.Game.Registry
             WOOD_WALL  = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 6)));
             VOID       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 8)));
             DIRT       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 9)));
+            IRON_ORE   = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 10)));
         }
 
         public static void AttachTags()
@@ -57,6 +59,10 @@ namespace Hevadea.Game.Registry
 
             WOOD_FLOOR.AddTag(new Tags.Damage { ReplacementTile = DIRT });
             WOOD_FLOOR.AddTag(new Tags.Droppable(new Drop(ITEMS.WOOD_FLOOR, 1f, 1, 1)));
+
+            IRON_ORE.AddTag(new Tags.Solide(), new Tags.Damage { ReplacementTile = DIRT });
+            IRON_ORE.AddTag(new Tags.Droppable(new Drop(ITEMS.IRON_ORE, 1f, 1, 2)));
+
         }
     }
 }

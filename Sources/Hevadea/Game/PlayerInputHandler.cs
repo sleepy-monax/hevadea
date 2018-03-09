@@ -14,7 +14,7 @@ namespace Hevadea.Game
 {
     public enum PlayerInput
     {
-        MoveLeft, MoveRight, MoveUp, MoveDown, Action, Attack, OpenInventory, OpenPauseMenu
+        MoveLeft, MoveRight, MoveUp, MoveDown, Action, Attack, OpenInventory, OpenPauseMenu, Zoom, Dzoom
     }
 
     public class PlayerInputHandler
@@ -57,6 +57,10 @@ namespace Hevadea.Game
     
                     if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
+
+                    if (input.KeyPress(Keys.Add)) HandleInput(PlayerInput.Zoom);
+                    if (input.KeyPress(Keys.Subtract)) HandleInput(PlayerInput.Dzoom);
+
                 }
             }
 
@@ -103,7 +107,18 @@ namespace Hevadea.Game
                         game.CurrentMenu = new MenuInGame(game);
                     }
                     break;
-              
+                case PlayerInput.Zoom:
+                    {
+                        game.Camera.Set_zoom(game.Camera.Get_zoom() / 0.9f);
+
+                    }
+                    break;
+                case PlayerInput.Dzoom:
+                    {
+                        game.Camera.Set_zoom(game.Camera.Get_zoom() * 0.9f);
+
+                    }
+                    break;
             }
         }
     }
