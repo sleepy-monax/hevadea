@@ -1,10 +1,10 @@
-﻿using System;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Items;
 using Hevadea.Game.Items.Tags;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Hevadea.Game.Entities.Components.Interaction
 {

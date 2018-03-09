@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Graphic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
-using Hevadea.Framework.Graphic;
 
 namespace Hevadea.Game.Entities.Components.Render
 {

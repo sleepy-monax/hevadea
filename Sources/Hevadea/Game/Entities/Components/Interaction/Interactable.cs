@@ -1,5 +1,5 @@
-﻿using System;
-using Hevadea.Game.Items;
+﻿using Hevadea.Game.Items;
+using System;
 
 namespace Hevadea.Game.Entities.Components.Interaction
 {

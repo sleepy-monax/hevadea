@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities;
@@ -11,6 +8,9 @@ using Hevadea.Game.Storage;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Hevadea.Game.Worlds
 {
@@ -52,7 +52,7 @@ namespace Hevadea.Game.Worlds
             var asm = Assembly.GetExecutingAssembly();
             foreach (var item in store.Entities)
             {
-                var e = ENTITIES.GetBlueprint(item.Type).Build();
+                var e = ENTITIES.GetBlueprint(item.Type).Construct();
                 e.Load(item);
                 AddEntity(e);
             }
@@ -99,7 +99,7 @@ namespace Hevadea.Game.Worlds
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
                 entitiesOnScreen.AddRange(_entitiesOnTiles[tx, ty]);
 
-            entitiesOnScreen.Sort((a, b) => (a.Y + a.Origin.Y).CompareTo(b.Y + b.Origin.Y));
+            entitiesOnScreen.Sort((a, b) => (a.Y).CompareTo(b.Y));
 
             state.OnScreenEntities = entitiesOnScreen;
 
@@ -128,8 +128,7 @@ namespace Hevadea.Game.Worlds
 
                 if (Rise.ShowDebug)
                 {
-                    spriteBatch.DrawRectangle(e.Bound, Color.Aqua * 0.5f, 0.4f);
-                    spriteBatch.PutPixel(e.Position + e.Origin.ToVector2(), Color.Magenta);
+                    spriteBatch.PutPixel(e.Position, Color.Magenta);
                 }
             }
         }
@@ -142,7 +141,7 @@ namespace Hevadea.Game.Worlds
 
                 if (light != null)
                     spriteBatch.Draw(Ressources.ImgLight,
-                        new Rectangle((int) e.X - light.Power + e.Width / 2, (int) e.Y - light.Power + e.Height / 2,
+                        new Rectangle((int) e.X - light.Power, (int) e.Y - light.Power,
                             light.Power * 2, light.Power * 2), light.Color);
             }
         }

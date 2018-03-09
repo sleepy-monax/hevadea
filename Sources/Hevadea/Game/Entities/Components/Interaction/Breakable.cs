@@ -9,7 +9,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
         public void Break(Item item = null)
         {
             Owner.Get<Dropable>()?.Drop();
-            if (DropInventory) Owner.Get<Inventory>().Content.DropOnGround(Owner.Level, Owner.X + Owner.Origin.X, Owner.Y + Owner.Origin.Y);
+            if (DropInventory) Owner.Get<Inventory>().Content.DropOnGround(Owner.Level, Owner.X, Owner.Y);
             Owner.Remove();
         }
     }

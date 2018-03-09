@@ -1,12 +1,12 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
+using Hevadea.Framework.Utils;
 using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.Framework;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -78,8 +78,9 @@ namespace Hevadea.Scenes.Widgets
 
             if (Rise.Pointing.AreaOver(Bound))
             {
-                if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
-                if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
+                // TODO
+                //if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
+                //if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
 
 
                 var maxScroll = Content.GetStackCount() * Scale(52);

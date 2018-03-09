@@ -13,10 +13,7 @@ namespace Hevadea.Game.Entities
         
         public float X { get; private set; }
         public float Y { get; private set; }
-        public Point Origin { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public Direction Facing { get; set; }
+        public Direction Facing { get; set; } = Direction.Down;
         public bool Removed { get; set; } = true;
         public EntityBlueprint Blueprint { get; set; } = null;
         public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
@@ -40,18 +37,6 @@ namespace Hevadea.Game.Entities
             Level?.AddEntityToTile(pos, this);
         }
 
-        #endregion
-        
-        #region Constructor
-        
-        public Entity()
-        {
-            Facing = Direction.Down;
-            Origin = new Point(0, 0);
-            Width = 32;
-            Height = 32;
-        }
-        
         #endregion
 
         #region Virtual methodes

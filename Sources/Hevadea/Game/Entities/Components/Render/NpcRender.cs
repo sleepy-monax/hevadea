@@ -31,12 +31,12 @@ namespace Hevadea.Game.Entities.Components.Render
             var frame = new[] {0, 2, 1, 2}[(int) (gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
             var selectedFrame = _isWalking ? new Point(frame, (int) Owner.Facing) : new Point(2, (int) Owner.Facing);
 
-            Sprite.DrawSubSprite(spriteBatch, new Vector2(Owner.X - 4, Owner.Y - 18 + 3), selectedFrame, Color.White);
+            Sprite.DrawSubSprite(spriteBatch, new Vector2(Owner.X - 8, Owner.Y - 24), selectedFrame, Color.White);
 
             if (_isSwiming)
             {                
                 Ressources.SprUnderWater
-                .DrawSubSprite(spriteBatch, new Vector2(Owner.X - 4, Owner.Y - 18 + 3), selectedFrame, Color.White);
+                .DrawSubSprite(spriteBatch, new Vector2(Owner.X - 8, Owner.Y - 24), selectedFrame, Color.White);
             }
         }
     }

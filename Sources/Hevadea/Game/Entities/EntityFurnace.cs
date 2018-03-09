@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Items;
@@ -15,11 +14,8 @@ namespace Hevadea.Game.Entities
 
         public EntityFurnace()
         {
-            Width = 12;
-            Height = 9;
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 1));
-            Origin = new Point(8, 6);
-            Adds(
+            Attachs(
                 new Breakable(),
                 new Light(),
                 new Dropable {Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1)}}
@@ -28,7 +24,7 @@ namespace Hevadea.Game.Entities
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _sprite.Draw(spriteBatch, new Rectangle((int) X - 2, (int) Y - 5, 16, 16), Color.White);
+            _sprite.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
         }
 
         public override bool IsBlocking(Entity entity)

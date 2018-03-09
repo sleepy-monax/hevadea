@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
-using Maker.Rise;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Game.Worlds
 {
@@ -28,13 +27,20 @@ namespace Hevadea.Game.Worlds
         public World()
         {
             _spriteBatch = Rise.Graphic.CreateSpriteBatch();
-            DayNightCycle = new DayNightCycle(
-                new DayStage("Dawn", 30, new Color(217, 151, 179)),
-                new DayStage("Day", 5 * 60, Color.White),
-                new DayStage("Dusk1", 30, new Color(217, 151, 179)),
-                new DayStage("Dusk2", 30, new Color(217, 151, 179)),
-                new DayStage("Dusk3", 30, new Color(217, 151, 179)),
-                new DayStage("Night", 5 * 30, Color.Blue * 0.1f)
+            DayNightCycle = new DayNightCycle(                
+                new DayStage("Day", 600, Color.White),
+                
+                new DayStage("Dusk0", 30, new Color(187, 104, 50)),
+                new DayStage("Dusk1", 30, new Color(125, 54, 48)),
+                new DayStage("Dusk2", 30, new Color(75, 32, 32)),
+                new DayStage("Dusk3", 30, new Color(25, 26, 25)),
+                
+                new DayStage("Night", 600, Color.Blue * 0.1f),
+
+                new DayStage("Dawn0", 30, new Color(25, 26, 25)),
+                new DayStage("Dawn1", 30, new Color(75, 32, 32)),
+                new DayStage("Dawn2", 30, new Color(125, 54, 48)),
+                new DayStage("Dawn3", 30, new Color(187, 104, 50))
                 )
             { Transition = 30 };
         }

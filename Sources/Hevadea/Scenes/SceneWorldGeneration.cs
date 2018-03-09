@@ -4,13 +4,13 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Game;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Widgets;
 using Hevadea.WorldGenerator;
 using Microsoft.Xna.Framework;
 using System;
 using System.Threading;
-using Hevadea.Game.Entities;
 
 namespace Hevadea.Scenes
 {
@@ -29,7 +29,7 @@ namespace Hevadea.Scenes
                 _worldgen = GENERATOR.DEFAULT;
                 _worldgen.Seed = new Random().Next();
                 var world = _worldgen.Generate();
-                var player = (EntityPlayer)ENTITIES.PLAYER.Build();
+                var player = (EntityPlayer)ENTITIES.PLAYER.Construct();
                 Rise.Scene.Switch(new SceneGameplay(new GameManager(world, player)));
             });
 

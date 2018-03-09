@@ -1,8 +1,7 @@
 ﻿using Hevadea.Framework.Utils;
-using Hevadea.Game;
+using Hevadea.Game.Worlds;
 using System;
 using System.Collections.Generic;
-using Hevadea.Game.Worlds;
 
 namespace Hevadea.WorldGenerator
 {

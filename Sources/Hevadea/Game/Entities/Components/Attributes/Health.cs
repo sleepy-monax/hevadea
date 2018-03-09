@@ -1,9 +1,9 @@
-﻿using System;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {
@@ -39,8 +39,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
         {
             if (ShowHealthBar && Math.Abs(_value - _maxValue) > 0.05)
             {
-                var barY = Owner.Y + Owner.Origin.Y + 8;
-                var barX = Owner.X + Owner.Origin.X - 16;
+                var barY = Owner.Y + 8;
+                var barX = Owner.X - 16;
                 
                 var rect = new Rectangle((int) barX, (int) barY, (int) (30 * ValuePercent), 6);
 

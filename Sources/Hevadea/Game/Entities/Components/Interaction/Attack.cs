@@ -1,10 +1,10 @@
-﻿using System;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Items;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Hevadea.Game.Entities.Components.Interaction
 {
@@ -39,7 +39,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
             if (!IsAttacking) return;
             var invTimer = 1f - _timer;
 
-            switch (_lastDirection)
+            /*switch (_lastDirection)
             {
                 case Direction.Up:
                     _swingUP.Draw(spriteBatch, new Rectangle((int) Owner.X, (int) (Owner.Y - Owner.Height), (int) (Owner.Width * invTimer), Owner.Height), Color.White);
@@ -53,7 +53,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
                 case Direction.Left:
                     _swingLeft.Draw(spriteBatch, new Rectangle((int) (Owner.X - Owner.Width), (int) Owner.Y, Owner.Width, (int) (Owner.Height * invTimer)), Color.White);
                     break;
-            }
+            }*/
         }
 
         public void Update(GameTime gameTime)

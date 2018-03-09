@@ -1,11 +1,10 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
-using Hevadea.Game.Entities.Components;
+using Hevadea.Game.Entities;
+using Hevadea.Game.Entities.Components.Attributes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.Game.Entities;
-using Hevadea.Game.Entities.Components.Attributes;
 
 namespace Hevadea.Scenes.Widgets
 {

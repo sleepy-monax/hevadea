@@ -1,13 +1,14 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Components.Ai;
+using Hevadea.Game.Entities.Components.Ai.Actions;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Entities.Components.Render;
+using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Hevadea.Game.Entities.Components.Ai.Actions;
 
 namespace Hevadea.Game.Entities
 {
@@ -15,19 +16,14 @@ namespace Hevadea.Game.Entities
     {
         public EntityZombie()
         {
-            Width = 8;
-            Height = 8;
-
-            Origin = new Point(4, 4);
-
-            Add(new Move());
-            Add(new Health(10));
-            Add(new Attack());
-            Add(new Swim());
-            Add(new Energy());
-            Add(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));            
-            Add(new Agent());
-            Add(new Pushable());
+            Attach(new Move());
+            Attach(new Health(10));
+            Attach(new Attack());
+            Attach(new Swim());
+            Attach(new Energy());
+            Attach(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));            
+            Attach(new Agent());
+            Attach(new Pushable() { CanBePushBy = { ENTITIES.PLAYER } });
         }
 
 
@@ -44,7 +40,7 @@ namespace Hevadea.Game.Entities
                 if (_path != null)
                 foreach (var n in _path)
                 {
-                    agent.ActionQueue.Enqueue(new ActionMoveToLocation(new TilePosition(n.X, n.Y)));
+                    agent.ActionQueue.Enqueue(new ActionMoveToLocation(new TilePosition(n.X, n.Y), 0.5f));
                 }
             }
             

@@ -1,14 +1,10 @@
-﻿using System;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Components;
-using Hevadea.Game.Entities.Components.Ai;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Entities.Components.Render;
 using Hevadea.Game.Items;
-using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Game.Entities
 {
@@ -16,22 +12,19 @@ namespace Hevadea.Game.Entities
     {
         public EntityPlayer()
         {
-            Width = 8;
-            Height = 8;
-            Origin = new Point(4, 4);
-
             HoldingItem = null;
 
-            Add(new Health(20){ ShowHealthBar = false });
-            Add(new Attack());
-            Add(new Energy());
-            Add(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
-            Add(new Inventory(64) {AlowPickUp = true});
-            Add(new Interact());
-            Add(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
-            Add(new Move());
-            Add(new Swim());
-            Add(new Pushable());
+            Attach(new Health(20){ ShowHealthBar = false });
+            Attach(new Attack());
+            Attach(new Energy());
+            Attach(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
+            Attach(new Inventory(64) {AlowPickUp = true});
+            Attach(new Interact());
+            Attach(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
+            Attach(new Move());
+            Attach(new Swim());
+            Attach(new Pushable());
+            Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
         }
 
         public Item HoldingItem { get; set; }

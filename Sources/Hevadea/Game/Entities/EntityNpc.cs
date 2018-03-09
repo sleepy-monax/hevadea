@@ -10,7 +10,7 @@ namespace Hevadea.Game.Entities
     {
         public EntityNpc()
         {
-            Adds
+            Attachs
             (
                 new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))),
                 new Interact(),

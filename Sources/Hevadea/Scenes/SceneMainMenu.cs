@@ -4,7 +4,6 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Scenes.Widgets;
-using Maker.Rise;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes

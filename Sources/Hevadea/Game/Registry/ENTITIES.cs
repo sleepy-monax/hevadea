@@ -1,13 +1,13 @@
 ﻿using Hevadea.Game.Entities;
-using System.Collections.Generic;
 using Hevadea.Game.Items;
+using System.Collections.Generic;
 
 namespace Hevadea.Game.Registry
 {
     public class GenericEntityBlueprint<T> : EntityBlueprint where T : Entity, new()
     {
         public GenericEntityBlueprint(string name) : base(name){}
-        public override Entity Build()
+        public override Entity Construct()
         {
             return new T{Blueprint = this};
         }
@@ -22,7 +22,7 @@ namespace Hevadea.Game.Registry
             Name = name;
         }
         
-        public virtual Entity Build()
+        public virtual Entity Construct()
         {
             return new Entity{Blueprint = this};
         }
