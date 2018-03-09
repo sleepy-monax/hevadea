@@ -14,16 +14,6 @@ namespace Hevadea.Game
             Zoom = 4f;
         }
 
-        public float Get_zoom()
-        {
-            return Zoom;
-        }
-
-        public void Set_zoom(float new_zoom)
-        {
-            Zoom = new_zoom;
-        }
-
         public override void Animate(GameTime gameTime)
         {
             X -= (X - Mathf.Floor(FocusEntity.X)) * 0.1f;

@@ -1,6 +1,7 @@
-﻿namespace Hevadea.Networking.Client
+﻿namespace Hevadea.Networking
 {
     public class GameClient
     {
+        
     }
 }

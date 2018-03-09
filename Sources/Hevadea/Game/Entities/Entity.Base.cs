@@ -10,7 +10,6 @@ namespace Hevadea.Game.Entities
     public partial class Entity
     {
         #region Properties
-        
         public float X { get; private set; }
         public float Y { get; private set; }
         public Direction Facing { get; set; } = Direction.Down;

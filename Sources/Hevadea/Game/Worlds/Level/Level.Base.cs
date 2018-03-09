@@ -10,13 +10,13 @@ namespace Hevadea.Game.Worlds
         private World _world;
         private int[] _tiles;
         private Dictionary<string, object>[] _tilesData;
-        private List<Entity> _entities;
         private List<Entity>[,] _entitiesOnTiles;
         
         public int Id { get; set; }
         public string Name { get; set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public List<Entity> Entities;
         public LevelProperties Properties { get; }
         public ParticleSystem ParticleSystem { get; }
 
@@ -29,7 +29,7 @@ namespace Hevadea.Game.Worlds
             
             _tiles = new int[Width * Height];
             _tilesData = new Dictionary<string, object>[Width * Height];
-            _entities = new List<Entity>();
+            Entities = new List<Entity>();
             _entitiesOnTiles = new List<Entity>[Width, Height];
             
             for (var x = 0; x < Width; x++)

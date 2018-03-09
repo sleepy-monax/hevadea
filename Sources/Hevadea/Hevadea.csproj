@@ -146,6 +146,9 @@
     <Compile Include="Game\Worlds\Level\Level.LifeCycle.cs" />
     <Compile Include="Game\Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Game\Worlds\World.cs" />
+    <Compile Include="Networking\GameClient.cs" />
+    <Compile Include="Networking\GameSever.cs" />
+    <Compile Include="Networking\GameProtocol.cs" />
     <Compile Include="Scenes\GuiFactory.cs" />
     <Compile Include="Scenes\Menus\MenuItemContainer.cs" />
     <Compile Include="Scenes\Menus\MenuInGame.cs" />
@@ -157,8 +160,6 @@
     <Compile Include="Game\Registry\TILES.cs" />
     <Compile Include="Game\Storage\EntityStorage.cs" />
     <Compile Include="Game\Storage\LevelStorage.cs" />
-    <Compile Include="Networking\Client\GameClient.cs" />
-    <Compile Include="Networking\Server\GameServer.cs" />
     <Compile Include="Scenes\Menus\MenuGamePaused.cs" />
     <Compile Include="Scenes\Widgets\WidgetFancyPanel.cs" />
     <Compile Include="Scenes\Widgets\WidgetHotBar.cs" />

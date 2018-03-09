@@ -20,6 +20,7 @@ namespace Hevadea.Game.Entities
                 new Light(),
                 new Dropable {Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1)}}
             );
+            Attach(new Colider(new Rectangle(-8, 0, 16, 8)));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

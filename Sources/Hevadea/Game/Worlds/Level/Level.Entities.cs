@@ -34,15 +34,14 @@ namespace Hevadea.Game.Worlds
         public void AddEntity(Entity e)
         {
             e.Removed = false;
-            if (!_entities.Contains(e)) _entities.Add(e);
-
-            e.Initialize(this, _world, _game);
+            if (!Entities.Contains(e)) Entities.Add(e);
             AddEntityToTile(e.GetTilePosition(), e);
+            e.Initialize(this, _world, _game);
         }
 
         public void RemoveEntity(Entity e)
         {
-            _entities.Remove(e);
+            Entities.Remove(e);
             RemoveEntityFromTile(e.GetTilePosition(), e);
             e.Removed = true;
         }

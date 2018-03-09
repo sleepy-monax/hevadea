@@ -20,7 +20,7 @@ namespace Hevadea.Game.Entities
             Attach(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
             Attach(new Inventory(64) {AlowPickUp = true});
             Attach(new Interact());
-            Attach(new Light {On = true, Color = Color.White * 0.30f, Power = 48});
+            Attach(new Light {On = true, Color = Color.White * 0.50f, Power = 64});
             Attach(new Move());
             Attach(new Swim());
             Attach(new Pushable());

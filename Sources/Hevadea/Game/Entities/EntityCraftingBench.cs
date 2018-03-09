@@ -31,11 +31,12 @@ namespace Hevadea.Game.Entities
                     if (arg.Entity.Has<Inventory>())
                         Game.CurrentMenu = new MenuPlayerInventory(arg.Entity, RECIPIES.BenchCrafted, Game);
                 };
+            Attach(new Colider(new Rectangle(-8, 0, 16, 8)));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _sprite.Draw(spriteBatch, new Rectangle((int) X - 2, (int) Y - 5, 16, 16), Color.White);
+            _sprite.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
         }
 
         public override bool IsBlocking(Entity e)

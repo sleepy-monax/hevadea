@@ -108,7 +108,6 @@ namespace Hevadea.Game.Entities.Components.Interaction
                             IsAttacking = true;
                             break;
                         }
-                        IsAttacking = true;
                     }
             }
 

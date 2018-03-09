@@ -24,6 +24,7 @@ namespace Hevadea.Game.Entities
             Attach(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));            
             Attach(new Agent());
             Attach(new Pushable() { CanBePushBy = { ENTITIES.PLAYER } });
+            Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
         }
 
 

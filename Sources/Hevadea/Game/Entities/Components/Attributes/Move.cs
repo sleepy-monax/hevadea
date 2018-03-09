@@ -59,7 +59,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
                 var futurPositionY = new RectangleF(ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
                 var futurPosition = new RectangleF(ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
 
-                HashSet<Entity> colidingEntity = new HashSet<Entity>();
+                var colidingEntity = new HashSet<Entity>();
 
                 colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPosition));
                 colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPositionX));

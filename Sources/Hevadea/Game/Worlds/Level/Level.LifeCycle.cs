@@ -16,14 +16,18 @@ namespace Hevadea.Game.Worlds
 {
     public partial class Level
     {
+        private bool _isInitialized = false;
+        
         public void Initialize(World world, GameManager game)
         {
             Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
             _world = world;
             _game = game;
             Logger.Log<Level>(LoggerLevel.Info, "Initializing entities...");
-            foreach (var e in _entities) e.Initialize(this, world, _game);
+            foreach (var e in Entities) e.Initialize(this, world, _game);
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
+
+            _isInitialized = true;
         }
 
         public LevelStorage Save()
@@ -41,7 +45,7 @@ namespace Hevadea.Game.Worlds
             };
 
             Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
-            foreach (var e in _entities) store.Entities.Add(e.Save());
+            foreach (var e in Entities) store.Entities.Add(e.Save());
 
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
             return store;

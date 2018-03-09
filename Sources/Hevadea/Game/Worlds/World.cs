@@ -66,7 +66,6 @@ namespace Hevadea.Game.Worlds
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
 
-
         public void Draw(GameTime gameTime, Camera camera)
         {
             var level = camera.FocusEntity.Level;
