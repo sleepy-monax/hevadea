@@ -51,10 +51,5 @@ namespace Hevadea.Game.Entities
         {
 
         }
-
-        public override bool IsBlocking(Entity entity)
-        {
-            return true;
-        }
     }
 }

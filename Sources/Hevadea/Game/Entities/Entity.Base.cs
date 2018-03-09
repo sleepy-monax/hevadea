@@ -42,7 +42,6 @@ namespace Hevadea.Game.Entities
 
         public virtual void OnSave(EntityStorage store){}
         public virtual void OnLoad(EntityStorage store){}
-        public virtual bool IsBlocking(Entity entity) => false;
         public virtual void OnUpdate(GameTime gameTime) {}
         public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime){}
         

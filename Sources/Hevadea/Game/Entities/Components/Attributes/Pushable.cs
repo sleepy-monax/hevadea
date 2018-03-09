@@ -28,6 +28,23 @@ namespace Hevadea.Game.Entities.Components.Attributes
             }
         }
 
+        public bool Push(Entity pusher, float sx, float sy)
+        {
+            if (IsPushBy != null) return false;
+            IsPushBy = pusher;
+
+            if (CanBePushByAnything || CanBePushBy.Contains(pusher.Blueprint))
+            {
+                var move = Owner.Get<Move>();
+                var dir = new Vector2(sx, sy);
+                return move?.Do(dir.X, dir.Y, dir.ToDirection()) ?? false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             IsPushBy = null;

@@ -26,10 +26,5 @@ namespace Hevadea.Game.Entities
             var offy = -24;
             treeSprite.Draw(spriteBatch, new Vector2(X + offx, Y + offy - 64), Color.White);
         }
-
-        public override bool IsBlocking(Entity e)
-        {
-            return e is EntityPlayer || e is EntityZombie;
-        }
     }
 }

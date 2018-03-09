@@ -72,10 +72,12 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
                     var eHitbox = eColider.GetHitBox();
 
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, Owner.Facing, sy); }
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, 0f, sy); }
+                    eHitbox = eColider.GetHitBox();
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
 
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, Owner.Facing, sx); }
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, sx, 0f); }
+                    eHitbox = eColider.GetHitBox();
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
 
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; sx = 0; }
@@ -83,12 +85,12 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
                 var entityTilePosition = Owner.GetTilePosition();
 
-                for (int x = -1; x <= 1; x++)
+                for (var x = -1; x <= 1; x++)
                 {
-                    for (int y = -1; y <= 1; y++)
+                    for (var y = -1; y <= 1; y++)
                     {
                         var tile = new TilePosition(entityTilePosition.X + x, entityTilePosition.Y + y);
-                        bool isPassableTile = level.GetTile(tile).Tag<Tags.Solide>()?.CanPassThrought(Owner) ?? true;
+                        var isPassableTile = level.GetTile(tile).Tag<Tags.Solide>()?.CanPassThrought(Owner) ?? true;
 
                         if (!isPassableTile)
                         {
