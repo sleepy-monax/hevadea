@@ -132,10 +132,12 @@
     <Compile Include="Game\Storage\GameLoader.cs" />
     <Compile Include="Game\Storage\GameSaver.cs" />
     <Compile Include="Game\Storage\WorldStorage.cs" />
-    <Compile Include="Game\Tiles\Renderers\CompositConectedTileRender.cs" />
-    <Compile Include="Game\Tiles\Renderers\ConnectedTileRender.cs" />
-    <Compile Include="Game\Tiles\Renderers\TileConection.cs" />
+    <Compile Include="Game\Tiles\Renderers\TileRenderComposite.cs" />
+    <Compile Include="Game\Tiles\Renderers\TileRenderConnected.cs" />
+    <Compile Include="Game\Tiles\Renderers\TileConnection.cs" />
     <Compile Include="Game\Tiles\Renderers\TileRender.cs" />
+    <Compile Include="Game\Tiles\Renderers\TileRenderGroupe.cs" />
+    <Compile Include="Game\Tiles\Renderers\TileRenderSprite.cs" />
     <Compile Include="Game\Tiles\Tags.cs" />
     <Compile Include="Game\Tiles\TileTag.cs" />
     <Compile Include="Game\Worlds\DayNightCycle.cs" />

@@ -62,7 +62,7 @@ namespace Hevadea.Game.Registry
                                 Function = new CombinedFunction(new PerlinFunction(2, 0.5, 15), new IslandFunction()),
                                 TileRequired = {TILES.GRASS}
                             }
-                            
+
                         }
                     },
                     new HouseFeature(),
@@ -75,7 +75,8 @@ namespace Hevadea.Game.Registry
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = new PerlinFunction(2, 0.5, 15),
-                                Threashold = 0.7f
+                                Threashold = 0.7f,
+                                Spacing = 2,
                             },
                             new PlantFeature(ENTITIES.GRASS)
                             {

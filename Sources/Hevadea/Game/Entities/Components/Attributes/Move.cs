@@ -79,8 +79,6 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, sx, 0f); }
                     eHitbox = eColider.GetHitBox();
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
-
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; sx = 0; }
                 }
 
                 var entityTilePosition = Owner.GetTilePosition();
@@ -97,7 +95,6 @@ namespace Hevadea.Game.Entities.Components.Attributes
                             var tileRect = tile.ToRectangle();
                             if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
                             if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
-                            if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; sx = 0; }
                         }
                     }
                 }

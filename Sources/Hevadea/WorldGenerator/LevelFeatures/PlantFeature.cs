@@ -13,6 +13,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
         public float Threashold { get; set; } = 1f;
         public int Chance { get; set; } = 1;
         public int RandomOffset { get; set; } = 4;
+        public int Spacing { get; set; } = 1;
         
         private float _progress = 0;
         private EntityBlueprint _blueprint;
@@ -29,9 +30,9 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 
         public override void Apply(Generator gen, LevelGenerator levelGen, Level level)
         {
-            for (var x = 0; x < gen.Size; x++)
+            for (var x = 0; x < gen.Size; x+= Spacing)
             {
-                for (var y = 0; y < gen.Size; y++)
+                for (var y = 0; y < gen.Size; y+= Spacing)
                 {   
                     if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(x, y)) && PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold && level.GetEntityOnTile(x, y).Count == 0)
                         level.SpawnEntity(_blueprint.Construct(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));

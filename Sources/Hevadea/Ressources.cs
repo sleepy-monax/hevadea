@@ -86,10 +86,10 @@ namespace Hevadea
             TileRock = new SpriteSheet(ImgRock, new Point(16, 16));
 
             ParalaxeForest = new ParalaxeBackground(
-                new ParalaxeLayer(ImgForestBackground, 1.1f),
-                new ParalaxeLayer(ImgForestTrees0, 1.5f),
+                new ParalaxeLayer(ImgForestBackground, 0.5f),
+                new ParalaxeLayer(ImgForestTrees0, 1f),
                 new ParalaxeLayer(ImgForestLight, 2f),
-                new ParalaxeLayer(ImgForestTrees1, 2.5f)
+                new ParalaxeLayer(ImgForestTrees1, 4f)
             );
 
             SprUnderWater = new Sprite(Ressources.TileCreatures, 3, new Point(16, 32));

@@ -25,9 +25,8 @@ namespace AndroidPlatform
             var platform = new RiseAndroidPlatform(metrics.WidthPixels, metrics.HeightPixels);
 
             Rise.Initialize(platform);
-  
             SetContentView((View)Rise.MonoGame.Services.GetService(typeof(View)));
-            Rise.Start(new SceneLoadGame());
+            Rise.Start(new SceneGameSplash());
         }
     }
 }

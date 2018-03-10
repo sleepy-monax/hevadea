@@ -35,7 +35,7 @@ namespace Hevadea.Scenes
 
         public override void OnUpdate(GameTime gameTime)
         {
-            if (!(gameTime.TotalGameTime.TotalSeconds > 1) || !_once) return;
+            if (!(gameTime.TotalGameTime.TotalSeconds > 3) || !_once) return;
             Rise.Scene.Switch(new MainMenu());
             _once = false;
         }

@@ -22,15 +22,25 @@ namespace Hevadea.Game.Registry
 
         public static void Initialize()
         {
-            ROCK       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 1)));
-            GRASS      = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 2)));
-            SAND       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 3)));
-            WATER      = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 4)));
-            WOOD_FLOOR = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 5)));
-            WOOD_WALL  = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 6)));
-            VOID       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 8)));
-            DIRT       = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 9)));
-            IRON_ORE   = new Tile(new CompositConectedTileRender(new Sprite(Ressources.TileTiles, 10)));
+            ROCK       = new Tile();
+            GRASS = new Tile();
+            SAND = new Tile();
+            WATER      = new Tile();
+            WOOD_FLOOR = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 5)));
+            WOOD_WALL  = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 6)));
+            VOID       = new Tile();
+            DIRT       = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 9)));
+            IRON_ORE   = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)));
+        }
+
+        public static void AttachRender()
+        {
+            WATER.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 4)) { ConnectTo = { VOID } };
+            GRASS.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 2));
+            VOID.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 8)) { ConnectTo = { WATER } };
+            SAND.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 3));
+            ROCK.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 1)) { ConnectTo = { IRON_ORE } };
+            IRON_ORE.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)) { ConnectTo = { ROCK } };
         }
 
         public static void AttachTags()
