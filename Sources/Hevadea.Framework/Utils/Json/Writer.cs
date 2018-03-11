@@ -7,10 +7,14 @@ using System.Text;
 
 namespace Hevadea.Framework.Utils.Json
 {
-    //Really simple JSON writer
     //- Outputs JSON structures from an object
     //- Really simple API (new List<int> { 1, 2, 3 }).ToJson() == "[1,2,3]"
     //- Will only output public fields and property getters on objects
+
+    /// <summary>
+    /// Really simple JSON writer from https://github.com/zanders3/json
+    /// with aditional features hacked in.
+    /// </summary>
     public static class Writer
     {
         public static string ToJson(this object item)
@@ -69,10 +73,12 @@ namespace Hevadea.Framework.Utils.Json
             else if (item is float f)
             {
                 stringBuilder.Append(f.ToString(CultureInfo.InvariantCulture));
+                stringBuilder.Append('f');
             }
             else if (item is double d)
             {
                 stringBuilder.Append(d.ToString(CultureInfo.InvariantCulture));
+                stringBuilder.Append('d');
             }
             else if (type == typeof(byte) || type == typeof(int) || type == typeof(long))
             {

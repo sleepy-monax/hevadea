@@ -16,6 +16,8 @@ namespace Hevadea.Game.Registry
     public class EntityBlueprint
     {
         public string Name { get; }
+        public delegate void ConstructorHandler(Entity e);
+        public ConstructorHandler Constructor; 
 
         public EntityBlueprint(string name)
         {
@@ -24,7 +26,9 @@ namespace Hevadea.Game.Registry
         
         public virtual Entity Construct()
         {
-            return new Entity{Blueprint = this};
+            var newEntity = new Entity { Blueprint = this };
+            Constructor(newEntity);
+            return newEntity;
         }
     }
     

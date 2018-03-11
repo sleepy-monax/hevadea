@@ -8,14 +8,13 @@ namespace Hevadea.Game.Worlds
     {
         public bool IsAll(Tile tile, Rectangle rectangle)
         {
-            var result = true;
-
             var beginX = rectangle.X / ConstVal.TileSize - 1;
             var beginY = rectangle.Y / ConstVal.TileSize - 1;
 
             var endX = (rectangle.X + rectangle.Width) / ConstVal.TileSize + 1;
             var endY = (rectangle.Y + rectangle.Height) / ConstVal.TileSize + 1;
 
+            var result = true;
 
             for (var x = beginX; x < endX; x++)
             for (var y = beginY; y < endY; y++)
@@ -29,13 +28,11 @@ namespace Hevadea.Game.Worlds
         
         public bool IsAll<T>(Rectangle rectangle) where T: TileTag
         {
-
             var beginX = rectangle.X / ConstVal.TileSize;
             var beginY = rectangle.Y / ConstVal.TileSize;
 
             var endX = (rectangle.X + rectangle.Width) / ConstVal.TileSize;
             var endY = (rectangle.Y + rectangle.Height) / ConstVal.TileSize;
-
 
             bool result =  GetTile(beginX, beginY).HasTag<T>();;
             for (var x = beginX; x <= endX; x++)
@@ -90,7 +87,11 @@ namespace Hevadea.Game.Worlds
 
         public T GetTileData<T>(int tx, int ty, string dataName, T defaultValue)
         {
-            if (_tilesData[tx + ty * Width].ContainsKey(dataName)) return (T) _tilesData[tx + ty * Width][dataName];
+            if (_tilesData[tx + ty * Width].ContainsKey(dataName))
+            {
+                var data = _tilesData[tx + ty * Width][dataName];
+                return (T)data;
+            }
 
             _tilesData[tx + ty * Width].Add(dataName, defaultValue);
             return defaultValue;

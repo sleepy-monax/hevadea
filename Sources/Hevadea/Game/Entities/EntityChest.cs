@@ -16,7 +16,12 @@ namespace Hevadea.Game.Entities
         public EntityChest()
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
-
+            
+            Attachs(                
+                new Pushable(){ CanBePushByAnything = true },
+                new Move(),
+                new Colider(new Rectangle(-6, -2, 12, 8)));
+            
             Attach(new Inventory(128));
             Attach(new Health(10)).OnDie +=
                 (sender, arg) =>
@@ -31,17 +36,12 @@ namespace Hevadea.Game.Entities
                     if (arg.Entity.Has<Inventory>())
                         Game.CurrentMenu = new MenuItemContainer(arg.Entity, this, Game);
                 };
-            Attach(new Colider(new Rectangle(-8, 0, 16, 8)));
+
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             _sprite.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
-        }
-
-        public override bool IsBlocking(Entity e)
-        {
-            return e is EntityPlayer || e is EntityZombie;
         }
     }
 }

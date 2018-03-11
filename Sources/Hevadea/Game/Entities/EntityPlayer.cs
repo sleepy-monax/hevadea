@@ -28,10 +28,5 @@ namespace Hevadea.Game.Entities
         }
 
         public Item HoldingItem { get; set; }
-
-        public override bool IsBlocking(Entity entity)
-        {
-            return !(entity is ItemEntity);
-        }
     }
 }

@@ -27,7 +27,7 @@ namespace Hevadea.Framework.UI
                 case Anchor.TopRight: return new Point(rect.Width, 0);
                 case Anchor.Left: return new Point(0, rect.Height / 2);
                 case Anchor.Center: return new Point(rect.Width / 2, rect.Height / 2);
-                case Anchor.Right: return new Point(rect.Width, rect.Width / 2);
+                case Anchor.Right: return new Point(rect.Width, rect.Height / 2);
                 case Anchor.BottomLeft: return new Point(0, rect.Height);
                 case Anchor.Bottom: return new Point(rect.Width / 2, rect.Height);
                 case Anchor.BottomRight: return new Point(rect.Width, rect.Height);

@@ -22,7 +22,7 @@ namespace Hevadea.Game.Storage
             Directory.CreateDirectory(path);
 
             SetStatus("Saving player data...");
-            var p = game.Player;
+            var p = game.MainPlayer;
             var player = p.Save();
             p.Level.RemoveEntity(p);
             _progress = 0.25f;

@@ -1,4 +1,5 @@
-﻿using Hevadea.Game.Registry;
+﻿using Hevadea.Framework.Graphic;
+using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles.Renderers;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
@@ -11,14 +12,22 @@ namespace Hevadea.Game.Tiles
     {
         public int Id { get; }
         public List<TileTag> Tags => _tags;
+        public TileRender Render { get => _render; set { _render = value; _render.Tile = this; } }
         private readonly List<TileTag> _tags;
-        private readonly TileRenderer _renderer;
+        private TileRender _render = null;
 
-        public Tile(TileRenderer renderer)
+        public Tile()
         {
             Id = TILES.ById.Count;
             TILES.ById.Add(this);
-            _renderer = renderer;
+            _tags = new List<TileTag>();
+        }
+
+        public Tile(TileRender renderer)
+        {
+            Id = TILES.ById.Count;
+            TILES.ById.Add(this);
+            Render = renderer;
             _tags = new List<TileTag>();
         }
 
@@ -32,7 +41,8 @@ namespace Hevadea.Game.Tiles
 
         public void Draw(SpriteBatch spriteBatch, TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
-            _renderer?.Draw(spriteBatch, position.ToOnScreenPosition().ToVector2(), new TileConection(this, position, level));
+            spriteBatch.FillRectangle(position.ToRectangle(), new Color(148, 120, 92));
+            _render?.Draw(spriteBatch, position, level);
             foreach (var t in _tags)
             {
                 if (t is IDrawableTag d) d.Draw(this, spriteBatch, position, data, level, gameTime);
@@ -61,7 +71,7 @@ namespace Hevadea.Game.Tiles
             return null;
         }
 
-        public void AddTag(TileTag tag) {tag.AttachedTile = this; _tags.Add(tag); }
+        public void AddTag(TileTag tag) { tag.AttachedTile = this; _tags.Add(tag); }
         public void AddTag(params TileTag[] tags) { foreach (var t in tags) AddTag(t); }
         #endregion
     }

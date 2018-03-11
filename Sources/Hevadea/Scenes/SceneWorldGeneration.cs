@@ -27,7 +27,7 @@ namespace Hevadea.Scenes
             {
                 Thread.Sleep(1000);
                 _worldgen = GENERATOR.DEFAULT;
-                _worldgen.Seed = new Random().Next();
+                _worldgen.Seed = 0; // set a fix seed new Random().Next();
                 var world = _worldgen.Generate();
                 var player = (EntityPlayer)ENTITIES.PLAYER.Construct();
                 Rise.Scene.Switch(new SceneGameplay(new GameManager(world, player)));

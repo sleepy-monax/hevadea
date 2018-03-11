@@ -32,6 +32,9 @@ namespace Hevadea.Scenes.Menus
                                 { Text = "Continue", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new MenuInGame(Game);}),
                             new Button
+                                { Text = !Game.IsMasterGame ? "Start Sever" : "ServerStarted", Padding = new Padding(4) }
+                                .RegisterMouseClickEvent((sender) => { Game.StartServer(); Game.CurrentMenu = new MenuInGame(Game);}),
+                            new Button
                                 { Text = "Restart", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent(sender => Rise.Scene.Switch(new SceneWorldGeneration())),
                             new Button

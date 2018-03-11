@@ -73,9 +73,15 @@ namespace Hevadea.Framework.Scening
         }
 
         public void Draw(GameTime gameTime)
-        {            
+        {
             if (_background != null)
+            {
                 _spritebatch.BeginDrawEnd(_background.Draw, gameTime);
+
+                _spritebatch.Begin();
+                _spritebatch.FillRectangle(Rise.Graphic.GetBound(), Color.Black * 0.3f);
+                _spritebatch.End();
+            }
      
             _currentScene?.Draw(_spritebatch, gameTime);
 

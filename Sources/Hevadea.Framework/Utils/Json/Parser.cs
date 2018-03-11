@@ -193,13 +193,13 @@ namespace Hevadea.Framework.Utils.Json
 
             if (type == typeof(float))
             {
-                float result = float.Parse(json, CultureInfo.InvariantCulture);
+                float result = float.Parse(json.Replace("f", ""), CultureInfo.InvariantCulture);
                 return result;
             }
 
             if (type == typeof(double))
             {
-                double result = double.Parse(json, CultureInfo.InvariantCulture);
+                double result = double.Parse(json.Replace("d", ""), CultureInfo.InvariantCulture);
                 return result;
             }
 
@@ -320,9 +320,14 @@ namespace Hevadea.Framework.Utils.Json
 
             if (char.IsDigit(json[0]) || json[0] == '-')
             {
-                if (json.Contains("."))
+                if (json.EndsWith("f"))
                 {
-                    double.TryParse(json,NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
+                    float.TryParse(json.Replace("f",""), NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
+                    return result;
+                }
+                else if (json.EndsWith("d"))
+                {
+                    double.TryParse(json.Replace("f", ""), NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
                     return result;
                 }
                 else

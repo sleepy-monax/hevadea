@@ -10,6 +10,7 @@ namespace Hevadea.Game.Entities
     public partial class Entity
     {
         #region Properties
+        public int Ueid = -1;
         public float X { get; private set; }
         public float Y { get; private set; }
         public Direction Facing { get; set; } = Direction.Down;
@@ -42,7 +43,6 @@ namespace Hevadea.Game.Entities
 
         public virtual void OnSave(EntityStorage store){}
         public virtual void OnLoad(EntityStorage store){}
-        public virtual bool IsBlocking(Entity entity) => false;
         public virtual void OnUpdate(GameTime gameTime) {}
         public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime){}
         

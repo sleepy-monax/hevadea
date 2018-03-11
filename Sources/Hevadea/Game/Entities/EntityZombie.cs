@@ -34,7 +34,7 @@ namespace Hevadea.Game.Entities
 
             if (!agent.IsBusy())
             {
-                var playerPosition = Game.Player.GetTilePosition();
+                var playerPosition = Game.MainPlayer.GetTilePosition();
                 List<PathFinder.Node> _path = null;
                 _path = new PathFinder(Level, this).PathFinding(GetTilePosition(), playerPosition);
 
@@ -50,11 +50,6 @@ namespace Hevadea.Game.Entities
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
-        }
-
-        public override bool IsBlocking(Entity entity)
-        {
-            return true;
         }
     }
 }

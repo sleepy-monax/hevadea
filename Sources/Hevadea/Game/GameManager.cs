@@ -2,18 +2,19 @@
 using Hevadea.Game.Worlds;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
-using System;
+using System.Collections.Generic;
 
 namespace Hevadea.Game
 {
-    public class GameManager
+    public partial class GameManager
     {
         private Menu _currentMenu;
 
-        public World World { get; }
-        public EntityPlayer Player { get; }
+        public World World { get; set; }
+        public EntityPlayer MainPlayer { get; }
+        public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
+
         public Camera Camera { get; }
-        public Random Random { get; } = new Random();
         public PlayerInputHandler PlayerInput { get; }
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
@@ -29,11 +30,16 @@ namespace Hevadea.Game
             }
         }
 
+        public GameManager()
+        {
+
+        }
+
         public GameManager(World world, EntityPlayer player)
         {
             World = world;
-            Player = player;
-            Camera = new Camera(Player);
+            MainPlayer = player;
+            Camera = new Camera(MainPlayer);
             PlayerInput = new PlayerInputHandler(player);
         }
 
@@ -41,7 +47,8 @@ namespace Hevadea.Game
         {
             World.Initialize(this);
             CurrentMenu = new MenuInGame(this);
-            World.SpawnPlayer(Player);
+            World.SpawnPlayer(MainPlayer);
+            Camera.JumpToFocusEntity();
         }
 
         public void Draw(GameTime gameTime)

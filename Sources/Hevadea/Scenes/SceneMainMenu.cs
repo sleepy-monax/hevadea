@@ -14,20 +14,17 @@ namespace Hevadea.Scenes
         {
             Rise.Scene.SetBackground(Ressources.ParalaxeForest);
 
-            Container = new AnchoredContainer().AddChild(
-                new WidgetFancyPanel
+            var menuPanel = new WidgetFancyPanel
+            {
+                Anchor = Anchor.Center,
+                Origine = Anchor.Left,
+                UnitBound = new Rectangle(0, 0, 320, 352),
+                Padding = new Padding(16),
+                Content = new TileContainer
                 {
-                    Anchor  = Anchor.Center,
-                    Origine = Anchor.Center,
-                    UnitBound = new Rectangle(0, 0, 320, 416),
-                    Padding = new Padding(16),
-                    Content = new TileContainer
-                    {
-                        Flow = FlowDirection.TopToBottom,
-                        Childrens =
+                    Flow = FlowDirection.TopToBottom,
+                    Childrens =
                         {
-                            new Label 
-                                { Text = "Hevadea", Font = Ressources.FontAlagardBig},
                             new Button
                                     { Text = "Continue", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent(sender => {}),
@@ -44,9 +41,13 @@ namespace Hevadea.Scenes
                                     { Text = "Exit", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {}),
                         }
-                        
-                    }
-                });
+
+                }
+            };
+
+            var hevadeaLogo = new Label { Text = "Hevadea", UnitBound = new Rectangle(0, 0, 320, 352), Anchor = Anchor.Center, Origine = Anchor.Right, Font = Ressources.FontAlagardBig, Scale = 1f};
+
+            Container = new AnchoredContainer() { Childrens = { menuPanel, hevadeaLogo} };
         }
 
         public override void Unload()

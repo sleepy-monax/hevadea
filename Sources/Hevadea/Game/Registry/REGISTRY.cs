@@ -14,7 +14,7 @@ namespace Hevadea.Game.Registry
             RECIPIES.InitializeHandCraftedRecipe();
             LEVELS.Initialize();
             GENERATOR.Initialize();
-
+            TILES.AttachRender();
             TILES.AttachTags();
             ITEMS.AttachTags();
         }

@@ -14,6 +14,12 @@ namespace Hevadea.Game
             Zoom = 4f;
         }
 
+        public void JumpToFocusEntity()
+        {
+            X = FocusEntity.X;
+            Y = FocusEntity.Y;
+        }
+
         public override void Animate(GameTime gameTime)
         {
             X -= (X - Mathf.Floor(FocusEntity.X)) * 0.1f;
