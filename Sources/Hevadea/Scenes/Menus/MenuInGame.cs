@@ -35,7 +35,7 @@ namespace Hevadea.Scenes.Menus
             btnAction.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Action); };
             btnAttack.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Attack); };
 
-            _playerStats = new WidgetPlayerStats(game.Player)
+            _playerStats = new WidgetPlayerStats(game.MainPlayer)
             {
                 UnitBound = new Rectangle(0, 0, 320, 64),
                 Origine = Anchor.TopRight,
@@ -54,20 +54,20 @@ namespace Hevadea.Scenes.Menus
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new MenuGamePaused(Game); }),
                     
                     new Button{ Text = "Inventory", Origine = Anchor.TopLeft, Anchor = Anchor.TopLeft, UnitOffset = new Point(16 + 96,16)}
-                    .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new MenuPlayerInventory(Game.Player, RECIPIES.HandCrafted,Game); })
+                    .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new MenuPlayerInventory(Game.MainPlayer, RECIPIES.HandCrafted,Game); })
                 }
             };
         }
 
         public override void Update(GameTime gameTime)
         {            
-            Game.Player.Get<Inventory>().AlowPickUp = true; //Rise.Input.KeyDown(Keys.F);
+            Game.MainPlayer.Get<Inventory>().AlowPickUp = true; //Rise.Input.KeyDown(Keys.F);
             if (Rise.Input.KeyPress(Keys.A))
             {
-                var level = Game.Player.Level;
-                var item = Game.Player.HoldingItem;
-                var facingTile = Game.Player.GetFacingTile();
-                Game.Player.Get<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
+                var level = Game.MainPlayer.Level;
+                var item = Game.MainPlayer.HoldingItem;
+                var facingTile = Game.MainPlayer.GetFacingTile();
+                Game.MainPlayer.Get<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
             }
             
             base.Update(gameTime);

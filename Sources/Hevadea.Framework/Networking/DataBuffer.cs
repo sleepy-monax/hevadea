@@ -49,6 +49,11 @@ namespace Hevadea.Framework.Networking
             _buffer = new byte[size];
         }
 
+        public void GoToBegin()
+        {
+            SetOffset(0);
+        }
+
         public void SetOffset(int value)
         {
             _offset = value;

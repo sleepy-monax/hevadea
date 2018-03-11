@@ -34,7 +34,7 @@ namespace Hevadea.Game.Entities
 
             if (!agent.IsBusy())
             {
-                var playerPosition = Game.Player.GetTilePosition();
+                var playerPosition = Game.MainPlayer.GetTilePosition();
                 List<PathFinder.Node> _path = null;
                 _path = new PathFinder(Level, this).PathFinding(GetTilePosition(), playerPosition);
 

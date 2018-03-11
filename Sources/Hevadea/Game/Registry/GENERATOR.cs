@@ -76,14 +76,14 @@ namespace Hevadea.Game.Registry
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = new PerlinFunction(2, 0.5, 15),
                                 Threashold = 0.7f,
-                                Spacing = 2,
+ 
                             },
                             new PlantFeature(ENTITIES.GRASS)
                             {
-                                Chance = 5,
+                                Chance = 2,
                                 CanBePlantOn = {TILES.GRASS},
-                                PlacingFunction = new PerlinFunction(),
-                                Threashold = 0.7f
+                                PlacingFunction = new PerlinFunction(1,1,5),
+                                Threashold = 0.5f
                             }
                         }
                     }

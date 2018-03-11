@@ -114,6 +114,8 @@
     <Compile Include="Game\Entities\EntityTorch.cs" />
     <Compile Include="Game\Entities\EntityTree.cs" />
     <Compile Include="Game\GameManager.cs" />
+    <Compile Include="Game\GameManager.LifeCycle.cs" />
+    <Compile Include="Game\GameManager.Networking.cs" />
     <Compile Include="Game\Items\ItemEntity.cs" />
     <Compile Include="Game\Items\ItemStorage.cs" />
     <Compile Include="Game\Items\ItemTag.cs" />
@@ -124,7 +126,16 @@
     <Compile Include="Game\Items\Tags\PlacableItemTag.cs" />
     <Compile Include="Game\Items\Tags\PlaceEntity.cs" />
     <Compile Include="Game\Items\Tags\PlaceTile.cs" />
-    <Compile Include="Game\PlayerInputHandler.cs" />
+    <Compile Include="Game\Loading\LoadingScene.cs" />
+    <Compile Include="Game\Loading\LoadingTask.cs" />
+    <Compile Include="Game\Loading\LoadingTaskConnectToServer.cs" />
+    <Compile Include="Game\Loading\LoadingTaskDownloadWorld.cs" />
+    <Compile Include="Game\Loading\LoadingTaskGenerateWorld.cs" />
+    <Compile Include="Game\Loading\LoadingTaskLoadWorld.cs" />
+    <Compile Include="Game\Loading\LoadingTaskPlayerJoint.cs" />
+    <Compile Include="Game\Loading\LoadingTaskSaveWorld.cs" />
+    <Compile Include="Game\Loading\LoadingTaskSetupServer.cs" />
+    <Compile Include="Game\Player\PlayerInputHandler.cs" />
     <Compile Include="Game\Registry\ENTITIES.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />
     <Compile Include="Game\Registry\LEVELS.cs" />
@@ -148,9 +159,7 @@
     <Compile Include="Game\Worlds\Level\Level.LifeCycle.cs" />
     <Compile Include="Game\Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Game\Worlds\World.cs" />
-    <Compile Include="Networking\GameClient.cs" />
-    <Compile Include="Networking\GameSever.cs" />
-    <Compile Include="Networking\GameProtocol.cs" />
+    <Compile Include="Networking\Packets.cs" />
     <Compile Include="Scenes\GuiFactory.cs" />
     <Compile Include="Scenes\Menus\MenuItemContainer.cs" />
     <Compile Include="Scenes\Menus\MenuInGame.cs" />
@@ -278,6 +287,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

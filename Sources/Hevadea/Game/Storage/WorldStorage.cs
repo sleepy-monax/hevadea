@@ -8,5 +8,6 @@ namespace Hevadea.Game.Storage
         public List<LevelStorage> Levels { get; set; } = new List<LevelStorage>();
         public double Time { get; set; } = 0;
         public string PlayerSpawnLevel { get; set; } = "null";
+        public int UeidCounter { get; set; } = 0;
     }
 }
