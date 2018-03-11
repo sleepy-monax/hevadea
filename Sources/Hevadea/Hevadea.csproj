@@ -105,6 +105,7 @@
     <Compile Include="Game\Entities\Entity.Base.cs" />
     <Compile Include="Game\Entities\Entity.LifeCycle.cs" />
     <Compile Include="Game\Entities\Entity.Position.cs" />
+    <Compile Include="Game\Entities\EntityFish.cs" />
     <Compile Include="Game\Entities\EntityNpc.cs" />
     <Compile Include="Game\Entities\EntityPlayer.cs" />
     <Compile Include="Game\Entities\EntityZombie.cs" />
