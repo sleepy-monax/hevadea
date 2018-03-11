@@ -61,11 +61,10 @@
     <Compile Include="Input\KeyBinding.cs" />
     <Compile Include="Input\LegacyInputManager.cs" />
     <Compile Include="MonoGameHandler.cs" />
+    <Compile Include="Networking\Client.cs" />
     <Compile Include="Networking\DataBuffer.cs" />
-    <Compile Include="Networking\NetClient.cs" />
-    <Compile Include="Networking\NetPeer.cs" />
-    <Compile Include="Networking\NettyServer.cs" />
-    <Compile Include="Networking\Packet.cs" />
+    <Compile Include="Networking\Peer.cs" />
+    <Compile Include="Networking\Server.cs" />
     <Compile Include="Ressource\RessourceManager.cs" />
     <Compile Include="Rise.cs" />
     <Compile Include="Input\Controller.cs" />

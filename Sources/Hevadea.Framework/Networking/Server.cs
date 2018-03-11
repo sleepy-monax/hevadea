@@ -5,26 +5,26 @@ using System.Threading;
 
 namespace Hevadea.Framework.Networking
 {
-    public sealed class NetServer : NetPeer
+    public sealed class Server : Peer
     {
         public class Connection
         {
             private Socket _socket;
-            private readonly NetServer _nettyServer;
+            private readonly Server _server;
 
             public Socket Socket { get => _socket; internal set { _socket = value; } }
 
-            public bool Connected => _nettyServer.GetIsConnected(_socket);
+            public bool Connected => _server.GetIsConnected(_socket);
 
-            public Connection(Socket socket, NetServer nettyServer)
+            public Connection(Socket socket, Server nettyServer)
             {
                 _socket = socket;
-                _nettyServer = nettyServer;
+                _server = nettyServer;
             }
 
-            public void SendPacket(Packet packet)
+            public void SendData(DataBuffer packet)
             {
-                _nettyServer.SendPacket(packet, _socket);
+                _server.SendData(packet, _socket);
             }
         }
 
@@ -37,16 +37,11 @@ namespace Hevadea.Framework.Networking
         public HandleConnectionChange ClientConnected;
         public HandleConnectionChange ClientLost;
 
-        public NetServer(bool noDelay = false)
+        public Server(bool noDelay = false)
             : base(noDelay)
         {
         }
 
-        /// <summary>
-        /// Returns the socket at the specified index.
-        /// </summary>
-        /// <param name="index">Index value at which the socket is stored.</param>
-        /// <returns></returns>
         public Connection GetConnection(int index)
         {
             if (_connections[index] == null || _connections[index].Socket == null)
@@ -90,10 +85,6 @@ namespace Hevadea.Framework.Networking
             return -1;
         }
 
-        /// <summary>
-        /// Removes a connection at the specified index.
-        /// </summary>
-        /// <param name="index">Index (unique id) of the connected to be removed.</param>
         public void RemoveConnection(int index)
         {
             try
@@ -116,14 +107,10 @@ namespace Hevadea.Framework.Networking
             {
             }
         }
-        /// <summary>
-        /// Sets the Main-Socket's address to the specified IP & Port.
-        /// </summary>
-        /// <param name="ip">IP Address that the socket will listen on.</param>
-        /// <param name="port">Port value that the socket will listen on.</param>
+
         private void SetAddress(string ip, int port)
         {
-            if (MainSocket.IsBound)
+            if (Socket.IsBound)
             {
                 throw new Exception("[NetServer] The socket is already bound!");
             }
@@ -132,19 +119,12 @@ namespace Hevadea.Framework.Networking
             _socketAddress = new IPEndPoint(IPAddress.Parse(ip), port);
         }
 
-        /// <summary>
-        /// Halts the server.
-        /// </summary>
         public void StopListening()
         {
-            MainSocket.Shutdown(SocketShutdown.Receive);
+            Socket.Shutdown(SocketShutdown.Receive);
         }
 
-        /// <summary>
-        /// Begins listening for and accepting socket connections.
-        /// </summary>
-        /// <param name="backLog">Maximum amount of pending connections</param>
-        public void Listen(int backLog = 25, int maximumConnections = 60)
+        public void StartListening(int backLog = 25, int maximumConnections = 60)
         {
             _connections = new Connection[maximumConnections];
 
@@ -153,15 +133,15 @@ namespace Hevadea.Framework.Networking
                 int index = -1;
 
                 if (_socketAddress == null) throw new Exception("You must specifiy the socket address before calling the listen method!");
-                if (!MainSocket.IsBound) throw new Exception("You must bind the socket before calling the listen method!");
+                if (!Socket.IsBound) throw new Exception("You must bind the socket before calling the listen method!");
 
-                MainSocket.Listen(backLog);
+                Socket.Listen(backLog);
 
-                Console.WriteLine("[NetServer] Server listening on address: " + MainSocket.LocalEndPoint);
+                Console.WriteLine("[NetServer] Server listening on address: " + Socket.LocalEndPoint);
 
                 while (true)
                 {
-                    var incomingSocket = MainSocket.Accept();
+                    var incomingSocket = Socket.Accept();
 
                     for (int i = 0; i < maximumConnections; i++)
                     {
@@ -169,7 +149,7 @@ namespace Hevadea.Framework.Networking
                         {
                             _connections[i] = new Connection(incomingSocket, this)
                             {
-                                Socket = { NoDelay = MainSocket.NoDelay }
+                                Socket = { NoDelay = Socket.NoDelay }
                             };
 
                             index = i;
@@ -196,42 +176,29 @@ namespace Hevadea.Framework.Networking
             listenerThread.Start();
         }
 
-        /// <summary>
-        /// Binds the socket to the specified address
-        /// </summary>
         public void BindSocket(string ip, int port)
         {
             SetAddress(ip, port);
-            MainSocket.Bind(_socketAddress);
+            Socket.Bind(_socketAddress);
         }
 
-        /// <summary>
-        /// Sends a packet to the designated remote socket connnection.
-        /// </summary>
-        /// <param name="packet">Object containing the packet's unique information</param>
-        /// <param name="this.SocketIndex">Socket ID of the desired remote socket that the packet will be sent to.</param>
-        /// <param name="forceSend">Force the current Message Buffer to be sent and flushed.</param>
-        public void SendPacket(Packet packet, int socketIndex)
+        public void SendData(DataBuffer packet, int socketIndex)
         {
-            this.SendPacket(packet, this.GetConnection(socketIndex).Socket);
+            this.SendData(packet, this.GetConnection(socketIndex).Socket);
         }
 
-        /// <summary>
-        /// Sends a packet to every active connection.
-        /// </summary>
-        /// <param name="packet">Object containing the packet's unique information</param>
-        public void BroadcastPacket(Packet packet)
+        public void BroadcastPacket(DataBuffer packet)
         {
             foreach (var connection in _connections)
             {
                 if (connection != null)
-                    this.SendPacket(packet, connection.Socket);
+                    this.SendData(packet, connection.Socket);
             }
         }
 
-        internal void SendPacket(Packet packet, Socket socket)
+        internal void SendData(DataBuffer packet, Socket socket)
         {
-            this.SendPacket(socket, packet);
+            this.SendData(socket, packet);
         }
     }
 }

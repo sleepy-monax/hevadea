@@ -159,7 +159,6 @@
     <Compile Include="Game\Worlds\Level\Level.LifeCycle.cs" />
     <Compile Include="Game\Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Game\Worlds\World.cs" />
-    <Compile Include="Networking\Packets.cs" />
     <Compile Include="Scenes\GuiFactory.cs" />
     <Compile Include="Scenes\Menus\MenuItemContainer.cs" />
     <Compile Include="Scenes\Menus\MenuInGame.cs" />
