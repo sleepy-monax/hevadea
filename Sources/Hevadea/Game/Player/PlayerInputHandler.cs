@@ -108,13 +108,13 @@ namespace Hevadea.Game
                     break;
                 case PlayerInput.Zoom:
                     {
-                        game.Camera.Zoom /= 0.9f;
+                        if(game.Camera.Zoom < 10)game.Camera.Zoom /= 0.9f;
 
                     }
                     break;
                 case PlayerInput.Dzoom:
                     {
-                        game.Camera.Zoom *= 0.9f;
+                        if(game.Camera.Zoom > 1)game.Camera.Zoom *= 0.9f;
 
                     }
                     break;

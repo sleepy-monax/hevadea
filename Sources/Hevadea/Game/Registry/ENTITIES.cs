@@ -38,6 +38,8 @@ namespace Hevadea.Game.Registry
         
         public static EntityBlueprint PLAYER;
         public static EntityBlueprint ZOMBIE;
+        public static EntityBlueprint FISH;
+        public static EntityBlueprint CHIKEN;
 
         public static EntityBlueprint GRASS;
         public static EntityBlueprint TREE;
@@ -57,6 +59,8 @@ namespace Hevadea.Game.Registry
             // Creatures
             PLAYER = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityPlayer>("player"));
             ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityZombie>("zombie"));
+            FISH = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFish>("fish"));
+            CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChiken>("chiken"));
 
             // Plants
             GRASS = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityGrass>("grass"));

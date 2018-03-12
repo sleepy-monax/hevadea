@@ -100,6 +100,7 @@
     <Compile Include="Game\Entities\Components\Render\NpcRender.cs" />
     <Compile Include="Game\Entities\Components\Render\ParticleEmiter.cs" />
     <Compile Include="Game\Entities\Components\Target.cs" />
+    <Compile Include="Game\Entities\EntityChiken.cs" />
     <Compile Include="Game\Entities\EntityCraftingBench.cs" />
     <Compile Include="Game\Entities\Entity.Component.cs" />
     <Compile Include="Game\Entities\Entity.Base.cs" />

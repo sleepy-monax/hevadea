@@ -27,7 +27,6 @@ namespace Hevadea.Game.Entities
             Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
         }
 
-
         public override void OnUpdate(GameTime gameTime)
         {
             var agent = Get<Agent>();
