@@ -19,7 +19,9 @@ namespace Hevadea.Game.Entities
     {
         private int dx = 0;
         private int dy = 0;
+        
         private readonly Sprite _sprite;
+        
         public EntityFish()
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(11, 0));

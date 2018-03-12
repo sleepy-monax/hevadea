@@ -14,6 +14,8 @@ namespace Hevadea.Game.Entities.Components.Ai
         public int Id { get; }
         public Queue<IAction> ActionQueue { get; } = new Queue<IAction>();
         public IAction CurrentAction { get; private set; }
+        
+        public IBehavior Behavior { get; set; }
 
         public Agent()
         {
@@ -30,6 +32,7 @@ namespace Hevadea.Game.Entities.Components.Ai
             CurrentAction = null;
             ActionQueue.Clear();
             Logger.Log<Agent>($"{Id} aborted: {why}");
+            Behavior?.IaAborted(this, why);
         }
         
         public void Update(GameTime gameTime)
