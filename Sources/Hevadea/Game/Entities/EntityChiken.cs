@@ -16,6 +16,7 @@ namespace Hevadea.Game.Entities
     {
         private int dx = 0;
         private int dy = 0;
+        private bool Move = false;
         private readonly Sprite _sprite;
         public EntityChiken()
         {
@@ -27,19 +28,24 @@ namespace Hevadea.Game.Entities
 
         public override void OnUpdate(GameTime gameTime)
         {
-           
-        
-            if (Rise.Random.Next(0, 20) == 0)
+            Move = Rise.Random.Next(100) == 5 ? !Move:Move;  
+            if (Move)
             {
-                dx = Rise.Random.Next(-20, 21);
-                dy = Rise.Random.Next(-20, 21);
-            }
-            var move = Get<Move>();
+                if (Rise.Random.Next(0, 20) == 0)
+                {
+                    dx = Rise.Random.Next(-20, 21);
+                    dy = Rise.Random.Next(-20, 21);
+                }
+                var move = Get<Move>();
 
-            if (dx != 0 || dy != 0)
-            {
-                move.MoveTo(X + dx, Y + dy);
+                if (dx != 0 || dy != 0)
+                {
+                    move.MoveTo(X + dx, Y + dy, null, 0.5f);
+                }
+
             }
+           
+            
             
         }
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

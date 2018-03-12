@@ -76,6 +76,7 @@
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />
     <Compile Include="Game\Entities\Components\Ai\PathFinding.cs" />
+    <Compile Include="Game\Entities\Components\Grow.cs" />
     <Compile Include="Game\Entities\EntityBelt.cs" />
     <Compile Include="Game\Entities\EntityChest.cs" />
     <Compile Include="Game\Entities\Components\Ai\Agent.cs" />
