@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Game.Loading
 {
-    class LoadingTaskConnectToServer
+    public class LoadingTaskConnectToServer
     {
     }
 }

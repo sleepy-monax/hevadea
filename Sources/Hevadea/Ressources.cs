@@ -44,6 +44,7 @@ namespace Hevadea
 
         public static ParalaxeBackground ParalaxeForest;
 
+        public static Sprite SprPickup;
         public static Sprite SprUnderWater;
         public static SpriteFont FontHack;
 
@@ -93,6 +94,7 @@ namespace Hevadea
             );
 
             SprUnderWater = new Sprite(Ressources.TileCreatures, 3, new Point(16, 32));
+            SprPickup = new Sprite(Ressources.TileCreatures, 1, new Point(16, 32));
         }
     }
 }
