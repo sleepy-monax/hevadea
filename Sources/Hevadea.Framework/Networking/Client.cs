@@ -21,11 +21,10 @@ namespace Hevadea.Framework.Networking
 
         public bool Connect(string ip, int port, byte attemptCount)
         {
-            for (int i = 0; i < attemptCount; i++)
+            for (var i = 0; i < attemptCount; i++)
             {
                 try
                 {
-
                     Socket = new Socket(Socket.AddressFamily, Socket.SocketType, Socket.ProtocolType)
                     {
                         NoDelay = this.NoDelay
@@ -33,49 +32,31 @@ namespace Hevadea.Framework.Networking
 
                     var result = Socket.BeginConnect(ip, port, null, null);
 
-                    if (result.AsyncWaitHandle.WaitOne(CONNECTION_TIMEOUT, true))
+                    if (result.AsyncWaitHandle.WaitOne(CONNECTION_TIMEOUT, true) && Socket.Connected)
                     {
-                        if (Socket.Connected)
-                        {
-                            new Thread(x => BeginReceiving(Socket, 0)).Start();
-                            Console.WriteLine("[NetClient] Connection established with " + ip + ":" + port);
-                            Socket.EndConnect(result);
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Socket.Close();
+                        new Thread(x => BeginReceiving(Socket, 0)).Start();
+                        Console.WriteLine("[NetClient] Connection established with " + ip + ":" + port);
+                        Socket.EndConnect(result);
+                        return true;
                     }
                 }
-                catch (SocketException)
-                {
-                    Socket.Close();
-                    continue;
-                }
-                catch (InvalidOperationException)
-                {
-                    Socket.Close();
-                    continue;
-                }
+                catch (SocketException) { }
+                catch (InvalidOperationException) { }
+                
+                Socket.Close();
             }
             return false;
         }
 
         public void Disconnect()
         {
-            var noDelay = Socket.NoDelay;
             Socket.Dispose();
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
             {
-                NoDelay = noDelay
+                NoDelay = this.NoDelay
             };
         }
 
-        public void SendData(DataBuffer packet) => this.SendData(Socket, packet);
+        public void SendData(DataBuffer packet) => SendData(Socket, packet);
     }
 }

@@ -8,9 +8,16 @@ namespace Hevadea.Framework.Networking
         private byte[] _buffer; // Our packet buffer, holds the assembly of bytes.
         private int _offset; // Holds our current offset in the byte array.
 
-        public DataBuffer(int PreAllocatedSize = 2)
+        public DataBuffer(int preAllocatedSize = 2)
         {
-            PreAllocate(PreAllocatedSize);
+            PreAllocate(preAllocatedSize);
+            _offset = 0;
+        }
+
+        public DataBuffer(byte[] data)
+        {
+            _buffer = data;
+            _offset = 0;
         }
 
         public void PreAllocate(int size)
@@ -18,6 +25,11 @@ namespace Hevadea.Framework.Networking
             _buffer = new byte[size];
         }
 
+        public byte[] GetBuffer()
+        {
+            return _buffer;
+        }
+        
         private void Resize(int newSize)
         {
             if (newSize < _buffer.Length) return;
@@ -64,7 +76,8 @@ namespace Hevadea.Framework.Networking
 
                 return tmp;
             }
-            else return _buffer;
+            
+            return _buffer;
         }
 
         public void FillBuffer(byte[] bytes)
@@ -75,7 +88,7 @@ namespace Hevadea.Framework.Networking
 
         public void WriteBytes(byte[] bytes, int destOffset)
         {
-            this.Resize(_offset + bytes.Length);
+            Resize(_offset + bytes.Length);
 
             foreach (byte t in bytes)
                 _buffer[destOffset++] = t;
@@ -83,7 +96,7 @@ namespace Hevadea.Framework.Networking
 
         public void WriteBytes(byte[] bytes)
         {
-            this.Resize(_offset + bytes.Length);
+            Resize(_offset + bytes.Length);
 
             foreach (byte t in bytes)
                 _buffer[_offset++] = t;
@@ -219,9 +232,10 @@ namespace Hevadea.Framework.Networking
             return (int)(_buffer[_offset++] | _buffer[_offset++] << 8 | _buffer[_offset++] << 16 | _buffer[_offset++] << 24);
         }
 
-
-
-
+        
+        
+        
+        
         public DataBuffer ReadLong(out long outValue)
         {
             outValue = BitConverter.ToInt64(_buffer, _offset);

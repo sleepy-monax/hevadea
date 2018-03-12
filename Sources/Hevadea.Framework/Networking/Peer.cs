@@ -14,7 +14,6 @@ namespace Hevadea.Framework.Networking
         public delegate void DataReceivedHandler(Socket socket, DataBuffer packet);
         public DataReceivedHandler DataReceived;
 
-
         protected Peer(bool noDelay = false)
         {
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
@@ -84,42 +83,23 @@ namespace Hevadea.Framework.Networking
                     while (curRead < pLength)
                         curRead += socket.Receive(data, curRead, pLength - curRead, SocketFlags.None);
 
-                    var dataBuffer = new DataBuffer();
-
-                    // Fill our DataBuffer.
-                    dataBuffer.FillBuffer(data);
-
-                    if (DataReceived != null)
-                        DataReceived.Invoke(socket, dataBuffer);
+                    var dataBuffer = new DataBuffer(data);
+                    DataReceived?.Invoke(socket, dataBuffer);
                 }
 
-                catch (ObjectDisposedException)
-                {
-                    break;
-                }
-
-                catch (SocketException)
-                {
-                    break;
-                }
+                catch (ObjectDisposedException) { break; }
+                catch (SocketException) { break; }
             }
 
-            this.HandleDisconnectedSocket(socket);
+            HandleDisconnectedSocket(socket);
         }
 
         protected void HandleDisconnectedSocket(Socket socket)
         {
-            // If this is our client's incoming data listener,
-            // we should just allow the socket to disconnect, and then notify the deriving class
-            // that the socket has disconnected!
             if (this is Client)
             {
-                // Create a new reference of this object and cast it to NettyClient.
-                var nettyClient = this as Client;
-
-                // Invoke the SocketDisconnected method.
-                if (nettyClient.ConnectionLost != null)
-                    nettyClient.ConnectionLost.Invoke();
+                var client = this as Client;
+                client.ConnectionLost?.Invoke();
 
                 Socket.Dispose();
                 Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
@@ -127,43 +107,38 @@ namespace Hevadea.Framework.Networking
                     NoDelay = this._noDelay
                 };
 
-                // We've cleaned up everything here; there's no need to notify the end user.
                 return;
             }
 
             // Create a new reference of this object and cast it to NetServer.
-            var nettyServer = this as Server;
+            var server = this as Server;
 
-            int socketIndex = nettyServer.GetConnectionIndex(socket);
+            int socketIndex = server.GetConnectionIndex(socket);
 
             if (socketIndex != -1)
-                nettyServer.RemoveConnection(socketIndex);
+                server.RemoveConnection(socketIndex);
         }
 
         protected void SendData(Socket socket, DataBuffer packet)
         {
             try
             {
-                var dataBuffer = new DataBuffer();
-                dataBuffer.WriteBytes(packet.ReadBytes());
+                byte[] packetBody = packet.ReadBytes();
+                byte[] packetHeader = BitConverter.GetBytes(packetBody.Length);
 
-                byte[] data = dataBuffer.ReadBytes();
-
-                byte[] packetHeader = BitConverter.GetBytes(data.Length);
-
-                int sent = socket.Send(packetHeader);
-
-                while (sent < packetHeader.Length)
-                    sent += socket.Send(packetHeader, sent, packetHeader.Length - sent, SocketFlags.None);
-
-                sent = socket.Send(data);
-
-                while (sent < data.Length)
-                    sent += socket.Send(data, sent, data.Length - sent, SocketFlags.None);
+                SendRawData(socket, packetHeader);
+                SendRawData(socket, packetBody);
             }
             catch (NullReferenceException) {}
             catch (SocketException) {}
             catch (ObjectDisposedException) {}
+        }
+
+        private void SendRawData(Socket socket, byte[] data)
+        {
+            int sent = socket.Send(data);
+            while (sent < data.Length)
+                sent += socket.Send(data, sent, data.Length - sent, SocketFlags.None);
         }
     }
 }

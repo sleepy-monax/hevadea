@@ -66,9 +66,12 @@ namespace Hevadea.Game.Worlds
             return SetTile(tx, ty, tile.Id);
         }
 
-        public bool SetTile(int tx, int ty, int id)
+        public bool SetTile(int tx, int ty, int id, bool notify = true)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return false;
+            
+            if (notify && (_game?.IsRemote ?? false)) _game.NotifyTileChange(this, tx, ty, id);
+            
             _tiles[tx + ty * Width] = id;
             return true;
         }

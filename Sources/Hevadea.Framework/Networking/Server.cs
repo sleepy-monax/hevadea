@@ -9,22 +9,20 @@ namespace Hevadea.Framework.Networking
     {
         public class Connection
         {
-            private Socket _socket;
             private readonly Server _server;
 
-            public Socket Socket { get => _socket; internal set { _socket = value; } }
-
-            public bool Connected => _server.GetIsConnected(_socket);
+            public Socket Socket { get; internal set; }
+            public bool Connected => _server.GetIsConnected(Socket);
 
             public Connection(Socket socket, Server nettyServer)
             {
-                _socket = socket;
+                Socket = socket;
                 _server = nettyServer;
             }
 
             public void SendData(DataBuffer packet)
             {
-                _server.SendData(packet, _socket);
+                _server.SendData(packet, Socket);
             }
         }
 
@@ -100,8 +98,7 @@ namespace Hevadea.Framework.Networking
                 _connections[index].Socket = null;
                 _connections[index] = null;
 
-                if (this.ClientLost != null)
-                    this.ClientLost(index);
+                ClientLost?.Invoke(index);
             }
             catch (NullReferenceException)
             {
@@ -143,7 +140,7 @@ namespace Hevadea.Framework.Networking
                 {
                     var incomingSocket = Socket.Accept();
 
-                    for (int i = 0; i < maximumConnections; i++)
+                    for (var i = 0; i < maximumConnections; i++)
                     {
                         if (_connections[i] == null)
                         {
@@ -159,11 +156,11 @@ namespace Hevadea.Framework.Networking
 
                     Console.WriteLine("[NetServer] Received a connection from: " + incomingSocket.RemoteEndPoint);
 
-                    if (ClientConnected != null) ClientConnected.Invoke(index);
+                    ClientConnected?.Invoke(index);
 
                     try
                     {
-                        Thread recThread = new Thread(x => BeginReceiving(incomingSocket, index));
+                        var recThread = new Thread(x => BeginReceiving(incomingSocket, index));
                         recThread.Name = incomingSocket.RemoteEndPoint + ": incoming data thread.";
                         recThread.Start();
                     }
@@ -184,7 +181,7 @@ namespace Hevadea.Framework.Networking
 
         public void SendData(DataBuffer packet, int socketIndex)
         {
-            this.SendData(packet, this.GetConnection(socketIndex).Socket);
+            SendData(packet, GetConnection(socketIndex).Socket);
         }
 
         public void BroadcastPacket(DataBuffer packet)
@@ -192,13 +189,13 @@ namespace Hevadea.Framework.Networking
             foreach (var connection in _connections)
             {
                 if (connection != null)
-                    this.SendData(packet, connection.Socket);
+                    SendData(packet, connection.Socket);
             }
         }
 
         internal void SendData(DataBuffer packet, Socket socket)
         {
-            this.SendData(socket, packet);
+            SendData(socket, packet);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hevadea.Game.Entities;
+﻿using Hevadea.Framework.Utils;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Registry;
@@ -10,9 +11,9 @@ namespace Hevadea.Game.Items
 {
     public class ItemEntity : Entity
     {
-        public Item Item;
-        public float sx;
-        public float sy;
+        public Item Item { get; set; }
+        public float SpeedX { get; set; }
+        public float SpeedY { get; set; }
 
         public ItemEntity()
         {
@@ -24,16 +25,19 @@ namespace Hevadea.Game.Items
         public override void OnUpdate(GameTime gameTime)
         {
             var move = Get<Move>();
-            move.Do(sx, sy, Facing);
-            sx = sx / 2;
-            sy = sy / 2;
+            move.Do(SpeedX, SpeedY, Facing);
+            SpeedX = SpeedX / 2;
+            SpeedY = SpeedY / 2;
             
             var entities = Level.GetEntitiesOnArea(new Rectangle((int)X - 8, (int)Y - 8, 16, 16));
             foreach (var e in entities)
             {
                 var inv = e.Get<Inventory>();
-
-                if (inv != null && inv.Pickup(Item)) Remove();
+                if (inv?.AlowPickUp ?? false)
+                {
+                    move.MoveTo(e.X, e.Y);
+                    if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && inv.Pickup(Item)) Remove();
+                }
             }
 
         }
@@ -48,15 +52,15 @@ namespace Hevadea.Game.Items
         public override void OnSave(EntityStorage store)
         {
             store.Set("item", Item.Id);
-            store.Set("sx", sx);
-            store.Set("sy", sy);
+            store.Set("sx", SpeedX);
+            store.Set("sy", SpeedY);
         }
 
         public override void OnLoad(EntityStorage store)
         {
             Item = ITEMS.ById[store.GetInt("item")];
-            sx = store.GetFloat("sx", sx);
-            sy = store.GetFloat("sy", sy);
+            SpeedX = store.GetFloat("sx", SpeedX);
+            SpeedY = store.GetFloat("sy", SpeedY);
         }
     }
 }
