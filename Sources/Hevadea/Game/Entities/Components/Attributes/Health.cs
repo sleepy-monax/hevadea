@@ -39,8 +39,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
         {
             if (ShowHealthBar && Math.Abs(_value - _maxValue) > 0.05)
             {
-                var barY = Owner.Y + 8;
-                var barX = Owner.X - 16;
+                var barY = AttachedEntity.Y + 8;
+                var barX = AttachedEntity.X - 16;
                 
                 var rect = new Rectangle((int) barX, (int) barY, (int) (30 * ValuePercent), 6);
 
@@ -109,8 +109,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public void Die()
         {
             OnDie?.Invoke(this, null);
-            Owner.Get<Dropable>()?.Drop();
-            Owner.Remove();
+            AttachedEntity.Get<Dropable>()?.Drop();
+            AttachedEntity.Remove();
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Hevadea.Game.Entities.Components
             if (!HasTarget()) return;
             
             var target = GetTargetLocation();
-            spriteBatch.DrawLine(Owner.X, Owner.Y, target.WorldX, target.WorldY, Color.Blue);
+            spriteBatch.DrawLine(AttachedEntity.X, AttachedEntity.Y, target.WorldX, target.WorldY, Color.Blue);
             spriteBatch.PutPixel(new Vector2(target.WorldX, target.WorldY), Color.Blue, 4f);
         }
     }

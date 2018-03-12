@@ -73,6 +73,7 @@
     <Compile Include="Game\Craftings\RecipeCost.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionAttack.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />
+    <Compile Include="Game\Entities\Components\Ai\Actions\ActionWait.cs" />
     <Compile Include="Game\Entities\Components\Ai\Behaviors\BehaviorAnimal.cs" />
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />

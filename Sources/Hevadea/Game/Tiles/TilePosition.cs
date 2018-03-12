@@ -22,6 +22,11 @@ namespace Hevadea.Game.Tiles
             return new Point(X * ConstVal.TileSize, Y * ConstVal.TileSize);
         }
 
+        public Vector2 GetCenter()
+        {
+            return new Vector2(WorldX + 8, WorldY + 8);
+        }
+
         public Rectangle ToRectangle()
         {
             return new Rectangle(ToOnScreenPosition(), new Point(ConstVal.TileSize, ConstVal.TileSize));

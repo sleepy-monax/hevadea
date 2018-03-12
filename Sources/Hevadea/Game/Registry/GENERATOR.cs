@@ -71,11 +71,11 @@ namespace Hevadea.Game.Registry
                         Chance = 25,
                         CanBePlantOn = {TILES.WATER},
                         PlacingFunction = new PerlinFunction(2, 0.5, 15),
-                        Threashold = 0.7f,
+                        Threashold = 0.5f,
                     },
                     new PlantFeature(ENTITIES.CHIKEN)
                     {
-                        Chance = 50,
+                        Chance = 100,
                         CanBePlantOn = {TILES.GRASS},
                         PlacingFunction = new PerlinFunction(2, 0.5, 15),
                         Threashold = 0.7f,

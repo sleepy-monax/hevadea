@@ -10,10 +10,10 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
         public void Drop()
         {
-            var pos = Owner.GetTilePosition();
+            var pos = AttachedEntity.GetTilePosition();
 
             foreach (var d in Items)
-                if (Rise.Random.NextDouble() < d.Chance) d.Item.Drop(Owner.Level, pos, Rise.Random.Next(d.Min, d.Max));
+                if (Rise.Random.NextDouble() < d.Chance) d.Item.Drop(AttachedEntity.Level, pos, Rise.Random.Next(d.Min, d.Max));
         }
     }
 }

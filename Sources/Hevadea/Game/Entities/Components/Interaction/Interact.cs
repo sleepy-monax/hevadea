@@ -34,12 +34,12 @@ namespace Hevadea.Game.Entities.Components.Interaction
 
         public void Update(GameTime gameTime)
         {
-            SelectedTile = Owner.GetFacingTile();
+            SelectedTile = AttachedEntity.GetFacingTile();
         }
 
         public void Do(Item item)
         {
-            var entities = Owner.Level.GetEntityOnTile(SelectedTile);
+            var entities = AttachedEntity.Level.GetEntityOnTile(SelectedTile);
 
             if (entities.Count > 0)
                 foreach (var e in entities)
@@ -48,13 +48,13 @@ namespace Hevadea.Game.Entities.Components.Interaction
 
                     if (interactable != null)
                     {
-                        interactable.Interacte(Owner, Owner.Facing, item);
+                        interactable.Interacte(AttachedEntity, AttachedEntity.Facing, item);
                         break;
                     }
                 }
             else
             {
-                item?.Tag<InteractItemTag>()?.InteracteOn(Owner, SelectedTile);
+                item?.Tag<InteractItemTag>()?.InteracteOn(AttachedEntity, SelectedTile);
             }
         }
     }

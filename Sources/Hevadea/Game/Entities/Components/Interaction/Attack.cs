@@ -73,7 +73,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
         {
             var damages = BaseDamages;
 
-            var energy = Owner.Get<Energy>();
+            var energy = AttachedEntity.Get<Energy>();
 
             if (energy != null) damages = damages * (energy.Value / energy.MaxValue);
 
@@ -83,17 +83,17 @@ namespace Hevadea.Game.Entities.Components.Interaction
         public void Do(Item weapon)
         {
             if (IsAttacking) return;
-            if (!Owner.Get<Energy>()?.Reduce(1f) ?? false) return;
+            if (!AttachedEntity.Get<Energy>()?.Reduce(1f) ?? false) return;
 
             var damages = GetBaseDamages();
-            var facingTile = Owner.GetFacingTile();
+            var facingTile = AttachedEntity.GetFacingTile();
 
             if (CanAttackEntities)
             {
-                var facingEntities = Owner.Level.GetEntityOnTile(facingTile);
+                var facingEntities = AttachedEntity.Level.GetEntityOnTile(facingTile);
 
                 foreach (var e in facingEntities)
-                    if (e != Owner)
+                    if (e != AttachedEntity)
                     {
                         if (e.Has<Breakable>())
                         {
@@ -104,7 +104,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
                         var eHealth = e.Get<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
-                            eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
+                            eHealth.Hurt(AttachedEntity, damages * (weapon?.GetAttackBonus(e) ?? 1f), AttachedEntity.Facing);
                             IsAttacking = true;
                             break;
                         }
@@ -113,21 +113,21 @@ namespace Hevadea.Game.Entities.Components.Interaction
 
             if (CanAttackTile && !IsAttacking)
             {
-                var tile = Owner.Level.GetTile(facingTile);
+                var tile = AttachedEntity.Level.GetTile(facingTile);
                 if (tile.HasTag<Tags.Damage>())
                 {
-                    tile.Tag<Tags.Damage>().Hurt(damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Level);   
+                    tile.Tag<Tags.Damage>().Hurt(damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, AttachedEntity.Level);   
                 }
 
                 if (tile.HasTag<Tags.Breakable>())
                 {
-                    tile.Tag<Tags.Breakable>().Break(facingTile, Owner.Level);
+                    tile.Tag<Tags.Breakable>().Break(facingTile, AttachedEntity.Level);
                 }
 
                 IsAttacking = true;
             }
 
-            _lastDirection = Owner.Facing;
+            _lastDirection = AttachedEntity.Facing;
             _timer = _speedFactor;
         }
     }

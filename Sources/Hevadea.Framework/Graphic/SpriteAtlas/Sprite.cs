@@ -25,11 +25,11 @@ namespace Hevadea.Framework.Graphic.SpriteAtlas
             SubSpriteSize = new Point(8, 8);
         }
 
-        public Sprite(SpriteSheet sheet, Point position, Point size)
+        public Sprite(SpriteSheet sheet, Point position, Point size, Point? subSpriteSize = null)
         {
             Sheet = sheet;
             Source = new Rectangle(position.X * Sheet.TileSize.X ,position.Y * Sheet.TileSize.Y, size.X* Sheet.TileSize.X, size.Y * Sheet.TileSize.Y);
-            SubSpriteSize = new Point(8, 8);
+            SubSpriteSize = subSpriteSize?? new Point(8,8);
         }
 
         public Sprite(SpriteSheet sheet, int index, Point subSpriteSize) : this(sheet, index)

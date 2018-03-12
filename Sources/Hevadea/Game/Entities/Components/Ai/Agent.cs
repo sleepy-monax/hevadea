@@ -37,6 +37,8 @@ namespace Hevadea.Game.Entities.Components.Ai
         
         public void Update(GameTime gameTime)
         {
+            Behavior.Update(this, gameTime);
+
             if (CurrentAction != null && CurrentAction.IsStillRunning(this))
             {
                 CurrentAction.Perform(this, gameTime);
@@ -50,7 +52,7 @@ namespace Hevadea.Game.Entities.Components.Ai
                     CurrentAction = ActionQueue.Dequeue();
 
                     if (ActionQueue.Count == 0)
-                        Behavior.IaFinish(this);
+                        Behavior?.IaFinish(this);
                 }
             }
         }

@@ -20,17 +20,17 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
         public RectangleF GetHitBox()
         {
-            return new RectangleF(Owner.X + _hitbox.X, Owner.Y + _hitbox.Y, _hitbox.Width, _hitbox.Height);
+            return new RectangleF(AttachedEntity.X + _hitbox.X, AttachedEntity.Y + _hitbox.Y, _hitbox.Width, _hitbox.Height);
         }
 
         public Rectangle ToRectangle()
         {
-            return new Rectangle((int)(Owner.X + _hitbox.X), (int)(Owner.Y + _hitbox.Y), (int)_hitbox.Width, (int)_hitbox.Height);
+            return new Rectangle((int)(AttachedEntity.X + _hitbox.X), (int)(AttachedEntity.Y + _hitbox.Y), (int)_hitbox.Width, (int)_hitbox.Height);
         }
 
         public List<Entity> GetTouchingEntities()
         {
-            return Owner.Level.GetEntitiesOnArea(ToRectangle());
+            return AttachedEntity.Level.GetEntitiesOnArea(ToRectangle());
         }
 
         public bool CanCollideWith(Entity e)
@@ -41,7 +41,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (Rise.DebugUI)
-                spriteBatch.DrawRectangle(ToRectangle(), Color.Red, 1 / Owner.Game.Camera.Zoom);
+                spriteBatch.DrawRectangle(ToRectangle(), Color.Red, 1 / AttachedEntity.Game.Camera.Zoom);
         }
     }
 }

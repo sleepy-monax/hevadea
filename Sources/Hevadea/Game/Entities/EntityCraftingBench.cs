@@ -16,7 +16,7 @@ namespace Hevadea.Game.Entities
 
         public EntityCraftingBench()
         {
-            _sprite = new Sprite(Ressources.TileEntities, new Point(12, 0));
+            _sprite = new Sprite(Ressources.TileEntities, new Point(1, 0));
 
             Attachs(
                 new Breakable(),
