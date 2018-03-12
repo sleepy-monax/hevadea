@@ -5,6 +5,8 @@ namespace Hevadea.Game.Entities.Components.Ai
     public interface IBehavior
     {
         void IaAborted(Agent agent, AgentAbortReason why);
-        void Update(Agent agen, GameTime gameTime);
+        void IaFinish(Agent agent);
+        
+        void Update(Agent agent, GameTime gameTime);
     }
 }

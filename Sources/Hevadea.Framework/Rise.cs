@@ -7,6 +7,7 @@ using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Input;
 
 namespace Hevadea.Framework
 {
@@ -14,7 +15,7 @@ namespace Hevadea.Framework
     {
         // Configs
         public static bool DebugUI { get; set; } = false;
-        public static bool ShowDebug { get; set; } = true;
+        public static bool ShowDebug { get; set; } = false;
         
         // Components
         [Obsolete] public static LegacyInputManager Input;
@@ -85,6 +86,16 @@ namespace Hevadea.Framework
             Input.Update(gameTime);
             Scene.Update(gameTime);
             Debug.Update(gameTime);
+
+            if (Input.KeyPress(Keys.F1))
+            {
+                DebugUI = !DebugUI;
+            }
+            
+            if (Input.KeyPress(Keys.F2))
+            {
+                ShowDebug = !ShowDebug;
+            }
         }
 
         private static void MonoGameOnDraw(Game sender, GameTime gameTime)

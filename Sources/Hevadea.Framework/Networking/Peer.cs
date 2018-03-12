@@ -104,7 +104,7 @@ namespace Hevadea.Framework.Networking
                 Socket.Dispose();
                 Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
                 {
-                    NoDelay = this._noDelay
+                    NoDelay = _noDelay
                 };
 
                 return;

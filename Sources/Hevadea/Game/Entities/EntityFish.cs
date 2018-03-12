@@ -36,17 +36,7 @@ namespace Hevadea.Game.Entities
         public override void OnUpdate(GameTime gameTime)
         {
            
-            if (Rise.Random.Next(0, 100) == 1)
-            {
-                dx = Rise.Random.Next(-1, 2);
-                dy = Rise.Random.Next(-1, 2);
-            }
-            
-            var move = Get<Move>();
-            if ((dx != 0 || dy !=0) && Level.GetTile((int)(X+dx)/16,(int)(Y+dy)/16) == TILES.WATER)
-            {
-               move.MoveTo(X+dx, Y+dy,null,0.5f);
-            }
+
             
         }
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

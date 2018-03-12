@@ -73,6 +73,7 @@
     <Compile Include="Game\Craftings\RecipeCost.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionAttack.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />
+    <Compile Include="Game\Entities\Components\Ai\Behaviors\BehaviorAnimal.cs" />
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />
     <Compile Include="Game\Entities\Components\Ai\PathFinding.cs" />
@@ -289,9 +290,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Entities\Components\Ai\Behaviors" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

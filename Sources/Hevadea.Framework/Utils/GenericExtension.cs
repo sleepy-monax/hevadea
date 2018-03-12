@@ -70,6 +70,11 @@ namespace Hevadea.Framework.Utils
             return obj;
         }
 
+        public static T NextValue<T>(this Random rnd, params T[] values)
+        {
+            return values[rnd.Next(values.Length)];
+        }
+        
         public static void Shuffle<T>(this Random rng, T[] array)
         {
             int n = array.Length;

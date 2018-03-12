@@ -44,11 +44,14 @@ namespace Hevadea.Game.Entities.Components.Ai
             else
             {
                 CurrentAction = null;
+                
                 if (ActionQueue.Count > 0)
                 {
                     CurrentAction = ActionQueue.Dequeue();
+
+                    if (ActionQueue.Count == 0)
+                        Behavior.IaFinish(this);
                 }
-                
             }
         }
 
