@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices.ComTypes;
 using Hevadea.Framework.Networking;
 using Hevadea.Framework.Utils;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 
@@ -26,6 +27,11 @@ namespace Hevadea.Game
                 .WriteInteger(tileId));   
         }
 
+        public void NotifyEntityMove(Entity entity, float sx, float sy)
+        {
+            SendPacket(new DataBuffer());
+        }
+        
         public void SendPacket(DataBuffer data)
         {
             if (IsServer)

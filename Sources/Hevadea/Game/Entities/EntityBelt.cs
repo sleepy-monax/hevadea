@@ -18,6 +18,8 @@ namespace Hevadea.Game.Entities
             Attach(new Breakable());
             Attach(new Dropable{ Items = { new Drop(ITEMS.BELT, 1f, 1, 1) } });
 
+            SortingOffset = -16;
+            
             if (_sprites == null)
             {
                 _sprites = new List<Sprite>
@@ -35,7 +37,7 @@ namespace Hevadea.Game.Entities
             var entities = Level.GetEntityOnTile(GetTilePosition());
             foreach (var e in entities)
             {
-                e.Get<Pushable>()?.Push(this, Facing, 0.5f);
+                e.Get<Move>()?.MoveTo(GetFacingTile());
             }
         }
 

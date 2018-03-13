@@ -16,6 +16,7 @@ namespace Hevadea.Game.Entities.Components
 
         public bool HasPickup => _addedTimer > 0.5f;
         public float PickupOffset = 16f;
+        private bool _alowPickUp = false;
 
         public Inventory(int slotCount)
         {
@@ -23,7 +24,12 @@ namespace Hevadea.Game.Entities.Components
         }
 
         public ItemStorage Content { get; }
-        public bool AlowPickUp { get; set; } = false;
+
+        public bool AlowPickUp
+        {
+            get => _alowPickUp && Content.HasFreeSlot();
+            set => _alowPickUp = value;
+        }
 
         public void OnGameSave(EntityStorage store)
         {

@@ -5,6 +5,10 @@ using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
+using Hevadea.Framework.Graphic;
+using Hevadea.Framework.UI;
 
 namespace Hevadea.Game.Entities.Components.Interaction
 {
@@ -16,6 +20,9 @@ namespace Hevadea.Game.Entities.Components.Interaction
         public bool CanAttackTile { get; set; } = true;
         public bool CanAttackEntities { get; set; } = true;
         public double AttackCooldown { get; set; } = 1;
+
+        public Rectangle HitBox { get; private set; }
+        public Point HitBoxSize { get; set; } = new Point(26, 26);
         
         private Direction _lastDirection = Direction.Up;
         private double _speedFactor = 1;
@@ -39,25 +46,26 @@ namespace Hevadea.Game.Entities.Components.Interaction
             if (!IsAttacking) return;
             var invTimer = 1f - _timer;
 
-            /*switch (_lastDirection)
+            switch (_lastDirection)
             {
                 case Direction.Up:
-                    _swingUP.Draw(spriteBatch, new Rectangle((int) Owner.X, (int) (Owner.Y - Owner.Height), (int) (Owner.Width * invTimer), Owner.Height), Color.White);
+                    _swingUP.Draw(spriteBatch, HitBox, Color.White);
                     break;
                 case Direction.Right:
-                    _swingRight.Draw(spriteBatch, new Rectangle((int) (Owner.X + Owner.Width), (int) Owner.Y, Owner.Width, (int) (Owner.Height * invTimer)), Color.White);
+                    _swingRight.Draw(spriteBatch, HitBox, Color.White);
                     break;
                 case Direction.Down:
-                    _swingDown.Draw(spriteBatch, new Rectangle((int) Owner.X, (int) (Owner.Y + Owner.Height), (int) (Owner.Width * invTimer), Owner.Height), Color.White);
+                    _swingDown.Draw(spriteBatch, HitBox, Color.White);
                     break;
                 case Direction.Left:
-                    _swingLeft.Draw(spriteBatch, new Rectangle((int) (Owner.X - Owner.Width), (int) Owner.Y, Owner.Width, (int) (Owner.Height * invTimer)), Color.White);
+                    _swingLeft.Draw(spriteBatch, HitBox, Color.White);
                     break;
-            }*/
+            }
         }
 
         public void Update(GameTime gameTime)
         {
+            HitBox = new Rectangle(AttachedEntity.Position.ToPoint() - new Rectangle(new Point(0), HitBoxSize).GetAnchorPoint(DirectionToAnchore[AttachedEntity.Facing]), HitBoxSize);
             _timer = Math.Max(0.0, _timer - gameTime.ElapsedGameTime.TotalSeconds * 5);
 
             if (!IsAttacking) _speedFactor = AttackCooldown;
@@ -80,6 +88,14 @@ namespace Hevadea.Game.Entities.Components.Interaction
             return damages;
         }
 
+        private static Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
+        {
+            {Direction.Up, Anchor.Bottom},
+            {Direction.Down, Anchor.Top},
+            {Direction.Left, Anchor.Right},
+            {Direction.Right, Anchor.Left},
+        };
+        
         public void Do(Item weapon)
         {
             if (IsAttacking) return;
@@ -90,7 +106,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
 
             if (CanAttackEntities)
             {
-                var facingEntities = AttachedEntity.Level.GetEntityOnTile(facingTile);
+                var facingEntities = AttachedEntity.Level.GetEntitiesOnArea(HitBox);
 
                 foreach (var e in facingEntities)
                     if (e != AttachedEntity)

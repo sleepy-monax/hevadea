@@ -22,6 +22,7 @@ namespace Hevadea.Game.Entities
 
         public EntityStairs()
         {
+            SortingOffset = -16;
             var interaction = new Interactable();
             Attach(interaction);
             interaction.OnInteracte +=

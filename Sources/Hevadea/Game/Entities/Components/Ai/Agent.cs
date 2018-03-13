@@ -37,7 +37,7 @@ namespace Hevadea.Game.Entities.Components.Ai
         
         public void Update(GameTime gameTime)
         {
-            Behavior.Update(this, gameTime);
+            Behavior?.Update(this, gameTime);
 
             if (CurrentAction != null && CurrentAction.IsStillRunning(this))
             {

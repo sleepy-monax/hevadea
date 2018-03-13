@@ -33,7 +33,7 @@ namespace Hevadea.Game.Items
             foreach (var e in entities)
             {
                 var inv = e.Get<Inventory>();
-                if (inv?.AlowPickUp ?? false)
+                if (inv != null && inv.AlowPickUp)
                 {
                     move.MoveTo(e.X, e.Y);
                     if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && inv.Pickup(Item)) Remove();

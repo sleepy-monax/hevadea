@@ -23,7 +23,7 @@ namespace Hevadea.Game.Storage
         {
             Logger.Log<GameManager>(LoggerLevel.Info, $"Loading world from '{path}'.");
             
-            SetStatus("Loading file...");
+            SetStatus("Reading files...");
             string worldStr = File.ReadAllText($"{path}/world.json");
             string playerStr = File.ReadAllText($"{path}/player.json");
             _progress = 0.25f;
@@ -34,12 +34,12 @@ namespace Hevadea.Game.Storage
             player.Blueprint = ENTITIES.PLAYER;
             _progress = 0.5f;
 
-            SetStatus("Loading game data...");
+            SetStatus("Decoding data...");
             var worldDara = worldStr.FromJson<WorldStorage>();
             var playerData = playerStr.FromJson<EntityStorage>();
             _progress = 0.75f;
 
-            SetStatus("Initialization...");
+            SetStatus("Loading data...");
             world.Load(worldDara);
             player.Load(playerData);
             _progress = 1f;

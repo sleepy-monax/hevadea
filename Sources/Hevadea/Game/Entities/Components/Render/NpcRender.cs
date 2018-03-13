@@ -24,7 +24,7 @@ namespace Hevadea.Game.Entities.Components.Render
         {
             _isWalking = AttachedEntity.Get<Move>()?.IsMoving ?? false;
             _isSwiming = AttachedEntity.Get<Swim>()?.IsSwiming ?? false;
-            _isPickingItem = AttachedEntity.Get<Inventory>()?.HasPickup ?? false;
+            _isPickingItem = (AttachedEntity.Get<Inventory>()?.HasPickup ?? false) || ((AttachedEntity.Get<Pickup>()?.PickupEntity ?? null) != null);
         }
         
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

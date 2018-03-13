@@ -20,6 +20,7 @@ namespace Hevadea.Game.Entities
             Attach(new Colider(new Rectangle(-4, -4, 8, 8)));
             Attach(new Pushable() { CanBePushBy = { ENTITIES.PLAYER } });
             Attach(new Agent() { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeed = 0.5f } });
+            Attach(new Pickupable(){OnPickupSprite = new Sprite(Ressources.TileEntities, new Point(12, 0))});
         }
     }
 }

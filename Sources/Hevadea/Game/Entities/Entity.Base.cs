@@ -20,7 +20,9 @@ namespace Hevadea.Game.Entities
         
         public Level Level { get; private set; }
         public World World { get; private set; }
-        public GameManager Game { get; private set; }    
+        public GameManager Game { get; private set; }   
+        
+        public int SortingOffset { get; set; } = 0;
         #endregion
 
         #region Properties Getters and Setters

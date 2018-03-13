@@ -23,7 +23,8 @@ namespace Hevadea.Game.Entities
 
             Attach( new Move() );
             Attach( new Pushable() {CanBePushByAnything = true} );
-            Attach( new Colider( new Rectangle(-6, -2, 12, 8) ) );            
+            Attach( new Colider( new Rectangle(-6, -2, 12, 8) ) );
+            Attach(new Pickupable(){OnPickupSprite = _sprite});
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

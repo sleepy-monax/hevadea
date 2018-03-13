@@ -53,7 +53,6 @@ namespace Hevadea.Game.Worlds
 
         public void Load(LevelStorage store)
         {
-            var asm = Assembly.GetExecutingAssembly();
             foreach (var item in store.Entities)
             {
                 var e = ENTITIES.GetBlueprint(item.Type).Construct();
@@ -103,7 +102,7 @@ namespace Hevadea.Game.Worlds
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
                 entitiesOnScreen.AddRange(_entitiesOnTiles[tx, ty]);
 
-            entitiesOnScreen.Sort((a, b) => (a.Y).CompareTo(b.Y));
+            entitiesOnScreen.Sort((a, b) => (a.Y + a.SortingOffset).CompareTo(b.Y + b.SortingOffset));
 
             state.OnScreenEntities = entitiesOnScreen;
 

@@ -36,6 +36,8 @@ namespace Hevadea.Game.Entities
                     if (arg.Entity.Has<Inventory>())
                         Game.CurrentMenu = new MenuItemContainer(arg.Entity, this, Game);
                 };
+            
+            Attach(new Pickupable(){OnPickupSprite = _sprite});
 
         }
 

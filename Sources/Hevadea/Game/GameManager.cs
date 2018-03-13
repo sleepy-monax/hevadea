@@ -47,7 +47,14 @@ namespace Hevadea.Game
         {
             World.Initialize(this);
             CurrentMenu = new MenuInGame(this);
-            World.SpawnPlayer(MainPlayer);
+            if (MainPlayer.X == 0f && MainPlayer.Y == 0f)
+            {
+                World.SpawnPlayer(MainPlayer);
+            }
+            else
+            {
+                World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
+            }
             Camera.JumpToFocusEntity();
         }
 

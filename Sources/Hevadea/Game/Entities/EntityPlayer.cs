@@ -4,12 +4,15 @@ using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Entities.Components.Render;
 using Hevadea.Game.Items;
+using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Entities
 {
     public class EntityPlayer : Entity
     {
+        public int LastLevel { get; set; } = 0;
+        
         public EntityPlayer()
         {
             HoldingItem = null;
@@ -25,8 +28,19 @@ namespace Hevadea.Game.Entities
             Attach(new Swim());
             Attach(new Pushable());
             Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
+            Attach(new Pickup());
         }
 
         public Item HoldingItem { get; set; }
+
+        public override void OnSave(EntityStorage store)
+        {
+            store.Set("level", Level.Id);
+        }
+
+        public override void OnLoad(EntityStorage store)
+        {
+            LastLevel = store.GetInt("level", 0);
+        }
     }
 }

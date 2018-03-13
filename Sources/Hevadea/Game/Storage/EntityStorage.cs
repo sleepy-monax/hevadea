@@ -6,14 +6,19 @@ namespace Hevadea.Game.Storage
     public class EntityStorage
     {
         public string Type;
+        public Dictionary<string, object> Data { get; set; }
 
         public EntityStorage(string type)
         {
             Type = type;
             Data = new Dictionary<string, object>();
         }
-
-        public Dictionary<string, object> Data { get; set; }
+        
+        public EntityStorage(string type, Dictionary<string, object> data)
+        {
+            Type = type;
+            Data = data;
+        }
 
         public float GetFloat(string name, float defaultValue = 0f)
         {

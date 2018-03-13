@@ -169,6 +169,13 @@ namespace Hevadea.Framework.Networking
             return this;
         }
 
+
+        public DataBuffer WriteFloat(Single value)
+        {
+            BitConverter.GetBytes(value);
+            return this;
+        }
+        
         #endregion
 
         #region "Reader"

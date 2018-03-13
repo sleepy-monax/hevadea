@@ -11,6 +11,7 @@ namespace Hevadea.Game.Entities
 
         public EntityGrass()
         {
+            SortingOffset = -16;
             _sprite = new Sprite(Ressources.TileEntities, new Point(6, 3));
             Attach(new Breakable());
         }

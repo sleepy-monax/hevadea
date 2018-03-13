@@ -32,6 +32,8 @@ namespace Hevadea.Game.Entities
                     if (arg.Entity.Has<Inventory>())
                         Game.CurrentMenu = new MenuPlayerInventory(arg.Entity, RECIPIES.BenchCrafted, Game);
                 };
+            
+            Attach(new Pickupable(){OnPickupSprite = _sprite});
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

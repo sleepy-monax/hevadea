@@ -14,10 +14,13 @@ namespace Hevadea.Scenes.Widgets
         private readonly ItemStorage _inventory;
         private readonly List<Recipe> _recipies;
 
+        private Recipe _selectedRecipe;
+        
         public WidgetCrafting(ItemStorage i, List<Recipe> recipies)
         {
             _inventory = i;
             _recipies = recipies;
+            MouseClick += sender => _selectedRecipe?.Craft(_inventory);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -58,8 +61,7 @@ namespace Hevadea.Scenes.Widgets
                     {
                         spriteBatch.FillRectangle(rect, Color.White * 0.05f);
                         spriteBatch.DrawRectangle(rect, Color.White * 0.05f);
-
-                        if (Rise.Pointing.AreaClick(rect)) c.Craft(_inventory);
+                        _selectedRecipe = c;
                     }
 
                     if (canBeCrafted)
