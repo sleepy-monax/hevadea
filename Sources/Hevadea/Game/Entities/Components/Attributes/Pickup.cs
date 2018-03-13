@@ -51,10 +51,13 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
         public void OnGameSave(EntityStorage store)
         {
-            var pickedEntityData = PickupEntity.Save();
+            if (PickupEntity != null)
+            {
+                var pickedEntityData = PickupEntity.Save();
             
-            store.Set("pickup_entity_type", pickedEntityData.Type);
-            store.Set("pickup_entity_data", pickedEntityData.Data);
+                store.Set("pickup_entity_type", pickedEntityData.Type);
+                store.Set("pickup_entity_data", pickedEntityData.Data);
+            }
         }
 
         public void OnGameLoad(EntityStorage store)

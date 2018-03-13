@@ -25,6 +25,7 @@ namespace Hevadea.Framework.Graphic
         }
 
         private Texture2D _pixel;
+        private Texture2D _fallback;
         public Texture2D GetPixel()
         {
             if (_pixel == null)
@@ -34,6 +35,18 @@ namespace Hevadea.Framework.Graphic
             }
             
             return _pixel;
+        }
+
+        public Texture2D GetFallbackTexture()
+        {
+            if (_fallback == null)
+            {
+                _fallback = new Texture2D(_graphicsDevice, 2, 2, false, SurfaceFormat.Color);
+                _fallback.SetData(new[] { Color.Black,    Color.Magenta,
+                                          Color.Magenta , Color.Black });
+            }
+
+            return _fallback;
         }
 
         public SpriteBatch CreateSpriteBatch()

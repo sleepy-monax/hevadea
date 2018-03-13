@@ -25,7 +25,7 @@ namespace Hevadea
         public static Texture2D ImgShadow;
         public static Texture2D ImgSwing;
 
-        public static Texture2D ImgMakerLogo;
+        public static Texture2D CompanyLogo;
         public static Texture2D ImgEngineLogo;
         public static Texture2D ImgHevadeaLogo;
 
@@ -68,7 +68,7 @@ namespace Hevadea
             ImgShadow = Rise.Ressource.GetImage("shadow");
             ImgSwing = Rise.Ressource.GetImage("swing");
 
-            ImgMakerLogo = Rise.Ressource.GetImage("logo/maker");
+            CompanyLogo = Rise.Ressource.GetTexture("logo/company");
             ImgEngineLogo = Rise.Ressource.GetImage("logo/engine");
             ImgHevadeaLogo = Rise.Ressource.GetImage("logo/hevadea");
 

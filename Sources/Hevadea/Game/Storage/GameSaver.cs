@@ -29,7 +29,6 @@ namespace Hevadea.Game.Storage
 
             SetStatus("Saving world data...");
             var world = game.World.Save();
-            p.Level.AddEntity(p);
             _progress = 0.50f;
 
             SetStatus("Encoding data...");
