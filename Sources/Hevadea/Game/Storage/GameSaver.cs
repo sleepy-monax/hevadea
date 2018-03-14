@@ -24,7 +24,6 @@ namespace Hevadea.Game.Storage
             SetStatus("Saving player data...");
             var p = game.MainPlayer;
             var player = p.Save();
-            p.Level.RemoveEntity(p);
             _progress = 0.25f;
 
             SetStatus("Saving world data...");

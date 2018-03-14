@@ -136,8 +136,11 @@
     <Compile Include="Game\Loading\LoadingTask.cs" />
     <Compile Include="Game\Loading\LoadingTaskConnectToServer.cs" />
     <Compile Include="Game\Loading\LoadingTaskDownloadWorld.cs" />
+    <Compile Include="Game\Loading\LoadingTaskEnterGame.cs" />
     <Compile Include="Game\Loading\LoadingTaskGenerateWorld.cs" />
+    <Compile Include="Game\Loading\LoadingTaskInitializeGame.cs" />
     <Compile Include="Game\Loading\LoadingTaskLoadWorld.cs" />
+    <Compile Include="Game\Loading\LoadingTaskNewPlayer.cs" />
     <Compile Include="Game\Loading\LoadingTaskPlayerJoint.cs" />
     <Compile Include="Game\Loading\LoadingTaskSaveWorld.cs" />
     <Compile Include="Game\Loading\LoadingTaskSetupServer.cs" />
@@ -205,7 +208,7 @@
     <Compile Include="WorldGenerator\LevelFeatures\BaseTerainFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\CompoundFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\HouseFeature.cs" />
-    <Compile Include="WorldGenerator\LevelFeatures\PlantFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\PopulateFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\TerrainLayer.cs" />
     <Compile Include="WorldGenerator\Generator.cs" />
     <Compile Include="WorldGenerator\LevelFeature.cs" />

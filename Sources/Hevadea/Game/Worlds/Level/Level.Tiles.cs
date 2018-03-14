@@ -53,7 +53,7 @@ namespace Hevadea.Game.Worlds
         public Tile GetTile(int tx, int ty)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return TILES.WATER;
-            return TILES.ById[_tiles[tx + ty * Width]];
+            return TILES.ById[Tiles[tx + ty * Width]];
         }
 
         public bool SetTile(TilePosition pos, Tile tile)
@@ -72,7 +72,7 @@ namespace Hevadea.Game.Worlds
             
             if (notify && (_game?.IsRemote ?? false)) _game.NotifyTileChange(this, tx, ty, id);
             
-            _tiles[tx + ty * Width] = id;
+            Tiles[tx + ty * Width] = id;
             return true;
         }
 
@@ -80,7 +80,7 @@ namespace Hevadea.Game.Worlds
 
         public void ClearTileData(int tx, int ty)
         {
-            _tilesData[tx + ty * Width].Clear();
+            TilesData[tx + ty * Width].Clear();
         }
 
         public T GetTileData<T>(TilePosition tilePosition, string dataName, T defaultValue)
@@ -90,13 +90,13 @@ namespace Hevadea.Game.Worlds
 
         public T GetTileData<T>(int tx, int ty, string dataName, T defaultValue)
         {
-            if (_tilesData[tx + ty * Width].ContainsKey(dataName))
+            if (TilesData[tx + ty * Width].ContainsKey(dataName))
             {
-                var data = _tilesData[tx + ty * Width][dataName];
+                var data = TilesData[tx + ty * Width][dataName];
                 return (T)data;
             }
 
-            _tilesData[tx + ty * Width].Add(dataName, defaultValue);
+            TilesData[tx + ty * Width].Add(dataName, defaultValue);
             return defaultValue;
         }
 
@@ -107,7 +107,7 @@ namespace Hevadea.Game.Worlds
 
         public void SetTileData<T>(int tx, int ty, string dataName, T value)
         {
-            _tilesData[tx + ty * Width][dataName] = value;
+            TilesData[tx + ty * Width][dataName] = value;
         }   
     }
 }

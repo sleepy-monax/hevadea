@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
-    public class PlantFeature : LevelFeature
+    public class PopulateFeature : LevelFeature
     {
         public List<Tile> CanBePlantOn { get; set; } = new List<Tile>();
         public IFunction PlacingFunction { get; set; } = new FlatFunction(0.9f);
@@ -18,7 +18,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
         private float _progress = 0;
         private EntityBlueprint _blueprint;
         
-        public PlantFeature(EntityBlueprint blueprint)
+        public PopulateFeature(EntityBlueprint blueprint)
         {
             _blueprint = blueprint;
         }
@@ -44,7 +44,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 
         public override string GetName()
         {
-            return $"Planting [{_blueprint.Name}]";
+            return $"Populating [{_blueprint.Name}]";
         }
     }
 }

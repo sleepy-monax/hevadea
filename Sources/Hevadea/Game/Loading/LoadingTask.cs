@@ -9,12 +9,14 @@ namespace Hevadea.Game.Loading
 
         private float _progress;
         public abstract string TaskName { get; }
+        public Thread Thread { get; set; }
         public bool HasFinish { get; private set; } = false;
         public Exception Exception { get; private set; } = null;
 
         public void RunTask(GameManager game)
         {
-            new Thread(TaskInternal).Start(game);
+            Thread = new Thread(TaskInternal);
+            Thread.Start(game);
         }
 
         public void SetProgress(float progress)
@@ -22,7 +24,7 @@ namespace Hevadea.Game.Loading
             _progress = Mathf.Clamp01(progress);
         }
 
-        public float GetProgress()
+        public virtual float GetProgress()
         {
             return _progress;
         }
@@ -36,6 +38,7 @@ namespace Hevadea.Game.Loading
             catch (Exception ex)
             {
                 Exception = ex;
+                Logger.Log<LoadingTask>(ex.ToString());
             }
             HasFinish = true;
         }

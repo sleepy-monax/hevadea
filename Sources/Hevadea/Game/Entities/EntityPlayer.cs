@@ -35,7 +35,7 @@ namespace Hevadea.Game.Entities
 
         public override void OnSave(EntityStorage store)
         {
-            store.Set("level", Level.Id);
+            store.Set("level", Level?.Id ?? -1);
         }
 
         public override void OnLoad(EntityStorage store)

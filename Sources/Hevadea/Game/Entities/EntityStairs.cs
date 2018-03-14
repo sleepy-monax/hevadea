@@ -25,7 +25,7 @@ namespace Hevadea.Game.Entities
             SortingOffset = -16;
             var interaction = new Interactable();
             Attach(interaction);
-            interaction.OnInteracte +=
+            interaction.Interacted +=
                 (sender, arg) =>
                 {
                     Level.RemoveEntity(arg.Entity);

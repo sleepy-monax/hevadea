@@ -69,8 +69,6 @@ namespace Hevadea
             ImgSwing = Rise.Ressource.GetImage("swing");
 
             CompanyLogo = Rise.Ressource.GetTexture("logo/company");
-            ImgEngineLogo = Rise.Ressource.GetImage("logo/engine");
-            ImgHevadeaLogo = Rise.Ressource.GetImage("logo/hevadea");
 
             ImgForestBackground = Rise.Ressource.GetImage("background/forest");
             ImgForestLight = Rise.Ressource.GetImage("background/forest_light");

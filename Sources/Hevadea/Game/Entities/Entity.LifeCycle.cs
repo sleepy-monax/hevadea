@@ -17,9 +17,12 @@ namespace Hevadea.Game.Entities
         
         public EntityStorage Save()
         {
-            var store = new EntityStorage(Blueprint.Name);
+            var store = new EntityStorage(Blueprint.Name)
+            {
+                Type = Blueprint.Name,
+                Ueid = Ueid
+            };
 
-            store.Set("Ueid", Ueid);
             store.Set("X", X);
             store.Set("Y", Y);
             store.Set("Facing", (int) Facing);
@@ -34,7 +37,7 @@ namespace Hevadea.Game.Entities
 
         public void Load(EntityStorage store)
         {
-            Ueid = store.GetInt("Ueid", Ueid);
+            Ueid = store.Ueid;
             X = store.GetFloat("X", X);
             Y = store.GetFloat("Y", Y);
 

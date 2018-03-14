@@ -3,6 +3,7 @@ using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Game.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 
@@ -27,7 +28,7 @@ namespace Hevadea.Scenes
                         {
                             new Button
                                     { Text = "Continue", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent(sender => {}),
+                                .RegisterMouseClickEvent(sender => { Rise.Scene.Switch(LoadingScene.ConstructNewWorld("./test/", 0));}),
                             new Button
                                     { Text = "New Game", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneWorldGeneration());}),

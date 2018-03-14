@@ -27,7 +27,7 @@ namespace Hevadea.Game.Registry
         public virtual Entity Construct()
         {
             var newEntity = new Entity { Blueprint = this };
-            Constructor(newEntity);
+            Constructor?.Invoke(newEntity);
             return newEntity;
         }
     }
@@ -52,6 +52,8 @@ namespace Hevadea.Game.Registry
 
         public static EntityBlueprint BELT;
         
+        public static List<EntityBlueprint> SaveExluded { get; set; } = new List<EntityBlueprint>();
+        
         public static void Initialize()
         {
             ITEM = RegisterEntityBlueprint(new GenericEntityBlueprint<ItemEntity>("item"));
@@ -74,6 +76,8 @@ namespace Hevadea.Game.Registry
             TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTorch>("torch"));
 
             BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityBelt>("belt"));
+            
+            SaveExluded.Add(PLAYER);
         }
         
         private static Dictionary<string, EntityBlueprint> _blueprintLibrary = new Dictionary<string, EntityBlueprint>();

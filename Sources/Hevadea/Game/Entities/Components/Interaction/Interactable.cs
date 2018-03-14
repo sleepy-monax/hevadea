@@ -21,11 +21,11 @@ namespace Hevadea.Game.Entities.Components.Interaction
     {
         public delegate void OnInteractHandle(object sender, InteractEventArg e);
 
-        public event OnInteractHandle OnInteracte;
+        public event OnInteractHandle Interacted;
 
         public void Interacte(Entity entity, Direction attackDirection, Item item = null)
         {
-            OnInteracte?.Invoke(this, new InteractEventArg(entity, attackDirection, item));
+            Interacted?.Invoke(this, new InteractEventArg(entity, attackDirection, item));
         }
     }
 }

@@ -8,14 +8,16 @@ namespace Hevadea.Game
 {
     public partial class GameManager
     {
+        public string SavePath { get; set; } = "./test/";
+        
         private Menu _currentMenu;
 
         public World World { get; set; }
-        public EntityPlayer MainPlayer { get; }
+        public EntityPlayer MainPlayer { get; set; }
         public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
 
-        public Camera Camera { get; }
-        public PlayerInputHandler PlayerInput { get; }
+        public Camera Camera { get; set; }
+        public PlayerInputHandler PlayerInput { get; set; }
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
         public event CurrentMenuChangeHandler CurrentMenuChange;
@@ -39,22 +41,27 @@ namespace Hevadea.Game
         {
             World = world;
             MainPlayer = player;
-            Camera = new Camera(MainPlayer);
-            PlayerInput = new PlayerInputHandler(player);
         }
 
         public void Initialize()
         {
             World.Initialize(this);
             CurrentMenu = new MenuInGame(this);
-            if (MainPlayer.X == 0f && MainPlayer.Y == 0f)
-            {
-                World.SpawnPlayer(MainPlayer);
+
+            if (MainPlayer.Removed)
+            { 
+                if (MainPlayer.X == 0f && MainPlayer.Y == 0f)
+                {
+                    World.SpawnPlayer(MainPlayer);
+                }
+                else
+                {
+                    World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
+                }
             }
-            else
-            {
-                World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
-            }
+            
+            PlayerInput = new PlayerInputHandler(MainPlayer);
+            Camera = new Camera(MainPlayer);
             Camera.JumpToFocusEntity();
         }
 

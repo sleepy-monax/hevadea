@@ -46,9 +46,9 @@
     <Folder Include="Shaders\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\logo\company.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="assets\logo\company.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="assets\tile\fence.png" />
     <Content Include="assets\tile\fence_post.png" />
   </ItemGroup>

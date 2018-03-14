@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using System;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
@@ -16,29 +17,24 @@ namespace Hevadea.Game.Entities
         public EntityChest()
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
-            
-            Attachs(                
-                new Pushable(){ CanBePushByAnything = true },
-                new Move(),
-                new Colider(new Rectangle(-6, -2, 12, 8)));
-            
-            Attach(new Inventory(128));
-            Attach(new Health(10)).OnDie +=
-                (sender, arg) =>
-                {
-                    Get<Inventory>().Content.DropOnGround(Level, X, Y);
-                    ITEMS.CHEST.Drop(Level, X, Y, 1);
-                };
 
-            Attach(new Interactable()).OnInteracte +=
-                (sender, arg) =>
-                {
-                    if (arg.Entity.Has<Inventory>())
-                        Game.CurrentMenu = new MenuItemContainer(arg.Entity, this, Game);
-                };
-            
-            Attach(new Pickupable(){OnPickupSprite = _sprite});
+            Attachs(new Move(), new Inventory(128), new Pickupable(_sprite), new Colider(new Rectangle(-6, -2, 12, 8)));
 
+            Attach (new Pushable() {CanBePushByAnything = true});
+            Attach(new Health(10)).Killed += EntityDie;
+            Attach(new Interactable()).Interacted += EntityInteracte;
+        }
+
+        private void EntityInteracte(object sender, InteractEventArg args)
+        {
+            if (args.Entity.Has<Inventory>())
+                Game.CurrentMenu = new MenuItemContainer(args.Entity, this, Game);
+        }
+
+        private void EntityDie(object sender, EventArgs args)
+        {
+            Get<Inventory>().Content.DropOnGround(Level, X, Y);
+            ITEMS.CHEST.Drop(Level, X, Y, 1);
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

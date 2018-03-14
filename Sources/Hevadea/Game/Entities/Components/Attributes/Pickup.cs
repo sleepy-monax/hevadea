@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Hevadea.Game.Entities.Components.Ai;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
@@ -8,55 +9,60 @@ namespace Hevadea.Game.Entities.Components.Attributes
 {
     public class Pickup : EntityComponent, IEntityComponentDrawable, IEntityComponentSaveLoad
     {
+        private Entity _pickupedEntity { get; set; } 
+        
         public int Offset { get; set; } = 16;
-        public Entity PickupEntity { get; set; } 
-             
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            if (PickupEntity != null)
-            {
-                var sprite = PickupEntity.Get<Pickupable>().OnPickupSprite;
-                sprite.Draw(spriteBatch, new Vector2(AttachedEntity.X - sprite.Bound.Width / 2, AttachedEntity.Y - sprite.Bound.Width / 2 - Offset), Color.White);
-            }
-        }
-
+                     
         public void Do()
         {
             var facingTile = AttachedEntity.GetFacingTile();
             
-            if (PickupEntity != null)
-            {
-                if (AttachedEntity.Level.GetEntityOnTile(facingTile).Count == 0)
-                {
-                    PickupEntity.Facing = AttachedEntity.Facing;
-                    AttachedEntity.Level.SpawnEntity(PickupEntity, facingTile.X, facingTile.Y);
-                    PickupEntity = null;
-                }
-            }
-            else
-            { 
-                var entities = AttachedEntity.Level.GetEntityOnTile(facingTile);
-    
-                foreach (var e in entities)
-                {
-                    if (e.Has<Pickupable>())
-                    {
-                        PickupEntity = e;
-                        e.Remove();
-                        return;
-                    }
-                }
-            }
+            if (_pickupedEntity != null) LayDownEntity();
+            else foreach (var e in AttachedEntity.Level.GetEntityOnTile(facingTile))
+                if (PickupEntity(e)) return;                     
+        }
+        
+        public bool HasPickedUpEntity()
+        {
+            return _pickupedEntity != null;
+        }
+        
+        public bool PickupEntity(Entity entity)
+        {
+            if (!entity.Has<Pickupable>()) return false;
+            _pickupedEntity = entity;
+            entity.Remove();
+            return true;
         }
 
+        public bool LayDownEntity()
+        {
+            var facingTile = AttachedEntity.GetFacingTile();
+            
+            if (AttachedEntity.Level.GetEntityOnTile(facingTile).Count != 0) return false;
+            
+            _pickupedEntity.Facing = AttachedEntity.Facing;
+            AttachedEntity.Level.SpawnEntity(_pickupedEntity, facingTile.X, facingTile.Y);
+            _pickupedEntity.Get<Agent>()?.Abort(AgentAbortReason.Pickup);
+            _pickupedEntity = null;
+
+            return true;
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (_pickupedEntity == null) return;
+            
+            var sprite = _pickupedEntity.Get<Pickupable>().OnPickupSprite;
+            sprite.Draw(spriteBatch, new Vector2(AttachedEntity.X - sprite.Bound.Width / 2, AttachedEntity.Y - sprite.Bound.Width / 2 - Offset), Color.White);
+        }
+        
         public void OnGameSave(EntityStorage store)
         {
-            if (PickupEntity != null)
+            if (_pickupedEntity != null)
             {
-                var pickedEntityData = PickupEntity.Save();
-            
-                store.Set("pickup_entity_type", pickedEntityData.Type);
-                store.Set("pickup_entity_data", pickedEntityData.Data);
+                store.Set("pickup_entity_type", _pickupedEntity.Blueprint.Name);
+                store.Set("pickup_entity_data", _pickupedEntity.Save().Data);
             }
         }
 
@@ -71,7 +77,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
                 var entity = entityBlueprint.Construct();
                 entity.Load(new EntityStorage(entityType, entityData));
 
-                PickupEntity = entity;
+                _pickupedEntity = entity;
             }
         }
     }

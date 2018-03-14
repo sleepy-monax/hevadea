@@ -5,7 +5,9 @@ namespace Hevadea.Game.Storage
 {
     public class EntityStorage
     {
-        public string Type;
+        public string Type { get; set; }
+        public int Ueid { get; set; }
+        
         public Dictionary<string, object> Data { get; set; }
 
         public EntityStorage(string type)

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Hevadea.Game.Entities.Components.Ai
 {
-    public enum AgentAbortReason { None, ImStuck}
+    public enum AgentAbortReason { None, ImStuck, Pickup}
 
     public class Agent: EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
     {

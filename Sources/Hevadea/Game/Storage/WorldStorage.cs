@@ -4,10 +4,11 @@ namespace Hevadea.Game.Storage
 {
     public class WorldStorage
     {
-        public int SaveVersion { get; set; } = 1;
-        public List<LevelStorage> Levels { get; set; } = new List<LevelStorage>();
         public double Time { get; set; } = 0;
-        public string PlayerSpawnLevel { get; set; } = "null";
         public int UeidCounter { get; set; } = 0;
+        public int SaveVersion { get; set; } = 1;
+        
+        public List<string> Levels { get; set; } = new List<string>();
+        public string PlayerSpawnLevel { get; set; } = "null";
     }
 }

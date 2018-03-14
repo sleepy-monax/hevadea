@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game.Storage
 {
@@ -7,9 +8,12 @@ namespace Hevadea.Game.Storage
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        
         public int Width { get; set; }
         public int Height { get; set; }
+        
         public int[] Tiles;
+        
         public Dictionary<string, object>[] TilesData;
         public List<EntityStorage> Entities { get; set; } = new List<EntityStorage>();
     }

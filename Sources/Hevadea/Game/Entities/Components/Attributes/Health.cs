@@ -4,14 +4,18 @@ using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Framework.Utils;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {
     public sealed class Health : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
-        public bool ShowHealthBar { get; set; } = true;
+        private float _maxValue, _value, _knckbckX, _knckbckY;
         
         public bool Invicible { get; set; } = false;
+        public bool ShowHealthBar { get; set; } = true;
+        public bool TakeKnockback { get; set; } = true;
+        
         public bool NaturalRegeneration { get; set; } = false;
         public double NaturalregenerationSpeed { get; set; } = 1.0;
         
@@ -19,15 +23,12 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public float MaxValue => _maxValue;
         public float ValuePercent => _value / _maxValue;
 
-        private readonly float _maxValue;
-        private float _value;
-
         public delegate void GetHurtByEntityHandle(Entity entity, float damages, Direction attackDirection);
         public delegate void GetHurtByTileHandler(Tile tile, float damages, int tX, int tY);
-        public delegate void OnDieHandler(object sender, EventArgs e);
-        public event OnDieHandler OnDie;
-        public event GetHurtByTileHandler GetHurtByTile;
-        public event GetHurtByEntityHandle GetHurtByEntity;
+        
+        public event EventHandler Killed;
+        public event GetHurtByTileHandler HurtedByTile;
+        public event GetHurtByEntityHandle HurtedByEntity;
 
         public Health(float maxHealth)
         {
@@ -69,6 +70,13 @@ namespace Hevadea.Game.Entities.Components.Attributes
             {
                 _value = (float)Math.Min(_maxValue, _value + NaturalregenerationSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
+
+            if (_knckbckX != 0f || _knckbckY != 0f)
+            {
+                AttachedEntity.Get<Move>()?.Do(_knckbckX, _knckbckY, AttachedEntity.Facing);
+                _knckbckX *= 0.9f;
+                _knckbckY *= 0.9f;
+            }
         }
 
         // Entity get hurt by a other entity (ex: Zombie)
@@ -76,9 +84,16 @@ namespace Hevadea.Game.Entities.Components.Attributes
         {
             if (Invicible) return;
 
-            GetHurtByEntity?.Invoke(entity, damages, attackDirection);
+            HurtedByEntity?.Invoke(entity, damages, attackDirection);
             _value = Math.Max(0, _value - damages);
 
+            if (TakeKnockback && AttachedEntity.Has<Move>())
+            {
+                var dir = attackDirection.ToPoint();
+                _knckbckX = Mathf.Min(8f, dir.X * damages);
+                _knckbckY = Mathf.Min(8f, dir.Y * damages);
+            }
+            
             if (Math.Abs(_value) < 0.1f) Die();
         }
 
@@ -87,7 +102,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
         {
             if (Invicible) return;
 
-            GetHurtByTile?.Invoke(tile, damages, tX, tY);
+            HurtedByTile?.Invoke(tile, damages, tX, tY);
             _value = Math.Max(0, _value - damages);
 
             if (Math.Abs(_value) < 0.1f) Die();
@@ -108,7 +123,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
         public void Die()
         {
-            OnDie?.Invoke(this, null);
+            Killed?.Invoke(this, null);
             AttachedEntity.Get<Dropable>()?.Drop();
             AttachedEntity.Remove();
         }

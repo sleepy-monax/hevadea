@@ -37,15 +37,21 @@ namespace Hevadea.Game.Worlds
             {
                 Width = Width,
                 Height = Height,
-                Tiles = _tiles,
-                TilesData = _tilesData,
+                Tiles = Tiles,
+                TilesData = TilesData,
                 Name = Name,
                 Id = Id, 
                 Type = Properties.Name
             };
 
             Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
-            foreach (var e in Entities) store.Entities.Add(e.Save());
+            foreach (var e in Entities)
+            {
+                if (!ENTITIES.SaveExluded.Contains(e.Blueprint))
+                {   
+                    store.Entities.Add(e.Save());
+                }
+            }
 
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
             return store;
@@ -62,8 +68,8 @@ namespace Hevadea.Game.Worlds
 
             Width = store.Width;
             Height = store.Height;
-            _tiles = store.Tiles;
-            _tilesData = store.TilesData;
+            Tiles = store.Tiles;
+            TilesData = store.TilesData;
             Name = store.Name;
             Id = store.Id;
         }
@@ -74,7 +80,7 @@ namespace Hevadea.Game.Worlds
             {
                 var tx = Rise.Random.Next(Width);
                 var ty = Rise.Random.Next(Height);
-                GetTile(tx, ty).Update(new TilePosition(tx, ty), _tilesData[tx + ty * Width], this, gameTime);
+                GetTile(tx, ty).Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
             }
 
             ParticleSystem.Update(gameTime);
@@ -113,7 +119,7 @@ namespace Hevadea.Game.Worlds
         {
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
-                GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), _tilesData[tx + ty * Width], this, gameTime);
+                GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
             
             ParticleSystem.Draw(spriteBatch, gameTime);
         }

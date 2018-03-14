@@ -66,25 +66,31 @@ namespace Hevadea.Game.Registry
                         }
                     },
                     new HouseFeature(),
-                    new PlantFeature(ENTITIES.FISH)
+                    new CompoundFeature("Adding animals...")
                     {
-                        Chance = 25,
-                        CanBePlantOn = {TILES.WATER},
-                        PlacingFunction = new PerlinFunction(2, 0.5, 15),
-                        Threashold = 0.5f,
-                    },
-                    new PlantFeature(ENTITIES.CHIKEN)
-                    {
-                        Chance = 100,
-                        CanBePlantOn = {TILES.GRASS},
-                        PlacingFunction = new PerlinFunction(2, 0.5, 15),
-                        Threashold = 0.7f,
+                        Content =
+                        {
+                            new PopulateFeature(ENTITIES.FISH)
+                            {
+                                Chance = 25,
+                                CanBePlantOn = {TILES.WATER},
+                                PlacingFunction = new PerlinFunction(1, 0.5, 10),
+                                Threashold = 0.5f,
+                            },
+                            new PopulateFeature(ENTITIES.CHIKEN)
+                            {
+                                Chance = 100,
+                                CanBePlantOn = {TILES.GRASS},
+                                PlacingFunction = new PerlinFunction(1, 0.5, 10),
+                                Threashold = 0.7f,
+                            },
+                        }
                     },
                     new CompoundFeature("Adding plants...")
                     {
                         Content =
                         {
-                            new PlantFeature(ENTITIES.TREE)
+                            new PopulateFeature(ENTITIES.TREE)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
@@ -92,7 +98,7 @@ namespace Hevadea.Game.Registry
                                 Threashold = 0.7f,
  
                             },
-                            new PlantFeature(ENTITIES.GRASS)
+                            new PopulateFeature(ENTITIES.GRASS)
                             {
                                 Chance = 2,
                                 CanBePlantOn = {TILES.GRASS},

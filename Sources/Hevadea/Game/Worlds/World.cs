@@ -116,14 +116,15 @@ namespace Hevadea.Game.Worlds
         public WorldStorage Save()
         {
             var w = new WorldStorage();
+            
             foreach (var l in Levels)
             {
-                w.Levels.Add(l.Save());
+                //w.Levels.Add(l.Save());
             }
 
-            
             w.Time = DayNightCycle.Time;
             w.PlayerSpawnLevel = PlayerSpawnLevel;
+            
             return w;
         }
 
@@ -134,9 +135,9 @@ namespace Hevadea.Game.Worlds
             
             foreach (var levelData in store.Levels)
             {
-                var level = new Level(LEVELS.GetProperties(levelData.Type), levelData.Width, levelData.Height);
-                level.Load(levelData);
-                Levels.Add(level);
+                //var level = new Level(LEVELS.GetProperties(levelData.Type), levelData.Width, levelData.Height);
+                //level.Load(levelData);
+                //Levels.Add(level);
             }
         }
     }
