@@ -91,8 +91,8 @@ namespace Hevadea
                 new ParalaxeLayer(ImgForestTrees1, 4f)
             );
 
-            SprUnderWater = new Sprite(Ressources.TileCreatures, 3, new Point(16, 32));
-            SprPickup = new Sprite(Ressources.TileCreatures, 1, new Point(16, 32));
+            SprUnderWater = new Sprite(TileCreatures, 3, new Point(16, 32));
+            SprPickup = new Sprite(TileCreatures, 1, new Point(16, 32));
         }
     }
 }

@@ -46,11 +46,15 @@
     <Folder Include="Shaders\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="assets\logo\company.png">
+    <None Include="assets\logo\company.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="assets\tile\fence.png" />
-    <Content Include="assets\tile\fence_post.png" />
+    </None>
+    <None Include="assets\tile\fence.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="assets\tile\fence_post.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

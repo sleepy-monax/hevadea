@@ -151,6 +151,7 @@
     <Compile Include="Game\Registry\GENERATOR.cs" />
     <Compile Include="Game\Registry\LEVELS.cs" />
     <Compile Include="Game\Registry\REGISTRY.cs" />
+    <Compile Include="Game\Spawning\SpawnProvider.cs" />
     <Compile Include="Game\Storage\GameLoader.cs" />
     <Compile Include="Game\Storage\GameSaver.cs" />
     <Compile Include="Game\Storage\WorldStorage.cs" />
@@ -301,6 +302,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

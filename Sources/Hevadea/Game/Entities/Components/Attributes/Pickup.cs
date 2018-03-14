@@ -26,7 +26,12 @@ namespace Hevadea.Game.Entities.Components.Attributes
         {
             return _pickupedEntity != null;
         }
-        
+
+        public Entity GetPickupEntity()
+        {
+            return _pickupedEntity;
+        }
+
         public bool PickupEntity(Entity entity)
         {
             if (!entity.Has<Pickupable>()) return false;

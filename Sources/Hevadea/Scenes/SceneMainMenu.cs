@@ -28,7 +28,7 @@ namespace Hevadea.Scenes
                         {
                             new Button
                                     { Text = "Continue", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent(sender => { Rise.Scene.Switch(LoadingScene.ConstructNewWorld("./test/", 0));}),
+                                .RegisterMouseClickEvent(sender => { Rise.Scene.Switch(LoadingScene.ConstructNewWorld("./saves/test/", 0));}),
                             new Button
                                     { Text = "New Game", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneWorldGeneration());}),

@@ -20,7 +20,7 @@ namespace Hevadea.Scenes
         {
             Ressources.Load();
             REGISTRY.Initialize();
-            Directory.CreateDirectory(Rise.Platform.GetStorageFolder() + "/Saves/");
+            Directory.CreateDirectory(Rise.Platform.GetStorageFolder() + "/saves/");
             
             Rise.Ui.DefaultFont = Ressources.FontRomulus;
             Rise.Ui.DebugFont = Ressources.FontHack;
