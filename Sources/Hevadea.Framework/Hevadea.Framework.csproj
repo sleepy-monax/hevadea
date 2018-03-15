@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -89,9 +90,10 @@
     <Compile Include="UI\Widgets\PictureWidget.cs" />
     <Compile Include="UI\Widgets\ProgressBar.cs" />
     <Compile Include="UI\Widgets\TextBox\Cursor.cs" />
-    <Compile Include="UI\Widgets\TextBox\Text.cs" />
+    <Compile Include="Graphic\Text\Text.cs" />
+    <Compile Include="UI\Widgets\TextBox\SingleLineTextBoxWidget.cs" />
     <Compile Include="UI\Widgets\TextBox\TextBoxWidget.cs" />
-    <Compile Include="UI\Widgets\TextBox\TextRenderer.cs" />
+    <Compile Include="Graphic\Text\TextRenderer.cs" />
     <Compile Include="Utils\Anchore.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Utils\Compression.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Utils\PerlinNoise.cs" />
     <Compile Include="Utils\RectangleF.cs" />
     <Compile Include="Utils\Texture2DUtils.cs" />
+    <Compile Include="Utils\XnaUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />

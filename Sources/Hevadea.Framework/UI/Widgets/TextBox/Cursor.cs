@@ -6,15 +6,13 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
 {
     public class Cursor
     {
-        public Color Color { get; set; }
-        public Color Selection { get; set; }
-        public Rectangle Icon { get; set; }
-
-        public bool Active { get; set; }
-
         private bool visible;
         private readonly int ticksPerBlink;
         private int ticks;
+
+        public Color CaretColor { get; set; }
+        public Color SelectionColor { get; set; }
+        public Rectangle Icon { get; set; }
 
         /// <summary>
         ///     The current location of the cursor in the array
@@ -56,10 +54,9 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         public Cursor(TextBox textBox, Color color, Color selection, Rectangle icon, int ticksPerBlink)
         {
             this.textBox = textBox;
-            Color = color;
-            Selection = selection;
+            CaretColor = color;
+            SelectionColor = selection;
             Icon = icon;
-            Active = true;
             visible = false;
             this.ticksPerBlink = ticksPerBlink;
             ticks = 0;
@@ -91,12 +88,12 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 if (sc.X > cp.X)
                 {
                     spriteBatch.Draw(Rise.Graphic.GetPixel() ,
-                        new Rectangle(cp.X, cp.Y, sc.X - cp.X, textBox.Renderer.Font.LineSpacing), Icon, Selection);
+                        new Rectangle(cp.X, cp.Y, sc.X - cp.X, textBox.Renderer.Font.LineSpacing), Icon, SelectionColor);
                 }
                 else
                 {
                     spriteBatch.Draw(Rise.Graphic.GetPixel(),
-                        new Rectangle(sc.X, sc.Y, cp.X - sc.X, textBox.Renderer.Font.LineSpacing), Icon, Selection);
+                        new Rectangle(sc.X, sc.Y, cp.X - sc.X, textBox.Renderer.Font.LineSpacing), Icon, SelectionColor);
                 }
             }
 
@@ -106,7 +103,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             }
 
             spriteBatch.Draw(Rise.Graphic.GetPixel(),
-                new Rectangle(cp.X, cp.Y, Icon.Width, textBox.Renderer.Font.LineSpacing), Icon, Color);
+                new Rectangle(cp.X, cp.Y, Icon.Width, textBox.Renderer.Font.LineSpacing), Icon, CaretColor);
         }
 
         private Point GetPosition(int x, int y, int pos)

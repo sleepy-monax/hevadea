@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Framework.Graphic
 {
-    public static class Text
+    public static class DrawText
     {
         public enum Alignement { Center, Left, Right, Top, Bottom }
         public enum TextStyle { Regular, Bold, DropShadow, Rectangle }

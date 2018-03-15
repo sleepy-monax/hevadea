@@ -64,7 +64,7 @@ namespace Hevadea.Framework.UI.Widgets
 
 
             if (_items.Count == 0)
-                spriteBatch.DrawString(Rise.Ui.DefaultFont, "Empty", Bound, Text.Alignement.Center, Text.TextStyle.DropShadow, Color.White);
+                spriteBatch.DrawString(Rise.Ui.DefaultFont, "Empty", Bound, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, Color.White);
 
 
             if (Rise.Pointing.AreaOver(Bound))

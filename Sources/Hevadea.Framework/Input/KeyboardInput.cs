@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Hevadea.Framework.Input
 {
-    public class KeyboardInput
+    public class KeyboardInputManager
     {
         public class CharacterEventArgs : EventArgs
         {

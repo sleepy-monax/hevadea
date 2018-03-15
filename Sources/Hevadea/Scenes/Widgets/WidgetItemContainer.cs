@@ -72,7 +72,7 @@ namespace Hevadea.Scenes.Widgets
 
             
             if (Content.GetStackCount() == 0)
-                spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, Text.Alignement.Center, Text.TextStyle.DropShadow,
+                spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow,
                     Color.White);
 
 

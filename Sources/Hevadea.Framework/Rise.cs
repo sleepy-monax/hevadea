@@ -20,7 +20,7 @@ namespace Hevadea.Framework
         // Components
         [Obsolete] public static LegacyInputManager Input;
 
-        public static KeyboardInput Keyboard;
+        public static KeyboardInputManager Keyboard;
         public static Controller Controller;
         public static Pointing Pointing;
         
@@ -59,7 +59,7 @@ namespace Hevadea.Framework
         {
             Ressource = new RessourceManager();
             
-            Keyboard = new KeyboardInput();
+            Keyboard = new KeyboardInputManager();
             Controller = new Controller();
             Pointing = new Pointing();
             Input = new LegacyInputManager();

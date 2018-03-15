@@ -1,9 +1,16 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 
-namespace Hevadea.Framework.UI.Widgets.TextBox
+namespace Hevadea.Framework.Graphic.Text
 {
-    public class Text
+    public class TextWrapper
     {
+        private int length;
+        private readonly char[] _char;
+
+        public int MaxLength { get; }
+        public bool IsDirty { get; set; }
+
         public string String
         {
             get { return new string(_char).Substring(0, Length); }
@@ -15,8 +22,6 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             get { return _char; }
             set { ResetText(new string(value)); }
         }
-
-        private int length;
 
         public int Length
         {
@@ -32,13 +37,8 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             }
         }
 
-        public int MaxLength { get; }
 
-        public bool IsDirty { get; set; }
-
-        private readonly char[] _char;
-
-        public Text(int maxLength)
+        public TextWrapper(int maxLength)
         {
             MaxLength = maxLength;
 
@@ -110,7 +110,6 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             IsDirty = true;
         }
 
-        // ReSharper disable UnusedParameter.Local
         private void ValidateEditRange(int start, int end)
         {
             if (end > Length || start < 0 || start > end)
@@ -127,6 +126,37 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             }
         }
 
-        // ReSharper restore UnusedParameter.Local
-}
+        public int MeasureCharacterWidths(int lenght, SpriteFont font)
+        {
+            var Width = 0;
+
+            for (int i = 0; i < Math.Min(lenght, Length); i++)
+            {
+                Width += MeasureCharacter(i, font);
+            }
+
+            return Width;
+        }
+
+        public byte[] MeasureCharacterWidths(SpriteFont font)
+        {
+            var Width = new byte[MaxLength];
+
+            for (int i = 0; i < Length; i++)
+            {
+                Width[i] = MeasureCharacter(i, font);
+            }
+
+            return Width;
+        }
+
+        public byte MeasureCharacter(int location, SpriteFont font)
+        {
+            string value = String;
+            float front = font.MeasureString(value.Substring(0, location)).X;
+            float end = font.MeasureString(value.Substring(0, location + 1)).X;
+
+            return (byte)(end - front);
+        }
+    }
 }

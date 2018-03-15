@@ -27,13 +27,13 @@ namespace Hevadea.Scenes
                     Flow = FlowDirection.TopToBottom,
                     Childrens =
                         {
-                            new TextBox(256, "Hellow World", Ressources.FontRomulus, Color.Red, Color.Aqua, 30),
+                            
                             new Button
                                     { Text = "Continue", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent(sender => { Rise.Scene.Switch(LoadingScene.ConstructNewWorld("./saves/test/", 0));}),
+                                .RegisterMouseClickEvent(sender => { }),
                             new Button
                                     { Text = "New Game", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneWorldGeneration());}),
+                                .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneNewWorld());}),
                             new Button
                                     { Text = "Load game", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {Rise.Scene.Switch(new SceneLoadGame()); }),
@@ -50,7 +50,7 @@ namespace Hevadea.Scenes
 
             var hevadeaLogo = new Label { Text = "Hevadea", UnitBound = new Rectangle(0, 0, 320, 352), Anchor = Anchor.Center, Origine = Anchor.Right, Font = Ressources.FontAlagardBig, Scale = 1f};
 
-            Container = new AnchoredContainer() { Childrens = { menuPanel, hevadeaLogo} };
+            Container = new AnchoredContainer() { Childrens = { menuPanel, hevadeaLogo, new SingleLineTextBoxWidget(256, "Hello World!", Ressources.FontRomulus) { UnitBound = new Rectangle(0,0,256,256)} } };
         }
 
         public override void Unload()

@@ -183,6 +183,7 @@
     <Compile Include="Game\Storage\EntityStorage.cs" />
     <Compile Include="Game\Storage\LevelStorage.cs" />
     <Compile Include="Scenes\Menus\MenuGamePaused.cs" />
+    <Compile Include="Scenes\SceneNewWorld.cs" />
     <Compile Include="Scenes\Widgets\WidgetFancyPanel.cs" />
     <Compile Include="Scenes\Widgets\WidgetHotBar.cs" />
     <Compile Include="Scenes\SceneWorldGeneration.cs" />

@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.UI.Widgets.TextBox
+namespace Hevadea.Framework.Graphic.Text
 {
     public class TextRenderer
     {
-        private readonly Text _text;
+        private readonly TextWrapper _text;
         private RenderTarget2D _renderTarget;
         private SpriteBatch _sb;
-        private Texture2D _cache; // Cached texture that has all of the characters.
+        private Texture2D _renderedText; // Cached texture that has all of the characters.
         
         public Rectangle Destination { get; set; }
         public SpriteFont Font { get; set; }
@@ -18,22 +18,11 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         internal readonly short[] Y;
 
         // With of the character.
-        internal readonly byte[] Width;
+        internal byte[] Width;
         // Row the character is on.
         private readonly byte[] row;
 
-        public void Dispose()
-        {
-            _cache?.Dispose();
-            _cache = null;
-            _renderTarget?.Dispose();
-            _renderTarget = null;
-            Font = null;
-            _sb?.Dispose();
-            _sb = null;
-        }
-
-        public TextRenderer(Text text)
+        public TextRenderer(TextWrapper text)
         {
             _text = text;
 
@@ -44,6 +33,19 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             row = new byte[_text.MaxLength];
         }
 
+
+        public void Dispose()
+        {
+            _renderedText?.Dispose();
+            _renderedText = null;
+            _renderTarget?.Dispose();
+            _renderTarget = null;
+            Font = null;
+            _sb?.Dispose();
+            _sb = null;
+        }
+
+
         public void Update()
         {
             if (!_text.IsDirty)
@@ -51,15 +53,15 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 return;
             }
 
-            MeasureCharacterWidths();
-            _cache = RenderText();
+            Width = _text.MeasureCharacterWidths(Font);
+            _renderedText = RenderText();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (_cache != null)
+            if (_renderedText != null)
             {
-                spriteBatch.Draw(_cache, Destination, Color.White);
+                spriteBatch.Draw(_renderedText, Destination, Color.White);
             }
         }
 
@@ -98,22 +100,6 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             return _text.Length;
         }
 
-        private void MeasureCharacterWidths()
-        {
-            for (int i = 0; i < _text.Length; i++)
-            {
-                Width[i] = MeasureCharacter(i);
-            }
-        }
-
-        private byte MeasureCharacter(int location)
-        {
-            string value = _text.String;
-            float front = Font.MeasureString(value.Substring(0, location)).X;
-            float end = Font.MeasureString(value.Substring(0, location + 1)).X;
-
-            return (byte) (end - front);
-        }
 
         private Texture2D RenderText()
         {
@@ -179,14 +165,14 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                         // Render line and return start of new line.
                         tempText = t.Substring(start, iCount - start);
                         spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
-                        return iCount + 1;
+                        return iCount;
                     }
 
                     // Have a character we can split on.
                     // Render line and return start of new line.
                     tempText = t.Substring(start, breakLocation - start);
                     spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
-                    return breakLocation + 1;
+                    return breakLocation;
                 }
 
                 // Handle characters that force/allow for breaks.

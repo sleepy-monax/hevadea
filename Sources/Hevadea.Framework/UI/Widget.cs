@@ -69,6 +69,9 @@ namespace Hevadea.Framework.UI
         public event WidgetEventHandler MouseHold;
         public Dock Dock { get; set; } = Dock.None;
         public MouseState MouseState { get; set; } = MouseState.None;
+        public bool CanGetFocus { get; set; }
+        public bool IsFocus { get { return Rise.Ui.FocusWidget == this; } }
+        
 
         protected Rectangle Bound => new Rectangle((int)(UnitBound.X * Rise.Ui.ScaleFactor), (int)(UnitBound.Y * Rise.Ui.ScaleFactor), (int)(UnitBound.Width * Rise.Ui.ScaleFactor), (int)(UnitBound.Height * Rise.Ui.ScaleFactor));
         protected Rectangle Host => new Rectangle((int)(UnitHost.X * Rise.Ui.ScaleFactor), (int)(UnitHost.Y * Rise.Ui.ScaleFactor), (int)(UnitHost.Width * Rise.Ui.ScaleFactor), (int)(UnitHost.Height * Rise.Ui.ScaleFactor));
@@ -86,6 +89,7 @@ namespace Hevadea.Framework.UI
                 MouseState = MouseState.Over;
                 if (Rise.Pointing.AreaDown(Bound))
                 {
+                    if (CanGetFocus == true) { Rise.Ui.FocusWidget = this; }
                     MouseState = MouseState.Down;
                     MouseHold?.Invoke(this);
                 }

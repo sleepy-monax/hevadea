@@ -1,4 +1,5 @@
 ﻿using System;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.Text;
 using Hevadea.Framework.Input;
 using Hevadea.Framework.Utils;
@@ -8,17 +9,43 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Hevadea.Framework.UI.Widgets.TextBox
 {
-    public class TextBox : Widget
+    public class SingleLineTextBoxWidget : Widget
     {
         private string clipboard;
+        private int? _selectedChar;
+        private int _textCursor;
 
-        public TextWrapper  Text     { get; private set; }
-        public TextRenderer Renderer { get; private set; }
-        public Cursor       Cursor   { get; private set; }
+        public SpriteFont Font { get; set; }
+        public Color TextColor { get; set; } = Color.White;
 
+        public int TextCursor
+        {
+            get { return _textCursor; }
+            set { _textCursor = value.Clamp(0, Text.Length); }
+        }
+        public int? SelectedChar
+        {
+            get { return _selectedChar; }
+            set
+            {
+                if (value.HasValue)
+                {
+                    if (value.Value != TextCursor)
+                    {
+                        _selectedChar = (short)(value.Value.Clamp(0, Text.Length));
+                    }
+                }
+                else
+                {
+                    _selectedChar = null;
+                }
+            }
+        }
+
+        public TextWrapper Text { get; private set; }
         public event EventHandler<KeyboardInputManager.KeyEventArgs> EnterDown;
 
-        public TextBox(int maxCharacters, string text,  SpriteFont spriteFont, Color cursorColor, Color selectionColor, int ticksPerToggle)
+        public SingleLineTextBoxWidget(int maxCharacters, string text, SpriteFont spriteFont)
         {
             CanGetFocus = true;
 
@@ -27,13 +54,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 String = text
             };
 
-            Renderer = new TextRenderer(Text)
-            {
-                Font = spriteFont,
-                Color = Color.White
-            };
-
-            Cursor = new Cursor(this, cursorColor, selectionColor, new Rectangle(0, 0, 1, 1), ticksPerToggle);
+            Font = spriteFont;
 
             Rise.Keyboard.CharPressed += CharacterTyped;
             Rise.Keyboard.KeyPressed += KeyPressed;
@@ -42,15 +63,14 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         public void Clear()
         {
             Text.RemoveCharacters(0, Text.Length);
-            Cursor.TextCursor = 0;
-            Cursor.SelectedChar = null;
+            TextCursor = 0;
         }
 
         private void KeyPressed(object sender, KeyboardInputManager.KeyEventArgs e, KeyboardState ks)
         {
             if (IsFocus)
             {
-                int oldPos = Cursor.TextCursor;
+                int oldPos = TextCursor;
                 switch (e.KeyCode)
                 {
                     case Keys.Enter:
@@ -59,44 +79,44 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                     case Keys.Left:
                         if (Rise.Keyboard.CtrlDown)
                         {
-                            Cursor.TextCursor = IndexOfLastCharBeforeWhitespace(Cursor.TextCursor, Text.Characters);
+                            TextCursor = IndexOfLastCharBeforeWhitespace(TextCursor, Text.Characters);
                         }
                         else
                         {
-                            Cursor.TextCursor--;
+                            TextCursor--;
                         }
                         ShiftMod(oldPos);
                         break;
                     case Keys.Right:
                         if (Rise.Keyboard.CtrlDown)
                         {
-                            Cursor.TextCursor = IndexOfNextCharAfterWhitespace(Cursor.TextCursor, Text.Characters);
+                            TextCursor = IndexOfNextCharAfterWhitespace(TextCursor, Text.Characters);
                         }
                         else
                         {
-                            Cursor.TextCursor++;
+                            TextCursor++;
                         }
                         ShiftMod(oldPos);
                         break;
                     case Keys.Home:
-                        Cursor.TextCursor = 0;
+                        TextCursor = 0;
                         ShiftMod(oldPos);
                         break;
                     case Keys.End:
-                        Cursor.TextCursor = Text.Length;
+                        TextCursor = Text.Length;
                         ShiftMod(oldPos);
                         break;
                     case Keys.Delete:
-                        if (DelSelection() == null && Cursor.TextCursor < Text.Length)
+                        if (DelSelection() == null && TextCursor < Text.Length)
                         {
-                            Text.RemoveCharacters(Cursor.TextCursor, Cursor.TextCursor + 1);
+                            Text.RemoveCharacters(TextCursor, TextCursor + 1);
                         }
                         break;
                     case Keys.Back:
-                        if (DelSelection() == null && Cursor.TextCursor > 0)
+                        if (DelSelection() == null && TextCursor > 0)
                         {
-                            Text.RemoveCharacters(Cursor.TextCursor - 1, Cursor.TextCursor);
-                            Cursor.TextCursor--;
+                            Text.RemoveCharacters(TextCursor - 1, TextCursor);
+                            TextCursor--;
                         }
                         break;
                     case Keys.A:
@@ -104,8 +124,8 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                         {
                             if (Text.Length > 0)
                             {
-                                Cursor.SelectedChar = 0;
-                                Cursor.TextCursor = Text.Length;
+                                SelectedChar = 0;
+                                TextCursor = Text.Length;
                             }
                         }
                         break;
@@ -118,7 +138,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                     case Keys.X:
                         if (Rise.Keyboard.CtrlDown)
                         {
-                            if (Cursor.SelectedChar.HasValue)
+                            if (SelectedChar.HasValue)
                             {
                                 clipboard = DelSelection();
                             }
@@ -134,8 +154,8 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                                 {
                                     if (Text.Length < Text.MaxLength)
                                     {
-                                        Text.InsertCharacter(Cursor.TextCursor, c);
-                                        Cursor.TextCursor++;
+                                        Text.InsertCharacter(TextCursor, c);
+                                        TextCursor++;
                                     }
                                 }
                             }
@@ -149,14 +169,14 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         {
             if (Rise.Keyboard.ShiftDown)
             {
-                if (Cursor.SelectedChar == null)
+                if (SelectedChar == null)
                 {
-                    Cursor.SelectedChar = oldPos;
+                    SelectedChar = oldPos;
                 }
             }
             else
             {
-                Cursor.SelectedChar = null;
+                SelectedChar = null;
             }
         }
 
@@ -164,14 +184,15 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         {
             if (IsFocus && !Rise.Keyboard.CtrlDown)
             {
-                if (Renderer.Font.IsLegalCharacter(e.Character) && !e.Character.Equals('\r') &&
+                // if (Renderer.Font.IsLegalCharacter(e.Character) && !e.Character.Equals('\r') &&
+                if (Font.IsLegalCharacter(e.Character) && !e.Character.Equals('\r') &&
                     !e.Character.Equals('\n'))
                 {
                     DelSelection();
                     if (Text.Length < Text.MaxLength)
                     {
-                        Text.InsertCharacter(Cursor.TextCursor, e.Character);
-                        Cursor.TextCursor++;
+                        Text.InsertCharacter(TextCursor, e.Character);
+                        TextCursor++;
                     }
                 }
             }
@@ -179,12 +200,12 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
 
         private string DelSelection(bool fakeForCopy = false)
         {
-            if (!Cursor.SelectedChar.HasValue)
+            if (!SelectedChar.HasValue)
             {
                 return null;
             }
-            int tc = Cursor.TextCursor;
-            int sc = Cursor.SelectedChar.Value;
+            int tc = TextCursor;
+            int sc = SelectedChar.Value;
             int min = Math.Min(sc, tc);
             int max = Math.Max(sc, tc);
             string result = Text.String.Substring(min, max - min);
@@ -192,11 +213,11 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             if (!fakeForCopy)
             {
                 Text.Replace(Math.Min(sc, tc), Math.Max(sc, tc), string.Empty);
-                if (Cursor.SelectedChar.Value < Cursor.TextCursor)
+                if (SelectedChar.Value < TextCursor)
                 {
-                    Cursor.TextCursor -= tc - sc;
+                    TextCursor -= tc - sc;
                 }
-                Cursor.SelectedChar = null;
+                SelectedChar = null;
             }
             return result;
         }
@@ -256,18 +277,39 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
 
         public override void Update(GameTime gameTime)
         {
-            Renderer.Destination = Host;
-            Renderer.Update();
-            Cursor.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            Renderer.Draw(spriteBatch);
+
+            spriteBatch.DrawString(Font, Text.String, Host, DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, TextColor);
 
             if (IsFocus)
             {
-                Cursor.Draw(spriteBatch);
+                var curx = Text.MeasureCharacterWidths(TextCursor, Font);
+                var pos = Host.Center.Y - Font.LineSpacing / 2;
+
+
+
+                if (_selectedChar.HasValue)
+                {
+                    var selx = Text.MeasureCharacterWidths(SelectedChar ?? 0, Font);
+                    if (selx > curx)
+                    {
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Font.LineSpacing), Color.Gold);
+                        spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Font.LineSpacing), Color.Gold * 0.5f);
+                    }
+                    else
+                    {
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Font.LineSpacing), Color.Gold);
+                        spriteBatch.FillRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Font.LineSpacing), Color.Gold * 0.5f);
+                    }
+                }
+                else
+                {
+                    spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, 1, Font.LineSpacing), Color.Gold);
+                }
+
             }
         }
     }
