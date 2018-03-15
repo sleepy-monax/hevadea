@@ -29,15 +29,16 @@ namespace Hevadea.Game.Entities
                 new Move(),
                 new Colider(new Rectangle(-6, -2, 12, 8))
             );
-            
-            Attach(new Interactable()).Interacted +=
-                (sender, arg) =>
-                {
-                    if (arg.Entity.Has<Inventory>())
-                        Game.CurrentMenu = new MenuPlayerInventory(arg.Entity, RECIPIES.BenchCrafted, Game);
-                };
-            
+
+            Attach(new Interactable()).Interacted += OnInteracted;
+      
             Attach(new Pickupable(_sprite));
+        }
+
+        private void OnInteracted(object sander, InteractEventArg e)
+        {
+            if (e.Entity.Has<Inventory>())
+                Game.CurrentMenu = new MenuPlayerInventory(e.Entity, RECIPIES.BenchCrafted, Game);
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

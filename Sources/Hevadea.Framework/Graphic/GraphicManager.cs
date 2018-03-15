@@ -126,6 +126,11 @@ namespace Hevadea.Framework.Graphic
             }
         }
 
+        public RenderTarget2D CreateRenderTarget(int width, int height)
+        {
+            return new RenderTarget2D(_graphicsDevice, width, height);
+        }
+        
         public RenderTarget2D CreateFullscreenRenderTarget()
         {
             Logger.Log<GraphicManager>($"Generating render target {GetWidth()}/{GetHeight()}");

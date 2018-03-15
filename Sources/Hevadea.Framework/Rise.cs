@@ -19,8 +19,11 @@ namespace Hevadea.Framework
         
         // Components
         [Obsolete] public static LegacyInputManager Input;
+
+        public static KeyboardInput Keyboard;
         public static Controller Controller;
         public static Pointing Pointing;
+        
         public static IPlatform Platform;
         public static DebugManager Debug;
         public static GraphicManager Graphic;
@@ -55,17 +58,21 @@ namespace Hevadea.Framework
         private static void MonoGameOnInitialize(object sender, EventArgs eventArgs)
         {
             Ressource = new RessourceManager();
+            
+            Keyboard = new KeyboardInput();
             Controller = new Controller();
             Pointing = new Pointing();
+            Input = new LegacyInputManager();
+            
             Graphic = new GraphicManager(MonoGame.Graphics, MonoGame.GraphicsDevice);
             Scene = new SceneManager();
-            Input = new LegacyInputManager();
             Ui = new UiManager();
             Debug = new DebugManager();
 
             Graphic.ResetRenderTargets();
             Scene.Initialize();
             Input.Initialize();
+            Keyboard.Initialize(MonoGame, 300, 5);
             Scene.Switch(_startScene);
             
         }
@@ -84,6 +91,7 @@ namespace Hevadea.Framework
         {
             Pointing.Update();
             Input.Update(gameTime);
+            Keyboard.Update();
             Scene.Update(gameTime);
             Debug.Update(gameTime);
 

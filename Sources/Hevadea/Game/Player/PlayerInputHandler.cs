@@ -73,6 +73,7 @@ namespace Hevadea.Game
         {
             var game = Player.Game;
             var playerMovement = Player.Get<Move>();
+            
             switch (input)
             {
                 case PlayerInput.MoveLeft:
@@ -104,25 +105,17 @@ namespace Hevadea.Game
                     break;
                 case PlayerInput.OpenPauseMenu:
                     if (game.CurrentMenu is MenuInGame)
-                    {
                         game.CurrentMenu = new MenuGamePaused(game);
-                    }
                     else
-                    {
                         game.CurrentMenu = new MenuInGame(game);
-                    }
                     break;
+                
                 case PlayerInput.Zoom:
-                    {
-                        if(game.Camera.Zoom < 10)game.Camera.Zoom /= 0.9f;
-
-                    }
+                        if(game.Camera.Zoom < 8) game.Camera.Zoom /= 0.8f;
                     break;
+                
                 case PlayerInput.Dzoom:
-                    {
-                        if(game.Camera.Zoom > 1)game.Camera.Zoom *= 0.9f;
-
-                    }
+                        if(game.Camera.Zoom > 2) game.Camera.Zoom *= 0.8f;
                     break;
             }
         }

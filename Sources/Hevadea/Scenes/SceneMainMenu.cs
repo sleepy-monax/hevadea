@@ -3,6 +3,7 @@ using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Framework.UI.Widgets.TextBox;
 using Hevadea.Game.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -26,6 +27,7 @@ namespace Hevadea.Scenes
                     Flow = FlowDirection.TopToBottom,
                     Childrens =
                         {
+                            new TextBox(256, "Hellow World", Ressources.FontRomulus, Color.Red, Color.Aqua, 30),
                             new Button
                                     { Text = "Continue", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent(sender => { Rise.Scene.Switch(LoadingScene.ConstructNewWorld("./saves/test/", 0));}),

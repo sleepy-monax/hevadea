@@ -59,6 +59,7 @@
     <Compile Include="Graphic\SpriteBatchExtension.cs" />
     <Compile Include="Graphic\Text.cs" />
     <Compile Include="Input\KeyBinding.cs" />
+    <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Input\LegacyInputManager.cs" />
     <Compile Include="MonoGameHandler.cs" />
     <Compile Include="Networking\Client.cs" />
@@ -87,6 +88,10 @@
     <Compile Include="UI\Widgets\Panel.cs" />
     <Compile Include="UI\Widgets\PictureWidget.cs" />
     <Compile Include="UI\Widgets\ProgressBar.cs" />
+    <Compile Include="UI\Widgets\TextBox\Cursor.cs" />
+    <Compile Include="UI\Widgets\TextBox\Text.cs" />
+    <Compile Include="UI\Widgets\TextBox\TextBoxWidget.cs" />
+    <Compile Include="UI\Widgets\TextBox\TextRenderer.cs" />
     <Compile Include="Utils\Anchore.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Utils\Compression.cs" />
