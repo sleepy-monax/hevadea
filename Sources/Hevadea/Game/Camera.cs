@@ -11,7 +11,7 @@ namespace Hevadea.Game
         public Camera(Entity focusEntity)
         {
             FocusEntity = focusEntity;
-            Zoom = 4f;
+            Zoom = 6f;
         }
 
         public void JumpToFocusEntity()
@@ -22,9 +22,6 @@ namespace Hevadea.Game
 
         public override void Animate(GameTime gameTime)
         {
-            /*X -= (X - Mathf.Floor(FocusEntity.X)) * 0.1f;
-            Y -= (Y - Mathf.Floor(FocusEntity.Y)) * 0.1f;*/
-
             X = FocusEntity.X;
             Y = FocusEntity.Y;
         }

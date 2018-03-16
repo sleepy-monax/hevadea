@@ -132,18 +132,23 @@
     <Compile Include="Game\Items\Tags\PlacableItemTag.cs" />
     <Compile Include="Game\Items\Tags\PlaceEntity.cs" />
     <Compile Include="Game\Items\Tags\PlaceTile.cs" />
+    <Compile Include="Game\Loading\LoadingMenu.cs" />
     <Compile Include="Game\Loading\LoadingScene.cs" />
     <Compile Include="Game\Loading\LoadingTask.cs" />
-    <Compile Include="Game\Loading\LoadingTaskConnectToServer.cs" />
-    <Compile Include="Game\Loading\LoadingTaskDownloadWorld.cs" />
-    <Compile Include="Game\Loading\LoadingTaskEnterGame.cs" />
-    <Compile Include="Game\Loading\LoadingTaskGenerateWorld.cs" />
-    <Compile Include="Game\Loading\LoadingTaskInitializeGame.cs" />
-    <Compile Include="Game\Loading\LoadingTaskLoadWorld.cs" />
-    <Compile Include="Game\Loading\LoadingTaskNewPlayer.cs" />
-    <Compile Include="Game\Loading\LoadingTaskPlayerJoint.cs" />
-    <Compile Include="Game\Loading\LoadingTaskSaveWorld.cs" />
-    <Compile Include="Game\Loading\LoadingTaskSetupServer.cs" />
+    <Compile Include="Game\Loading\TaskFactorie.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskConnectToServer.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskDownloadWorld.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskEnterGame.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskGenerateWorld.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskInitializeGame.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskLoadWorld.cs" />
+    <Compile Include="Game\Loading\TaskCompound.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskNewPlayer.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskPlayerJoint.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskSaveWorld.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskSetupServer.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskSwitchToMenu.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskSwitchToScene.cs" />
     <Compile Include="Game\Networking\GameManager.Networking.cs" />
     <Compile Include="Game\Networking\GameManager.Protocole.cs" />
     <Compile Include="Game\Player\PlayerInputHandler.cs" />
@@ -183,10 +188,10 @@
     <Compile Include="Game\Storage\EntityStorage.cs" />
     <Compile Include="Game\Storage\LevelStorage.cs" />
     <Compile Include="Scenes\Menus\MenuGamePaused.cs" />
+    <Compile Include="Scenes\SceneClientMutiplayer.cs" />
     <Compile Include="Scenes\SceneNewWorld.cs" />
     <Compile Include="Scenes\Widgets\WidgetFancyPanel.cs" />
     <Compile Include="Scenes\Widgets\WidgetHotBar.cs" />
-    <Compile Include="Scenes\SceneWorldGeneration.cs" />
     <Compile Include="Scenes\Widgets\WidgetCrafting.cs" />
     <Compile Include="Scenes\Widgets\WidgetItemContainer.cs" />
     <Compile Include="Scenes\Widgets\WidgetItemFrame.cs" />
@@ -199,8 +204,6 @@
     <Compile Include="Scenes\SceneLoadGame.cs" />
     <Compile Include="Scenes\SceneGameSplash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenes\SceneWorldLoading.cs" />
-    <Compile Include="Scenes\SceneWorldSaving.cs" />
     <Compile Include="WorldGenerator\Functions\CombinedFunction.cs" />
     <Compile Include="WorldGenerator\Functions\FlatFunction.cs" />
     <Compile Include="WorldGenerator\Functions\IFunction.cs" />
@@ -283,7 +286,6 @@
       <InProject>false</InProject>
     </None>
     <None Include="app.manifest" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

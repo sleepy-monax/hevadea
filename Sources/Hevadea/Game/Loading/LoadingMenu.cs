@@ -1,31 +1,28 @@
-﻿using System;
-using Hevadea.Framework;
-using Hevadea.Framework.Scening;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Scenes;
+using Hevadea.Scenes.Menus;
 using Hevadea.Scenes.Widgets;
+using Microsoft.Xna.Framework;
+
 
 namespace Hevadea.Game.Loading
 {
-    public class LoadingScene : Scene
+    public class LoadingMenu : Menu
     {
         private TaskCompound _task;
 
         private Label _progressLabel;
         private ProgressBar _progressBar;
 
-        public LoadingScene(TaskCompound task)
+        public LoadingMenu(TaskCompound task) : base(task.GetGame())
         {
             _task = task;
-        }
 
-        public override void Load()
-        {
+            PauseGame = true;
+
             _progressLabel = new Label
             {
                 Text = "Generating world...",
@@ -56,7 +53,7 @@ namespace Hevadea.Game.Loading
                 Rise.Scene.Switch(new MainMenu());
             });
 
-            Container = new AnchoredContainer
+            Content = new AnchoredContainer
             {
                 Childrens =
                 {
@@ -76,12 +73,7 @@ namespace Hevadea.Game.Loading
             _task.Start();
         }
 
-        public override void OnDraw(GameTime gameTime)
-        {
-
-        }
-
-        public override void OnUpdate(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             var currentTask = _task.GetRunningTask();
 
@@ -92,11 +84,6 @@ namespace Hevadea.Game.Loading
             }
 
             _task.Update();
-        }
-
-        public override void Unload()
-        {
-            
         }
     }
 }

@@ -6,9 +6,9 @@ namespace Hevadea.Game.Loading
 {
     public abstract class LoadingTask
     {
-
         private float _progress;
-        public abstract string TaskName { get; }
+        private string _status;
+
         public Thread Thread { get; set; }
         public bool HasFinish { get; private set; } = false;
         public Exception Exception { get; private set; } = null;
@@ -29,12 +29,23 @@ namespace Hevadea.Game.Loading
             return _progress;
         }
 
+        public void SetStatus(string status)
+        {
+            _status = status;
+        }
+
+        public virtual string GetStatus()
+        {
+            return _status;
+        }
+
         private void TaskInternal(object game)
         {
             try
             {
                 Task((GameManager)game);
             }
+            catch (ThreadAbortException) {}
             catch (Exception ex)
             {
                 Exception = ex;
@@ -42,6 +53,7 @@ namespace Hevadea.Game.Loading
             }
             HasFinish = true;
         }
+
         public abstract void Task(GameManager game);
     }
 }

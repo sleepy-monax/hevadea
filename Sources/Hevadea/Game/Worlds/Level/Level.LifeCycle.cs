@@ -80,7 +80,8 @@ namespace Hevadea.Game.Worlds
             {
                 var tx = Rise.Random.Next(Width);
                 var ty = Rise.Random.Next(Height);
-                GetTile(tx, ty).Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+                var tile = GetTile(tx, ty);
+                tile.Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
             }
 
             ParticleSystem.Update(gameTime);

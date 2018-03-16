@@ -1,15 +1,13 @@
 ﻿using Hevadea.Game.Entities;
-using Hevadea.Game.Items.Tags;
 using Hevadea.Game.Registry;
 
-namespace Hevadea.Game.Loading
+namespace Hevadea.Game.Loading.Tasks
 {
-    public class LoadingTaskNewPlayer : LoadingTask
-    {
-        public override string TaskName => "create_player";
-        
+    public class TaskNewPlayer : LoadingTask
+    {        
         public override void Task(GameManager game)
         {
+            SetStatus("Creating player...");
             game.MainPlayer = (EntityPlayer)ENTITIES.PLAYER.Construct();
         }
     }

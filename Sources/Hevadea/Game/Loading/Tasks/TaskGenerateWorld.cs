@@ -1,19 +1,21 @@
 ﻿using Hevadea.Game.Registry;
 using Hevadea.WorldGenerator;
 
-namespace Hevadea.Game.Loading
+namespace Hevadea.Game.Loading.Tasks
 {
-    public class LoadingTaskGenerateWorld : LoadingTask
+    public class TaskGenerateWorld : LoadingTask
     {
-        public override string TaskName => _generator?.CurrentLevel?.CurrentFeature != null ? _generator.CurrentLevel.CurrentFeature.GetName() : "World Generator";
-        
-
         private int _seed ;
         private Generator _generator;
 
-        public LoadingTaskGenerateWorld(int seed)
+        public TaskGenerateWorld(int seed)
         {
             _seed = seed;
+        }
+
+        public override string GetStatus()
+        {
+            return _generator?.CurrentLevel?.CurrentFeature != null ? _generator.CurrentLevel.CurrentFeature.GetName() : "Generating world...";
         }
 
         public override float GetProgress()

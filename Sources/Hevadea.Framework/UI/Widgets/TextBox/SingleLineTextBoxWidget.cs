@@ -16,7 +16,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         private int _textCursor;
 
         public SpriteFont Font { get; set; }
-        public Color TextColor { get; set; } = Color.White;
+        public Color TextColor { get; set; } = Color.LightGray;
 
         public int TextCursor
         {
@@ -281,8 +281,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-
-            spriteBatch.DrawString(Font, Text.String, Host, DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, TextColor);
+            spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
 
             if (IsFocus)
             {
@@ -296,12 +295,12 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                     var selx = Text.MeasureCharacterWidths(SelectedChar ?? 0, Font);
                     if (selx > curx)
                     {
-                        spriteBatch.DrawRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Font.LineSpacing), Color.Gold);
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Font.LineSpacing), Color.Gold * 0.5f);
                         spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Font.LineSpacing), Color.Gold * 0.5f);
                     }
                     else
                     {
-                        spriteBatch.DrawRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Font.LineSpacing), Color.Gold);
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Font.LineSpacing), Color.Gold * 0.5f);
                         spriteBatch.FillRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Font.LineSpacing), Color.Gold * 0.5f);
                     }
                 }
@@ -311,6 +310,8 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 }
 
             }
+
+            spriteBatch.DrawString(Font, Text.String, Host, DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, TextColor);
         }
     }
 }

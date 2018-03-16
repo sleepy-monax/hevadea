@@ -72,7 +72,10 @@ namespace Hevadea.Framework
             Graphic.ResetRenderTargets();
             Scene.Initialize();
             Input.Initialize();
-            Keyboard.Initialize(MonoGame, 300, 5);
+            if (Platform.GetPlatformName() != "Android")
+            {
+                Keyboard.Initialize(MonoGame, 300, 5);
+            }
             Scene.Switch(_startScene);
             
         }

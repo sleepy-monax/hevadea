@@ -38,6 +38,9 @@ namespace Hevadea.Scenes
                                     { Text = "Load game", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {Rise.Scene.Switch(new SceneLoadGame()); }),
                             new Button
+                                    { Text = "Multiplayer", Padding = new Padding(4) }
+                                .RegisterMouseClickEvent((sender) => {Rise.Scene.Switch(new SceneClientMutiplayer()); }),
+                            new Button
                                     { Text = "Option", Padding = new Padding(4) }
                                 .RegisterMouseClickEvent((sender) => {}),
                             new Button
@@ -50,7 +53,7 @@ namespace Hevadea.Scenes
 
             var hevadeaLogo = new Label { Text = "Hevadea", UnitBound = new Rectangle(0, 0, 320, 352), Anchor = Anchor.Center, Origine = Anchor.Right, Font = Ressources.FontAlagardBig, Scale = 1f};
 
-            Container = new AnchoredContainer() { Childrens = { menuPanel, hevadeaLogo, new SingleLineTextBoxWidget(256, "Hello World!", Ressources.FontRomulus) { UnitBound = new Rectangle(0,0,256,256)} } };
+            Container = new AnchoredContainer() { Childrens = { menuPanel, hevadeaLogo } };
         }
 
         public override void Unload()

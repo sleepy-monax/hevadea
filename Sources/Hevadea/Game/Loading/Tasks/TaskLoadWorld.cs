@@ -1,28 +1,27 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Worlds;
+using System.IO;
 
-namespace Hevadea.Game.Loading
+namespace Hevadea.Game.Loading.Tasks
 {
-    public class LoadingTaskLoadWorld : LoadingTask
-    {
-        public override string TaskName => "load_world";
-        
+    public class TaskLoadWorld : LoadingTask
+    {        
         public override void Task(GameManager game)
         {
+            SetStatus("Loading world...");
             var worldData = File.ReadAllText($"{game.SavePath}/game.json").FromJson<WorldStorage>();
             var world = new World();
             var player = (EntityPlayer)ENTITIES.PLAYER.Construct();
+
             player.Load(File.ReadAllText($"{game.SavePath}/player.json").FromJson<EntityStorage>());
             
             foreach (var levelName in worldData.Levels)
             {
-                Logger.Log<LoadingTaskLoadWorld>(LoggerLevel.Info, $"Loading level '{levelName}'...");
+                SetStatus($"Loading level the '{levelName}'...");
                 world.Levels.Add(LoadLevel($"{game.SavePath}/{levelName}.json"));
             }
 

@@ -13,12 +13,29 @@ namespace Hevadea.Framework.UI.Widgets
         public abstract void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime);
     }
 
+    public class ListItemText : ListItem
+    {
+        public string Text { get; set; }
+
+        public ListItemText(string text)
+        {
+            Text = text;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime)
+        {
+            spriteBatch.DrawString(Rise.Ui.DefaultFont, Text, host, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, Color.White);
+        }
+    }
+
     public class ListWidget : Widget
      {
         public int ItemHeight { get; set; } = 32;
+        public Color BackColor { get; set; } = Color.White * 0.1f;
+        public ListItem SelectedItem { get; private set; } = null;
 
         private List<ListItem> _items = new List<ListItem>();
-        private ListItem _selectedItem = null;
+        private ListItem _overItem = null;
         private int _scrollOffset;
 
         public void AddItem(ListItem item)
@@ -36,7 +53,11 @@ namespace Hevadea.Framework.UI.Widgets
         {
             var index = 0;
 
+            spriteBatch.FillRectangle(Bound, BackColor);
+
             Rise.Graphic.SetScissor(Bound);
+
+            _overItem = null;
 
             foreach (var i in _items)
                 if (i != null)
@@ -46,13 +67,15 @@ namespace Hevadea.Framework.UI.Widgets
                     var rect = new Rectangle(p.X, p.Y, Host.Width - Scale(8), Scale(48));
                     var sprite_rect = new Rectangle(p.X + Scale(8), p.Y + Scale(8), Scale(32), Scale(32));
 
-                    if (Rise.Pointing.AreaOver(rect))
+                    if (Rise.Pointing.AreaOver(rect) && Rise.Pointing.AreaOver(Host))
                     {
                         spriteBatch.FillRectangle(rect, Color.White * 0.05f);
                         spriteBatch.DrawRectangle(rect, Color.White * 0.05f);
+
+                        _overItem = i;
                     }
 
-                    if (i == _selectedItem)
+                    if (i == SelectedItem)
                     {
                         spriteBatch.FillRectangle(rect, Color.Gold * 0.5f);
                         spriteBatch.DrawRectangle(rect, Color.Gold * 0.5f);
@@ -87,7 +110,6 @@ namespace Hevadea.Framework.UI.Widgets
 
         public override void Update(GameTime gameTime)
         {
-            //TODO reimplement mouse scolling
             //if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
             //if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
 
@@ -115,6 +137,7 @@ namespace Hevadea.Framework.UI.Widgets
 
             if (Rise.Pointing.AreaClick(Bound))
             {
+                SelectedItem = _overItem;
                 IsDown = false;
             }
 
