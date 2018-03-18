@@ -2,7 +2,7 @@
 
 namespace AndroidPlatform
 {
-    public class RiseAndroidPlatform : IPlatform
+    public class RiseAndroidPlatform : PlatformBase
     {
         private int _screenWidth;
         private int _screenHeight;
@@ -13,19 +13,24 @@ namespace AndroidPlatform
         }
 
 
-        public string GetPlatformName() => "Android";
+        public override string GetPlatformName() => "Android";
 
-        public int GetScreenWidth() => _screenWidth;
-        public int GetScreenHeight() => _screenHeight;
+        public override int GetScreenWidth() => _screenWidth;
+        public override int GetScreenHeight() => _screenHeight;
 
-        public void Initialize()
+        public override void Initialize()
         {
 
         }
 
-        public string GetStorageFolder()
+        public override string GetStorageFolder()
         {
             return Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+        }
+
+        public override void Update()
+        {
+            
         }
     }
 }

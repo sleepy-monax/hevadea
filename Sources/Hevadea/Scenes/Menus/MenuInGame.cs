@@ -1,39 +1,59 @@
-﻿using Hevadea.Framework;
-using Hevadea.Framework.UI;
+﻿using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Game;
-using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Registry;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 
 namespace Hevadea.Scenes.Menus
 {
     public class MenuInGame : Menu
     {
         private readonly WidgetPlayerStats _playerStats;
-
-        private readonly Button btnAttack, btnAction;
+        private readonly Button btnAttack, btnAction, btnPickup, btnDrop;
 
         public MenuInGame(GameManager game) : base(game)
         {
-            btnAttack = new Button { Text = "ATTACK",
+            btnAttack = new Button
+            {
+                Text = "ATTACK",
                 Anchor = Anchor.BottomRight,
                 Origine = Anchor.BottomRight,
                 UnitBound = new Rectangle(0, 0, 128, 128),
                 UnitOffset = new Point(-128, 0)
             };
 
-            btnAction = new Button { Text = "ACTION",
+            btnAction = new Button
+            {
+                Text = "ACTION",
                 Anchor = Anchor.BottomRight,
                 Origine = Anchor.BottomRight,
                 UnitBound = new Rectangle(0, 0, 128, 128)
             };
 
+            btnPickup = new Button
+            {
+                Text = "PICKUP",
+                Anchor = Anchor.BottomRight,
+                Origine = Anchor.BottomRight,
+                UnitBound = new Rectangle(0, 0, 128, 128),
+                UnitOffset = new Point(0, -128),
+            };
+
+            btnDrop = new Button
+            {
+                Text = "DROP",
+                Anchor = Anchor.BottomRight,
+                Origine = Anchor.BottomRight,
+                UnitBound = new Rectangle(0, 0, 128, 128),
+                UnitOffset = new Point(-128, -128)
+            };
+
             btnAction.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Action); };
             btnAttack.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Attack); };
+            btnPickup.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Pickup); };
+            btnDrop.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.DropItem); };
 
             _playerStats = new WidgetPlayerStats(game.MainPlayer)
             {
@@ -49,7 +69,8 @@ namespace Hevadea.Scenes.Menus
                 Childrens =
                 {
                     _playerStats,
-                    btnAttack, btnAction,
+                    btnAttack, btnAction, btnDrop, btnPickup,
+
                     new Button{ Text = "Pause", Origine = Anchor.TopLeft, Anchor = Anchor.TopLeft, UnitOffset = new Point(16,16)}
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new MenuGamePaused(Game); }),
                     
@@ -57,20 +78,6 @@ namespace Hevadea.Scenes.Menus
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new MenuPlayerInventory(Game.MainPlayer, RECIPIES.HandCrafted,Game); })
                 }
             };
-        }
-
-        public override void Update(GameTime gameTime)
-        {            
-            Game.MainPlayer.Get<Inventory>().AlowPickUp = true; //Rise.Input.KeyDown(Keys.F);
-            if (Rise.Input.KeyPress(Keys.A))
-            {
-                var level = Game.MainPlayer.Level;
-                var item = Game.MainPlayer.HoldingItem;
-                var facingTile = Game.MainPlayer.GetFacingTile();
-                Game.MainPlayer.Get<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
-            }
-            
-            base.Update(gameTime);
         }
     }
 }

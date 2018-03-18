@@ -29,7 +29,7 @@ namespace Hevadea.Scenes
                     seed = worldSeedtextBox.Text.String.GetHashCode();
                 }
 
-                Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructNewWorld($"./saves/{worldNameTextBox.Text.String}/", seed)));
+                Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructNewWorld(ConstVal.GetSavePath() + $"{worldNameTextBox.Text.String}/", seed)));
             });
 
             var backButton = new Button { Text = "Back", Padding = new Padding(4) }
@@ -52,10 +52,8 @@ namespace Hevadea.Scenes
                         worldNameTextBox,
                         new Label { Text = "Seed:", Padding = new Padding(8), TextAlignement = DrawText.Alignement.Left},
                         worldSeedtextBox,
-                        new TileContainer { Flow = FlowDirection.LeftToRight, Childrens = { backButton, generateButton} }
-                        
+                        new TileContainer { Flow = FlowDirection.LeftToRight, Childrens = { backButton, generateButton} }   
                     }
-
                 }
             });
         }

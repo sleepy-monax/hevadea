@@ -24,7 +24,7 @@ namespace Hevadea.Framework
         public static Controller Controller;
         public static Pointing Pointing;
         
-        public static IPlatform Platform;
+        public static PlatformBase Platform;
         public static DebugManager Debug;
         public static GraphicManager Graphic;
         public static MonoGameHandler MonoGame;
@@ -35,7 +35,7 @@ namespace Hevadea.Framework
 
         private static Scene _startScene;
         
-        public static void Initialize(IPlatform platform)
+        public static void Initialize(PlatformBase platform)
         {
             Platform = platform;
             
@@ -51,14 +51,15 @@ namespace Hevadea.Framework
         public static void Start(Scene startScene)
         {
             _startScene = startScene;
-            Platform.Initialize();
             MonoGame.Run();
         }
         
         private static void MonoGameOnInitialize(object sender, EventArgs eventArgs)
         {
             Ressource = new RessourceManager();
-            
+
+            Platform.Initialize();
+
             Keyboard = new KeyboardInputManager();
             Controller = new Controller();
             Pointing = new Pointing();
@@ -72,6 +73,7 @@ namespace Hevadea.Framework
             Graphic.ResetRenderTargets();
             Scene.Initialize();
             Input.Initialize();
+
             if (Platform.GetPlatformName() != "Android")
             {
                 Keyboard.Initialize(MonoGame, 300, 5);

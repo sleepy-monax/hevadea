@@ -60,7 +60,7 @@ namespace Hevadea.Scenes
                 Childrens = {hostPanel, backButton}
             };
 
-            var s = Directory.GetDirectories(Rise.Platform.GetStorageFolder() + "/Saves/");
+            var s = Directory.GetDirectories(ConstVal.GetSavePath());
 
             foreach (var save in s)
             {

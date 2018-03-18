@@ -49,13 +49,25 @@ namespace Hevadea.Framework.Input
         private DateTime lastRep = DateTime.Now;
         private bool filterSpecialCharacters;
 
+
         public void Initialize(Game g, float timeUntilRepInMilliseconds, int repsPerSecond, bool filterSpecialCharactersFromCharPressed = true)
         {
             game = g;
             timeUntilRepInMillis = timeUntilRepInMilliseconds;
             repsPerSec = repsPerSecond;
             filterSpecialCharacters = filterSpecialCharactersFromCharPressed;
-            game.Window.TextInput += TextEntered;
+            Rise.Platform.TextInput += Platform_TextInput;
+        }
+
+        private void Platform_TextInput(object sender, Platform.PlatformTextInputEventArg e)
+        {
+            if (CharPressed != null)
+            {
+                if (!filterSpecialCharacters || !SPECIAL_CHARACTERS.Contains(e.Character))
+                {
+                    CharPressed(null, new CharacterEventArgs(e.Character), Keyboard.GetState());
+                }
+            }
         }
 
         public bool ShiftDown
@@ -82,17 +94,6 @@ namespace Hevadea.Framework.Input
             {
                 KeyboardState state = Keyboard.GetState();
                 return state.IsKeyDown(Keys.LeftAlt) || state.IsKeyDown(Keys.RightAlt);
-            }
-        }
-
-        private void TextEntered(object sender, TextInputEventArgs e)
-        {
-            if (CharPressed != null)
-            {
-                if (!filterSpecialCharacters || !SPECIAL_CHARACTERS.Contains(e.Character))
-                {
-                    CharPressed(null, new CharacterEventArgs(e.Character), Keyboard.GetState());
-                }
             }
         }
 
@@ -132,7 +133,7 @@ namespace Hevadea.Framework.Input
                     {
                         // Should repeat since the wait time is over now.
                         TimeSpan repeatSince = now.Subtract(lastRep);
-                        if (repeatSince.CompareTo(TimeSpan.FromMilliseconds(1000f / repsPerSec)) > 0)
+                        if (repsPerSec != 0 && repeatSince.CompareTo(TimeSpan.FromMilliseconds(1000f / repsPerSec)) > 0)
                         {
                             // Time for another key-stroke.
                             if (KeyPressed != null)

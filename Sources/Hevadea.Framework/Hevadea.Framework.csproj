@@ -67,11 +67,12 @@
     <Compile Include="Networking\DataBuffer.cs" />
     <Compile Include="Networking\Peer.cs" />
     <Compile Include="Networking\Server.cs" />
+    <Compile Include="Platform\PlatformBase.cs" />
+    <Compile Include="Platform\PlatformTextInputEventArg.cs" />
     <Compile Include="Ressource\RessourceManager.cs" />
     <Compile Include="Rise.cs" />
     <Compile Include="Input\Controller.cs" />
     <Compile Include="Input\Pointing.cs" />
-    <Compile Include="Platform\IPlatform.cs" />
     <Compile Include="Scening\Scene.cs" />
     <Compile Include="Scening\SceneManager.cs" />
     <Compile Include="UI\Containers\AnchoredContainer.cs" />

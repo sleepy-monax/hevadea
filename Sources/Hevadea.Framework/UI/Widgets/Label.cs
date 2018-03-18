@@ -14,9 +14,11 @@ namespace Hevadea.Framework.UI.Widgets
         
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var texSize = Font.MeasureString(Text) * Scale;
-            spriteBatch.DrawString(Font, Text, Host, TextAlignement, DrawText.TextStyle.DropShadow, TextColor);
-            base.Draw(spriteBatch, gameTime);
+            if (Text != null)
+            {
+                var texSize = Font.MeasureString(Text) * Scale;
+                spriteBatch.DrawString(Font, Text, Host, TextAlignement, DrawText.TextStyle.DropShadow, TextColor);
+            }
         }
     }
 }

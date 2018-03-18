@@ -14,7 +14,7 @@ namespace Hevadea.Game
     public enum PlayerInput
     {
         MoveLeft, MoveRight, MoveUp, MoveDown, 
-        Action, Attack, Pickup,
+        Action, Attack, Pickup, DropItem,
         OpenInventory, OpenPauseMenu, Zoom, Dzoom
     }
 
@@ -59,6 +59,8 @@ namespace Hevadea.Game
                     if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
                     if (input.KeyPress(Keys.L)) HandleInput(PlayerInput.Pickup);
+                    if (input.KeyPress(Keys.A)) HandleInput(PlayerInput.DropItem);
+
 
                     if (input.KeyPress(Keys.Add)) HandleInput(PlayerInput.Zoom);
                     if (input.KeyPress(Keys.Subtract)) HandleInput(PlayerInput.Dzoom);
@@ -99,6 +101,13 @@ namespace Hevadea.Game
                     break;
                 case PlayerInput.Pickup:
                     Player.Get<Pickup>().Do();
+                    break;
+
+                case PlayerInput.DropItem:
+                    var level = Player.Level;
+                    var item = Player.HoldingItem;
+                    var facingTile = Player.GetFacingTile();
+                    Player.Get<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
                     break;
                 case PlayerInput.OpenInventory:
                     game.CurrentMenu = new MenuPlayerInventory(Player, RECIPIES.HandCrafted, game);

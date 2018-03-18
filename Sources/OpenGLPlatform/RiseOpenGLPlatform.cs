@@ -1,20 +1,34 @@
-﻿using Hevadea.Framework.Platform;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Platform;
 
 namespace OpenGLPlatform
 {
-    public class RiseOpenGLPlatform : IPlatform
+    public class RiseOpenGLPlatform : PlatformBase
     {
-        public void Initialize() { }
+        public override void Initialize()
+        {
+            Rise.MonoGame.Window.TextInput += Window_TextInput;
+        }
 
-        public string GetPlatformName() => "OpenGl";
+        private void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
+        {
+            RaiseTextInput(e.Character, e.Key);
+        }
 
-        public int GetScreenWidth() => 1280;
+        public override string GetPlatformName() => "OpenGl";
 
-        public int GetScreenHeight() => 720;
+        public override int GetScreenWidth() => 1280;
 
-        public string GetStorageFolder()
+        public override int GetScreenHeight() => 720;
+
+        public override string GetStorageFolder()
         {
             return ".";
+        }
+
+        public override void Update()
+        {
+            
         }
     }
 }
