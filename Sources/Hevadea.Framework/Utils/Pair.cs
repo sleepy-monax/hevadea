@@ -8,8 +8,8 @@
 
         public Pair(T first, U second)
         {
-            this.First = first;
-            this.Second = second;
+            First = first;
+            Second = second;
         }
 
         public T First { get; set; }

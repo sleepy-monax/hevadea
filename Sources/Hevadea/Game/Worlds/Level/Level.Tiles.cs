@@ -72,7 +72,21 @@ namespace Hevadea.Game.Worlds
             
             if (notify && (_game?.IsRemote ?? false)) _game.NotifyTileChange(this, tx, ty, id);
             
+            
+            if (_isInitialized)
+            {   
+                for (var x = -1; x <= 1; x++)
+                for (var y = -1; y <= 1; y++)
+                {
+                    var xx = tx + x;
+                    var yy = ty + y;
+                        if (xx >= 0 && yy >= 0 && xx < Width && yy < Height)
+                            CachedTileConnection[xx, yy] = null;
+                }
+            }
+            
             Tiles[tx + ty * Width] = id;
+            
             return true;
         }
 

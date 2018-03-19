@@ -5,7 +5,7 @@ namespace Hevadea.Framework.Utils
 {
     public static class Geometry
     {
-        private static Dictionary<string, List<Vector2>> _circleCache = new Dictionary<string, List<Vector2>>();
+        private static readonly Dictionary<string, List<Vector2>> CircleCache = new Dictionary<string, List<Vector2>>();
         
         /// <summary>
         /// Creates a list of vectors that represents a circle
@@ -17,9 +17,9 @@ namespace Hevadea.Framework.Utils
         {
             // Look for a cached version of this circle
             var circleKey = radius + "x" + sides;
-            if (_circleCache.ContainsKey(circleKey))
+            if (CircleCache.ContainsKey(circleKey))
             {
-                return _circleCache[circleKey];
+                return CircleCache[circleKey];
             }
 
             var vectors = new List<Vector2>();
@@ -32,7 +32,7 @@ namespace Hevadea.Framework.Utils
 
 
             vectors.Add(new Vector2(radius * Mathf.Cos(0), radius * Mathf.Sin(0)));
-            _circleCache.Add(circleKey, vectors);
+            CircleCache.Add(circleKey, vectors);
 
             return vectors;
         }

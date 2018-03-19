@@ -20,5 +20,18 @@ namespace Hevadea.Framework.Utils
         {
             return RadianToVector2(degree * Mathf.Deg2Rad) * length;
         }
+
+        public static Vector2 VectorTo(this Vector2 p0, Vector2 p1, bool normalize)
+        {
+            var dir = new Vector2(p0.X - p1.X, p0.Y - p1.Y);
+
+            
+            if (dir.Length() > 1f && normalize)
+            {
+                dir.Normalize();
+            }
+
+            return dir;
+        }
     }
 }

@@ -71,7 +71,7 @@
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Craftings\Recipe.cs" />
     <Compile Include="Game\Craftings\RecipeCost.cs" />
-    <Compile Include="Game\Entities\Components\Ai\Actions\ActionAttack.cs" />
+    <Compile Include="Game\Entities\Components\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionWait.cs" />
     <Compile Include="Game\Entities\Components\Ai\Behaviors\BehaviorAnimal.cs" />

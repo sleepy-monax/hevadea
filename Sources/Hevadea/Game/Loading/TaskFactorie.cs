@@ -6,7 +6,31 @@ namespace Hevadea.Game.Loading
 {
     public static class TaskFactorie
     {
+        public static TaskCompound ConstructStartServer(GameManager game, int port = GameManager.PORT)
+        {
+            return new TaskCompound(game)
+            {
+                Tasks =
+                {
+                    new TaskSaveWorld(),
+                    new TaskSetupServer{Port = port},
+                }
+            };
+        }
 
+        public static TaskCompound ConstructConnectToServer(string addr, int port = GameManager.PORT)
+        {
+            return new TaskCompound($"{addr}:{port}")
+            {
+                Tasks =
+                {
+                    new TaskConnectToServer(addr, port),
+                    new TaskDownloadWorld(),
+                    //new TaskPlayerJoint(),
+                }
+            };
+        }
+            
         public static TaskCompound ConstructNewWorld(string path, int seed)
         {
             return new TaskCompound(path)
