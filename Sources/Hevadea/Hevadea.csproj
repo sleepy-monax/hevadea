@@ -78,6 +78,7 @@
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />
     <Compile Include="Game\Entities\Components\Ai\PathFinding.cs" />
+    <Compile Include="Game\Entities\Components\Attributes\Explode.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickup.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickupable.cs" />
     <Compile Include="Game\Entities\Components\Grow.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Game\Entities\EntityFish.cs" />
     <Compile Include="Game\Entities\EntityNpc.cs" />
     <Compile Include="Game\Entities\EntityPlayer.cs" />
+    <Compile Include="Game\Entities\EntityTNT.cs" />
     <Compile Include="Game\Entities\EntityZombie.cs" />
     <Compile Include="Game\Entities\EntityFurnace.cs" />
     <Compile Include="Game\Entities\EntityGrass.cs" />
