@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Game.Entities;
 using System.Collections.Generic;
+using Hevadea.Game.Tiles.Renderers;
 
 namespace Hevadea.Game.Worlds
 {
@@ -9,6 +10,7 @@ namespace Hevadea.Game.Worlds
         private GameManager _game;
         private World _world;
         private List<Entity>[,] _entitiesOnTiles;
+        public TileConection[,] CachedTileConnection;
         
         public int Id { get; set; }
         public LevelProperties Properties { get; }
@@ -33,6 +35,7 @@ namespace Hevadea.Game.Worlds
             TilesData = new Dictionary<string, object>[Width * Height];
             Entities = new List<Entity>();
             _entitiesOnTiles = new List<Entity>[Width, Height];
+            CachedTileConnection = new TileConection[Width,Height];
             
             for (var x = 0; x < Width; x++)
             for (var y = 0; y < Height; y++)

@@ -15,6 +15,7 @@ namespace Hevadea.Game.Items.Tags
         public override void Place(Level level, TilePosition tile, Direction facing)
         {
             level.SetTile(tile, _tile);
+            level.ClearTileData(tile);
         }
     }
 }

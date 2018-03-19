@@ -15,6 +15,11 @@ namespace Hevadea.Game.Tiles.Renderers
 
         public TileConection GetTileConnection(Level level, TilePosition pos)
         {
+            if ((level.CachedTileConnection[pos.X, pos.Y] != null && level.CachedTileConnection[pos.X, pos.Y].Tile == Tile))
+            {
+                return level.CachedTileConnection[pos.X, pos.Y];
+            }
+            
             var Up = false;
             var Down = false;
             var Left = false;
@@ -48,7 +53,9 @@ namespace Hevadea.Game.Tiles.Renderers
                 DownRight |= level.GetTile(pos.X + 1, pos.Y + 1) == Tile;
             }
 
-            return new TileConection(Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight);
+            var connections = new TileConection(Tile, Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight);
+            level.CachedTileConnection[pos.X, pos.Y] = connections;
+            return connections;
         }
     }
 }
