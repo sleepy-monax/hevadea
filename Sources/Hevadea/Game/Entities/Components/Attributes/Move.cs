@@ -20,6 +20,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
         {
             var dir = new Vector2(x - AttachedEntity.X, y - AttachedEntity.Y);
 
+            
             if (dir.Length() > 1f)
             {
                 dir.Normalize();

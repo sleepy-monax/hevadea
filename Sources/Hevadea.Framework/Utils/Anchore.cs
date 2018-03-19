@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using Microsoft.Xna.Framework;
 
-namespace Hevadea.Framework.UI
+namespace Hevadea.Framework.Utils
 {
     public enum Anchor
     {

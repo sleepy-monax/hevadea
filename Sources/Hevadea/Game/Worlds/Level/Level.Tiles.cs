@@ -75,8 +75,8 @@ namespace Hevadea.Game.Worlds
             
             if (_isInitialized)
             {   
-                for (int x = -1; x <= 1; x++)
-                for (int y = -1; y <= 1; y++)
+                for (var x = -1; x <= 1; x++)
+                for (var y = -1; y <= 1; y++)
                 {
                     var xx = tx + x;
                     var yy = ty + y;

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
+using Hevadea.Framework.Utils;
 
 namespace Hevadea.Game.Entities.Components.Interaction
 {
@@ -107,7 +108,12 @@ namespace Hevadea.Game.Entities.Components.Interaction
             if (CanAttackEntities)
             {
                 var facingEntities = AttachedEntity.Level.GetEntitiesOnArea(HitBox);
-
+                facingEntities.Sort((a, b) =>
+                    {
+                        return Mathf.Distance(a.X, a.Y, AttachedEntity.X, AttachedEntity.Y)
+                            .CompareTo(Mathf.Distance(b.X, b.Y, AttachedEntity.X, AttachedEntity.Y));
+                    });
+                
                 foreach (var e in facingEntities)
                     if (e != AttachedEntity)
                     {

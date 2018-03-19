@@ -36,11 +36,12 @@ namespace Hevadea.Game.Entities.Components.Render
             if (_isPickingItem)
             {
                 Ressources.SprPickup
-                    .DrawSubSprite(spriteBatch, new Vector2(AttachedEntity.X - 8, AttachedEntity.Y - 24), selectedFrame, Color.White);
+                .DrawSubSprite(spriteBatch, new Vector2(AttachedEntity.X - 8, AttachedEntity.Y - 24), selectedFrame, Color.White);
             }
             else
             {
-                Sprite.DrawSubSprite(spriteBatch, new Vector2(AttachedEntity.X - 8, AttachedEntity.Y - 24), selectedFrame, Color.White);
+                Sprite
+                .DrawSubSprite(spriteBatch, new Vector2(AttachedEntity.X - 8, AttachedEntity.Y - 24), selectedFrame, Color.White);
             }
 
             if (_isSwiming)
