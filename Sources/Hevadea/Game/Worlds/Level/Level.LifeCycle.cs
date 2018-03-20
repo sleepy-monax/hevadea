@@ -16,8 +16,17 @@ namespace Hevadea.Game.Worlds
 {
     public partial class Level
     {
-        private bool _isInitialized = false;
-        
+        private bool _isInitialized;
+
+        public bool IsInitialized
+        {
+            get => _isInitialized;
+            private set{
+                Logger.Log<Level>($"IsInitialized = {value}");
+                _isInitialized = value;
+            }
+        }
+
         public void Initialize(World world, GameManager game)
         {
             Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
@@ -27,51 +36,7 @@ namespace Hevadea.Game.Worlds
             foreach (var e in Entities) e.Initialize(this, world, _game);
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
 
-            _isInitialized = true;
-        }
-
-        public LevelStorage Save()
-        {
-            Logger.Log<Level>(LoggerLevel.Info, "Saving level...");
-            var store = new LevelStorage
-            {
-                Width = Width,
-                Height = Height,
-                Tiles = Tiles,
-                TilesData = TilesData,
-                Name = Name,
-                Id = Id, 
-                Type = Properties.Name
-            };
-
-            Logger.Log<Level>(LoggerLevel.Info, "Saving entities...");
-            foreach (var e in Entities)
-            {
-                if (!ENTITIES.SaveExluded.Contains(e.Blueprint))
-                {   
-                    store.Entities.Add(e.Save());
-                }
-            }
-
-            Logger.Log<Level>(LoggerLevel.Fine, "Done!");
-            return store;
-        }
-
-        public void Load(LevelStorage store)
-        {
-            foreach (var item in store.Entities)
-            {
-                var e = ENTITIES.GetBlueprint(item.Type).Construct();
-                e.Load(item);
-                AddEntity(e);
-            }
-
-            Width = store.Width;
-            Height = store.Height;
-            Tiles = store.Tiles;
-            TilesData = store.TilesData;
-            Name = store.Name;
-            Id = store.Id;
+            IsInitialized = true;
         }
 
         public void Update(LevelRenderState state, GameTime gameTime)

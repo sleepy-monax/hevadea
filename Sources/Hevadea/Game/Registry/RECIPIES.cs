@@ -18,7 +18,7 @@ namespace Hevadea.Game.Registry
 
             BenchCrafted.Add(new Recipe(ITEMS.CHEST, 1).AddCost(ITEMS.WOOD_PLANK, 8));
             BenchCrafted.Add(new Recipe(ITEMS.FURNACE, 1, new RecipeCost(ITEMS.STONE, 8)));
-            BenchCrafted.Add(new Recipe(ITEMS.WOOD_FLOOR, 1, new RecipeCost(ITEMS.WOOD_PLANK, 4)));
+            BenchCrafted.Add(new Recipe(ITEMS.WOOD_FLOOR, 1, new RecipeCost(ITEMS.WOOD_PLANK, 2)));
             BenchCrafted.Add(new Recipe(ITEMS.WOOD_WALL, 1, new RecipeCost(ITEMS.WOOD_PLANK, 4)));
         }
     }

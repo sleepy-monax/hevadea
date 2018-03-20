@@ -9,7 +9,8 @@ namespace Hevadea.Framework.Networking
     {
         public delegate void PacketHandler(Socket socket, DataBuffer data);
         private Dictionary<int, PacketHandler> _handlers = new Dictionary<int, PacketHandler>();
-
+        public event PacketHandler UnknowPacket;
+        
         public PacketDispacher(Peer netPeer)
         {
             netPeer.DataReceived = OnDataRecived;   
@@ -22,6 +23,10 @@ namespace Hevadea.Framework.Networking
             if (_handlers.ContainsKey(packetType))
             {
                 _handlers[packetType]?.Invoke(socket, packet);
+            }
+            else
+            {
+                UnknowPacket?.Invoke(socket, packet);
             }
         }
 

@@ -152,7 +152,9 @@
     <Compile Include="Game\Loading\Tasks\TaskSetupServer.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToMenu.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToScene.cs" />
+    <Compile Include="Game\Networking\GameManager.Networking.Client.cs" />
     <Compile Include="Game\Networking\GameManager.Networking.cs" />
+    <Compile Include="Game\Networking\GameManager.Networking.Server.cs" />
     <Compile Include="Game\Networking\GameManager.Protocole.cs" />
     <Compile Include="Game\Player\PlayerInputHandler.cs" />
     <Compile Include="Game\Registry\ENTITIES.cs" />
@@ -160,8 +162,6 @@
     <Compile Include="Game\Registry\LEVELS.cs" />
     <Compile Include="Game\Registry\REGISTRY.cs" />
     <Compile Include="Game\Spawning\SpawnProvider.cs" />
-    <Compile Include="Game\Storage\GameLoader.cs" />
-    <Compile Include="Game\Storage\GameSaver.cs" />
     <Compile Include="Game\Storage\WorldStorage.cs" />
     <Compile Include="Game\Tiles\Renderers\TileRenderComposite.cs" />
     <Compile Include="Game\Tiles\Renderers\TileRenderConnected.cs" />

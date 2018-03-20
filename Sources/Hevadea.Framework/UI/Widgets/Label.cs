@@ -17,7 +17,7 @@ namespace Hevadea.Framework.UI.Widgets
             if (Text != null)
             {
                 var texSize = Font.MeasureString(Text) * Scale;
-                spriteBatch.DrawString(Font, Text, Host, TextAlignement, DrawText.TextStyle.DropShadow, TextColor);
+                spriteBatch.DrawString(Font, Text, Host, TextAlignement, DrawText.TextStyle.DropShadow, TextColor, Rise.Ui.ScaleFactor * Scale);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Hevadea.WorldGenerator
 
 
         public List<LevelFeature> Features { get; set; } = new List<LevelFeature>();
-        public LevelFeature CurrentFeature = null;
+        public LevelFeature CurrentFeature;
 
         public Level Generate(Generator gen)
         {

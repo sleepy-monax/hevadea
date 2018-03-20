@@ -37,8 +37,8 @@ namespace Hevadea.Framework.UI.Widgets
             spriteBatch.DrawRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
 
             var texSize = Font.MeasureString(Text);
-            spriteBatch.DrawString(Font, Text, Bound.Center.ToVector2() - (new Vector2(texSize.X / 2, (texSize.Y / 2) - 4f)), Color.Black * 0.1f);
-            spriteBatch.DrawString(Font, Text, Bound.Center.ToVector2() - (new Vector2(texSize.X / 2, texSize.Y / 2)), TextColor);
+
+            spriteBatch.DrawString(Font, Text, Host, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, TextColor, Rise.Ui.ScaleFactor);
         }
 
     }

@@ -24,7 +24,7 @@ namespace Hevadea.Framework.UI.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime)
         {
-            spriteBatch.DrawString(Rise.Ui.DefaultFont, Text, host, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, Color.White);
+            spriteBatch.DrawString(Rise.Ui.DefaultFont, Text, host, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, Color.White, Rise.Ui.ScaleFactor);
         }
     }
 

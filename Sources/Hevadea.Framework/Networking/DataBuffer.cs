@@ -86,6 +86,11 @@ namespace Hevadea.Framework.Networking
             _offset = 0;
         }
 
+        public void Begin()
+        {
+            _offset = 0;
+        }
+
         public void WriteBytes(byte[] bytes, int destOffset)
         {
             Resize(_offset + bytes.Length);
