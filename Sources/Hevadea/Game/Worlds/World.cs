@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
+using Hevadea.Framework.Utils;
 
 namespace Hevadea.Game.Worlds
 {
@@ -107,38 +108,33 @@ namespace Hevadea.Game.Worlds
             _spriteBatch.End();
         }
 
+        public int GetUeid()
+        {
+            var ueid = 0;
+            
+            do ueid = Rise.Random.Next(); 
+            while (GetEntityByUeid(ueid) != null);
+            
+            return ueid;
+        }
+
+        public Entity GetEntityByUeid(int Ueid)
+        {
+            foreach (var l in Levels)
+            {
+                foreach (var e in l.Entities)
+                {
+                    if (e.Ueid == Ueid) return e;
+                }
+            }
+
+            return null;
+        }
+        
         public void Initialize(GameManager game)
         {
             Game = game;
             foreach (var l in Levels) l.Initialize(this, game);
-        }
-
-        public WorldStorage Save()
-        {
-            var w = new WorldStorage();
-            
-            foreach (var l in Levels)
-            {
-                //w.Levels.Add(l.Save());
-            }
-
-            w.Time = DayNightCycle.Time;
-            w.PlayerSpawnLevel = PlayerSpawnLevel;
-            
-            return w;
-        }
-
-        public void Load(WorldStorage store)
-        {
-            DayNightCycle.Time = store.Time;
-            PlayerSpawnLevel = store.PlayerSpawnLevel;
-            
-            foreach (var levelData in store.Levels)
-            {
-                //var level = new Level(LEVELS.GetProperties(levelData.Type), levelData.Width, levelData.Height);
-                //level.Load(levelData);
-                //Levels.Add(level);
-            }
         }
     }
 }

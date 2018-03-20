@@ -26,7 +26,7 @@ namespace Hevadea.Game.Loading
                 {
                     new TaskConnectToServer(addr, port),
                     new TaskDownloadWorld(),
-                    //new TaskPlayerJoint(),
+                    new TaskPlayerJoint(),
                 }
             };
         }

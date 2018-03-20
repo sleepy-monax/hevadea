@@ -18,7 +18,7 @@ namespace Hevadea.Game.Entities
         public EntityBlueprint Blueprint { get; set; } = null;
         public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
         
-        public Level Level { get; private set; }
+        public Level Level { get; set; }
         public World World { get; private set; }
         public GameManager Game { get; private set; }   
         

@@ -73,7 +73,7 @@ namespace Hevadea.Game.Worlds
             if (notify && (_game?.IsRemote ?? false)) _game.NotifyTileChange(this, tx, ty, id);
             
             
-            if (_isInitialized)
+            if (IsInitialized)
             {   
                 for (var x = -1; x <= 1; x++)
                 for (var y = -1; y <= 1; y++)

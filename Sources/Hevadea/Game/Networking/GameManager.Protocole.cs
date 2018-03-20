@@ -1,20 +1,11 @@
 ﻿using System.Net.Sockets;
-using System.Runtime.InteropServices.ComTypes;
 using Hevadea.Framework.Networking;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities;
-using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 
 namespace Hevadea.Game
-{
-    public enum PacketType
-    {
-        Login, World, Sync,
-        EntityAdded, EntityRemove, EntityUpdate, EntityMove,
-        Tile, TileUpdate, TileRequest
-    }
-    
+{    
     public partial class GameManager
     {
         public void NotifyTileChange(Level level, int tx, int ty, int tileId)
@@ -37,9 +28,8 @@ namespace Hevadea.Game
             if (IsServer)
             {
                 Server.BroadcastPacket(data);   
-            }
-
-            if (IsClient)
+            } 
+            else if (IsClient)
             {
                 Client.SendData(data);
             }

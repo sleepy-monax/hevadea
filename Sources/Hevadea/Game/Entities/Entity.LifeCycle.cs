@@ -1,4 +1,5 @@
-﻿using Hevadea.Game.Entities.Components;
+﻿using Hevadea.Framework;
+using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
@@ -13,6 +14,10 @@ namespace Hevadea.Game.Entities
             Level = level;
             World = world;
             Game = game;
+
+            if (Ueid == -1 && world != null) {
+                Ueid = world.GetUeid();
+            }
         }
         
         public EntityStorage Save()
@@ -38,8 +43,8 @@ namespace Hevadea.Game.Entities
         public void Load(EntityStorage store)
         {
             Ueid = store.Ueid;
-            X = store.GetFloat("X", X);
-            Y = store.GetFloat("Y", Y);
+            X    = store.GetFloat("X", X);
+            Y    = store.GetFloat("Y", Y);
 
             Facing = (Direction)(int)store.Get("Facing", (int) Facing);
 
@@ -68,10 +73,14 @@ namespace Hevadea.Game.Entities
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (var c in _components)
-                if (c is IEntityComponentDrawable drawable)
+                if (c is IEntityComponentDrawable drawable) 
                     drawable.Draw(spriteBatch, gameTime);
             
             OnDraw(spriteBatch, gameTime);
+            
+            if (Rise.ShowDebug)
+                spriteBatch.DrawString(Ressources.FontHack, Ueid.ToString(), new Vector2(X, Y), Color.Gold, 0f, Vector2.Zero, 1f / 4f, SpriteEffects.None, 0f);
+            
             ParticleSystem.Draw(spriteBatch, gameTime);
         }
 
