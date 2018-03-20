@@ -15,23 +15,29 @@ namespace Hevadea.Game.Entities.Components.Attributes
     {
         private float _strenght;
         private float _radius;
+        private bool _hasExplosed;
 
         public Explode(float strenght = 1f , float radius = 3f)
         {
             _strenght = strenght;
             _radius = radius;
+            _hasExplosed = false;
         }
         public void Do()
         {
+            if (_hasExplosed)
+                return;
+            _hasExplosed = true;
             var level = AttachedEntity.Level;
             var entities = level.GetEntitiesOnArea(new Rectangle((int)(AttachedEntity.X - _radius * 16),(int)(AttachedEntity.Y - _radius * 16), (int)(_radius*16*2), (int)(_radius*16*2)));
-            foreach (var e in entities)
+            foreach (var e in entities) if(e != AttachedEntity)
             {
                 var distance =  Mathf.Distance(e.X, e.Y, AttachedEntity.X, AttachedEntity.Y); 
-                e.Get<Health>()?.Hurt(AttachedEntity, GetDammage(distance), Direction.Up);
+                e.Get<Health>()?.Hurt(AttachedEntity, GetDammage(distance) * (float)Rise.Random.NextDouble(), Direction.Up);
 
-                if (Rise.Random.NextDouble() > _radius / distance)
+                if (Rise.Random.NextDouble()*2 <  distance / (_radius*16 ))
                 {
+                    e.Get<Explode>()?.Do();
                     e.Get<Breakable>()?.Break();
                 } 
             }
@@ -43,12 +49,25 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     var tilePos = new TilePosition(pos.X + x, pos.Y + y);
                     var tile = AttachedEntity.Level.GetTile(tilePos);
                     var distance = Mathf.Distance(tilePos.WorldX, tilePos.WorldY, AttachedEntity.X, AttachedEntity.Y);
-                    tile.Tag<Tags.Damage>()?.Hurt(GetDammage(distance), tilePos, AttachedEntity.Level);
+                    if (distance < _radius*16)
+                    {
+                        tile.Tag<Tags.Damage>()?.Hurt(GetDammage(distance)*(float)Rise.Random.NextDouble(), tilePos, AttachedEntity.Level);
+
+                        if (Rise.Random.NextDouble()*2 < distance/ (_radius*16))
+                        {
+                            tile.Tag<Tags.Breakable>()?.Break(tilePos,AttachedEntity.Level);
+                        }
+
+                    }
                 }
             }
         }
         public float GetDammage(float distance)
-           => _strenght* _radius / Math.Min(0.1f, distance);
+        {
+
+           var value = _strenght*(distance/(_radius*16));
+            return value;
+        }
         
     }
 }

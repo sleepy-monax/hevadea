@@ -23,6 +23,7 @@ namespace Hevadea.Game.Entities
             Attach (new Pushable() {CanBePushByAnything = true});
             Attach(new Health(10)).Killed += EntityDie;
             Attach(new Interactable()).Interacted += EntityInteracte;
+            Attach(new Pickupable(_sprite));
         }
 
         private void EntityInteracte(object sender, InteractEventArg args)

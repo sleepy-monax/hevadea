@@ -51,6 +51,7 @@ namespace Hevadea.Game.Registry
         public static EntityBlueprint TORCH;
 
         public static EntityBlueprint BELT;
+        public static EntityBlueprint TNT;
         
         public static List<EntityBlueprint> SaveExluded { get; set; } = new List<EntityBlueprint>();
         
@@ -76,6 +77,7 @@ namespace Hevadea.Game.Registry
             TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTorch>("torch"));
 
             BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityBelt>("belt"));
+            TNT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTNT>("tnt"));
             
             SaveExluded.Add(PLAYER);
         }

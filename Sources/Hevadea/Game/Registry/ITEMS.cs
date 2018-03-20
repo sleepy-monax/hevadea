@@ -76,7 +76,7 @@ namespace Hevadea.Game.Registry
             GRASS_PATCH.AddTag(new PlaceTile(TILES.GRASS){CanBePlaceOn = {TILES.DIRT}});
             SAND.AddTag(new PlaceTile(TILES.SAND){CanBePlaceOn = {TILES.DIRT}});
             
-            BELT.AddTag(new PlaceEntity(ENTITIES.BELT));
+            BELT.AddTag(new PlaceEntity(ENTITIES.TNT));
         }
     }
 }
