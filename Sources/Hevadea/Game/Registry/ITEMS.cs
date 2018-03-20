@@ -34,6 +34,7 @@ namespace Hevadea.Game.Registry
         public static Item FURNACE;
 
         public static Item BELT;
+        public static Item TNT;
         public static Item RAW_FISH;
         
         public static void Initialize()
@@ -60,7 +61,8 @@ namespace Hevadea.Game.Registry
             FURNACE        = new Item("furnace",        new Sprite(Ressources.TileEntities, new Point(1, 1)));
             TORCH          = new Item("torch",          new Sprite(Ressources.TileEntities, new Point(4, 0)));
             
-            BELT = new Item("belt", new Sprite(Ressources.TileEntities, new Point(0, 0)));
+            BELT = new Item("belt", new Sprite(Ressources.TileItems, new Point(9, 0)));
+            TNT = new Item("tnt", new Sprite(Ressources.TileItems, new Point(0, 0)));
             RAW_FISH = new Item("raw_fish", new Sprite(Ressources.TileEntities, new Point(11, 0)));
         }
 
@@ -76,7 +78,8 @@ namespace Hevadea.Game.Registry
             GRASS_PATCH.AddTag(new PlaceTile(TILES.GRASS){CanBePlaceOn = {TILES.DIRT}});
             SAND.AddTag(new PlaceTile(TILES.SAND){CanBePlaceOn = {TILES.DIRT}});
             
-            BELT.AddTag(new PlaceEntity(ENTITIES.TNT));
+            BELT.AddTag(new PlaceEntity(ENTITIES.BELT));
+            TNT.AddTag(new PlaceEntity(ENTITIES.TNT));
         }
     }
 }
