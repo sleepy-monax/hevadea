@@ -22,9 +22,15 @@ namespace Hevadea.Game.Loading.Tasks
             
             foreach (var level in game.World.Levels)
             {
-                SetStatus($"Saving level the '{level.Name}'...");
+                SetStatus($"Saving the '{level.Name}'...");
+                var path = game.GetLevelSavePath(level);
+                var levelJson = SaveLevel(level);
+                
+                SetStatus($"Writing the '{level.Name}' to disk...");
+                File.WriteAllText(path, levelJson);
                 levelsName.Add(level.Name);
-                SaveLevel(level, $"{game.SavePath}/{level.Name}.json");
+                
+                Logger.Log<TaskSaveWorld>($"Level saved to '{path}'.");
             }
             
             // Save world
@@ -36,17 +42,14 @@ namespace Hevadea.Game.Loading.Tasks
                 Levels = levelsName
             };
             
-            // Save players
+            Directory.CreateDirectory(game.GetRemotePlayerPath());
             
-            Directory.CreateDirectory(game.SavePath + "/remotes_players");
-            
-            File.WriteAllText($"{game.SavePath}/player.json", game.MainPlayer.Save().ToJson());
-            
-            File.WriteAllText($"{game.SavePath}/game.json", worldStorage.ToJson());
+            File.WriteAllText(game.GetPlayerSaveFile(), game.MainPlayer.Save().ToJson());
+            File.WriteAllText(game.GetGameSaveFile(),   worldStorage.ToJson());
         }
 
 
-        public void SaveLevel(Level level, string path)
+        public static string SaveLevel(Level level)
         {
             var storage = new LevelStorage()
             {
@@ -59,7 +62,6 @@ namespace Hevadea.Game.Loading.Tasks
                     
                 Tiles = level.Tiles,
                 TilesData = level.TilesData
-                
             };
 
             foreach (var e in level.Entities)
@@ -70,8 +72,7 @@ namespace Hevadea.Game.Loading.Tasks
                 }
             }
             
-            File.WriteAllText(path, storage.ToJson());
-            Logger.Log<TaskSaveWorld>($"Level saved to {path}");
+            return storage.ToJson();
         }
     }
 }

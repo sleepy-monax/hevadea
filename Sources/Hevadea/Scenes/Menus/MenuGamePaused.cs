@@ -14,41 +14,78 @@ namespace Hevadea.Scenes.Menus
     {
         public MenuGamePaused(GameManager game) : base(game)
         {
-            PauseGame = true;
+            PauseGame = !game.IsRemote;
 
-            Content = new AnchoredContainer().AddChild(
-                new WidgetFancyPanel
+            var container = new TileContainer
+            {
+                Flow = FlowDirection.TopToBottom,
+                Childrens =
                 {
-                    Anchor  = Anchor.Center,
-                    Origine = Anchor.Center,
-                    UnitBound = new Rectangle(0, 0, 320, 416),
-                    Padding = new Padding(16),
-                    Content = new TileContainer
-                    {
-                        Flow = FlowDirection.TopToBottom,
-                        Childrens =
+                    new Label 
+                        { Text = "Game Paused", Font = Ressources.FontAlagard},
+                    new Button
+                            { Text = "Continue", Padding = new Padding(4) }
+                        .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new MenuInGame(Game);}),
+                }
+            };
+
+            if (!game.IsClient)
+            {
+                if (!game.IsServer)
+                {
+                    container.AddChild(new Button
                         {
-                            new Label 
-                                { Text = "Game Paused", Font = Ressources.FontAlagard},
-                            new Button
-                                { Text = "Continue", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new MenuInGame(Game);}),
-                            new Button
-                                 { Text = !Game.IsServer ? "Start Sever" : "Server Started", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => { Game.StartServer(); Game.CurrentMenu = new MenuInGame(Game);}),
-                            new Button
-                                { Text = "Quick save", Padding = new Padding(4) }
-                            .RegisterMouseClickEvent((sender) => { Game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game)); }),
-                            new Button
-                                { Text = "Save and exit", Padding = new Padding(4) }
-                            .RegisterMouseClickEvent((sender) => {Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructSaveWorldAndExit(game)));}),
-                            new Button
-                                { Text = "Exit", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {Rise.Scene.Switch(new MainMenu());}),
-                        }
-                        
-                    }
-                });
+                            Text = "Start Sever",
+                            Padding = new Padding(4)
+                        })
+                        .RegisterMouseClickEvent((sender) =>
+                        {
+                            Game.StartServer();
+                            Game.CurrentMenu = new MenuInGame(Game);
+                        });
+                }
+
+                container.AddChild(new Button
+                    {
+                        Text = "Quick save", 
+                        Padding = new Padding(4)
+                    })
+                    .RegisterMouseClickEvent((sender) =>
+                    {
+                        Game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game));
+                    });
+                container.AddChild(new Button
+                    {
+                        Text = "Save and Exit",
+                        Padding = new Padding(4)
+                    })
+                    .RegisterMouseClickEvent((sender) =>
+                    {
+                        Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructSaveWorldAndExit(game)));
+                    });
+            }
+
+            container.AddChild(new Button
+                {
+                    Text = game.IsClient ? "Disconnect" : "Exit",
+                    Padding = new Padding(4)
+                })
+                .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new MainMenu()); });
+
+            Content = new AnchoredContainer
+            {
+                Childrens =
+                {
+                    new WidgetFancyPanel
+                    {
+                        Anchor  = Anchor.Center,
+                        Origine = Anchor.Center,
+                        UnitBound = new Rectangle(0, 0, 320, container.Childrens.Count * 64 + 32),
+                        Padding = new Padding(16),
+                        Content = container
+                    }                    
+                }
+            };
         }
     }
 }

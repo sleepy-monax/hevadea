@@ -14,17 +14,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hevadea.Framework.Utils;
+using Hevadea.Game.Loading;
 
 namespace Hevadea.Scenes
 {
     public class SceneClientMutiplayer : Scene
     {
+        private SingleLineTextBoxWidget connectIpTextBox;
+        private SingleLineTextBoxWidget connectPortTextBox;
+        
         public override void Load()
         {
-            var connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new Padding(8) };
-            var connectPortTextBox = new SingleLineTextBoxWidget(24, $"{GameManager.PORT}", Ressources.FontRomulus) { Padding = new Padding(8) };
-            var backButton = new Button { Text = "Back", Padding = new Padding(4) }.RegisterMouseClickEvent(sender => Rise.Scene.Switch(new MainMenu()));
-            var connectButton = new Button { Text = "Connect", Padding = new Padding(4) };
+            connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new Padding(8) };
+            connectPortTextBox = new SingleLineTextBoxWidget(24, $"{GameManager.PORT}", Ressources.FontRomulus) { Padding = new Padding(8) };
+            var backButton = new Button { Text = "Back", Padding = new Padding(4) }
+                .RegisterMouseClickEvent(sender => Rise.Scene.Switch(new MainMenu()));
+            var connectButton = new Button { Text = "Connect", Padding = new Padding(4) }
+                .RegisterMouseClickEvent(Connect);
 
             var connectPanel = new WidgetFancyPanel
             {
@@ -51,6 +57,13 @@ namespace Hevadea.Scenes
             var hevadeaLogo = new Label { Text = "Hevadea", Font = Ressources.FontAlagardBig};
 
             Container = new AnchoredContainer() { Childrens = { connectPanel } };
+        }
+
+        private void Connect(Widget widget)
+        {
+            Rise.Scene.Switch(
+                new LoadingScene(
+                    TaskFactorie.ConstructConnectToServer("player", -1, connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String))));
         }
 
         public override void OnDraw(GameTime gameTime)

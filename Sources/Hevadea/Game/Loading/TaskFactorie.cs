@@ -18,15 +18,15 @@ namespace Hevadea.Game.Loading
             };
         }
 
-        public static TaskCompound ConstructConnectToServer(string addr, int port = GameManager.PORT)
+        public static TaskCompound ConstructConnectToServer(string playerName, int token, string addr, int port)
         {
             return new TaskCompound($"{addr}:{port}")
             {
                 Tasks =
                 {
                     new TaskConnectToServer(addr, port),
+                    new TaskPlayerLogin(playerName, token),
                     new TaskDownloadWorld(),
-                    new TaskPlayerJoint(),
                 }
             };
         }

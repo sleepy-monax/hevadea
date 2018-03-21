@@ -69,10 +69,7 @@ namespace Hevadea.Game.Worlds
         public bool SetTile(int tx, int ty, int id, bool notify = true)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return false;
-            
-            if (notify && (_game?.IsRemote ?? false)) _game.NotifyTileChange(this, tx, ty, id);
-            
-            
+                        
             if (IsInitialized)
             {   
                 for (var x = -1; x <= 1; x++)

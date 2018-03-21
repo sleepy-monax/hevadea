@@ -6,7 +6,7 @@ namespace Hevadea.Game.Storage
     public class EntityStorage
     {
         public string Type { get; set; }
-        public int Ueid { get; set; }
+        public int Ueid { get; set; } = -1;
         
         public Dictionary<string, object> Data { get; set; }
 

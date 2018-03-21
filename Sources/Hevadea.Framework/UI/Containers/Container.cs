@@ -40,10 +40,10 @@ namespace Hevadea.Framework.UI.Containers
             }
         }
 
-        public Container AddChild(Widget child)
+        public T AddChild<T>(T child) where  T : Widget
         {
             Childrens.Add(child);
-            return this;
+            return child;
         }
     }
 }

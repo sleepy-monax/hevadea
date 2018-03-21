@@ -23,7 +23,6 @@ namespace Hevadea.Game
 
             Logger.Log<GameManager>(LoggerLevel.Fine, $"Connection Suceed: {ip}:{port.ToString()}");
 
-            Client.DataReceived = HandlePacket;
             
             return true;
         }

@@ -13,16 +13,18 @@ namespace Hevadea.Game.Loading.Tasks
         public override void Task(GameManager game)
         {
             SetStatus("Loading world...");
-            var worldData = File.ReadAllText($"{game.SavePath}/game.json").FromJson<WorldStorage>();
+            
             var world = new World();
             var player = (EntityPlayer)ENTITIES.PLAYER.Construct();
+            var worldData = File.ReadAllText(game.GetGameSaveFile()).FromJson<WorldStorage>();
+            
+            player.Load(File.ReadAllText(game.GetPlayerSaveFile()).FromJson<EntityStorage>());
 
-            player.Load(File.ReadAllText($"{game.SavePath}/player.json").FromJson<EntityStorage>());
             
             foreach (var levelName in worldData.Levels)
             {
                 SetStatus($"Loading level the '{levelName}'...");
-                world.Levels.Add(LoadLevel($"{game.SavePath}/{levelName}.json"));
+                world.Levels.Add(LoadLevel(game.GetLevelSavePath(levelName)));
             }
 
             game.World = world;
@@ -32,6 +34,7 @@ namespace Hevadea.Game.Loading.Tasks
         public Level LoadLevel(string path)
         {
             var levelData = File.ReadAllText(path).FromJson<LevelStorage>();
+            
             var level = new Level(LEVELS.GetProperties(levelData.Type), levelData.Width, levelData.Height)
             {
                 Name = levelData.Name,

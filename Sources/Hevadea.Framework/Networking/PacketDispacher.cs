@@ -30,7 +30,7 @@ namespace Hevadea.Framework.Networking
             }
         }
 
-        private void RegisterHandler(packetT type, PacketHandler handler)
+        public void RegisterHandler(packetT type, PacketHandler handler)
         {
             var packetId = type.ToInt32(CultureInfo.InvariantCulture);
             

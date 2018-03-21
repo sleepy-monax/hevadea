@@ -44,7 +44,7 @@ namespace Hevadea.Framework.Networking
         {
             if (_connections[index] == null || _connections[index].Socket == null)
             {
-                throw new Exception("[NetServer] Invaid Socket Request!");
+                return null;
             }
 
             return _connections[index];

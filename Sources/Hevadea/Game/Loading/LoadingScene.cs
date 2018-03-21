@@ -67,9 +67,15 @@ namespace Hevadea.Game.Loading
                         Padding = new Padding(16),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
-                        Content = new AnchoredContainer()
-                            .AddChild(_progressBar)
-                            .AddChild(_progressLabel).AddChild(_cancelButton)
+                        Content = new AnchoredContainer
+                        {
+                            Childrens =
+                            {
+                                _progressBar,
+                                _progressLabel,
+                                _cancelButton
+                            }
+                        }
                     }
                 }
             };

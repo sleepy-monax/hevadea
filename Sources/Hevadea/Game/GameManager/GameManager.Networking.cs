@@ -7,6 +7,7 @@ namespace Hevadea.Game
     {
         public const int PORT = 4225;
         public PacketDispacher<PacketType> Dispacher { get; set; }
+        public bool IsMasterGame => !IsClient;
         public bool IsRemote => IsClient || IsServer;
     }
 }

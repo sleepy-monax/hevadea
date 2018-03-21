@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 using Hevadea.Framework;
 using Hevadea.Framework.Networking;
@@ -10,14 +11,14 @@ namespace Hevadea.Game
 {
     public class ConnectedClient
     {
-        public int Index { get; private set; }
+        private readonly Server _server;
+        
+        public int Index { get; }
         public string Name { get; set; }
         public int Token { get; set; }
-        public bool IsConnected => _server.GetConnection(Index) != null;
-        
         public EntityPlayer Entity;
-
-        private Server _server;
+        
+        public bool IsConnected => _server.GetConnection(Index) != null;
         
         public ConnectedClient(int index, Server server)
         {
@@ -39,14 +40,23 @@ namespace Hevadea.Game
             
             Dispacher = new PacketDispacher<PacketType>(Server);
             Dispacher.UnknowPacket += DispacherOnUnknowPacket;
+            
             Dispacher.RegisterHandler(PacketType.Login, LoginHandler);
+            Dispacher.RegisterHandler(PacketType.LoginToken, LoginWithTokenHandler);
             
             Server.BindSocket("127.0.0.1", PORT);
-            Server.DataReceived = HandlePacket;
             Server.ClientConnected = ClientConnected;
             Server.StartListening();
         }
 
+        public void LoginClient(ConnectedClient client, string name, int token)
+        {
+            client.Name = name;
+            client.Token = token;
+               
+            Server.SendData(PacketFactorie.ConstructToken(token), client.Index);
+        }
+        
         public void DisconnectClient(ConnectedClient client)
         {
             Server.SendData(PacketFactorie.CustructDisconnect(), client.Index);
@@ -54,34 +64,30 @@ namespace Hevadea.Game
             ConnectedClients.Remove(client);
         }
         
-        private void LoginHandler(Socket socket, DataBuffer data)
-        {
-            data.ReadString(out var name);
-            var client = GetClient(Server.GetConnectionIndex(socket));
-            
-            // Generate client token
-            var token = Rise.Random.Next();
-            
-            if (client != null)
-            {
-                client.Name = name;
-                client.Token = token;
-                
-                
-                Server.SendData(PacketFactorie.ConstructToken(token), client.Index);
-            }
-            else
-            {
-                Console.WriteLine("Uknow client");
-            }
-        }
-
         private void DispacherOnUnknowPacket(Socket socket, DataBuffer data)
         {
             data.Begin();
             data.ReadInteger(out var packetId);
+            Logger.Log<GameManager>(LoggerLevel.Warning, $"No handler for packet '{(PacketType)packetId}' !");
+        }
+        
+        private void LoginHandler(Socket socket, DataBuffer data)
+        {
+            var client = GetClient(Server.GetConnectionIndex(socket));
+            var token = Rise.Random.Next();
             
-            Logger.Log<GameManager>(LoggerLevel.Warning, $"Invalide packet id {packetId}!");
+            data.ReadString(out var name);
+            LoginClient(client, name, token);
+            Logger.Log<GameManager>($"player '{name}' joint the game.");
+        }
+        
+        private void LoginWithTokenHandler(Socket socket, DataBuffer data)
+        {
+            var client = GetClient(Server.GetConnectionIndex(socket));
+            
+            data.ReadString(out var name).ReadInteger(out var token);
+            LoginClient(client, name, token);
+            Logger.Log<GameManager>($"player '{name}' joint the game with token {token}.");
         }
 
         public ConnectedClient GetClient(int index)
@@ -99,7 +105,12 @@ namespace Hevadea.Game
         
         private void ClientConnected(int socketIndex)
         {
+            ConnectedClients.Add(new ConnectedClient(socketIndex, Server));
             
+            var connection = Server.GetConnection(socketIndex);
+            var endpoint = connection.Socket.RemoteEndPoint as IPEndPoint;
+            
+            Logger.Log<GameManager>(LoggerLevel.Info, $"New connection from {endpoint.Address}:{endpoint.Port}.");
         }
     }
 }

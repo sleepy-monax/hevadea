@@ -123,8 +123,12 @@
     <Compile Include="Game\Entities\EntityTorch.cs" />
     <Compile Include="Game\Entities\EntityTree.cs" />
     <Compile Include="Game\Entities\explode.cs" />
-    <Compile Include="Game\GameManager.cs" />
-    <Compile Include="Game\GameManager.LifeCycle.cs" />
+    <Compile Include="Game\GameManager\GameManager.cs" />
+    <Compile Include="Game\GameManager\GameManager.LifeCycle.cs" />
+    <Compile Include="Game\GameManager\GameManager.Networking.Client.cs" />
+    <Compile Include="Game\GameManager\GameManager.Networking.cs" />
+    <Compile Include="Game\GameManager\GameManager.Networking.Server.cs" />
+    <Compile Include="Game\GameManager\GameManager.Path.cs" />
     <Compile Include="Game\Items\ItemEntity.cs" />
     <Compile Include="Game\Items\ItemStorage.cs" />
     <Compile Include="Game\Items\ItemTag.cs" />
@@ -147,15 +151,12 @@
     <Compile Include="Game\Loading\Tasks\TaskLoadWorld.cs" />
     <Compile Include="Game\Loading\TaskCompound.cs" />
     <Compile Include="Game\Loading\Tasks\TaskNewPlayer.cs" />
-    <Compile Include="Game\Loading\Tasks\TaskPlayerJoint.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskPlayerLogin.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSaveWorld.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSetupServer.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToMenu.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToScene.cs" />
-    <Compile Include="Game\Networking\GameManager.Networking.Client.cs" />
-    <Compile Include="Game\Networking\GameManager.Networking.cs" />
-    <Compile Include="Game\Networking\GameManager.Networking.Server.cs" />
-    <Compile Include="Game\Networking\GameManager.Protocole.cs" />
+    <Compile Include="Game\Networking\PacketFactorie.cs" />
     <Compile Include="Game\Player\PlayerInputHandler.cs" />
     <Compile Include="Game\Registry\ENTITIES.cs" />
     <Compile Include="Game\Registry\GENERATOR.cs" />
@@ -308,7 +309,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
