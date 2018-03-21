@@ -4,11 +4,7 @@ using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Hevadea.Game.Entities
 {
@@ -22,7 +18,9 @@ namespace Hevadea.Game.Entities
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
             _age = 0;
-            _delay = 10.00;
+            _delay = 3.00;
+            Attach(new Move());
+            Attach(new Colider(new Rectangle(-6, -2, 12, 8)));
             Attach(new Explode(10f,3f));
             Attach(new Pushable());
             Attach(new Breakable());

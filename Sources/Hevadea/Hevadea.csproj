@@ -78,6 +78,7 @@
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />
     <Compile Include="Game\Entities\Components\Ai\PathFinding.cs" />
+    <Compile Include="Game\Entities\Components\Attributes\Burnable.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Explode.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickup.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickupable.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Game\Entities\EntityStairs.cs" />
     <Compile Include="Game\Entities\EntityTorch.cs" />
     <Compile Include="Game\Entities\EntityTree.cs" />
+<<<<<<< HEAD
     <Compile Include="Game\Entities\explode.cs" />
     <Compile Include="Game\GameManager\GameManager.cs" />
     <Compile Include="Game\GameManager\GameManager.LifeCycle.cs" />
@@ -129,6 +131,10 @@
     <Compile Include="Game\GameManager\GameManager.Networking.cs" />
     <Compile Include="Game\GameManager\GameManager.Networking.Server.cs" />
     <Compile Include="Game\GameManager\GameManager.Path.cs" />
+=======
+    <Compile Include="Game\GameManager.cs" />
+    <Compile Include="Game\GameManager.LifeCycle.cs" />
+>>>>>>> 30adafb0903e221b3b4c167e17c805a883191c7f
     <Compile Include="Game\Items\ItemEntity.cs" />
     <Compile Include="Game\Items\ItemStorage.cs" />
     <Compile Include="Game\Items\ItemTag.cs" />
