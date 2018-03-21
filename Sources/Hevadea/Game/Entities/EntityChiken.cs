@@ -21,6 +21,7 @@ namespace Hevadea.Game.Entities
             Attach(new Pushable() { CanBePushBy = { ENTITIES.PLAYER } });
             Attach(new Agent() { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeed = 0.5f } });
             Attach(new Pickupable(new Sprite(Ressources.TileEntities, new Point(12, 0))));
+            Attach(new Burnable(1f));
         }
     }
 }

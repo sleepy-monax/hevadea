@@ -12,7 +12,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
 {
     class Burnable:EntityComponent , IEntityComponentUpdatable
     {
-        public bool IsBurn;
+        public bool IsBurn { get; set; } = false;
         private float _dammages;
         private float _chanceToBreak;
 
@@ -22,11 +22,11 @@ namespace Hevadea.Game.Entities.Components.Attributes
             IsBurn = false;
             _chanceToBreak = chanceToBreak;
         }
-        public void SetOnFire()
-            => IsBurn = true;
 
         public void Update(GameTime gameTime)
         {
+            IsBurn = !(AttachedEntity.Get<Swim>()?.IsSwiming ?? false) && IsBurn;
+
             if (IsBurn)
             {
                 AttachedEntity.Get<Health>()?.Hurt(AttachedEntity, _dammages*(float)gameTime.ElapsedGameTime.TotalSeconds, Direction.Down);
@@ -37,7 +37,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     {
                         if (Rise.Random.NextDouble() < 0.001f)
                         {
-                            e.Get<Burnable>()?.SetOnFire();
+                            if (e.Has<Burnable>())
+                                e.Get<Burnable>().IsBurn = true;
                             e.Get<Explode>()?.Do();
 
                         }
