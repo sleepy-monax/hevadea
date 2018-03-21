@@ -18,6 +18,7 @@ namespace Hevadea.Game.Entities
             Attach(new Dropable { Items = { new Drop(ITEMS.WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3) } });
             Attach(new Health(5));
             Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
+            Attach(new Burnable(0.5f));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

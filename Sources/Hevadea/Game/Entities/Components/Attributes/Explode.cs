@@ -35,11 +35,12 @@ namespace Hevadea.Game.Entities.Components.Attributes
                 var distance =  Mathf.Distance(e.X, e.Y, AttachedEntity.X, AttachedEntity.Y); 
                 e.Get<Health>()?.Hurt(AttachedEntity, GetDammage(distance) * (float)Rise.Random.NextDouble(), Direction.Up);
 
-                if (Rise.Random.NextDouble()*2 <  distance / (_radius*16 ))
+                if (Rise.Random.NextDouble()*1.25 <  distance / (_radius*16 ))
                 {
                     e.Get<Explode>()?.Do();
                     e.Get<Breakable>()?.Break();
-                } 
+                    e.Get<Burnable>()?.SetOnFire();
+                    }
             }
             var pos = AttachedEntity.GetTilePosition();
             for (int x = -(int)_radius; x <= (int)_radius; x++)
@@ -53,7 +54,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     {
                         tile.Tag<Tags.Damage>()?.Hurt(GetDammage(distance)*(float)Rise.Random.NextDouble(), tilePos, AttachedEntity.Level);
 
-                        if (Rise.Random.NextDouble()*2 < distance/ (_radius*16))
+                        if (Rise.Random.NextDouble()*1.25 < distance/ (_radius*16))
                         {
                             tile.Tag<Tags.Breakable>()?.Break(tilePos,AttachedEntity.Level);
                         }

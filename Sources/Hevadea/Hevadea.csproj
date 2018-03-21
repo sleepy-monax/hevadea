@@ -78,6 +78,7 @@
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />
     <Compile Include="Game\Entities\Components\Ai\PathFinding.cs" />
+    <Compile Include="Game\Entities\Components\Attributes\Burnable.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Explode.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickup.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickupable.cs" />
@@ -122,7 +123,6 @@
     <Compile Include="Game\Entities\EntityStairs.cs" />
     <Compile Include="Game\Entities\EntityTorch.cs" />
     <Compile Include="Game\Entities\EntityTree.cs" />
-    <Compile Include="Game\Entities\explode.cs" />
     <Compile Include="Game\GameManager.cs" />
     <Compile Include="Game\GameManager.LifeCycle.cs" />
     <Compile Include="Game\Items\ItemEntity.cs" />
