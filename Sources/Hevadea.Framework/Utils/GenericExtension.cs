@@ -70,6 +70,27 @@ namespace Hevadea.Framework.Utils
             return obj;
         }
 
+
+        public static float NextFloat(this Random rnd, float max)
+        {
+            return (float)rnd.NextDouble() * max;
+        }
+
+        public static float NextFloat(this Random rnd)
+        {
+            return (float)rnd.NextDouble();
+        }
+
+        public static float NextFloatRange(this Random rnd, float max)
+        {
+            return (rnd.NextFloat() - 0.5f) * 2f * max;
+        }
+
+        public static float NextFloatRange(this Random rnd)
+        {
+            return (rnd.NextFloat() - 0.5f) * 2f;
+        }
+
         public static T NextValue<T>(this Random rnd, params T[] values)
         {
             return values[rnd.Next(values.Length)];

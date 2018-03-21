@@ -8,9 +8,9 @@ namespace Hevadea.Game.Entities.Components.Interaction
         private bool DropInventory { get; set; } = false;
         public void Break(Item item = null)
         {
-            AttachedEntity.Get<Dropable>()?.Drop();
-            if (DropInventory) AttachedEntity.Get<Inventory>().Content.DropOnGround(AttachedEntity.Level, AttachedEntity.X, AttachedEntity.Y);
-            AttachedEntity.Remove();
+            Owner.Get<Dropable>()?.Drop();
+            if (DropInventory) Owner.Get<Inventory>().Content.DropOnGround(Owner.Level, Owner.X, Owner.Y);
+            Owner.Remove();
         }
     }
 }

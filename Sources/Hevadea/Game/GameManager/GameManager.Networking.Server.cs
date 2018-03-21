@@ -74,7 +74,7 @@ namespace Hevadea.Game
         private void LoginHandler(Socket socket, DataBuffer data)
         {
             var client = GetClient(Server.GetConnectionIndex(socket));
-            var token = Rise.Random.Next();
+            var token = Rise.Rnd.Next();
             
             data.ReadString(out var name);
             LoginClient(client, name, token);

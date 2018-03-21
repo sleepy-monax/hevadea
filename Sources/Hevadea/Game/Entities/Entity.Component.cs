@@ -18,7 +18,7 @@ namespace Hevadea.Game.Entities
             if (_components.Any(e => e == component)) return null;
 
             _components.Add(component);
-            component.AttachedEntity = this;
+            component.Owner = this;
 
             _components.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
 

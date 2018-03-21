@@ -112,7 +112,7 @@ namespace Hevadea.Game.Worlds
         {
             var ueid = 0;
             
-            do ueid = Rise.Random.Next(); 
+            do ueid = Rise.Rnd.Next(); 
             while (GetEntityByUeid(ueid) != null);
             
             return ueid;

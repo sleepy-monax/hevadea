@@ -14,11 +14,11 @@ namespace Hevadea.Game.Entities.Components.Interaction
         
         public void Update(GameTime gameTime)
         {
-            var health   = AttachedEntity.Get<Health>();
-            var energy   = AttachedEntity.Get<Energy>();
-            var position = AttachedEntity.GetTilePosition();
+            var health   = Owner.Get<Health>();
+            var energy   = Owner.Get<Energy>();
+            var position = Owner.GetTilePosition();
             
-            if (AttachedEntity.Level.IsAll<Tags.Liquide>(new Rectangle((int)AttachedEntity.X - 4, (int)AttachedEntity.Y - 4, 8,8)))
+            if (Owner.Level.IsAll<Tags.Liquide>(new Rectangle((int)Owner.X - 4, (int)Owner.Y - 4, 8,8)))
             {
                 IsSwiming = true;
                 if (energy != null && IsSwimingPainfull)
@@ -27,7 +27,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
                     if (health != null)
                     {
                         energy.Reduce(0.01f);
-                        if (energy.Value < 0.01f){health.Hurt(AttachedEntity.GetTileOnMyPosition(), 0.01f, position.X, position.Y );}
+                        if (energy.Value < 0.01f){health.Hurt(Owner.GetTileOnMyPosition(), 0.01f, position.X, position.Y );}
                     }
                 }
             }
@@ -41,8 +41,8 @@ namespace Hevadea.Game.Entities.Components.Interaction
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    AttachedEntity.Level.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.Azure, Life = 0.5f, FadeOut = 0.15f}, AttachedEntity.X, AttachedEntity.Y, (float)(Rise.Random.NextDouble() - 0.5f) * 64f, (float)(Rise.Random.NextDouble() - 0.75f) * 20f);
-                    AttachedEntity.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.LightBlue, Life = 0.5f, FadeOut = 0.15f}, AttachedEntity.X , AttachedEntity.Y, (float)(Rise.Random.NextDouble() - 0.5f) * 64f, (float)(Rise.Random.NextDouble() - 0.75f) * 20f);
+                    Owner.Level.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.Azure, Life = 0.5f, FadeOut = 0.15f}, Owner.X, Owner.Y, (float)(Rise.Rnd.NextDouble() - 0.5f) * 64f, (float)(Rise.Rnd.NextDouble() - 0.75f) * 20f);
+                    Owner.ParticleSystem.EmiteAt(new ColoredParticle{ Color = Color.LightBlue, Life = 0.5f, FadeOut = 0.15f}, Owner.X , Owner.Y, (float)(Rise.Rnd.NextDouble() - 0.5f) * 64f, (float)(Rise.Rnd.NextDouble() - 0.75f) * 20f);
                 }
             }
             

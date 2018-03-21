@@ -18,8 +18,8 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
         public bool IsStillRunning(Agent agent)
         {
             return !_taget.Removed &&
-                   Mathf.Distance(_taget.X, _taget.Y, agent.AttachedEntity.X, agent.AttachedEntity.Y) 
-                   < _atackRange * 16f && agent.AttachedEntity.Has<Attack>();
+                   Mathf.Distance(_taget.X, _taget.Y, agent.Owner.X, agent.Owner.Y) 
+                   < _atackRange * 16f && agent.Owner.Has<Attack>();
         }
 
         public void Perform(Agent agent, GameTime gameTime)

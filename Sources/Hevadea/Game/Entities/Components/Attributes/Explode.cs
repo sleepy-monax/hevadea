@@ -25,39 +25,44 @@ namespace Hevadea.Game.Entities.Components.Attributes
         }
         public void Do()
         {
-            if (_hasExplosed)
-                return;
+            if (_hasExplosed) return;
             _hasExplosed = true;
-            var level = AttachedEntity.Level;
-            var entities = level.GetEntitiesOnArea(new Rectangle((int)(AttachedEntity.X - _radius * 16),(int)(AttachedEntity.Y - _radius * 16), (int)(_radius*16*2), (int)(_radius*16*2)));
-            foreach (var e in entities) if(e != AttachedEntity)
-            {
-                var distance =  Mathf.Distance(e.X, e.Y, AttachedEntity.X, AttachedEntity.Y); 
-                e.Get<Health>()?.Hurt(AttachedEntity, GetDammage(distance) * (float)Rise.Random.NextDouble(), Direction.Up);
 
-                if (Rise.Random.NextDouble()*1.25 <  distance / (_radius*16 ))
+            var entities = Owner.Level.GetEntitiesOnRadius(Owner.X, Owner.Y, _radius * 16f);
+
+            foreach (var e in entities) 
+            {
+                if (e != Owner)
                 {
-                    e.Get<Explode>()?.Do();
-                    e.Get<Breakable>()?.Break();
-                    if (e.Has<Burnable>())
-                        e.Get<Burnable>().IsBurn = true;
+                    var distance =  Mathf.Distance(e.X, e.Y, Owner.X, Owner.Y); 
+                    e.Get<Health>()?.Hurt(Owner, GetDammage(distance) * Rise.Rnd.NextFloat());
+
+                    if (Rise.Rnd.NextFloat() <= 0.3f)
+                    {
+                        e.Get<Explode>()?.Do();
+                        e.Get<Breakable>()?.Break();
+                        e.Get<Burnable>()?.SetInFire();
                     }
+                }
+
             }
-            var pos = AttachedEntity.GetTilePosition();
+
+            var pos = Owner.GetTilePosition();
             for (int x = -(int)_radius; x <= (int)_radius; x++)
             {
                 for (int y = -(int)_radius; y <= (int)_radius; y++)
                 {
                     var tilePos = new TilePosition(pos.X + x, pos.Y + y);
-                    var tile = AttachedEntity.Level.GetTile(tilePos);
-                    var distance = Mathf.Distance(tilePos.WorldX, tilePos.WorldY, AttachedEntity.X, AttachedEntity.Y);
-                    if (distance < _radius*16)
-                    {
-                        tile.Tag<Tags.Damage>()?.Hurt(GetDammage(distance)*(float)Rise.Random.NextDouble(), tilePos, AttachedEntity.Level);
+                    var tile = Owner.Level.GetTile(tilePos);
+                    var distance = Mathf.Distance(tilePos.WorldX, tilePos.WorldY, Owner.X, Owner.Y);
 
-                        if (Rise.Random.NextDouble()*1.25 < distance/ (_radius*16))
+                    if (distance < _radius * 16)
+                    {
+                        tile.Tag<Tags.Damage>()?.Hurt(GetDammage(distance)* Rise.Rnd.NextFloat(), tilePos, Owner.Level);
+
+                        if (Rise.Rnd.NextDouble() * 1.25 < distance/ (_radius *16))
                         {
-                            tile.Tag<Tags.Breakable>()?.Break(tilePos,AttachedEntity.Level);
+                            tile.Tag<Tags.Breakable>()?.Break(tilePos,Owner.Level);
                         }
 
                     }

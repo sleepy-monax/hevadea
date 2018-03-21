@@ -15,10 +15,10 @@ namespace Hevadea.Game.Entities.Components.Attributes
                      
         public void Do()
         {
-            var facingTile = AttachedEntity.GetFacingTile();
+            var facingTile = Owner.GetFacingTile();
             
             if (_pickupedEntity != null) LayDownEntity();
-            else foreach (var e in AttachedEntity.Level.GetEntityOnTile(facingTile))
+            else foreach (var e in Owner.Level.GetEntityOnTile(facingTile))
                 if (PickupEntity(e)) return;                     
         }
         
@@ -42,12 +42,12 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
         public bool LayDownEntity()
         {
-            var facingTile = AttachedEntity.GetFacingTile();
+            var facingTile = Owner.GetFacingTile();
             
-            if (AttachedEntity.Level.GetEntityOnTile(facingTile).Count != 0) return false;
+            if (Owner.Level.GetEntityOnTile(facingTile).Count != 0) return false;
             
-            _pickupedEntity.Facing = AttachedEntity.Facing;
-            AttachedEntity.Level.SpawnEntity(_pickupedEntity, facingTile.X, facingTile.Y);
+            _pickupedEntity.Facing = Owner.Facing;
+            Owner.Level.SpawnEntity(_pickupedEntity, facingTile.X, facingTile.Y);
             _pickupedEntity.Get<Agent>()?.Abort(AgentAbortReason.Pickup);
             _pickupedEntity = null;
 
@@ -59,7 +59,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
             if (_pickupedEntity == null) return;
             
             var sprite = _pickupedEntity.Get<Pickupable>().OnPickupSprite;
-            sprite.Draw(spriteBatch, new Vector2(AttachedEntity.X - sprite.Bound.Width / 2, AttachedEntity.Y - sprite.Bound.Width / 2 - Offset), Color.White);
+            sprite.Draw(spriteBatch, new Vector2(Owner.X - sprite.Bound.Width / 2, Owner.Y - sprite.Bound.Width / 2 - Offset), Color.White);
         }
         
         public void OnGameSave(EntityStorage store)

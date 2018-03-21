@@ -2,7 +2,7 @@
 {
     public abstract class EntityComponent
     {
-        public Entity AttachedEntity;
+        public Entity Owner;
         public byte Priority { get; set; } = 0;
     }
 }

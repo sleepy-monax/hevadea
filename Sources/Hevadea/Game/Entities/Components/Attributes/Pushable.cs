@@ -18,7 +18,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
             if (CanBePushByAnything || CanBePushBy.Contains(pusher.Blueprint))
             {
-                var move = AttachedEntity.Get<Move>();
+                var move = Owner.Get<Move>();
                 var dir = direction.ToPoint().ToVector2();
                 return move?.Do(dir.X * strength, dir.Y * strength, direction) ?? false;
             }
@@ -35,7 +35,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
             if (CanBePushByAnything || CanBePushBy.Contains(pusher.Blueprint))
             {
-                var move = AttachedEntity.Get<Move>();
+                var move = Owner.Get<Move>();
                 var dir = new Vector2(sx, sy);
                 return move?.Do(dir.X, dir.Y, dir.ToDirection()) ?? false;
             }

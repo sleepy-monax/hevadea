@@ -18,7 +18,7 @@ namespace Hevadea.Scenes
         {
             var worldNameTextBox = new SingleLineTextBoxWidget(24, "new world", Ressources.FontRomulus) { Padding = new Padding(8) };
 
-            var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Random.Next().ToString(), Ressources.FontRomulus) { Padding = new Padding(8) };
+            var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new Padding(8) };
 
             var generateButton = new Button { Text = "Generate", Padding = new Padding(4) }
             .RegisterMouseClickEvent((sender) =>

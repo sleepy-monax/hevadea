@@ -74,8 +74,8 @@ namespace Hevadea.Game.Items
             {
                 var dropItem = (ItemEntity)ENTITIES.ITEM.Construct();
                 dropItem.Item = this;
-                dropItem.SpeedX = Rise.Random.Next(-50, 50) / 10f;
-                dropItem.SpeedY = Rise.Random.Next(-50, 50) / 10f;
+                dropItem.SpeedX = Rise.Rnd.Next(-50, 50) / 10f;
+                dropItem.SpeedY = Rise.Rnd.Next(-50, 50) / 10f;
                 
                 level.AddEntity(dropItem);
                 dropItem.SetPosition(x, y);

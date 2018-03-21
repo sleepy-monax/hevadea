@@ -23,7 +23,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public float MaxValue => _maxValue;
         public float ValuePercent => _value / _maxValue;
 
-        public delegate void GetHurtByEntityHandle(Entity entity, float damages, Direction attackDirection);
+        public delegate void GetHurtByEntityHandle(Entity entity, float damages);
         public delegate void GetHurtByTileHandler(Tile tile, float damages, int tX, int tY);
         
         public event EventHandler Killed;
@@ -40,8 +40,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
         {
             if (ShowHealthBar && Math.Abs(_value - _maxValue) > 0.05)
             {
-                var barY = AttachedEntity.Y + 8;
-                var barX = AttachedEntity.X - 16;
+                var barY = Owner.Y + 8;
+                var barX = Owner.X - 16;
                 
                 var rect = new Rectangle((int) barX, (int) barY, (int) (30 * ValuePercent), 6);
 
@@ -78,7 +78,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
             if (_knckbckX != 0f || _knckbckY != 0f)
             {
-                AttachedEntity.Get<Move>()?.Do(_knckbckX, _knckbckY, AttachedEntity.Facing);
+                Owner.Get<Move>()?.Do(_knckbckX, _knckbckY, Owner.Facing);
                 _knckbckX *= 0.9f;
                 _knckbckY *= 0.9f;
             }
@@ -86,21 +86,46 @@ namespace Hevadea.Game.Entities.Components.Attributes
         }
 
         // Entity get hurt by a other entity (ex: Zombie)
+        public void Hurt(Entity entity, float damages, bool knockback = true)
+        {
+            if (knockback)
+            {
+                var dir = new Vector2(Owner.X - entity.X, Owner.Y - entity.Y);
+
+                if (dir.Length() > 1f)
+                {
+                    dir.Normalize();
+                }
+
+                Hurt(entity, damages, dir.X, dir.Y);
+            }
+            else
+            {
+                Hurt(entity, damages, 0, 0);
+            }
+        }
+
         public void Hurt(Entity entity, float damages, Direction attackDirection)
         {
+            var dir = attackDirection.ToPoint();
 
+            Hurt(entity, damages, dir.X * damages, dir.Y * damages);
+        }
+
+
+        public void Hurt(Entity entity, float damages, float knockbackX, float knockbackY)
+        {
             if (Invicible) return;
             _coolDown = 0f;
-            HurtedByEntity?.Invoke(entity, damages, attackDirection);
+            HurtedByEntity?.Invoke(entity, damages);
             _value = Math.Max(0, _value - damages);
 
-            if (TakeKnockback && AttachedEntity.Has<Move>())
+            if (TakeKnockback && Owner.Has<Move>())
             {
-                var dir = attackDirection.ToPoint();
-                _knckbckX = Mathf.Min(8f, dir.X * damages);
-                _knckbckY = Mathf.Min(8f, dir.Y * damages);
+                _knckbckX += knockbackX;
+                _knckbckY += knockbackY;
             }
-            
+
             if (Math.Abs(_value) < 0.1f) Die();
         }
 
@@ -131,8 +156,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public void Die()
         {
             Killed?.Invoke(this, null);
-            AttachedEntity.Get<Dropable>()?.Drop();
-            AttachedEntity.Remove();
+            Owner.Get<Dropable>()?.Drop();
+            Owner.Remove();
         }
     }
 }

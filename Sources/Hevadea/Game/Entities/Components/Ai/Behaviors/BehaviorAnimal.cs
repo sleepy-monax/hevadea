@@ -21,24 +21,24 @@ namespace Hevadea.Game.Entities.Components.Ai.Behaviors
         {
             if (!agent.IsBusy())
             {
-                if (Rise.Random.NextDouble() < IdleChance)
+                if (Rise.Rnd.NextDouble() < IdleChance)
                 {
-                    agent.ActionQueue.Enqueue(new ActionWait(Rise.Random.NextDouble() * IdleTime));
+                    agent.ActionQueue.Enqueue(new ActionWait(Rise.Rnd.NextDouble() * IdleTime));
                 }
                 else
                 {
-                    var dx = Rise.Random.NextValue(-1, 0, 1);
-                    var dy = Rise.Random.NextValue(-1, 0, 1);
+                    var dx = Rise.Rnd.NextValue(-1, 0, 1);
+                    var dy = Rise.Rnd.NextValue(-1, 0, 1);
 
                     if (dx == 0)
                     {
-                        Rise.Random.NextValue(-1, 1);
+                        Rise.Rnd.NextValue(-1, 1);
                     }
 
-                    var entityTilePosition = agent.AttachedEntity.GetTilePosition();
+                    var entityTilePosition = agent.Owner.GetTilePosition();
                     var destination = new TilePosition(entityTilePosition.X + dx, entityTilePosition.Y + dy);
 
-                    if ((dx != 0 || dy !=0) && NaturalEnvironment.Contains(agent.AttachedEntity.Level.GetTile(destination)))
+                    if ((dx != 0 || dy !=0) && NaturalEnvironment.Contains(agent.Owner.Level.GetTile(destination)))
                     {
                         agent.ActionQueue.Enqueue(new ActionMoveToLocation(destination, MoveSpeed));
                     }

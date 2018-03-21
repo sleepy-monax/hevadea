@@ -109,7 +109,7 @@ namespace Hevadea.Game.Tiles
             public void Drop(TilePosition position, Level level)
             {
                 foreach (var d in Items)
-                    if (Rise.Random.NextDouble() < d.Chance) d.Item.Drop(level, position, Rise.Random.Next(d.Min, d.Max + 1));
+                    if (Rise.Rnd.NextDouble() < d.Chance) d.Item.Drop(level, position, Rise.Rnd.Next(d.Min, d.Max + 1));
             }
         }
         #endregion
@@ -162,9 +162,9 @@ namespace Hevadea.Game.Tiles
 
             public void Update(Tile tile, TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
             {
-                if (Rise.Random.Next(SpreadChance) == 0)
+                if (Rise.Rnd.Next(SpreadChance) == 0)
                 {
-                    var d = (Direction)Rise.Random.Next(0, 4);
+                    var d = (Direction)Rise.Rnd.Next(0, 4);
                     var p = d.ToPoint();
 
                     if (SpreadTo.Contains(level.GetTile(position.X + p.X, position.Y + p.Y))) level.SetTile(position.X + p.X, position.Y + p.Y, AttachedTile);

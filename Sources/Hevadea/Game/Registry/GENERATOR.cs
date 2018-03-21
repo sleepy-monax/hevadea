@@ -158,7 +158,7 @@ namespace Hevadea.Game.Registry
             DEFAULT = new Generator
             {
                 Size = 256, Seed = 0,
-                Levels = {OVERWORLD, CAVE},
+                Levels = { OVERWORLD, CAVE },
                 WorldFeatures = {new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature()}
             };
         }

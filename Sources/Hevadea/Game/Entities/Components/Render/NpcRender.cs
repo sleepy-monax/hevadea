@@ -22,32 +22,32 @@ namespace Hevadea.Game.Entities.Components.Render
 
         public void Update(GameTime gameTime)
         {
-            _isWalking = AttachedEntity.Get<Move>()?.IsMoving ?? false;
-            _isSwiming = AttachedEntity.Get<Swim>()?.IsSwiming ?? false;
-            _isPickingItem = (AttachedEntity.Get<Inventory>()?.HasPickup ?? false) || ((AttachedEntity.Get<Pickup>()?.GetPickupEntity() ?? null) != null);
+            _isWalking = Owner.Get<Move>()?.IsMoving ?? false;
+            _isSwiming = Owner.Get<Swim>()?.IsSwiming ?? false;
+            _isPickingItem = (Owner.Get<Inventory>()?.HasPickup ?? false) || ((Owner.Get<Pickup>()?.GetPickupEntity() ?? null) != null);
         }
         
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             
             var frame = new[] {0, 2, 1, 2}[(int) (gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
-            var selectedFrame = _isWalking ? new Point(frame, (int) AttachedEntity.Facing) : new Point(2, (int) AttachedEntity.Facing);
+            var selectedFrame = _isWalking ? new Point(frame, (int) Owner.Facing) : new Point(2, (int) Owner.Facing);
 
             if (_isPickingItem)
             {
                 Ressources.SprPickup
-                .DrawSubSprite(spriteBatch, new Vector2(AttachedEntity.X - 8, AttachedEntity.Y - 24), selectedFrame, Color.White);
+                .DrawSubSprite(spriteBatch, new Vector2(Owner.X - 8, Owner.Y - 24), selectedFrame, Color.White);
             }
             else
             {
                 Sprite
-                .DrawSubSprite(spriteBatch, new Vector2(AttachedEntity.X - 8, AttachedEntity.Y - 24), selectedFrame, Color.White);
+                .DrawSubSprite(spriteBatch, new Vector2(Owner.X - 8, Owner.Y - 24), selectedFrame, Color.White);
             }
 
             if (_isSwiming)
             {                
                 Ressources.SprUnderWater
-                .DrawSubSprite(spriteBatch, new Vector2(AttachedEntity.X - 8, AttachedEntity.Y - 24), selectedFrame, Color.White);
+                .DrawSubSprite(spriteBatch, new Vector2(Owner.X - 8, Owner.Y - 24), selectedFrame, Color.White);
             }
         }
     }

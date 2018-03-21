@@ -51,8 +51,8 @@ namespace Hevadea.Game.Entities.Components
             {
                 _lastAdded = item;
                 _addedTimer = 1f;
-                _ix = AttachedEntity.X;
-                _iy = AttachedEntity.Y;
+                _ix = Owner.X;
+                _iy = Owner.Y;
                 return true;
             }
 
@@ -73,13 +73,13 @@ namespace Hevadea.Game.Entities.Components
             
             if (_lastAdded != null && _addedTimer >= 0.5f)
             {
-                _ix += (AttachedEntity.X - _ix) * 0.3f;
-                _iy += ((AttachedEntity.Y - PickupOffset) - _iy) * 0.2f;
+                _ix += (Owner.X - _ix) * 0.3f;
+                _iy += ((Owner.Y - PickupOffset) - _iy) * 0.2f;
             }
             else if (_lastAdded != null && _addedTimer < 0.5f)
             {
-                _ix += (AttachedEntity.X - _ix) * 0.3f;
-                _iy += ((AttachedEntity.Y) - _iy) * 0.2f;
+                _ix += (Owner.X - _ix) * 0.3f;
+                _iy += ((Owner.Y) - _iy) * 0.2f;
             }
         }
         

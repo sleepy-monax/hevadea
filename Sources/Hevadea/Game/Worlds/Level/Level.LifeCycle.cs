@@ -43,8 +43,8 @@ namespace Hevadea.Game.Worlds
         {
             for (var i = 0; i < Width * Height / 50; i++)
             {
-                var tx = Rise.Random.Next(Width);
-                var ty = Rise.Random.Next(Height);
+                var tx = Rise.Rnd.Next(Width);
+                var ty = Rise.Rnd.Next(Height);
                 var tile = GetTile(tx, ty);
                 tile.Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
             }

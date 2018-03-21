@@ -107,5 +107,18 @@ namespace Hevadea.Game.Worlds
         {
             return GetEntitiesOnArea(new RectangleF(area.X, area.Y, area.Width, area.Height));
         }
+
+        public List<Entity> GetEntitiesOnRadius(float cx, float cy, float radius)
+        {
+            var entities = GetEntitiesOnArea(new RectangleF(cx - radius, cy - radius, radius * 2, radius * 2));
+            var result = new List<Entity>();
+
+            foreach (var e in Entities)
+            {
+                if (Mathf.Distance(e.X, e.Y, cx, cy) <= radius) result.Add(e);
+            }
+
+            return result;
+        }
     }
 }
