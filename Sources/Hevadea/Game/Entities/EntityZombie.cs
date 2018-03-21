@@ -25,6 +25,7 @@ namespace Hevadea.Game.Entities
             Attach(new Agent());
             Attach(new Pushable() { CanBePushBy = { ENTITIES.PLAYER } });
             Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
+            Attach(new Burnable(1f));
         }
 
         public override void OnUpdate(GameTime gameTime)

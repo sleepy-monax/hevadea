@@ -40,8 +40,10 @@ namespace Hevadea.Game.Entities.Components.Interaction
         public void Do(Item item)
         {
             var entities = AttachedEntity.Level.GetEntityOnTile(SelectedTile);
-
+            var asInteracted = false;
             if (entities.Count > 0)
+            {
+
                 foreach (var e in entities)
                 {
                     var interactable = e.Get<Interactable>();
@@ -49,10 +51,12 @@ namespace Hevadea.Game.Entities.Components.Interaction
                     if (interactable != null)
                     {
                         interactable.Interacte(AttachedEntity, AttachedEntity.Facing, item);
+                        asInteracted = true;
                         break;
                     }
                 }
-            else
+            }
+            if (!asInteracted)
             {
                 item?.Tag<InteractItemTag>()?.InteracteOn(AttachedEntity, SelectedTile);
             }

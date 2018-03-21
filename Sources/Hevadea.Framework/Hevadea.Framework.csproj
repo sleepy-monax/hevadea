@@ -50,6 +50,7 @@
     <Compile Include="Graphic\Camera.cs" />
     <Compile Include="Graphic\GraphicManager.cs" />
     <Compile Include="Graphic\ParalaxeBackground.cs" />
+    <Compile Include="Graphic\Particles\Color2Particle.cs" />
     <Compile Include="Graphic\Particles\ColoredParticle.cs" />
     <Compile Include="Graphic\Particles\Particle.cs" />
     <Compile Include="Graphic\Particles\ParticleSystem.cs" />

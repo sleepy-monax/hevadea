@@ -17,7 +17,7 @@ namespace Hevadea.Game.Entities
         {
             HoldingItem = null;
 
-            Attach(new Health(20){ ShowHealthBar = false });
+            Attach(new Health(20){ ShowHealthBar = false, NaturalRegeneration = true });
             Attach(new Attack());
             Attach(new Energy());
             Attach(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
@@ -29,7 +29,7 @@ namespace Hevadea.Game.Entities
             Attach(new Pushable());
             Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
             Attach(new Pickup());
-            Attach(new Burnable(1f));
+            Attach(new Burnable(1.5f));
         }
 
         public Item HoldingItem { get; set; }

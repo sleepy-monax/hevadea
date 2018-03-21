@@ -10,7 +10,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
 {
     public sealed class Health : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
-        private float _maxValue, _value, _knckbckX, _knckbckY;
+        private float _maxValue, _value, _knckbckX, _knckbckY, _coolDown;
         
         public bool Invicible { get; set; } = false;
         public bool ShowHealthBar { get; set; } = true;
@@ -57,16 +57,21 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public void OnGameSave(EntityStorage store)
         {
             store.Set(nameof(Heal), _value);
+            if (NaturalRegeneration)
+                store.Set("natural_regeneration", _coolDown);
         }
 
         public void OnGameLoad(EntityStorage store)
         {
             _value = store.GetFloat(nameof(Heal), _value);
+            if (NaturalRegeneration)
+                _coolDown = store.GetFloat("natural_regeneration");
         }
 
         public void Update(GameTime gameTime)
         {
-            if (NaturalRegeneration)
+            _coolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (NaturalRegeneration && _coolDown > 5)
             {
                 _value = (float)Math.Min(_maxValue, _value + NaturalregenerationSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
@@ -77,13 +82,15 @@ namespace Hevadea.Game.Entities.Components.Attributes
                 _knckbckX *= 0.9f;
                 _knckbckY *= 0.9f;
             }
+            
         }
 
         // Entity get hurt by a other entity (ex: Zombie)
         public void Hurt(Entity entity, float damages, Direction attackDirection)
         {
-            if (Invicible) return;
 
+            if (Invicible) return;
+            _coolDown = 0f;
             HurtedByEntity?.Invoke(entity, damages, attackDirection);
             _value = Math.Max(0, _value - damages);
 

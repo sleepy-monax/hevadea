@@ -49,6 +49,11 @@ namespace Hevadea.Framework.Graphic.SpriteAtlas
             spriteBatch.Draw(Sheet.Texture, position, Bound, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
         }
 
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 scale, Color color)
+        {
+            spriteBatch.Draw(Sheet.Texture, position, Bound, color, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+        }
+
         public void Draw(SpriteBatch spriteBatch, Rectangle destination, Color color)
         {
             spriteBatch.Draw(Sheet.Texture, destination, Bound, color);

@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Game.Entities.Components;
+using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Entities.Components.Render;
 using Microsoft.Xna.Framework;
@@ -17,6 +18,8 @@ namespace Hevadea.Game.Entities
                 new Attack(),
                 new Target()
             );
+
+            Attach(new Burnable(1f));
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Hevadea.Game.Entities
             Attach(new Health(10)).Killed += EntityDie;
             Attach(new Interactable()).Interacted += EntityInteracte;
             Attach(new Pickupable(_sprite));
+            Attach(new Burnable(1f));
         }
 
         private void EntityInteracte(object sender, InteractEventArg args)

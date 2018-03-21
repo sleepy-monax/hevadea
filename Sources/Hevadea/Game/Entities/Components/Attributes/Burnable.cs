@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {
-    class Burnable:EntityComponent , IEntityComponentUpdatable
+    class Burnable:Light , IEntityComponentUpdatable
     {
         public bool IsBurn { get; set; } = false;
         private float _dammages;
         private float _chanceToBreak;
+        public float SpreadRange = 1.25f;
 
-        public Burnable(float dammages, float chanceToBreak = 0.6f)
+        public Burnable(float dammages, float chanceToBreak = 0.01f)
         {
             _dammages = dammages;
             IsBurn = false;
@@ -26,16 +27,17 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public void Update(GameTime gameTime)
         {
             IsBurn = !(AttachedEntity.Get<Swim>()?.IsSwiming ?? false) && IsBurn;
+            base.On = IsBurn;
 
             if (IsBurn)
             {
                 AttachedEntity.Get<Health>()?.Hurt(AttachedEntity, _dammages*(float)gameTime.ElapsedGameTime.TotalSeconds, Direction.Down);
                 if (Rise.Random.NextDouble() < 0.1f)
                 {
-                    var Entities = AttachedEntity.Level.GetEntitiesOnArea(new Rectangle((int)(AttachedEntity.X - 64), (int)(AttachedEntity.Y - 64), 64 * 2, 64 * 2));
+                    var Entities = AttachedEntity.Level.GetEntitiesOnArea(new Rectangle((int)(AttachedEntity.X - SpreadRange*16), (int)(AttachedEntity.Y - SpreadRange*16), (int)(SpreadRange*16 * 2),(int)(SpreadRange*16 * 2)));
                     foreach(var e in Entities)
                     {
-                        if (Rise.Random.NextDouble() < 0.001f)
+                        if (Rise.Random.NextDouble() < 0.01f)
                         {
                             if (e.Has<Burnable>())
                                 e.Get<Burnable>().IsBurn = true;
@@ -44,7 +46,9 @@ namespace Hevadea.Game.Entities.Components.Attributes
                         }
                     }
                 }
-                AttachedEntity.ParticleSystem.EmiteAt(new ColoredParticle { Color = Color.Red*0.5f},AttachedEntity.X,AttachedEntity.Y,10*((float)Rise.Random.NextDouble()-0.5f) ,-32*(float)Rise.Random.NextDouble());
+                AttachedEntity.Level.ParticleSystem.EmiteAt(new Color2Particle { Color = Color.Yellow, FadingColor = Color.Red * 0.5f, Life = (float)Rise.Random.NextDouble() * 3f }, AttachedEntity.X + 10 * ((float)Rise.Random.NextDouble() - 0.5f), AttachedEntity.Y + 10 * ((float)Rise.Random.NextDouble() - 0.5f), 10 * ((float)Rise.Random.NextDouble() - 0.5f), -32 * (float)Rise.Random.NextDouble());
+
+                AttachedEntity.ParticleSystem.EmiteAt(new Color2Particle {Size = 8f*(float)Rise.Random.NextDouble(), Color = Color.Yellow, FadingColor = Color.Red * 0.5f, Life = (float)Rise.Random.NextDouble() * 3f},AttachedEntity.X + 10 * ((float)Rise.Random.NextDouble() - 0.5f), AttachedEntity.Y + 10 * ((float)Rise.Random.NextDouble() - 0.5f), 10*((float)Rise.Random.NextDouble()-0.5f) ,-32*(float)Rise.Random.NextDouble());
                 if (Rise.Random.NextDouble() < _chanceToBreak)
                    AttachedEntity.Get<Breakable>()?.Break();
             }

@@ -114,7 +114,7 @@ namespace Hevadea.Game.Worlds
             {
                 var light = e.Get<Light>();
 
-                if (light != null)
+                if (light != null && light.On)
                     spriteBatch.Draw(Ressources.ImgLight,
                         new Rectangle((int) e.X - light.Power, (int) e.Y - light.Power,
                             light.Power * 2, light.Power * 2), light.Color);

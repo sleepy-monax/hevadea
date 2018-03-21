@@ -27,7 +27,8 @@ namespace Hevadea.Game.Entities
                 new Dropable {Items = {new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1)}},
                 new Pushable(){ CanBePushByAnything = true },
                 new Move(),
-                new Colider(new Rectangle(-6, -2, 12, 8))
+                new Colider(new Rectangle(-6, -2, 12, 8)),
+                Attach(new Burnable(1f))
             );
 
             Attach(new Interactable()).Interacted += OnInteracted;

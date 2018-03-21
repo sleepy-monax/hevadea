@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,6 +15,7 @@ namespace Hevadea.Game.Entities
             SortingOffset = -16;
             _sprite = new Sprite(Ressources.TileEntities, new Point(6, 3));
             Attach(new Breakable());
+            Attach(new Burnable(1f));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
