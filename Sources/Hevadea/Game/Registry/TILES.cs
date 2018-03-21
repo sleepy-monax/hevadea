@@ -48,7 +48,7 @@ namespace Hevadea.Game.Registry
             VOID.AddTag(new Tags.Solide());
 
             ROCK.AddTag(new Tags.Solide(), new Tags.Damage { ReplacementTile = DIRT });
-            ROCK.AddTag(new Tags.Droppable(new Drop(ITEMS.STONE,1f, 2, 4), new Drop(ITEMS.COAL,1f, 0, 2)));
+            ROCK.AddTag(new Tags.Droppable(new Drop(ITEMS.STONE,1f, 2, 3), new Drop(ITEMS.COAL,1f, 0, 2)));
 
             SAND.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
             SAND.AddTag(new Tags.Droppable(new Drop(ITEMS.SAND, 1f, 1, 1)));
