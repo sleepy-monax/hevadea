@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Items;
 using Hevadea.Game.Items.Materials;
 using Hevadea.Game.Items.Tags;
@@ -36,6 +37,7 @@ namespace Hevadea.Game.Registry
         public static Item BELT;
         public static Item TNT;
         public static Item RAW_FISH;
+        public static Item LIGHTER;
         
         public static void Initialize()
         {
@@ -64,6 +66,7 @@ namespace Hevadea.Game.Registry
             BELT = new Item("belt", new Sprite(Ressources.TileItems, new Point(9, 0)));
             TNT = new Item("tnt", new Sprite(Ressources.TileItems, new Point(0, 0)));
             RAW_FISH = new Item("raw_fish", new Sprite(Ressources.TileEntities, new Point(11, 0)));
+            LIGHTER = new Item("lighter", new Sprite(Ressources.TileEntities, new Point(4, 0)));
         }
 
         public static void AttachTags()
@@ -80,6 +83,19 @@ namespace Hevadea.Game.Registry
             
             BELT.AddTag(new PlaceEntity(ENTITIES.BELT));
             TNT.AddTag(new PlaceEntity(ENTITIES.TNT));
+            LIGHTER.AddTag(new ActionItemTag()
+            {
+                Action = (user, pos) =>
+                {
+                    foreach (var e in user.Level.GetEntityOnTile(pos))
+                    {
+                        if (e.Has<Burnable>())
+                            e.Get<Burnable>().IsBurn = true;
+                    }
+                }
+            });
+
+            return;
         }
     }
 }

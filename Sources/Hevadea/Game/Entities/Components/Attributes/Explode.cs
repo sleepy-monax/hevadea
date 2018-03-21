@@ -39,7 +39,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
                 {
                     e.Get<Explode>()?.Do();
                     e.Get<Breakable>()?.Break();
-                    e.Get<Burnable>()?.SetOnFire();
+                    if (e.Has<Burnable>())
+                        e.Get<Burnable>().IsBurn = true;
                     }
             }
             var pos = AttachedEntity.GetTilePosition();

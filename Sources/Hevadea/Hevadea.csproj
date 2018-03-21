@@ -135,6 +135,7 @@
     <Compile Include="Game\Items\Loot.cs" />
     <Compile Include="Game\Items\Materials\BaseMaterial.cs" />
     <Compile Include="Game\Items\Materials\Material.cs" />
+    <Compile Include="Game\Items\Tags\ActionItemTag.cs" />
     <Compile Include="Game\Items\Tags\InteractItemTag.cs" />
     <Compile Include="Game\Items\Tags\PlacableItemTag.cs" />
     <Compile Include="Game\Items\Tags\PlaceEntity.cs" />
