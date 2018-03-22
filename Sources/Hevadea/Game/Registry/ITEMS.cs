@@ -1,10 +1,10 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Game.Entities.Components.Attributes;
-using Hevadea.Game.Items;
-using Hevadea.Game.Items.Materials;
-using Hevadea.Game.Items.Tags;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Entities.Components.Attributes;
+using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Items.Materials;
+using Hevadea.GameObjects.Items.Tags;
 
 namespace Hevadea.Game.Registry
 {
@@ -89,8 +89,8 @@ namespace Hevadea.Game.Registry
                 {
                     foreach (var e in user.Level.GetEntityOnTile(pos))
                     {
-                        if (e.Has<Burnable>())
-                            e.Get<Burnable>().IsBurnning = true;
+                        if (e.HasComponent<Burnable>())
+                            e.GetComponent<Burnable>().IsBurnning = true;
                     }
                 }
             });

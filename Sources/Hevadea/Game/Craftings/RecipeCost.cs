@@ -1,4 +1,4 @@
-﻿using Hevadea.Game.Items;
+﻿using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Game.Craftings
 {

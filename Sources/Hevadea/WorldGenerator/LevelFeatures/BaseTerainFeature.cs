@@ -1,7 +1,7 @@
 ﻿using Hevadea.Game.Registry;
-using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Tiles;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {

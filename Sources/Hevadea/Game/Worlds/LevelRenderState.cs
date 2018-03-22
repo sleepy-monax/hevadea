@@ -1,6 +1,6 @@
-﻿using Hevadea.Game.Entities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Entities;
 
 namespace Hevadea.Game.Worlds
 {

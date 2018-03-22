@@ -1,6 +1,6 @@
-﻿using Hevadea.Game.Entities;
-using Hevadea.Game.Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Game.Registry
 {

@@ -36,8 +36,7 @@ namespace Hevadea.Scenes
             var backButton = new Button { Text = "Back", Padding = new Padding(4) }
             .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new MainMenu()); });
 
-            Container = new AnchoredContainer().AddChild(
-            new WidgetFancyPanel
+            var panel = new WidgetFancyPanel
             {
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
@@ -56,7 +55,10 @@ namespace Hevadea.Scenes
                         new TileContainer { Flow = FlowDirection.LeftToRight, Childrens = { backButton, generateButton} }   
                     }
                 }
-            });
+            };
+
+
+            Container = new AnchoredContainer {Childrens = {panel}};
         }
 
         public override void OnDraw(GameTime gameTime)

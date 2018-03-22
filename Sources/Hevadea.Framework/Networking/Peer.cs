@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
+using Hevadea.Framework.Storage;
 
 namespace Hevadea.Framework.Networking
 {

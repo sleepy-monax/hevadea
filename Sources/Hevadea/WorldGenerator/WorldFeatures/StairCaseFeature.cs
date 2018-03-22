@@ -1,8 +1,8 @@
-﻿using Hevadea.Game.Entities;
-using Hevadea.Game.Registry;
-using Hevadea.Game.Tiles;
+﻿using Hevadea.Game.Registry;
 using Hevadea.Game.Worlds;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 
 namespace Hevadea.WorldGenerator.WorldFeatures
 {

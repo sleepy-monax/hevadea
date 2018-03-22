@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
@@ -7,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities;
 
 namespace Hevadea.Game.Worlds
 {
@@ -78,7 +78,6 @@ namespace Hevadea.Game.Worlds
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawTerrain(state, _spriteBatch, gameTime);
             level.DrawEntities(state, _spriteBatch, gameTime);
-            level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
             _spriteBatch.End();
 
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);

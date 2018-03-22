@@ -1,6 +1,6 @@
-﻿using Hevadea.Game.Items;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Game.Craftings
 {

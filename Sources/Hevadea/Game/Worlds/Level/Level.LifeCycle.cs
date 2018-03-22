@@ -1,16 +1,16 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
-using Hevadea.Game.Entities;
-using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
-using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Components.Attributes;
+using Hevadea.GameObjects.Tiles;
 
 namespace Hevadea.Game.Worlds
 {
@@ -95,24 +95,11 @@ namespace Hevadea.Game.Worlds
             foreach (var e in state.OnScreenEntities) e.Draw(spriteBatch, gameTime);
         }
 
-        public void DrawEntitiesOverlay(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            foreach (var e in state.OnScreenEntities)
-            {
-                e.DrawOverlay(spriteBatch, gameTime);
-
-                if (Rise.ShowDebug)
-                {
-                    spriteBatch.PutPixel(e.Position, Color.Magenta);
-                }
-            }
-        }
-
         public void DrawLightMap(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
         {
             foreach (var e in state.OnScreenEntities)
             {
-                var light = e.Get<Light>();
+                var light = e.GetComponent<Light>();
 
                 if (light != null && light.On)
                     spriteBatch.Draw(Ressources.ImgLight,

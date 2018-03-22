@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework.Utils;
-using Hevadea.Game.Entities;
+using Hevadea.GameObjects.Entities;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game

@@ -1,7 +1,7 @@
 ﻿using Hevadea.Framework.Graphic.Particles;
-using Hevadea.Game.Entities;
 using System.Collections.Generic;
-using Hevadea.Game.Tiles.Renderers;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles.Renderers;
 
 namespace Hevadea.Game.Worlds
 {

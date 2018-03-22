@@ -1,8 +1,8 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Game.Items;
-using Hevadea.Game.Tiles;
-using Hevadea.Game.Tiles.Renderers;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.GameObjects.Tiles.Renderers;
 
 namespace Hevadea.Game.Registry
 {

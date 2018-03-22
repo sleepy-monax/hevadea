@@ -1,10 +1,10 @@
 ﻿using Hevadea.Framework.Utils;
-using Hevadea.Framework.Utils.Json;
-using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Worlds;
 using System.IO;
+using Hevadea.Framework.Storage.Json;
+using Hevadea.GameObjects.Entities;
 
 namespace Hevadea.Game.Loading.Tasks
 {
