@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Networking;
-using Hevadea.Framework.Storage;
 
 namespace Hevadea.Game
 {

@@ -2,11 +2,11 @@
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
+using Hevadea.Game.Items;
 using Hevadea.Game.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Scenes.Widgets
 {

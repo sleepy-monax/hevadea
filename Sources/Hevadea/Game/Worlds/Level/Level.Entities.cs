@@ -1,11 +1,11 @@
 ﻿using Hevadea.Framework.Utils;
+using Hevadea.Game.Entities;
+using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Registry;
+using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Components.Attributes;
-using Hevadea.GameObjects.Tiles;
 
 namespace Hevadea.Game.Worlds
 {
@@ -93,7 +93,11 @@ namespace Hevadea.Game.Worlds
                 if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
                 var entities = _entitiesOnTiles[x, y];
 
-                result.AddRange(entities.Where(i => i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position)));
+                result.AddRange(entities.Where(i => 
+                {
+                    return i.Get<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position);
+                }
+                ));
             }
 
             return result;

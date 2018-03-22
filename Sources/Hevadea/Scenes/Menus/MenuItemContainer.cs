@@ -3,10 +3,9 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Game;
-using Hevadea.GameObjects;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Components;
-using Hevadea.GameObjects.Items;
+using Hevadea.Game.Entities;
+using Hevadea.Game.Entities.Components;
+using Hevadea.Game.Items;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -18,12 +17,12 @@ namespace Hevadea.Scenes.Menus
         private readonly WidgetItemContainer _inventoryA;
         private readonly WidgetItemContainer _inventoryB;
         
-        public MenuItemContainer(GameObject entity, GameObject chest, GameManager game) : base(game)
+        public MenuItemContainer(Entity entity, Entity chest, GameManager game) : base(game)
         {
             PauseGame = true;
             
-            _inventoryA = new WidgetItemContainer(entity.GetComponent<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
-            _inventoryB = new WidgetItemContainer(chest.GetComponent<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
+            _inventoryA = new WidgetItemContainer(entity.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
+            _inventoryB = new WidgetItemContainer(chest.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
             
             _inventoryA.MouseClick += Tranfer;
             _inventoryB.MouseClick += Tranfer;

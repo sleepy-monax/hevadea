@@ -1,8 +1,8 @@
 ﻿using Hevadea.Game.Registry;
+using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Hevadea.GameObjects.Tiles;
 
 namespace Hevadea.Game.Spawning
 {

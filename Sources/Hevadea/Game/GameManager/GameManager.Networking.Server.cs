@@ -4,9 +4,8 @@ using System.Net;
 using System.Net.Sockets;
 using Hevadea.Framework;
 using Hevadea.Framework.Networking;
-using Hevadea.Framework.Storage;
 using Hevadea.Framework.Utils;
-using Hevadea.GameObjects.Entities;
+using Hevadea.Game.Entities;
 
 namespace Hevadea.Game
 {

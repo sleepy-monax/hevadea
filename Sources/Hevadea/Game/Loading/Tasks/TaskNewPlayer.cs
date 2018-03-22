@@ -1,5 +1,5 @@
-﻿using Hevadea.Game.Registry;
-using Hevadea.GameObjects.Entities;
+﻿using Hevadea.Game.Entities;
+using Hevadea.Game.Registry;
 
 namespace Hevadea.Game.Loading.Tasks
 {

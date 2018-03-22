@@ -1,5 +1,5 @@
 ﻿using Hevadea.Game.Registry;
-using Hevadea.GameObjects.Tiles;
+using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Worlds

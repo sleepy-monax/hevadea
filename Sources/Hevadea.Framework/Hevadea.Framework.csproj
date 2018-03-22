@@ -65,6 +65,7 @@
     <Compile Include="Input\LegacyInputManager.cs" />
     <Compile Include="MonoGameHandler.cs" />
     <Compile Include="Networking\Client.cs" />
+    <Compile Include="Networking\DataBuffer.cs" />
     <Compile Include="Networking\PacketDispacher.cs" />
     <Compile Include="Networking\Peer.cs" />
     <Compile Include="Networking\Server.cs" />
@@ -76,13 +77,6 @@
     <Compile Include="Input\Pointing.cs" />
     <Compile Include="Scening\Scene.cs" />
     <Compile Include="Scening\SceneManager.cs" />
-    <Compile Include="Storage\Binary\BinaryReader.cs" />
-    <Compile Include="Storage\Binary\BinaryType.cs" />
-    <Compile Include="Storage\Binary\BinaryWritter.cs" />
-    <Compile Include="Storage\DataBuffer.cs" />
-    <Compile Include="Storage\Json\Parser.cs" />
-    <Compile Include="Storage\Json\Writer.cs" />
-    <Compile Include="Transform2D.cs" />
     <Compile Include="UI\Containers\AnchoredContainer.cs" />
     <Compile Include="UI\Containers\Container.cs" />
     <Compile Include="UI\Containers\DockContainer.cs" />
@@ -108,6 +102,8 @@
     <Compile Include="Utils\Compression.cs" />
     <Compile Include="Utils\EasingManager.cs" />
     <Compile Include="Utils\Geometry.cs" />
+    <Compile Include="Utils\Json\Parser.cs" />
+    <Compile Include="Utils\Json\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Easing.cs" />
     <Compile Include="Utils\GenericExtension.cs" />
