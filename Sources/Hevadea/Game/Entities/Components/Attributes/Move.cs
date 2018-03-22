@@ -56,7 +56,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
             if (Owner.Y + sy < 0) sy = 0;
 
             var level = Owner.Level;
-            var ownerColider = Owner.Get<Colider>();
+            var ownerColider = Owner.GetComponent<Colider>();
 
             if (ownerColider != null)
             {
@@ -73,16 +73,16 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
                 foreach (var e in colidingEntity)
                 {
-                    var eColider = e.Get<Colider>();
+                    var eColider = e.GetComponent<Colider>();
                     if (e == Owner || !(eColider?.CanCollideWith(e) ?? false)) continue;
 
                     var eHitbox = eColider.GetHitBox();
 
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, 0f, sy); IsMoving = true; }
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, 0f, sy); IsMoving = true; }
                     eHitbox = eColider.GetHitBox();
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
 
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.Get<Pushable>()?.Push(Owner, sx, 0f); IsMoving = true;}
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, sx, 0f); IsMoving = true;}
                     eHitbox = eColider.GetHitBox();
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
                 }

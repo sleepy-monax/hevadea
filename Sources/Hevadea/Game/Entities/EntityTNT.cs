@@ -20,19 +20,19 @@ namespace Hevadea.Game.Entities
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
             _age = 0;
             _delay = 3f;
-            Attach(new Move());
-            Attach(new Colider(new Rectangle(-6, -2, 12, 8)));
-            Attach(new Explode(10f,3f));
-            Attach(new Pushable());
-            Attach(new Breakable());
-            Attach(new Pickupable(_sprite));
+            AddComponent(new Move());
+            AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
+            AddComponent(new Explode(10f,3f));
+            AddComponent(new Pushable());
+            AddComponent(new Breakable());
+            AddComponent(new Pickupable(_sprite));
         }
         public override void OnUpdate(GameTime gameTime)
         {
             _age += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (_age > _delay)
             {
-                Get<Explode>().Do();
+                GetComponent<Explode>().Do();
                 Remove();
             }
 

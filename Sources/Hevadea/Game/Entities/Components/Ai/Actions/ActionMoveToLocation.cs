@@ -19,13 +19,13 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
         
         public bool IsStillRunning(Agent agent)
         {
-            return !(_targetPosition.GetCenter() == agent.Owner.Position) && agent.Owner.Has<Move>();
+            return !(_targetPosition.GetCenter() == agent.Owner.Position) && agent.Owner.HasComponent<Move>();
         }
 
         public void Perform(Agent agent, GameTime gameTime)
         {
             var agentPosition = agent.Owner.Position;
-            agent.Owner.Get<Move>()?.MoveTo(_targetPosition, null, _speed);
+            agent.Owner.GetComponent<Move>()?.MoveTo(_targetPosition, null, _speed);
 
             if (agentPosition == agent.Owner.Position)
             {

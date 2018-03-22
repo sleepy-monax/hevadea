@@ -14,8 +14,8 @@ namespace Hevadea.Game.Entities
         {
             SortingOffset = -16;
             _sprite = new Sprite(Ressources.TileEntities, new Point(6, 3));
-            Attach(new Breakable());
-            Attach(new Burnable(1f));
+            AddComponent(new Breakable());
+            AddComponent(new Burnable(1f));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

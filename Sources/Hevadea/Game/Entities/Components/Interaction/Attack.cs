@@ -82,7 +82,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
         {
             var damages = BaseDamages;
 
-            var energy = Owner.Get<Energy>();
+            var energy = Owner.GetComponent<Energy>();
 
             if (energy != null) damages = damages * (energy.Value / energy.MaxValue);
 
@@ -100,7 +100,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
         public void Do(Item weapon)
         {
             if (IsAttacking) return;
-            if (!Owner.Get<Energy>()?.Reduce(1f) ?? false) return;
+            if (!Owner.GetComponent<Energy>()?.Reduce(1f) ?? false) return;
 
             var damages = GetBaseDamages();
             var facingTile = Owner.GetFacingTile();
@@ -117,13 +117,13 @@ namespace Hevadea.Game.Entities.Components.Interaction
                 foreach (var e in facingEntities)
                     if (e != Owner)
                     {
-                        if (e.Has<Breakable>())
+                        if (e.HasComponent<Breakable>())
                         {
-                            e.Get<Breakable>()?.Break(weapon);
+                            e.GetComponent<Breakable>()?.Break(weapon);
                             IsAttacking = true;
                         }
 
-                        var eHealth = e.Get<Health>();
+                        var eHealth = e.GetComponent<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
                             eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);

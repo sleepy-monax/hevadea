@@ -18,13 +18,13 @@ namespace Hevadea.Game.Entities
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(11, 0));
 
-            Attachs(new Move(), new Breakable());
-            
-            Attach(new Swim { IsSwimingPainfull = false});
-            Attach(new Colider(new Rectangle(-4, -4, 8, 8)));
-            Attach(new Dropable { Items = { new Drop(ITEMS.RAW_FISH, 1f, 1, 1) } });
-            Attach(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
-            Attach(new Agent { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeed = 0.5f } });
+            AddComponent(new Move());
+            AddComponent(new Breakable());
+            AddComponent(new Swim { IsSwimingPainfull = false});
+            AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
+            AddComponent(new Dropable { Items = { new Drop(ITEMS.RAW_FISH, 1f, 1, 1) } });
+            AddComponent(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
+            AddComponent(new Agent { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeed = 0.5f } });
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

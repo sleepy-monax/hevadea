@@ -78,7 +78,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
             if (_knckbckX != 0f || _knckbckY != 0f)
             {
-                Owner.Get<Move>()?.Do(_knckbckX, _knckbckY, Owner.Facing);
+                Owner.GetComponent<Move>()?.Do(_knckbckX, _knckbckY, Owner.Facing);
                 _knckbckX *= 0.9f;
                 _knckbckY *= 0.9f;
             }
@@ -120,7 +120,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
             HurtedByEntity?.Invoke(entity, damages);
             _value = Math.Max(0, _value - damages);
 
-            if (TakeKnockback && Owner.Has<Move>())
+            if (TakeKnockback && Owner.HasComponent<Move>())
             {
                 _knckbckX += knockbackX;
                 _knckbckY += knockbackY;
@@ -156,7 +156,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public void Die()
         {
             Killed?.Invoke(this, null);
-            Owner.Get<Dropable>()?.Drop();
+            Owner.GetComponent<Dropable>()?.Drop();
             Owner.Remove();
         }
     }

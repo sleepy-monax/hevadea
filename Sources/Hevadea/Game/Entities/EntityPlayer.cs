@@ -17,19 +17,19 @@ namespace Hevadea.Game.Entities
         {
             HoldingItem = null;
 
-            Attach(new Health(20){ ShowHealthBar = false, NaturalRegeneration = true });
-            Attach(new Attack());
-            Attach(new Energy());
-            Attach(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
-            Attach(new Inventory(64) {AlowPickUp = true});
-            Attach(new Interact());
-            Attach(new Light {On = true, Color = Color.White * 0.50f, Power = 64});
-            Attach(new Move());
-            Attach(new Swim());
-            Attach(new Pushable());
-            Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
-            Attach(new Pickup());
-            Attach(new Burnable(1.5f));
+            AddComponent(new Health(20){ ShowHealthBar = false, NaturalRegeneration = true });
+            AddComponent(new Attack());
+            AddComponent(new Energy());
+            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
+            AddComponent(new Inventory(64) {AlowPickUp = true});
+            AddComponent(new Interact());
+            AddComponent(new Light {On = true, Color = Color.White * 0.50f, Power = 64});
+            AddComponent(new Move());
+            AddComponent(new Swim());
+            AddComponent(new Pushable());
+            AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
+            AddComponent(new Pickup());
+            AddComponent(new Burnable(1.5f));
         }
 
         public Item HoldingItem { get; set; }

@@ -13,7 +13,7 @@ namespace Hevadea.Game.Items.Tags
         
         public override void InteracteOn(Entity user, TilePosition pos)
         {
-            var inventory = user.Get<Inventory>();
+            var inventory = user.GetComponent<Inventory>();
             var level = user.Level;
             
             if (user.Level.GetEntityOnTile(pos).Count == 0 &&
@@ -24,7 +24,7 @@ namespace Hevadea.Game.Items.Tags
 
                 Place(level, pos, user.Facing);
 
-                if (ConsumeItem && user is EntityPlayer p && p.Get<Inventory>().Content.Count(p.HoldingItem) == 0)
+                if (ConsumeItem && user is EntityPlayer p && p.GetComponent<Inventory>().Content.Count(p.HoldingItem) == 0)
                     p.HoldingItem = null;
             }
         }

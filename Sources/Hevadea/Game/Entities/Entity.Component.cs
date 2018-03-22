@@ -8,12 +8,7 @@ namespace Hevadea.Game.Entities
     {
         private readonly List<EntityComponent> _components = new List<EntityComponent>();
 
-        public void Attachs(params EntityComponent[] components)
-        {
-            foreach (var c in components) Attach(c);
-        }
-
-        public T Attach<T>(T component) where T : EntityComponent
+        public T AddComponent<T>(T component) where T : EntityComponent
         {
             if (_components.Any(e => e == component)) return null;
 
@@ -25,16 +20,20 @@ namespace Hevadea.Game.Entities
             return component;
         }
 
-        public T Get<T>() where T : EntityComponent
+        public T GetComponent<T>() where T : EntityComponent
         {
-            foreach (var e in _components)
-                if (e is T component)
+            for (int i = 0; i < _components.Count; i++)
+            {
+                if (_components[i] is T component)
+                {
                     return component;
+                }
+            }
 
             return null;
         }
 
-        public bool Has<T>() where T : EntityComponent
+        public bool HasComponent<T>() where T : EntityComponent
         {
             return _components.OfType<T>().Any();
         }

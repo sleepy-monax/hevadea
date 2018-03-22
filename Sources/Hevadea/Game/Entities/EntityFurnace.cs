@@ -15,16 +15,14 @@ namespace Hevadea.Game.Entities
         public EntityFurnace()
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 1));
-            Attachs(
-                new Breakable(),
-                new Light(),
-                new Dropable {Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1)}}
-            );
 
-            Attach( new Move() );
-            Attach( new Pushable() {CanBePushByAnything = true} );
-            Attach( new Colider( new Rectangle(-6, -2, 12, 8) ) );
-            Attach(new Pickupable(_sprite));
+            AddComponent(new Breakable());
+            AddComponent(new Light());
+            AddComponent(new Dropable { Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1) } });
+            AddComponent(new Move());
+            AddComponent(new Pushable() {CanBePushByAnything = true});
+            AddComponent(new Colider( new Rectangle(-6, -2, 12, 8) ));
+            AddComponent(new Pickupable(_sprite));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

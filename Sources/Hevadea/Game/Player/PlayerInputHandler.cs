@@ -43,7 +43,7 @@ namespace Hevadea.Game
     
                     if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Rise.Graphic.GetHeight() / 2)
                     {
-                        Player.Get<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y);
+                        Player.GetComponent<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y);
                     }
                 }
                 
@@ -74,7 +74,7 @@ namespace Hevadea.Game
         public void HandleInput(PlayerInput input)
         {
             var game = Player.Game;
-            var playerMovement = Player.Get<Move>();
+            var playerMovement = Player.GetComponent<Move>();
             
             switch (input)
             {
@@ -91,23 +91,23 @@ namespace Hevadea.Game
                     playerMovement.Do(0, +1, Direction.Down);
                     break;
                 case PlayerInput.Action:
-                    if (Player.Get<Inventory>().Content.Count(Player.HoldingItem) == 0)
+                    if (Player.GetComponent<Inventory>().Content.Count(Player.HoldingItem) == 0)
                         Player.HoldingItem = null;
 
-                    Player.Get<Interact>().Do(Player.HoldingItem);
+                    Player.GetComponent<Interact>().Do(Player.HoldingItem);
                     break;
                 case PlayerInput.Attack:
-                    Player.Get<Attack>().Do(Player.HoldingItem);
+                    Player.GetComponent<Attack>().Do(Player.HoldingItem);
                     break;
                 case PlayerInput.Pickup:
-                    Player.Get<Pickup>().Do();
+                    Player.GetComponent<Pickup>().Do();
                     break;
 
                 case PlayerInput.DropItem:
                     var level = Player.Level;
                     var item = Player.HoldingItem;
                     var facingTile = Player.GetFacingTile();
-                    Player.Get<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
+                    Player.GetComponent<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
                     break;
                 case PlayerInput.OpenInventory:
                     game.CurrentMenu = new MenuPlayerInventory(Player, RECIPIES.HandCrafted, game);

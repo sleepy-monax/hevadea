@@ -19,12 +19,12 @@ namespace Hevadea.Game.Items
         {
             Item = ITEMS.COAL;
 
-            Attach(new Move());
+            AddComponent(new Move());
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            var move = Get<Move>();
+            var move = GetComponent<Move>();
             move.Do(SpeedX, SpeedY, Facing);
             SpeedX = SpeedX / 2;
             SpeedY = SpeedY / 2;
@@ -32,7 +32,7 @@ namespace Hevadea.Game.Items
             var entities = Level.GetEntitiesOnArea(new Rectangle((int)X - 8, (int)Y - 8, 16, 16));
             foreach (var e in entities)
             {
-                var inv = e.Get<Inventory>();
+                var inv = e.GetComponent<Inventory>();
                 if (inv != null && inv.AlowPickUp)
                 {
                     move.MoveTo(e.X, e.Y);

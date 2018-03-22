@@ -24,7 +24,7 @@ namespace Hevadea.Game.Entities
         {
             SortingOffset = -16;
             var interaction = new Interactable();
-            Attach(interaction);
+            AddComponent(interaction);
             interaction.Interacted +=
                 (sender, arg) =>
                 {

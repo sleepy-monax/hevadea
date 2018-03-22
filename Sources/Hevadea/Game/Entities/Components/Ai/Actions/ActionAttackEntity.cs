@@ -19,7 +19,7 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
         {
             return !_taget.Removed &&
                    Mathf.Distance(_taget.X, _taget.Y, agent.Owner.X, agent.Owner.Y) 
-                   < _atackRange * 16f && agent.Owner.Has<Attack>();
+                   < _atackRange * 16f && agent.Owner.HasComponent<Attack>();
         }
 
         public void Perform(Agent agent, GameTime gameTime)

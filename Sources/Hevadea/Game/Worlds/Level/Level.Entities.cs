@@ -95,7 +95,7 @@ namespace Hevadea.Game.Worlds
 
                 result.AddRange(entities.Where(i => 
                 {
-                    return i.Get<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position);
+                    return i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position);
                 }
                 ));
             }

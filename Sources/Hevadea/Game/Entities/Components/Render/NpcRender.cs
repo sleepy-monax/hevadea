@@ -22,9 +22,9 @@ namespace Hevadea.Game.Entities.Components.Render
 
         public void Update(GameTime gameTime)
         {
-            _isWalking = Owner.Get<Move>()?.IsMoving ?? false;
-            _isSwiming = Owner.Get<Swim>()?.IsSwiming ?? false;
-            _isPickingItem = (Owner.Get<Inventory>()?.HasPickup ?? false) || ((Owner.Get<Pickup>()?.GetPickupEntity() ?? null) != null);
+            _isWalking = Owner.GetComponent<Move>()?.IsMoving ?? false;
+            _isSwiming = Owner.GetComponent<Swim>()?.IsSwiming ?? false;
+            _isPickingItem = (Owner.GetComponent<Inventory>()?.HasPickup ?? false) || ((Owner.GetComponent<Pickup>()?.GetPickupEntity() ?? null) != null);
         }
         
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

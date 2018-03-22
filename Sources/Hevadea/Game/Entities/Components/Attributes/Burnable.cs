@@ -39,12 +39,12 @@ namespace Hevadea.Game.Entities.Components.Attributes
 
         public void Update(GameTime gameTime)
         {
-            IsBurnning = !(Owner.Get<Swim>()?.IsSwiming ?? false) && IsBurnning;
+            IsBurnning = !(Owner.GetComponent<Swim>()?.IsSwiming ?? false) && IsBurnning;
             On = IsBurnning;
 
             if (IsBurnning)
             {
-                Owner.Get<Health>()?.Hurt(Owner, _dammages * gameTime.GetDeltaTime(), false);
+                Owner.GetComponent<Health>()?.Hurt(Owner, _dammages * gameTime.GetDeltaTime(), false);
                 if (Rise.Rnd.NextDouble() < 0.1f)
                 {
                     var Entities = Owner.Level.GetEntitiesOnArea(new Rectangle((int)(Owner.X - SpreadRange*16), (int)(Owner.Y - SpreadRange*16), (int)(SpreadRange*16 * 2),(int)(SpreadRange*16 * 2)));
@@ -53,9 +53,9 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     {
                         if (Rise.Rnd.NextDouble() < 0.01f)
                         {
-                            if (e.Has<Burnable>())
-                                e.Get<Burnable>().IsBurnning = true;
-                            e.Get<Explode>()?.Do();
+                            if (e.HasComponent<Burnable>())
+                                e.GetComponent<Burnable>().IsBurnning = true;
+                            e.GetComponent<Explode>()?.Do();
                         }
                     }
                 }
@@ -76,7 +76,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     -Rise.Rnd.NextFloat(24));
 
                 if (Rise.Rnd.NextDouble() < _chanceToBreak)
-                   Owner.Get<Breakable>()?.Break();
+                   Owner.GetComponent<Breakable>()?.Break();
             }
 
         }

@@ -18,8 +18,8 @@ namespace Hevadea.Scenes.Menus
             PauseGame = true;
             
             var player = (EntityPlayer) entity;
-            var inventory = new WidgetItemContainer(entity.Get<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
-            var crafting  = new WidgetCrafting(entity.Get<Inventory>().Content, recipies) {Padding = new Padding(4, 4), Dock = Dock.Fill};
+            var inventory = new WidgetItemContainer(entity.GetComponent<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
+            var crafting  = new WidgetCrafting(entity.GetComponent<Inventory>().Content, recipies) {Padding = new Padding(4, 4), Dock = Dock.Fill};
 
             Content = GuiFactory.CreateSplitContainer(new Rectangle(0, 0, 800, 600),
                 "Inventory", inventory, 

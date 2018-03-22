@@ -89,8 +89,8 @@ namespace Hevadea.Game.Registry
                 {
                     foreach (var e in user.Level.GetEntityOnTile(pos))
                     {
-                        if (e.Has<Burnable>())
-                            e.Get<Burnable>().IsBurnning = true;
+                        if (e.HasComponent<Burnable>())
+                            e.GetComponent<Burnable>().IsBurnning = true;
                     }
                 }
             });

@@ -35,13 +35,13 @@ namespace Hevadea.Game.Entities.Components.Attributes
                 if (e != Owner)
                 {
                     var distance =  Mathf.Distance(e.X, e.Y, Owner.X, Owner.Y); 
-                    e.Get<Health>()?.Hurt(Owner, GetDammage(distance) * Rise.Rnd.NextFloat());
+                    e.GetComponent<Health>()?.Hurt(Owner, GetDammage(distance) * Rise.Rnd.NextFloat());
 
                     if (Rise.Rnd.NextFloat() <= 0.3f)
                     {
-                        e.Get<Explode>()?.Do();
-                        e.Get<Breakable>()?.Break();
-                        e.Get<Burnable>()?.SetInFire();
+                        e.GetComponent<Explode>()?.Do();
+                        e.GetComponent<Breakable>()?.Break();
+                        e.GetComponent<Burnable>()?.SetInFire();
                     }
                 }
 

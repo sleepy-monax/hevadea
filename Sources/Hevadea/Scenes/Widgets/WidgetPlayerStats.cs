@@ -23,8 +23,8 @@ namespace Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var health = _player.Get<Health>().ValuePercent;
-            var energy = _player.Get<Energy>().ValuePercent;
+            var health = _player.GetComponent<Health>().ValuePercent;
+            var energy = _player.GetComponent<Energy>().ValuePercent;
 
             var i = 0;
             var size = Scale(32);

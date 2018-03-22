@@ -11,15 +11,12 @@ namespace Hevadea.Game.Entities
     {
         public EntityNpc()
         {
-            Attachs
-            (
-                new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))),
-                new Interact(),
-                new Attack(),
-                new Target()
-            );
 
-            Attach(new Burnable(1f));
+            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
+            AddComponent(new Interact());
+            AddComponent(new Attack());
+            AddComponent(new Target());
+            AddComponent(new Burnable(1f));
         }
     }
 }

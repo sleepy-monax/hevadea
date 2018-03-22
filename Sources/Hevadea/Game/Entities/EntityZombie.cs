@@ -16,21 +16,21 @@ namespace Hevadea.Game.Entities
     {
         public EntityZombie()
         {
-            Attach(new Move());
-            Attach(new Health(10));
-            Attach(new Attack());
-            Attach(new Swim());
-            Attach(new Energy());
-            Attach(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));            
-            Attach(new Agent());
-            Attach(new Pushable() { CanBePushBy = { ENTITIES.PLAYER } });
-            Attach(new Colider(new Rectangle(-2, -2, 4, 4)));
-            Attach(new Burnable(1f));
+            AddComponent(new Move());
+            AddComponent(new Health(10));
+            AddComponent(new Attack());
+            AddComponent(new Swim());
+            AddComponent(new Energy());
+            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));            
+            AddComponent(new Agent());
+            AddComponent(new Pushable() { CanBePushBy = { ENTITIES.PLAYER } });
+            AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
+            AddComponent(new Burnable(1f));
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            var agent = Get<Agent>();
+            var agent = GetComponent<Agent>();
 
             if (!agent.IsBusy())
             {

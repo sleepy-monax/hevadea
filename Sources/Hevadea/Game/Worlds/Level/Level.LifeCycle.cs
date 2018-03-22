@@ -112,7 +112,7 @@ namespace Hevadea.Game.Worlds
         {
             foreach (var e in state.OnScreenEntities)
             {
-                var light = e.Get<Light>();
+                var light = e.GetComponent<Light>();
 
                 if (light != null && light.On)
                     spriteBatch.Draw(Ressources.ImgLight,

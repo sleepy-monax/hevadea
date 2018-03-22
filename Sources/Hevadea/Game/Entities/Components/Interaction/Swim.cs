@@ -14,8 +14,8 @@ namespace Hevadea.Game.Entities.Components.Interaction
         
         public void Update(GameTime gameTime)
         {
-            var health   = Owner.Get<Health>();
-            var energy   = Owner.Get<Energy>();
+            var health   = Owner.GetComponent<Health>();
+            var energy   = Owner.GetComponent<Energy>();
             var position = Owner.GetTilePosition();
             
             if (Owner.Level.IsAll<Tags.Liquide>(new Rectangle((int)Owner.X - 4, (int)Owner.Y - 4, 8,8)))

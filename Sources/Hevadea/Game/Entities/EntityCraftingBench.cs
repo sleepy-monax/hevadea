@@ -22,23 +22,19 @@ namespace Hevadea.Game.Entities
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 0));
 
-            Attachs(
-                new Breakable(),
-                new Dropable {Items = {new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1)}},
-                new Pushable(){ CanBePushByAnything = true },
-                new Move(),
-                new Colider(new Rectangle(-6, -2, 12, 8)),
-                Attach(new Burnable(1f))
-            );
-
-            Attach(new Interactable()).Interacted += OnInteracted;
-      
-            Attach(new Pickupable(_sprite));
+            AddComponent(new Breakable());
+            AddComponent(new Dropable { Items = { new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1) } });
+            AddComponent(new Pushable() { CanBePushByAnything = true });
+            AddComponent(new Move());
+            AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
+            AddComponent(new Burnable(1f));
+            AddComponent(new Interactable()).Interacted += OnInteracted;
+            AddComponent(new Pickupable(_sprite));
         }
 
         private void OnInteracted(object sander, InteractEventArg e)
         {
-            if (e.Entity.Has<Inventory>())
+            if (e.Entity.HasComponent<Inventory>())
                 Game.CurrentMenu = new MenuPlayerInventory(e.Entity, RECIPIES.BenchCrafted, Game);
         }
 
