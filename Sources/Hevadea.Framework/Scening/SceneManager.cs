@@ -76,7 +76,9 @@ namespace Hevadea.Framework.Scening
         {
             if (_background != null)
             {
-                _spritebatch.BeginDrawEnd(_background.Draw, gameTime);
+                _spritebatch.Begin();
+                _background.Draw(_spritebatch, Rise.Graphic.GetBound(), gameTime);
+                _spritebatch.End();
 
                 _spritebatch.Begin();
                 _spritebatch.FillRectangle(Rise.Graphic.GetBound(), Color.Black * 0.3f);

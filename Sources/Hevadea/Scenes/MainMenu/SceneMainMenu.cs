@@ -14,8 +14,6 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-            Rise.Scene.SetBackground(Ressources.ParalaxeForest);
-
             var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, Scale = 2f};
             var creators = new Label { Text = "(c) 2017-2018 Interesting Games", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, Scale = 0.5f };
             var continueButton = new Button { Text = "Continue", Anchor = Anchor.Center, Origine = Anchor.Top, UnitBound = new Rectangle(0, 0, 256, 64), UnitOffset = new Point(0, 64)};
@@ -77,6 +75,7 @@ namespace Hevadea.Scenes.MainMenu
 
         public override void OnDraw(GameTime gameTime)
         {
+
         }
     }
 }
