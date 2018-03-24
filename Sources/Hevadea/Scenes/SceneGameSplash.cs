@@ -3,6 +3,7 @@ using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Registry;
+using Hevadea.Scenes.MainMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -36,7 +37,8 @@ namespace Hevadea.Scenes
         public override void OnUpdate(GameTime gameTime)
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 3) || !_once) return;
-            Rise.Scene.Switch(new MainMenu());
+            Rise.Scene.Switch(new SceneMainMenu());
+            //Rise.Scene.Switch(new TestScene());
             _once = false;
         }
 

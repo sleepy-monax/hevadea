@@ -20,14 +20,19 @@ namespace Hevadea.Framework.Scening
             return "";
         }
 
+        public void RefreshLayout()
+        {
+            var screenSize = Rise.Graphic.GetSize();
+            Container.UnitBound = new Rectangle(new Point(0), new Point((int)(screenSize.X / Rise.Ui.ScaleFactor), (int)(screenSize.Y / Rise.Ui.ScaleFactor)));
+            Container.RefreshLayout();
+        }
+
         public void Update(GameTime gameTime)
         {
             if (Container != null)
             {
-                var screenSize = Rise.Graphic.GetSize();
-                Container.UnitBound = new Rectangle(new Point(0), new Point((int)(screenSize.X / Rise.Ui.ScaleFactor), (int)(screenSize.Y / Rise.Ui.ScaleFactor)));
-                Container?.RefreshLayout();
-                Container?.UpdateInternal(gameTime);
+                RefreshLayout();
+                Container.UpdateInternal(gameTime);
             }
             
             OnUpdate(gameTime);

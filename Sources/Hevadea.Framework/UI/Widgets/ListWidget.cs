@@ -69,16 +69,16 @@ namespace Hevadea.Framework.UI.Widgets
 
                     if (Rise.Pointing.AreaOver(rect) && Rise.Pointing.AreaOver(Host))
                     {
-                        spriteBatch.FillRectangle(rect, Color.White * 0.05f);
-                        spriteBatch.DrawRectangle(rect, Color.White * 0.05f);
+                        spriteBatch.FillRectangle(rect, RiseColor.Border * 0.05f);
+                        spriteBatch.DrawRectangle(rect, RiseColor.Border, Scale(4));
 
                         _overItem = i;
                     }
 
                     if (i == SelectedItem)
                     {
-                        spriteBatch.FillRectangle(rect, Color.Gold * 0.5f);
-                        spriteBatch.DrawRectangle(rect, Color.Gold * 0.5f);
+                        spriteBatch.FillRectangle(rect, RiseColor.Accent * 0.5f);
+                        spriteBatch.DrawRectangle(rect, RiseColor.Accent, Scale(4));
                     }
 
                     i.Draw(spriteBatch, rect, gameTime);

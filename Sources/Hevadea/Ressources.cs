@@ -80,7 +80,7 @@ namespace Hevadea
             TileItems = new SpriteSheet(ImgItems, new Point(16, 16));
             TileEntities = new SpriteSheet(ImgEntities, new Point(16, 16));
             TileCreatures = new SpriteSheet(ImgCreatures, new Point(48, 128));
-            TileGui = new SpriteSheet(ImgGui, new Point(32, 32));
+            TileGui = new SpriteSheet(ImgGui, new Point(16, 16));
 
             TileRock = new SpriteSheet(ImgRock, new Point(16, 16));
 

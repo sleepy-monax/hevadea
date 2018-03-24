@@ -10,6 +10,7 @@ using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Hevadea.Scenes;
 using Hevadea.Scenes.Widgets;
+using Hevadea.Scenes.MainMenu;
 
 namespace Hevadea.Game.Loading
 {
@@ -54,7 +55,7 @@ namespace Hevadea.Game.Loading
             }.RegisterMouseClickEvent((sender) =>
             {
                 _task.Abort();
-                Rise.Scene.Switch(new MainMenu());
+                Rise.Scene.Switch(new SceneMainMenu());
             });
 
             Container = new AnchoredContainer

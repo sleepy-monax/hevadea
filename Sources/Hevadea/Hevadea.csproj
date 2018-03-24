@@ -182,6 +182,8 @@
     <Compile Include="Game\Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Game\Worlds\World.cs" />
     <Compile Include="Scenes\GuiFactory.cs" />
+    <Compile Include="Scenes\GuiHelper.cs" />
+    <Compile Include="Scenes\MainMenu\Tabs\TabOption.cs" />
     <Compile Include="Scenes\Menus\MenuItemContainer.cs" />
     <Compile Include="Scenes\Menus\MenuInGame.cs" />
     <Compile Include="Scenes\Menus\MenuPlayerInventory.cs" />
@@ -193,8 +195,9 @@
     <Compile Include="Game\Storage\EntityStorage.cs" />
     <Compile Include="Game\Storage\LevelStorage.cs" />
     <Compile Include="Scenes\Menus\MenuGamePaused.cs" />
-    <Compile Include="Scenes\SceneClientMutiplayer.cs" />
-    <Compile Include="Scenes\SceneNewWorld.cs" />
+    <Compile Include="Scenes\MainMenu\Tabs\TabMultiplayerConnect.cs" />
+    <Compile Include="Scenes\MainMenu\Tabs\TabNewWorld.cs" />
+    <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\Widgets\WidgetFancyPanel.cs" />
     <Compile Include="Scenes\Widgets\WidgetHotBar.cs" />
     <Compile Include="Scenes\Widgets\WidgetCrafting.cs" />
@@ -205,10 +208,11 @@
     <Compile Include="Game\Tiles\Tile.cs" />
     <Compile Include="Game\Tiles\TilePosition.cs" />
     <Compile Include="Scenes\SceneGameplay.cs" />
-    <Compile Include="Scenes\SceneMainMenu.cs" />
-    <Compile Include="Scenes\SceneLoadGame.cs" />
+    <Compile Include="Scenes\MainMenu\SceneMainMenu.cs" />
+    <Compile Include="Scenes\MainMenu\Tabs\TabLoadWorld.cs" />
     <Compile Include="Scenes\SceneGameSplash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenes\Widgets\WidgetTabContainer.cs" />
     <Compile Include="WorldGenerator\Functions\CombinedFunction.cs" />
     <Compile Include="WorldGenerator\Functions\FlatFunction.cs" />
     <Compile Include="WorldGenerator\Functions\IFunction.cs" />

@@ -1,25 +1,30 @@
 ﻿using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Framework.Utils;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Scenes
 {
     public static class GuiFactory
     {
 
+
+
         public static Widget CreateSplitContainer(Rectangle bound, string panelATitle, Widget panelAContent, string panelBTitle, Widget panelBContent)
         {
-            return new TileContainer
+            return new AnchoredContainer
             {
                 UnitBound = bound,
-                Marging = new Padding(16),
                 Childrens =
                 {
                     new WidgetFancyPanel
                     {
-                        Padding = new Padding(15),
+                        UnitBound = new Rectangle(0, 0, 400, 480),
+                        Anchor = Anchor.Center,
+                        Origine = Anchor.Left,
                         Content = new DockContainer
                         {
                             Childrens =
@@ -31,7 +36,9 @@ namespace Hevadea.Scenes
                     },
                     new WidgetFancyPanel
                     {
-                        Padding = new Padding(15),
+                        UnitBound = new Rectangle(0, 0, 400, 480),
+                        Anchor = Anchor.Center,
+                        Origine = Anchor.Right,
                         Content = new DockContainer
                         {
                             Childrens =

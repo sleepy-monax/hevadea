@@ -78,8 +78,8 @@ namespace Hevadea.Framework
             {
                 Keyboard.Initialize(MonoGame, 300, 5);
             }
+
             Scene.Switch(_startScene);
-            
         }
         
         private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)
@@ -108,6 +108,19 @@ namespace Hevadea.Framework
             if (Input.KeyPress(Keys.F2))
             {
                 ShowDebug = !ShowDebug;
+            }
+
+
+            if (Input.KeyPress(Keys.F3))
+            {
+                Ui.ScaleFactor -= 0.1f;
+                Scene.GetCurrentScene()?.RefreshLayout();
+            }
+
+            if (Input.KeyPress(Keys.F4))
+            {
+                Ui.ScaleFactor += 0.1f;
+                Scene.GetCurrentScene()?.RefreshLayout();
             }
         }
 

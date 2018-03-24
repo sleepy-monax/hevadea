@@ -8,8 +8,8 @@ namespace Hevadea.Framework.UI.Widgets
     public class Button : Widget
     {
         public bool EnableBorder { get; set; } = false;
-        public Color OverColor { get; set; } = Color.Gold;
-        public Color IdleColor { get; set; } = Color.White;
+        public Color OverColor { get; set; } = RiseColor.Accent;
+        public Color IdleColor { get; set; } = RiseColor.Border;
         public Color TextColor { get; set; } = Color.White;
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
         public string Text { get; set; } = "Button";
@@ -20,11 +20,8 @@ namespace Hevadea.Framework.UI.Widgets
             _easing.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
             _easing.Update(gameTime.ElapsedGameTime.TotalSeconds);
 
-            if (EnableBorder)
-            {
-                spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
-                spriteBatch.DrawRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
-            }
+            spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
+            spriteBatch.DrawRectangle(Host, IdleColor * _easing.GetValueInv(EasingFunctions.Linear), Scale(4));
 
             var bounceW = (int) (Host.Width *  _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
             var bounceH = (int) (Host.Height * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
@@ -34,7 +31,7 @@ namespace Hevadea.Framework.UI.Widgets
                                      bounceW, bounceH);
             
             spriteBatch.FillRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
-            spriteBatch.DrawRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
+            spriteBatch.DrawRectangle(rect, OverColor * _easing.GetValue(EasingFunctions.Linear), Scale(4));
 
             var texSize = Font.MeasureString(Text);
 

@@ -1,6 +1,7 @@
 ﻿using Hevadea.Game.Loading.Tasks;
 using Hevadea.Scenes.Menus;
 using Hevadea.Scenes;
+using Hevadea.Scenes.MainMenu;
 
 namespace Hevadea.Game.Loading
 {
@@ -65,7 +66,7 @@ namespace Hevadea.Game.Loading
                 Tasks =
                 {
                     new TaskSaveWorld(),
-                    new TaskSwitchToScene(new MainMenu())
+                    new TaskSwitchToScene(new SceneMainMenu())
                 }
             };
         }

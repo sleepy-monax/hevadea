@@ -285,33 +285,33 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
 
             if (IsFocus)
             {
-                var curx = Text.MeasureCharacterWidths(TextCursor, Font);
-                var pos = Host.Center.Y - Font.LineSpacing / 2;
+                var curx = Scale(Text.MeasureCharacterWidths(TextCursor, Font));
+                var pos = Host.Center.Y - Scale(Font.LineSpacing) / 2;
 
 
 
                 if (_selectedChar.HasValue)
                 {
-                    var selx = Text.MeasureCharacterWidths(SelectedChar ?? 0, Font);
+                    var selx = Scale(Text.MeasureCharacterWidths(SelectedChar ?? 0, Font));
                     if (selx > curx)
                     {
-                        spriteBatch.DrawRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Font.LineSpacing), Color.Gold * 0.5f);
-                        spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Font.LineSpacing), Color.Gold * 0.5f);
+                        spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Scale(Font.LineSpacing)), RiseColor.Accent * 0.5f);
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Scale(Font.LineSpacing)), RiseColor.Accent, Scale(1f));
                     }
                     else
                     {
-                        spriteBatch.DrawRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Font.LineSpacing), Color.Gold * 0.5f);
-                        spriteBatch.FillRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Font.LineSpacing), Color.Gold * 0.5f);
+                        spriteBatch.FillRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Scale(Font.LineSpacing)), RiseColor.Accent * 0.5f);
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Scale(Font.LineSpacing)), RiseColor.Accent, Scale(1f));
                     }
                 }
                 else
                 {
-                    spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, 1, Font.LineSpacing), Color.Gold);
+                    spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, Scale(1), Scale(Font.LineSpacing)), RiseColor.Accent);
                 }
 
             }
 
-            spriteBatch.DrawString(Font, Text.String, Host, DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, TextColor);
+            spriteBatch.DrawString(Font, Text.String, Host, DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, TextColor, Scale(1f));
         }
     }
 }

@@ -5,6 +5,7 @@ using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Hevadea.Game;
 using Hevadea.Game.Loading;
+using Hevadea.Scenes.MainMenu;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 
@@ -70,7 +71,7 @@ namespace Hevadea.Scenes.Menus
                     Text = game.IsClient ? "Disconnect" : "Exit",
                     Padding = new Padding(4)
                 })
-                .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new MainMenu()); });
+                .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneMainMenu()); });
 
             Content = new AnchoredContainer
             {
@@ -80,7 +81,7 @@ namespace Hevadea.Scenes.Menus
                     {
                         Anchor  = Anchor.Center,
                         Origine = Anchor.Center,
-                        UnitBound = new Rectangle(0, 0, 320, container.Childrens.Count * 64 + 32),
+                        UnitBound = new Rectangle(0, 0, 400, container.Childrens.Count * 64 + 32),
                         Padding = new Padding(16),
                         Content = container
                     }                    
