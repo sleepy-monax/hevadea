@@ -10,8 +10,6 @@ namespace Hevadea.Game.Entities.Components.Ai
 
     public class Agent: EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
     {
-        public static int IdCounter = 0;
-        public int Id { get; }
         public Queue<IAction> ActionQueue { get; } = new Queue<IAction>();
         public IAction CurrentAction { get; private set; }
         
@@ -19,7 +17,6 @@ namespace Hevadea.Game.Entities.Components.Ai
 
         public Agent()
         {
-            Id = IdCounter++;
         }
 
         public bool IsBusy()
@@ -31,7 +28,7 @@ namespace Hevadea.Game.Entities.Components.Ai
         {
             CurrentAction = null;
             ActionQueue.Clear();
-            Logger.Log<Agent>($"{Id} aborted: {why}");
+            Logger.Log<Agent>($"{Owner.Ueid} aborted: {why}");
             Behavior?.IaAborted(this, why);
         }
         

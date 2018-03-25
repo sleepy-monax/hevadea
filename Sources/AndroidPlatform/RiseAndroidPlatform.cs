@@ -1,26 +1,32 @@
-﻿using Hevadea.Framework.Platform;
+﻿using Android.Content.Res;
+using Hevadea.Framework.Platform;
 
 namespace AndroidPlatform
 {
     public class RiseAndroidPlatform : PlatformBase
     {
-        private int _screenWidth;
-        private int _screenHeight;
-        public RiseAndroidPlatform(int screenWidth, int screenHeight)
+        Resources _ress;
+        MainGameActivity _activity;
+
+        public RiseAndroidPlatform(Resources resource, MainGameActivity activity)
         {
-            _screenWidth = screenWidth;
-            _screenHeight = screenHeight;
+            _ress = resource;
+            _activity = activity;
+            Family = PlatformFamily.Mobile;
         }
 
 
         public override string GetPlatformName() => "Android";
 
-        public override int GetScreenWidth() => _screenWidth;
-        public override int GetScreenHeight() => _screenHeight;
+        public override int GetScreenWidth() => _ress.DisplayMetrics.WidthPixels;
+        public override int GetScreenHeight() => _ress.DisplayMetrics.HeightPixels;
 
         public override void Initialize()
         {
+        }
 
+        public override void Update()
+        {    
         }
 
         public override string GetStorageFolder()
@@ -28,9 +34,9 @@ namespace AndroidPlatform
             return Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
         }
 
-        public override void Update()
+        public override void Stop()
         {
-            
+            _activity.Finish();
         }
     }
 }

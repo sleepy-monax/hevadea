@@ -1,9 +1,12 @@
-﻿using Hevadea.Framework.UI;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Game;
 using Hevadea.Game.Entities.Components;
+using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes.Menus
 {
@@ -31,7 +34,21 @@ namespace Hevadea.Scenes.Menus
 
             var tabContainer = new WidgetTabContainer
             {
-
+                Padding = new Padding(16, 16),
+                Tabs =
+                {
+                    new ContainerTab()
+                    {
+                        Icon = new Sprite(Ressources.TileIcons, new Point(0, 2)),
+                        Childrens =
+                        {
+                            new PlayerStatesTab(),
+                            new EquipmentTab(),
+                        }
+                    },
+                    new CraftingTab(),
+                    new SaveTab(Game),
+                }
             };
 
             Content = new TileContainer

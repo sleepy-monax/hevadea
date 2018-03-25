@@ -34,7 +34,6 @@ namespace Hevadea.Game
 
         public GameManager()
         {
-
         }
 
         public GameManager(World world, EntityPlayer player)

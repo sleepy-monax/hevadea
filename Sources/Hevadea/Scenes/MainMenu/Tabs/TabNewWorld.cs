@@ -21,7 +21,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new Padding(8) };
 
-            var generateButton = new Button { Text = "Generate", Padding = new Padding(4), Dock = Dock.Bottom }
+            var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
             .RegisterMouseClickEvent((sender) =>
             {
                 var sucess = int.TryParse(worldSeedtextBox.Text.String, out var seed);

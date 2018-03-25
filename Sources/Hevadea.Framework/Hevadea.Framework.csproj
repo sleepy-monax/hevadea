@@ -70,6 +70,7 @@
     <Compile Include="Networking\Peer.cs" />
     <Compile Include="Networking\Server.cs" />
     <Compile Include="Platform\PlatformBase.cs" />
+    <Compile Include="Platform\PlatformFamily.cs" />
     <Compile Include="Platform\PlatformTextInputEventArg.cs" />
     <Compile Include="Ressource\RessourceManager.cs" />
     <Compile Include="Rise.cs" />

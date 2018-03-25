@@ -5,10 +5,6 @@ namespace OpenGLPlatform
 {
     public class RiseOpenGLPlatform : PlatformBase
     {
-        public override void Initialize()
-        {
-            Rise.MonoGame.Window.TextInput += Window_TextInput;
-        }
 
         private void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
         {
@@ -24,6 +20,16 @@ namespace OpenGLPlatform
         public override string GetStorageFolder()
         {
             return ".";
+        }
+
+        public override void Stop()
+        {
+            Rise.MonoGame.Exit();
+        }
+
+        public override void Initialize()
+        {
+            Rise.MonoGame.Window.TextInput += Window_TextInput;
         }
 
         public override void Update()

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hevadea.Scenes.Menus.Tabs
+namespace Hevadea.Framework.Platform
 {
-    public class ContainerTab
+    public enum PlatformFamily
     {
+        Desktop, Mobile, Console 
     }
 }

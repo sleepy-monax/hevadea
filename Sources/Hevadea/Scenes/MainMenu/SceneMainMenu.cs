@@ -1,6 +1,8 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
+using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
@@ -26,6 +28,7 @@ namespace Hevadea.Scenes.MainMenu
                 Origine = Anchor.Center,
                 UnitBound = new Rectangle(0, 0, 600, 720),
                 UnitOffset = new Point(8,0),
+                Padding = new Padding(16),
                 Tabs =
                 {
                     new Tab
@@ -67,11 +70,18 @@ namespace Hevadea.Scenes.MainMenu
                 }
             };
 
-
-            Container = new AnchoredContainer
+            if (Rise.Platform.Family == PlatformFamily.Mobile)
             {
-                Childrens = { menu },
-            };
+                Container = menu;
+            }
+            else
+            {
+                Container = new AnchoredContainer
+                {
+                    Childrens = { menu },
+                };
+            }
+
         }
 
         public override void Unload()

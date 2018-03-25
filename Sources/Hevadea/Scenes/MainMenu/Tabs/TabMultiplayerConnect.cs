@@ -22,7 +22,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             Icon = new Sprite(Ressources.TileIcons, new Point(1, 3));
             connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new Padding(8) };
             connectPortTextBox = new SingleLineTextBoxWidget(24, $"{GameManager.PORT}", Ressources.FontRomulus) { Padding = new Padding(8) };
-            var connectButton = new Button { Text = "Connect", Padding = new Padding(4), Dock = Dock.Bottom }
+            var connectButton = new Button { Text = "Connect", Dock = Dock.Bottom }
                 .RegisterMouseClickEvent(Connect);
 
 

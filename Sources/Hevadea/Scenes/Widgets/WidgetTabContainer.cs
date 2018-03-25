@@ -69,12 +69,15 @@ namespace Hevadea.Scenes.Widgets
             {
                 if (t is ContainerTab c)
                 {
-                    c.SelectedChildren.Content.UnitBound = _clientArea;
-                    c.SelectedChildren.Content.RefreshLayout();
+                    if (c.SelectedChildren.Content != null)
+                    {
+                        c.SelectedChildren.Content.UnitBound = Padding.Apply(_clientArea);
+                        c.SelectedChildren.Content.RefreshLayout();
+                    }
                 }
                 else if (t.Content != null)
                 {
-                    t.Content.UnitBound = _clientArea;
+                    t.Content.UnitBound = Padding.Apply(_clientArea);
                     t.Content.RefreshLayout();
                 }
             }
@@ -144,7 +147,7 @@ namespace Hevadea.Scenes.Widgets
             var size = Scale(64);
             if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First();
 
-            _background.Draw(spriteBatch, Scale(_clientArea), Color.White);
+            _background.Draw(spriteBatch, new Padding(-4).Apply(Scale(_clientArea)), Color.White);
 
             if (SelectedTab is ContainerTab c)
             {

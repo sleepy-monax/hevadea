@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Scening;
+using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Game;
 using Hevadea.Scenes.Menus;
@@ -14,7 +15,10 @@ namespace Hevadea.Scenes
         {
             Game = game;
             Game.CurrentMenuChange += Game_CurrentMenuChange;
-            Container = new Panel();
+            Container = new Panel
+            {
+                Padding = new Padding(16)
+            };
         }
 
         private void Game_CurrentMenuChange(Menu oldMenu, Menu newMenu)

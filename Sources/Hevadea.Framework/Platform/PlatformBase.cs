@@ -6,12 +6,16 @@ namespace Hevadea.Framework.Platform
 {
     public abstract class PlatformBase
     {
+        public PlatformFamily Family { get; set; } = PlatformFamily.Desktop;
+
         public event EventHandler<PlatformTextInputEventArg> TextInput;
 
         public void RaiseTextInput(char c, Keys key)
         {
             TextInput?.Invoke(this, new PlatformTextInputEventArg(c, key));
         }
+
+        public virtual void Stop() { }
 
         public abstract void Initialize();
         public abstract string GetPlatformName();

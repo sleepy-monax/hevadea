@@ -195,7 +195,6 @@
     <Compile Include="Scenes\MainMenu\Tabs\TabMultiplayerConnect.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabNewWorld.cs" />
     <Compile Include="Scenes\Menus\PlayerInventoryMenu.cs" />
-    <Compile Include="Scenes\Menus\Tabs\ContainerTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\CraftingTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\EquipmentTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\PlayerStatesTab.cs" />

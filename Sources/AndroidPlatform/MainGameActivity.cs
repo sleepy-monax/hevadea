@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.OS;
 using Android.Views;
 using Hevadea.Framework;
@@ -21,10 +22,8 @@ namespace AndroidPlatform
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            var metrics = Resources.DisplayMetrics;
-            var platform = new RiseAndroidPlatform(metrics.WidthPixels, metrics.HeightPixels);
 
-            Rise.Initialize(platform);
+            Rise.Initialize(new RiseAndroidPlatform(Resources, this));
             SetContentView((View)Rise.MonoGame.Services.GetService(typeof(View)));
             Rise.Start(new SceneGameSplash());
         }

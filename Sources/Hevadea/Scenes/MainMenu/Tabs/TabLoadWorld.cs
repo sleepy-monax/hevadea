@@ -16,9 +16,9 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         public TabLoadWorld()
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(2,2));
-            var saveList = new ListWidget() { Dock = Dock.Fill, Padding = new Padding(4) };
+            var saveList = new ListWidget() { Dock = Dock.Fill };
 
-            var loadButton = new Button{ Text = "Load", Dock = Dock.Bottom, Padding = new Padding(4) }
+            var loadButton = new Button{ Text = "Load", Dock = Dock.Bottom }
             .RegisterMouseClickEvent((sender) =>
             {
 
