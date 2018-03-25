@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Graphic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Hevadea.Framework.Graphic;
 
 namespace Hevadea.Framework.UI.Widgets
 {

@@ -2,12 +2,6 @@
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Tiles;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {

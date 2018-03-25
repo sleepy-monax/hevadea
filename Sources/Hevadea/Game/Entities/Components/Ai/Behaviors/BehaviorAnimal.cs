@@ -1,10 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Utils;
 using Hevadea.Game.Entities.Components.Ai.Actions;
-using Hevadea.Game.Entities.Components.Attributes;
-using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
-using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 

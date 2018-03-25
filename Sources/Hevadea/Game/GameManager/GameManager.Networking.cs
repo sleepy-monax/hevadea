@@ -1,8 +1,7 @@
 ﻿using Hevadea.Framework.Networking;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Game
-{        
+{
     public partial class GameManager
     {
         public const int PORT = 4225;

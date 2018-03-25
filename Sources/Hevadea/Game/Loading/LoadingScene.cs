@@ -1,16 +1,12 @@
-﻿using System;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Scening;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
-using Hevadea.Scenes;
-using Hevadea.Scenes.Widgets;
 using Hevadea.Scenes.MainMenu;
+using Hevadea.Scenes.Widgets;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Loading
 {

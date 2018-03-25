@@ -1,12 +1,9 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Game.Entities;
-using Hevadea.Game.Registry;
-using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Game.Worlds
 {

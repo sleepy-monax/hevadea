@@ -2,11 +2,6 @@
 using Hevadea.Framework.Scening;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Scenes
 {

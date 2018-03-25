@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hevadea.Game.Entities;
+﻿using Hevadea.Game.Entities;
 using Hevadea.Game.Tiles;
+using System;
 
 namespace Hevadea.Game.Items.Tags
 {

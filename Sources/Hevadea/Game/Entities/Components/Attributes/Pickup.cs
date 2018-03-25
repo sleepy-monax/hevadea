@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Hevadea.Game.Entities.Components.Ai;
+﻿using Hevadea.Game.Entities.Components.Ai;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {

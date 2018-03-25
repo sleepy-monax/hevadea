@@ -1,7 +1,6 @@
 ﻿using Hevadea.Game.Loading.Tasks;
-using Hevadea.Scenes.Menus;
-using Hevadea.Scenes;
 using Hevadea.Scenes.MainMenu;
+using Hevadea.Scenes.Menus;
 
 namespace Hevadea.Game.Loading
 {

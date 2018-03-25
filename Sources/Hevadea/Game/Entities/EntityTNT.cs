@@ -5,7 +5,6 @@ using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Game.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Hevadea.Game.Entities
 {

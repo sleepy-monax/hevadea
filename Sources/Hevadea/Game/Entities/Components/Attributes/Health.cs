@@ -4,7 +4,6 @@ using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {

@@ -1,11 +1,11 @@
-﻿using System;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.Text;
 using Hevadea.Framework.Input;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Hevadea.Framework.UI.Widgets.TextBox
 {
