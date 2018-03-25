@@ -184,9 +184,7 @@
     <Compile Include="Scenes\GuiFactory.cs" />
     <Compile Include="Scenes\GuiHelper.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabOption.cs" />
-    <Compile Include="Scenes\Menus\MenuItemContainer.cs" />
     <Compile Include="Scenes\Menus\MenuInGame.cs" />
-    <Compile Include="Scenes\Menus\MenuPlayerInventory.cs" />
     <Compile Include="Scenes\Menus\Menu.cs" />
     <Compile Include="Game\Items\Item.cs" />
     <Compile Include="Game\Registry\ITEMS.cs" />
@@ -194,9 +192,15 @@
     <Compile Include="Game\Registry\TILES.cs" />
     <Compile Include="Game\Storage\EntityStorage.cs" />
     <Compile Include="Game\Storage\LevelStorage.cs" />
-    <Compile Include="Scenes\Menus\MenuGamePaused.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabMultiplayerConnect.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabNewWorld.cs" />
+    <Compile Include="Scenes\Menus\PlayerInventoryMenu.cs" />
+    <Compile Include="Scenes\Menus\Tabs\ContainerTab.cs" />
+    <Compile Include="Scenes\Menus\Tabs\CraftingTab.cs" />
+    <Compile Include="Scenes\Menus\Tabs\EquipmentTab.cs" />
+    <Compile Include="Scenes\Menus\Tabs\PlayerStatesTab.cs" />
+    <Compile Include="Scenes\Menus\Tabs\SaveTab.cs" />
+    <Compile Include="Scenes\Menus\Tabs\ServerAdminTab.cs" />
     <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\Widgets\WidgetFancyPanel.cs" />
     <Compile Include="Scenes\Widgets\WidgetHotBar.cs" />

@@ -14,15 +14,17 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, Scale = 2f};
+            Rise.Scene.SetBackground(Ressources.ParalaxeForest);
+
+            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, Scale = 1.5f};
             var creators = new Label { Text = "(c) 2017-2018 Interesting Games", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, Scale = 0.5f };
             var continueButton = new Button { Text = "Continue", Anchor = Anchor.Center, Origine = Anchor.Top, UnitBound = new Rectangle(0, 0, 256, 64), UnitOffset = new Point(0, 64)};
 
-            Container = new WidgetTabContainer
+            var menu = new WidgetTabContainer
             {
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
-                UnitBound = new Rectangle(0, 0, 800, (int)(Rise.Graphic.GetHeight() / Rise.Ui.ScaleFactor)),
+                UnitBound = new Rectangle(0, 0, 600, 720),
                 UnitOffset = new Point(8,0),
                 Tabs =
                 {
@@ -33,7 +35,9 @@ namespace Hevadea.Scenes.MainMenu
                         {
                             Childrens =
                             {
-                                hevadeaLogo, creators, continueButton
+                                hevadeaLogo,
+                                creators,
+                                continueButton
                             }
                         }
                     },
@@ -62,7 +66,12 @@ namespace Hevadea.Scenes.MainMenu
                     new TabOption(),
                 }
             };
-            
+
+
+            Container = new AnchoredContainer
+            {
+                Childrens = { menu },
+            };
         }
 
         public override void Unload()

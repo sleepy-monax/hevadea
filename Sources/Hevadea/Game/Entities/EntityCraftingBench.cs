@@ -34,8 +34,10 @@ namespace Hevadea.Game.Entities
 
         private void OnInteracted(object sander, InteractEventArg e)
         {
+            /*
             if (e.Entity.HasComponent<Inventory>())
                 Game.CurrentMenu = new MenuPlayerInventory(e.Entity, RECIPIES.BenchCrafted, Game);
+            */
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

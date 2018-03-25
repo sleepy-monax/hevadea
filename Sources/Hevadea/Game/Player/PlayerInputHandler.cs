@@ -4,7 +4,6 @@ using Hevadea.Game.Entities;
 using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
-using Hevadea.Game.Registry;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -15,7 +14,7 @@ namespace Hevadea.Game
     {
         MoveLeft, MoveRight, MoveUp, MoveDown, 
         Action, Attack, Pickup, DropItem,
-        OpenInventory, OpenPauseMenu, Zoom, Dzoom
+        OpenMenu, Zoom, Dzoom
     }
 
     public class PlayerInputHandler
@@ -54,7 +53,6 @@ namespace Hevadea.Game
                     if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
                     if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
                     
-                    if (input.KeyPress(Keys.E)) HandleInput(PlayerInput.OpenInventory);
     
                     if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
@@ -64,11 +62,10 @@ namespace Hevadea.Game
 
                     if (input.KeyPress(Keys.Add)) HandleInput(PlayerInput.Zoom);
                     if (input.KeyPress(Keys.Subtract)) HandleInput(PlayerInput.Dzoom);
-
                 }
-            }
 
-            if (input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenPauseMenu);
+                if (input.KeyPress(Keys.E) || input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenMenu);
+            }
         }
         
         public void HandleInput(PlayerInput input)
@@ -109,12 +106,9 @@ namespace Hevadea.Game
                     var facingTile = Player.GetFacingTile();
                     Player.GetComponent<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
                     break;
-                case PlayerInput.OpenInventory:
-                    game.CurrentMenu = new MenuPlayerInventory(Player, RECIPIES.HandCrafted, game);
-                    break;
-                case PlayerInput.OpenPauseMenu:
+                case PlayerInput.OpenMenu:
                     if (game.CurrentMenu is MenuInGame)
-                        game.CurrentMenu = new MenuGamePaused(game);
+                        game.CurrentMenu = new PlayerInventoryMenu(game);
                     else
                         game.CurrentMenu = new MenuInGame(game);
                     break;

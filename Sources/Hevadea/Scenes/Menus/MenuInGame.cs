@@ -71,11 +71,8 @@ namespace Hevadea.Scenes.Menus
                     _playerStats,
                     btnAttack, btnAction, btnDrop, btnPickup,
 
-                    new Button{ Text = "Pause", Origine = Anchor.TopLeft, Anchor = Anchor.TopLeft, UnitOffset = new Point(16,16)}
-                    .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new MenuGamePaused(Game); }),
-                    
-                    new Button{ Text = "Inventory", Origine = Anchor.TopLeft, Anchor = Anchor.TopLeft, UnitOffset = new Point(16 + 96,16)}
-                    .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new MenuPlayerInventory(Game.MainPlayer, RECIPIES.HandCrafted,Game); })
+                    new Button{ Text = "Inventory", Origine = Anchor.TopLeft, Anchor = Anchor.TopLeft, UnitOffset = new Point(16,16)}
+                    .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new PlayerInventoryMenu(Game); })
                 }
             };
         }
