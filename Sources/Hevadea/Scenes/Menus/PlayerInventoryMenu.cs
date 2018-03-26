@@ -15,6 +15,8 @@ namespace Hevadea.Scenes.Menus
 
         public PlayerInventoryMenu(GameManager game) : base(game)
         {
+            PauseGame = true;
+            
             var inventory = new WidgetItemContainer(game.MainPlayer.GetComponent<Inventory>().Content)
             {
                 Dock = Dock.Fill,
@@ -53,7 +55,7 @@ namespace Hevadea.Scenes.Menus
 
             Content = new TileContainer
             {
-                Flow = FlowDirection.LeftToRight,
+                Flow = FlowDirection.RightToLeft,
                 Childrens = { tabContainer, inventoryPanel }
             };
         }

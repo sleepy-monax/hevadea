@@ -30,7 +30,8 @@ namespace Hevadea.Framework.UI.Widgets
 
     public class ListWidget : Widget
      {
-        public int ItemHeight { get; set; } = 32;
+        public int ItemHeight { get; set; } = 48;
+        public int ItemMarging { get; set; } = 8;
         public Color BackColor { get; set; } = Color.White * 0.1f;
         public ListItem SelectedItem { get; private set; } = null;
 
@@ -62,10 +63,9 @@ namespace Hevadea.Framework.UI.Widgets
             foreach (var i in _items)
                 if (i != null)
                 {
-                    var p = new Point(Host.X + Scale(4), Host.Y + index * Scale(52) + _scrollOffset);
+                    var p = new Point(Host.X + Scale(4), Host.Y + index * Scale(ItemHeight + ItemMarging) + _scrollOffset);
 
-                    var rect = new Rectangle(p.X, p.Y, Host.Width - Scale(8), Scale(48));
-                    var sprite_rect = new Rectangle(p.X + Scale(8), p.Y + Scale(8), Scale(32), Scale(32));
+                    var rect = new Rectangle(p.X, p.Y, Host.Width - Scale(8), Scale(ItemHeight));
 
                     if (Rise.Pointing.AreaOver(rect) && Rise.Pointing.AreaOver(Host))
                     {
@@ -99,7 +99,7 @@ namespace Hevadea.Framework.UI.Widgets
 
                 spriteBatch.FillRectangle(
                     new Rectangle(Host.X + Host.Width - Scale(2), Host.Y + (int)(-_scrollOffset / scrollJump), Scale(2),
-                        (int)thumbHeight), Color.Gold);
+                        (int)thumbHeight), RiseColor.Accent);
             }
 
             Rise.Graphic.ResetScissor();
@@ -141,7 +141,7 @@ namespace Hevadea.Framework.UI.Widgets
                 IsDown = false;
             }
 
-            var maxScroll = _items.Count * Scale(52);
+            var maxScroll = _items.Count * Scale(ItemHeight + ItemMarging);
             _scrollOffset = Mathf.Clamp(_scrollOffset, -maxScroll + Math.Min(maxScroll, Host.Height), 0);
         }
     }

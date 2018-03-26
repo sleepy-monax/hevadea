@@ -147,7 +147,7 @@ namespace Hevadea.Scenes.Widgets
             var size = Scale(64);
             if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First();
 
-            _background.Draw(spriteBatch, new Padding(-4).Apply(Scale(_clientArea)), Color.White);
+            _background.Draw(spriteBatch, new Padding(-4).Apply(Scale(_clientArea)), Color.White * 0.99f);
 
             if (SelectedTab is ContainerTab c)
             {

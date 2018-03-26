@@ -30,6 +30,7 @@ namespace Hevadea.Game.Entities
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Pickup());
             AddComponent(new Burnable(1.5f));
+            AddComponent(new RevealMap());
         }
 
         public Item HoldingItem { get; set; }

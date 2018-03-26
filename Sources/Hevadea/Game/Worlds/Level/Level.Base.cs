@@ -2,6 +2,8 @@
 using Hevadea.Game.Entities;
 using Hevadea.Game.Tiles.Renderers;
 using System.Collections.Generic;
+using Hevadea.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Game.Worlds
 {
@@ -10,7 +12,9 @@ namespace Hevadea.Game.Worlds
         private GameManager _game;
         private World _world;
         private List<Entity>[,] _entitiesOnTiles;
+        
         public TileConection[,] CachedTileConnection;
+        public Texture2D Map { get; set; }
         
         public int Id { get; set; }
         public LevelProperties Properties { get; }
@@ -36,6 +40,8 @@ namespace Hevadea.Game.Worlds
             Entities = new List<Entity>();
             _entitiesOnTiles = new List<Entity>[Width, Height];
             CachedTileConnection = new TileConection[Width,Height];
+            
+            Map = new Texture2D(Rise.MonoGame.GraphicsDevice, width, height);
             
             for (var x = 0; x < Width; x++)
             for (var y = 0; y < Height; y++)

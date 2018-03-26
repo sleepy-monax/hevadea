@@ -16,19 +16,20 @@ namespace Hevadea.Game.Tiles
         private readonly List<TileTag> _tags;
         private TileRender _render = null;
 
-        public Tile()
+        public Color MiniMapColor { get; }
+        
+        public Tile(Color? minimapColor = null)
         {
             Id = TILES.ById.Count;
             TILES.ById.Add(this);
             _tags = new List<TileTag>();
+
+            MiniMapColor = minimapColor ?? Color.Gray;
         }
 
-        public Tile(TileRender renderer)
+        public Tile(TileRender renderer, Color? minimapColor = null) : this(minimapColor)
         {
-            Id = TILES.ById.Count;
-            TILES.ById.Add(this);
-            Render = renderer;
-            _tags = new List<TileTag>();
+            Render = renderer;            
         }
 
         public void Update(TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
@@ -43,6 +44,7 @@ namespace Hevadea.Game.Tiles
         {
             spriteBatch.FillRectangle(position.ToRectangle(), new Color(148, 120, 92));
             _render?.Draw(spriteBatch, position, level);
+            
             foreach (var t in _tags)
             {
                 if (t is IDrawableTag d) d.Draw(this, spriteBatch, position, data, level, gameTime);

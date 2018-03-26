@@ -28,7 +28,7 @@ namespace Hevadea.Framework.UI.Containers
                         c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X + itemWidth * index, UnitHost.Y, itemWidth, UnitHost.Height));
                         break;
                     case FlowDirection.RightToLeft:
-                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X + UnitHost.Width - (itemWidth * index), UnitHost.Y, itemWidth, UnitHost.Height));
+                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X + UnitHost.Width - (itemWidth *  (1+index)), UnitHost.Y, itemWidth, UnitHost.Height));
                         break;
                 }
                 

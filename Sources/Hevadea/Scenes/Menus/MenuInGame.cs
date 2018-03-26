@@ -58,20 +58,27 @@ namespace Hevadea.Scenes.Menus
             _playerStats = new WidgetPlayerStats(game.MainPlayer)
             {
                 UnitBound = new Rectangle(0, 0, 320, 64),
+                Origine = Anchor.TopLeft,
+                Anchor = Anchor.TopLeft,
+                UnitOffset = new Point(16, 16)
+            };
+            
+            var miniMap = new WidgetMinimap(game)
+            {
+                UnitBound = new Rectangle(0, 0, 128, 128),
                 Origine = Anchor.TopRight,
                 Anchor = Anchor.TopRight,
                 UnitOffset = new Point(-16, 16)
             };
-            
 
             Content = new AnchoredContainer
             {
                 Childrens =
                 {
-                    _playerStats,
+                    _playerStats, miniMap,
                     btnAttack, btnAction, btnDrop, btnPickup,
 
-                    new Button{ Text = "Inventory", Origine = Anchor.TopLeft, Anchor = Anchor.TopLeft, UnitOffset = new Point(16,16)}
+                    new Button{ Text = "Inventory", Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, UnitOffset = new Point(16,-16)}
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new PlayerInventoryMenu(Game); })
                 }
             };

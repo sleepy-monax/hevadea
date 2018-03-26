@@ -1,4 +1,7 @@
-﻿using Hevadea.Framework;
+﻿using System;
+using System.IO;
+using System.Net;
+using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
@@ -6,6 +9,7 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
+using Hevadea.Game.Loading;
 using Hevadea.Scenes.MainMenu.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -20,8 +24,15 @@ namespace Hevadea.Scenes.MainMenu
 
             var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, Scale = 1.5f};
             var creators = new Label { Text = "(c) 2017-2018 Interesting Games", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, Scale = 0.5f };
-            var continueButton = new Button { Text = "Continue", Anchor = Anchor.Center, Origine = Anchor.Top, UnitBound = new Rectangle(0, 0, 256, 64), UnitOffset = new Point(0, 64)};
-
+            var continueButton = new Button
+                {
+                    Text = "Continue",
+                    Anchor = Anchor.Center,
+                    Origine = Anchor.Top,
+                    UnitBound = new Rectangle(0, 0, 256, 64),
+                    UnitOffset = new Point(0, 64)
+                }
+                .RegisterMouseClickEvent(ContinueLastGame);
             var menu = new WidgetTabContainer
             {
                 Anchor = Anchor.Center,
@@ -40,7 +51,6 @@ namespace Hevadea.Scenes.MainMenu
                             {
                                 hevadeaLogo,
                                 creators,
-                                continueButton
                             }
                         }
                     },
@@ -70,6 +80,12 @@ namespace Hevadea.Scenes.MainMenu
                 }
             };
 
+            if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
+            {   
+                var container = (Container) menu.Tabs[0].Content;
+                container.Childrens.Add(continueButton);
+            }
+            
             if (Rise.Platform.Family == PlatformFamily.Mobile)
             {
                 Container = menu;
@@ -82,6 +98,14 @@ namespace Hevadea.Scenes.MainMenu
                 };
             }
 
+        }
+
+        private void ContinueLastGame(Widget sender)
+        {
+            if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
+            {
+                Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructLoadWorld(File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame"))));
+            }
         }
 
         public override void Unload()

@@ -83,6 +83,7 @@
     <Compile Include="Game\Entities\Components\Attributes\Pickup.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickupable.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Grow.cs" />
+    <Compile Include="Game\Entities\Components\Attributes\RevealMap.cs" />
     <Compile Include="Game\Entities\EntityBelt.cs" />
     <Compile Include="Game\Entities\EntityChest.cs" />
     <Compile Include="Game\Entities\Components\Ai\Agent.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Game\Loading\Tasks\TaskNewPlayer.cs" />
     <Compile Include="Game\Loading\Tasks\TaskPlayerLogin.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSaveWorld.cs" />
+    <Compile Include="Game\Loading\Tasks\TaskSetLastGame.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSetupServer.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToMenu.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToScene.cs" />
@@ -206,6 +208,7 @@
     <Compile Include="Scenes\Widgets\WidgetCrafting.cs" />
     <Compile Include="Scenes\Widgets\WidgetItemContainer.cs" />
     <Compile Include="Scenes\Widgets\WidgetItemFrame.cs" />
+    <Compile Include="Scenes\Widgets\WidgetMinimap.cs" />
     <Compile Include="Scenes\Widgets\WidgetPlayerStats.cs" />
     <Compile Include="Ressources.cs" />
     <Compile Include="Game\Tiles\Tile.cs" />

@@ -14,6 +14,7 @@ namespace Hevadea.Framework
     public static class Rise
     {
         // Configs
+        public static bool ShowDebugOverlay { get; set; } = false;
         public static bool DebugUI { get; set; } = false;
         public static bool ShowDebug { get; set; } = false;
         
@@ -113,14 +114,19 @@ namespace Hevadea.Framework
 
             if (Input.KeyDown(Keys.F3))
             {
-                Ui.ScaleFactor -= 0.001f;
+                Ui.ScaleFactor -= 0.01f;
                 Scene.GetCurrentScene()?.RefreshLayout();
             }
 
             if (Input.KeyDown(Keys.F4))
             {
-                Ui.ScaleFactor += 0.001f;
+                Ui.ScaleFactor += 0.01f;
                 Scene.GetCurrentScene()?.RefreshLayout();
+            }
+            
+            if (Input.KeyPress(Keys.F5))
+            {
+                ShowDebugOverlay = !ShowDebugOverlay;
             }
         }
 
@@ -130,7 +136,7 @@ namespace Hevadea.Framework
             Graphic.Clear(Color.Black);
             Scene.Draw(gameTime);
             
-            if (ShowDebug)
+            if (ShowDebugOverlay)
                 Debug.Draw(gameTime);
         }
     }

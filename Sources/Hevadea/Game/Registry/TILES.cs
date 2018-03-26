@@ -3,6 +3,7 @@ using Hevadea.Game.Items;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Tiles.Renderers;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Registry
 {
@@ -23,13 +24,13 @@ namespace Hevadea.Game.Registry
         public static void Initialize()
         {
             ROCK       = new Tile();
-            GRASS = new Tile();
-            SAND = new Tile();
-            WATER      = new Tile();
+            GRASS = new Tile(Color.Green);
+            SAND = new Tile(Color.Yellow);
+            WATER      = new Tile(Color.Blue);
             WOOD_FLOOR = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 5)));
             WOOD_WALL  = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 6)));
             VOID       = new Tile();
-            DIRT       = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 9)));
+            DIRT       = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 9)), Color.Brown);
             IRON_ORE   = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)));
         }
 

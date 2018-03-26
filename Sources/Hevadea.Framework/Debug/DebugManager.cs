@@ -23,6 +23,8 @@ namespace Hevadea.Framework.Debug
             
             _spriteBatch.DrawString(Rise.Ui.DebugFont, 
             $@"Hevadea
+Update: {Rise.MonoGame.UpdateTime}
+Draw:   {Rise.MonoGame.DrawTime}
 Running on platform: '{Rise.Platform.GetPlatformName()}'
 Screen: {Rise.Graphic.GetWidth()}, {Rise.Graphic.GetHeight()} 
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}", new Vector2(16, 16), Color.White);

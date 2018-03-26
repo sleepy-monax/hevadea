@@ -37,6 +37,7 @@ namespace Hevadea.Game.Loading
             {
                 Tasks =
                 {
+                    new TaskSetLastGame(),
                     new TaskGenerateWorld(seed),
                     new TaskNewPlayer(),
                     new TaskInitializeGame(),
@@ -52,6 +53,7 @@ namespace Hevadea.Game.Loading
             {
                 Tasks =
                 {
+                    new TaskSetLastGame(),
                     new TaskSaveWorld(),
                     new TaskSwitchToMenu(new MenuInGame(game))
                 }
@@ -64,6 +66,7 @@ namespace Hevadea.Game.Loading
             {
                 Tasks =
                 {
+                    new TaskSetLastGame(),
                     new TaskSaveWorld(),
                     new TaskSwitchToScene(new SceneMainMenu())
                 }
@@ -76,6 +79,7 @@ namespace Hevadea.Game.Loading
             {
                 Tasks =
                 {
+                    new TaskSetLastGame(),
                     new TaskLoadWorld(),
                     new TaskInitializeGame(),
                     new TaskEnterGame()

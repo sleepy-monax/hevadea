@@ -64,8 +64,9 @@ namespace Hevadea.Game
                     if (input.KeyPress(Keys.Subtract)) HandleInput(PlayerInput.Dzoom);
                 }
 
-                if (input.KeyPress(Keys.E) || input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenMenu);
             }
+            
+            if (input.KeyPress(Keys.E) || input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenMenu);
         }
         
         public void HandleInput(PlayerInput input)

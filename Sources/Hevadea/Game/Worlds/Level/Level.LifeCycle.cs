@@ -82,7 +82,9 @@ namespace Hevadea.Game.Worlds
         {
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
+            {
                 GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+            }
             
             ParticleSystem.Draw(spriteBatch, gameTime);
         }
