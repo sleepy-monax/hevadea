@@ -27,18 +27,22 @@ namespace Hevadea.Game.Loading.Tasks
                 SetStatus($"Loading level the '{levelName}'...");
                 
                 var level = LoadLevel(levelName, game.GetLevelSavePath(levelName));
-                
-                var task = new AsyncTask(() =>
-                {
-                    var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.Open);
-                    level.Map = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
-                    fs.Close();                    
-                });
 
-                Rise.AsyncTasks.Add(task);
-                
-                while (!task.Done) { }
-                
+                if (File.Exists(game.GetLevelMinimapSavePath(level)))
+                {                
+                    var task = new AsyncTask(() =>
+                    {
+                        var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.Open);
+                        level.Map = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
+                        fs.Close();                    
+                    });
+
+                    Rise.AsyncTasks.Add(task);
+                    
+                    while (!task.Done) { }
+                }
+
+     
                 world.Levels.Add(level);
                 
             }
