@@ -21,6 +21,8 @@ namespace Hevadea
 
         public static Texture2D ImgRock;
 
+        public static Texture2D ImgMap;
+        public static Texture2D ImgMapOver;
         public static Texture2D ImgLight;
         public static Texture2D ImgShadow;
         public static Texture2D ImgSwing;
@@ -55,6 +57,8 @@ namespace Hevadea
             FontRomulus = Rise.Ressource.GetSpriteFont("romulus");
             FontHack = Rise.Ressource.GetSpriteFont("hack");
 
+            ImgMap = Rise.Ressource.GetImage("map");
+            ImgMapOver = Rise.Ressource.GetImage("map_overlay");
             ImgTiles = Rise.Ressource.GetImage("tiles");
             ImgItems = Rise.Ressource.GetImage("items");
             ImgIcons = Rise.Ressource.GetImage("icons");

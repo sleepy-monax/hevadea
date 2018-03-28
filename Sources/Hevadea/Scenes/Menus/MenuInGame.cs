@@ -64,12 +64,13 @@ namespace Hevadea.Scenes.Menus
                 Anchor = Anchor.TopLeft,
                 UnitOffset = new Point(16, 16)
             };
-            
+
             var miniMap = new WidgetMinimap(game)
             {
-                UnitBound = new Rectangle(0, 0, 256, 256),
+                UnitBound = new Rectangle(0, 0, 384, 384),
                 Origine = Anchor.TopRight,
                 Anchor = Anchor.TopRight,
+                Padding = new Framework.UI.Padding(32),
                 UnitOffset = new Point(-16, 16)
             };
 

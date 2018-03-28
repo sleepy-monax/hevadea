@@ -126,15 +126,15 @@ namespace Hevadea.Framework
             }
 
 
-            if (Input.KeyDown(Keys.F3))
+            if (Input.KeyPress(Keys.F3))
             {
-                Ui.ScaleFactor -= 0.01f;
+                Ui.ScaleFactor /= 2f;
                 Scene.GetCurrentScene()?.RefreshLayout();
             }
 
-            if (Input.KeyDown(Keys.F4))
+            if (Input.KeyPress(Keys.F4))
             {
-                Ui.ScaleFactor += 0.01f;
+                Ui.ScaleFactor *= 2f;
                 Scene.GetCurrentScene()?.RefreshLayout();
             }
             
