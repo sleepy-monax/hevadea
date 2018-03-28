@@ -10,11 +10,11 @@ namespace Hevadea.Game.Entities.Components.Ai.Behaviors
     public class BehaviorAnimal : IBehavior
     {
         public List<Tile> NaturalEnvironment { get; set; } = new List<Tile>();
-        public float      MoveSpeed  { get; set; } = 1f;
+        public float      MoveSpeedWandering  { get; set; } = 1f;
         public float      IdleChance { get; set; } = 0.5f;
         public float      IdleTime   { get; set; } = 1.0f;
 
-        public void Update(Agent agent, GameTime gameTime)
+        public virtual void Update(Agent agent, GameTime gameTime)
         {
             if (agent.IsBusy()) return;
             
@@ -35,9 +35,9 @@ namespace Hevadea.Game.Entities.Components.Ai.Behaviors
                 var entityTilePosition = agent.Owner.GetTilePosition();
                 var destination = new TilePosition(entityTilePosition.X + dx, entityTilePosition.Y + dy);
 
-                if ((dx != 0 || dy !=0) && NaturalEnvironment.Contains(agent.Owner.Level.GetTile(destination)))
+                if ((dx != 0 || dy !=0) && (NaturalEnvironment.Contains(agent.Owner.Level.GetTile(destination)) || NaturalEnvironment.Count == 0))
                 {
-                    agent.MoveTo(destination, MoveSpeed);
+                    agent.MoveTo(destination, MoveSpeedWandering);
                 }
             }
         }

@@ -92,13 +92,13 @@ namespace Hevadea.Framework.UI.Widgets
 
             if (Rise.Pointing.AreaOver(Bound))
             {
-                var maxScroll = _items.Count * Scale(52);
+                var maxScroll = _items.Count * Scale(ItemHeight + ItemMarging);
                 var contentHeight = Math.Max(maxScroll, Host.Height);
                 var thumbHeight = Host.Height * (Host.Height / (float)contentHeight);
                 var scrollJump = (contentHeight - Host.Height) / (Host.Height - thumbHeight);
 
                 spriteBatch.FillRectangle(
-                    new Rectangle(Host.X + Host.Width - Scale(2), Host.Y + (int)(-_scrollOffset / scrollJump), Scale(2),
+                    new Rectangle(Host.X + Host.Width - Scale(4), Host.Y + (int)(-_scrollOffset / scrollJump), Scale(4),
                         (int)thumbHeight), RiseColor.Accent);
             }
 

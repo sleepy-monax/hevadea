@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Hevadea.Framework.Utils;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 
@@ -13,7 +14,11 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
                 List<PathFinder.Node> path;
                 path = new PathFinder(ag.Owner.Level, ag.Owner, maxDistance).GetPath(ag.Owner.GetTilePosition(), pos);
 
-                if (path == null) return false;
+                if (path == null)
+                {
+                    Logger.Log("no path");
+                    return false;
+                }
                 
                 foreach (var n in path)
                 {

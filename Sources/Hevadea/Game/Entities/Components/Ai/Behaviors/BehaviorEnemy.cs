@@ -5,28 +5,19 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Entities.Components.Ai.Behaviors
 {
-    public class BehaviorEnemy : IBehavior
+    public class BehaviorEnemy : BehaviorAnimal
     {
         public float AgroRange { get; set; } = 5f;
         public float FollowRange { get; set; } = 7f;
         public Entity Target { get; private set; } = null;
         public float ChanceToAgro { get; set; } = 0.5f;
+        public float MoveSpeedAgro { get; set; } = 0.5f;
 
-        public void IaAborted(Agent agent, AgentAbortReason why)
-        {
-            
-        }
-
-        public void IaFinish(Agent agent)
-        {
-           
-        }
-
-        public void Update(Agent agent, GameTime gameTime)
+        public override void Update(Agent agent, GameTime gameTime)
         {   
             if (Target != null &&
                 Target.Level == agent.Owner.Level &&
-                Mathf.Distance(agent.Owner.Position, Target.Position) > FollowRange * 16)
+                Mathf.Distance(agent.Owner.Position, Target.Position) > FollowRange * 16 && !agent.IsBusy())
             {
                 agent.Abort(AgentAbortReason.TagetLost);
                 Target = null; 
@@ -50,13 +41,13 @@ namespace Hevadea.Game.Entities.Components.Ai.Behaviors
 
                 if (Target != null)
                 {
-                    agent.MoveTo(Target.GetTilePosition(), 1f, true, (int)(FollowRange + 4));
+                    agent.MoveTo(Target.GetTilePosition(), MoveSpeedAgro, true, (int)(FollowRange + 4));
                 }
                 
             }
             
-            //if (!agent.IsBusy())
-            //    base.Update(agent, gameTime);                
+            if (!agent.IsBusy())
+                base.Update(agent, gameTime);                
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Hevadea.Framework.UI.Containers;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Platform;
+using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Hevadea.Game;
@@ -76,12 +78,17 @@ namespace Hevadea.Scenes.Menus
                 Childrens =
                 {
                     _playerStats, miniMap,
-                    btnAttack, btnAction, btnDrop, btnPickup,
 
                     new Button{ Text = "Inventory", Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, UnitOffset = new Point(16,-16)}
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new PlayerInventoryMenu(Game); })
                 }
             };
+
+            if (Rise.Platform.Family == PlatformFamily.Mobile)
+            {
+                var c = (Container) Content;
+                c.AddChilds(btnAttack, btnAction, btnDrop, btnPickup);
+            }
         }
     }
 }

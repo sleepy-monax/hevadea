@@ -60,8 +60,8 @@ namespace Hevadea.Game
                     if (input.KeyPress(Keys.A)) HandleInput(PlayerInput.DropItem);
 
 
-                    if (input.KeyPress(Keys.Add)) HandleInput(PlayerInput.Zoom);
-                    if (input.KeyPress(Keys.Subtract)) HandleInput(PlayerInput.Dzoom);
+                    if (input.KeyPress(Keys.Add) || input.KeyPress(Keys.Up)) HandleInput(PlayerInput.Zoom);
+                    if (input.KeyPress(Keys.Subtract) || input.KeyPress(Keys.Down)) HandleInput(PlayerInput.Dzoom);
                 }
 
             }
