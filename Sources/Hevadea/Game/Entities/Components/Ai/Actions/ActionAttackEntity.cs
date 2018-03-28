@@ -7,19 +7,21 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
 {
     public class ActionAttackEntity : IAction
     {
-        private Entity _taget;
-        private float _atackRange;
+        private readonly Entity _taget;
+        private readonly float  _range;
         
-        public ActionAttackEntity(Entity e)
+        public ActionAttackEntity(Entity e, float range)
         {
             _taget = e;
+            _range = range;
         }
         
         public bool IsStillRunning(Agent agent)
         {
-            return !_taget.Removed &&
+            // Check if the target is still in this level and in range.
+            return !_taget.Removed && _taget.Level == agent.Owner.Level &&
                    Mathf.Distance(_taget.X, _taget.Y, agent.Owner.X, agent.Owner.Y) 
-                   < _atackRange * 16f && agent.Owner.HasComponent<Attack>();
+                   < _range * 16f && agent.Owner.HasComponent<Attack>();
         }
 
         public void Perform(Agent agent, GameTime gameTime)

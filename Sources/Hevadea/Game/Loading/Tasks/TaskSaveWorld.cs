@@ -5,6 +5,8 @@ using Hevadea.Game.Storage;
 using Hevadea.Game.Worlds;
 using System.Collections.Generic;
 using System.IO;
+using Hevadea.Framework;
+using Hevadea.Framework.Threading;
 
 namespace Hevadea.Game.Loading.Tasks
 {
@@ -28,6 +30,20 @@ namespace Hevadea.Game.Loading.Tasks
                 
                 SetStatus($"Writing the '{level.Name}' to disk...");
                 File.WriteAllText(path, levelJson);
+                
+                SetStatus($"Writing the '{level.Name}' minimap to disk...");
+                
+                var task = new AsyncTask(() =>
+                {
+                    var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.OpenOrCreate);
+                    level.Map.SaveAsPng(fs, level.Width, level.Height);
+                    fs.Close();                    
+                });
+                
+                Rise.AsyncTasks.Add(task);
+
+                while (!task.Done){}
+                
                 levelsName.Add(level.Name);
                 
                 Logger.Log<TaskSaveWorld>($"Level saved to '{path}'.");

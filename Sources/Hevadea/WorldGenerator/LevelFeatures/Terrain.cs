@@ -2,10 +2,20 @@
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 using System.Collections.Generic;
+using Hevadea.WorldGenerator.Functions;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
-    public class BaseTerainFeature : LevelFeature
+    public class TerrainLayer
+    {
+        public Tile Tile { get; set; } = TILES.WATER;
+        public IFunction Function { get; set; } = new FlatFunction(1f);
+        public float Threashold { get; set; } = 1f;
+        public int Priority { get; set; } = 0;
+        public List<Tile> TileRequired { get; set; } = new List<Tile>();
+    }
+    
+    public class Terrain : LevelFeature
     {
         public List<TerrainLayer> Layers { get; set; } = new List<TerrainLayer>();
         private float _progress = 0;

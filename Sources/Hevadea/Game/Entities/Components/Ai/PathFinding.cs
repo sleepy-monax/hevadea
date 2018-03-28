@@ -40,15 +40,17 @@ namespace Hevadea.Game.Entities.Components.Ai
         private Entity _entity;
         
         public List<EntityBlueprint> IngnoredEntity { get; set; } = new List<EntityBlueprint>();
+        public int MaxSearchDistance;
         
-        public PathFinder(Level level, Entity entity)
+        public PathFinder(Level level, Entity entity, int maxSearch)
         {
             _nodes = new Node[level.Width,level.Height];
             _level = level;
             _entity = entity;
+            MaxSearchDistance = maxSearch;
         }
 
-        public List<Node> PathFinding(TilePosition start, TilePosition end)
+        public List<Node> GetPath(TilePosition start, TilePosition end)
         {
             var startNode = GetNode(start.X, start.Y);
             var targetNode = GetNode(end.X, end.Y);
@@ -76,7 +78,7 @@ namespace Hevadea.Game.Entities.Components.Ai
                     return RetracePath(startNode, targetNode);
                 }
 
-                foreach (var neighbour in GetNeighbours(currentNode.X, currentNode.Y))
+                foreach (var neighbour in GetNeighbours(currentNode.X, currentNode.Y, start))
                 {
                     if (!neighbour.IsWalkable || closedSet.Contains(neighbour))
                     {
@@ -109,7 +111,7 @@ namespace Hevadea.Game.Entities.Components.Ai
             return _nodes[tx, ty];
         }
         
-        private List<Node> GetNeighbours(int tx, int ty)
+        private List<Node> GetNeighbours(int tx, int ty, TilePosition start)
         {
             var neighbours = new List<Node>();
 
@@ -124,9 +126,13 @@ namespace Hevadea.Game.Entities.Components.Ai
                     int checkX = tx + x;
                     int checkY = ty + y;
 
-                    if (checkX >= 0 && checkX < _level.Width && checkY >= 0 && checkY < _level.Height)
+                    if (checkX >= 0 && 
+                        checkX < _level.Width &&
+                        checkY >= 0 &&
+                        checkY < _level.Height &&
+                        Mathf.Distance(checkX, checkY, start.X, start.Y) < MaxSearchDistance)
                     {
-                        neighbours.Add(GetNode( checkX, checkY));
+                        neighbours.Add(GetNode(checkX, checkY));
                     }
                     
                 }

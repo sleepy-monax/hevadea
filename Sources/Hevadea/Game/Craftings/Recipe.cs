@@ -29,19 +29,27 @@ namespace Hevadea.Game.Craftings
             return this;
         }
         
-        public virtual bool CanBeCrafted(ItemStorage i)
+        public virtual bool CanBeCrafted(ItemStorage inventory)
         {
-            return Costs.Aggregate(true, (current, c) => current && i.Count(c.Item) >= c.Count);
+            bool result = true;
+            
+            foreach (var cost in Costs) 
+                result &= inventory.Count(cost.Item) >= cost.Count;
+            
+            return result;
         }
 
         public virtual bool Craft(ItemStorage i)
         {
-            if (!CanBeCrafted(i) || i.GetFreeSpace() < Quantity) return false;
+            if (CanBeCrafted(i) && i.GetFreeSpace() >= Quantity)
+            {
+                i.Add(Result, Quantity);
+                foreach (var c in Costs) i.Remove(c.Item, c.Count);
 
-            i.Add(Result, Quantity);
-            foreach (var c in Costs) i.Remove(c.Item, c.Count);
+                return true;
+            }
 
-            return true;
+            return false;
         }
     }
 }

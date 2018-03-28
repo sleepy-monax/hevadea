@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Hevadea.Framework
 {
@@ -20,6 +21,8 @@ namespace Hevadea.Framework
 
         public int DrawTime { get; private set; } = 0;
         public int UpdateTime { get; private set; } = 0;
+
+        public Thread UiThread { get; private set; } = null;
 
         public MonoGameHandler()
         {
@@ -64,6 +67,8 @@ namespace Hevadea.Framework
 
         protected override void Draw(GameTime gameTime)
         {
+            if (UiThread == null) UiThread = Thread.CurrentThread;
+            
             _drawStopwatch.Start();
             OnDraw?.Invoke(this, gameTime);
             _drawStopwatch.Stop();

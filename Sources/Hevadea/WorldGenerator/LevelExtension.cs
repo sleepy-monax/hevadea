@@ -3,6 +3,7 @@ using Hevadea.Game.Worlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.WorldGenerator
 {
@@ -50,6 +51,11 @@ namespace Hevadea.WorldGenerator
             level.PlotLine(x, y, x + w - 1, y, tile);
             level.PlotLine(x, y + h - 1, x + w - 1, y + h - 1, tile);
             level.PlotLine(x + w - 1, y, x + w - 1, y + h - 1, tile);
+        }
+
+        public static void FillRectangle(this Level level, Rectangle rect, Tile tile)
+        {
+            level.FillRectangle(rect.X, rect.Y, rect.Width, rect.Height, tile);
         }
         
         public static void FillRectangle(this Level level, int x, int y, int w, int h, Tile tile)

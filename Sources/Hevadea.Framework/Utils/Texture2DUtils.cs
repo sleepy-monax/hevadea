@@ -11,6 +11,20 @@ namespace Hevadea.Framework.Utils
             return tex.Bounds.Center.ToVector2();
         }
 
+
+        public static void Clear(this Texture2D tex, Color c)
+        {
+            var size = tex.Width * tex.Height;
+            var data = new Color[size];
+            
+            for (int i = 0; i < size; i++)
+            {
+                data[i] = c;
+            }
+            
+            tex.SetData(data);
+        }
+        
         public static void SetPixel(this Texture2D tex, int x, int y,  Color c)
         {
             if (x >= 0 && x < tex.Width && y >= 0 && y < tex.Height)

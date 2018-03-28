@@ -8,6 +8,8 @@ using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
+using Hevadea.Framework.Threading;
 
 namespace Hevadea.Framework
 {
@@ -17,7 +19,8 @@ namespace Hevadea.Framework
         public static bool ShowDebugOverlay { get; set; } = false;
         public static bool DebugUI { get; set; } = false;
         public static bool ShowDebug { get; set; } = false;
-        
+        public static List<AsyncTask> AsyncTasks = new List<AsyncTask>();
+
         // Components
         [Obsolete] public static LegacyInputManager Input;
 
@@ -95,6 +98,17 @@ namespace Hevadea.Framework
 
         private static void MonoGameOnUpdate(Game sender, GameTime gameTime)
         {
+            lock (AsyncTasks)
+            {
+                foreach (var task in AsyncTasks)
+                {
+                    task.Task();
+                    task.Done = true;
+                }
+                
+                AsyncTasks.Clear();
+            }
+            
             Pointing.Update();
             Input.Update(gameTime);
             Keyboard.Update();

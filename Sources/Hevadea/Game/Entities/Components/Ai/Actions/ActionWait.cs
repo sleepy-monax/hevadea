@@ -1,13 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Game.Entities.Components.Ai.Actions
 {
     public class ActionWait : IAction
     {
-        private double _time = 0f;
+        private float _time = 0f;
 
-        public ActionWait(double time)
+        public ActionWait(float time)
         {
             _time = time;
         }
@@ -24,7 +25,7 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
 
         public void Perform(Agent agent, GameTime gameTime)
         {
-            _time -= gameTime.ElapsedGameTime.TotalSeconds;
+            _time -= gameTime.GetDeltaTime();
         }
     }
 }

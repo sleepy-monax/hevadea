@@ -16,6 +16,9 @@ namespace Hevadea.Game
         public string GetLevelSavePath(Level level)
             => $"{SavePath}/{level.Name}.json";
         
+        public string GetLevelMinimapSavePath(Level level)
+            => $"{SavePath}/{level.Name}-minimap.png";
+        
         public string GetLevelSavePath(string level)
             => $"{SavePath}/{level}.json";
     }

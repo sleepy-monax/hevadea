@@ -38,7 +38,7 @@ namespace Hevadea.Scenes
         {
             if (!(gameTime.TotalGameTime.TotalSeconds > 3) || !_once) return;
             Rise.Scene.Switch(new SceneMainMenu());
-            //Rise.Scene.Switch(new TestScene());
+            // Rise.Scene.Switch(new TestScene());
             _once = false;
         }
 

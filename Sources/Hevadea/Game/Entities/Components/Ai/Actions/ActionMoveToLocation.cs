@@ -8,25 +8,25 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
 {
     public class ActionMoveToLocation : IAction
     {
-        private TilePosition _targetPosition;
-        private float _speed;
+        private readonly TilePosition _destination;
+        private readonly float        _speed;
         
-        public ActionMoveToLocation(TilePosition targetPosition, float speed = 1f)
+        public ActionMoveToLocation(TilePosition destination, float speed = 1f)
         {
-            _targetPosition = targetPosition;
+            _destination = destination;
             _speed = speed;
         }
         
         public bool IsStillRunning(Agent agent)
         {
-            return !(_targetPosition.GetCenter() == agent.Owner.Position) && agent.Owner.HasComponent<Move>();
+            return !(_destination.GetCenter() == agent.Owner.Position) && agent.Owner.HasComponent<Move>();
         }
 
         public void Perform(Agent agent, GameTime gameTime)
         {
             var agentPosition = agent.Owner.Position;
-            agent.Owner.GetComponent<Move>()?.MoveTo(_targetPosition, null, _speed);
-
+            agent.Owner.GetComponent<Move>()?.MoveTo(_destination, null, _speed);
+            
             if (agentPosition == agent.Owner.Position)
             {
                 // Agent Stuck... abort
@@ -36,7 +36,7 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
 
         public void DrawDebugInfo(Agent agent, SpriteBatch spriteBatch)
         {
-            spriteBatch.FillRectangle(_targetPosition.WorldX, _targetPosition.WorldY, 16, 16, Color.AliceBlue * 0.75f);
+            spriteBatch.FillRectangle(_destination.WorldX, _destination.WorldY, 16, 16, Color.AliceBlue * 0.75f);
         }
     }
 }

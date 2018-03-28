@@ -74,7 +74,9 @@
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionWait.cs" />
+    <Compile Include="Game\Entities\Components\Ai\Actions\HelperAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\Behaviors\BehaviorAnimal.cs" />
+    <Compile Include="Game\Entities\Components\Ai\Behaviors\BehaviorEnemy.cs" />
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />
     <Compile Include="Game\Entities\Components\Ai\PathFinding.cs" />
@@ -225,11 +227,11 @@
     <Compile Include="WorldGenerator\Functions\IslandFunction.cs" />
     <Compile Include="WorldGenerator\Functions\PerlinFunction.cs" />
     <Compile Include="WorldGenerator\LevelExtension.cs" />
-    <Compile Include="WorldGenerator\LevelFeatures\BaseTerainFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\BspDecorator.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\Terrain.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\CompoundFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\HouseFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\PopulateFeature.cs" />
-    <Compile Include="WorldGenerator\LevelFeatures\TerrainLayer.cs" />
     <Compile Include="WorldGenerator\Generator.cs" />
     <Compile Include="WorldGenerator\LevelFeature.cs" />
     <Compile Include="WorldGenerator\LevelGenerator.cs" />

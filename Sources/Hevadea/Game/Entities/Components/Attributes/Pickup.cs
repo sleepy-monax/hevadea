@@ -48,7 +48,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
             
             _pickupedEntity.Facing = Owner.Facing;
             Owner.Level.SpawnEntity(_pickupedEntity, facingTile.X, facingTile.Y);
-            _pickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.Pickup);
+            _pickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
             _pickupedEntity = null;
 
             return true;

@@ -20,10 +20,11 @@ namespace Hevadea.Scenes.Widgets
             {
                 var map = _game.MainPlayer.Level.Map;
                 var p = _game.MainPlayer.GetTilePosition();
-                spriteBatch.Draw(map, Host, new Rectangle(p.X - 32, p.Y - 32, 64, 64), Color.White);
+                var src = new Rectangle(p.X - UnitHost.Width / 4 / 2, p.Y - UnitHost.Width / 4 / 2, UnitHost.Width / 4,
+                    UnitHost.Height / 4);
+                spriteBatch.Draw(map, new Rectangle(Host.X + Scale(4), Host.Y + Scale(4), Host.Width, Host.Height), src, Color.Black * 0.5f);
+                spriteBatch.Draw(map, Host, src, Color.White);
             }
-            
-            GuiHelper.DrawBox(spriteBatch, Host, Scale(64));
         }
     }
 }

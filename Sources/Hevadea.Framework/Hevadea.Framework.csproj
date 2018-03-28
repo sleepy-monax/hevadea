@@ -79,6 +79,7 @@
     <Compile Include="RiseColor.cs" />
     <Compile Include="Scening\Scene.cs" />
     <Compile Include="Scening\SceneManager.cs" />
+    <Compile Include="Threading\AsyncTask.cs" />
     <Compile Include="UI\Containers\AnchoredContainer.cs" />
     <Compile Include="UI\Containers\Container.cs" />
     <Compile Include="UI\Containers\DockContainer.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="UI\Widgets\TextBox\TextBoxWidget.cs" />
     <Compile Include="Graphic\Text\TextRenderer.cs" />
     <Compile Include="Utils\Anchore.cs" />
+    <Compile Include="Utils\BspTree.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Utils\Compression.cs" />
     <Compile Include="Utils\EasingManager.cs" />

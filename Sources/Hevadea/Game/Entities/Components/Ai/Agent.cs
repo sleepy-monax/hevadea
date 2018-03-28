@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Hevadea.Game.Entities.Components.Ai
 {
-    public enum AgentAbortReason { None, ImStuck, Pickup}
+    public enum AgentAbortReason { None, ImStuck, PickedUp, TagetLost }
 
     public class Agent: EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
     {
@@ -17,6 +17,7 @@ namespace Hevadea.Game.Entities.Components.Ai
 
         public Agent()
         {
+            
         }
 
         public bool IsBusy()

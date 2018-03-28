@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.Framework.Utils
 {
@@ -324,6 +325,11 @@ namespace Hevadea.Framework.Utils
         /// <param name="f">The value</param>
         public static float Tan(float f) { return (float)Math.Tan(f); }
 
+        public static float Distance(Vector2 vec0, Vector2 vec1)
+        {
+            return Distance(vec0.X, vec0.Y, vec1.X, vec1.Y);
+        }
+        
         public static float Distance(float aX, float aY, float bX, float bY)
         {
             return Sqrt((aX - bX) * (aX - bX) + (aY - bY) * (aY - bY));

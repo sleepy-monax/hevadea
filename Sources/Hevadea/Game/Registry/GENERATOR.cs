@@ -20,7 +20,7 @@ namespace Hevadea.Game.Registry
                 Properties = LEVELS.SURFACE,
                 Features =
                 {
-                    new BaseTerainFeature
+                    new Terrain
                     {
                         Layers =
                         {
@@ -77,7 +77,7 @@ namespace Hevadea.Game.Registry
                                 PlacingFunction = new PerlinFunction(1, 0.5, 10),
                                 Threashold = 0.5f,
                             },
-                            new PopulateFeature(ENTITIES.CHIKEN)
+                            new PopulateFeature(ENTITIES.ZOMBIE)
                             {
                                 Chance = 100,
                                 CanBePlantOn = {TILES.GRASS},
@@ -118,7 +118,7 @@ namespace Hevadea.Game.Registry
                 Properties = LEVELS.UNDERGROUND,
                 Features =
                 {
-                    new BaseTerainFeature
+                    new Terrain
                     {
                         Layers =
                         {

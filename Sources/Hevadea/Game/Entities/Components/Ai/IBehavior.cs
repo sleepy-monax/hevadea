@@ -6,7 +6,6 @@ namespace Hevadea.Game.Entities.Components.Ai
     {
         void IaAborted(Agent agent, AgentAbortReason why);
         void IaFinish(Agent agent);
-        
         void Update(Agent agent, GameTime gameTime);
     }
 }
