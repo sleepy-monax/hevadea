@@ -102,7 +102,6 @@
     <Compile Include="UI\Widgets\TextBox\TextBoxWidget.cs" />
     <Compile Include="Graphic\Text\TextRenderer.cs" />
     <Compile Include="Utils\Anchore.cs" />
-    <Compile Include="Utils\BspTree.cs" />
     <Compile Include="Utils\Colision.cs" />
     <Compile Include="Utils\Compression.cs" />
     <Compile Include="Utils\EasingManager.cs" />

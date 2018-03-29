@@ -3,6 +3,7 @@ using Hevadea.Game.Tiles;
 using Maker.Rise.Utils;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.Utils;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {

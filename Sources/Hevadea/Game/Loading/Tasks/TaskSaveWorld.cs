@@ -33,10 +33,12 @@ namespace Hevadea.Game.Loading.Tasks
                 
                 SetStatus($"Writing the '{level.Name}' minimap to disk...");
                 
+                File.WriteAllText(game.GetLevelMinimapDataPath(level), level.Minimap.Waypoints.ToJson());
+                
                 var task = new AsyncTask(() =>
                 {
                     var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.OpenOrCreate);
-                    level.Map.SaveAsPng(fs, level.Width, level.Height);
+                    level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
                     fs.Close();                    
                 });
                 

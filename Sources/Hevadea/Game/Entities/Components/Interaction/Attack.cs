@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Hevadea.Utils;
 
 namespace Hevadea.Game.Entities.Components.Interaction
 {
@@ -22,7 +23,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
         public Rectangle HitBox { get; private set; }
         public Point HitBoxSize { get; set; } = new Point(26, 26);
         
-        private Direction _lastDirection = Direction.Up;
+        private Direction _lastDirection = Direction.North;
         private double _speedFactor = 1;
         private double _timer;
 
@@ -46,16 +47,16 @@ namespace Hevadea.Game.Entities.Components.Interaction
 
             switch (_lastDirection)
             {
-                case Direction.Up:
+                case Direction.North:
                     _swingUP.Draw(spriteBatch, HitBox, Color.White);
                     break;
-                case Direction.Right:
+                case Direction.East:
                     _swingRight.Draw(spriteBatch, HitBox, Color.White);
                     break;
-                case Direction.Down:
+                case Direction.South:
                     _swingDown.Draw(spriteBatch, HitBox, Color.White);
                     break;
-                case Direction.Left:
+                case Direction.West:
                     _swingLeft.Draw(spriteBatch, HitBox, Color.White);
                     break;
             }
@@ -88,10 +89,10 @@ namespace Hevadea.Game.Entities.Components.Interaction
 
         private static Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
         {
-            {Direction.Up, Anchor.Bottom},
-            {Direction.Down, Anchor.Top},
-            {Direction.Left, Anchor.Right},
-            {Direction.Right, Anchor.Left},
+            {Direction.North, Anchor.Bottom},
+            {Direction.South, Anchor.Top},
+            {Direction.West, Anchor.Right},
+            {Direction.East, Anchor.Left},
         };
         
         public void Do(Item weapon)

@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Utils.Json;
+﻿using System.Collections.Generic;
+using Hevadea.Framework.Utils.Json;
 using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
@@ -27,13 +28,19 @@ namespace Hevadea.Game.Loading.Tasks
                 SetStatus($"Loading level the '{levelName}'...");
                 
                 var level = LoadLevel(levelName, game.GetLevelSavePath(levelName));
-
+                
+                if (File.Exists(game.GetLevelMinimapDataPath(level)))
+                {
+                    level.Minimap.Waypoints = File.ReadAllText(game.GetLevelMinimapDataPath(level)).FromJson<List<MinimapWaypoint>>() 
+                                              ?? new List<MinimapWaypoint>();
+                }
+                
                 if (File.Exists(game.GetLevelMinimapSavePath(level)))
                 {                
                     var task = new AsyncTask(() =>
                     {
                         var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.Open);
-                        level.Map = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
+                        level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
                         fs.Close();                    
                     });
 

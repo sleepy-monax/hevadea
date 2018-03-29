@@ -1,8 +1,8 @@
 ﻿using System;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Utils
 {
     public class BspTreeNode
     {

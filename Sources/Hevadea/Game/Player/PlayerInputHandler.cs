@@ -5,6 +5,7 @@ using Hevadea.Game.Entities.Components;
 using Hevadea.Game.Entities.Components.Attributes;
 using Hevadea.Game.Entities.Components.Interaction;
 using Hevadea.Scenes.Menus;
+using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -14,6 +15,7 @@ namespace Hevadea.Game
     {
         MoveLeft, MoveRight, MoveUp, MoveDown, 
         Action, Attack, Pickup, DropItem,
+        AddWaypoint,
         OpenMenu, Zoom, Dzoom
     }
 
@@ -59,7 +61,8 @@ namespace Hevadea.Game
                     if (input.KeyPress(Keys.L)) HandleInput(PlayerInput.Pickup);
                     if (input.KeyPress(Keys.A)) HandleInput(PlayerInput.DropItem);
 
-
+                    if (input.KeyPress(Keys.X)) HandleInput(PlayerInput.AddWaypoint);
+                    
                     if (input.KeyPress(Keys.Add) || input.KeyPress(Keys.Up)) HandleInput(PlayerInput.Zoom);
                     if (input.KeyPress(Keys.Subtract) || input.KeyPress(Keys.Down)) HandleInput(PlayerInput.Dzoom);
                 }
@@ -77,16 +80,16 @@ namespace Hevadea.Game
             switch (input)
             {
                 case PlayerInput.MoveLeft:
-                    playerMovement.Do(-1, 0, Direction.Left);
+                    playerMovement.Do(-1, 0, Direction.West);
                     break;
                 case PlayerInput.MoveRight:
-                    playerMovement.Do(+1, 0, Direction.Right);
+                    playerMovement.Do(+1, 0, Direction.East);
                     break;
                 case PlayerInput.MoveUp:
-                    playerMovement.Do(0, -1, Direction.Up);
+                    playerMovement.Do(0, -1, Direction.North);
                     break;
                 case PlayerInput.MoveDown:
-                    playerMovement.Do(0, +1, Direction.Down);
+                    playerMovement.Do(0, +1, Direction.South);
                     break;
                 case PlayerInput.Action:
                     if (Player.GetComponent<Inventory>().Content.Count(Player.HoldingItem) == 0)
@@ -120,6 +123,10 @@ namespace Hevadea.Game
                 
                 case PlayerInput.Dzoom:
                         if(game.Camera.Zoom > 2) game.Camera.Zoom *= 0.8f;
+                    break;
+                case PlayerInput.AddWaypoint :
+                    var pos = game.MainPlayer.GetTilePosition();
+                    game.MainPlayer.Level.Minimap.Waypoints.Add(new MinimapWaypoint{X = pos.X, Y = pos.Y, Icon = 0});
                     break;
             }
         }

@@ -65,8 +65,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameConfig.cs" />
-    <Compile Include="Game\Direction.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="ConstVal.cs" />
     <Compile Include="Game\Craftings\Recipe.cs" />
@@ -79,7 +77,6 @@
     <Compile Include="Game\Entities\Components\Ai\Behaviors\BehaviorEnemy.cs" />
     <Compile Include="Game\Entities\Components\Ai\IAction.cs" />
     <Compile Include="Game\Entities\Components\Ai\IBehavior.cs" />
-    <Compile Include="Game\Entities\Components\Ai\PathFinding.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Burnable.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Explode.cs" />
     <Compile Include="Game\Entities\Components\Attributes\Pickup.cs" />
@@ -161,6 +158,7 @@
     <Compile Include="Game\Loading\Tasks\TaskSetupServer.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToMenu.cs" />
     <Compile Include="Game\Loading\Tasks\TaskSwitchToScene.cs" />
+    <Compile Include="Game\Minimap.cs" />
     <Compile Include="Game\Networking\PacketFactorie.cs" />
     <Compile Include="Game\Player\PlayerInputHandler.cs" />
     <Compile Include="Game\Registry\ENTITIES.cs" />
@@ -221,6 +219,11 @@
     <Compile Include="Scenes\SceneGameSplash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\Widgets\WidgetTabContainer.cs" />
+    <Compile Include="Utils\BspTree.cs" />
+    <Compile Include="Utils\Direction.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\Maze.cs" />
+    <Compile Include="Utils\PathFinding.cs" />
     <Compile Include="WorldGenerator\Functions\CombinedFunction.cs" />
     <Compile Include="WorldGenerator\Functions\FlatFunction.cs" />
     <Compile Include="WorldGenerator\Functions\IFunction.cs" />

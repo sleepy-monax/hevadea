@@ -5,6 +5,7 @@ using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Utils;
 using Hevadea.Scenes.Widgets;
+using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,40 +14,42 @@ namespace Hevadea.Scenes
 {
     class TestScene : Scene
     {
-        public BspTree tree;
+        public Maze maze;
         private SpriteBatch sb;
+        private int CellSize = 56;
+        private int mazeSize = 8;
         public override void Load()
         {
-            tree = BspTree.BuildBspTree(0, 0, 400, 400, 4, new Random());
+            maze = new Maze(mazeSize, mazeSize, Rise.Rnd);
             sb = Rise.Graphic.CreateSpriteBatch();
         }
 
         public override void OnDraw(GameTime gameTime)
         {
+            Rise.Graphic.Clear(Color.White);
             sb.Begin();
-            Drawt(tree.Root);
-            sb.End();
-        }
-
-        void Drawt(BspTreeNode node)
-        {
-            if (node.HasChildrens)
+            
+            for (var x = 0; x < mazeSize; x++)
+            for (var y = 0; y < mazeSize; y++)
             {
-                sb.DrawRectangle(node.Item0.ToRectangle(), Color.Blue);
-                sb.DrawRectangle(node.Item1.ToRectangle(), Color.Blue);
-                sb.DrawLine(node.Item0.GetCenter().ToVector2(), node.Item1.GetCenter().ToVector2(), Color.Red);
-
-                
-                Drawt(node.Item0);
-                Drawt(node.Item1);
+               sb.FillRectangle(new Rectangle(x*CellSize+4, y*CellSize+4, CellSize - 8, CellSize - 8), Color.Black);
             }
+
+            foreach (var d in maze.Doors)
+            {
+                if (d != null)
+                sb.DrawLine(d.Cell0.X * CellSize + CellSize / 2, d.Cell0.Y * CellSize + CellSize / 2,
+                            d.Cell1.X * CellSize + CellSize / 2, d.Cell1.Y * CellSize + CellSize / 2, Color.Black, 16f);
+            }
+            
+            sb.End();
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
             if (Rise.Input.KeyDown(Keys.A))
             {
-                tree = BspTree.BuildBspTree(0, 0, 400, 400, 3, new Random());
+                maze = new Maze(mazeSize, mazeSize, Rise.Rnd);
             }    
         }
 

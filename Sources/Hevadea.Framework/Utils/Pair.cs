@@ -1,4 +1,4 @@
-﻿namespace Maker.Rise.Utils
+﻿namespace Hevadea.Framework.Utils
 {
     public class Pair<T, U>
     {

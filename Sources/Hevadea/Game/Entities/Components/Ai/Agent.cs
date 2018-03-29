@@ -29,7 +29,7 @@ namespace Hevadea.Game.Entities.Components.Ai
         {
             CurrentAction = null;
             ActionQueue.Clear();
-            Logger.Log<Agent>($"{Owner.Ueid} aborted: {why}");
+            Logger.Log<Agent>($"{Owner.GetIdentifier()} aborted: {why}");
             Behavior?.IaAborted(this, why);
         }
         
@@ -57,6 +57,7 @@ namespace Hevadea.Game.Entities.Components.Ai
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            
             if (Rise.ShowDebug)
             {    
                 CurrentAction?.DrawDebugInfo(this, spriteBatch);

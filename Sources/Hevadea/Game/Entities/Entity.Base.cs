@@ -2,6 +2,7 @@
 using Hevadea.Game.Registry;
 using Hevadea.Game.Storage;
 using Hevadea.Game.Worlds;
+using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -13,7 +14,7 @@ namespace Hevadea.Game.Entities
         public int Ueid = -1;
         public float X { get; private set; }
         public float Y { get; private set; }
-        public Direction Facing { get; set; } = Direction.Down;
+        public Direction Facing { get; set; } = Direction.South;
         public bool Removed { get; set; } = true;
         public EntityBlueprint Blueprint { get; set; } = null;
         public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
@@ -39,6 +40,10 @@ namespace Hevadea.Game.Entities
             Level?.AddEntityToTile(pos, this);
         }
 
+        public string GetIdentifier()
+        {
+            return $"<{Blueprint?.Name ?? "none"}>{Ueid}[{(int)X}, {(int)Y}]";
+        }
         #endregion
 
         #region Virtual methodes

@@ -16,7 +16,7 @@ namespace Hevadea.Game.Worlds
         private List<Entity>[,] _entitiesOnTiles;
         
         public TileConection[,] CachedTileConnection;
-        public Texture2D Map { get; set; }
+        public Minimap Minimap;
         
         public int Id { get; set; }
         public LevelProperties Properties { get; }
@@ -43,8 +43,7 @@ namespace Hevadea.Game.Worlds
             _entitiesOnTiles = new List<Entity>[Width, Height];
             CachedTileConnection = new TileConection[Width,Height];
             
-            Map = new Texture2D(Rise.MonoGame.GraphicsDevice, width, height);
-            Map.Clear(Color.Transparent);
+            Minimap = new Minimap(this);
             
             for (var x = 0; x < Width; x++)
             for (var y = 0; y < Height; y++)

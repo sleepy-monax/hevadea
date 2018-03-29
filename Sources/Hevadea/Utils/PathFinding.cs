@@ -1,13 +1,14 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using System.Collections.Generic;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
+using Hevadea.Game.Entities;
 using Hevadea.Game.Registry;
 using Hevadea.Game.Tiles;
 using Hevadea.Game.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
-namespace Hevadea.Game.Entities.Components.Ai
+namespace Hevadea.Utils
 {
     public class PathFinder
     {
