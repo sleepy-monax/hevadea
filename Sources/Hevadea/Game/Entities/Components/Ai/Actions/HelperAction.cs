@@ -17,7 +17,6 @@ namespace Hevadea.Game.Entities.Components.Ai.Actions
 
                 if (path == null)
                 {
-                    Logger.Log("no path");
                     return false;
                 }
                 

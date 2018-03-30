@@ -5,6 +5,7 @@ using Hevadea.Game.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Game.Entities.Components.Attributes;
 
 namespace Hevadea.Game.Entities.Components.Interaction
 {
@@ -41,7 +42,8 @@ namespace Hevadea.Game.Entities.Components.Interaction
         {
             var entities = Owner.Level.GetEntityOnTile(SelectedTile);
             var asInteracted = false;
-            if (entities.Count > 0)
+            
+            if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true && entities.Count > 0)
             {
 
                 foreach (var e in entities)

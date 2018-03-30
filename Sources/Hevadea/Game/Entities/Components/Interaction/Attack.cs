@@ -99,6 +99,7 @@ namespace Hevadea.Game.Entities.Components.Interaction
         {
             if (IsAttacking) return;
             if (!Owner.GetComponent<Energy>()?.Reduce(1f) ?? false) return;
+            if (Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? false) return;
 
             var damages = GetBaseDamages();
             var facingTile = Owner.GetFacingTile();

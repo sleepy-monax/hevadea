@@ -77,7 +77,7 @@ namespace Hevadea.Game.Registry
                                 PlacingFunction = new PerlinFunction(1, 0.5, 10),
                                 Threashold = 0.5f,
                             },
-                            new PopulateFeature(ENTITIES.ZOMBIE)
+                            new PopulateFeature(ENTITIES.CHIKEN)
                             {
                                 Chance = 100,
                                 CanBePlantOn = {TILES.GRASS},
@@ -151,6 +151,13 @@ namespace Hevadea.Game.Registry
                     {
                         CanBePlacedOn = { TILES.DIRT, TILES.ROCK },
                         Wall = TILES.ROCK
+                    },
+                    new PopulateFeature(ENTITIES.ZOMBIE)
+                    {
+                        Chance = 400,
+                        CanBePlantOn = {TILES.DIRT},
+                        PlacingFunction = new PerlinFunction(1, 0.5, 10),
+                        Threashold = 0.7f,
                     },
                 }
             };
