@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hevadea.Framework", "Hevade
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hevadea.Ressources", "Hevadea.Ressources\Hevadea.Ressources.csproj", "{C3056AF3-493C-4EEA-A163-B14533134771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLPlatform", "OpenGLPlatform\OpenGLPlatform.csproj", "{AE5F2E46-EB53-4DD4-BBA1-3CB94223C267}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hevadea.Desktop", "OpenGLPlatform\Hevadea.Desktop.csproj", "{AE5F2E46-EB53-4DD4-BBA1-3CB94223C267}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
