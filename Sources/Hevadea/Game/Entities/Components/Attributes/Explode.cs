@@ -54,7 +54,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     {
                         tile.Tag<Tags.Damage>()?.Hurt(GetDammage(distance)* Rise.Rnd.NextFloat(), tilePos, Owner.Level);
 
-                        if (Rise.Rnd.NextDouble() * 1.25 < distance/ (_radius *16))
+                        if (Rise.Rnd.NextDouble() * 1.25 < 1f-(distance/ (_radius *16)))
                         {
                             tile.Tag<Tags.Breakable>()?.Break(tilePos,Owner.Level);
                         }
@@ -66,7 +66,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
         public float GetDammage(float distance)
         {
 
-           var value = _strenght*(distance/(_radius*16));
+           var value = _strenght*(1f-(distance/(_radius*16)));
             return value;
         }
         

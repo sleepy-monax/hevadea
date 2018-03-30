@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using Hevadea.Framework;
 using Hevadea.Framework.Threading;
+using System;
 
 namespace Hevadea.Game.Loading.Tasks
 {
@@ -39,12 +40,16 @@ namespace Hevadea.Game.Loading.Tasks
                 {
                     var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.OpenOrCreate);
                     level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
-                    fs.Close();                    
+                    fs.Close();
                 });
                 
                 Rise.AsyncTasks.Add(task);
 
-                while (!task.Done){}
+                while (!task.Done)
+                {
+                    //XXX: Hack to fix the soft lock when saving the world.
+                    System.Threading.Thread.Sleep(10);
+                }
                 
                 levelsName.Add(level.Name);
                 

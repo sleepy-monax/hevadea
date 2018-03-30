@@ -46,7 +46,11 @@ namespace Hevadea.Game.Loading.Tasks
 
                     Rise.AsyncTasks.Add(task);
                     
-                    while (!task.Done) { }
+                    while (!task.Done)
+                    {
+                        // XXX: Hack to fix the soft lock when loading the world.
+                        System.Threading.Thread.Sleep(10);
+                    }
                 }
 
      

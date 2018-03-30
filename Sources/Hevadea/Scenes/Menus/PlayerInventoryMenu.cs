@@ -16,10 +16,16 @@ namespace Hevadea.Scenes.Menus
         public PlayerInventoryMenu(GameManager game) : base(game)
         {
             PauseGame = true;
-            
+
             var inventory = new WidgetItemContainer(game.MainPlayer.GetComponent<Inventory>().Content)
             {
                 Dock = Dock.Fill,
+            };
+
+            inventory.MouseClick += (sender) =>
+            {
+                inventory.HighlightedItem = inventory.SelectedItem;
+                Game.MainPlayer.HoldingItem = inventory.SelectedItem;
             };
 
             var inventoryPanel = new WidgetFancyPanel
@@ -48,7 +54,7 @@ namespace Hevadea.Scenes.Menus
                             new EquipmentTab(),
                         }
                     },
-                    new CraftingTab(),
+                    new CraftingTab(Game),
                     new SaveTab(Game),
                 }
             };

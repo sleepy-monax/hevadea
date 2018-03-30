@@ -13,6 +13,11 @@ namespace Hevadea.Game.Entities.Components.Ai.Behaviors
         public float ChanceToAgro { get; set; } = 0.5f;
         public float MoveSpeedAgro { get; set; } = 0.5f;
 
+        public override void IaAborted(Agent agent, AgentAbortReason why)
+        {
+            base.Update(agent, null);
+        }
+
         public override void Update(Agent agent, GameTime gameTime)
         {   
             if (Target != null &&

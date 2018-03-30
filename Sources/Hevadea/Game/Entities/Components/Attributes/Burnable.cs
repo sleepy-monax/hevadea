@@ -6,13 +6,28 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Game.Entities.Components.Attributes
 {
-    class Burnable:Light , IEntityComponentUpdatable
+    class Burnable : Light, IEntityComponentUpdatable
     {
         private float _dammages;
         private float _chanceToBreak;
 
         public float SpreadRange = 2f;
-        public bool IsBurnning { get; set; } = false;
+        private bool _isBurnning = false;
+        private float _burnTimer;
+
+        public bool IsBurnning
+        {
+            get => _isBurnning;
+            set
+            {
+                if (value == true)
+                {
+                    _burnTimer = Rise.Rnd.NextFloat(7) + 3f;
+                }
+
+                _isBurnning = value;
+            }
+        }
 
         public Burnable(float dammages, float chanceToBreak = 0.005f)
         {
@@ -42,16 +57,23 @@ namespace Hevadea.Game.Entities.Components.Attributes
             IsBurnning = !(Owner.GetComponent<Swim>()?.IsSwiming ?? false) && IsBurnning;
             On = IsBurnning;
 
+            if (_burnTimer < 0.01f)
+            {
+                IsBurnning = false;
+            }
+
             if (IsBurnning)
             {
+                _burnTimer -= gameTime.GetDeltaTime();
+
                 Owner.GetComponent<Health>()?.Hurt(Owner, _dammages * gameTime.GetDeltaTime(), false);
                 if (Rise.Rnd.NextDouble() < 0.1f)
                 {
-                    var Entities = Owner.Level.GetEntitiesOnArea(new Rectangle((int)(Owner.X - SpreadRange*16), (int)(Owner.Y - SpreadRange*16), (int)(SpreadRange*16 * 2),(int)(SpreadRange*16 * 2)));
+                    var Entities = Owner.Level.GetEntitiesOnArea(new Rectangle((int)(Owner.X - SpreadRange * 16), (int)(Owner.Y - SpreadRange * 16), (int)(SpreadRange * 16 * 2), (int)(SpreadRange * 16 * 2)));
 
                     foreach (var e in Entities)
                     {
-                        if (Rise.Rnd.NextDouble() < 0.01f)
+                        if (e != Owner && Rise.Rnd.NextDouble() < 0.01f)
                         {
                             if (e.HasComponent<Burnable>())
                                 e.GetComponent<Burnable>().IsBurnning = true;
@@ -76,7 +98,7 @@ namespace Hevadea.Game.Entities.Components.Attributes
                     -Rise.Rnd.NextFloat(24));
 
                 if (Rise.Rnd.NextDouble() < _chanceToBreak)
-                   Owner.GetComponent<Breakable>()?.Break();
+                    Owner.GetComponent<Breakable>()?.Break();
             }
 
         }

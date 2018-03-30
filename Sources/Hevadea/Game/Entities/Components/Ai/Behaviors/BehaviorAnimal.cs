@@ -42,7 +42,7 @@ namespace Hevadea.Game.Entities.Components.Ai.Behaviors
             }
         }
         
-        public void IaAborted(Agent agent, AgentAbortReason why)
+        public virtual void IaAborted(Agent agent, AgentAbortReason why)
         {
           
         }
