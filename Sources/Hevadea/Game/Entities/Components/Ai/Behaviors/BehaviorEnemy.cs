@@ -18,6 +18,7 @@ namespace Hevadea.Game.Entities.Components.Ai.Behaviors
             if (Target != null &&
                 Target.Level == agent.Owner.Level &&
                 Mathf.Distance(agent.Owner.Position, Target.Position) > FollowRange * 16 && !agent.IsBusy())
+
             {
                 agent.Abort(AgentAbortReason.TagetLost);
                 Target = null; 
