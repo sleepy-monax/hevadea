@@ -1,9 +1,10 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Platform;
+using System;
 
 namespace OpenGLPlatform
 {
-    public class RiseOpenGLPlatform : PlatformBase
+    public class DesktopPlatform : PlatformBase
     {
 
         private void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
@@ -30,6 +31,8 @@ namespace OpenGLPlatform
         public override void Initialize()
         {
             Rise.MonoGame.Window.TextInput += Window_TextInput;
+            Rise.MonoGame.Window.Title = "Hevadea";
+            Console.Title = "Hevadea";
         }
 
         public override void Update()

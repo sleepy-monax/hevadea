@@ -51,8 +51,8 @@ namespace Hevadea.Game.Entities.Components.Attributes
             }
 
             // Stop the entity on world borders.
-            if (Owner.X + sx >= Owner.Level.Width * ConstVal.TileSize) sx = 0;
-            if (Owner.Y + sy >= Owner.Level.Height * ConstVal.TileSize) sy = 0;
+            if (Owner.X + sx >= Owner.Level.Width * Constant.TileSize) sx = 0;
+            if (Owner.Y + sy >= Owner.Level.Height * Constant.TileSize) sy = 0;
             if (Owner.X + sx < 0) sx = 0;
             if (Owner.Y + sy < 0) sy = 0;
 

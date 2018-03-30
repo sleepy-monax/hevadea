@@ -3,12 +3,12 @@ using Hevadea.Framework.Platform;
 
 namespace AndroidPlatform
 {
-    public class RiseAndroidPlatform : PlatformBase
+    public class MobilePlatform : PlatformBase
     {
         Resources _ress;
-        MainGameActivity _activity;
+        HevadeaActivity _activity;
 
-        public RiseAndroidPlatform(Resources resource, MainGameActivity activity)
+        public MobilePlatform(Resources resource, HevadeaActivity activity)
         {
             _ress = resource;
             _activity = activity;

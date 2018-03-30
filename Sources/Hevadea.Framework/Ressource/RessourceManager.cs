@@ -44,6 +44,7 @@ namespace Hevadea.Framework.Ressource
         {
             if (!FontCache.ContainsKey(name))
             {
+                Logger.Log<RessourceManager>($"Loading <font>{name}");
                 FontCache.Add(name, Rise.MonoGame.Content.Load<SpriteFont>($"Fonts/{name}"));
             }
 
@@ -64,6 +65,7 @@ namespace Hevadea.Framework.Ressource
         {
             if (!TextureCache.ContainsKey("img:" + name))
             {
+                Logger.Log<RessourceManager>($"Loading <image>{name}");
                 TextureCache.Add("img:" + name, Rise.MonoGame.Content.Load<Texture2D>($"Images/{name}"));
             }
 

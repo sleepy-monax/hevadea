@@ -54,9 +54,9 @@ namespace Hevadea.Game.Worlds
         public LevelRenderState GetRenderState(Camera camera)
         {
             var entitiesOnScreen = new List<Entity>();
-            var focusEntity = new Point((int) camera.X / ConstVal.TileSize, (int) camera.Y / ConstVal.TileSize);
-            var dist = new Point(camera.GetWidth() / 2 / ConstVal.TileSize + 4,
-                camera.GetHeight() / 2 / ConstVal.TileSize + 4);
+            var focusEntity = new Point((int) camera.X / Constant.TileSize, (int) camera.Y / Constant.TileSize);
+            var dist = new Point(camera.GetWidth() / 2 / Constant.TileSize + 4,
+                camera.GetHeight() / 2 / Constant.TileSize + 4);
 
             var state = new LevelRenderState
             {

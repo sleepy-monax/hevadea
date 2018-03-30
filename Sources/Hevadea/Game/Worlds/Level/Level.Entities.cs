@@ -20,7 +20,7 @@ namespace Hevadea.Game.Worlds
         public Entity SpawnEntity(Entity entity, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(entity);
-            entity.SetPosition(tx * ConstVal.TileSize + (ConstVal.TileSize / 2) + offX, ty * ConstVal.TileSize + (ConstVal.TileSize / 2) + offY);
+            entity.SetPosition(tx * Constant.TileSize + (Constant.TileSize / 2) + offX, ty * Constant.TileSize + (Constant.TileSize / 2) + offY);
             return entity;
         }
 
@@ -80,11 +80,11 @@ namespace Hevadea.Game.Worlds
         {
             var result = new List<Entity>();
 
-            var beginX = area.X / ConstVal.TileSize - 1;
-            var beginY = area.Y / ConstVal.TileSize - 1;
+            var beginX = area.X / Constant.TileSize - 1;
+            var beginY = area.Y / Constant.TileSize - 1;
 
-            var endX = (area.X + area.Width) / ConstVal.TileSize + 1;
-            var endY = (area.Y + area.Height) / ConstVal.TileSize + 1;
+            var endX = (area.X + area.Width) / Constant.TileSize + 1;
+            var endY = (area.Y + area.Height) / Constant.TileSize + 1;
 
 
             for (int x = (int)beginX; x < endX; x++)

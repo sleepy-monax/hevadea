@@ -64,9 +64,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameConfig.cs" />
     <Compile Include="Game\Camera.cs" />
-    <Compile Include="ConstVal.cs" />
+    <Compile Include="Constant.cs" />
     <Compile Include="Game\Craftings\Recipe.cs" />
     <Compile Include="Game\Craftings\RecipeCost.cs" />
     <Compile Include="Game\Entities\Components\Ai\Actions\ActionAttackEntity.cs" />
@@ -305,8 +304,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <InProject>false</InProject>
     </None>
-    <None Include="app.manifest" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hevadea.Framework\Hevadea.Framework.csproj">

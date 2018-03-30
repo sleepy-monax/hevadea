@@ -16,7 +16,7 @@ namespace Hevadea.Game.Entities
 
         public TilePosition GetTilePosition()
         {
-            return new TilePosition((int) (X / ConstVal.TileSize), (int) (Y / ConstVal.TileSize));
+            return new TilePosition((int) (X / Constant.TileSize), (int) (Y / Constant.TileSize));
         }
 
         public TilePosition GetFacingTile()

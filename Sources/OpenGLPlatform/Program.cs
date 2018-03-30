@@ -9,7 +9,7 @@ namespace OpenGLPlatform
         [STAThread]
         static void Main()
         {
-            Rise.Initialize(new RiseOpenGLPlatform());
+            Rise.Initialize(new DesktopPlatform());
             Rise.Start(new SceneGameSplash());
             Environment.Exit(0);
         }

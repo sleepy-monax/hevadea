@@ -16,7 +16,7 @@ namespace Hevadea.Scenes
         private bool _loadingDone = false;
         private bool _once = true;
         private SpriteBatch _sb;
-        private float alpha = 0f;
+        private float _alpha = 0f;
 
 
         public override void Load()
@@ -29,7 +29,6 @@ namespace Hevadea.Scenes
                 
                 Rise.Ui.DefaultFont = Ressources.FontRomulus;
                 Rise.Ui.DebugFont = Ressources.FontHack;
-                Thread.Sleep(500);
                 _loadingDone = true;
             }).Start();
 
@@ -47,30 +46,33 @@ namespace Hevadea.Scenes
             _once = false;
         }
 
+        float r = 0;
+
         public override void OnDraw(GameTime gameTime)
         {
-            _sb.Begin();
+            _sb.Begin(samplerState: SamplerState.PointWrap);
             _sb.FillRectangle(Rise.Graphic.GetBound(), Color.White);
             
             if (_loadingDone)
             {
-                alpha *= 0.95f;
+                _alpha *= 0.95f;
             }
             else
             {
-                alpha += (1 - alpha) * 0.95f;
+                _alpha += (1 - _alpha) * 0.95f;
             }
-            
-            var h = 24 - Mathf.Abs(Mathf.Sin(((float) gameTime.TotalGameTime.TotalSeconds) * Mathf.PI * 3) * 24);
+
+            var f = (Mathf.Sin((float)gameTime.TotalGameTime.TotalSeconds * Mathf.PI) + 1);
+            r += f * 0.05f;
             _sb.FillRectangle(
-                Rise.Graphic.GetWidth() / 2f - 16, Rise.Graphic.GetHeight() / 2f - 8 + h / 2f,
-                32, 32,
-                RiseColor.Accent * alpha,
-                Mathf.Sin(((float) gameTime.TotalGameTime.TotalSeconds) * Mathf.PI * 3) / 4, 0.5f, 0.5f);
+                Rise.Graphic.GetWidth() / 2, Rise.Graphic.GetHeight() / 2,
+                128 * f, 128 * f,
+                RiseColor.Accent * _alpha,r
+                , 0.5f, 0.5f);
             
-            if (Ressources.CompanyLogo != null)
+            if (Ressources.FontRomulus != null)
             {
-                //_sb.Draw(Ressources.CompanyLogo, Rise.Graphic.GetCenter().ToVector2() - Ressources.CompanyLogo.GetCenter(), Color.White);
+                _sb.DrawString(Ressources.FontRomulus, "Loading...", Rise.Graphic.GetBound(), DrawText.Alignement.Center, DrawText.TextStyle.Regular, Color.Black, 2f);
             }
             
             _sb.End();  
