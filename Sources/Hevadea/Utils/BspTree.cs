@@ -87,11 +87,11 @@ namespace Hevadea.Utils
         private static void BuildLeaf(BspTreeNode parent, int depth, Random rnd)
         {
             if (depth == 0) return;
-            int gotoCout = 100;
+            int gotoCount = 100;
             
             start:
-                if (gotoCout == 0) return;
-                gotoCout--;
+                if (gotoCount == 0) return;
+                gotoCount--;
             
                 var vecticaly = rnd.NextValue(true, false);
                 var where = rnd.Next(vecticaly ? parent.Width / 4: parent.Height / 4, vecticaly ? parent.Width - parent.Width / 4 : parent.Height - parent.Height / 4);

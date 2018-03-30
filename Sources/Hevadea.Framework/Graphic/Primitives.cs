@@ -138,14 +138,20 @@ namespace Hevadea.Framework.Graphic
             spriteBatch.Draw(Rise.Graphic.GetPixel(), rect, color);
         }
 
-        public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float angle)
+        public static void FillRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float angle, Vector2 origine)
         {
-            spriteBatch.Draw(Rise.Graphic.GetPixel(), rect, null, color, angle, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(Rise.Graphic.GetPixel(), rect, null, color, angle, origine, SpriteEffects.None, 0);
         }
 
         public static void FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float angle = 0.0f)
         {
             spriteBatch.Draw(Rise.Graphic.GetPixel(), location, null, color, angle, Vector2.Zero, size, SpriteEffects.None, 0);
+        }
+
+        
+        public static void FillRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color, float angle, Vector2 origin)
+        {
+            spriteBatch.Draw(Rise.Graphic.GetPixel(), location, null, color, angle, origin, size, SpriteEffects.None, 0);
         }
 
         public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color)
@@ -156,6 +162,11 @@ namespace Hevadea.Framework.Graphic
         public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle)
         {
             FillRectangle(spriteBatch, new Vector2(x, y), new Vector2(w, h), color, angle);
+        }
+        
+        public static void FillRectangle(this SpriteBatch spriteBatch, float x, float y, float w, float h, Color color, float angle, float ox , float oy)
+        {
+            FillRectangle(spriteBatch, new Vector2(x, y), new Vector2(w, h), color, angle, new Vector2(ox, oy));
         }
         
         #endregion
