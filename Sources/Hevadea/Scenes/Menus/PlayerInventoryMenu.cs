@@ -9,9 +9,19 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes.Menus
 {
+    
+    public abstract class InventoryTab : Tab
+    {
+        public GameManager Game { get; }
+
+        public InventoryTab(GameManager game)
+        {
+            Game = game;
+        }
+    }
+
     public class PlayerInventoryMenu : Menu
     {
-
         public PlayerInventoryMenu(GameManager game) : base(game)
         {
             PauseGame = true;

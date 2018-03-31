@@ -30,7 +30,7 @@ namespace Hevadea.Craftings
         
         public virtual bool CanBeCrafted(ItemStorage inventory)
         {
-            bool result = true;
+            var result = true;
             
             foreach (var cost in Costs) 
                 result &= inventory.Count(cost.Item) >= cost.Count;

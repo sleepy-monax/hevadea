@@ -70,7 +70,7 @@
     <Compile Include="Rise.cs" />
     <Compile Include="Input\Controller.cs" />
     <Compile Include="Input\Pointing.cs" />
-    <Compile Include="RiseColor.cs" />
+    <Compile Include="ColorPalette.cs" />
     <Compile Include="Scening\Scene.cs" />
     <Compile Include="Scening\SceneManager.cs" />
     <Compile Include="Threading\AsyncTask.cs" />

@@ -15,7 +15,7 @@ namespace Hevadea.Framework.Ressource
 
         public Texture2D GetTexture(string name)
         {
-            var fullName = "assets/"+ name + ".png";
+            var fullName = $"assets/{name}.png";
 
             if (!TextureCache.ContainsKey(name))
             {

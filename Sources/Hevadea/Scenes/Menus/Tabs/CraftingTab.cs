@@ -6,8 +6,8 @@ using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Items;
 using Hevadea.Registry;
-using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,11 +15,13 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class CraftingListItem : ListItem
     {
-        private Recipe _recipe;
-        
-        public CraftingListItem(Recipe recipe)
+        private readonly Recipe _recipe;
+        private readonly ItemStorage _storage;
+
+        public CraftingListItem(Recipe recipe, ItemStorage storage)
         {
             _recipe = recipe;
+            _storage = storage;
         }
 
         public Recipe GetRecipe()
@@ -29,26 +31,29 @@ namespace Hevadea.Scenes.Menus.Tabs
         
         public override void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime)
         {
-            _recipe.Result.GetSprite().Draw(spriteBatch, new Padding((int)(8 * Rise.Ui.ScaleFactor)).Apply(new Rectangle(host.Location, new Point(host.Height))), Color.White);
-            spriteBatch.DrawString(Ressources.FontRomulus, _recipe.Result.GetName(), new Padding(0, host.Height / 2, host.Height, 0).Apply(host), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, Color.White, Rise.Ui.ScaleFactor);
-
-            for (int i = 0; i < _recipe.Costs.Count; i++)
+            var color = Color.White * (_recipe.CanBeCrafted(_storage) ? 1f : 0.5f);
+            _recipe.Result.GetSprite().Draw(spriteBatch, new Padding((int)(8 * Rise.Ui.ScaleFactor)).Apply(new Rectangle(host.Location, new Point(host.Height))), color);
+            spriteBatch.DrawString(Ressources.FontRomulus, $"{_recipe.Result.GetName()} x{_recipe.Quantity}", new Padding(0, host.Height / 2, host.Height, 0).Apply(host), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, color, Rise.Ui.ScaleFactor);
+            
+            for (var i = 0; i < _recipe.Costs.Count; i++)
             {
                 var c = _recipe.Costs[i];
                 var dest = new Rectangle(host.X + host.Height + (host.Height / 2) * i, host.Y + host.Height / 2, host.Height / 2, host.Height / 2);
-                c.Item.GetSprite().Draw(spriteBatch, dest, Color.White);
-                spriteBatch.DrawString(Ressources.FontRomulus, c.Count.ToString(), dest, DrawText.Alignement.Right, DrawText.TextStyle.DropShadow, Color.White, Rise.Ui.ScaleFactor);
+                c.Item.GetSprite().Draw(spriteBatch, dest, color);
+                spriteBatch.DrawString(Ressources.FontRomulus, c.Count.ToString(), dest, DrawText.Alignement.Right, DrawText.TextStyle.DropShadow, color, Rise.Ui.ScaleFactor);
             }
         }
     }
     
-    public class CraftingTab : Tab
+    public class CraftingTab : InventoryTab
     {
-        public CraftingTab(GameManager game)
+        public ListWidget CraftingList { get; }
+
+        public CraftingTab(GameManager game) : base(game)
         {
 
             Icon = new Sprite(Ressources.TileIcons, new Point(4, 2));
-            var craftList = new ListWidget
+            CraftingList = new ListWidget
             {
                 Dock = Dock.Fill,
                 ItemHeight = 64,
@@ -58,19 +63,13 @@ namespace Hevadea.Scenes.Menus.Tabs
             {
                 Text = "Craft",
                 Dock = Dock.Bottom,
-            }.RegisterMouseClickEvent((sender)=> 
-            {
-                var craft = craftList.SelectedItem as CraftingListItem;
-
-                if (craft != null)
-                {
-                    craft.GetRecipe().Craft(game.MainPlayer.GetComponent<Inventory>().Content);
-                }
-            });
+            };
+            
+            craftButton.MouseClick += Craft;
 
             foreach (var recipe in RECIPIES.HandCrafted)
             {
-                craftList.AddItem(new CraftingListItem(recipe));
+                CraftingList.AddItem(new CraftingListItem(recipe, Game.MainPlayer.GetComponent<Inventory>().Content));
             }
             
             Content = new DockContainer()
@@ -78,9 +77,17 @@ namespace Hevadea.Scenes.Menus.Tabs
                 Childrens =
                 {
                     new Label {Text = "Crafting", Font = Ressources.FontAlagard, Dock = Dock.Top},
-                    craftButton,craftList,
+                    craftButton, CraftingList,
                 }
             };
+        }
+
+        private void Craft(Widget widget)
+        {
+            if (CraftingList.SelectedItem is CraftingListItem craft)
+            {
+                craft.GetRecipe().Craft(Game.MainPlayer.GetComponent<Inventory>().Content);
+            }
         }
     }
 }

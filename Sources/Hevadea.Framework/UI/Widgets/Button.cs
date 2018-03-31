@@ -8,8 +8,8 @@ namespace Hevadea.Framework.UI.Widgets
     public class Button : Widget
     {
         public bool EnableBorder { get; set; } = false;
-        public Color OverColor { get; set; } = RiseColor.Accent;
-        public Color IdleColor { get; set; } = RiseColor.Border;
+        public Color OverColor { get; set; } = ColorPalette.Accent;
+        public Color IdleColor { get; set; } = ColorPalette.Border;
         public Color TextColor { get; set; } = Color.White;
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
         public string Text { get; set; } = "Button";

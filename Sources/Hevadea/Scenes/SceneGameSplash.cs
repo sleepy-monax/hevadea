@@ -67,7 +67,7 @@ namespace Hevadea.Scenes
             _sb.FillRectangle(
                 Rise.Graphic.GetWidth() / 2, Rise.Graphic.GetHeight() / 2,
                 128 * f, 128 * f,
-                RiseColor.Accent * _alpha,r
+                ColorPalette.Accent * _alpha,r
                 , 0.5f, 0.5f);
             
             if (Ressources.FontRomulus != null)

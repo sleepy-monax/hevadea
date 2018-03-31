@@ -295,18 +295,18 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                     var selx = Scale(Text.MeasureCharacterWidths(SelectedChar ?? 0, Font));
                     if (selx > curx)
                     {
-                        spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Scale(Font.LineSpacing)), RiseColor.Accent * 0.5f);
-                        spriteBatch.DrawRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Scale(Font.LineSpacing)), RiseColor.Accent, Scale(1f));
+                        spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Scale(Font.LineSpacing)), ColorPalette.Accent * 0.5f);
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + curx, pos, selx - curx, Scale(Font.LineSpacing)), ColorPalette.Accent, Scale(1f));
                     }
                     else
                     {
-                        spriteBatch.FillRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Scale(Font.LineSpacing)), RiseColor.Accent * 0.5f);
-                        spriteBatch.DrawRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Scale(Font.LineSpacing)), RiseColor.Accent, Scale(1f));
+                        spriteBatch.FillRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Scale(Font.LineSpacing)), ColorPalette.Accent * 0.5f);
+                        spriteBatch.DrawRectangle(new Rectangle(Host.X + selx, pos, curx - selx, Scale(Font.LineSpacing)), ColorPalette.Accent, Scale(1f));
                     }
                 }
                 else
                 {
-                    spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, Scale(1), Scale(Font.LineSpacing)), RiseColor.Accent);
+                    spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, Scale(1), Scale(Font.LineSpacing)), ColorPalette.Accent);
                 }
 
             }

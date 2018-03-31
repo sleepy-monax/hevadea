@@ -11,6 +11,5 @@ namespace Hevadea
         {
             return Rise.Platform.GetStorageFolder() + "/Saves/";
         }
-
     }
 }

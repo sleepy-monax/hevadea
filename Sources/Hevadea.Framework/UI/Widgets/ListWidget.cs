@@ -69,16 +69,16 @@ namespace Hevadea.Framework.UI.Widgets
 
                     if (Rise.Pointing.AreaOver(rect) && Rise.Pointing.AreaOver(Host))
                     {
-                        spriteBatch.FillRectangle(rect, RiseColor.Border * 0.05f);
-                        spriteBatch.DrawRectangle(rect, RiseColor.Border, Scale(4));
+                        spriteBatch.FillRectangle(rect, ColorPalette.Border * 0.05f);
+                        spriteBatch.DrawRectangle(rect, ColorPalette.Border, Scale(4));
 
                         _overItem = i;
                     }
 
                     if (i == SelectedItem)
                     {
-                        spriteBatch.FillRectangle(rect, RiseColor.Accent * 0.5f);
-                        spriteBatch.DrawRectangle(rect, RiseColor.Accent, Scale(4));
+                        spriteBatch.FillRectangle(rect, ColorPalette.Accent * 0.5f);
+                        spriteBatch.DrawRectangle(rect, ColorPalette.Accent, Scale(4));
                     }
 
                     i.Draw(spriteBatch, rect, gameTime);
@@ -99,7 +99,7 @@ namespace Hevadea.Framework.UI.Widgets
 
                 spriteBatch.FillRectangle(
                     new Rectangle(Host.X + Host.Width - Scale(4), Host.Y + (int)(-_scrollOffset / scrollJump), Scale(4),
-                        (int)thumbHeight), RiseColor.Accent);
+                        (int)thumbHeight), ColorPalette.Accent);
             }
 
             Rise.Graphic.ResetScissor();
