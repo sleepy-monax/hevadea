@@ -2,12 +2,12 @@
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Utils;
-using Hevadea.Game.Registry;
 using Hevadea.Scenes.MainMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using System.Threading;
+using Hevadea.Registry;
 
 namespace Hevadea.Scenes
 {

@@ -1,5 +1,5 @@
-﻿using Hevadea.Game.Worlds;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Hevadea.Worlds;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {

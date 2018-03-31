@@ -2,7 +2,6 @@
 using System.Security.Cryptography.X509Certificates;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
-using Hevadea.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

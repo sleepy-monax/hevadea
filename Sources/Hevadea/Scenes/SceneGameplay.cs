@@ -1,7 +1,6 @@
 ﻿using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Game;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 

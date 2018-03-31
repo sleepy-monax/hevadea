@@ -1,7 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Game;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

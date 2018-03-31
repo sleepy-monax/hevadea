@@ -3,8 +3,7 @@ using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
-using Hevadea.Game;
-using Hevadea.Game.Registry;
+using Hevadea.Player;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 

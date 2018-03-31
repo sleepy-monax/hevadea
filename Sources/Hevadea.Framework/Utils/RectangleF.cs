@@ -8,28 +8,23 @@ namespace Hevadea.Framework.Utils
     {
         public static readonly RectangleF Empty = new RectangleF();
 
-        private float x;
-        private float y;
-        private float width;
-        private float height;
-
         public RectangleF(float x, float y, float width, float height)
         {
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
+            this.X = x;
+            this.Y = y;
+            this.Width = width;
+            this.Height = height;
         }
 
         public RectangleF(Vector2 location, Vector2 size)
         {
-            this.x = location.X;
-            this.y = location.Y;
-            this.width = size.X;
-            this.height = size.Y;
+            this.X = location.X;
+            this.Y = location.Y;
+            this.Width = size.X;
+            this.Height = size.Y;
         }
 
-        public static RectangleF FromLTRB(float left, float top, float right, float bottom)
+        public static RectangleF FromLtrb(float left, float top, float right, float bottom)
         {
             return new RectangleF(left,
                                  top,
@@ -39,10 +34,7 @@ namespace Hevadea.Framework.Utils
 
         public Vector2 Location
         {
-            get
-            {
-                return new Vector2(X, Y);
-            }
+            get => new Vector2(X, Y);
             set
             {
                 X = value.X;
@@ -52,10 +44,7 @@ namespace Hevadea.Framework.Utils
 
         public Vector2 Size
         {
-            get
-            {
-                return new Vector2(Width, Height);
-            }
+            get => new Vector2(Width, Height);
             set
             {
                 this.Width = value.X;
@@ -63,100 +52,30 @@ namespace Hevadea.Framework.Utils
             }
         }
 
-        public float X
-        {
-            get
-            {
-                return x;
-            }
-            set
-            {
-                x = value;
-            }
-        }
+        public float X { get; set; }
 
-        public float Y
-        {
-            get
-            {
-                return y;
-            }
-            set
-            {
-                y = value;
-            }
-        }
+        public float Y { get; set; }
 
-        public float Width
-        {
-            get
-            {
-                return width;
-            }
-            set
-            {
-                width = value;
-            }
-        }
+        public float Width { get; set; }
 
-        public float Height
-        {
-            get
-            {
-                return height;
-            }
-            set
-            {
-                height = value;
-            }
-        }
+        public float Height { get; set; }
 
-        public float Left
-        {
-            get
-            {
-                return X;
-            }
-        }
+        public float Left => X;
 
-        public float Top
-        {
-            get
-            {
-                return Y;
-            }
-        }
+        public float Top => Y;
 
-        public float Right
-        {
-            get
-            {
-                return X + Width;
-            }
-        }
+        public float Right => X + Width;
 
-        public float Bottom
-        {
-            get
-            {
-                return Y + Height;
-            }
-        }
+        public float Bottom => Y + Height;
 
-        public bool IsEmpty
-        {
-            get
-            {
-                return (Width <= 0) || (Height <= 0);
-            }
-        }
+        public bool IsEmpty => (Width <= 0) || (Height <= 0);
 
         public override bool Equals(object obj)
         {
             if (!(obj is RectangleF))
                 return false;
 
-            RectangleF comp = (RectangleF)obj;
+            var comp = (RectangleF)obj;
 
             return (comp.X == this.X) &&
                    (comp.Y == this.Y) &&
@@ -220,14 +139,14 @@ namespace Hevadea.Framework.Utils
 
         public static RectangleF Inflate(RectangleF rect, float x, float y)
         {
-            RectangleF r = rect;
+            var r = rect;
             r.Inflate(x, y);
             return r;
         }
 
         public void Intersect(RectangleF rect)
         {
-            RectangleF result = RectangleF.Intersect(rect, this);
+            var result = RectangleF.Intersect(rect, this);
 
             this.X = result.X;
             this.Y = result.Y;
@@ -237,10 +156,10 @@ namespace Hevadea.Framework.Utils
 
         public static RectangleF Intersect(RectangleF a, RectangleF b)
         {
-            float x1 = Math.Max(a.X, b.X);
-            float x2 = Math.Min(a.X + a.Width, b.X + b.Width);
-            float y1 = Math.Max(a.Y, b.Y);
-            float y2 = Math.Min(a.Y + a.Height, b.Y + b.Height);
+            var x1 = Math.Max(a.X, b.X);
+            var x2 = Math.Min(a.X + a.Width, b.X + b.Width);
+            var y1 = Math.Max(a.Y, b.Y);
+            var y2 = Math.Min(a.Y + a.Height, b.Y + b.Height);
 
             if (x2 >= x1
                 && y2 >= y1)
@@ -261,10 +180,10 @@ namespace Hevadea.Framework.Utils
 
         public static RectangleF Union(RectangleF a, RectangleF b)
         {
-            float x1 = Math.Min(a.X, b.X);
-            float x2 = Math.Max(a.X + a.Width, b.X + b.Width);
-            float y1 = Math.Min(a.Y, b.Y);
-            float y2 = Math.Max(a.Y + a.Height, b.Y + b.Height);
+            var x1 = Math.Min(a.X, b.X);
+            var x2 = Math.Max(a.X + a.Width, b.X + b.Width);
+            var y1 = Math.Min(a.Y, b.Y);
+            var y2 = Math.Max(a.Y + a.Height, b.Y + b.Height);
 
             return new RectangleF(x1, y1, x2 - x1, y2 - y1);
         }

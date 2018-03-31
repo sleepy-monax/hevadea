@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Hevadea.Entities;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
-using Hevadea.Game.Entities;
-using Hevadea.Game.Registry;
-using Hevadea.Game.Tiles;
-using Hevadea.Game.Worlds;
+using Hevadea.Registry;
+using Hevadea.Tiles;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

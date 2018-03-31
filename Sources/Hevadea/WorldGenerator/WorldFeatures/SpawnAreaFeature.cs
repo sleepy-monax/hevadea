@@ -1,5 +1,5 @@
-﻿using Hevadea.Game.Registry;
-using Hevadea.Game.Worlds;
+﻿using Hevadea.Registry;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.WorldGenerator.WorldFeatures

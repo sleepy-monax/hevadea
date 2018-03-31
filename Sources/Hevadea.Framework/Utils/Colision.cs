@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Maker.Rise.Utils
+namespace Hevadea.Framework.Utils
 {
     public static class Colision
     {

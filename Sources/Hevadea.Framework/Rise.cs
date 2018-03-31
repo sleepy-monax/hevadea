@@ -17,7 +17,7 @@ namespace Hevadea.Framework
     {
         // Configs
         public static bool ShowDebugOverlay { get; set; } = false;
-        public static bool DebugUI { get; set; } = false;
+        public static bool DebugUi { get; set; } = false;
         public static bool ShowDebug { get; set; } = false;
         public static List<AsyncTask> AsyncTasks = new List<AsyncTask>();
 
@@ -117,7 +117,7 @@ namespace Hevadea.Framework
 
             if (Input.KeyPress(Keys.F1))
             {
-                DebugUI = !DebugUI;
+                DebugUi = !DebugUi;
             }
             
             if (Input.KeyPress(Keys.F2))
