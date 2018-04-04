@@ -98,6 +98,13 @@ namespace Hevadea.Registry
                                 Threashold = 0.7f,
  
                             },
+                            new PopulateFeature(ENTITIES.FLOWER)
+                            {
+                                Chance = 10,
+                                CanBePlantOn = {TILES.GRASS},
+                                PlacingFunction = new PerlinFunction(1,1,5),
+                                Threashold = 0.5f
+                            },
                             new PopulateFeature(ENTITIES.GRASS)
                             {
                                 Chance = 2,

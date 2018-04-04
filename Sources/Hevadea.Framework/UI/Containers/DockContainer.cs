@@ -10,6 +10,8 @@ namespace Hevadea.Framework.UI.Containers
 
             foreach (var c in Childrens)
             {
+                if (c.IsDisable) continue;
+
                 var b = c.UnitBound;
                 switch (c.Dock)
                 {

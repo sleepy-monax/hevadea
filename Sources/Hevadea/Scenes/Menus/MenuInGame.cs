@@ -64,20 +64,32 @@ namespace Hevadea.Scenes.Menus
                 UnitOffset = new Point(16, 16)
             };
 
+
+            var minimapButton = new Button
+            {
+                Text = "Map",
+                Origine = Anchor.TopRight,
+                Anchor = Anchor.TopRight,
+                UnitOffset = new Point(-16, 16),
+                IsEnable = true
+            };
+
             var miniMap = new WidgetMinimap(game)
             {
                 UnitBound = new Rectangle(0, 0, 384, 384),
                 Origine = Anchor.TopRight,
                 Anchor = Anchor.TopRight,
-                Padding = new Framework.UI.Padding(32),
                 UnitOffset = new Point(-16, 16)
             };
+
+            miniMap.MouseClick += (sender) => { sender.Disable(); minimapButton.Enable(); };
+            minimapButton.MouseClick += (sender) => { miniMap.Enable(); sender.Disable(); };
 
             Content = new AnchoredContainer
             {
                 Childrens =
                 {
-                    _playerStats, miniMap,
+                    _playerStats, miniMap, minimapButton,
 
                     new Button{ Text = "Inventory", Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, UnitOffset = new Point(16,-16)}
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new PlayerInventoryMenu(Game); })

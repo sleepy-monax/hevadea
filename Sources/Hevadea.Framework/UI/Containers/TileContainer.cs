@@ -9,9 +9,16 @@ namespace Hevadea.Framework.UI.Containers
 
         public override void Layout()
         {
-            if (Childrens.Count == 0) return;
-            var itemWidth = UnitHost.Width / Childrens.Count;
-            var itemHeight = UnitHost.Height / Childrens.Count;
+            var count = 0;
+            foreach (var c in Childrens)
+            {
+                if (c.IsEnable) count++;
+            }
+
+            if (count == 0) return;
+
+            var itemWidth = UnitHost.Width / count;
+            var itemHeight = UnitHost.Height / count;
             var index = 0;
             
             foreach (var c in Childrens)

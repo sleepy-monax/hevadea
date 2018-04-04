@@ -4,25 +4,24 @@ using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Blueprints
+namespace Hevadea.Entities.Blueprints.Legacy
 {
-    public class EntityGrass : Entity
+    public class EntityFlower : Entity
     {
         public int Variant { get; set; } = 0;
-        private static Sprite[] _sprites;
+        private static Sprite[] _sprites; 
 
-        public EntityGrass()
+        public EntityFlower()
         {
             SortingOffset = -16;
-
             Variant = Rise.Rnd.Next(0, 3);
 
             if (_sprites == null)
             {
-                _sprites = new Sprite[4];
-                for (int i = 0; i < 4; i++)
+                _sprites = new Sprite[3];
+                for (int i = 0; i < 3; i++)
                 {
-                    _sprites[i] = new Sprite(Ressources.TileEntities, new Point(7, i));
+                    _sprites[i] = new Sprite(Ressources.TileEntities, new Point(6, i));
                 }
             }
 

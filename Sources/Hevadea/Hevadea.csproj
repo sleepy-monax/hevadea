@@ -75,6 +75,7 @@
     <Compile Include="Entities\Blueprints\Legacy\EntityChiken.cs" />
     <Compile Include="Entities\Blueprints\Legacy\EntityCraftingBench.cs" />
     <Compile Include="Entities\Blueprints\Legacy\EntityFish.cs" />
+    <Compile Include="Entities\Blueprints\Legacy\EntityFlower.cs" />
     <Compile Include="Entities\Blueprints\Legacy\EntityFurnace.cs" />
     <Compile Include="Entities\Blueprints\Legacy\EntityGrass.cs" />
     <Compile Include="Entities\Blueprints\Legacy\EntityNpc.cs" />

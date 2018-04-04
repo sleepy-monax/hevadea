@@ -25,12 +25,13 @@ namespace Hevadea.Scenes.Widgets
             {
                 var map = _game.MainPlayer.Level.Minimap.Texture;
                 var p = _game.MainPlayer.GetTilePosition();
-                
-                var offset = new Point(p.X - UnitHost.Width / 4 / 2, p.Y - UnitHost.Height / 4 / 2);  
-                var rect = new Point(UnitHost.Width / 4, UnitHost.Height / 4);
+
+                var dest = new Padding(Scale(32)).Apply(Host);
+                var offset = new Point(p.X - dest.Width / 4 / 2, p.Y - dest.Height / 4 / 2);  
+                var rect = new Point(dest.Width / 4, dest.Height / 4);
                 var src = new Rectangle(offset, rect);
        
-                spriteBatch.Draw(map, Host, src, Color.White);
+                spriteBatch.Draw(map, dest, src, Color.White);
                 spriteBatch.Draw(Ressources.ImgMapOver, Bound, Color.White);
                 
                 foreach (var w in _game.MainPlayer.Level.Minimap.Waypoints)

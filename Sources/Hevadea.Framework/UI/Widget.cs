@@ -54,6 +54,8 @@ namespace Hevadea.Framework.UI
 
     public class Widget
     {
+        public bool IsEnable { get; set; } = true;
+        public bool IsDisable { get => !IsEnable; set { IsEnable = !value; } }
 
         public float Scale(float val) => val * Rise.Ui.ScaleFactor;
         public int Scale(int val) =>  (int)(val * Rise.Ui.ScaleFactor);
@@ -75,17 +77,28 @@ namespace Hevadea.Framework.UI
         public bool CanGetFocus { get; set; }
         public bool IsFocus { get { return Rise.Ui.FocusWidget == this; } }
         
-
         protected Rectangle Bound => new Rectangle((int)(UnitBound.X * Rise.Ui.ScaleFactor), (int)(UnitBound.Y * Rise.Ui.ScaleFactor), (int)(UnitBound.Width * Rise.Ui.ScaleFactor), (int)(UnitBound.Height * Rise.Ui.ScaleFactor));
         protected Rectangle Host => new Rectangle((int)(UnitHost.X * Rise.Ui.ScaleFactor), (int)(UnitHost.Y * Rise.Ui.ScaleFactor), (int)(UnitHost.Width * Rise.Ui.ScaleFactor), (int)(UnitHost.Height * Rise.Ui.ScaleFactor));
         protected Point Offset => new Point((int)(UnitOffset.X * Rise.Ui.ScaleFactor), (int)(UnitOffset.Y * Rise.Ui.ScaleFactor));
         
-        public virtual void RefreshLayout()
+        public virtual void RefreshLayout() {}
+        public virtual void Update(GameTime gameTime) {}
+        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime) { }
+
+        public void Disable() { IsDisable = true; }
+        public void Enable() { IsEnable = true; }
+        public void Toggle() { IsEnable = !IsEnable; }
+
+        public void UpdateInternal(GameTime gameTime)
         {
-            
+            if (IsEnable)
+            {
+                HandleInput();
+                Update(gameTime);
+            }
         }
 
-        public void HandleInput()
+        private void HandleInput()
         {
             if (Rise.Pointing.AreaOver(Bound))
             {
@@ -107,31 +120,18 @@ namespace Hevadea.Framework.UI
                 MouseState = MouseState.None;
             }
         }
-        
-        public void UpdateInternal(GameTime gameTime)
-        {
-            HandleInput();
-            Update(gameTime);
-        }
-
-        public virtual void Update(GameTime gameTime)
-        {
-
-        }
 
         public void DrawIternal(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            Draw(spriteBatch, gameTime);
-            if (Rise.DebugUi)
+            if (IsEnable)
             {
-                spriteBatch.DrawRectangle(Host, Color.Cyan);
-                spriteBatch.DrawRectangle(Bound, Color.Black);
+                Draw(spriteBatch, gameTime);
+                if (Rise.DebugUi)
+                {
+                    spriteBatch.DrawRectangle(Host, Color.Cyan);
+                    spriteBatch.DrawRectangle(Bound, Color.Black);
+                }
             }
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-
         }
 
         public Widget RegisterMouseClickEvent(WidgetEventHandler func)

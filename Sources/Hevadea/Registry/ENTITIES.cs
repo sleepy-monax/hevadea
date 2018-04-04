@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Entities;
 using Hevadea.Entities.Blueprints;
+using Hevadea.Entities.Blueprints.Legacy;
 using Hevadea.Items;
 
 namespace Hevadea.Registry
@@ -15,6 +16,7 @@ namespace Hevadea.Registry
         public static EntityBlueprint CHIKEN;
 
         public static EntityBlueprint GRASS;
+        public static EntityBlueprint FLOWER;
         public static EntityBlueprint TREE;
 
         public static EntityBlueprint CHEST;
@@ -39,6 +41,7 @@ namespace Hevadea.Registry
             CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChiken>("chiken"));
 
             // Plants
+            FLOWER = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFlower>("flower"));
             GRASS = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityGrass>("grass"));
             TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
             
