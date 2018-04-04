@@ -13,7 +13,6 @@ namespace Hevadea.Entities.Blueprints
             AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
             AddComponent(new Interact());
             AddComponent(new Attack());
-            AddComponent(new Target());
             AddComponent(new Burnable(1f));
         }
     }

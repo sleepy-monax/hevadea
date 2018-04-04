@@ -97,10 +97,10 @@ namespace Hevadea.Entities.Components
         public void Do(Item weapon)
         {
             if (IsAttacking) return;
-            if (!Owner.GetComponent<Energy>()?.Reduce(1f) ?? false) return;
             if (Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? false) return;
 
             var damages = GetBaseDamages();
+            if (!Owner.GetComponent<Energy>()?.Reduce(1f) ?? false) return;
             var facingTile = Owner.GetFacingTile();
 
             if (CanAttackEntities)

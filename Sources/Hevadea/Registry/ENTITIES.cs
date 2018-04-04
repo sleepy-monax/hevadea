@@ -4,35 +4,7 @@ using Hevadea.Entities.Blueprints;
 using Hevadea.Items;
 
 namespace Hevadea.Registry
-{
-    public class GenericEntityBlueprint<T> : EntityBlueprint where T : Entity, new()
-    {
-        public GenericEntityBlueprint(string name) : base(name){}
-        public override Entity Construct()
-        {
-            return new T{Blueprint = this};
-        }
-    }
-    
-    public class EntityBlueprint
-    {
-        public string Name { get; }
-        public delegate void ConstructorHandler(Entity e);
-        public ConstructorHandler Constructor; 
-
-        public EntityBlueprint(string name)
-        {
-            Name = name;
-        }
-        
-        public virtual Entity Construct()
-        {
-            var newEntity = new Entity { Blueprint = this };
-            Constructor?.Invoke(newEntity);
-            return newEntity;
-        }
-    }
-    
+{    
     public static class ENTITIES
     {
         public static EntityBlueprint ITEM;
@@ -54,7 +26,7 @@ namespace Hevadea.Registry
         public static EntityBlueprint BELT;
         public static EntityBlueprint TNT;
         
-        public static List<EntityBlueprint> SaveExluded { get; set; } = new List<EntityBlueprint>();
+        public static List<EntityBlueprint> SaveExcluded { get; set; } = new List<EntityBlueprint>();
         
         public static void Initialize()
         {
@@ -80,7 +52,7 @@ namespace Hevadea.Registry
             BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityBelt>("belt"));
             TNT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTNT>("tnt"));
             
-            SaveExluded.Add(PLAYER);
+            SaveExcluded.Add(PLAYER);
         }
         
         private static Dictionary<string, EntityBlueprint> _blueprintLibrary = new Dictionary<string, EntityBlueprint>();

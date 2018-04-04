@@ -4,12 +4,12 @@ using Hevadea.Framework.Input;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Ressource;
 using Hevadea.Framework.Scening;
+using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using Hevadea.Framework.Threading;
 
 namespace Hevadea.Framework
 {
@@ -84,6 +84,11 @@ namespace Hevadea.Framework
             }
 
             Scene.Switch(_startScene);
+
+            if (Platform.Family == PlatformFamily.Desktop)
+            {
+                Graphic.SetSize(1366, 768);
+            }
         }
         
         private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)

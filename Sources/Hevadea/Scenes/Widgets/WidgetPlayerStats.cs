@@ -27,7 +27,7 @@ namespace Hevadea.Scenes.Widgets
             var energy = _player.GetComponent<Energy>().ValuePercent;
 
             var i = 0;
-            var size = Scale(32);
+            var size = Scale(64);
             for (i = 0; i <= 10 * health - 1; i++)
                 _hearth.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y, size, size), Color.White);
 

@@ -88,7 +88,7 @@ namespace Hevadea.Loading.Tasks
 
             foreach (var e in level.Entities)
             {
-                if (!ENTITIES.SaveExluded.Contains(e.Blueprint))
+                if (!ENTITIES.SaveExcluded.Contains(e.Blueprint))
                 {
                     storage.Entities.Add(e.Save());
                 }

@@ -9,7 +9,7 @@ namespace Hevadea.Entities.Components
     public class Pushable : Component, IEntityComponentDrawable
     {
         public Entity IsPushBy;
-        public bool CanBePushByAnything = false;
+        public bool CanBePushByAnything => CanBePushBy.Count == 0;
         public List<EntityBlueprint> CanBePushBy { get; set; } = new List<EntityBlueprint>();
         
         public bool Push(Entity pusher, Direction direction, float strength)

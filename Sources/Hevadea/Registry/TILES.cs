@@ -10,6 +10,8 @@ namespace Hevadea.Registry
     public static class TILES
     {
         public static List<Tile> ById = new List<Tile>();
+        public static List<Tile> GroundTile = new List<Tile>();
+        public static List<Tile> WaterTile = new List<Tile>();
 
         public static Tile VOID;
         public static Tile GRASS;
@@ -32,6 +34,9 @@ namespace Hevadea.Registry
             VOID       = new Tile();
             DIRT       = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 9)), Color.Brown);
             IRON_ORE   = new Tile(new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)));
+
+            WaterTile = new List<Tile>(){ WATER };
+            GroundTile = new List<Tile>() { GRASS, SAND, WOOD_FLOOR, DIRT };
         }
 
         public static void AttachRender()

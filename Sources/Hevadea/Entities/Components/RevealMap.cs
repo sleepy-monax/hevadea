@@ -14,8 +14,6 @@ namespace Hevadea.Entities.Components
 
             var pp = new Point(Rise.Rnd.Next(-Range, Range) + p.X, Rise.Rnd.Next(-Range, Range) + p.Y);
             Owner.Level.Minimap.Texture.SetPixel(pp.X, pp.Y, Owner.Level.GetTile(pp.X, pp.Y).MiniMapColor);
-
-
         }
     }
 }

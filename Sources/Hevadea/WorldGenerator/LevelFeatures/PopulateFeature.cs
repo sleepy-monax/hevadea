@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Hevadea.Registry;
 using Hevadea.Tiles;
 using Hevadea.Worlds;
+using Hevadea.Entities;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {

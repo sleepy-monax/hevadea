@@ -19,7 +19,7 @@ namespace Hevadea.Entities.Blueprints
             AddComponent(new Inventory(128));
             AddComponent(new Pickupable(_sprite));
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
-            AddComponent(new Pushable() {CanBePushByAnything = true});
+            AddComponent(new Pushable());
             AddComponent(new Health(10)).Killed += EntityDie;
             AddComponent(new Interactable()).Interacted += EntityInteracte;
             AddComponent(new Pickupable(_sprite));
