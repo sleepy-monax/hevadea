@@ -76,6 +76,7 @@ namespace Hevadea.Entities
                 if (c is IEntityComponentDrawable drawable) 
                     drawable.Draw(spriteBatch, gameTime);
             
+            Renderer.Render(this, spriteBatch, gameTime);
             OnDraw(spriteBatch, gameTime);
             
             if (Rise.ShowDebug)

@@ -126,6 +126,8 @@
     <Compile Include="Entities\IEntityComponentDrawableOverlay.cs" />
     <Compile Include="Entities\IEntityComponentSaveLoad.cs" />
     <Compile Include="Entities\IEntityComponentUpdatable.cs" />
+    <Compile Include="Entities\Renderer.cs" />
+    <Compile Include="Entities\Renderers\NullRenderer.cs" />
     <Compile Include="GameManager\GameManager.cs" />
     <Compile Include="GameManager\GameManager.LifeCycle.cs" />
     <Compile Include="GameManager\GameManager.Networking.Client.cs" />

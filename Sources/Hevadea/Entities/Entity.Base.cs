@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic.Particles;
+﻿using Hevadea.Entities.Renderers;
+using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Utils;
@@ -16,7 +17,8 @@ namespace Hevadea.Entities
         public float Y { get; private set; }
         public Direction Facing { get; set; } = Direction.South;
         public bool Removed { get; set; } = true;
-        public EntityBlueprint Blueprint { get; set; } = null;
+        public EntityBlueprint Blueprint { get; set; }
+        public Renderer Renderer { get; set; } = new NullRenderer();
         public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
         
         public Level Level { get; set; }
@@ -25,7 +27,7 @@ namespace Hevadea.Entities
         
         public int SortingOffset { get; set; } = 0;
         #endregion
-
+        
         #region Properties Getters and Setters
 
         public void SetPosition(float x, float y)
