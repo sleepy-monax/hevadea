@@ -13,9 +13,9 @@ namespace Hevadea.Entities.Blueprints
 
         public EntityGrass()
         {
-            SortingOffset = -16;
+            SortingOffset = 0;
 
-            Variant = Rise.Rnd.Next(0, 3);
+            Variant = Rise.Rnd.Next(0, 4);
 
             if (_sprites == null)
             {
@@ -32,7 +32,7 @@ namespace Hevadea.Entities.Blueprints
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _sprites[Variant].Draw(spriteBatch, new Vector2(X - 8, Y - 8), Color.White);
+            _sprites[Variant].Draw(spriteBatch, new Vector2(X - 12, Y - 18), 1.5f, Color.White);
         }
     }
 }

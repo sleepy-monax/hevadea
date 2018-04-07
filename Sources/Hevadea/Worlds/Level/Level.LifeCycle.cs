@@ -56,16 +56,16 @@ namespace Hevadea.Worlds
         {
             var entitiesOnScreen = new List<Entity>();
             var focusEntity = new Point((int) camera.X / Constant.TileSize, (int) camera.Y / Constant.TileSize);
-            var dist = new Point(camera.GetWidth() / 2 / Constant.TileSize + 4,
-                camera.GetHeight() / 2 / Constant.TileSize + 4);
+            var dist = new Point(camera.GetWidth() / 2 / Constant.TileSize + 8,
+                camera.GetHeight() / 2 / Constant.TileSize + 8);
 
             var state = new LevelRenderState
             {
                 Begin = new Point(Math.Max(0, focusEntity.X - dist.X),
-                    Math.Max(0, focusEntity.Y - dist.Y + 1)),
+                    Math.Max(0, focusEntity.Y - dist.Y)),
 
-                End = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
-                    Math.Min(Height, focusEntity.Y + dist.Y + 1))
+                End = new Point(Math.Min(Width, focusEntity.X + dist.X),
+                    Math.Min(Height, focusEntity.Y + dist.Y))
             };
 
             for (var tx = state.Begin.X; tx < state.End.X; tx++)

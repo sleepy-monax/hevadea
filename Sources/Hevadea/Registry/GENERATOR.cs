@@ -107,7 +107,7 @@ namespace Hevadea.Registry
                             },
                             new PopulateFeature(ENTITIES.GRASS)
                             {
-                                Chance = 2,
+                                Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = new PerlinFunction(1,1,5),
                                 Threashold = 0.5f

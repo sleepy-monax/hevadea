@@ -6,9 +6,9 @@ namespace Hevadea.Framework.Graphic
     public class ParalaxeLayer
     {
         public Texture2D Texture { get; }
-        public float Factor { get; }
+        public double Factor { get; }
 
-        public ParalaxeLayer(Texture2D texture, float factor)
+        public ParalaxeLayer(Texture2D texture, double factor)
         {
             Texture = texture;
             Factor = factor;
@@ -18,7 +18,7 @@ namespace Hevadea.Framework.Graphic
     public class ParalaxeBackground
     {
         public ParalaxeLayer[] Layers;
-        public float Position = 0;
+        public double Position = 0;
 
         public ParalaxeBackground(params ParalaxeLayer[] layers)
         {
@@ -27,7 +27,7 @@ namespace Hevadea.Framework.Graphic
 
         public void Draw(SpriteBatch spriteBatch, Rectangle destination,GameTime gameTime)
         {
-            Position = Position + (gameTime.ElapsedGameTime.Milliseconds / 1000f) * 32;
+            Position = Position + gameTime.ElapsedGameTime.TotalSeconds;
             foreach (var l in Layers)
             {
                 var onScreenPos = (Position * l.Factor) % destination.Width;

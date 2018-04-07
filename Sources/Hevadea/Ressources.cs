@@ -102,10 +102,10 @@ namespace Hevadea
             }
             
             ParalaxeForest = new ParalaxeBackground(
-                new ParalaxeLayer(ImgForestBackground, 0.5f),
-                new ParalaxeLayer(ImgForestTrees0, 1f),
-                new ParalaxeLayer(ImgForestLight, 2f),
-                new ParalaxeLayer(ImgForestTrees1, 4f)
+                new ParalaxeLayer(ImgForestBackground, 32f),
+                new ParalaxeLayer(ImgForestTrees0, 64f),
+                new ParalaxeLayer(ImgForestLight, 128f),
+                new ParalaxeLayer(ImgForestTrees1, 256f)
             );
 
             SprUnderWater = new Sprite(TileCreatures, 3, new Point(16, 32));

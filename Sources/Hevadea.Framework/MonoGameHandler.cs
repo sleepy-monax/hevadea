@@ -42,7 +42,7 @@ namespace Hevadea.Framework
                     Rise.Graphic.SetSize(new Point(Window.ClientBounds.Width, Window.ClientBounds.Height));
                 }
             };
-            OnInitialize?.Invoke(this, EventArgs.Empty);   
+            OnInitialize?.Invoke(this, EventArgs.Empty);
         }
 
         protected override void LoadContent()
