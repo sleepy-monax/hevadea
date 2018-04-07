@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Framework;
@@ -64,7 +65,7 @@ namespace Hevadea.Worlds
                     Math.Max(0, focusEntity.Y - dist.Y + 1)),
 
                 End = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
-                    Math.Min(Height, focusEntity.Y + dist.Y + 6))
+                    Math.Min(Height, focusEntity.Y + dist.Y + 1))
             };
 
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
@@ -80,10 +81,12 @@ namespace Hevadea.Worlds
 
         public void DrawTerrain(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
         {
-            for (var tx = state.Begin.X; tx < state.End.X; tx++)
             for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
             {
-                GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+                for (var tx = state.Begin.X; tx < state.End.X; tx++)
+                {
+                    GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+                }
             }
             
             ParticleSystem.Draw(spriteBatch, gameTime);

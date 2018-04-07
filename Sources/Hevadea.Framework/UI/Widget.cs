@@ -59,6 +59,7 @@ namespace Hevadea.Framework.UI
 
         public float Scale(float val) => val * Rise.Ui.ScaleFactor;
         public int Scale(int val) =>  (int)(val * Rise.Ui.ScaleFactor);
+        public Point Scale(Point p) => new Point(Scale(p.X), Scale(p.Y));
         public Rectangle Scale(Rectangle rect) => new Rectangle(Scale(rect.X), Scale(rect.Y), Scale(rect.Width), Scale(rect.Height));
 
         public Rectangle UnitBound { get; set; } = new Rectangle(0, 0, 64, 64);

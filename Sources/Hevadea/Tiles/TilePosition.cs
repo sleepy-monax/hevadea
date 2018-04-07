@@ -89,5 +89,10 @@ namespace Hevadea.Tiles
                 return (X * 397) ^ Y;
             }
         }
+
+        public Point ToPoint()
+        {
+            return new Point(X, Y);
+        }
     }
 }

@@ -114,6 +114,14 @@ namespace Hevadea.Framework.Graphic
         
         #region Rectangle
 
+        public static void DrawRectangle(this SpriteBatch sb, Point begin, Point end, float thickness, Color color)
+        {
+            DrawLine(sb, new Vector2(begin.X, begin.Y), new Vector2(end.X, begin.Y), color, thickness); // Right
+            DrawLine(sb, new Vector2(begin.X + thickness, begin.Y + thickness), new Vector2(begin.X + thickness, end.Y - thickness), color, thickness); // left
+            DrawLine(sb, new Vector2(begin.X, end.Y - thickness), new Vector2(end.X, end.Y - thickness), color, thickness); // bottom
+            DrawLine(sb, new Vector2(end.X, begin.Y + thickness), new Vector2(end.X, end.Y - thickness), color, thickness); // right
+        }
+        
         public static void DrawRectangle(this SpriteBatch spriteBatch, Rectangle rect, Color color, float thickness = 1.0f)
         {
             DrawLine(spriteBatch, new Vector2(rect.X, rect.Y), new Vector2(rect.Right, rect.Y), color, thickness); // Right

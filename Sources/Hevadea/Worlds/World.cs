@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Hevadea.Entities;
 using Hevadea.Entities.Blueprints;
 using Hevadea.Framework;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -65,6 +67,7 @@ namespace Hevadea.Worlds
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
 
+        Stopwatch sw = new Stopwatch();
         public void Draw(GameTime gameTime, Camera camera)
         {
             var level = camera.FocusEntity.Level;
@@ -72,13 +75,16 @@ namespace Hevadea.Worlds
             var cameraTransform = camera.GetTransform();
             
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[1]);
-
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
+            
+            sw.Start();
+            _spriteBatch.Begin(SpriteSortMode.Deferred ,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawTerrain(state, _spriteBatch, gameTime);
             level.DrawEntities(state, _spriteBatch, gameTime);
             level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
             _spriteBatch.End();
-
+            sw.Stop();
+            Logger.Log($"{sw.ElapsedMilliseconds}");
+            sw.Reset();
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
 
 
@@ -87,7 +93,7 @@ namespace Hevadea.Worlds
                 : level.Properties.AmbiantLight;
             Rise.Graphic.Clear(ambiantColor);
 
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
+            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
             level.DrawLightMap(state, _spriteBatch, gameTime);
             _spriteBatch.End();
 
