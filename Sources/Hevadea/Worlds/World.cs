@@ -67,7 +67,6 @@ namespace Hevadea.Worlds
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
 
-        Stopwatch sw = new Stopwatch();
         public void Draw(GameTime gameTime, Camera camera)
         {
             var level = camera.FocusEntity.Level;
@@ -76,15 +75,11 @@ namespace Hevadea.Worlds
             
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[1]);
             
-            sw.Start();
             _spriteBatch.Begin(SpriteSortMode.Deferred ,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawTerrain(state, _spriteBatch, gameTime);
             level.DrawEntities(state, _spriteBatch, gameTime);
             level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
             _spriteBatch.End();
-            sw.Stop();
-            Logger.Log($"{sw.ElapsedMilliseconds}");
-            sw.Reset();
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
 
 

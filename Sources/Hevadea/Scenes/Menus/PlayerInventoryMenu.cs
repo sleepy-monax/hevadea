@@ -22,14 +22,24 @@ namespace Hevadea.Scenes.Menus
 
     public class PlayerInventoryMenu : Menu
     {
+        WidgetItemContainer inventory;
+        CraftingTab         crafting;
+
         public PlayerInventoryMenu(GameManager game) : base(game)
+        {
+
+            InitializeComponents();
+
+        }
+
+        public void InitializeComponents()
         {
             PauseGame = true;
 
-            var inventory = new WidgetItemContainer(game.MainPlayer.GetComponent<Inventory>().Content)
-            {
-                Dock = Dock.Fill,
-            };
+            inventory = new WidgetItemContainer(Game.MainPlayer.GetComponent<Inventory>().Content);
+            crafting = new CraftingTab(Game);
+
+            inventory.Dock = Dock.Fill;
 
             inventory.MouseClick += (sender) =>
             {

@@ -4,6 +4,7 @@ using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.Registry;
 using Hevadea.Tiles;
+using Hevadea.Tiles.Components;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -106,7 +107,7 @@ namespace Hevadea.Utils
         {
             if (_nodes[tx, ty] == null)
             {
-                _nodes[tx, ty] = new Node(_level.GetTile(tx, ty).Tag<Tags.Solide>()?.CanPassThrought(_entity) ?? true, tx, ty);
+                _nodes[tx, ty] = new Node(_level.GetTile(tx, ty).Tag<SolideTile>()?.CanPassThrought(_entity) ?? true, tx, ty);
             }
 
             return _nodes[tx, ty];

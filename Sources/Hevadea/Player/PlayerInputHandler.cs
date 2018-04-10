@@ -53,19 +53,14 @@ namespace Hevadea.Player
                     if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
                     if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
                     if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
-                    
-    
                     if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
                     if (input.KeyPress(Keys.L)) HandleInput(PlayerInput.Pickup);
                     if (input.KeyPress(Keys.A)) HandleInput(PlayerInput.DropItem);
-
                     if (input.KeyPress(Keys.X)) HandleInput(PlayerInput.AddWaypoint);
-                    
                     if (input.KeyPress(Keys.Add) || input.KeyPress(Keys.Up)) HandleInput(PlayerInput.Zoom);
                     if (input.KeyPress(Keys.Subtract) || input.KeyPress(Keys.Down)) HandleInput(PlayerInput.Dzoom);
                 }
-
             }
             
             if (input.KeyPress(Keys.E) || input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenMenu);
@@ -81,24 +76,29 @@ namespace Hevadea.Player
                 case PlayerInput.MoveLeft:
                     playerMovement.Do(-1, 0, Direction.West);
                     break;
+
                 case PlayerInput.MoveRight:
                     playerMovement.Do(+1, 0, Direction.East);
                     break;
+
                 case PlayerInput.MoveUp:
                     playerMovement.Do(0, -1, Direction.North);
                     break;
+
                 case PlayerInput.MoveDown:
                     playerMovement.Do(0, +1, Direction.South);
                     break;
+
                 case PlayerInput.Action:
                     if (Player.GetComponent<Inventory>().Content.Count(Player.HoldingItem) == 0)
                         Player.HoldingItem = null;
-
                     Player.GetComponent<Interact>().Do(Player.HoldingItem);
                     break;
+
                 case PlayerInput.Attack:
                     Player.GetComponent<Attack>().Do(Player.HoldingItem);
                     break;
+
                 case PlayerInput.Pickup:
                     Player.GetComponent<Pickup>().Do();
                     break;
@@ -109,6 +109,7 @@ namespace Hevadea.Player
                     var facingTile = Player.GetFacingTile();
                     Player.GetComponent<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
                     break;
+
                 case PlayerInput.OpenMenu:
                     if (game.CurrentMenu is MenuInGame)
                         game.CurrentMenu = new PlayerInventoryMenu(game);
@@ -117,13 +118,14 @@ namespace Hevadea.Player
                     break;
                 
                 case PlayerInput.Zoom:
-                        if(game.Camera.Zoom < 8) game.Camera.Zoom /= 0.8f;
+                    if(game.Camera.Zoom < 8) game.Camera.Zoom /= 0.8f;
                     break;
-                
+
                 case PlayerInput.Dzoom:
-                        if(game.Camera.Zoom > 2) game.Camera.Zoom *= 0.8f;
+                    if(game.Camera.Zoom > 2) game.Camera.Zoom *= 0.8f;
                     break;
-                case PlayerInput.AddWaypoint :
+
+                case PlayerInput.AddWaypoint:
                     var pos = game.MainPlayer.GetTilePosition();
                     game.MainPlayer.Level.Minimap.Waypoints.Add(new MinimapWaypoint{X = pos.X, Y = pos.Y, Icon = 0});
                     break;

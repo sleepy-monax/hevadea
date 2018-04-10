@@ -26,7 +26,7 @@ namespace Hevadea.Worlds
             return result;
         }
         
-        public bool IsAll<T>(Rectangle rectangle) where T: TileTag
+        public bool IsAll<T>(Rectangle rectangle) where T: TileComponent
         {
             var beginX = rectangle.X / Constant.TileSize;
             var beginY = rectangle.Y / Constant.TileSize;

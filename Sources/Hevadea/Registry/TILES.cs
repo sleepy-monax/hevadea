@@ -2,6 +2,7 @@
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Items;
 using Hevadea.Tiles;
+using Hevadea.Tiles.Components;
 using Hevadea.Tiles.Renderers;
 using Microsoft.Xna.Framework;
 
@@ -52,31 +53,31 @@ namespace Hevadea.Registry
         public static void AttachTags()
         {
 
-            ROCK.AddTag(new Tags.Solide(), new Tags.Damage { ReplacementTile = DIRT });
-            ROCK.AddTag(new Tags.Droppable(new Drop(ITEMS.STONE,1f, 2, 3), new Drop(ITEMS.COAL,1f, 0, 2)));
+            ROCK.AddTag(new SolideTile(), new DamageTile { ReplacementTile = DIRT });
+            ROCK.AddTag(new DroppableTile(new Drop(ITEMS.STONE,1f, 2, 3), new Drop(ITEMS.COAL,1f, 0, 2)));
 
-            SAND.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
-            SAND.AddTag(new Tags.Droppable(new Drop(ITEMS.SAND, 1f, 1, 1)));
+            SAND.AddTag(new BreakableTile { ReplacementTile = DIRT });
+            SAND.AddTag(new DroppableTile(new Drop(ITEMS.SAND, 1f, 1, 1)));
 
-            GRASS.AddTag(new Tags.Breakable { ReplacementTile = DIRT });
-            GRASS.AddTag(new Tags.Spread { SpreadChance = 50, SpreadTo = { DIRT } });
-            GRASS.AddTag(new Tags.Droppable(new Drop(ITEMS.GRASS_PATCH, 1f, 1, 1)));
+            GRASS.AddTag(new BreakableTile { ReplacementTile = DIRT });
+            GRASS.AddTag(new Spread { SpreadChance = 50, SpreadTo = { DIRT } });
+            GRASS.AddTag(new DroppableTile(new Drop(ITEMS.GRASS_PATCH, 1f, 1, 1)));
 
-            WATER.AddTag(new Tags.Spread { SpreadChance = 1, SpreadTo = { VOID } });
-            WATER.AddTag(new Tags.Liquide());
-            WATER.AddTag(new Tags.Ground{ MoveSpeed = 0.5f });
+            WATER.AddTag(new Spread { SpreadChance = 1, SpreadTo = { VOID } });
+            WATER.AddTag(new LiquideTile());
+            WATER.AddTag(new GroundTile { MoveSpeed = 0.5f });
 
-            DIRT.AddTag(new Tags.Damage { ReplacementTile = VOID });
+            DIRT.AddTag(new DamageTile { ReplacementTile = VOID });
 
-            WOOD_WALL.AddTag(new Tags.Solide());
-            WOOD_WALL.AddTag(new Tags.Damage { ReplacementTile = DIRT });
-            WOOD_WALL.AddTag(new Tags.Droppable(new Drop(ITEMS.WOOD_WALL, 1f, 1, 1)));
+            WOOD_WALL.AddTag(new SolideTile());
+            WOOD_WALL.AddTag(new DamageTile { ReplacementTile = DIRT });
+            WOOD_WALL.AddTag(new DroppableTile(new Drop(ITEMS.WOOD_WALL, 1f, 1, 1)));
 
-            WOOD_FLOOR.AddTag(new Tags.Damage { ReplacementTile = DIRT });
-            WOOD_FLOOR.AddTag(new Tags.Droppable(new Drop(ITEMS.WOOD_FLOOR, 1f, 1, 1)));
+            WOOD_FLOOR.AddTag(new DamageTile { ReplacementTile = DIRT });
+            WOOD_FLOOR.AddTag(new DroppableTile(new Drop(ITEMS.WOOD_FLOOR, 1f, 1, 1)));
 
-            IRON_ORE.AddTag(new Tags.Solide(), new Tags.Damage { ReplacementTile = DIRT });
-            IRON_ORE.AddTag(new Tags.Droppable(new Drop(ITEMS.IRON_ORE, 1f, 1, 2)));
+            IRON_ORE.AddTag(new SolideTile(), new DamageTile { ReplacementTile = DIRT });
+            IRON_ORE.AddTag(new DroppableTile(new Drop(ITEMS.IRON_ORE, 1f, 1, 2)));
 
         }
     }
