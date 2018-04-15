@@ -10,23 +10,20 @@ namespace Hevadea.Registry
     {
         public static EntityBlueprint ITEM;
         
-        public static EntityBlueprint PLAYER;
-        public static EntityBlueprint ZOMBIE;
-        public static EntityBlueprint FISH;
-        public static EntityBlueprint CHIKEN;
-
-        public static EntityBlueprint GRASS;
-        public static EntityBlueprint FLOWER;
-        public static EntityBlueprint TREE;
-
-        public static EntityBlueprint CHEST;
-        public static EntityBlueprint CRAFTING_BENCH;
-        public static EntityBlueprint FURNACE;
-        public static EntityBlueprint STAIRES;
-        public static EntityBlueprint TORCH;
-
         public static EntityBlueprint BELT;
+        public static EntityBlueprint CHEST;
+        public static EntityBlueprint CHIKEN;
+        public static EntityBlueprint CRAFTING_BENCH;
+        public static EntityBlueprint FISH;
+        public static EntityBlueprint FLOWER;
+        public static EntityBlueprint FURNACE;
+        public static EntityBlueprint GRASS;
+        public static EntityBlueprint PLAYER;
+        public static EntityBlueprint STAIRES;
         public static EntityBlueprint TNT;
+        public static EntityBlueprint TORCH;
+        public static EntityBlueprint TREE;
+        public static EntityBlueprint ZOMBIE;
         
         public static List<EntityBlueprint> SaveExcluded { get; set; } = new List<EntityBlueprint>();
         
@@ -34,26 +31,20 @@ namespace Hevadea.Registry
         {
             ITEM = RegisterEntityBlueprint(new GenericEntityBlueprint<ItemEntity>("item"));
             
-            // Creatures
-            PLAYER = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityPlayer>("player"));
-            ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityZombie>("zombie"));
-            FISH = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFish>("fish"));
-            CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChiken>("chiken"));
-
-            // Plants
-            FLOWER = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFlower>("flower"));
-            GRASS = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityGrass>("grass"));
-            TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
-            
-            // Furnitures
+            BELT           = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityBelt>("belt"));
             CHEST          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChest>("chest"));
+            CHIKEN         = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChiken>("chiken"));
             CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityCraftingBench>("crafting_bench"));
+            FISH           = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFish>("fish"));
+            FLOWER         = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFlower>("flower"));
             FURNACE        = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFurnace>("furnace"));
+            GRASS          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityGrass>("grass"));
+            PLAYER         = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityPlayer>("player"));
             STAIRES        = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityStairs>("staires"));
+            TNT            = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTNT>("tnt"));
             TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTorch>("torch"));
-
-            BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityBelt>("belt"));
-            TNT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTNT>("tnt"));
+            TREE           = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
+            ZOMBIE         = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityZombie>("zombie"));
             
             SaveExcluded.Add(PLAYER);
         }

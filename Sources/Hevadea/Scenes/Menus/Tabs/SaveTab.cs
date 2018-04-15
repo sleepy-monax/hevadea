@@ -3,9 +3,12 @@ using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+
 using Hevadea.Loading;
+
 using Hevadea.Scenes.MainMenu;
 using Hevadea.Scenes.Widgets;
+
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes.Menus.Tabs
@@ -33,15 +36,11 @@ namespace Hevadea.Scenes.Menus.Tabs
 
             if (!game.IsClient)
             {
-                container.AddChild(new Button
+                container.AddChild(new Button { Text = "Quick save", Padding = new Padding(4) } )
+                .RegisterMouseClickEvent((sender) =>
                 {
-                    Text = "Quick save",
-                    Padding = new Padding(4)
-                })
-                    .RegisterMouseClickEvent((sender) =>
-                    {
-                        game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game));
-                    });
+                    game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game));
+                });
                 container.AddChild(new Button
                 {
                     Text = "Save and Exit",

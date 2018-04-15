@@ -67,15 +67,20 @@ namespace Hevadea.Loading.Tasks
             SetProgress(0);
             SetStatus($"Reading the '{levelName}' from disk...");
             var levelData = File.ReadAllText(path).FromJson<LevelStorage>();
-            
+
+
             SetStatus($"Decoding data of the '{levelName}'...");
             var level = new Level(LEVELS.GetProperties(levelData.Type), levelData.Width, levelData.Height)
             {
                 Name = levelData.Name,
                 Id = levelData.Id,
-                Tiles = levelData.Tiles,
                 TilesData = levelData.TilesData,
             };
+
+            for (int i = 0; i < levelData.Width * levelData.Height; i++)
+            {
+                level.Tiles[i] = TILES.GetTile(levelData.TileBidinding[levelData.Tiles[i].ToString()]);
+            }
 
             SetStatus($"Loading entities of the '{level.Name}'...");
             float entityCount = levelData.Entities.Count;

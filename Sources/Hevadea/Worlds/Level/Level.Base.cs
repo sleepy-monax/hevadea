@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Entities;
 using Hevadea.Framework.Graphic.Particles;
+using Hevadea.Tiles;
 using Hevadea.Tiles.Renderers;
 
 namespace Hevadea.Worlds
@@ -21,7 +22,7 @@ namespace Hevadea.Worlds
         public int Height { get; private set; }
         
         public List<Entity> Entities { get; set; }
-        public int[] Tiles { get; set; }
+        public Tile[] Tiles { get; set; }
         public Dictionary<string, object>[] TilesData { get; set; }
         
         public ParticleSystem ParticleSystem { get; }
@@ -33,7 +34,7 @@ namespace Hevadea.Worlds
             Height = height;
             ParticleSystem = new ParticleSystem();
             
-            Tiles = new int[Width * Height];
+            Tiles = new Tile[Width * Height];
             TilesData = new Dictionary<string, object>[Width * Height];
             Entities = new List<Entity>();
             _entitiesOnTiles = new List<Entity>[Width, Height];

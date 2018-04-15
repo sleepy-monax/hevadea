@@ -12,8 +12,9 @@ namespace Hevadea.Storage
         public int Height { get; set; }
         
         public int[] Tiles;
-        
-        public Dictionary<string, object>[] TilesData;
+
+        public Dictionary<string, string> TileBidinding { get; set; }
+        public Dictionary<string, object>[] TilesData { get; set; }
         public List<EntityStorage> Entities { get; set; } = new List<EntityStorage>();
     }
 }

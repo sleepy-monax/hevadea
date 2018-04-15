@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AndroidPlatform</RootNamespace>
-    <AssemblyName>AndroidPlatform</AssemblyName>
+    <AssemblyName>Hevadea</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -105,9 +105,9 @@
       <Project>{c3056af3-493c-4eea-a163-b14533134771}</Project>
       <Name>Hevadea.Ressources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hevadea\Hevadea.csproj">
+    <ProjectReference Include="..\Hevadea\Hevadea.Game.csproj">
       <Project>{76037d71-10ca-4c2e-a64e-563b595ca88f}</Project>
-      <Name>Hevadea</Name>
+      <Name>Hevadea.Game</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

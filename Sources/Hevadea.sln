@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hevadea", "Hevadea\Hevadea.csproj", "{76037D71-10CA-4C2E-A64E-563B595CA88F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hevadea.Game", "Hevadea\Hevadea.Game.csproj", "{76037D71-10CA-4C2E-A64E-563B595CA88F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hevadea.Framework", "Hevadea.Framework\Hevadea.Framework.csproj", "{44B79EAF-5584-4176-97AD-5BC358A52AE3}"
 EndProject

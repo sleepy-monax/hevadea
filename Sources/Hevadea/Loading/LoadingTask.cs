@@ -41,9 +41,12 @@ namespace Hevadea.Loading
 
         private void TaskInternal(object game)
         {
+#if !DEBUG
             try
             {
+#endif
                 Task((GameManager)game);
+#if !DEBUG
             }
             catch (ThreadAbortException) {}
             catch (Exception ex)
@@ -51,6 +54,7 @@ namespace Hevadea.Loading
                 Exception = ex;
                 Logger.Log<LoadingTask>(ex.ToString());
             }
+#endif
             HasFinish = true;
         }
 

@@ -1,11 +1,14 @@
-﻿using Hevadea.Entities.Components;
+﻿using Hevadea.Craftings;
+using Hevadea.Entities.Components;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Items;
 using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea.Scenes.Menus
 {
@@ -22,29 +25,40 @@ namespace Hevadea.Scenes.Menus
 
     public class PlayerInventoryMenu : Menu
     {
-        WidgetItemContainer inventory;
-        CraftingTab         crafting;
+        private WidgetItemContainer _inventory;
+        private CraftingTab         _crafting;
+        private WidgetTabContainer  _sideMenu;
 
-        public PlayerInventoryMenu(GameManager game) : base(game)
+        public PlayerInventoryMenu(GameManager game, List<Recipe> recipes) : base(game)
+        {
+            InitializeComponents();
+        }
+
+        public PlayerInventoryMenu(GameManager game, ItemStorage container, string containerName) : base(game)
         {
 
             InitializeComponents();
 
         }
 
-        public void InitializeComponents()
+        public PlayerInventoryMenu(GameManager game) : base(game)
+        {
+            InitializeComponents();
+        }
+
+        public void InitializeComponents(InventoryTab mainTab = null)
         {
             PauseGame = true;
 
-            inventory = new WidgetItemContainer(Game.MainPlayer.GetComponent<Inventory>().Content);
-            crafting = new CraftingTab(Game);
+            _inventory = new WidgetItemContainer(Game.MainPlayer.GetComponent<Inventory>().Content);
+            _crafting = new CraftingTab(Game);
 
-            inventory.Dock = Dock.Fill;
+            _inventory.Dock = Dock.Fill;
 
-            inventory.MouseClick += (sender) =>
+            _inventory.MouseClick += (sender) =>
             {
-                inventory.HighlightedItem = inventory.SelectedItem;
-                Game.MainPlayer.HoldingItem = inventory.SelectedItem;
+                _inventory.HighlightedItem = _inventory.SelectedItem;
+                Game.MainPlayer.HoldingItem = _inventory.SelectedItem;
             };
 
             var inventoryPanel = new WidgetFancyPanel
@@ -54,16 +68,17 @@ namespace Hevadea.Scenes.Menus
                     Childrens =
                     {
                         new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
-                        inventory,
+                        _inventory,
                     }
                 }
             };
 
-            var tabContainer = new WidgetTabContainer
+            _sideMenu = new WidgetTabContainer
             {
                 Padding = new Padding(16, 16),
                 Tabs =
                 {
+                    _crafting,
                     new ContainerTab()
                     {
                         Icon = new Sprite(Ressources.TileIcons, new Point(0, 2)),
@@ -73,15 +88,19 @@ namespace Hevadea.Scenes.Menus
                             new EquipmentTab(),
                         }
                     },
-                    new CraftingTab(Game),
                     new SaveTab(Game),
                 }
             };
 
+            if (mainTab != null)
+            {
+                _sideMenu.Tabs.Insert(0, mainTab);
+            }
+
             Content = new TileContainer
             {
                 Flow = FlowDirection.RightToLeft,
-                Childrens = { tabContainer, inventoryPanel }
+                Childrens = { _sideMenu, inventoryPanel }
             };
         }
     }

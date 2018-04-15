@@ -1,17 +1,23 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.Registry;
 using Hevadea.Storage;
+using Hevadea.Tiles;
 using Hevadea.Worlds;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Hevadea.Loading.Tasks
 {
     public class TaskSaveWorld : LoadingTask
     {
+        public TaskSaveWorld()
+        {
+
+        }
+
         public override void Task(GameManager game)
         {
             SetStatus("Saving world...");
@@ -73,16 +79,37 @@ namespace Hevadea.Loading.Tasks
 
         public static string SaveLevel(Level level)
         {
+            Dictionary<string, string> intToName = new Dictionary<string, string>();
+            Dictionary<Tile, int> tileToInt = new Dictionary<Tile, int>();
+
+            int id = 0;
+
+            foreach (var t in TILES.GetTiles())
+            {
+                intToName.Add(id.ToString(), t.Name);
+                tileToInt.Add(t, id);
+
+                id++;
+            }
+
+            int[] tiles = new int[level.Width * level.Height];
+
+            for (int i = 0; i < level.Width * level.Height; i++)
+            {
+                tiles[i] = tileToInt[level.Tiles[i]];
+            }
+
             var storage = new LevelStorage()
             {
                 Id = level.Id,
                 Name = level.Name,
                 Type = level.Properties.Name,
-                    
+
                 Width = level.Width,
                 Height = level.Height,
-                    
-                Tiles = level.Tiles,
+
+                Tiles = tiles,
+                TileBidinding = intToName,
                 TilesData = level.TilesData
             };
 

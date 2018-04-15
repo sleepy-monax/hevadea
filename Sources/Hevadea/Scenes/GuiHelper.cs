@@ -16,7 +16,6 @@ namespace Hevadea.Scenes
         private static Sprite Bottom;
         private static Sprite Left;
         private static Sprite Right;
-        private static Sprite BackGround;
 
         private static void LoadSprites()
         {

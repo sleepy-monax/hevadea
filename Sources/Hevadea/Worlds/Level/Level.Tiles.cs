@@ -53,20 +53,15 @@ namespace Hevadea.Worlds
         public Tile GetTile(int tx, int ty)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return TILES.WATER;
-            return TILES.ById[Tiles[tx + ty * Width]];
+            return Tiles[tx + ty * Width];
         }
 
         public bool SetTile(TilePosition pos, Tile tile)
         {
-            return SetTile(pos.X, pos.Y, tile.Id);
+            return SetTile(pos.X, pos.Y, tile);
         }
 
         public bool SetTile(int tx, int ty, Tile tile)
-        {
-            return SetTile(tx, ty, tile.Id);
-        }
-
-        public bool SetTile(int tx, int ty, int id, bool notify = true)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return false;
                         
@@ -82,7 +77,7 @@ namespace Hevadea.Worlds
                 }
             }
             
-            Tiles[tx + ty * Width] = id;
+            Tiles[tx + ty * Width] = tile;
             
             return true;
         }

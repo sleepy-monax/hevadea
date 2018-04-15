@@ -10,24 +10,23 @@ namespace Hevadea.Tiles
 {
     public class Tile
     {
-        public int Id { get; }
-        public List<TileComponent> Tags => _tags;
+        public string Name { get; }
+
+        private List<TileComponent> Tags => _tags;
         public TileRender Render { get => _render; set { _render = value; _render.Tile = this; } }
         private readonly List<TileComponent> _tags;
         private TileRender _render = null;
 
         public Color MiniMapColor { get; }
         
-        public Tile(Color? minimapColor = null)
+        public Tile(string name, Color? minimapColor = null)
         {
-            Id = TILES.ById.Count;
-            TILES.ById.Add(this);
+            Name = name;
             _tags = new List<TileComponent>();
-
             MiniMapColor = minimapColor ?? Color.Gray;
         }
 
-        public Tile(TileRender renderer, Color? minimapColor = null) : this(minimapColor)
+        public Tile(string name, TileRender renderer, Color? minimapColor = null) : this(name, minimapColor)
         {
             Render = renderer;            
         }

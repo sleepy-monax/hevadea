@@ -15,9 +15,11 @@ namespace Hevadea.Scenes
     class TestScene : Scene
     {
         public Maze maze;
+
         private SpriteBatch sb;
         private int CellSize = 56;
         private int mazeSize = 8;
+
         public override void Load()
         {
             maze = new Maze(mazeSize, mazeSize, Rise.Rnd);

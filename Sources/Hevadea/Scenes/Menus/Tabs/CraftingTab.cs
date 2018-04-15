@@ -10,6 +10,7 @@ using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.Scenes.Menus.Tabs
 {
@@ -49,7 +50,7 @@ namespace Hevadea.Scenes.Menus.Tabs
     {
         public ListWidget CraftingList { get; }
 
-        public CraftingTab(GameManager game) : base(game)
+        public CraftingTab(GameManager game, List<Recipe> recipies = null) : base(game)
         {
 
             Icon = new Sprite(Ressources.TileIcons, new Point(4, 2));
@@ -67,7 +68,7 @@ namespace Hevadea.Scenes.Menus.Tabs
             
             craftButton.MouseClick += Craft;
 
-            foreach (var recipe in RECIPIES.HandCrafted)
+            foreach (var recipe in recipies ?? RECIPIES.HandCrafted)
             {
                 CraftingList.AddItem(new CraftingListItem(recipe, Game.MainPlayer.GetComponent<Inventory>().Content));
             }
