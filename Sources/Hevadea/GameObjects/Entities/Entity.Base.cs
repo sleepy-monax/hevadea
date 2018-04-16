@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.Particles;
 using Hevadea.GameObjects.Entities.Renderers;
+using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Hevadea.Worlds;
@@ -40,7 +41,12 @@ namespace Hevadea.GameObjects.Entities
 
         public string GetIdentifier()
         {
-            return $"{Blueprint?.Name ?? "none"}:{Ueid.ToString("x")}";
+            return $"{Blueprint?.Name ?? "none"}:{Ueid:x}";
+        }
+
+        public bool IsMemberOf(EntityGroupe groupe)
+        {
+            return Blueprint != null && groupe.Members.Contains(Blueprint);
         }
 
         public virtual void OnSave(EntityStorage store)

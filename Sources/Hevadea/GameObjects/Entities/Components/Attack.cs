@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Items.Tags;
 using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
@@ -124,7 +125,7 @@ namespace Hevadea.GameObjects.Entities.Components
                         var eHealth = e.GetComponent<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
-                            eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
+                            eHealth.Hurt(Owner, damages * (weapon?.Tag<DamageTag>()?.GetDamages(e) ?? 1f), Owner.Facing);
                             IsAttacking = true;
                             break;
                         }

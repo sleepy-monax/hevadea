@@ -4,9 +4,26 @@ using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Registry
-{    
+{
+
+    public class EntityGroupe
+    {
+        public string Name { get; }
+        public List<EntityBlueprint> Members { get; set; } = new List<EntityBlueprint>();
+        
+        public EntityGroupe(string name)
+        {
+            Name = name;
+        }
+    }
+    
+    
     public static class ENTITIES
     {
+        public static EntityGroupe GROUPE_CREATURE;
+        public static EntityGroupe GROUPE_TREE;
+        
+        
         public static EntityBlueprint ITEM;
         
         public static EntityBlueprint BELT;
@@ -24,6 +41,7 @@ namespace Hevadea.Registry
         public static EntityBlueprint TREE;
         public static EntityBlueprint ZOMBIE;
         
+        //Todo replace with a EntityGroupe.
         public static List<EntityBlueprint> SaveExcluded { get; set; } = new List<EntityBlueprint>();
         
         public static void Initialize()
@@ -44,6 +62,9 @@ namespace Hevadea.Registry
             TORCH          = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTorch>("torch"));
             TREE           = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
             ZOMBIE         = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityZombie>("zombie"));
+            
+            GROUPE_CREATURE = new EntityGroupe("creature"){ Members = { CHIKEN, FISH, PLAYER, ZOMBIE } };
+            GROUPE_TREE = new EntityGroupe("tree"){ Members = { TREE } };
             
             SaveExcluded.Add(PLAYER);
         }
