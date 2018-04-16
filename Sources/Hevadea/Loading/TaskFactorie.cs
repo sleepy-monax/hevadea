@@ -6,7 +6,7 @@ namespace Hevadea.Loading
 {
     public static class TaskFactorie
     {
-        public static TaskCompound ConstructStartServer(GameManager game, int port = GameManager.PORT)
+        public static TaskCompound ConstructStartServer(GameManager.GameManager game, int port = GameManager.GameManager.PORT)
         {
             return new TaskCompound(game)
             {
@@ -47,7 +47,7 @@ namespace Hevadea.Loading
             };
         }
 
-        public static TaskCompound ConstructSaveWorld(GameManager game)
+        public static TaskCompound ConstructSaveWorld(GameManager.GameManager game)
         {
             return new TaskCompound(game)
             {
@@ -60,7 +60,7 @@ namespace Hevadea.Loading
             };
         }
 
-        public static TaskCompound ConstructSaveWorldAndExit(GameManager game)
+        public static TaskCompound ConstructSaveWorldAndExit(GameManager.GameManager game)
         {
             return new TaskCompound(game)
             {

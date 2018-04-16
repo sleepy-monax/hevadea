@@ -12,7 +12,7 @@ namespace Hevadea.Loading.Tasks
             _scene = scene;
         }
 
-        public override void Task(GameManager game)
+        public override void Task(GameManager.GameManager game)
         {
             SetStatus($"Switching to menu '{_scene.GetType().Name}'...");
             Rise.Scene.Switch(_scene);

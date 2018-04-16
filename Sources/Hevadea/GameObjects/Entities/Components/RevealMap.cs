@@ -2,7 +2,7 @@
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class RevealMap : EntityComponent, IEntityComponentUpdatable
     {

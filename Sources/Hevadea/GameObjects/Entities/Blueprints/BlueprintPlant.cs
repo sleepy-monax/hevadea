@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hevadea.Entities.Blueprints
+﻿namespace Hevadea.GameObjects.Entities.Blueprints
 {
     public class BlueprintPlant : EntityBlueprint
     {

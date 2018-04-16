@@ -9,7 +9,7 @@ namespace Hevadea.Loading
         private LoadingTask _currentTask;
         private Queue<LoadingTask> _tasksQueue;
         private List<LoadingTask> _finishedTasks = new List<LoadingTask>();
-        private GameManager _game;
+        private GameManager.GameManager _game;
 
         private bool _started = false;
         private bool _aborted = false;
@@ -20,15 +20,15 @@ namespace Hevadea.Loading
 
         public TaskCompound()
         {
-            _game = new GameManager();
+            _game = new GameManager.GameManager();
         }
 
         public TaskCompound(string gamePath)
         {
-            _game = new GameManager() { SavePath = gamePath };
+            _game = new GameManager.GameManager() { SavePath = gamePath };
         }
 
-        public TaskCompound(GameManager game)
+        public TaskCompound(GameManager.GameManager game)
         {
             _game = game;
         }
@@ -68,7 +68,7 @@ namespace Hevadea.Loading
             return _currentTask;
         }
 
-        public GameManager GetGame()
+        public GameManager.GameManager GetGame()
         {
             return _game;
         }

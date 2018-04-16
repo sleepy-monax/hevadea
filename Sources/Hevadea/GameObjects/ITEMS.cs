@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities.Components;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Items;
-using Hevadea.Items.Materials;
-using Hevadea.Items.Tags;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Items.Materials;
+using Hevadea.GameObjects.Items.Tags;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Registry
@@ -35,6 +35,12 @@ namespace Hevadea.Registry
         public static Item WOOD_PLANK;
         public static Item WOOD_STICK;
         public static Item WOOD_WALL;
+
+        public static Item AXE;
+        public static Item SWORD;
+        public static Item PICKAXE;
+        public static Item SHOVEl;
+        public static Item HOE;
         
         public static void Initialize()
         {
@@ -42,7 +48,7 @@ namespace Hevadea.Registry
             IronMaterial = new BaseMaterial(4f);
             GoldMaterial = new BaseMaterial(8f);
 
-            BELT           = new Item("belt", new Sprite(Ressources.TileItems, new Point(9, 0)));
+            BELT           = new Item("belt",           new Sprite(Ressources.TileItems, new Point(9, 0)));
             CHEST          = new Item("chest",          new Sprite(Ressources.TileEntities, new Point(0, 1)));
             COAL           = new Item("coal",           new Sprite(Ressources.TileItems, new Point(6, 2)));
             CRAFTING_BENCH = new Item("crafting_bench", new Sprite(Ressources.TileEntities, new Point(1, 0)));
@@ -61,6 +67,12 @@ namespace Hevadea.Registry
             WOOD_PLANK     = new Item("wood_plank",     new Sprite(Ressources.TileItems, new Point(6, 1)));
             WOOD_STICK     = new Item("wood_stick",     new Sprite(Ressources.TileItems, 5));
             WOOD_WALL      = new Item("wood_wall",      new Sprite(Ressources.TileItems, new Point(7, 4)));
+            
+            AXE = new Item("axe", new Sprite(Ressources.TileItems, new Point(0, 0)));
+            PICKAXE = new Item("pickaxe", new Sprite(Ressources.TileItems, new Point(1, 0)));
+            SHOVEl = new Item("shovel", new Sprite(Ressources.TileItems, new Point(2, 0)));
+            SWORD = new Item("sword", new Sprite(Ressources.TileItems, new Point(3, 0)));
+            HOE = new Item("hoe", new Sprite(Ressources.TileItems, new Point(4, 0)));
         }
 
         public static void AttachTags()
@@ -89,7 +101,24 @@ namespace Hevadea.Registry
                 }
             });
 
-            return;
+            AXE.AddTag(new DamageTag()
+            {
+                PerEntityDamage =
+                {
+                    new EntityGroupeDamage(ENTITIES.GROUPE_TREE, 2f),
+                    new EntityGroupeDamage(ENTITIES.GROUPE_CREATURE, 1.3f)
+                }
+            });
+            
+            SWORD.AddTag(new DamageTag()
+            {
+                PerEntityDamage =
+                {
+                    new EntityGroupeDamage(ENTITIES.GROUPE_TREE, 1.1f),
+                    new EntityGroupeDamage(ENTITIES.GROUPE_CREATURE, 2f)
+                }
+            });
+            
         }
     }
 }

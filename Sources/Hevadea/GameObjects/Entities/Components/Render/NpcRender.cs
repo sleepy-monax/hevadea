@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components.Render
+namespace Hevadea.GameObjects.Entities.Components.Render
 {
     public class NpcRender : EntityComponent, IEntityComponentDrawable, IEntityComponentUpdatable
     {

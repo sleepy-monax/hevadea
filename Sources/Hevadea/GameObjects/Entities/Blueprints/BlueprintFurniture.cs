@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.GameObjects.Entities.Components;
 
-namespace Hevadea.Entities.Blueprints
+namespace Hevadea.GameObjects.Entities.Blueprints
 {
     public class BlueprintFurniture : EntityBlueprint
     {

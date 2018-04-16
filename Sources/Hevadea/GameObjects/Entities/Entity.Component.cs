@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {

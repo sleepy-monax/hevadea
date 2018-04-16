@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Tiles
+namespace Hevadea.GameObjects.Tiles
 {
     public interface IDrawableTileComponent
     {

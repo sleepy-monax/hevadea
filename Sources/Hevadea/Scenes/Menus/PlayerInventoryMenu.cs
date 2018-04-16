@@ -1,23 +1,23 @@
 ﻿using Hevadea.Craftings;
-using Hevadea.Entities.Components;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Items;
 using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Scenes.Menus
 {
     
     public abstract class InventoryTab : Tab
     {
-        public GameManager Game { get; }
+        public GameManager.GameManager Game { get; }
 
-        public InventoryTab(GameManager game)
+        public InventoryTab(GameManager.GameManager game)
         {
             Game = game;
         }
@@ -29,19 +29,19 @@ namespace Hevadea.Scenes.Menus
         private CraftingTab         _crafting;
         private WidgetTabContainer  _sideMenu;
 
-        public PlayerInventoryMenu(GameManager game, List<Recipe> recipes) : base(game)
+        public PlayerInventoryMenu(GameManager.GameManager game, List<Recipe> recipes) : base(game)
         {
             InitializeComponents();
         }
 
-        public PlayerInventoryMenu(GameManager game, ItemStorage container, string containerName) : base(game)
+        public PlayerInventoryMenu(GameManager.GameManager game, ItemStorage container, string containerName) : base(game)
         {
 
             InitializeComponents();
 
         }
 
-        public PlayerInventoryMenu(GameManager game) : base(game)
+        public PlayerInventoryMenu(GameManager.GameManager game) : base(game)
         {
             InitializeComponents();
         }

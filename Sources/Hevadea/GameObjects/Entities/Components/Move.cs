@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Framework.Utils;
-using Hevadea.Tiles;
-using Hevadea.Tiles.Components;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Move : EntityComponent, IEntityComponentUpdatable
     {

@@ -1,9 +1,10 @@
 ﻿using Hevadea.WorldGenerator.Functions;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
-using Hevadea.Tiles;
 using Hevadea.Worlds;
-using Hevadea.Entities;
+using Hevadea.Worlds.Level;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {

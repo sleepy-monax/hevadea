@@ -1,7 +1,7 @@
 ﻿using Hevadea.Registry;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Tiles.Components
+namespace Hevadea.GameObjects.Tiles.Components
 {
     public class BreakableTile : TileComponent
     {

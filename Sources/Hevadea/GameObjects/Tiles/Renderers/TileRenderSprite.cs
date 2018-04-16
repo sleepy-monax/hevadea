@@ -1,4 +1,4 @@
-﻿namespace Hevadea.Tiles.Renderers
+﻿namespace Hevadea.GameObjects.Tiles.Renderers
 {
     class TileRenderSprite
     {

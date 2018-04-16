@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public interface IEntityComponentUpdatable
     {

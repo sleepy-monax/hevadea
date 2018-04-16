@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Pickupable : EntityComponent
     {

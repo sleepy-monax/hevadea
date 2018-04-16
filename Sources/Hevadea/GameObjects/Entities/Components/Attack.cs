@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Utils;
-using Hevadea.Items;
-using Hevadea.Tiles;
-using Hevadea.Tiles.Components;
+using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Items.Tags;
+using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Attack : EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawable
     {
@@ -125,7 +125,7 @@ namespace Hevadea.Entities.Components
                         var eHealth = e.GetComponent<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
-                            eHealth.Hurt(Owner, damages * (weapon?.GetAttackBonus(e) ?? 1f), Owner.Facing);
+                            eHealth.Hurt(Owner, damages * (weapon?.Tag<DamageTag>()?.GetDamages(e) ?? 1f), Owner.Facing);
                             IsAttacking = true;
                             break;
                         }

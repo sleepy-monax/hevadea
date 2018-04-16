@@ -13,7 +13,7 @@ namespace Hevadea.Loading.Tasks
             _port = port;
         }
         
-        public override void Task(GameManager game)
+        public override void Task(GameManager.GameManager game)
         {
             SetStatus($"Connecting to: {_ip}:{_port}...");
             

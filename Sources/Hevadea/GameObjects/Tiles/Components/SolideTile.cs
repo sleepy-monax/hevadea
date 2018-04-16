@@ -1,6 +1,6 @@
-﻿using Hevadea.Entities;
+﻿using Hevadea.GameObjects.Entities;
 
-namespace Hevadea.Tiles.Components
+namespace Hevadea.GameObjects.Tiles.Components
 {
     public class SolideTile : TileComponent
     {

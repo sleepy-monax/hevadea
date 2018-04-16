@@ -1,4 +1,4 @@
-﻿using Hevadea.Entities;
+﻿using Hevadea.GameObjects.Entities;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea

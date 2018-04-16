@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Registry;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Pushable : EntityComponent, IEntityComponentDrawable
     {

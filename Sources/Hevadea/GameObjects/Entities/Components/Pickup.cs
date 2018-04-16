@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities.Components.Ai;
+using Hevadea.GameObjects.Entities.Components.Ai;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Pickup : EntityComponent, IEntityComponentDrawable, IEntityComponentSaveLoad
     {

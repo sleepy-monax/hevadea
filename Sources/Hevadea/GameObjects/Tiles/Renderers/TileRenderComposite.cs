@@ -1,9 +1,9 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Tiles.Renderers
+namespace Hevadea.GameObjects.Tiles.Renderers
 {
     public class TileRenderComposite : TileRenderConnected
     {

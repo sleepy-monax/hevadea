@@ -2,7 +2,7 @@
 using Hevadea.Framework.Utils;
 using Hevadea.Networking;
 
-namespace Hevadea
+namespace Hevadea.GameManager
 {
     public partial class GameManager
     {

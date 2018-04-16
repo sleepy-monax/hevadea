@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities;
 using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
-using Hevadea.Tiles;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Items
+namespace Hevadea.GameObjects.Items
 {
     public class Item
     {
@@ -84,8 +84,7 @@ namespace Hevadea.Items
 
         public void Drop(Level level, TilePosition tilePosition, int quantity)
         {
-            Drop(level, tilePosition.X * Constant.TileSize + Constant.TileSize / 2,
-                tilePosition.Y * Constant.TileSize + Constant.TileSize / 2, quantity);
+            Drop(level, tilePosition.X * Constant.TileSize + Constant.TileSize / 2, tilePosition.Y * Constant.TileSize + Constant.TileSize / 2, quantity);
         }
     }
 }

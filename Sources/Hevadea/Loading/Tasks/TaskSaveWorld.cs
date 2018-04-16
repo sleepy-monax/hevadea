@@ -4,10 +4,11 @@ using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.Registry;
 using Hevadea.Storage;
-using Hevadea.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 using System.IO;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.Worlds.Level;
 
 namespace Hevadea.Loading.Tasks
 {
@@ -18,7 +19,7 @@ namespace Hevadea.Loading.Tasks
 
         }
 
-        public override void Task(GameManager game)
+        public override void Task(GameManager.GameManager game)
         {
             SetStatus("Saving world...");
 

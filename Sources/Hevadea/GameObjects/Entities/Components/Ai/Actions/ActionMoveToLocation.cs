@@ -1,9 +1,9 @@
 ﻿using Hevadea.Framework.Graphic;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components.Ai.Actions
+namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
 {
     public class ActionMoveToLocation : IAction
     {

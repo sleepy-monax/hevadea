@@ -6,7 +6,7 @@ using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Colider : EntityComponent, IEntityComponentDrawableOverlay
     {

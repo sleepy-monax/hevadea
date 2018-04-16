@@ -1,12 +1,14 @@
-﻿using Hevadea.Entities.Renderers;
-using Hevadea.Framework.Graphic.Particles;
+﻿using Hevadea.Framework.Graphic.Particles;
+using Hevadea.GameObjects.Entities.Renderers;
+using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {
@@ -21,7 +23,7 @@ namespace Hevadea.Entities
 
         public Level Level { get; set; }
         public World World { get; private set; }
-        public GameManager Game { get; private set; }
+        public GameManager.GameManager Game { get; private set; }
 
         public int SortingOffset { get; set; } = 0;
 
@@ -39,7 +41,12 @@ namespace Hevadea.Entities
 
         public string GetIdentifier()
         {
-            return $"{Blueprint?.Name ?? "none"}:{Ueid.ToString("x")}";
+            return $"{Blueprint?.Name ?? "none"}:{Ueid:x}";
+        }
+
+        public bool IsMemberOf(EntityGroupe groupe)
+        {
+            return Blueprint != null && groupe.Members.Contains(Blueprint);
         }
 
         public virtual void OnSave(EntityStorage store)

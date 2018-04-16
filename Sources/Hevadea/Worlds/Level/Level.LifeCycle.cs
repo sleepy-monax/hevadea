@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Hevadea.Entities;
-using Hevadea.Entities.Components;
 using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Worlds
+namespace Hevadea.Worlds.Level
 {
     public partial class Level
     {
@@ -25,7 +24,7 @@ namespace Hevadea.Worlds
             }
         }
 
-        public void Initialize(World world, GameManager game)
+        public void Initialize(World world, GameManager.GameManager game)
         {
             Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
             _world = world;
@@ -56,16 +55,16 @@ namespace Hevadea.Worlds
         {
             var entitiesOnScreen = new List<Entity>();
             var focusEntity = new Point((int) camera.X / Constant.TileSize, (int) camera.Y / Constant.TileSize);
-            var dist = new Point(camera.GetWidth() / 2 / Constant.TileSize + 8,
-                camera.GetHeight() / 2 / Constant.TileSize + 8);
+            var dist = new Point(camera.GetWidth() / 2 / Constant.TileSize + 1,
+                camera.GetHeight() / 2 / Constant.TileSize);
 
             var state = new LevelRenderState
             {
                 Begin = new Point(Math.Max(0, focusEntity.X - dist.X),
-                    Math.Max(0, focusEntity.Y - dist.Y)),
+                    Math.Max(0, focusEntity.Y - dist.Y - 1)),
 
-                End = new Point(Math.Min(Width, focusEntity.X + dist.X),
-                    Math.Min(Height, focusEntity.Y + dist.Y))
+                End = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
+                    Math.Min(Height, focusEntity.Y + dist.Y) + 6)
             };
 
             for (var tx = state.Begin.X; tx < state.End.X; tx++)

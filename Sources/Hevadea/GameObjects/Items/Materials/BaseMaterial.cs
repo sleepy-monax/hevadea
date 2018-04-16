@@ -1,7 +1,7 @@
-﻿using Hevadea.Entities;
-using Hevadea.Tiles;
+﻿using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 
-namespace Hevadea.Items.Materials
+namespace Hevadea.GameObjects.Items.Materials
 {
     public class BaseMaterial : Material
     {

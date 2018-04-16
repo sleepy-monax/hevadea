@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Hevadea.Entities;
-using Hevadea.Entities.Components;
 using Hevadea.Framework.Utils;
-using Hevadea.Registry;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Worlds
+namespace Hevadea.Worlds.Level
 {
     public partial class Level
     {

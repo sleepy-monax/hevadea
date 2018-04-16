@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities;
-using Hevadea.Entities.Blueprints;
-using Hevadea.Entities.Components;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Items.Tags
+namespace Hevadea.GameObjects.Items.Tags
 {
     public abstract class PlacableItemTag : InteractItemTag
     {

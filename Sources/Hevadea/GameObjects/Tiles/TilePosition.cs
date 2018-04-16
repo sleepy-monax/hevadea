@@ -1,8 +1,8 @@
-﻿using Hevadea.Entities;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Tiles
+namespace Hevadea.GameObjects.Tiles
 {
     public class TilePosition
     {

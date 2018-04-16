@@ -1,7 +1,7 @@
-﻿using Hevadea.Entities.Blueprints;
-using Hevadea.Entities.Components;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities.Components;
 using Hevadea.Scenes.Menus;
 using Hevadea.Utils;
 using Hevadea.Worlds;

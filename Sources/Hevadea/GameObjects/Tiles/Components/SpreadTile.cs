@@ -1,14 +1,10 @@
-﻿using Hevadea.Framework;
+﻿using System.Collections.Generic;
+using Hevadea.Framework;
 using Hevadea.Utils;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Hevadea.Tiles.Components
+namespace Hevadea.GameObjects.Tiles.Components
 {
     public class Spread : TileComponent, IUpdatableTileComponent
     {

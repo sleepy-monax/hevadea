@@ -1,6 +1,6 @@
-﻿using Hevadea.Items;
+﻿using Hevadea.GameObjects.Items;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Breakable : EntityComponent
     {

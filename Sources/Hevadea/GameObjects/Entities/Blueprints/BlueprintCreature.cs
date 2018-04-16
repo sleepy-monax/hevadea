@@ -1,12 +1,12 @@
-﻿using Hevadea.Entities.Components;
-using Hevadea.Entities.Components.Ai;
-using Hevadea.Entities.Components.Ai.Behaviors;
-using Hevadea.Entities.Components.Render;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Entities.Components.Ai;
+using Hevadea.GameObjects.Entities.Components.Ai.Behaviors;
+using Hevadea.GameObjects.Entities.Components.Render;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Blueprints
+namespace Hevadea.GameObjects.Entities.Blueprints
 {
     public class BlueprintCreature : EntityBlueprint
     {

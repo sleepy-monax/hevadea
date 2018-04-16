@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.WorldGenerator

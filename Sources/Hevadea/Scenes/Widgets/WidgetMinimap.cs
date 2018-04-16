@@ -10,9 +10,9 @@ namespace Hevadea.Scenes.Widgets
 {
     public class WidgetMinimap : Widget
     {
-        private GameManager _game;
+        private GameManager.GameManager _game;
         
-        public WidgetMinimap(GameManager game)
+        public WidgetMinimap(GameManager.GameManager game)
         {
             _game = game;
         }

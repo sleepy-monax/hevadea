@@ -23,7 +23,7 @@ namespace Hevadea.Loading.Tasks
             return _generator?.CurrentLevel?.CurrentFeature != null ? _generator.CurrentLevel.GetProgress() : 0f;
         }
 
-        public override void Task(GameManager game)
+        public override void Task(GameManager.GameManager game)
         {
             _generator = GENERATOR.DEFAULT;
             _generator.Seed = _seed;

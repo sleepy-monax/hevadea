@@ -1,12 +1,12 @@
-﻿using Hevadea.Entities;
-using Hevadea.Entities.Components;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Components;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Items
+namespace Hevadea.GameObjects.Items
 {
     public class ItemEntity : Entity
     {
