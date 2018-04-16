@@ -8,9 +8,9 @@ namespace Hevadea.Scenes
 {
     public class SceneGameplay : Scene
     {
-        public readonly GameManager Game;
+        public readonly GameManager.GameManager Game;
 
-        public SceneGameplay(GameManager game)
+        public SceneGameplay(GameManager.GameManager game)
         {
             Game = game;
             Game.CurrentMenuChange += Game_CurrentMenuChange;

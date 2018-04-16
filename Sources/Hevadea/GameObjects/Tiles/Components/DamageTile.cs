@@ -1,15 +1,11 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using System.Collections.Generic;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Registry;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Hevadea.Tiles.Components
+namespace Hevadea.GameObjects.Tiles.Components
 {
     public class DamageTile : TileComponent, IDrawableTileComponent
     {

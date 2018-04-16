@@ -15,7 +15,7 @@ namespace Hevadea.Scenes.Menus
         private readonly WidgetMinimap _minimap;
         private readonly Button btnAttack, btnAction, btnPickup, btnDrop, btnMinimap;
 
-        public MenuInGame(GameManager game) : base(game)
+        public MenuInGame(GameManager.GameManager game) : base(game)
         {
             // On screen button -----------------------------------------------
 

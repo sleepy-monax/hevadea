@@ -2,14 +2,15 @@
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {
-        internal void Initialize(Level level, World world, GameManager game)
+        internal void Initialize(Level level, World world, GameManager.GameManager game)
         {
             Level = level;
             World = world;

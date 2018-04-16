@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Tiles.Renderers
+namespace Hevadea.GameObjects.Tiles.Renderers
 {
     public abstract class TileRenderConnected : TileRender
     {

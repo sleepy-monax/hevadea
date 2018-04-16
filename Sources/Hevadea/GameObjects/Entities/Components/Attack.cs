@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Utils;
-using Hevadea.Items;
-using Hevadea.Tiles;
-using Hevadea.Tiles.Components;
+using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Attack : EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawable
     {

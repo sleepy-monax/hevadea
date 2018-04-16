@@ -1,6 +1,6 @@
-﻿using Hevadea.Worlds;
+﻿using Hevadea.Worlds.Level;
 
-namespace Hevadea
+namespace Hevadea.GameManager
 {
     public partial class GameManager
     {

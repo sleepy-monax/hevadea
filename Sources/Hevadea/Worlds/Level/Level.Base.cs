@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities;
 using Hevadea.Framework.Graphic.Particles;
-using Hevadea.Tiles;
-using Hevadea.Tiles.Renderers;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.GameObjects.Tiles.Renderers;
 
-namespace Hevadea.Worlds
+namespace Hevadea.Worlds.Level
 {
     public partial class Level
     {
-        private GameManager _game;
+        private GameManager.GameManager _game;
         private World _world;
         private List<Entity>[,] _entitiesOnTiles;
         

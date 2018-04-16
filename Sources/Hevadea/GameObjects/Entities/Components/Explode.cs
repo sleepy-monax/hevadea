@@ -1,9 +1,9 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Utils;
-using Hevadea.Tiles;
-using Hevadea.Tiles.Components;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.GameObjects.Tiles.Components;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Explode:EntityComponent
     {

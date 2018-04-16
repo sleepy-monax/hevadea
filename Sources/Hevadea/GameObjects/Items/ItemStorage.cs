@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
-using Hevadea.Tiles;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Items
+namespace Hevadea.GameObjects.Items
 {
     public class ItemStorage
     {

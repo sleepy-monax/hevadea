@@ -1,10 +1,10 @@
-﻿using Hevadea.Entities.Components;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.GameObjects.Entities.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Blueprints
+namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
 {
     public class EntityGrass : Entity
     {

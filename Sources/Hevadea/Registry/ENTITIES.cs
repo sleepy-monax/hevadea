@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities;
-using Hevadea.Entities.Blueprints;
-using Hevadea.Entities.Blueprints.Legacy;
-using Hevadea.Items;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Registry
 {    

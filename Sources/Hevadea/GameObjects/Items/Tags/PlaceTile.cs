@@ -1,8 +1,8 @@
-﻿using Hevadea.Tiles;
+﻿using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Items.Tags
+namespace Hevadea.GameObjects.Items.Tags
 {
     public class PlaceTile : PlacableItemTag
     {

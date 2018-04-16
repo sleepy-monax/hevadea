@@ -3,8 +3,8 @@ using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.Entities.Blueprints;
-using Hevadea.Entities.Components;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities.Components;
 
 namespace Hevadea.Scenes.Widgets
 {

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities;
 using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
-using Hevadea.Tiles;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Items
+namespace Hevadea.GameObjects.Items
 {
     public class Item
     {

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
-using Hevadea.Tiles;
 using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Spawning

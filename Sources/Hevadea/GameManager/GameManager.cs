@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities.Blueprints;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Hevadea.Player;
 using Hevadea.Scenes.Menus;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea
+namespace Hevadea.GameManager
 {
     public partial class GameManager
     {

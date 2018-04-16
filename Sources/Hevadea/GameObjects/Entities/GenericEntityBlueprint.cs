@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public class GenericEntityBlueprint<T> : EntityBlueprint where T : Entity, new()
     {

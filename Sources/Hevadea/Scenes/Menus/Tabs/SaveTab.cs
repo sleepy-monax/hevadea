@@ -15,7 +15,7 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class SaveTab : Tab
     {
-        public SaveTab(GameManager game)
+        public SaveTab(GameManager.GameManager game)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(3, 2));
 

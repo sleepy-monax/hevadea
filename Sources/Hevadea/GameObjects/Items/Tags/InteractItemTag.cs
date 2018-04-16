@@ -1,7 +1,7 @@
-﻿using Hevadea.Entities;
-using Hevadea.Tiles;
+﻿using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 
-namespace Hevadea.Items.Tags
+namespace Hevadea.GameObjects.Items.Tags
 {
     public abstract class InteractItemTag : ItemTag
     {

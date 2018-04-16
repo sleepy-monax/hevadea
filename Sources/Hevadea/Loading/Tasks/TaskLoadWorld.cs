@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Hevadea.Entities.Blueprints;
 using Hevadea.Framework;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils.Json;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Loading.Tasks
 {
     public class TaskLoadWorld : LoadingTask
     {        
-        public override void Task(GameManager game)
+        public override void Task(GameManager.GameManager game)
         {
             SetStatus("Loading world...");
             

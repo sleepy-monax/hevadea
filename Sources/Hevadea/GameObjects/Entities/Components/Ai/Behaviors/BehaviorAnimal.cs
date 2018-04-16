@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities.Components.Ai.Actions;
 using Hevadea.Framework;
 using Hevadea.Framework.Utils;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Entities.Components.Ai.Actions;
+using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Components.Ai.Behaviors
+namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 {
     public class BehaviorAnimal : IBehavior
     {

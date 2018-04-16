@@ -1,12 +1,12 @@
 ﻿using System;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Items;
-using Hevadea.Items.Tags;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Items.Tags;
+using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Interact : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable
     {

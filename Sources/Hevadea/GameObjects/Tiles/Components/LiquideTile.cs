@@ -1,12 +1,7 @@
-﻿using Hevadea.Entities;
-using Hevadea.Entities.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Components;
 
-namespace Hevadea.Tiles.Components
+namespace Hevadea.GameObjects.Tiles.Components
 {
     public class LiquideTile : SolideTile
     {

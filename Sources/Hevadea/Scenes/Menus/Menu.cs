@@ -4,9 +4,9 @@ namespace Hevadea.Scenes.Menus
 {
     public class Menu : Panel
     {
-        public GameManager Game;
+        public GameManager.GameManager Game;
 
-        public Menu(GameManager game)
+        public Menu(GameManager.GameManager game)
         {
             Game = game;
         }

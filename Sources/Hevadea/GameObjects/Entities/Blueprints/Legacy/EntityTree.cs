@@ -1,11 +1,11 @@
-﻿using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Items;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Blueprints
+namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
 {
     public class EntityTree : Entity
     {

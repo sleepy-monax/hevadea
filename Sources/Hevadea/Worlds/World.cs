@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Hevadea.Entities;
-using Hevadea.Entities.Blueprints;
 using Hevadea.Framework;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -20,8 +20,8 @@ namespace Hevadea.Worlds
             ColorDestinationBlend = Blend.Zero
         };
         
-        public GameManager Game;
-        public List<Level> Levels = new List<Level>();
+        public GameManager.GameManager Game;
+        public List<Level.Level> Levels = new List<Level.Level>();
         public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
 
@@ -52,17 +52,17 @@ namespace Hevadea.Worlds
             level.SpawnEntity(player, level.Width / 2, level.Height / 2);
         }
 
-        public Level GetLevel(string name)
+        public Level.Level GetLevel(string name)
         {
             return Levels.FirstOrDefault(l => l.Name == name);
         }
 
-        public Level GetLevel(int id)
+        public Level.Level GetLevel(int id)
         {
             return Levels.FirstOrDefault(l => l.Id == id);
         }
 
-        public void AddLevel(Level level)
+        public void AddLevel(Level.Level level)
         {
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
@@ -130,7 +130,7 @@ namespace Hevadea.Worlds
             return null;
         }
         
-        public void Initialize(GameManager game)
+        public void Initialize(GameManager.GameManager game)
         {
             Game = game;
             foreach (var l in Levels) l.Initialize(this, game);

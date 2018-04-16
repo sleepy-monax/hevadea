@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public interface IEntityComponentDrawableOverlay
     {

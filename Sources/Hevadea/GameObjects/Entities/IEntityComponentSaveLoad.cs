@@ -1,6 +1,6 @@
 ﻿using Hevadea.Storage;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public interface IEntityComponentSaveLoad
     {

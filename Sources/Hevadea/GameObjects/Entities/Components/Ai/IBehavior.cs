@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Components.Ai
+namespace Hevadea.GameObjects.Entities.Components.Ai
 {
     public interface IBehavior
     {

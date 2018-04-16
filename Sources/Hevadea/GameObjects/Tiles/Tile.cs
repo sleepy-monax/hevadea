@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Framework.Graphic;
-using Hevadea.Registry;
-using Hevadea.Tiles.Renderers;
-using Hevadea.Worlds;
+using Hevadea.GameObjects.Tiles.Renderers;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Tiles
+namespace Hevadea.GameObjects.Tiles
 {
     public class Tile
     {

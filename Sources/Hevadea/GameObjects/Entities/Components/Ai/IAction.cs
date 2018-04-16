@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components.Ai
+namespace Hevadea.GameObjects.Entities.Components.Ai
 {
     public interface IAction
     {

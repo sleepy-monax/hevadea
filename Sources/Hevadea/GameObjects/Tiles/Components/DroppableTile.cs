@@ -1,13 +1,9 @@
-﻿using Hevadea.Framework;
-using Hevadea.Items;
-using Hevadea.Worlds;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Hevadea.Framework;
+using Hevadea.GameObjects.Items;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Tiles.Components
+namespace Hevadea.GameObjects.Tiles.Components
 {
     public class DroppableTile : TileComponent
     {

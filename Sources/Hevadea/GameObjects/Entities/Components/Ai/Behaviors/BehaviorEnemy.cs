@@ -1,9 +1,9 @@
-﻿using Hevadea.Entities.Components.Ai.Actions;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities.Components.Ai.Actions;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Components.Ai.Behaviors
+namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 {
     public class BehaviorEnemy : BehaviorAnimal
     {

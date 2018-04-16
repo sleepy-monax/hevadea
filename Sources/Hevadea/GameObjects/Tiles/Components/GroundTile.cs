@@ -1,11 +1,6 @@
-﻿using Hevadea.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hevadea.GameObjects.Entities;
 
-namespace Hevadea.Tiles.Components
+namespace Hevadea.GameObjects.Tiles.Components
 {
     public class GroundTile : TileComponent
     {

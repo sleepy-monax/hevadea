@@ -14,7 +14,7 @@ namespace Hevadea.Loading.Tasks
             _playerToken = playerToken;
         }
         
-        public override void Task(GameManager game)
+        public override void Task(GameManager.GameManager game)
         {
             SetStatus("Login in...");
             var connected = false;

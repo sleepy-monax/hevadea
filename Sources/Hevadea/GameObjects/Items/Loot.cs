@@ -1,4 +1,4 @@
-﻿namespace Hevadea.Items
+﻿namespace Hevadea.GameObjects.Items
 {
     public class Drop
     {

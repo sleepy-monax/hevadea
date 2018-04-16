@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Tiles;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
 
-namespace Hevadea.Entities.Components.Ai.Actions
+namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
 {
     public static class HelperAction
     {

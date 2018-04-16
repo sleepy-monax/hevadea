@@ -1,12 +1,12 @@
-﻿using Hevadea.Entities.Components;
+﻿using System.Collections.Generic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Items;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
-namespace Hevadea.Entities.Blueprints
+namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
 {
     public class EntityBelt : Entity
     {

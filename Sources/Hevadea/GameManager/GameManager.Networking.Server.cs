@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using Hevadea.Entities.Blueprints;
 using Hevadea.Framework;
 using Hevadea.Framework.Networking;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Hevadea.Networking;
 
-namespace Hevadea
+namespace Hevadea.GameManager
 {
     public class ConnectedClient
     {

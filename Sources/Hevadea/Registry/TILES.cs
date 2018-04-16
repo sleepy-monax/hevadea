@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Items;
-using Hevadea.Tiles;
-using Hevadea.Tiles.Components;
-using Hevadea.Tiles.Renderers;
+using Hevadea.GameObjects.Items;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.GameObjects.Tiles.Components;
+using Hevadea.GameObjects.Tiles.Renderers;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Registry

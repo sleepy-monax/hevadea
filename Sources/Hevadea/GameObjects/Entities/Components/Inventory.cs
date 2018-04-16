@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Framework.Utils;
-using Hevadea.Items;
+using Hevadea.GameObjects.Items;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class Inventory : EntityComponent, IEntityComponentSaveLoad, IEntityComponentDrawableOverlay, IEntityComponentUpdatable
     {

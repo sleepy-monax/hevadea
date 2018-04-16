@@ -4,7 +4,7 @@ using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components.Ai
+namespace Hevadea.GameObjects.Entities.Components.Ai
 {
     public enum AgentAbortReason { None, ImStuck, PickedUp, TagetLost }
 

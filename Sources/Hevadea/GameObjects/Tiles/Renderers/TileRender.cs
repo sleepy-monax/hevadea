@@ -1,7 +1,7 @@
-﻿using Hevadea.Worlds;
+﻿using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Tiles.Renderers
+namespace Hevadea.GameObjects.Tiles.Renderers
 {
     public abstract class TileRender
     {

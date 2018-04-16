@@ -1,8 +1,8 @@
-﻿using Hevadea.Registry;
-using Hevadea.Tiles;
+﻿using Hevadea.GameObjects.Tiles;
+using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Worlds
+namespace Hevadea.Worlds.Level
 {
     public partial class Level
     {

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Components.Ai.Actions
+namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
 {
     public class ActionAttackEntity : IAction
     {

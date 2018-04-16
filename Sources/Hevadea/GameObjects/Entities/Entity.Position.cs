@@ -1,8 +1,8 @@
-﻿using Hevadea.Tiles;
+﻿using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities
+namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {

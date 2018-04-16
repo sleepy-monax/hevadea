@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Hevadea.Entities.Blueprints;
+using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
-using Hevadea.Tiles;
 using Hevadea.Worlds;
 
 namespace Hevadea.WorldGenerator.WorldFeatures

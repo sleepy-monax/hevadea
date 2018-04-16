@@ -1,16 +1,16 @@
 ﻿using Hevadea.Craftings;
-using Hevadea.Entities.Components;
 using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Scenes.Menus.Tabs
 {
@@ -50,7 +50,7 @@ namespace Hevadea.Scenes.Menus.Tabs
     {
         public ListWidget CraftingList { get; }
 
-        public CraftingTab(GameManager game, List<Recipe> recipies = null) : base(game)
+        public CraftingTab(GameManager.GameManager game, List<Recipe> recipies = null) : base(game)
         {
 
             Icon = new Sprite(Ressources.TileIcons, new Point(4, 2));

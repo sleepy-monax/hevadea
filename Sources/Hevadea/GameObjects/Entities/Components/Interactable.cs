@@ -1,8 +1,8 @@
 ﻿using System;
-using Hevadea.Items;
+using Hevadea.GameObjects.Items;
 using Hevadea.Utils;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components
 {
     public class InteractEventArg : EventArgs
     {

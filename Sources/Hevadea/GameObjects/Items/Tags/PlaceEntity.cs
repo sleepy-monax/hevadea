@@ -1,10 +1,9 @@
-﻿using Hevadea.Entities;
-using Hevadea.Registry;
-using Hevadea.Tiles;
+﻿using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
-using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 
-namespace Hevadea.Items.Tags
+namespace Hevadea.GameObjects.Items.Tags
 {
     public class PlaceEntity : PlacableItemTag
     {
