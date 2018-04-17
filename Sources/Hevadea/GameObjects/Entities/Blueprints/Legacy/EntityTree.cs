@@ -25,7 +25,7 @@ namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
         {
             var offx = -16;
             var offy = -24;
-            treeSprite.Draw(spriteBatch, new Vector2(X + offx, Y + offy - 64), Color.White);
+            treeSprite.Draw(spriteBatch, new Vector2(X + offx, Y + offy - 60), Color.White);
         }
     }
 }

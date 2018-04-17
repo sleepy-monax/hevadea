@@ -75,11 +75,18 @@ namespace Hevadea.Worlds
             
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[1]);
             
-            _spriteBatch.Begin(SpriteSortMode.Deferred ,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
+            _spriteBatch.Begin(SpriteSortMode.Deferred,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawTerrain(state, _spriteBatch, gameTime);
+            _spriteBatch.End();
+            
+            _spriteBatch.Begin(SpriteSortMode.Deferred,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawEntities(state, _spriteBatch, gameTime);
+            _spriteBatch.End();
+            
+            _spriteBatch.Begin(SpriteSortMode.Deferred,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
             _spriteBatch.End();
+            
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
 
 

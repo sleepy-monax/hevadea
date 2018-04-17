@@ -107,6 +107,7 @@ namespace Hevadea.Framework.UI.Widgets
 
         bool IsDown = false;
         private Point _lastPoint = Point.Zero;
+        private Point _downPoint = Point.Zero;
 
         public override void Update(GameTime gameTime)
         {
@@ -118,13 +119,11 @@ namespace Hevadea.Framework.UI.Widgets
                 IsDown = true;
 
                 _lastPoint = Rise.Pointing.GetAreaOver(Bound)[0];
+                _downPoint = Rise.Pointing.GetAreaOver(Bound)[0];
+                
+                Logger.Log<ListWidget>("Down");
             }
 
-            if (!Rise.Pointing.AreaDown(Bound) && IsDown)
-            {
-                IsDown = false;
-                _lastPoint = Point.Zero;
-            }
 
             if (Rise.Pointing.AreaDown(Bound) && IsDown)
             {
@@ -137,8 +136,24 @@ namespace Hevadea.Framework.UI.Widgets
 
             if (Rise.Pointing.AreaClick(Bound))
             {
-                SelectedItem = _overItem;
+                var dist = Mathf.Distance(_downPoint.ToVector2(), Rise.Pointing.GetAreaOver(Bound)[0].ToVector2());
+
+                if (dist < 16)
+                {
+                    SelectedItem = _overItem;
+                }
+                
                 IsDown = false;
+                _lastPoint = Point.Zero;
+                _downPoint = Point.Zero;
+                Logger.Log<ListWidget>("Up");
+            }
+            
+            if (!Rise.Pointing.AreaDown(Bound) && IsDown)
+            {
+                IsDown = false;
+                _lastPoint = Point.Zero;
+                _downPoint = Point.Zero;
             }
 
             var maxScroll = _items.Count * Scale(ItemHeight + ItemMarging);

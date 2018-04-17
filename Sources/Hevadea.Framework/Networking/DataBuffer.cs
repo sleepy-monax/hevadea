@@ -1,8 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Hevadea.Framework.Networking
 {
+    enum TypeId
+    {
+        IntType,
+        FloatType,
+        StringType,
+        BoolType,
+    }
+    
     public sealed class DataBuffer
     {
         private byte[] _buffer;
@@ -202,6 +211,11 @@ namespace Hevadea.Framework.Networking
                 _buffer[_offset++] = bufferData[i];
             }
             
+            return this;
+        }
+
+        public DataBuffer WriteBuffer(Dictionary<string, object> dic)
+        {
             return this;
         }
         

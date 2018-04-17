@@ -3,6 +3,7 @@ using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities.Components;
 using Hevadea.Player;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -13,6 +14,7 @@ namespace Hevadea.Scenes.Menus
     {
         private readonly WidgetPlayerStats _playerStats;
         private readonly WidgetMinimap _minimap;
+        private readonly WidgetHotBar _hotBar;
         private readonly Button btnAttack, btnAction, btnPickup, btnDrop, btnMinimap;
 
         public MenuInGame(GameManager.GameManager game) : base(game)
@@ -82,11 +84,18 @@ namespace Hevadea.Scenes.Menus
                 UnitOffset = new Point(-16, 16),
             };
 
+            _hotBar = new WidgetHotBar(Game.MainPlayer.GetComponent<Inventory>().Content)
+            {
+                Anchor = Anchor.Bottom,
+                Origine = Anchor.Bottom,
+                UnitOffset = new Point(0, -16)
+            };
+            
             Content = new AnchoredContainer
             {
                 Childrens =
                 {
-                    _playerStats, _minimap, btnMinimap,
+                    _playerStats, _minimap, btnMinimap, _hotBar,
 
                     new Button{ Text = "Inventory", Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, UnitOffset = new Point(16,-16)}
                     .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new PlayerInventoryMenu(Game); })
