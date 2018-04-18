@@ -58,21 +58,11 @@ namespace Hevadea.GameObjects.Items
         public void AddTag(ItemTag tag) {tag.AttachedItem = this; _tags.Add(tag); }
         public void AddTags(params ItemTag[] tags) { foreach (var t in tags) AddTag(t); }
         
-        public virtual float GetAttackBonus(Entity target)
-        {
-            return 1f;
-        }
-
-        public virtual float GetAttackBonus(Tile target)
-        {
-            return 1f;
-        }
-
         public void Drop(Level level, float x, float y, int quantity)
         {
             for (var i = 0; i < quantity; i++)
             {
-                var dropItem = (ItemEntity)ENTITIES.ITEM.Construct();
+                var dropItem = (ItemEntity)EntityFactory.ITEM.Construct();
                 dropItem.Item = this;
                 dropItem.SpeedX = Rise.Rnd.Next(-50, 50) / 10f;
                 dropItem.SpeedY = Rise.Rnd.Next(-50, 50) / 10f;

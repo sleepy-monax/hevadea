@@ -3,26 +3,13 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Hevadea.GameObjects.Items;
 
-namespace Hevadea.Registry
-{
-
-    public class EntityGroupe
+namespace Hevadea.GameObjects
+{    
+    public static class EntityFactory
     {
-        public string Name { get; }
-        public List<EntityBlueprint> Members { get; set; } = new List<EntityBlueprint>();
-        
-        public EntityGroupe(string name)
-        {
-            Name = name;
-        }
-    }
-    
-    
-    public static class ENTITIES
-    {
-        public static EntityGroupe GROUPE_CREATURE;
-        public static EntityGroupe GROUPE_TREE;
-        
+        public static BlueprintGroupe<EntityBlueprint> GROUPE_CREATURE;
+        public static BlueprintGroupe<EntityBlueprint> GROUPE_TREE;
+        public static BlueprintGroupe<EntityBlueprint> GROUPE_SAVE_EXCUDED;
         
         public static EntityBlueprint ITEM;
         
@@ -40,9 +27,6 @@ namespace Hevadea.Registry
         public static EntityBlueprint TORCH;
         public static EntityBlueprint TREE;
         public static EntityBlueprint ZOMBIE;
-        
-        //Todo replace with a EntityGroupe.
-        public static List<EntityBlueprint> SaveExcluded { get; set; } = new List<EntityBlueprint>();
         
         public static void Initialize()
         {
@@ -63,10 +47,9 @@ namespace Hevadea.Registry
             TREE           = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
             ZOMBIE         = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityZombie>("zombie"));
             
-            GROUPE_CREATURE = new EntityGroupe("creature"){ Members = { CHIKEN, FISH, PLAYER, ZOMBIE } };
-            GROUPE_TREE = new EntityGroupe("tree"){ Members = { TREE } };
-            
-            SaveExcluded.Add(PLAYER);
+            GROUPE_CREATURE = new BlueprintGroupe<EntityBlueprint>("creature"){ Members = { CHIKEN, FISH, PLAYER, ZOMBIE } };
+            GROUPE_TREE = new BlueprintGroupe<EntityBlueprint>("tree"){ Members = { TREE } };
+            GROUPE_SAVE_EXCUDED = new BlueprintGroupe<EntityBlueprint>("save_excluded"){Members = {PLAYER}};
         }
         
         private static Dictionary<string, EntityBlueprint> _blueprintLibrary = new Dictionary<string, EntityBlueprint>();
@@ -85,6 +68,11 @@ namespace Hevadea.Registry
             return blueprint;
         }
 
+        public static Entity Construct(string name)
+        {
+            return _blueprintLibrary.ContainsKey(name) ? _blueprintLibrary[name].Construct() : null;
+        }
+        
         public static EntityBlueprint GetBlueprint(string name)
         {
             return _blueprintLibrary.ContainsKey(name) ? _blueprintLibrary[name] : null;

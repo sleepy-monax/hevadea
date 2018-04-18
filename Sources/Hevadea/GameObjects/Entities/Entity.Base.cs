@@ -44,7 +44,7 @@ namespace Hevadea.GameObjects.Entities
             return $"{Blueprint?.Name ?? "none"}:{Ueid:x}";
         }
 
-        public bool IsMemberOf(EntityGroupe groupe)
+        public bool IsMemberOf(BlueprintGroupe<EntityBlueprint> groupe)
         {
             return Blueprint != null && groupe.Members.Contains(Blueprint);
         }

@@ -6,7 +6,7 @@ using Hevadea.GameObjects.Items.Materials;
 using Hevadea.GameObjects.Items.Tags;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Registry
+namespace Hevadea.GameObjects
 {
     public static class ITEMS
     {
@@ -77,18 +77,18 @@ namespace Hevadea.Registry
 
         public static void AttachTags()
         {
-            CHEST.AddTag(new PlaceEntity(ENTITIES.CHEST));
-            CRAFTING_BENCH.AddTag(new PlaceEntity(ENTITIES.CRAFTING_BENCH));
-            FURNACE.AddTag(new PlaceEntity(ENTITIES.FURNACE));
-            TORCH.AddTag(new PlaceEntity(ENTITIES.TORCH));
+            CHEST.AddTag(new PlaceEntity(EntityFactory.CHEST));
+            CRAFTING_BENCH.AddTag(new PlaceEntity(EntityFactory.CRAFTING_BENCH));
+            FURNACE.AddTag(new PlaceEntity(EntityFactory.FURNACE));
+            TORCH.AddTag(new PlaceEntity(EntityFactory.TORCH));
             
             WOOD_FLOOR.AddTag(new PlaceTile(TILES.WOOD_FLOOR){CanBePlaceOn = {TILES.DIRT}});
             WOOD_WALL.AddTag(new PlaceTile(TILES.WOOD_WALL){CanBePlaceOn = {TILES.DIRT}});
             GRASS_PATCH.AddTag(new PlaceTile(TILES.GRASS){CanBePlaceOn = {TILES.DIRT}});
             SAND.AddTag(new PlaceTile(TILES.SAND){CanBePlaceOn = {TILES.DIRT}});
             
-            BELT.AddTag(new PlaceEntity(ENTITIES.BELT));
-            TNT.AddTag(new PlaceEntity(ENTITIES.TNT));
+            BELT.AddTag(new PlaceEntity(EntityFactory.BELT));
+            TNT.AddTag(new PlaceEntity(EntityFactory.TNT));
             LIGHTER.AddTag(new ActionItemTag()
             {
                 Action = (user, pos) =>
@@ -105,8 +105,8 @@ namespace Hevadea.Registry
             {
                 PerEntityDamage =
                 {
-                    new EntityGroupeDamage(ENTITIES.GROUPE_TREE, 2f),
-                    new EntityGroupeDamage(ENTITIES.GROUPE_CREATURE, 1.3f)
+                    new GroupeDamage(EntityFactory.GROUPE_TREE, 2f),
+                    new GroupeDamage(EntityFactory.GROUPE_CREATURE, 1.3f)
                 }
             });
             
@@ -114,8 +114,8 @@ namespace Hevadea.Registry
             {
                 PerEntityDamage =
                 {
-                    new EntityGroupeDamage(ENTITIES.GROUPE_TREE, 1.1f),
-                    new EntityGroupeDamage(ENTITIES.GROUPE_CREATURE, 2f)
+                    new GroupeDamage(EntityFactory.GROUPE_TREE, 1.1f),
+                    new GroupeDamage(EntityFactory.GROUPE_CREATURE, 2f)
                 }
             });
             

@@ -78,8 +78,7 @@ namespace Hevadea.GameObjects.Entities.Components
             if (entityType != "null")
             {
                 var entityData = (Dictionary<string, object>)store.Get("pickup_entity_data", new Dictionary<string, object>());
-                var entityBlueprint = ENTITIES.GetBlueprint(entityType);
-                var entity = entityBlueprint.Construct();
+                var entity = EntityFactory.Construct(entityType);
                 entity.Load(new EntityStorage(entityType, entityData));
 
                 _pickupedEntity = entity;

@@ -20,7 +20,7 @@ namespace Hevadea.GameObjects.Entities.Components
             {
                 var move = Owner.GetComponent<Move>();
                 var dir = direction.ToPoint().ToVector2();
-                return move?.Do(dir.X * strength, dir.Y * strength, direction) ?? false;
+                return move?.Do(dir.X * strength, dir.Y * strength, Owner.Facing) ?? false;
             }
             else
             {

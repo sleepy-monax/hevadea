@@ -100,7 +100,7 @@ namespace Hevadea.GameObjects.Entities.Components
             if (IsAttacking) return;
             if (Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? false) return;
 
-            var damages = GetBaseDamages();
+            var baseDamages = GetBaseDamages();
             if (!Owner.GetComponent<Energy>()?.Reduce(1f) ?? false) return;
             var facingTile = Owner.GetFacingTile();
 
@@ -120,12 +120,15 @@ namespace Hevadea.GameObjects.Entities.Components
                         {
                             e.GetComponent<Breakable>()?.Break(weapon);
                             IsAttacking = true;
+                            break;
                         }
 
                         var eHealth = e.GetComponent<Health>();
                         if (!eHealth?.Invicible ?? false)
                         {
-                            eHealth.Hurt(Owner, damages * (weapon?.Tag<DamageTag>()?.GetDamages(e) ?? 1f), Owner.Facing);
+                            var damages = baseDamages * (weapon?.Tag<DamageTag>()?.GetDamages(e) ?? 1f);
+                            eHealth.Hurt(Owner, damages , Owner.Facing);
+                            
                             IsAttacking = true;
                             break;
                         }
@@ -137,7 +140,7 @@ namespace Hevadea.GameObjects.Entities.Components
                 var tile = Owner.Level.GetTile(facingTile);
                 if (tile.HasTag<DamageTile>())
                 {
-                    tile.Tag<DamageTile>().Hurt(damages * (weapon?.GetAttackBonus(tile) ?? 1f), facingTile, Owner.Level);   
+                    tile.Tag<DamageTile>().Hurt(baseDamages * (weapon?.Tag<DamageTag>()?.GetDamages(tile) ?? 1f), facingTile, Owner.Level);   
                 }
 
                 if (tile.HasTag<BreakableTile>())

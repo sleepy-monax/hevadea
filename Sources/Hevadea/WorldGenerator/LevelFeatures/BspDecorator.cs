@@ -1,6 +1,7 @@
 ﻿using System;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
 using Hevadea.Utils;

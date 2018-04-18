@@ -5,6 +5,7 @@ using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.GameObjects;
 using Hevadea.GameObjects.Items;
 using Hevadea.Registry;
 

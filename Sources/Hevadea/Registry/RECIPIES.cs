@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Craftings;
+using Hevadea.GameObjects;
 
 namespace Hevadea.Registry
 {

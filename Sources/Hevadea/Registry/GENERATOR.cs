@@ -1,4 +1,5 @@
-﻿using Hevadea.WorldGenerator;
+﻿using Hevadea.GameObjects;
+using Hevadea.WorldGenerator;
 using Hevadea.WorldGenerator.Functions;
 using Hevadea.WorldGenerator.LevelFeatures;
 using Hevadea.WorldGenerator.WorldFeatures;
@@ -70,14 +71,14 @@ namespace Hevadea.Registry
                     {
                         Content =
                         {
-                            new PopulateFeature(ENTITIES.FISH)
+                            new PopulateFeature(EntityFactory.FISH)
                             {
                                 Chance = 25,
                                 CanBePlantOn = {TILES.WATER},
                                 PlacingFunction = new PerlinFunction(1, 0.5, 10),
                                 Threashold = 0.5f,
                             },
-                            new PopulateFeature(ENTITIES.CHIKEN)
+                            new PopulateFeature(EntityFactory.CHIKEN)
                             {
                                 Chance = 100,
                                 CanBePlantOn = {TILES.GRASS},
@@ -90,7 +91,7 @@ namespace Hevadea.Registry
                     {
                         Content =
                         {
-                            new PopulateFeature(ENTITIES.TREE)
+                            new PopulateFeature(EntityFactory.TREE)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
@@ -98,14 +99,14 @@ namespace Hevadea.Registry
                                 Threashold = 0.7f,
  
                             },
-                            new PopulateFeature(ENTITIES.FLOWER)
+                            new PopulateFeature(EntityFactory.FLOWER)
                             {
                                 Chance = 10,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = new PerlinFunction(1,1,5),
                                 Threashold = 0.5f
                             },
-                            new PopulateFeature(ENTITIES.GRASS)
+                            new PopulateFeature(EntityFactory.GRASS)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
@@ -159,7 +160,7 @@ namespace Hevadea.Registry
                         CanBePlacedOn = { TILES.DIRT, TILES.ROCK },
                         Wall = TILES.ROCK
                     },
-                    new PopulateFeature(ENTITIES.ZOMBIE)
+                    new PopulateFeature(EntityFactory.ZOMBIE)
                     {
                         Chance = 400,
                         CanBePlantOn = {TILES.DIRT},

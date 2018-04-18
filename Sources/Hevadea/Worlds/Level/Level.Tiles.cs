@@ -1,4 +1,5 @@
-﻿using Hevadea.GameObjects.Tiles;
+﻿using Hevadea.GameObjects;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 

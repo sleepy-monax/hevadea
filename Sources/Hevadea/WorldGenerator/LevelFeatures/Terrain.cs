@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
 using Hevadea.WorldGenerator.Functions;

@@ -1,4 +1,5 @@
-﻿using Hevadea.Registry;
+﻿using Hevadea.GameObjects;
+using Hevadea.Registry;
 
 namespace Hevadea
 {
@@ -19,7 +20,7 @@ namespace Hevadea
         private static void Init()
         {
             TILES.Initialize();
-            ENTITIES.Initialize();
+            EntityFactory.Initialize();
             ITEMS.Initialize();
             
             RECIPIES.InitializeHandCraftedRecipe();

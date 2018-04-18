@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Registry;
 using Hevadea.Worlds;

@@ -22,7 +22,7 @@ namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
             AddComponent(new Swim { IsSwimingPainfull = false});
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.RAW_FISH, 1f, 1, 1) } });
-            AddComponent(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
+            AddComponent(new Pushable { CanBePushBy = { EntityFactory.PLAYER } });
             AddComponent(new Agent { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeedWandering = 0.5f } });
         }
 

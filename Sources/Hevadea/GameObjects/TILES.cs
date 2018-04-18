@@ -7,13 +7,16 @@ using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.GameObjects.Tiles.Renderers;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Registry
+namespace Hevadea.GameObjects
 {
     public static class TILES
     {
-        //public static List<Tile> ById = new List<Tile>();
         private static Dictionary<string, Tile> _tiles = new Dictionary<string, Tile>();
 
+        public static BlueprintGroupe<Tile> GROUPE_SOIL;
+        public static BlueprintGroupe<Tile> GROUPE_ROCK;
+        public static BlueprintGroupe<Tile> GROUPE_WOOD;
+        
         public static Tile DIRT;
         public static Tile GRASS;
         public static Tile IRON_ORE;
@@ -63,6 +66,10 @@ namespace Hevadea.Registry
             WATER      = RegisterTile( new Tile("water", Color.Blue));
             WOOD_FLOOR = RegisterTile( new Tile("wood_floor", new TileRenderComposite(new Sprite(Ressources.TileTiles, 5))));
             WOOD_WALL  = RegisterTile( new Tile("wood_wall", new TileRenderComposite(new Sprite(Ressources.TileTiles, 6))));
+            
+            GROUPE_ROCK = new BlueprintGroupe<Tile>("rock"){Members = { IRON_ORE, ROCK }};
+            GROUPE_SOIL = new BlueprintGroupe<Tile>("soil"){Members = { DIRT }};
+            GROUPE_WOOD = new BlueprintGroupe<Tile>("wood"){Members = { WOOD_FLOOR, WOOD_WALL }};
         }
 
         public static void AttachRender()

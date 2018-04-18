@@ -7,6 +7,7 @@ using Hevadea.Storage;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 using System.IO;
+using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Worlds.Level;
 
@@ -116,7 +117,7 @@ namespace Hevadea.Loading.Tasks
 
             foreach (var e in level.Entities)
             {
-                if (!ENTITIES.SaveExcluded.Contains(e.Blueprint))
+                if (!e.IsMemberOf(EntityFactory.GROUPE_SAVE_EXCUDED))
                 {
                     storage.Entities.Add(e.Save());
                 }

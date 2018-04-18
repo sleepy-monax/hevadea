@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Utils;
+using Hevadea.GameObjects;
 
 namespace Hevadea.Registry
 {
@@ -9,7 +10,7 @@ namespace Hevadea.Registry
             Logger.Log("Initializing game registery.");
             
             TILES.Initialize();
-            ENTITIES.Initialize();
+            EntityFactory.Initialize();
             ITEMS.Initialize();
             RECIPIES.InitializeHandCraftedRecipe();
             LEVELS.Initialize();

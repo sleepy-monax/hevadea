@@ -24,7 +24,7 @@ namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
                 MoveSpeedWandering = 0.5f,
                 NaturalEnvironment = { TILES.DIRT, TILES.GRASS, TILES.SAND, TILES.WOOD_FLOOR }
             }});
-            AddComponent(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
+            AddComponent(new Pushable { CanBePushBy = { EntityFactory.PLAYER } });
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Burnable(1f));
         }

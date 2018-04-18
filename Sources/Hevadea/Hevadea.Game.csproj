@@ -67,7 +67,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
-    <Compile Include="GameObjects\ENTITIES.cs" />
+    <Compile Include="GameObjects\EntityFactory.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\BlueprintCreature.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\BlueprintFurniture.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\BlueprintPlant.cs" />
@@ -136,6 +136,7 @@
     <Compile Include="GameManager\GameManager.Networking.Server.cs" />
     <Compile Include="GameManager\GameManager.Path.cs" />
     <Compile Include="Constant.cs" />
+    <Compile Include="GameObjects\BlueprintGroupe.cs" />
     <Compile Include="GameObjects\ITEMS.cs" />
     <Compile Include="GameObjects\Items\Item.cs" />
     <Compile Include="GameObjects\Items\ItemEntity.cs" />

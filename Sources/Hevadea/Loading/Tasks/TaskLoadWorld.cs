@@ -3,6 +3,7 @@ using System.IO;
 using Hevadea.Framework;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils.Json;
+using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Hevadea.Registry;
 using Hevadea.Storage;
@@ -19,7 +20,7 @@ namespace Hevadea.Loading.Tasks
             SetStatus("Loading world...");
             
             var world = new World();
-            var player = (EntityPlayer)ENTITIES.PLAYER.Construct();
+            var player = (EntityPlayer)EntityFactory.PLAYER.Construct();
             var worldData = File.ReadAllText(game.GetGameSaveFile()).FromJson<WorldStorage>();
             
             player.Load(File.ReadAllText(game.GetPlayerSaveFile()).FromJson<EntityStorage>());
@@ -38,6 +39,7 @@ namespace Hevadea.Loading.Tasks
                 
                 if (File.Exists(game.GetLevelMinimapSavePath(level)))
                 {                
+                    // Texture should be load from the render thread.
                     var task = new AsyncTask(() =>
                     {
                         var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.Open);
@@ -89,7 +91,7 @@ namespace Hevadea.Loading.Tasks
             for (var i = 0; i < levelData.Entities.Count; i++)
             {
                 var item = levelData.Entities[i];
-                var e = ENTITIES.GetBlueprint(item.Type).Construct();
+                var e = EntityFactory.Construct(item.Type);
                 e.Load(item);
                 level.AddEntity(e);
                 
