@@ -19,6 +19,7 @@ namespace Hevadea.GameObjects.Items
         {
             Id = ITEMS.ById.Count;
             ITEMS.ById.Add(this);
+            ITEMS.ByName.Add(name, this);
 
             _sprite = sprite;
             _name = name;

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components.Actions
 {
     public class Move : EntityComponent, IEntityComponentUpdatable
     {
@@ -53,6 +54,7 @@ namespace Hevadea.GameObjects.Entities.Components
             // Stop the entity on world borders.
             if (Owner.X + sx >= Owner.Level.Width * Constant.TileSize) sx = 0;
             if (Owner.Y + sy >= Owner.Level.Height * Constant.TileSize) sy = 0;
+            
             if (Owner.X + sx < 0) sx = 0;
             if (Owner.Y + sy < 0) sy = 0;
 
@@ -64,6 +66,7 @@ namespace Hevadea.GameObjects.Entities.Components
                 var ownerhitbox = ownerColider.GetHitBox();
                 var futurPositionX = new RectangleF(ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height);
                 var futurPositionY = new RectangleF(ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
+                
                 var futurPosition = new RectangleF(ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
 
                 var colidingEntity = new HashSet<Entity>();

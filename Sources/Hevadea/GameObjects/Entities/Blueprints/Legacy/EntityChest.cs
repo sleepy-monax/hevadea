@@ -1,6 +1,9 @@
 ﻿using System;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Entities.Components.Actions;
+using Hevadea.GameObjects.Entities.Components.Attributes;
+using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components.States
 {
     public class Light : EntityComponent
     {

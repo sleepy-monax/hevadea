@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
 using Hevadea.GameObjects.Items.Materials;
 using Hevadea.GameObjects.Items.Tags;
@@ -11,6 +13,7 @@ namespace Hevadea.GameObjects
     public static class ITEMS
     {
         public static readonly List<Item> ById = new List<Item>();
+        public static readonly Dictionary<string, Item> ByName = new Dictionary<string, Item>();
 
         public static Material WoodMaterial;
         public static Material IronMaterial;
@@ -105,8 +108,8 @@ namespace Hevadea.GameObjects
             {
                 PerEntityDamage =
                 {
-                    new GroupeDamage(EntityFactory.GROUPE_TREE, 2f),
-                    new GroupeDamage(EntityFactory.GROUPE_CREATURE, 1.3f)
+                    new GroupeDamage<EntityBlueprint>(EntityFactory.GROUPE_TREE, 2f),
+                    new GroupeDamage<EntityBlueprint>(EntityFactory.GROUPE_CREATURE, 1.3f)
                 }
             });
             
@@ -114,8 +117,8 @@ namespace Hevadea.GameObjects
             {
                 PerEntityDamage =
                 {
-                    new GroupeDamage(EntityFactory.GROUPE_TREE, 1.1f),
-                    new GroupeDamage(EntityFactory.GROUPE_CREATURE, 2f)
+                    new GroupeDamage<EntityBlueprint>(EntityFactory.GROUPE_TREE, 1.1f),
+                    new GroupeDamage<EntityBlueprint>(EntityFactory.GROUPE_CREATURE, 2f)
                 }
             });
             

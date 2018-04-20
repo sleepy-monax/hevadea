@@ -3,7 +3,7 @@ using Hevadea.Framework.Graphic.Particles;
 using Hevadea.GameObjects.Tiles.Components;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components.States
 {
     public class Swim : EntityComponent, IEntityComponentUpdatable
     {

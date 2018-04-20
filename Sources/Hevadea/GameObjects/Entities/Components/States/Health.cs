@@ -1,12 +1,13 @@
 ﻿using System;
 using Hevadea.Framework.Graphic;
+using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.GameObjects.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components.States
 {
     public sealed class Health : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {

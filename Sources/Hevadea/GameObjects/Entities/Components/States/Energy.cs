@@ -2,7 +2,7 @@
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components.States
 {
     public class Energy : EntityComponent, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {

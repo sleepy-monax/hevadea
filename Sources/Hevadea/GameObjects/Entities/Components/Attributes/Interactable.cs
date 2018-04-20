@@ -2,7 +2,7 @@
 using Hevadea.GameObjects.Items;
 using Hevadea.Utils;
 
-namespace Hevadea.GameObjects.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components.Attributes
 {
     public class InteractEventArg : EventArgs
     {

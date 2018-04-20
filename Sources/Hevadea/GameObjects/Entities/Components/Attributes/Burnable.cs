@@ -1,9 +1,10 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities.Components.States;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Components
+namespace Hevadea.GameObjects.Entities.Components.Attributes
 {
     class Burnable : Light, IEntityComponentUpdatable
     {
