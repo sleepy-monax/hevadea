@@ -15,10 +15,5 @@ namespace Hevadea.GameObjects.Entities
             return entity;
 
         }
-
-        public override void AttachComponents(Entity e)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

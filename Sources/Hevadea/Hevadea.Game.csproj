@@ -67,6 +67,9 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
+    <Compile Include="GameObjects\Entities\Blueprints\EntityBlueprint.cs" />
+    <Compile Include="GameObjects\Entities\Blueprints\GenericEntityBlueprint.cs" />
+    <Compile Include="GameObjects\Entities\Blueprints\XpOrbBlueprint.cs" />
     <Compile Include="GameObjects\Entities\Components\Actions\Attack.cs" />
     <Compile Include="GameObjects\Entities\Components\Actions\Interact.cs" />
     <Compile Include="GameObjects\Entities\Components\Actions\Move.cs" />
@@ -76,32 +79,41 @@
     <Compile Include="GameObjects\Entities\Components\Attributes\Interactable.cs" />
     <Compile Include="GameObjects\Entities\Components\Attributes\Pickupable.cs" />
     <Compile Include="GameObjects\Entities\Components\Attributes\Pushable.cs" />
+    <Compile Include="GameObjects\Entities\Components\Elemental\MaterialProvider.cs" />
+    <Compile Include="GameObjects\Entities\Components\EntityComponent.cs" />
+    <Compile Include="GameObjects\Entities\Components\IEntityComponentDrawable.cs" />
+    <Compile Include="GameObjects\Entities\Components\IEntityComponentDrawableOverlay.cs" />
+    <Compile Include="GameObjects\Entities\Components\IEntityComponentSaveLoad.cs" />
+    <Compile Include="GameObjects\Entities\Components\IEntityComponentUpdatable.cs" />
     <Compile Include="GameObjects\Entities\Components\States\Energy.cs" />
+    <Compile Include="GameObjects\Entities\Components\States\Experience.cs" />
     <Compile Include="GameObjects\Entities\Components\States\Health.cs" />
     <Compile Include="GameObjects\Entities\Components\States\IStateProvider.cs" />
     <Compile Include="GameObjects\Entities\Components\States\Light.cs" />
     <Compile Include="GameObjects\Entities\Components\States\Swim.cs" />
+    <Compile Include="GameObjects\Entities\EntityBelt.cs" />
+    <Compile Include="GameObjects\Entities\EntityChest.cs" />
+    <Compile Include="GameObjects\Entities\EntityChiken.cs" />
+    <Compile Include="GameObjects\Entities\EntityCraftingBench.cs" />
+    <Compile Include="GameObjects\Entities\EntityFish.cs" />
+    <Compile Include="GameObjects\Entities\EntityFlower.cs" />
+    <Compile Include="GameObjects\Entities\EntityFurnace.cs" />
+    <Compile Include="GameObjects\Entities\EntityGrass.cs" />
+    <Compile Include="GameObjects\Entities\EntityNpc.cs" />
+    <Compile Include="GameObjects\Entities\EntityPlayer.cs" />
+    <Compile Include="GameObjects\Entities\EntityStairs.cs" />
+    <Compile Include="GameObjects\Entities\EntityTNT.cs" />
+    <Compile Include="GameObjects\Entities\EntityTorch.cs" />
+    <Compile Include="GameObjects\Entities\EntityTree.cs" />
+    <Compile Include="GameObjects\Entities\EntityXpOrb.cs" />
+    <Compile Include="GameObjects\Entities\EntityZombie.cs" />
+    <Compile Include="GameObjects\Entities\Entity\Entity.Base.cs" />
+    <Compile Include="GameObjects\Entities\Entity\Entity.Component.cs" />
+    <Compile Include="GameObjects\Entities\Entity\Entity.LifeCycle.cs" />
+    <Compile Include="GameObjects\Entities\Entity\Entity.Position.cs" />
+    <Compile Include="GameObjects\Entities\Graphic\NullRenderer.cs" />
+    <Compile Include="GameObjects\Entities\Graphic\Renderer.cs" />
     <Compile Include="GameObjects\EntityFactory.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\BlueprintCreature.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\BlueprintFurniture.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\BlueprintPlant.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityBelt.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityChest.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityChiken.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityCraftingBench.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityFish.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityFlower.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityFurnace.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityGrass.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityNpc.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityPlayer.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityStairs.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityTNT.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityTorch.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityTree.cs" />
-    <Compile Include="GameObjects\Entities\Blueprints\Legacy\EntityZombie.cs" />
-    <Compile Include="GameObjects\Entities\GenericEntityBlueprint.cs" />
-    <Compile Include="GameObjects\Entities\EntityComponent.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionWait.cs" />
@@ -119,17 +131,6 @@
     <Compile Include="GameObjects\Entities\Components\Render\NpcRender.cs" />
     <Compile Include="GameObjects\Entities\Components\Render\ParticleEmiter.cs" />
     <Compile Include="GameObjects\Entities\Components\RevealMap.cs" />
-    <Compile Include="GameObjects\Entities\Entity.Base.cs" />
-    <Compile Include="GameObjects\Entities\Entity.Component.cs" />
-    <Compile Include="GameObjects\Entities\Entity.LifeCycle.cs" />
-    <Compile Include="GameObjects\Entities\Entity.Position.cs" />
-    <Compile Include="GameObjects\Entities\EntityBlueprint.cs" />
-    <Compile Include="GameObjects\Entities\IEntityComponentDrawable.cs" />
-    <Compile Include="GameObjects\Entities\IEntityComponentDrawableOverlay.cs" />
-    <Compile Include="GameObjects\Entities\IEntityComponentSaveLoad.cs" />
-    <Compile Include="GameObjects\Entities\IEntityComponentUpdatable.cs" />
-    <Compile Include="GameObjects\Entities\Renderer.cs" />
-    <Compile Include="GameObjects\Entities\Renderers\NullRenderer.cs" />
     <Compile Include="GameManager\GameManager.cs" />
     <Compile Include="GameManager\GameManager.LifeCycle.cs" />
     <Compile Include="GameManager\GameManager.Networking.Client.cs" />
@@ -144,8 +145,6 @@
     <Compile Include="GameObjects\Items\ItemStorage.cs" />
     <Compile Include="GameObjects\Items\ItemTag.cs" />
     <Compile Include="GameObjects\Items\Loot.cs" />
-    <Compile Include="GameObjects\Items\Materials\BaseMaterial.cs" />
-    <Compile Include="GameObjects\Items\Materials\Material.cs" />
     <Compile Include="GameObjects\Items\Tags\ActionItemTag.cs" />
     <Compile Include="GameObjects\Items\Tags\DamageTag.cs" />
     <Compile Include="GameObjects\Items\Tags\InteractItemTag.cs" />
@@ -338,6 +337,9 @@
       <Project>{c3056af3-493c-4eea-a163-b14533134771}</Project>
       <Name>Hevadea.Ressources</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameObjects\Alchemy" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

@@ -1,0 +1,23 @@
+﻿using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+
+namespace Hevadea.GameObjects.Entities
+{
+    public class XpOrbBlueprint : EntityBlueprint
+    {
+
+        private int _value;
+        
+        public XpOrbBlueprint(string name, int value) : base(name)
+        {
+            _value = value;
+        }
+
+        public override Entity Construct()
+        {
+            var e = new EntityXpOrb(_value);
+            e.Blueprint = this;
+            return e;
+        }
+
+    }
+}

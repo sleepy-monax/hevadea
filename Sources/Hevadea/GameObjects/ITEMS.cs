@@ -4,7 +4,6 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
-using Hevadea.GameObjects.Items.Materials;
 using Hevadea.GameObjects.Items.Tags;
 using Microsoft.Xna.Framework;
 
@@ -14,10 +13,6 @@ namespace Hevadea.GameObjects
     {
         public static readonly List<Item> ById = new List<Item>();
         public static readonly Dictionary<string, Item> ByName = new Dictionary<string, Item>();
-
-        public static Material WoodMaterial;
-        public static Material IronMaterial;
-        public static Material GoldMaterial;
 
         public static Item BELT;
         public static Item CHEST;
@@ -47,9 +42,6 @@ namespace Hevadea.GameObjects
         
         public static void Initialize()
         {
-            WoodMaterial = new BaseMaterial(2f);
-            IronMaterial = new BaseMaterial(4f);
-            GoldMaterial = new BaseMaterial(8f);
 
             BELT           = new Item("belt",           new Sprite(Ressources.TileItems, new Point(9, 0)));
             CHEST          = new Item("chest",          new Sprite(Ressources.TileEntities, new Point(0, 1)));
