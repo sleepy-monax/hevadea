@@ -76,6 +76,7 @@
     <Compile Include="GameObjects\Entities\Components\Actions\Pickup.cs" />
     <Compile Include="GameObjects\Entities\Components\Attributes\Breakable.cs" />
     <Compile Include="GameObjects\Entities\Components\Attributes\Burnable.cs" />
+    <Compile Include="GameObjects\Entities\Components\Attributes\CraftingStation.cs" />
     <Compile Include="GameObjects\Entities\Components\Attributes\Interactable.cs" />
     <Compile Include="GameObjects\Entities\Components\Attributes\Pickupable.cs" />
     <Compile Include="GameObjects\Entities\Components\Attributes\Pushable.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Scenes\GuiFactory.cs" />
     <Compile Include="Scenes\GuiHelper.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabOption.cs" />
+    <Compile Include="Scenes\Menus\MenuChest.cs" />
     <Compile Include="Scenes\Menus\MenuInGame.cs" />
     <Compile Include="Scenes\Menus\Menu.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabMultiplayerConnect.cs" />

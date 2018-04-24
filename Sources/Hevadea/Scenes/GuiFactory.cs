@@ -9,12 +9,9 @@ namespace Hevadea.Scenes
 {
     public static class GuiFactory
     {
-
-
-
         public static Widget CreateSplitContainer(Rectangle bound, string panelATitle, Widget panelAContent, string panelBTitle, Widget panelBContent)
         {
-            return new AnchoredContainer
+            return new TileContainer()
             {
                 UnitBound = bound,
                 Childrens =
@@ -24,6 +21,7 @@ namespace Hevadea.Scenes
                         UnitBound = new Rectangle(0, 0, 400, 480),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Left,
+                        Dock = Dock.Left,
                         Content = new DockContainer
                         {
                             Childrens =
@@ -38,6 +36,7 @@ namespace Hevadea.Scenes
                         UnitBound = new Rectangle(0, 0, 400, 480),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Right,
+                        Dock = Dock.Right,
                         Content = new DockContainer
                         {
                             Childrens =

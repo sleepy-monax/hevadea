@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Platform;
+using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
@@ -13,7 +14,7 @@ namespace Hevadea.Scenes.Menus
     public class MenuInGame : Menu
     {
         private readonly WidgetPlayerStats _playerStats;
-        private readonly WidgetMinimap _minimap;
+        private readonly Widget _minimap;
         private readonly WidgetHotBar _hotBar;
         private readonly Button btnAttack, btnAction, btnPickup, btnDrop, btnMinimap;
 
@@ -76,13 +77,15 @@ namespace Hevadea.Scenes.Menus
             };
 
 
-            _minimap = new WidgetMinimap(game)
+            _minimap = new WidgetFancyPanel()
             {
                 Anchor = Anchor.TopRight,
                 Origine = Anchor.TopRight,
-                UnitBound = new Rectangle(0, 0, 384, 512),
+                UnitBound = new Rectangle(0, 0, 320, 320),
                 UnitOffset = new Point(-16, 16),
-            };
+                Content = new WidgetMinimap(game)
+                
+            }; 
 
             _hotBar = new WidgetHotBar(Game.MainPlayer.GetComponent<Inventory>().Content)
             {

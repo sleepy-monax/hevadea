@@ -117,19 +117,5 @@ namespace Hevadea.GameObjects
             });
             
         }
-
-        private static Dictionary<string, ItemBlueprint> _blueprints = new Dictionary<string, ItemBlueprint>();
-        public static void RegisterItem(ItemBlueprint blueprint)
-        {
-            if (_blueprints.ContainsKey(blueprint.Name)) 
-                _blueprints[blueprint.Name] = blueprint;
-            else 
-                _blueprints.Add(blueprint.Name, blueprint);
-        }
-
-        public static ItemBlueprint GetBlueprint(string name)
-        {
-            return _blueprints.ContainsKey(name) ? _blueprints[name] : null;
-        }
     }
 }

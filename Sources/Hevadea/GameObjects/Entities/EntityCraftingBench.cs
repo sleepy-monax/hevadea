@@ -3,6 +3,7 @@ using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
+using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -22,16 +23,8 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Move());
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Burnable(1f));
-            AddComponent(new Interactable()).Interacted += OnInteracted;
             AddComponent(new Pickupable(_sprite));
-        }
-
-        private void OnInteracted(object sander, InteractEventArg e)
-        {
-            /*
-            if (e.Entity.HasComponent<Inventory>())
-                Game.CurrentMenu = new MenuPlayerInventory(e.Entity, RECIPIES.BenchCrafted, Game);
-            */
+            AddComponent(new CraftingStation(RECIPIES.BenchCrafted));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

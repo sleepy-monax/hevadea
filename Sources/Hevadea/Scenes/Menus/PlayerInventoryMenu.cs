@@ -8,7 +8,9 @@ using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
+using Hevadea.Registry;
 
 namespace Hevadea.Scenes.Menus
 {
@@ -29,18 +31,6 @@ namespace Hevadea.Scenes.Menus
         private CraftingTab         _crafting;
         private WidgetTabContainer  _sideMenu;
 
-        public PlayerInventoryMenu(GameManager.GameManager game, List<Recipe> recipes) : base(game)
-        {
-            InitializeComponents();
-        }
-
-        public PlayerInventoryMenu(GameManager.GameManager game, ItemStorage container, string containerName) : base(game)
-        {
-
-            InitializeComponents();
-
-        }
-
         public PlayerInventoryMenu(GameManager.GameManager game) : base(game)
         {
             InitializeComponents();
@@ -49,9 +39,29 @@ namespace Hevadea.Scenes.Menus
         public void InitializeComponents(InventoryTab mainTab = null)
         {
             PauseGame = true;
-
+            
+            var r = new List<List<Recipe>>();
+            foreach (var e in Game.MainPlayer.Level.GetEntitiesOnRadius(Game.MainPlayer.X, Game.MainPlayer.Y, 16))
+            {
+                var s = e.GetComponent<CraftingStation>();
+                if (s != null)
+                {
+                    if (!r.Contains(s.Recipies))
+                    {
+                        r.Add(s.Recipies);
+                    }
+                }
+            }
+            
+            var recipies = new List<Recipe>();
+            recipies.AddRange(RECIPIES.HandCrafted);
+            foreach (var i in r)
+            {
+                recipies.AddRange(i);
+            }
+            
             _inventory = new WidgetItemContainer(Game.MainPlayer.GetComponent<Inventory>().Content);
-            _crafting = new CraftingTab(Game);
+            _crafting = new CraftingTab(Game, recipies);
 
             _inventory.Dock = Dock.Fill;
 

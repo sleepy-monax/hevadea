@@ -19,11 +19,11 @@ namespace Hevadea.Scenes.Widgets
         
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(Host, Color.Black * 0.5f);
+            //spriteBatch.FillRectangle(Host, Color.Black * 0.5f);
 
             if (_game?.MainPlayer?.Level?.Minimap?.Texture != null)
             {
-                var states = _game.MainPlayer.Level.GetRenderState(_game.Camera);
+                //var states = _game.MainPlayer.Level.GetRenderState(_game.Camera);
                 var map = _game.MainPlayer.Level.Minimap.Texture;
                 var p = _game.MainPlayer.GetTilePosition().ToPoint();
                 
@@ -40,8 +40,8 @@ namespace Hevadea.Scenes.Widgets
                                                                                  Host.Y + Mathf.Clamp(Scale((w.Y - offset.Y) * 4 - 16), 0, Host.Height - Scale(16))), new Vector2(Scale(4)), Color.White);
                 }
                 
-                spriteBatch.PutPixel((Host.Location + Scale((p - offset) * new Point(4))).ToVector2(), Color.Blue, Scale(4));
-                spriteBatch.DrawRectangle(Host.Location + Scale((states.Begin - offset) * new Point(4)) , Host.Location + Scale((states.End - offset) * new Point(4)), Scale(4f), Color.Red * 0.5f);
+                spriteBatch.PutPixel((Host.Location + Scale((p - offset) * new Point(4))).ToVector2(), Color.Blue, Scale(8));
+                //spriteBatch.DrawRectangle(Host.Location + Scale((states.Begin - offset) * new Point(4)) , Host.Location + Scale((states.End - offset) * new Point(4)), Scale(4f), Color.Red * 0.5f);
             }
         }
     }

@@ -4,6 +4,7 @@ using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.States;
+using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -30,8 +31,8 @@ namespace Hevadea.GameObjects.Entities
 
         private void EntityInteracte(object sender, InteractEventArg args)
         {
-            // if (args.Entity.HasComponent<Inventory>())
-            //    Game.CurrentMenu = new MenuItemContainer(args.Entity, this, Game);
+            if (args.Entity.HasComponent<Inventory>())
+                Game.CurrentMenu = new MenuChest(args.Entity, this, Game);
             
         }
 
