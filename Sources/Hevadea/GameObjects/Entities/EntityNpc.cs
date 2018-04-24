@@ -1,11 +1,10 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.Render;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
+namespace Hevadea.GameObjects.Entities
 {
     public class EntityNpc : Entity
     {

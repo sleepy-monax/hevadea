@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.GameObjects.Entities.Components;
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Hevadea.Worlds;

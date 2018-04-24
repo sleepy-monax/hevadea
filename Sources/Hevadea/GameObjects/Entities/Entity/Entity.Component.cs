@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Hevadea.GameObjects.Entities.Components;
 
 namespace Hevadea.GameObjects.Entities
 {

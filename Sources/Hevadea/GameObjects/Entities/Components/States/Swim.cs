@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.Particles;
+using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Tiles.Components;
 using Microsoft.Xna.Framework;
 
@@ -26,7 +27,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
                     if (health != null)
                     {
                         energy.Reduce(0.01f);
-                        if (energy.Value < 0.01f){health.Hurt(Owner.GetTileOnMyPosition(), 0.01f, position.X, position.Y );}
+                        if (energy.Value < 0.01f){health.Hurt(Owner.GetTileOnMyPosition(), 1f * gameTime.GetDeltaTime(), position.X, position.Y );}
                     }
                 }
             }

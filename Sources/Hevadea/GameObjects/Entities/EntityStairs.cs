@@ -1,11 +1,10 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
+namespace Hevadea.GameObjects.Entities
 {
     public class EntityStairs : Entity
     {

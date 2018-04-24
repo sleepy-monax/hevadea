@@ -3,7 +3,7 @@ using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.States;
 

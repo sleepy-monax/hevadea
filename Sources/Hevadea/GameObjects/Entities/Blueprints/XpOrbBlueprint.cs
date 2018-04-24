@@ -1,6 +1,4 @@
-﻿using Hevadea.GameObjects.Entities.Blueprints.Legacy;
-
-namespace Hevadea.GameObjects.Entities
+﻿namespace Hevadea.GameObjects.Entities.Blueprints
 {
     public class XpOrbBlueprint : EntityBlueprint
     {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;

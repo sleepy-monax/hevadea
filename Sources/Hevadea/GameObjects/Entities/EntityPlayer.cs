@@ -8,7 +8,7 @@ using Hevadea.GameObjects.Items;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
+namespace Hevadea.GameObjects.Entities
 {
     public class EntityPlayer : Entity
     {

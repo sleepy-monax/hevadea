@@ -4,7 +4,6 @@ using System.Linq;
 using Hevadea.Framework;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

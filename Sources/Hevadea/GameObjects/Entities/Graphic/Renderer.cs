@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.GameObjects.Entities
+namespace Hevadea.GameObjects.Entities.Graphic
 {
     public abstract class Renderer
     {

@@ -1,4 +1,4 @@
-﻿namespace Hevadea.GameObjects.Entities
+﻿namespace Hevadea.GameObjects.Entities.Blueprints
 {
     public abstract class EntityBlueprint
     {

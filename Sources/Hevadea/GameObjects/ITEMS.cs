@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
@@ -45,12 +46,13 @@ namespace Hevadea.GameObjects
 
             BELT           = new Item("belt",           new Sprite(Ressources.TileItems, new Point(9, 0)));
             CHEST          = new Item("chest",          new Sprite(Ressources.TileEntities, new Point(0, 1)));
-            COAL           = new Item("coal",           new Sprite(Ressources.TileItems, new Point(6, 2)));
             CRAFTING_BENCH = new Item("crafting_bench", new Sprite(Ressources.TileEntities, new Point(1, 0)));
             FURNACE        = new Item("furnace",        new Sprite(Ressources.TileEntities, new Point(1, 1)));
-            GRASS_PATCH    = new Item("grass_patch",    new Sprite(Ressources.TileItems, new Point(7, 2)));
-            IRON_ORE       = new Item("iron_ore",       new Sprite(Ressources.TileItems, new Point(8, 0)));  
+            
             LIGHTER        = new Item("lighter", new Sprite(Ressources.TileEntities, new Point(4, 0)));
+            GRASS_PATCH    = new Item("grass_patch",    new Sprite(Ressources.TileItems, new Point(7, 2)));
+            COAL           = new Item("coal",           new Sprite(Ressources.TileItems, new Point(6, 2)));
+            IRON_ORE       = new Item("iron_ore",       new Sprite(Ressources.TileItems, new Point(8, 0)));  
             PINE_CONE      = new Item("pine_cone",      new Sprite(Ressources.TileItems, new Point(5, 2)));
             RAW_FISH       = new Item("raw_fish", new Sprite(Ressources.TileEntities, new Point(11, 0)));
             SAND           = new Item("sand",           new Sprite(Ressources.TileItems, new Point(7, 3)));
@@ -114,6 +116,20 @@ namespace Hevadea.GameObjects
                 }
             });
             
+        }
+
+        private static Dictionary<string, ItemBlueprint> _blueprints = new Dictionary<string, ItemBlueprint>();
+        public static void RegisterItem(ItemBlueprint blueprint)
+        {
+            if (_blueprints.ContainsKey(blueprint.Name)) 
+                _blueprints[blueprint.Name] = blueprint;
+            else 
+                _blueprints.Add(blueprint.Name, blueprint);
+        }
+
+        public static ItemBlueprint GetBlueprint(string name)
+        {
+            return _blueprints.ContainsKey(name) ? _blueprints[name] : null;
         }
     }
 }

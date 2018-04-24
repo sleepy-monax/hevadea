@@ -1,5 +1,5 @@
 ﻿using Hevadea.GameObjects;
-using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities;
 using Hevadea.Registry;
 
 namespace Hevadea.Loading.Tasks

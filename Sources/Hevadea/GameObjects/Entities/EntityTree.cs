@@ -25,7 +25,7 @@ namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            treeSprite.Draw(spriteBatch, new Vector2(X - 24, Y - 76), Color.White);
+            treeSprite.Draw(spriteBatch, new Vector2(X - 16, Y - 84), Color.White);
         }
     }
 }

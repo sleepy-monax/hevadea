@@ -134,7 +134,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
         public void Hurt(Tile tile, float damages, int tX, int tY)
         {
             if (Invicible) return;
-
+            _coolDown = 0f;
             HurtedByTile?.Invoke(tile, damages, tX, tY);
             _value = Math.Max(0, _value - damages);
 

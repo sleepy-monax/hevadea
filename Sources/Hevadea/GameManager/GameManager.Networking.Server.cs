@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using Hevadea.Framework;
 using Hevadea.Framework.Networking;
 using Hevadea.Framework.Utils;
-using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities;
 using Hevadea.Networking;
 
 namespace Hevadea.GameManager

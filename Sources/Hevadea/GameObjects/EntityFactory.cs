@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Entities.Blueprints.Legacy;
 using Hevadea.GameObjects.Items;
 

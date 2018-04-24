@@ -1,6 +1,4 @@
-﻿using Hevadea.GameObjects.Entities.Blueprints.Legacy;
-
-namespace Hevadea.GameObjects.Entities.Components.States
+﻿namespace Hevadea.GameObjects.Entities.Components.States
 {
     public class Experience : EntityComponent
     {

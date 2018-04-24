@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities;
 using Hevadea.Player;
 using Hevadea.Scenes.Menus;
 using Hevadea.Worlds;

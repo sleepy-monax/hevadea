@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hevadea.GameObjects.Entities
+﻿namespace Hevadea.GameObjects.Entities.Blueprints
 {
     public class GenericEntityBlueprint<T> : EntityBlueprint where T : Entity, new()
     {

@@ -6,11 +6,10 @@ using Hevadea.GameObjects.Entities.Components.Ai.Behaviors;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Items;
-using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
+namespace Hevadea.GameObjects.Entities
 {
     public class EntityFish : Entity
     {        

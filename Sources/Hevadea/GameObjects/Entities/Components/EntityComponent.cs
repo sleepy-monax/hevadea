@@ -1,4 +1,4 @@
-﻿namespace Hevadea.GameObjects.Entities
+﻿namespace Hevadea.GameObjects.Entities.Components
 {
     public abstract class EntityComponent
     {

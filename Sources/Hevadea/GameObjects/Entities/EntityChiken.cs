@@ -6,10 +6,9 @@ using Hevadea.GameObjects.Entities.Components.Ai.Behaviors;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.Render;
 using Hevadea.GameObjects.Entities.Components.States;
-using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
+namespace Hevadea.GameObjects.Entities
 {
     public class EntityChiken : Entity
     {

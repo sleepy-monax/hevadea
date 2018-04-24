@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.GameObjects.Entities.Renderers
+namespace Hevadea.GameObjects.Entities.Graphic
 {
     public class NullRenderer : Renderer
     {

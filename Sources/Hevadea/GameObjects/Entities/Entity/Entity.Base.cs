@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Graphic.Particles;
-using Hevadea.GameObjects.Entities.Renderers;
+using Hevadea.GameObjects.Entities.Blueprints;
+using Hevadea.GameObjects.Entities.Graphic;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Utils;

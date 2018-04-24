@@ -3,6 +3,7 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.Registry;
 using System.Linq;
 using System.Security.Policy;
+using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
 
 namespace Hevadea.GameObjects.Items.Tags

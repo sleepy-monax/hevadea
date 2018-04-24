@@ -4,7 +4,7 @@ using Hevadea.Framework;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.GameObjects;
-using Hevadea.GameObjects.Entities.Blueprints.Legacy;
+using Hevadea.GameObjects.Entities;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Worlds;

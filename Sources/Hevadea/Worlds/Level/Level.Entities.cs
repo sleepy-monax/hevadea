@@ -2,6 +2,7 @@
 using System.Linq;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
