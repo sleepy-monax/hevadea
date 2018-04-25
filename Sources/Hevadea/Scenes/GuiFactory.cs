@@ -14,9 +14,10 @@ namespace Hevadea.Scenes
             return new TileContainer()
             {
                 UnitBound = bound,
+                Dock = Dock.Fill,
                 Childrens =
                 {
-                    new WidgetFancyPanel
+                    new Panel()
                     {
                         UnitBound = new Rectangle(0, 0, 400, 480),
                         Anchor = Anchor.Center,
@@ -31,7 +32,7 @@ namespace Hevadea.Scenes
                             }
                         }
                     },
-                    new WidgetFancyPanel
+                    new Panel()
                     {
                         UnitBound = new Rectangle(0, 0, 400, 480),
                         Anchor = Anchor.Center,

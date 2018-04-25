@@ -29,8 +29,8 @@ namespace Hevadea.Scenes.Widgets
             var size = Scale(64);
 
             _background.Draw(spriteBatch, new Rectangle(Bound.X + size / 2, Bound.Y + size / 2, Bound.Width - size, Bound.Height - size), Color.White);
-            base.Draw(spriteBatch, gameTime);
             GuiHelper.DrawBox(spriteBatch, Bound, size);
+            base.Draw(spriteBatch, gameTime);
         }
     }
 }

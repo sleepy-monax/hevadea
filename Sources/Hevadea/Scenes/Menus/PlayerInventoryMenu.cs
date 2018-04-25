@@ -3,18 +3,20 @@ using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Entities.Components.Attributes;
+using Hevadea.Registry;
 using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Hevadea.GameObjects.Entities.Components;
-using Hevadea.GameObjects.Entities.Components.Attributes;
-using Hevadea.GameObjects.Items;
-using Hevadea.Registry;
+using Hevadea.Framework;
+using Hevadea.Framework.Platform;
 
 namespace Hevadea.Scenes.Menus
 {
-    
+
     public abstract class InventoryTab : Tab
     {
         public GameManager.GameManager Game { get; }
@@ -71,12 +73,30 @@ namespace Hevadea.Scenes.Menus
                 Game.MainPlayer.HoldingItem = _inventory.SelectedItem;
             };
 
-            var inventoryPanel = new WidgetFancyPanel
+            var closeBtn = new SpriteButton()
+            {
+                Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
+                UnitBound = new Rectangle(0, 0, 64, 64),
+                Anchor = Anchor.TopLeft,
+                Origine = Anchor.Center
+            };
+
+            closeBtn.MouseClick += CloseBtnOnMouseClick;
+
+            var inventoryPanel = new Panel()
             {
                 Content = new DockContainer
                 {
                     Childrens =
                     {
+                        new AnchoredContainer()
+                        {
+                            Dock = Dock.Fill,
+                            Childrens =
+                            {
+                                closeBtn
+                            }
+                        },
                         new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
                         _inventory,
                     }
@@ -108,11 +128,20 @@ namespace Hevadea.Scenes.Menus
                 _sideMenu.Tabs.Insert(0, mainTab);
             }
 
-            Content = new TileContainer
+            Content = new WidgetFancyPanel()
             {
-                Flow = FlowDirection.RightToLeft,
-                Childrens = { _sideMenu, inventoryPanel }
+                Content = new TileContainer
+                {
+                    Flow = Rise.Platform.Family == PlatformFamily.Mobile ? FlowDirection.BottomToTop : FlowDirection.RightToLeft,
+                    Childrens = { _sideMenu, inventoryPanel }
+                }
             };
+            
+        }
+
+        private void CloseBtnOnMouseClick(Widget sender)
+        {
+            Game.CurrentMenu = new MenuInGame(Game);
         }
     }
 }

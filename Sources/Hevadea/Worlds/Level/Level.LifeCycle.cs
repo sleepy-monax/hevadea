@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 
 namespace Hevadea.Worlds.Level
 {
@@ -65,7 +64,7 @@ namespace Hevadea.Worlds.Level
                     Math.Max(0, focusEntity.Y - dist.Y - 1)),
 
                 End = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
-                    Math.Min(Height, focusEntity.Y + dist.Y) + 6)
+                    Math.Min(Height, focusEntity.Y + dist.Y + 6))
             };
 
             for (var tx = state.Begin.X; tx < state.End.X; tx++)

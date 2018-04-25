@@ -29,7 +29,7 @@ namespace Hevadea.Framework.UI.Containers
                         c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X, UnitHost.Y + itemHeight * index, UnitHost.Width, itemHeight));
                         break;
                     case FlowDirection.BottomToTop:
-                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X, UnitHost.Y + UnitHost.Height - (itemHeight * index), UnitHost.Width, itemHeight));
+                        c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X, UnitHost.Y + UnitHost.Height - (itemHeight * (index + 1)), UnitHost.Width, itemHeight));
                         break;
                     case FlowDirection.LeftToRight:
                         c.UnitBound = Marging.Apply(new Rectangle(UnitHost.X + itemWidth * index, UnitHost.Y, itemWidth, UnitHost.Height));

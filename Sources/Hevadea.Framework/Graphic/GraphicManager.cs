@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Platform;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -75,12 +76,12 @@ namespace Hevadea.Framework.Graphic
 
         public int GetWidth()
         {
-            return _graphicsDeviceManager.PreferredBackBufferWidth;
+            return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenWidth() : _graphicsDeviceManager.PreferredBackBufferWidth;
         }
         
         public int GetHeight()
         {
-            return _graphicsDeviceManager.PreferredBackBufferHeight;
+            return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenHeight() : _graphicsDeviceManager.PreferredBackBufferHeight;
         }
  
         public void SetSize(int sx, int sy)

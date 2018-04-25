@@ -82,7 +82,6 @@
     <Compile Include="UI\Containers\TileContainer.cs" />
     <Compile Include="UI\UiManager.cs" />
     <Compile Include="UI\Widget.cs" />
-    <Compile Include="UI\Widgets\BackButton.cs" />
     <Compile Include="UI\Widgets\BlurPanel.cs" />
     <Compile Include="UI\Widgets\Button.cs" />
     <Compile Include="UI\Widgets\Label.cs" />
@@ -90,6 +89,7 @@
     <Compile Include="UI\Widgets\Panel.cs" />
     <Compile Include="UI\Widgets\PictureWidget.cs" />
     <Compile Include="UI\Widgets\ProgressBar.cs" />
+    <Compile Include="UI\Widgets\SpriteButton.cs" />
     <Compile Include="UI\Widgets\TextBox\Cursor.cs" />
     <Compile Include="Graphic\Text\Text.cs" />
     <Compile Include="UI\Widgets\TextBox\SingleLineTextBoxWidget.cs" />

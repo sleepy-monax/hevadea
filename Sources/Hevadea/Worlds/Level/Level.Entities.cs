@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Worlds.Level
 {
@@ -68,7 +68,7 @@ namespace Hevadea.Worlds.Level
 
         public List<Entity> GetEntityOnTile(int tx, int ty)
         {
-            if (tx < Width && ty < Height && tx >= 0 && ty >= 0) return _entitiesOnTiles[tx, ty];
+            if (tx < Width && ty < Height && tx >= 0 && ty >= 0) return _entitiesOnTiles[tx, ty].ToList();
             return new List<Entity>();
         }
 

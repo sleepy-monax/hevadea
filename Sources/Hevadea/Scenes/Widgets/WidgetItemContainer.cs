@@ -30,7 +30,6 @@ namespace Hevadea.Scenes.Widgets
 
             var text = $"({Content.Count()}/{Content.Capacity})";
             var textSize = Ressources.FontRomulus.MeasureString(text);
-            spriteBatch.FillRectangle(Bound, Color.White * 0.1f);
             spriteBatch.DrawString(Ressources.FontRomulus, text,
                 new Vector2(Bound.X + Bound.Width - textSize.X - Padding.Left - Scale(4),
                     Bound.Y + Bound.Height - textSize.Y - Padding.Down), Color.Gold);

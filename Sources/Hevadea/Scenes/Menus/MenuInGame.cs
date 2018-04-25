@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
@@ -16,7 +17,10 @@ namespace Hevadea.Scenes.Menus
         private readonly WidgetPlayerStats _playerStats;
         private readonly Widget _minimap;
         private readonly WidgetHotBar _hotBar;
-        private readonly Button btnAttack, btnAction, btnPickup, btnDrop, btnMinimap;
+
+        private readonly Button btnAttack, btnAction, btnPickup, btnDrop;
+
+        private readonly SpriteButton btnMinimap;
 
         public MenuInGame(GameManager.GameManager game) : base(game)
         {
@@ -57,12 +61,12 @@ namespace Hevadea.Scenes.Menus
                 UnitOffset = new Point(-128, -128)
             };
 
-            btnMinimap = new Button
+            btnMinimap = new SpriteButton
             {
                 Anchor = Anchor.TopRight,
                 IsEnable = false,
                 Origine = Anchor.TopRight,
-                Text = "MAP",
+                Sprite = new Sprite(Ressources.TileIcons, new Point(5, 4)),
                 UnitOffset = new Point(-16, 16),
             };
 

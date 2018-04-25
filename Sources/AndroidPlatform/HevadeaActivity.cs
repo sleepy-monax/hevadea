@@ -1,6 +1,5 @@
 using Android.App;
 using Android.Content.PM;
-using Android.Content.Res;
 using Android.OS;
 using Android.Views;
 using Hevadea.Framework;
@@ -15,13 +14,14 @@ namespace AndroidPlatform
         , Theme = "@style/Theme.Splash"
         , AlwaysRetainTaskState = true
         , LaunchMode = LaunchMode.SingleInstance
-        , ScreenOrientation = ScreenOrientation.UserLandscape
+        , ScreenOrientation = ScreenOrientation.UserPortrait
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class HevadeaActivity : AndroidGameActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 
             Rise.Initialize(new MobilePlatform(Resources, this));
             SetContentView((View)Rise.MonoGame.Services.GetService(typeof(View)));

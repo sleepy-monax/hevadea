@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework;
+﻿using System;
+using Hevadea.Framework;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
@@ -42,9 +43,9 @@ namespace Hevadea.Player
                     var mousePositionInWorld = game.Camera.ToWorldSpace(mousePositionOnScreen);
                     var screenCenter = Rise.Graphic.GetCenter();
     
-                    if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Rise.Graphic.GetHeight() / 2)
+                    if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Math.Min(Rise.Graphic.GetHeight(), Rise.Graphic.GetWidth()) / 2)
                     {
-                        Player.GetComponent<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y);
+                        Player.GetComponent<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f, true);
                     }
                 }
                 

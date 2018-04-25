@@ -1,7 +1,9 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Items;
@@ -26,13 +28,33 @@ namespace Hevadea.Scenes.Menus
             _inventoryA.MouseClick += Tranfer;
             _inventoryB.MouseClick += Tranfer;
 
-            Content = GuiFactory.CreateSplitContainer(new Rectangle(0, 0, 64, 64), "Inventory", _inventoryA, "Chest", new DockContainer()
+            var closeBtn = new SpriteButton()
             {
-                Childrens = {                             new Button
-                                { Font  = Ressources.FontRomulus, Text = "Back", Padding = new Padding(4) }
-                                .RegisterMouseClickEvent((sender) => {Game.CurrentMenu = new MenuInGame(Game);}),_inventoryB },
-                Dock = Dock.Fill
-            });
+                Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
+                UnitBound = new Rectangle(0, 0, 64, 64),
+                Anchor = Anchor.TopLeft,
+                Origine = Anchor.Center
+            };
+
+            closeBtn.MouseClick += CloseBtnOnMouseClick;
+
+            Content = new WidgetFancyPanel()
+            {
+
+                Content = new DockContainer()
+                {
+                    Childrens =
+                    {
+                        new AnchoredContainer()
+                        {
+                            Dock = Dock.Fill,
+                            Childrens = {closeBtn}
+                        },
+                        GuiFactory.CreateSplitContainer(new Rectangle(0, 0, 64, 64), "Inventory", _inventoryA, "Chest", _inventoryB),
+                    }
+                }
+
+            };
         }
 
         private void Tranfer(Widget sender)
@@ -60,5 +82,10 @@ namespace Hevadea.Scenes.Menus
                 }
             }
         }
-}
+
+        private void CloseBtnOnMouseClick(Widget sender)
+        {
+            Game.CurrentMenu = new MenuInGame(Game);
+        }
+    }
 }

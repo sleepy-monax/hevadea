@@ -7,7 +7,6 @@ namespace Hevadea.Framework.UI.Widgets
 {
     public class Button : Widget
     {
-        public bool EnableBorder { get; set; } = false;
         public Color OverColor { get; set; } = ColorPalette.Accent;
         public Color IdleColor { get; set; } = ColorPalette.Border;
         public Color TextColor { get; set; } = Color.White;
