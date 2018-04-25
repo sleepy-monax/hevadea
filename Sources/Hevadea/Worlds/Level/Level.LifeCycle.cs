@@ -86,6 +86,7 @@ namespace Hevadea.Worlds.Level
                 for (var tx = state.Begin.X; tx < state.End.X; tx++)
                 {
                     GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+                    spriteBatch.DrawString(Ressources.FontHack, GetEntityOnTile(tx, ty).Count.ToString(), new Rectangle(tx * 16, ty * 16, 16, 16), DrawText.Alignement.Center, DrawText.TextStyle.Regular, Color.White );
                 }
             }
             

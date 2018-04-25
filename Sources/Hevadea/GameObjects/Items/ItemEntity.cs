@@ -24,7 +24,7 @@ namespace Hevadea.GameObjects.Items
         public override void OnUpdate(GameTime gameTime)
         {
             var move = GetComponent<Move>();
-            move.Do(SpeedX, SpeedY, Facing);
+            move.Do(SpeedX, SpeedY);
             SpeedX = SpeedX / 2;
             SpeedY = SpeedY / 2;
             

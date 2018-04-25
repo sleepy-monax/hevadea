@@ -79,7 +79,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
 
             if (_knckbckX != 0f || _knckbckY != 0f)
             {
-                Owner.GetComponent<Move>()?.Do(_knckbckX, _knckbckY, Owner.Facing);
+                Owner.GetComponent<Move>()?.Do(_knckbckX, _knckbckY);
                 _knckbckX *= 0.9f;
                 _knckbckY *= 0.9f;
             }

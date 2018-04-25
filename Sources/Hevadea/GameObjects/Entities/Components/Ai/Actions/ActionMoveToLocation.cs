@@ -25,7 +25,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
         public void Perform(Agent agent, GameTime gameTime)
         {
             var agentPosition = agent.Owner.Position;
-            agent.Owner.GetComponent<Move>()?.MoveTo(_destination, null, _speed);
+            agent.Owner.GetComponent<Move>()?.MoveTo(_destination, _speed, true);
             
             if (agentPosition == agent.Owner.Position)
             {

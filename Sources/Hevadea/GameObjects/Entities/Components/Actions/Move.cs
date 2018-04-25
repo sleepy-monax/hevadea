@@ -18,7 +18,13 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             IsMoving = false;
         }
 
-        public void MoveTo(float x, float y, Direction? direction = null, float speed = 1f)
+        public void MoveTo(TilePosition tilePosition, float speed = 1f,  bool setFacing = false)
+        {
+            var destination = tilePosition.GetCenter();
+            MoveTo(destination.X, destination.Y, speed, setFacing);
+        }
+
+        public void MoveTo(float x, float y, float speed = 1f, bool setFacing = false)
         {
             var dir = new Vector2(x - Owner.X, y - Owner.Y);
 
@@ -29,17 +35,18 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                 dir = dir * speed;
             }
 
-            Do(dir.X, dir.Y, direction ?? dir.ToDirection());
+            if (setFacing) Owner.Facing = dir.ToDirection();
+            Do(dir.X, dir.Y);
         }
-
-        public void MoveTo(TilePosition tilePosition, Direction? direction = null, float speed = 1f)
-        {
-            var destination = tilePosition.GetCenter();
-            MoveTo(destination.X, destination.Y, direction, speed);
-        }
-
 
         public bool Do(float sx, float sy, Direction facing)
+        {
+            if (!Do(sx, sy)) return false;
+            Owner.Facing = facing;
+            return true;
+        }
+        
+        public bool Do(float sx, float sy)
         {
             if (Owner.Removed) return false;
 
@@ -114,7 +121,6 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             {
                 Owner.SetPosition(Owner.X + sx, Owner.Y + sy);
                 Owner.Level.GetTile(Owner.GetTilePosition()).Tag<GroundTile>()?.SteppedOn(Owner, Owner.GetTilePosition());
-                Owner.Facing = facing;
                 IsMoving = true;
                 return true;
             }

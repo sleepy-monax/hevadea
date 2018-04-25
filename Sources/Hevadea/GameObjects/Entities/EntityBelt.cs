@@ -37,7 +37,7 @@ namespace Hevadea.GameObjects.Entities
             var entities = Level.GetEntityOnTile(GetTilePosition());
             foreach (var e in entities)
             {
-                e.GetComponent<Move>()?.MoveTo(GetFacingTile());
+                e.GetComponent<Move>()?.MoveTo(GetFacingTile(), speed:0.5f);
             }
         }
 

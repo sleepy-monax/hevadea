@@ -68,12 +68,8 @@ namespace Hevadea.Worlds.Level
 
         public List<Entity> GetEntityOnTile(int tx, int ty)
         {
-            var result = new List<Entity>();
-
-
-            if (tx < Width && ty < Height && tx >= 0 && ty >= 0) result.AddRange(_entitiesOnTiles[tx, ty]);
-
-            return result;
+            if (tx < Width && ty < Height && tx >= 0 && ty >= 0) return _entitiesOnTiles[tx, ty];
+            return new List<Entity>();
         }
 
         public List<Entity> GetEntitiesOnArea(RectangleF area)
@@ -93,11 +89,7 @@ namespace Hevadea.Worlds.Level
                 if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
                 var entities = _entitiesOnTiles[x, y];
 
-                result.AddRange(entities.Where(i => 
-                {
-                    return i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position);
-                }
-                ));
+                result.AddRange(entities.Where(i => i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position)));
             }
 
             return result;

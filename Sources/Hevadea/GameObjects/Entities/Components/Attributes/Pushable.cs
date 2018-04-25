@@ -22,7 +22,7 @@ namespace Hevadea.GameObjects.Entities.Components.Attributes
             {
                 var move = Owner.GetComponent<Move>();
                 var dir = direction.ToPoint().ToVector2();
-                return move?.Do(dir.X * strength, dir.Y * strength, Owner.Facing) ?? false;
+                return move?.Do(dir.X * strength, dir.Y * strength) ?? false;
             }
 
             return false;
@@ -37,7 +37,7 @@ namespace Hevadea.GameObjects.Entities.Components.Attributes
             {
                 var move = Owner.GetComponent<Move>();
                 var dir = new Vector2(sx, sy);
-                return move?.Do(dir.X, dir.Y, dir.ToDirection()) ?? false;
+                return move?.Do(dir.X, dir.Y) ?? false;
             }
 
             return false;

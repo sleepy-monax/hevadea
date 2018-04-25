@@ -89,6 +89,7 @@ namespace Hevadea.Scenes.Menus
                 Tabs =
                 {
                     _crafting,
+                    new MinimapTab(Game),
                     new ContainerTab()
                     {
                         Icon = new Sprite(Ressources.TileIcons, new Point(0, 2)),
