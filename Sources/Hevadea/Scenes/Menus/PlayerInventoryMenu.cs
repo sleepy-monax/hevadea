@@ -78,25 +78,18 @@ namespace Hevadea.Scenes.Menus
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 64, 64),
                 Anchor = Anchor.TopLeft,
-                Origine = Anchor.Center
+                Origine = Anchor.TopLeft
             };
 
             closeBtn.MouseClick += CloseBtnOnMouseClick;
 
             var inventoryPanel = new Panel()
             {
-                Content = new DockContainer
+                Content = new Container()
                 {
                     Childrens =
                     {
-                        new AnchoredContainer()
-                        {
-                            Dock = Dock.Fill,
-                            Childrens =
-                            {
-                                closeBtn
-                            }
-                        },
+                        closeBtn,
                         new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
                         _inventory,
                     }
@@ -130,7 +123,7 @@ namespace Hevadea.Scenes.Menus
 
             Content = new WidgetFancyPanel()
             {
-                Content = new TileContainer
+                Content = new TileLayout
                 {
                     Flow = Rise.Platform.Family == PlatformFamily.Mobile ? FlowDirection.BottomToTop : FlowDirection.RightToLeft,
                     Childrens = { _sideMenu, inventoryPanel }

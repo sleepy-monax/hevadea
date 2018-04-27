@@ -76,10 +76,8 @@
     <Compile Include="Threading\AsyncTask.cs" />
     <Compile Include="UI\Containers\AnchoredContainer.cs" />
     <Compile Include="UI\Containers\Container.cs" />
-    <Compile Include="UI\Containers\DockContainer.cs" />
-    <Compile Include="UI\Containers\FloatingContainer.cs" />
-    <Compile Include="UI\Containers\FlowContainer.cs" />
-    <Compile Include="UI\Containers\TileContainer.cs" />
+    <Compile Include="UI\Containers\FlowLayout.cs" />
+    <Compile Include="UI\Containers\TileLayout.cs" />
     <Compile Include="UI\UiManager.cs" />
     <Compile Include="UI\Widget.cs" />
     <Compile Include="UI\Widgets\BlurPanel.cs" />

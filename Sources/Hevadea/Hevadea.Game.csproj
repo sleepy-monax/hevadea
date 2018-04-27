@@ -249,6 +249,7 @@
     <Compile Include="WorldGenerator\WorldFeature.cs" />
     <Compile Include="WorldGenerator\WorldFeatures\SpawnAreaFeature.cs" />
     <Compile Include="WorldGenerator\WorldFeatures\StairCaseFeature.cs" />
+    <Compile Include="Worlds\Chunk.cs" />
     <Compile Include="Worlds\DayNightCycle.cs" />
     <Compile Include="Worlds\LevelProperties.cs" />
     <Compile Include="Worlds\LevelRenderState.cs" />

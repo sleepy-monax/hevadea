@@ -2,7 +2,7 @@
 
 namespace Hevadea.Framework.UI.Containers
 {
-    public class FlowContainer : Container
+    public class FlowLayout : Container
     {
         public FlowDirection Flow { get; set; } = FlowDirection.LeftToRight;
 

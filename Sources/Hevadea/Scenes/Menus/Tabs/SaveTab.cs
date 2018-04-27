@@ -19,13 +19,13 @@ namespace Hevadea.Scenes.Menus.Tabs
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(3, 2));
 
-            var container = new FlowContainer
+            var container = new FlowLayout
             {
                 Dock = Dock.Fill,
                 Flow = FlowDirection.TopToBottom,
             };
 
-            Content = new DockContainer()
+            Content = new Container()
             {
                 Childrens =
                 {

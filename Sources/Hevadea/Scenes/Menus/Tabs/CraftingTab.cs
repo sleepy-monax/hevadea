@@ -73,7 +73,7 @@ namespace Hevadea.Scenes.Menus.Tabs
                 CraftingList.AddItem(new CraftingListItem(recipe, Game.MainPlayer.GetComponent<Inventory>().Content));
             }
             
-            Content = new DockContainer()
+            Content = new Container()
             {
                 Childrens =
                 {

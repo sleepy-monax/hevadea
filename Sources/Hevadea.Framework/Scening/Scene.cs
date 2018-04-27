@@ -12,7 +12,7 @@ namespace Hevadea.Framework.Scening
                 
         protected Scene()
         {
-            Container = new FloatingContainer();
+            Container = new Container();
         }
         
         public virtual string GetDebugInfo()

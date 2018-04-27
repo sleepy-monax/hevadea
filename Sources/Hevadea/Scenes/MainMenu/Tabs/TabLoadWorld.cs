@@ -32,7 +32,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 }
             });
 
-            Content = new DockContainer()
+            Content = new Container()
             {
                 Childrens =
                 {

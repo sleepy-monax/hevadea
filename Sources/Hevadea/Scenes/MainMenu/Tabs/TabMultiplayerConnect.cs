@@ -25,7 +25,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 .RegisterMouseClickEvent(Connect);
 
 
-            var connectionOptions = new FlowContainer
+            var connectionOptions = new FlowLayout
             {
                 Flow = FlowDirection.TopToBottom,
                 Dock = Dock.Fill,
@@ -38,7 +38,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 }
             };
 
-            Content = new DockContainer()
+            Content = new Container()
             {
                 Childrens =
                 {

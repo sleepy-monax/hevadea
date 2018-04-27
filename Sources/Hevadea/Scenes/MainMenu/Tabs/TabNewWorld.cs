@@ -34,7 +34,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructNewWorld(Constant.GetSavePath() + $"{worldNameTextBox.Text.String}/", seed)));
             });
 
-            var worldOptions = new FlowContainer
+            var worldOptions = new FlowLayout
             {
                 Flow = FlowDirection.TopToBottom,
                 Dock = Dock.Fill,
@@ -47,7 +47,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 }
             };
 
-            Content = new DockContainer()
+            Content = new Container()
             {
                 Childrens =
                 {

@@ -41,7 +41,7 @@ namespace Hevadea.Scenes.Menus
             Content = new WidgetFancyPanel()
             {
 
-                Content = new DockContainer()
+                Content = new Container()
                 {
                     Childrens =
                     {

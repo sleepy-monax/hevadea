@@ -12,7 +12,7 @@ namespace Hevadea.Scenes.Menus.Tabs
         public EquipmentTab()
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(4, 4));
-            Content = new DockContainer()
+            Content = new Container()
             {
                 Childrens =
                 {

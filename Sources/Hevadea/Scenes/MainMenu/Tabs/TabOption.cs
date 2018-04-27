@@ -15,7 +15,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(2, 4));
 
-            Content = new DockContainer
+            Content = new Container
             {
                 Childrens =
                 {

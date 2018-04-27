@@ -11,7 +11,7 @@ namespace Hevadea.Scenes
     {
         public static Widget CreateSplitContainer(Rectangle bound, string panelATitle, Widget panelAContent, string panelBTitle, Widget panelBContent)
         {
-            return new TileContainer()
+            return new TileLayout()
             {
                 UnitBound = bound,
                 Dock = Dock.Fill,
@@ -23,7 +23,7 @@ namespace Hevadea.Scenes
                         Anchor = Anchor.Center,
                         Origine = Anchor.Left,
                         Dock = Dock.Left,
-                        Content = new DockContainer
+                        Content = new Container()
                         {
                             Childrens =
                             {
@@ -38,7 +38,7 @@ namespace Hevadea.Scenes
                         Anchor = Anchor.Center,
                         Origine = Anchor.Right,
                         Dock = Dock.Right,
-                        Content = new DockContainer
+                        Content = new Container()
                         {
                             Childrens =
                             {
