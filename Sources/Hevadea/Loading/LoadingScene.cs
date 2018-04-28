@@ -12,10 +12,9 @@ namespace Hevadea.Loading
 {
     public class LoadingScene : Scene
     {
-        private TaskCompound _task;
-
-        private Label _progressLabel;
-        private ProgressBar _progressBar;
+        TaskCompound _task;
+        Label _progressLabel;
+        ProgressBar _progressBar;
 
         public LoadingScene(TaskCompound task)
         {

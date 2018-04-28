@@ -42,13 +42,17 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         public bool Do(float sx, float sy, Direction facing)
         {
             if (!Do(sx, sy)) return false;
-            Owner.Facing = facing;
+
+			if (!(Owner.GetComponent<Attack>()?.IsAttacking ?? false))
+			{
+                Owner.Facing = facing;
+			}
             return true;
         }
         
         public bool Do(float sx, float sy)
         {
-            if (Owner.Removed) return false;
+			if (Owner.Removed) return false;
 
             if (Owner.Level.GetTile(Owner.GetTilePosition()).HasTag<GroundTile>())
             {

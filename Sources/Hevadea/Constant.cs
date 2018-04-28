@@ -9,7 +9,7 @@ namespace Hevadea
 
         public static string GetSavePath()
         {
-            return Rise.Platform.GetStorageFolder() + "/Saves/";
+			return Rise.Platform.GetStorageFolder() + "/Saves/";
         }
     }
 }

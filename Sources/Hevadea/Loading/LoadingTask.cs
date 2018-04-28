@@ -6,8 +6,8 @@ namespace Hevadea.Loading
 {
     public abstract class LoadingTask
     {
-        private float _progress;
-        private string _status;
+        float _progress;
+        string _status;
 
         public Thread Thread { get; set; }
         public bool HasFinish { get; private set; } = false;
@@ -39,7 +39,7 @@ namespace Hevadea.Loading
             return _status;
         }
 
-        private void TaskInternal(object game)
+        void TaskInternal(object game)
         {
 #if !DEBUG
             try

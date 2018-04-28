@@ -21,8 +21,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         public bool CanAttackTile { get; set; } = true;
         public bool CanAttackEntities { get; set; } = true;
         public double AttackCooldown { get; set; } = 1;
-
-        public Rectangle HitBox { get; private set; }
+        
         public Point HitBoxSize { get; set; } = new Point(26, 26);
         
         private Direction _lastDirection = Direction.North;
@@ -46,6 +45,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         {
             if (!IsAttacking) return;
             var invTimer = 1f - _timer;
+            var HitBox = GetHitbox();
 
             switch (_lastDirection)
             {
@@ -64,9 +64,13 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             }
         }
 
+		public Rectangle GetHitbox()
+		{
+			return new Rectangle(Owner.Position.ToPoint() - new Rectangle(new Point(0), HitBoxSize).GetAnchorPoint(DirectionToAnchore[Owner.Facing]), HitBoxSize);
+		}
+
         public void Update(GameTime gameTime)
         {
-            HitBox = new Rectangle(Owner.Position.ToPoint() - new Rectangle(new Point(0), HitBoxSize).GetAnchorPoint(DirectionToAnchore[Owner.Facing]), HitBoxSize);
             _timer = Math.Max(0.0, _timer - gameTime.ElapsedGameTime.TotalSeconds * 5);
 
             if (!IsAttacking) _speedFactor = AttackCooldown;
@@ -108,7 +112,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
             if (CanAttackEntities)
             {
-                var facingEntities = Owner.Level.GetEntitiesOnArea(HitBox);
+                var facingEntities = Owner.Level.GetEntitiesOnArea(GetHitbox());
                 facingEntities.Sort((a, b) =>
                     {
                         return Mathf.Distance(a.X, a.Y, Owner.X, Owner.Y)

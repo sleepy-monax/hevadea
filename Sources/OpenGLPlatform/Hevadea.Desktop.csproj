@@ -29,8 +29,6 @@
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>TRACE;LINUX</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
@@ -136,4 +134,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy ResourceNamePolicy="FileFormatDefault" DirectoryNamespaceAssociation="PrefixedHierarchical" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>

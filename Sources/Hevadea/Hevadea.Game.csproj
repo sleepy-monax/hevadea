@@ -259,6 +259,7 @@
     <Compile Include="Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Worlds\Minimap.cs" />
     <Compile Include="Worlds\World.cs" />
+    <Compile Include="Storage\DataCompound.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">

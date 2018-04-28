@@ -51,10 +51,18 @@ namespace Hevadea.Player
                 
                 if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
                 {                
-                    if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
-                    if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
-                    if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
-                    if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
+					if (input.KeyDown(Keys.Z) != input.KeyDown(Keys.S))
+					{
+						if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
+						if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);                  
+                    }
+                    
+					if (input.KeyDown(Keys.Q) != input.KeyDown(Keys.D))
+					{
+                        if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
+                        if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
+					}
+
                     if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
                     if (input.KeyPress(Keys.L)) HandleInput(PlayerInput.Pickup);
