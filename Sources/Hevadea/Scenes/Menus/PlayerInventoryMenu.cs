@@ -78,7 +78,7 @@ namespace Hevadea.Scenes.Menus
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 64, 64),
                 Anchor = Anchor.TopLeft,
-                Origine = Anchor.TopLeft
+                Origine = Anchor.Center
             };
 
             closeBtn.MouseClick += CloseBtnOnMouseClick;
@@ -89,7 +89,6 @@ namespace Hevadea.Scenes.Menus
                 {
                     Childrens =
                     {
-                        closeBtn,
                         new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
                         _inventory,
                     }
@@ -103,15 +102,8 @@ namespace Hevadea.Scenes.Menus
                 {
                     _crafting,
                     new MinimapTab(Game),
-                    new ContainerTab()
-                    {
-                        Icon = new Sprite(Ressources.TileIcons, new Point(0, 2)),
-                        Childrens =
-                        {
-                            new PlayerStatesTab(),
-                            new EquipmentTab(),
-                        }
-                    },
+                    new PlayerStatesTab(),
+                    new EquipmentTab(),  
                     new SaveTab(Game),
                 }
             };
@@ -126,7 +118,7 @@ namespace Hevadea.Scenes.Menus
                 Content = new TileLayout
                 {
                     Flow = Rise.Platform.Family == PlatformFamily.Mobile ? FlowDirection.BottomToTop : FlowDirection.RightToLeft,
-                    Childrens = { _sideMenu, inventoryPanel }
+					Childrens = { _sideMenu, inventoryPanel, closeBtn }
                 }
             };
             

@@ -33,49 +33,32 @@ namespace Hevadea.Scenes.MainMenu
                     UnitOffset = new Point(0, 64)
                 }
                 .RegisterMouseClickEvent(ContinueLastGame);
-            var menu = new WidgetTabContainer
-            {
-                Anchor = Anchor.Center,
-                Origine = Anchor.Center,
-                UnitBound = new Rectangle(0, 0, 600, 720),
-                UnitOffset = new Point(8,0),
-                Padding = new Padding(16),
-                Tabs =
-                {
-                    new Tab
-                    {
-                        Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
-                        Content = new AnchoredContainer()
-                        {
-                            Childrens =
-                            {
-                                hevadeaLogo,
-                                creators,
-                            }
-                        }
-                    },
+			var menu = new WidgetTabContainer
+			{
+				Anchor = Anchor.Center,
+				Origine = Anchor.Center,
+				UnitBound = new Rectangle(0, 0, 600, 720),
+				UnitOffset = new Point(8, 0),
+				Padding = new Padding(16),
+                TabAnchore = TabAnchore.Top,
+				Tabs =
+				{
+					new Tab
+					{
+						Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
+						Content = new AnchoredContainer()
+						{
+							Childrens =
+							{
+								hevadeaLogo,
+								creators,
+							}
+						}
+					},
 
-                    new ContainerTab
-                    {
-                        Icon = new Sprite(Ressources.TileIcons, new Point(0,2)),
-                        Childrens =
-                        {
-                            new TabNewWorld(),
-                            new TabLoadWorld(),
-                        }
-                        
-                    },
-
-                    new ContainerTab
-                    {
-                        Icon = new Sprite(Ressources.TileIcons, new Point(0,3)),
-                        Childrens =
-                        {
-                            new TabMultiplayerConnect(),
-                        }
-                    },
-
-
+					new TabNewWorld(),
+					new TabLoadWorld(),
+					new TabMultiplayerConnect(),
                     new TabOption(),
                 }
             };

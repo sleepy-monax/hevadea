@@ -14,41 +14,30 @@ namespace Hevadea.Scenes.Widgets
         public Sprite Icon { get; set; }
         public Widget Content { get; set; }
     }
-
-    public class ContainerTab : Tab
-    {
-        private Tab _selectedChildren;
-
-        public Tab SelectedChildren
-        {
-            get
-            {
-                if (_selectedChildren == null && Childrens.Count > 0)
-                {
-                    _selectedChildren = Childrens.First();
-                }
-
-                return _selectedChildren;
-            }
-            set => _selectedChildren = value;
-        }
-
-        public List<Tab> Childrens { get; set; } = new List<Tab>();
-    }
+    
+	public enum TabAnchore { Top, Bottom, Right, Left, None }
 
     public class WidgetTabContainer : Widget
     {
-        private Sprite _background;
-        private Sprite _tab;
-        private Sprite _tabSelected;
+        Sprite _background;
+        Sprite _tab;
+        Sprite _tabSelected;
 
-        private Sprite _subTab;
-        private Sprite _subTabSelected;
-        private Sprite _subContainerTabSelected;
+        Sprite _subTab;
+        Sprite _subTabSelected;
+        Sprite _subContainerTabSelected;
 
-        private Rectangle _clientArea => new Padding(32, 32, 96, 32).Apply(UnitBound);
-        private Rectangle _clientAreaBound => new Padding(0, 0, 64, 0).Apply(UnitBound);
+		Rectangle _clientArea => new Padding(32 + (TabAnchore == TabAnchore.Top    ? 64 : 0),
+		                                     32 + (TabAnchore == TabAnchore.Bottom ? 64 : 0),
+		                                     32 + (TabAnchore == TabAnchore.Left   ? 64 : 0),
+		                                     32 + (TabAnchore == TabAnchore.Right  ? 64 : 0)).Apply(UnitBound);
+		
+		Rectangle _clientAreaBound => new Padding((TabAnchore == TabAnchore.Top    ? 64 : 0),
+                                                  (TabAnchore == TabAnchore.Bottom ? 64 : 0),
+                                                  (TabAnchore == TabAnchore.Left   ? 64 : 0),
+                                                  (TabAnchore == TabAnchore.Right  ? 64 : 0)).Apply(UnitBound);
 
+		public TabAnchore TabAnchore { get; set; } = TabAnchore.Left;
         public Tab SelectedTab { get; set; }
         public List<Tab> Tabs { get; set; } = new List<Tab>();
 
@@ -67,15 +56,7 @@ namespace Hevadea.Scenes.Widgets
         {
             foreach (var t in Tabs)
             {
-                if (t is ContainerTab c)
-                {
-                    if (c.SelectedChildren.Content != null)
-                    {
-                        c.SelectedChildren.Content.UnitBound = Padding.Apply(_clientArea);
-                        c.SelectedChildren.Content.RefreshLayout();
-                    }
-                }
-                else if (t.Content != null)
+                if (t.Content != null)
                 {
                     t.Content.UnitBound = Padding.Apply(_clientArea);
                     t.Content.RefreshLayout();
@@ -94,29 +75,12 @@ namespace Hevadea.Scenes.Widgets
                 }
 
                 onScreenIndex++;
-
-                if (Tabs[i] is ContainerTab container && container == SelectedTab)
-                {
-                    for (int j = 0; j < container.Childrens.Count; j++)
-                    {
-                        if (Rise.Pointing.AreaClick(GetTabIconBound(onScreenIndex, container.SelectedChildren == container.Childrens[j])))
-                        {
-                            container.SelectedChildren = container.Childrens[j];
-                        }
-
-                        onScreenIndex++;
-                    }
-                }
             }
 
             if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First(); 
             
 
-            if (SelectedTab is ContainerTab c)
-            {
-                c.SelectedChildren?.Content?.UpdateInternal(gameTime);
-            }
-            else if (SelectedTab != null)
+            if (SelectedTab != null)
             {
                 SelectedTab.Content?.UpdateInternal(gameTime);
             }
@@ -124,7 +88,21 @@ namespace Hevadea.Scenes.Widgets
 
         private Rectangle GetTabBound(int index)
         {
-            return new Rectangle(Bound.X, Bound.Y + Scale(16 + 76 * index), Scale(128), Scale(128));
+			if (TabAnchore == TabAnchore.Top || TabAnchore == TabAnchore.Bottom)
+			{
+				return TabAnchore == TabAnchore.Top 
+                    ? new Rectangle(Bound.X + Scale(16 + 76 * index), Bound.Y, Scale(128), Scale(128))
+                    : new Rectangle(Bound.X + Scale(16 + 76 * index), Bound.Y + Bound.Height - Scale(128), Scale(128), Scale(128));
+            
+			}
+			else if (TabAnchore == TabAnchore.Left || TabAnchore == TabAnchore.Right)
+			{
+				return TabAnchore == TabAnchore.Left 
+                    ? new Rectangle(Bound.X, Bound.Y + Scale(16 + 76 * index), Scale(128), Scale(128))
+                    : new Rectangle(Bound.X + Bound.Width - Scale(128), Bound.Y + Scale(16 + 76 * index), Scale(128), Scale(128));
+			}
+
+			return Rectangle.Empty;
         }
 
         private Rectangle GetTabIconBound(int index, bool isSelected, bool isSubTab = false)
@@ -149,14 +127,9 @@ namespace Hevadea.Scenes.Widgets
 
             _background.Draw(spriteBatch, new Padding(-4).Apply(Scale(_clientArea)), Color.White * 0.99f);
 
-            if (SelectedTab is ContainerTab c)
-            {
-                c.SelectedChildren?.Content?.DrawIternal(spriteBatch, gameTime);
-            }
-            else
-            {
-                SelectedTab?.Content?.DrawIternal(spriteBatch, gameTime);
-            }
+
+            SelectedTab?.Content?.DrawIternal(spriteBatch, gameTime);
+            
 
             GuiHelper.DrawBox(spriteBatch, Scale(_clientAreaBound), size);
 
@@ -165,18 +138,11 @@ namespace Hevadea.Scenes.Widgets
 
             for (int i = 0; i < Tabs.Count; i++)
             {
-                if (Tabs[i] != SelectedTab)
-                {
-                    var tabBound = GetTabBound(onScreenIndex);
-                    _tab.Draw(spriteBatch, tabBound, Color.White);
-                    Tabs[i].Icon?.Draw(spriteBatch, GetTabIconBound(onScreenIndex, false), Color.White);
 
-                }
-                else
-                {
-                    if (SelectedTab is ContainerTab container)
-                        onScreenIndex += container.Childrens.Count;
-                }
+                var tabBound = GetTabBound(onScreenIndex);
+                _tab.Draw(spriteBatch, tabBound, Color.White);
+                Tabs[i].Icon?.Draw(spriteBatch, GetTabIconBound(onScreenIndex, false), Color.White);
+                
 
                 onScreenIndex++;
             }
@@ -185,33 +151,8 @@ namespace Hevadea.Scenes.Widgets
             {
                 var index = Tabs.IndexOf(SelectedTab);
 
-                if (SelectedTab is ContainerTab cont)
-                {
-                    for (int j = 0; j < cont.Childrens.Count; j++)
-                    {
-                        if (cont.SelectedChildren != cont.Childrens[j])
-                        {
-                            var childTabIndex = index + j + 1;
-                            var tabBound = GetTabBound(childTabIndex);
+                _tabSelected.Draw(spriteBatch, GetTabBound(index), Color.White);
 
-                            _subTab.Draw(spriteBatch, tabBound, Color.White);
-                            cont.Childrens[j].Icon?.Draw(spriteBatch, GetTabIconBound(childTabIndex, false, true), Color.White);
-                        }
-                    }
-
-                    if (cont.SelectedChildren != null)
-                    {
-                        var childTabIndex = index + cont.Childrens.IndexOf(cont.SelectedChildren) + 1;
-                        _subTabSelected.Draw(spriteBatch, GetTabBound(childTabIndex), Color.White);
-                        cont.SelectedChildren.Icon?.Draw(spriteBatch, GetTabIconBound(childTabIndex, true, true), Color.White);
-                    }
-
-                    _subContainerTabSelected.Draw(spriteBatch, GetTabBound(index), Color.White);
-                }
-                else
-                {
-                    _tabSelected.Draw(spriteBatch, GetTabBound(index), Color.White);
-                }
 
                 SelectedTab.Icon?.Draw(spriteBatch, GetTabIconBound(index, true), Color.White);
             }
