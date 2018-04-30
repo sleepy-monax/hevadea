@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
@@ -13,6 +10,7 @@ using Hevadea.Loading;
 using Hevadea.Scenes.MainMenu.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
+using System.IO;
 
 namespace Hevadea.Scenes.MainMenu
 {
@@ -33,32 +31,31 @@ namespace Hevadea.Scenes.MainMenu
                     UnitOffset = new Point(0, 64)
                 }
                 .RegisterMouseClickEvent(ContinueLastGame);
-			var menu = new WidgetTabContainer
-			{
-				Anchor = Anchor.Center,
-				Origine = Anchor.Center,
-				UnitBound = new Rectangle(0, 0, 600, 720),
-				UnitOffset = new Point(8, 0),
-				Padding = new Padding(16),
+            var menu = new WidgetTabContainer
+            {
+                Anchor = Anchor.Center,
+                Origine = Anchor.Center,
+                UnitBound = new Rectangle(0, 0, 600, 720),
+                Padding = new Padding(16),
                 TabAnchore = TabAnchore.Top,
-				Tabs =
-				{
-					new Tab
-					{
-						Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
-						Content = new AnchoredContainer()
-						{
-							Childrens =
-							{
-								hevadeaLogo,
-								creators,
-							}
-						}
-					},
+                Tabs =
+                {
+                    new Tab
+                    {
+                        Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
+                        Content = new AnchoredContainer()
+                        {
+                            Childrens =
+                            {
+                                hevadeaLogo,
+                                creators,
+                            }
+                        }
+                    },
 
-					new TabNewWorld(),
-					new TabLoadWorld(),
-					new TabMultiplayerConnect(),
+                    new TabNewWorld(),
+                    new TabLoadWorld(),
+                    new TabMultiplayerConnect(),
                     new TabOption(),
                 }
             };

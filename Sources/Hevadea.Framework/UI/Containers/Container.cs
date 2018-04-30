@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Framework.UI.Containers
 {
@@ -56,7 +56,7 @@ namespace Hevadea.Framework.UI.Containers
                         break;
                     case Dock.None:
                         var position = UnitHost.Location + UnitHost.GetAnchorPoint(c.Anchor) - c.UnitBound.GetAnchorPoint(c.Origine) + c.UnitOffset;
-                        c.UnitBound = new Rectangle(position, c.UnitBound.Size);
+                        b = new Rectangle(position, c.UnitBound.Size);
                         break;
                 }
                 

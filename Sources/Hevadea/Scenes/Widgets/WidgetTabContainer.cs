@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
+using Hevadea.Framework.UI.Containers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -15,29 +16,25 @@ namespace Hevadea.Scenes.Widgets
         public Widget Content { get; set; }
     }
     
-	public enum TabAnchore { Top, Bottom, Right, Left, None }
+    public enum TabAnchore { Top = 0, Bottom = 1, Right = 2, Left = 3, None }
 
-    public class WidgetTabContainer : Widget
+    public class WidgetTabContainer : Container
     {
         Sprite _background;
         Sprite _tab;
         Sprite _tabSelected;
 
-        Sprite _subTab;
-        Sprite _subTabSelected;
-        Sprite _subContainerTabSelected;
-
-		Rectangle _clientArea => new Padding(32 + (TabAnchore == TabAnchore.Top    ? 64 : 0),
-		                                     32 + (TabAnchore == TabAnchore.Bottom ? 64 : 0),
-		                                     32 + (TabAnchore == TabAnchore.Left   ? 64 : 0),
-		                                     32 + (TabAnchore == TabAnchore.Right  ? 64 : 0)).Apply(UnitBound);
-		
-		Rectangle _clientAreaBound => new Padding((TabAnchore == TabAnchore.Top    ? 64 : 0),
+        Rectangle _clientArea => new Padding(32 + (TabAnchore == TabAnchore.Top    ? 64 : 0),
+                                             32 + (TabAnchore == TabAnchore.Bottom ? 64 : 0),
+                                             32 + (TabAnchore == TabAnchore.Left   ? 64 : 0),
+                                             32 + (TabAnchore == TabAnchore.Right  ? 64 : 0)).Apply(UnitBound);
+        
+        Rectangle _clientAreaBound => new Padding((TabAnchore == TabAnchore.Top    ? 64 : 0),
                                                   (TabAnchore == TabAnchore.Bottom ? 64 : 0),
                                                   (TabAnchore == TabAnchore.Left   ? 64 : 0),
                                                   (TabAnchore == TabAnchore.Right  ? 64 : 0)).Apply(UnitBound);
 
-		public TabAnchore TabAnchore { get; set; } = TabAnchore.Left;
+        public TabAnchore TabAnchore { get; set; } = TabAnchore.Left;
         public Tab SelectedTab { get; set; }
         public List<Tab> Tabs { get; set; } = new List<Tab>();
 
@@ -46,22 +43,48 @@ namespace Hevadea.Scenes.Widgets
             _background = new Sprite(Ressources.TileGui, new Point(4, 0), new Point(2, 2));
             _tab = new Sprite(Ressources.TileGui, new Point(2, 2), new Point(2, 2));
             _tabSelected = new Sprite(Ressources.TileGui, new Point(0, 2), new Point(2, 2));
-            _subContainerTabSelected = new Sprite(Ressources.TileGui, new Point(0, 4), new Point(2, 2));
-            _subTab = new Sprite(Ressources.TileGui, new Point(6, 2), new Point(2, 2));
-            _subTabSelected = new Sprite(Ressources.TileGui, new Point(4, 2), new Point(2, 2));
-
         }
 
-        public override void RefreshLayout()
+        
+
+        public override void Layout()
         {
+            base.Layout();
+
             foreach (var t in Tabs)
             {
                 if (t.Content != null)
                 {
-                    t.Content.UnitBound = Padding.Apply(_clientArea);
+                    t.Content.UnitBound = _clientArea;
                     t.Content.RefreshLayout();
                 }
             }
+        }
+
+        private Rectangle GetTabBound(int index)
+        {
+            if (TabAnchore == TabAnchore.Top || TabAnchore == TabAnchore.Bottom)
+            {
+                return TabAnchore == TabAnchore.Top 
+                    ? new Rectangle(Bound.X + Scale(24 + 72 * index), Bound.Y, Scale(128), Scale(128))
+                    : new Rectangle(Bound.X + Scale(24 + 72 * index), Bound.Y + Bound.Height - Scale(128), Scale(128), Scale(128));
+            
+            }
+            if (TabAnchore == TabAnchore.Left || TabAnchore == TabAnchore.Right)
+            {
+                return TabAnchore == TabAnchore.Left 
+                    ? new Rectangle(Bound.X - Scale(12), Bound.Y + Scale(24 + 72 * index), Scale(128), Scale(128))
+                    : new Rectangle(Bound.X + Bound.Width - Scale(128) + Scale(12), Bound.Y + Scale(24 + 72 * index), Scale(128), Scale(128));
+            }
+
+            return Rectangle.Empty;
+        }
+
+        private Rectangle GetTabIconBound(int index, bool isSelected)
+        {    
+            if (isSelected)
+                return new Padding(Scale(28), Scale(28), Scale(28), Scale(28)).Apply(GetTabBound(index));
+            return new Padding(Scale(32), Scale(32), Scale(32), Scale(32)).Apply(GetTabBound(index));
         }
 
         public override void Update(GameTime gameTime)
@@ -77,47 +100,10 @@ namespace Hevadea.Scenes.Widgets
                 onScreenIndex++;
             }
 
-            if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First(); 
-            
+            if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First();
+            SelectedTab?.Content?.UpdateInternal(gameTime);
 
-            if (SelectedTab != null)
-            {
-                SelectedTab.Content?.UpdateInternal(gameTime);
-            }
-        }
-
-        private Rectangle GetTabBound(int index)
-        {
-			if (TabAnchore == TabAnchore.Top || TabAnchore == TabAnchore.Bottom)
-			{
-				return TabAnchore == TabAnchore.Top 
-                    ? new Rectangle(Bound.X + Scale(16 + 76 * index), Bound.Y, Scale(128), Scale(128))
-                    : new Rectangle(Bound.X + Scale(16 + 76 * index), Bound.Y + Bound.Height - Scale(128), Scale(128), Scale(128));
-            
-			}
-			else if (TabAnchore == TabAnchore.Left || TabAnchore == TabAnchore.Right)
-			{
-				return TabAnchore == TabAnchore.Left 
-                    ? new Rectangle(Bound.X, Bound.Y + Scale(16 + 76 * index), Scale(128), Scale(128))
-                    : new Rectangle(Bound.X + Bound.Width - Scale(128), Bound.Y + Scale(16 + 76 * index), Scale(128), Scale(128));
-			}
-
-			return Rectangle.Empty;
-        }
-
-        private Rectangle GetTabIconBound(int index, bool isSelected, bool isSubTab = false)
-        {
-            if (isSubTab)
-            {
-                return new Padding(Scale(32), Scale(32), Scale(32), Scale(32)).Apply(GetTabBound(index));
-            }
-            else
-            {
-                if (isSelected)
-                    return new Padding(Scale(28), Scale(28), Scale(12), Scale(44)).Apply(GetTabBound(index));
-                return new Padding(Scale(32), Scale(32), Scale(20), Scale(44)).Apply(GetTabBound(index));
-            }
-
+            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -130,18 +116,18 @@ namespace Hevadea.Scenes.Widgets
 
             SelectedTab?.Content?.DrawIternal(spriteBatch, gameTime);
             
-
             GuiHelper.DrawBox(spriteBatch, Scale(_clientAreaBound), size);
 
-
             var onScreenIndex = 0;
-
-            for (int i = 0; i < Tabs.Count; i++)
+            foreach (var t in Tabs)
             {
-
                 var tabBound = GetTabBound(onScreenIndex);
-                _tab.Draw(spriteBatch, tabBound, Color.White);
-                Tabs[i].Icon?.Draw(spriteBatch, GetTabIconBound(onScreenIndex, false), Color.White);
+
+                if (SelectedTab != t)
+                {
+                    _tab.Draw(spriteBatch, tabBound, Color.White);
+                    t.Icon?.Draw(spriteBatch, GetTabIconBound(onScreenIndex, false), Color.White);
+                }
                 
 
                 onScreenIndex++;
@@ -156,6 +142,8 @@ namespace Hevadea.Scenes.Widgets
 
                 SelectedTab.Icon?.Draw(spriteBatch, GetTabIconBound(index, true), Color.White);
             }
+
+            base.Draw(spriteBatch, gameTime);
         }
     }
 }

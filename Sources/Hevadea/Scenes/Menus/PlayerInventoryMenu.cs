@@ -1,5 +1,7 @@
 ﻿using Hevadea.Craftings;
+using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -11,8 +13,6 @@ using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Hevadea.Framework;
-using Hevadea.Framework.Platform;
 
 namespace Hevadea.Scenes.Menus
 {
@@ -38,7 +38,7 @@ namespace Hevadea.Scenes.Menus
             InitializeComponents();
         }
 
-        public void InitializeComponents(InventoryTab mainTab = null)
+        public void InitializeComponents()
         {
             PauseGame = true;
             
@@ -77,29 +77,35 @@ namespace Hevadea.Scenes.Menus
             {
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 64, 64),
-                Anchor = Anchor.TopLeft,
+                Anchor = Anchor.TopRight,
                 Origine = Anchor.Center
             };
 
             closeBtn.MouseClick += CloseBtnOnMouseClick;
 
-            var inventoryPanel = new Panel()
+            WidgetTabContainer _sideMenu = new WidgetTabContainer
             {
-                Content = new Container()
-                {
-                    Childrens =
-                    {
-                        new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
-                        _inventory,
-                    }
-                }
-            };
+                Padding = new Padding(32),
+                Anchor = Anchor.Center,
+                Origine = Anchor.Center,
+                UnitBound = new Rectangle(0, 0, 600, 720),
+                Dock = Rise.Platform.Family == PlatformFamily.Mobile ? Dock.Fill : Dock.None,
+                TabAnchore = Rise.Platform.Family == PlatformFamily.Mobile ? TabAnchore.Bottom : TabAnchore.Left,
+                Childrens = { closeBtn },
 
-            _sideMenu = new WidgetTabContainer
-            {
-                Padding = new Padding(16, 16),
                 Tabs =
                 {
+                    new Tab()
+                    {
+                        Content = new Container()
+                        {
+                            Childrens =
+                            {
+                                new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
+                                _inventory,
+                            }
+                        }
+                    },
                     _crafting,
                     new MinimapTab(Game),
                     new PlayerStatesTab(),
@@ -108,18 +114,9 @@ namespace Hevadea.Scenes.Menus
                 }
             };
 
-            if (mainTab != null)
+            Content = new Container()
             {
-                _sideMenu.Tabs.Insert(0, mainTab);
-            }
-
-            Content = new WidgetFancyPanel()
-            {
-                Content = new TileLayout
-                {
-                    Flow = Rise.Platform.Family == PlatformFamily.Mobile ? FlowDirection.BottomToTop : FlowDirection.RightToLeft,
-					Childrens = { _sideMenu, inventoryPanel, closeBtn }
-                }
+                Childrens = {_sideMenu },
             };
             
         }
