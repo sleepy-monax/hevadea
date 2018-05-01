@@ -21,8 +21,8 @@ namespace Hevadea
 
         public override void Animate(GameTime gameTime)
         {
-            X = FocusEntity.X;
-            Y = FocusEntity.Y;
+            X += (FocusEntity.X - X) * (float)gameTime.ElapsedGameTime.TotalSeconds * Zoom;
+            Y += (FocusEntity.Y - Y) * (float)gameTime.ElapsedGameTime.TotalSeconds * Zoom;
         }
     }
 }

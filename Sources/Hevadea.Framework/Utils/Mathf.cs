@@ -140,6 +140,8 @@ namespace Hevadea.Framework.Utils
         /// </summary>
         /// <param name="value">The value</param>
         public static float Clamp01(float value) { return value < 0 ? 0 : value > 1 ? 1 : value; }
+        public static double Clamp01(double value) { return value < 0 ? 0 : value > 1 ? 1 : value; }
+
         /// <summary>
         /// Returns the closest power of two to a value.
         /// </summary>
