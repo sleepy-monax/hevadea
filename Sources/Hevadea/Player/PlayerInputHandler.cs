@@ -1,5 +1,6 @@
 ﻿using System;
 using Hevadea.Framework;
+using Hevadea.Framework.Platform;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
@@ -36,19 +37,7 @@ namespace Hevadea.Player
             var screenBound = Rise.Graphic.GetBound();
             
             if (!game.CurrentMenu?.PauseGame ?? false)
-            {  
-                if (Rise.Pointing.AreaDown(screenBound))
-                {
-                    var mousePositionOnScreen = Rise.Pointing.GetAreaOver(screenBound)[0].ToVector2();
-                    var mousePositionInWorld = game.Camera.ToWorldSpace(mousePositionOnScreen);
-                    var screenCenter = Rise.Graphic.GetCenter();
-    
-                    if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Math.Min(Rise.Graphic.GetHeight(), Rise.Graphic.GetWidth()) / 2)
-                    {
-                        Player.GetComponent<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f, true);
-                    }
-                }
-                
+            {                  
                 if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
                 {                
 					if (input.KeyDown(Keys.Z) != input.KeyDown(Keys.S))
@@ -70,6 +59,18 @@ namespace Hevadea.Player
                     if (input.KeyPress(Keys.X)) HandleInput(PlayerInput.AddWaypoint);
                     if (input.KeyPress(Keys.Add) || input.KeyPress(Keys.Up)) HandleInput(PlayerInput.ZoomIn);
                     if (input.KeyPress(Keys.Subtract) || input.KeyPress(Keys.Down)) HandleInput(PlayerInput.ZoomOut);
+                }
+
+                if (Rise.Platform.Family == PlatformFamily.Mobile && Rise.Pointing.AreaDown(screenBound))
+                {
+                    var mousePositionOnScreen = Rise.Pointing.GetAreaOver(screenBound)[0].ToVector2();
+                    var mousePositionInWorld = game.Camera.ToWorldSpace(mousePositionOnScreen);
+                    var screenCenter = Rise.Graphic.GetCenter();
+
+                    if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Math.Min(Rise.Graphic.GetHeight(), Rise.Graphic.GetWidth()) / 2)
+                    {
+                        Player.GetComponent<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f, true);
+                    }
                 }
             }
             

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.States;
@@ -10,6 +8,8 @@ using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Actions
 {
@@ -155,6 +155,14 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                 }
 
                 IsAttacking = true;
+            }
+
+            if (IsAttacking)
+            {
+                if (Owner == Owner.Game.MainPlayer)
+                {
+                    Owner.Game.Camera.Thrauma += 0.1f;
+                }
             }
 
             _lastDirection = Owner.Facing;

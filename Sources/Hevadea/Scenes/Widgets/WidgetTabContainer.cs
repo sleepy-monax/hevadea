@@ -65,16 +65,20 @@ namespace Hevadea.Scenes.Widgets
         {
             if (TabAnchore == TabAnchore.Top || TabAnchore == TabAnchore.Bottom)
             {
+                float offset = (UnitBound.Width / 2f) - (Tabs.Count * 72 / 2f) - 72 /2f;
+
                 return TabAnchore == TabAnchore.Top 
-                    ? new Rectangle(Bound.X + Scale(24 + 72 * index), Bound.Y, Scale(128), Scale(128))
-                    : new Rectangle(Bound.X + Scale(24 + 72 * index), Bound.Y + Bound.Height - Scale(128), Scale(128), Scale(128));
+                    ? new Rectangle(Bound.X + (int)Scale(offset + 72 * index), Bound.Y,                             Scale(128), Scale(128))
+                    : new Rectangle(Bound.X + (int)Scale(offset + 72 * index), Bound.Y + Bound.Height - Scale(128), Scale(128), Scale(128));
             
             }
             if (TabAnchore == TabAnchore.Left || TabAnchore == TabAnchore.Right)
             {
+                float offset = (UnitBound.Height / 2f) - (Tabs.Count * 72 / 2f) - 72 / 2f;
+
                 return TabAnchore == TabAnchore.Left 
-                    ? new Rectangle(Bound.X - Scale(12), Bound.Y + Scale(24 + 72 * index), Scale(128), Scale(128))
-                    : new Rectangle(Bound.X + Bound.Width - Scale(128) + Scale(12), Bound.Y + Scale(24 + 72 * index), Scale(128), Scale(128));
+                    ? new Rectangle(Bound.X - Scale(12),                            Bound.Y + (int)Scale(offset + 72 * index), Scale(128), Scale(128))
+                    : new Rectangle(Bound.X + Bound.Width - Scale(128) + Scale(12), Bound.Y + (int)Scale(offset + 72 * index), Scale(128), Scale(128));
             }
 
             return Rectangle.Empty;

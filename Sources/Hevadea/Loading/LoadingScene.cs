@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
@@ -40,29 +41,29 @@ namespace Hevadea.Loading
                 UnitOffset = new Point(0, 24)
             };
 
-            var _cancelButton = new Button
+            var _cancelButton = new SpriteButton()
             {
-                Text = "Cancel",
-                UnitBound = new Rectangle(0, 0, 640, 64),
-                Anchor = Anchor.Center,
-                Origine = Anchor.Top,
-                UnitOffset = new Point(0, 128)
+                Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
+                UnitBound = new Rectangle(0, 0, 64, 64),
+                Anchor = Anchor.TopRight,
+                Origine = Anchor.Center
             }.RegisterMouseClickEvent((sender) =>
             {
                 _task.Abort();
                 Rise.Scene.Switch(new SceneMainMenu());
             });
 
-            Container = new AnchoredContainer
+            Container = new Container
             {
+                Padding = new Padding(16),
                 Childrens =
                 {
                     new WidgetFancyPanel
                     {
                         UnitBound = new Rectangle(0, 0, 840, 256),
-                        Padding = new Padding(16),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
+                        Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
                         Content = new AnchoredContainer
                         {
                             Childrens =
