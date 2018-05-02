@@ -6,31 +6,6 @@ namespace Hevadea.Loading
 {
     public static class TaskFactorie
     {
-        public static TaskCompound ConstructStartServer(GameManager.GameManager game, int port = GameManager.GameManager.PORT)
-        {
-            return new TaskCompound(game)
-            {
-                Tasks =
-                {
-                    new TaskSaveWorld(),
-                    new TaskSetupServer{Port = port},
-                }
-            };
-        }
-
-        public static TaskCompound ConstructConnectToServer(string playerName, int token, string addr, int port)
-        {
-            return new TaskCompound($"{addr}:{port}")
-            {
-                Tasks =
-                {
-                    new TaskConnectToServer(addr, port),
-                    new TaskPlayerLogin(playerName, token),
-                    new TaskDownloadWorld(),
-                }
-            };
-        }
-            
         public static TaskCompound ConstructNewWorld(string path, int seed)
         {
             return new TaskCompound(path)
@@ -47,7 +22,7 @@ namespace Hevadea.Loading
             };
         }
 
-        public static TaskCompound ConstructSaveWorld(GameManager.GameManager game)
+        public static TaskCompound ConstructSaveWorld(GameManager game)
         {
             return new TaskCompound(game)
             {
@@ -60,7 +35,7 @@ namespace Hevadea.Loading
             };
         }
 
-        public static TaskCompound ConstructSaveWorldAndExit(GameManager.GameManager game)
+        public static TaskCompound ConstructSaveWorldAndExit(GameManager game)
         {
             return new TaskCompound(game)
             {

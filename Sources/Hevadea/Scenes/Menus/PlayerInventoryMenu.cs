@@ -19,9 +19,9 @@ namespace Hevadea.Scenes.Menus
 
     public abstract class InventoryTab : Tab
     {
-        public GameManager.GameManager Game { get; }
+        public GameManager Game { get; }
 
-        public InventoryTab(GameManager.GameManager game)
+        public InventoryTab(GameManager game)
         {
             Game = game;
         }
@@ -33,7 +33,7 @@ namespace Hevadea.Scenes.Menus
         private CraftingTab         _crafting;
         private WidgetTabContainer  _sideMenu;
 
-        public PlayerInventoryMenu(GameManager.GameManager game) : base(game)
+        public PlayerInventoryMenu(GameManager game) : base(game)
         {
             InitializeComponents();
         }

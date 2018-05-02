@@ -27,7 +27,6 @@ namespace Hevadea.GameObjects
         public static Tile WOOD_FLOOR;
         public static Tile WOOD_WALL;
 
-
         public static Tile RegisterTile(Tile tile)
         {
             if (_tiles.ContainsKey(tile.Name))
@@ -59,13 +58,13 @@ namespace Hevadea.GameObjects
         {
             DIRT       = RegisterTile(new Tile("dirt", new TileRenderComposite(new Sprite(Ressources.TileTiles, 9)), Color.Brown));
             GRASS      = RegisterTile(new Tile("grass", Color.Green));
-            IRON_ORE   = RegisterTile(new Tile("iron_ore", new TileRenderComposite(new Sprite(Ressources.TileTiles, 10))));
+            IRON_ORE   = RegisterTile(new Tile("iron_ore", new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)), Color.Orange));
             ROCK       = RegisterTile( new Tile("rock"));
             SAND       = RegisterTile( new Tile("sand", Color.Yellow));
             VOID       = RegisterTile( new Tile("void"));
             WATER      = RegisterTile( new Tile("water", Color.Blue));
-            WOOD_FLOOR = RegisterTile( new Tile("wood_floor", new TileRenderComposite(new Sprite(Ressources.TileTiles, 5))));
-            WOOD_WALL  = RegisterTile( new Tile("wood_wall", new TileRenderComposite(new Sprite(Ressources.TileTiles, 6))));
+            WOOD_FLOOR = RegisterTile( new Tile("wood_floor", new TileRenderComposite(new Sprite(Ressources.TileTiles, 5)), Color.SandyBrown));
+			WOOD_WALL  = RegisterTile( new Tile("wood_wall", new TileRenderComposite(new Sprite(Ressources.TileTiles, 6)), Color.SandyBrown));
             
             GROUPE_ROCK = new BlueprintGroupe<Tile>("rock"){Members = { IRON_ORE, ROCK }};
             GROUPE_SOIL = new BlueprintGroupe<Tile>("soil"){Members = { DIRT }};

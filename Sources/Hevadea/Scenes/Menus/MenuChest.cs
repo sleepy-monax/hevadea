@@ -18,7 +18,7 @@ namespace Hevadea.Scenes.Menus
         private readonly WidgetItemContainer _inventoryA;
         private readonly WidgetItemContainer _inventoryB;
         
-        public MenuChest(Entity entity, Entity chest, GameManager.GameManager game) : base(game)
+        public MenuChest(Entity entity, Entity chest, GameManager game) : base(game)
         {
             PauseGame = true;
             

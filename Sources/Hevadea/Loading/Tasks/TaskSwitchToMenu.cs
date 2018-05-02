@@ -11,7 +11,7 @@ namespace Hevadea.Loading.Tasks
             _menu = menu;
         }
 
-        public override void Task(GameManager.GameManager game)
+        public override void Task(GameManager game)
         {
             SetStatus($"Switching to menu '{_menu.GetType().Name}'...");
             game.CurrentMenu = _menu;

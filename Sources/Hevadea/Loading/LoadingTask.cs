@@ -13,7 +13,7 @@ namespace Hevadea.Loading
         public bool HasFinish { get; private set; } = false;
         public Exception Exception { get; private set; } = null;
 
-        public void RunTask(GameManager.GameManager game)
+        public void RunTask(GameManager game)
         {
             Thread = new Thread(TaskInternal);
             Thread.Start(game);
@@ -45,7 +45,7 @@ namespace Hevadea.Loading
             try
             {
 #endif
-                Task((GameManager.GameManager)game);
+                Task((GameManager)game);
 #if !DEBUG
             }
             catch (ThreadAbortException) {}
@@ -58,6 +58,6 @@ namespace Hevadea.Loading
             HasFinish = true;
         }
 
-        public abstract void Task(GameManager.GameManager game);
+        public abstract void Task(GameManager game);
     }
 }

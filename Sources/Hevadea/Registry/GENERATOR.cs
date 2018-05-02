@@ -144,7 +144,14 @@ namespace Hevadea.Registry
                                 Threashold = 1.1f,
                                 Function = new PerlinFunction(2, 1, 30)
                             },
-
+							new TerrainLayer
+                            {
+                                Priority = 1,
+                                Tile = TILES.WATER,
+                                Threashold = 1.6f,
+								TileRequired = { TILES.DIRT },
+                                Function = new PerlinFunction(3, 1, 20, 679d)
+                            },
                             new TerrainLayer
                             {
                                 Priority = 2,
@@ -155,6 +162,13 @@ namespace Hevadea.Registry
                             }
                         }
                     },
+					new BspDecorator
+					{
+						GenerateFloor = false,
+                        GenerateWall = false,
+                        GeneratePath = true,
+                        Depth = 7,
+					},
                     new HouseFeature
                     {
                         CanBePlacedOn = { TILES.DIRT, TILES.ROCK },
@@ -174,7 +188,7 @@ namespace Hevadea.Registry
             {
                 Size = 256, Seed = 0,
                 Levels = { OVERWORLD, CAVE },
-                WorldFeatures = {new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature()}
+				WorldFeatures = {new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature()}
             };
         }
     }

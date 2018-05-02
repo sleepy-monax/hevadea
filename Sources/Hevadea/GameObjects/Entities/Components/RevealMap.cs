@@ -6,8 +6,13 @@ namespace Hevadea.GameObjects.Entities.Components
 {
     public class RevealMap : EntityComponent, IEntityComponentUpdatable
     {
-        public int Range { get; set; } = 4;
+        public int Range { get; set; }
         
+		public RevealMap(int range = 4)
+		{
+			Range = range;
+		}
+
         public void Update(GameTime gameTime)
         {
             var p = Owner.GetTilePosition();

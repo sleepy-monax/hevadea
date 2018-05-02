@@ -20,7 +20,7 @@ namespace Hevadea.Loading.Tasks
 
         }
 
-        public override void Task(GameManager.GameManager game)
+        public override void Task(GameManager game)
         {
             SetStatus("Saving world...");
 

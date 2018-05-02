@@ -8,7 +8,7 @@ namespace Hevadea.Worlds.Level
 {
     public partial class Level
     {
-        private GameManager.GameManager _game;
+        private GameManager _game;
         private World _world;
         private List<Entity>[,] _entitiesOnTiles;
         

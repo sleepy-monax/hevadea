@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Forms;
 using Hevadea.Framework;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
@@ -19,7 +20,7 @@ namespace Hevadea.Worlds
             ColorDestinationBlend = Blend.Zero
         };
         
-        public GameManager.GameManager Game;
+        public GameManager Game;
         public List<Level.Level> Levels = new List<Level.Level>();
         public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
@@ -136,10 +137,44 @@ namespace Hevadea.Worlds
             return null;
         }
         
-        public void Initialize(GameManager.GameManager game)
+        public void Initialize(GameManager game)
         {
             Game = game;
             foreach (var l in Levels) l.Initialize(this, game);
         }
+
+		public void Preview()
+		{
+			Form winform = new Form
+			{
+				Text = "World Preview"
+			};
+
+			TabControl tabControl = new TabControl()
+			{
+				Dock = DockStyle.Fill
+			};
+
+            foreach (var l in Levels)
+			{
+				System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(l.Width, l.Height);
+
+                for (int x = 0; x < l.Width; x++)
+				{
+                    for (int y = 0; y < l.Height; y++)
+					{
+						var c = l.GetTile(x, y).MiniMapColor;
+						bmp.SetPixel(x, y, System.Drawing.Color.FromArgb(c.A,c.R, c.G, c.B));
+					}
+				}
+
+				TabPage page = new TabPage(l.Name);
+				page.Controls.Add(new PictureBox() { SizeMode = PictureBoxSizeMode.Zoom, Image = bmp, Dock = DockStyle.Fill });
+				tabControl.TabPages.Add(page);
+			}
+
+			winform.Controls.Add(tabControl);
+			Application.Run(winform);
+		}
     }
 }

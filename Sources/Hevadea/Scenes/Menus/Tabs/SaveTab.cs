@@ -15,7 +15,7 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class SaveTab : Tab
     {
-        public SaveTab(GameManager.GameManager game)
+        public SaveTab(GameManager game)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(3, 2));
 
@@ -34,27 +34,26 @@ namespace Hevadea.Scenes.Menus.Tabs
                 }
             };
 
-            if (!game.IsClient)
+
+            container.AddChild(new Button { Text = "Quick save", Padding = new Padding(4) } )
+            .RegisterMouseClickEvent((sender) =>
             {
-                container.AddChild(new Button { Text = "Quick save", Padding = new Padding(4) } )
+                game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game));
+            });
+            container.AddChild(new Button
+            {
+                Text = "Save and Exit",
+                Padding = new Padding(4)
+            })
                 .RegisterMouseClickEvent((sender) =>
                 {
-                    game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game));
+                    Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructSaveWorldAndExit(game)));
                 });
-                container.AddChild(new Button
-                {
-                    Text = "Save and Exit",
-                    Padding = new Padding(4)
-                })
-                    .RegisterMouseClickEvent((sender) =>
-                    {
-                        Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructSaveWorldAndExit(game)));
-                    });
-            }
+            
 
             container.AddChild(new Button
             {
-                Text = game.IsClient ? "Disconnect" : "Exit",
+                Text = "Exit",
                 Padding = new Padding(4)
             })
                 .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneMainMenu()); });

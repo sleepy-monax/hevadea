@@ -51,7 +51,8 @@ namespace Hevadea.Player
                         if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
                         if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
 					}
-
+                    
+					if (input.KeyPress(Keys.P)) game.World.Preview();
                     if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
                     if (input.KeyPress(Keys.L)) HandleInput(PlayerInput.Pickup);

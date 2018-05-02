@@ -11,7 +11,7 @@ namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {
-        internal void Initialize(Level level, World world, GameManager.GameManager game)
+        internal void Initialize(Level level, World world, GameManager game)
         {
             Level = level;
             World = world;

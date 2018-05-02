@@ -3,9 +3,10 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.Player;
 using Hevadea.Scenes.Menus;
 using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.GameManager
+namespace Hevadea
 {
     public partial class GameManager
     {
@@ -64,6 +65,27 @@ namespace Hevadea.GameManager
             Camera = new Camera(MainPlayer);
             Camera.JumpToFocusEntity();
         }
+
+		public string GetRemotePlayerPath()
+            => $"{SavePath}/remotes_players";
+
+        public string GetGameSaveFile()
+            => $"{SavePath}/game.json";
+
+        public string GetPlayerSaveFile()
+            => $"{SavePath}/player.json";
+
+        public string GetLevelSavePath(Level level)
+            => $"{SavePath}/{level.Name}.json";
+
+        public string GetLevelMinimapSavePath(Level level)
+            => $"{SavePath}/{level.Name}-minimap.png";
+
+        public string GetLevelMinimapDataPath(Level level)
+            => $"{SavePath}/{level.Name}-minimap.json";
+
+        public string GetLevelSavePath(string level)
+            => $"{SavePath}/{level}.json";
 
         public void Draw(GameTime gameTime)
         {

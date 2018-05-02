@@ -6,7 +6,7 @@ namespace Hevadea.Framework.UI
     {
         public SpriteFont DefaultFont { get; set; }
         public SpriteFont DebugFont { get; set; }
-        public float ScaleFactor { get; set; } = 1.2f;
+        public float ScaleFactor { get; set; } = 1.0f;
         public Widget FocusWidget { get; set; }
     }
 }

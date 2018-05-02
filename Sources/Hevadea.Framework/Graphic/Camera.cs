@@ -50,12 +50,12 @@ namespace Hevadea.Framework.Graphic
         {
             return new Vector2();
         }
-
+        
         public void Update(GameTime gameTime)
         {
-            if (Rise.Input.KeyPress(Microsoft.Xna.Framework.Input.Keys.T))
+            if (Rise.Input.KeyDown(Microsoft.Xna.Framework.Input.Keys.T))
             {
-                Thrauma = 1f;
+                Thrauma += 0.1f;
             }
             Thrauma -= gameTime.ElapsedGameTime.TotalSeconds;
             Animate(gameTime);

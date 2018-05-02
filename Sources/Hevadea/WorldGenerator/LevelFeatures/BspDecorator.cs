@@ -13,10 +13,14 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 {
     public class BspDecorator : LevelFeature
     {   
-        public Padding Padding { get; set; } = new Padding(120);
+        public Padding Padding { get; set; } = new Padding(4);
         public int Depth { get; set; } = 3;
         public override string GetName() => "Generating bsp";
         public override float GetProgress() => 0;
+
+		public bool GenerateWall { get; set; } = false;
+		public bool GenerateFloor { get; set; } = false;
+		public bool GeneratePath { get; set; } = false;
 
         public Tile Wall { get; set; } = TILES.ROCK;
         public Tile Floor { get; set; } = TILES.DIRT;
@@ -25,7 +29,6 @@ namespace Hevadea.WorldGenerator.LevelFeatures
         {
             var rnd = new Random(gen.Seed);
             var bound = Padding.Apply(new Rectangle(0, 0, level.Width, level.Height));
-            level.FillRectangle(bound.X, bound.Y, bound.Width, bound.Height, Floor);
             var tree = BspTree.BuildBspTree(Padding.Left, Padding.Up,
                                  level.Width - Padding.Left - Padding.Right,
                                  level.Height - Padding.Up - Padding.Down,
@@ -34,7 +37,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
             Build(tree.Root, rnd, level);
         }
 
-        private void Build(BspTreeNode node, Random rnd, Level level)
+        void Build(BspTreeNode node, Random rnd, Level level)
         {
             if (node.HasChildrens)
             {
@@ -44,11 +47,16 @@ namespace Hevadea.WorldGenerator.LevelFeatures
                 Build(node.Item0, rnd, level);
                 Build(node.Item1, rnd, level);
                 
-                level.PlotLine(c0.X, c0.Y, c1.X, c1.Y, Floor);
+                if (GeneratePath)
+                    level.PlotLine(c0.X, c0.Y, c1.X, c1.Y, Floor);
             }
             else
             {
-                level.Rectangle(node.X, node.Y, node.Width, node.Height, Wall);
+				if (GenerateFloor)
+                    level.FillRectangle(node.X, node.Y, node.Width, node.Height, Floor);
+				
+				if (GenerateWall)
+                    level.Rectangle(node.X, node.Y, node.Width, node.Height, Wall);                
             }
         }
     }

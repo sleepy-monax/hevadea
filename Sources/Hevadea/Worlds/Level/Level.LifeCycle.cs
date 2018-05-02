@@ -24,7 +24,7 @@ namespace Hevadea.Worlds.Level
             }
         }
 
-        public void Initialize(World world, GameManager.GameManager game)
+        public void Initialize(World world, GameManager game)
         {
             Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
             _world = world;

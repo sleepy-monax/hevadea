@@ -131,12 +131,6 @@
     <Compile Include="GameObjects\Entities\Components\Render\NpcRender.cs" />
     <Compile Include="GameObjects\Entities\Components\Render\ParticleEmiter.cs" />
     <Compile Include="GameObjects\Entities\Components\RevealMap.cs" />
-    <Compile Include="GameManager\GameManager.cs" />
-    <Compile Include="GameManager\GameManager.LifeCycle.cs" />
-    <Compile Include="GameManager\GameManager.Networking.Client.cs" />
-    <Compile Include="GameManager\GameManager.Networking.cs" />
-    <Compile Include="GameManager\GameManager.Networking.Server.cs" />
-    <Compile Include="GameManager\GameManager.Path.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="GameObjects\BlueprintGroupe.cs" />
     <Compile Include="GameObjects\ITEMS.cs" />
@@ -158,17 +152,14 @@
     <Compile Include="Loading\LoadingTask.cs" />
     <Compile Include="Loading\TaskCompound.cs" />
     <Compile Include="Loading\TaskFactorie.cs" />
-    <Compile Include="Loading\Tasks\TaskConnectToServer.cs" />
     <Compile Include="Loading\Tasks\TaskDownloadWorld.cs" />
     <Compile Include="Loading\Tasks\TaskEnterGame.cs" />
     <Compile Include="Loading\Tasks\TaskGenerateWorld.cs" />
     <Compile Include="Loading\Tasks\TaskInitializeGame.cs" />
     <Compile Include="Loading\Tasks\TaskLoadWorld.cs" />
     <Compile Include="Loading\Tasks\TaskNewPlayer.cs" />
-    <Compile Include="Loading\Tasks\TaskPlayerLogin.cs" />
     <Compile Include="Loading\Tasks\TaskSaveWorld.cs" />
     <Compile Include="Loading\Tasks\TaskSetLastGame.cs" />
-    <Compile Include="Loading\Tasks\TaskSetupServer.cs" />
     <Compile Include="Loading\Tasks\TaskSwitchToMenu.cs" />
     <Compile Include="Loading\Tasks\TaskSwitchToScene.cs" />
     <Compile Include="Networking\PacketFactorie.cs" />
@@ -259,13 +250,16 @@
     <Compile Include="Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Worlds\Minimap.cs" />
     <Compile Include="Worlds\World.cs" />
-    <Compile Include="Storage\DataCompound.cs" />
+    <Compile Include="Scenes\Menus\MenuRespawn.cs" />
+    <Compile Include="GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

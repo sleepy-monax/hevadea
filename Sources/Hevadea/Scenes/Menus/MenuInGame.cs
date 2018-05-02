@@ -22,7 +22,7 @@ namespace Hevadea.Scenes.Menus
 
         private readonly SpriteButton btnMinimap;
 
-        public MenuInGame(GameManager.GameManager game) : base(game)
+        public MenuInGame(GameManager game) : base(game)
         {
             // On screen button -----------------------------------------------
 

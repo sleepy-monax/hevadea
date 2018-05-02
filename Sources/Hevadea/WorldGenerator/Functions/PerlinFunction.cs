@@ -5,12 +5,14 @@ namespace Hevadea.WorldGenerator.Functions
 {
     public class PerlinFunction : IFunction
     {
-        private readonly int _octaves = 1;
-        private readonly double _persistance = 1;
-        private readonly double _scretch = 10d;
+        int _octaves;
+        double _persistance;
+        double _scretch;
+		double _offsetX;
+		double _offsetY;
+        
 
-
-        public PerlinFunction(int octaves = 1, double persistance = 1, double scretch = 10)
+        public PerlinFunction(int octaves = 1, double persistance = 1, double scretch = 10, double offsetX = 0, double offsetY = 0)
         {
             _octaves = octaves;
             _persistance = persistance;
@@ -20,7 +22,8 @@ namespace Hevadea.WorldGenerator.Functions
 
         public double Compute(double x, double y, Generator gen, LevelGenerator levelGen, Level level)
         {
-            return gen.Perlin.OctavePerlin(x / _scretch, y / _scretch, 0, _octaves, _persistance);
+			return gen.Perlin.OctavePerlin((x + _offsetX) / _scretch,
+			                               (y + _offsetY) / _scretch, 0, _octaves, _persistance);
         }
     }
 }
