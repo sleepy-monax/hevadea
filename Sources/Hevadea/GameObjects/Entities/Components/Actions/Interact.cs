@@ -24,7 +24,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             var selectionRectangle =
-                new Vector2(SelectedTile.X * Constant.TileSize, SelectedTile.Y * Constant.TileSize);
+                new Vector2(SelectedTile.X * GLOBAL.Unit, SelectedTile.Y * GLOBAL.Unit);
             _selectionCursorPosition = new Vector2(_selectionCursorPosition.X * 0.8f + selectionRectangle.X * 0.2f,
                 _selectionCursorPosition.Y * 0.8f + selectionRectangle.Y * 0.2f);
 

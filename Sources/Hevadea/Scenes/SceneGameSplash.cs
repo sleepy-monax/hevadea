@@ -25,7 +25,7 @@ namespace Hevadea.Scenes
             {
                 Ressources.Load();
                 REGISTRY.Initialize();
-                Directory.CreateDirectory(Constant.GetSavePath());
+                Directory.CreateDirectory(GLOBAL.GetSavePath());
                 
                 Rise.Ui.DefaultFont = Ressources.FontRomulus;
                 Rise.Ui.DebugFont = Ressources.FontHack;

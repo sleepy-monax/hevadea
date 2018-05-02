@@ -9,11 +9,11 @@ namespace Hevadea.Worlds.Level
     {
         public bool IsAll(Tile tile, Rectangle rectangle)
         {
-            var beginX = rectangle.X / Constant.TileSize - 1;
-            var beginY = rectangle.Y / Constant.TileSize - 1;
+            var beginX = rectangle.X / GLOBAL.Unit - 1;
+            var beginY = rectangle.Y / GLOBAL.Unit - 1;
 
-            var endX = (rectangle.X + rectangle.Width) / Constant.TileSize + 1;
-            var endY = (rectangle.Y + rectangle.Height) / Constant.TileSize + 1;
+            var endX = (rectangle.X + rectangle.Width) / GLOBAL.Unit + 1;
+            var endY = (rectangle.Y + rectangle.Height) / GLOBAL.Unit + 1;
 
             var result = true;
 
@@ -29,11 +29,11 @@ namespace Hevadea.Worlds.Level
         
         public bool IsAll<T>(Rectangle rectangle) where T: TileComponent
         {
-            var beginX = rectangle.X / Constant.TileSize;
-            var beginY = rectangle.Y / Constant.TileSize;
+            var beginX = rectangle.X / GLOBAL.Unit;
+            var beginY = rectangle.Y / GLOBAL.Unit;
 
-            var endX = (rectangle.X + rectangle.Width) / Constant.TileSize;
-            var endY = (rectangle.Y + rectangle.Height) / Constant.TileSize;
+            var endX = (rectangle.X + rectangle.Width) / GLOBAL.Unit;
+            var endY = (rectangle.Y + rectangle.Height) / GLOBAL.Unit;
 
             bool result =  GetTile(beginX, beginY).HasTag<T>();;
             for (var x = beginX; x <= endX; x++)

@@ -14,12 +14,12 @@ namespace Hevadea.GameObjects.Tiles
 
         public int X { get; set; }
         public int Y { get; set; }
-        public int WorldX => X * Constant.TileSize;
-        public int WorldY => Y * Constant.TileSize;
+        public int WorldX => X * GLOBAL.Unit;
+        public int WorldY => Y * GLOBAL.Unit;
 
         public Point ToOnScreenPosition()
         {
-            return new Point(X * Constant.TileSize, Y * Constant.TileSize);
+            return new Point(X * GLOBAL.Unit, Y * GLOBAL.Unit);
         }
 
         public Vector2 GetCenter()
@@ -29,14 +29,14 @@ namespace Hevadea.GameObjects.Tiles
 
         public Rectangle ToRectangle()
         {
-            return new Rectangle(ToOnScreenPosition(), new Point(Constant.TileSize, Constant.TileSize));
+            return new Rectangle(ToOnScreenPosition(), new Point(GLOBAL.Unit, GLOBAL.Unit));
         }
 
         public bool IsColliding(Entity e, int width, int height)
         {
-            return Colision.Check(X * Constant.TileSize,
-                Y * Constant.TileSize,
-                Constant.TileSize, Constant.TileSize,
+            return Colision.Check(X * GLOBAL.Unit,
+                Y * GLOBAL.Unit,
+                GLOBAL.Unit, GLOBAL.Unit,
                 e.X,
                 e.Y,
                 width, height);
@@ -49,9 +49,9 @@ namespace Hevadea.GameObjects.Tiles
 
         public bool IsColliding(float x, float y, int width, int height)
         {
-            return Colision.Check(X * Constant.TileSize,
-                Y * Constant.TileSize,
-                Constant.TileSize, Constant.TileSize,
+            return Colision.Check(X * GLOBAL.Unit,
+                Y * GLOBAL.Unit,
+                GLOBAL.Unit, GLOBAL.Unit,
                 x,
                 y,
                 width, height);

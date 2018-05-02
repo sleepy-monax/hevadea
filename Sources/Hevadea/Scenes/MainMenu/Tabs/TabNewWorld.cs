@@ -31,7 +31,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                     seed = worldSeedtextBox.Text.String.GetHashCode();
                 }
 
-                Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructNewWorld(Constant.GetSavePath() + $"{worldNameTextBox.Text.String}/", seed)));
+                Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructNewWorld(GLOBAL.GetSavePath() + $"{worldNameTextBox.Text.String}/", seed)));
             });
 
             var worldOptions = new FlowLayout

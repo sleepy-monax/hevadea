@@ -17,7 +17,7 @@ namespace Hevadea.GameObjects.Entities
             World = world;
             Game = game;
 
-            _components.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
+            Componenents.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
 
             if (Ueid == -1 && world != null)
             {
@@ -37,7 +37,7 @@ namespace Hevadea.GameObjects.Entities
             store.Set("Y", Y);
             store.Set("Facing", (int)Facing);
 
-            foreach (var c in _components)
+            foreach (var c in Componenents)
                 if (c is IEntityComponentSaveLoad s)
                     s.OnGameSave(store);
             OnSave(store);
@@ -53,7 +53,7 @@ namespace Hevadea.GameObjects.Entities
 
             Facing = (Direction)(int)store.Get("Facing", (int)Facing);
 
-            foreach (var c in _components)
+            foreach (var c in Componenents)
                 if (c is IEntityComponentSaveLoad s)
                     s.OnGameLoad(store);
 
@@ -67,7 +67,7 @@ namespace Hevadea.GameObjects.Entities
 
         public void Update(GameTime gameTime)
         {
-            foreach (var c in _components)
+            foreach (var c in Componenents)
                 if (c is IEntityComponentUpdatable updatable)
                     updatable.Update(gameTime);
 
@@ -77,7 +77,7 @@ namespace Hevadea.GameObjects.Entities
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach (var c in _components)
+            foreach (var c in Componenents)
                 if (c is IEntityComponentDrawable drawable)
                     drawable.Draw(spriteBatch, gameTime);
 
@@ -92,7 +92,7 @@ namespace Hevadea.GameObjects.Entities
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach (var c in _components)
+            foreach (var c in Componenents)
                 if (c is IEntityComponentDrawableOverlay drawable)
                     drawable.DrawOverlay(spriteBatch, gameTime);
         }

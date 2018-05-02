@@ -43,7 +43,7 @@ namespace Hevadea.Scenes.Menus
             PauseGame = true;
             
             var r = new List<List<Recipe>>();
-            foreach (var e in Game.MainPlayer.Level.GetEntitiesOnRadius(Game.MainPlayer.X, Game.MainPlayer.Y, 16))
+            foreach (var e in Game.MainPlayer.Level.GetEntitiesOnRadius(Game.MainPlayer.X, Game.MainPlayer.Y, GLOBAL.Unit * 3))
             {
                 var s = e.GetComponent<CraftingStation>();
                 if (s != null)

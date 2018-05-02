@@ -6,13 +6,13 @@ namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {
-        private readonly List<EntityComponent> _components = new List<EntityComponent>();
+        public List<EntityComponent> Componenents { get; set; } = new List<EntityComponent>();
 
         public T AddComponent<T>(T component) where T : EntityComponent
         {
-            if (_components.Any(e => e == component)) return null;
+            if (Componenents.Any(e => e == component)) return null;
 
-            _components.Add(component);
+            Componenents.Add(component);
             component.Owner = this;
 
             return component;
@@ -20,9 +20,9 @@ namespace Hevadea.GameObjects.Entities
 
         public T GetComponent<T>() where T : EntityComponent
         {
-            for (int i = 0; i < _components.Count; i++)
+            for (int i = 0; i < Componenents.Count; i++)
             {
-                if (_components[i] is T component)
+                if (Componenents[i] is T component)
                 {
                     return component;
                 }
@@ -33,7 +33,7 @@ namespace Hevadea.GameObjects.Entities
 
         public bool HasComponent<T>() where T : EntityComponent
         {
-            return _components.OfType<T>().Any();
+            return Componenents.OfType<T>().Any();
         }
     }
 }

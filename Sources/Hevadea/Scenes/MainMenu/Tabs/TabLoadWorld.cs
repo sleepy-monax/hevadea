@@ -42,7 +42,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 }
             };
 
-            var s = Directory.GetDirectories(Constant.GetSavePath());
+            var s = Directory.GetDirectories(GLOBAL.GetSavePath());
 
             foreach (var save in s)
             {
