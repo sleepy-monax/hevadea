@@ -24,6 +24,8 @@ namespace Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+			if (!_player.HasComponent<Energy>() && !_player.HasComponent<Health>()) return;
+
             var health = _player.GetComponent<Health>().ValuePercent;
             var energy = _player.GetComponent<Energy>().ValuePercent;
 

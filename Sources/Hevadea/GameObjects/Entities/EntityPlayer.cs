@@ -12,13 +12,15 @@ namespace Hevadea.GameObjects.Entities
 {
     public class EntityPlayer : Entity
     {
-        public int LastLevel { get; set; } = 0;
-        
+        public int LastLevel { get; set; }
+		public Item HoldingItem { get; set; }
+
         public EntityPlayer()
         {
+			LastLevel = 0;
             HoldingItem = null;
 
-            AddComponent(new Health(20){ ShowHealthBar = false, NaturalRegeneration = true });
+            AddComponent(new Health(20) { ShowHealthBar = false, NaturalRegeneration = true });
             AddComponent(new Attack());
             AddComponent(new Energy());
             AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
@@ -33,8 +35,6 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Burnable(1.5f));
             AddComponent(new RevealMap(16));
         }
-
-        public Item HoldingItem { get; set; }
 
         public override void OnSave(EntityStorage store)
         {
