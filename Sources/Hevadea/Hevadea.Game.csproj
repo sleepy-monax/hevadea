@@ -67,9 +67,6 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
-    <Compile Include="Development\WorldInspector.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="GameObjects\Entities\Blueprints\EntityBlueprint.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\GenericEntityBlueprint.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\XpOrbBlueprint.cs" />

@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using Hevadea.Development;
 using Hevadea.Framework;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
@@ -142,11 +141,6 @@ namespace Hevadea.Worlds
         {
             Game = game;
             foreach (var l in Levels) l.Initialize(this, game);
-        }
-
-        public void Preview()
-        {
-            Application.Run(new WorldInspector(this));
         }
     }
 }
