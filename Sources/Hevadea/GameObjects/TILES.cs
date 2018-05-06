@@ -73,7 +73,7 @@ namespace Hevadea.GameObjects
 
         public static void AttachRender()
         {
-            GRASS.Render    = new TileRenderComposite(new Sprite(Ressources.TileTiles, 2));
+            GRASS.Render    = new TileRenderSpriteSheet(Ressources.TileGrass);
             IRON_ORE.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)) { ConnectTo = { ROCK } };
             ROCK.Render     = new TileRenderComposite(new Sprite(Ressources.TileTiles, 1)) { ConnectTo = { IRON_ORE } };
             SAND.Render     = new TileRenderComposite(new Sprite(Ressources.TileTiles, 3));

@@ -134,6 +134,7 @@
     <Compile Include="GameObjects\Entities\Components\Render\NpcRender.cs" />
     <Compile Include="GameObjects\Entities\Components\Render\ParticleEmiter.cs" />
     <Compile Include="GameObjects\Entities\Components\RevealMap.cs" />
+    <Compile Include="GameObjects\Tiles\Renderers\TileRenderSpriteSheet.cs" />
     <Compile Include="GLOBAL.cs" />
     <Compile Include="GameObjects\BlueprintGroupe.cs" />
     <Compile Include="GameObjects\ITEMS.cs" />
@@ -216,8 +217,6 @@
     <Compile Include="GameObjects\Tiles\Renderers\TileRender.cs" />
     <Compile Include="GameObjects\Tiles\Renderers\TileRenderComposite.cs" />
     <Compile Include="GameObjects\Tiles\Renderers\TileRenderConnected.cs" />
-    <Compile Include="GameObjects\Tiles\Renderers\TileRenderGroupe.cs" />
-    <Compile Include="GameObjects\Tiles\Renderers\TileRenderSprite.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
     <Compile Include="GameObjects\Tiles\TilePosition.cs" />
     <Compile Include="GameObjects\Tiles\TileComponent.cs" />

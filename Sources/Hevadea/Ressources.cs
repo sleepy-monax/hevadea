@@ -27,6 +27,7 @@ namespace Hevadea
         public static SpriteSheet TileItems;
         public static SpriteSheet TileMinimapIcon;
         public static SpriteSheet TileRock;
+        public static SpriteSheet TileGrass;
         public static SpriteSheet TileTiles;
 
         public static Texture2D CompanyLogo;
@@ -47,6 +48,7 @@ namespace Hevadea
         public static Texture2D ImgMapIcon;
         public static Texture2D ImgMapOver;
         public static Texture2D ImgRock;
+        public static Texture2D ImgGrass;
         public static Texture2D ImgShadow;
         public static Texture2D ImgSwing;
         public static Texture2D ImgTiles;
@@ -74,6 +76,7 @@ namespace Hevadea
             ImgMapIcon = Rise.Ressource.GetImage("map_icon");
             ImgMapOver = Rise.Ressource.GetImage("map_overlay");
             ImgRock = Rise.Ressource.GetImage("rock");
+            ImgGrass = Rise.Ressource.GetImage("grass");
             ImgShadow = Rise.Ressource.GetImage("shadow");
             ImgSwing = Rise.Ressource.GetImage("swing");
             ImgTiles = Rise.Ressource.GetImage("tiles");
@@ -85,6 +88,7 @@ namespace Hevadea
             TileItems = new SpriteSheet(ImgItems, new Point(16, 16));
             TileMinimapIcon = new SpriteSheet(ImgMapIcon, new Point(8, 8));
             TileRock = new SpriteSheet(ImgRock, new Point(16, 16));
+            TileGrass = new SpriteSheet(ImgGrass, new Point(16, 16));
             TileTiles = new SpriteSheet(ImgTiles, new Point(32, 32));
 
             for (int i = 0; i < 16; i++)
