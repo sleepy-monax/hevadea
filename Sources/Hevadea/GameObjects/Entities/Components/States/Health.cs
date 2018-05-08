@@ -1,35 +1,38 @@
-﻿using System;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Hevadea.GameObjects.Entities.Components.States
 {
     public sealed class Health : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
-        private float _maxValue, _value, _knckbckX, _knckbckY, _coolDown;
+        private float _maxValue, _value, _knckbckX, _knckbckY, _coolDown, _heathbarTimer = 0f;
         
         public bool Invicible { get; set; } = false;
         public bool ShowHealthBar { get; set; } = true;
         public bool TakeKnockback { get; set; } = true;
-        
         public bool NaturalRegeneration { get; set; } = false;
+
         public double NaturalregenerationSpeed { get; set; } = 1.0;
         
         public float Value => _value;
         public float MaxValue => _maxValue;
         public float ValuePercent => _value / _maxValue;
 
+
         public delegate void GetHurtByEntityHandle(Entity entity, float damages);
         public delegate void GetHurtByTileHandler(Tile tile, float damages, int tX, int tY);
         
+
         public event EventHandler Killed;
         public event GetHurtByTileHandler HurtedByTile;
         public event GetHurtByEntityHandle HurtedByEntity;
+
 
         public Health(float maxHealth)
         {
@@ -41,10 +44,10 @@ namespace Hevadea.GameObjects.Entities.Components.States
         {
             if (ShowHealthBar && Math.Abs(_value - _maxValue) > 0.05)
             {
-                var barY = Owner.Y + 8;
-                var barX = Owner.X - 16;
+                var barY = Owner.Y + 4;
+                var barX = Owner.X - 15;
                 
-                var rect = new Rectangle((int) barX, (int) barY, (int) (30 * ValuePercent), 6);
+                var rect = new Rectangle((int) barX, (int) barY, (int) (30 * ValuePercent), 2);
 
                 spriteBatch.FillRectangle(new Rectangle((int) barX + 1, (int) barY + 1, rect.Width, rect.Height),
                     Color.Black * 0.45f);
