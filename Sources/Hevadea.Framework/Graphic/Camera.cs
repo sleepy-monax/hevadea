@@ -57,6 +57,7 @@ namespace Hevadea.Framework.Graphic
             {
                 Thrauma += 0.1f;
             }
+
             Thrauma -= gameTime.ElapsedGameTime.TotalSeconds;
             Animate(gameTime);
             value += 0.01f;

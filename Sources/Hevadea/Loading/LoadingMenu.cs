@@ -53,7 +53,7 @@ namespace Hevadea.Loading
                 Rise.Scene.Switch(new SceneMainMenu());
             });
 
-            Content = new AnchoredContainer
+            Content = new Container
             {
                 Childrens =
                 {
@@ -63,7 +63,8 @@ namespace Hevadea.Loading
                         Padding = new Padding(16),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
-                        Content = new AnchoredContainer
+						Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
+                        Content = new Container
                         {
                             Childrens =
                             {

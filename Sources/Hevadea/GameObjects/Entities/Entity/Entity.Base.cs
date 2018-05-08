@@ -1,4 +1,6 @@
-﻿using Hevadea.Framework.Graphic.Particles;
+﻿using System.Collections.Generic;
+using Hevadea.Framework.Graphic.Particles;
+using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Entities.Graphic;
 using Hevadea.Registry;
@@ -49,6 +51,46 @@ namespace Hevadea.GameObjects.Entities
         {
             return Blueprint != null && groupe.Members.Contains(Blueprint);
         }
+
+		static Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
+        {
+            {Direction.North, Anchor.Bottom},
+            {Direction.South, Anchor.Top},
+            {Direction.West, Anchor.Right},
+            {Direction.East, Anchor.Left},
+        };
+        
+        
+		public Rectangle GetFacingArea(int size)
+		{
+			return new Rectangle(Position.ToPoint() - new Rectangle(new Point(0), new Point(size)).GetAnchorPoint(DirectionToAnchore[Facing]), new Point(size));
+        
+		}
+
+		public List<Entity> GetFacingEntities(int area)
+        {
+            var facingEntities = Level.GetEntitiesOnArea(GetFacingArea(area));
+            facingEntities.Sort((a, b) =>
+            {
+                return Mathf.Distance(a.X, a.Y, X, Y)
+                    .CompareTo(Mathf.Distance(b.X, b.Y, X, Y));
+            });
+
+			facingEntities.Remove(this);
+			return facingEntities;
+        }
+
+		public Entity GetFacingEntity(int area)
+		{
+			var facingEntities = GetFacingEntities(area);
+
+			if (facingEntities.Count > 0)
+			{
+				return facingEntities[0];
+			}
+
+			return null;
+		}
 
         public virtual void OnSave(EntityStorage store)
         {

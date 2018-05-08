@@ -2,8 +2,7 @@
 {
     public class XpOrbBlueprint : EntityBlueprint
     {
-
-        private int _value;
+        int _value;
         
         public XpOrbBlueprint(string name, int value) : base(name)
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Hevadea.GameObjects.Entities.Components.Ai;
 using Hevadea.GameObjects.Entities.Components.Attributes;
+using Hevadea.GameObjects.Items;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,8 +19,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             var facingTile = Owner.GetFacingTile();
             
             if (_pickupedEntity != null) LayDownEntity();
-            else foreach (var e in Owner.Level.GetEntityOnTile(facingTile))
-                if (PickupEntity(e)) return;                     
+            else PickupEntity(Owner.GetFacingEntity(26));                     
         }
         
         public bool HasPickedUpEntity()
@@ -34,6 +34,13 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public bool PickupEntity(Entity entity)
         {
+			if (entity == null) return false; 
+			if (Owner.HasComponent<Inventory>() && entity is ItemEntity i)
+			{
+				if (Owner.GetComponent<Inventory>().Pickup(i.Item))
+                    i.Remove();
+			}
+
             if (!entity.HasComponent<Pickupable>()) return false;
             _pickupedEntity = entity;
             entity.Remove();

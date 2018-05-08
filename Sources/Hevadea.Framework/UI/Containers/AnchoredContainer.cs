@@ -1,9 +1,10 @@
-﻿using Hevadea.Framework.Utils;
+﻿using System;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Framework.UI.Containers
 {
-    public class AnchoredContainer : Container
+    [Obsolete] public class AnchoredContainer : Container
     {
         public override void Layout()
         {

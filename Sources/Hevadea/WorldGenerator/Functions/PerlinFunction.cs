@@ -6,17 +6,16 @@ namespace Hevadea.WorldGenerator.Functions
     public class PerlinFunction : IFunction
     {
         int _octaves;
-        double _persistance;
-        double _scretch;
-		double _offsetX;
-		double _offsetY;
-        
+		double _persistance, _scretch, _offsetX, _offsetY;
 
         public PerlinFunction(int octaves = 1, double persistance = 1, double scretch = 10, double offsetX = 0, double offsetY = 0)
         {
             _octaves = octaves;
             _persistance = persistance;
             _scretch = scretch;
+
+			_offsetX = offsetX;
+			_offsetY = offsetY;
         }
 
 

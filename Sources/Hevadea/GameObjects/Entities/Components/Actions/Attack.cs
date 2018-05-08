@@ -4,6 +4,7 @@ using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Items;
 using Hevadea.GameObjects.Items.Tags;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
@@ -22,7 +23,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         public bool CanAttackEntities { get; set; } = true;
         public double AttackCooldown { get; set; } = 1;
         
-        public Point HitBoxSize { get; set; } = new Point(26, 26);
+        public int HitBoxSize { get; set; } = 26;
         
         private Direction _lastDirection = Direction.North;
         private double _speedFactor = 1;
@@ -45,7 +46,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         {
             if (!IsAttacking) return;
             var invTimer = 1f - _timer;
-            var HitBox = GetHitbox();
+            var HitBox = Owner.GetFacingArea(26);
 
             switch (_lastDirection)
             {
@@ -63,11 +64,6 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                     break;
             }
         }
-
-		public Rectangle GetHitbox()
-		{
-			return new Rectangle(Owner.Position.ToPoint() - new Rectangle(new Point(0), HitBoxSize).GetAnchorPoint(DirectionToAnchore[Owner.Facing]), HitBoxSize);
-		}
 
         public void Update(GameTime gameTime)
         {
@@ -92,14 +88,50 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
             return damages;
         }
+       
+		public float GetDamages(Item weapon, Entity target)
+		{
+			return GetBaseDamages() * (weapon?.Tag<DamageTag>()?.GetDamages(target) ?? 1f);
+		}
 
-        private static Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
-        {
-            {Direction.North, Anchor.Bottom},
-            {Direction.South, Anchor.Top},
-            {Direction.West, Anchor.Right},
-            {Direction.East, Anchor.Left},
-        };
+		public float GetDamages(Item weapon, Tile tile)
+		{
+			return GetBaseDamages() * (weapon?.Tag<DamageTag>()?.GetDamages(tile) ?? 1f);
+		}
+
+		public bool AttackEntity(Item weapon, Entity target)
+		{
+			var breakable = target.GetComponent<Breakable>();
+			var health    = target.GetComponent<Health>();
+
+			if (breakable != null)
+				breakable.Break();
+			
+			else if (health != null)
+				health.Hurt(Owner, GetDamages(weapon, target), Owner.Facing);
+			
+			else return false;
+
+			return true;
+		}
+
+		public bool AttackTile(Item weapon, TilePosition tilePosition)
+		{
+			var tile = Owner.Level.GetTile(tilePosition);
+
+			var damages = tile.Tag<DamageTile>();
+			var breakable = tile.Tag<BreakableTile>();
+
+			if (breakable != null)
+				breakable.Break(tilePosition, Owner.Level);
+
+			else if (damages != null)
+				damages.Hurt(GetDamages(weapon, tile), tilePosition, Owner.Level);
+			
+			else return false;
+
+			return true;
+		}
         
         public void Do(Item weapon)
         {
@@ -112,58 +144,22 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
             if (CanAttackEntities)
             {
-                var facingEntities = Owner.Level.GetEntitiesOnArea(GetHitbox());
-                facingEntities.Sort((a, b) =>
-                    {
-                        return Mathf.Distance(a.X, a.Y, Owner.X, Owner.Y)
-                            .CompareTo(Mathf.Distance(b.X, b.Y, Owner.X, Owner.Y));
-                    });
+				var facingEntities = Owner.GetFacingEntities(HitBoxSize);
                 
                 foreach (var e in facingEntities)
-                    if (e != Owner)
-                    {
-                        if (e.HasComponent<Breakable>())
-                        {
-                            e.GetComponent<Breakable>()?.Break(weapon);
-                            IsAttacking = true;
-                            break;
-                        }
-
-                        var eHealth = e.GetComponent<Health>();
-                        if (!eHealth?.Invicible ?? false)
-                        {
-                            var damages = baseDamages * (weapon?.Tag<DamageTag>()?.GetDamages(e) ?? 1f);
-                            eHealth.Hurt(Owner, damages , Owner.Facing);
-                            
-                            IsAttacking = true;
-                            break;
-                        }
-                    }
+					if (e != Owner && AttackEntity(weapon, e))
+				    {
+					    IsAttacking = true;
+					    break;
+                    } 
+                    
             }
-
-            if (CanAttackTile && !IsAttacking)
-            {
-                var tile = Owner.Level.GetTile(facingTile);
-                if (tile.HasTag<DamageTile>())
-                {
-                    tile.Tag<DamageTile>().Hurt(baseDamages * (weapon?.Tag<DamageTag>()?.GetDamages(tile) ?? 1f), facingTile, Owner.Level);   
-                }
-
-                if (tile.HasTag<BreakableTile>())
-                {
-                    tile.Tag<BreakableTile>().Break(facingTile, Owner.Level);
-                }
-
+            
+			if (CanAttackTile && !IsAttacking && AttackTile(weapon, Owner.GetFacingTile()))
                 IsAttacking = true;
-            }
 
-            if (IsAttacking)
-            {
-                if (Owner == Owner.Game.MainPlayer)
-                {
-                    Owner.Game.Camera.Thrauma += 0.1f;
-                }
-            }
+            if (IsAttacking && Owner == Owner.Game.MainPlayer)
+                Owner.Game.Camera.Thrauma += 0.15f;
 
             _lastDirection = Owner.Facing;
             _timer = _speedFactor;

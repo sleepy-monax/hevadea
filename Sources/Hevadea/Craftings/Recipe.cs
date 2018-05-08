@@ -5,9 +5,9 @@ namespace Hevadea.Craftings
 {
     public class Recipe
     {
-        public Item Result { get; set; }
-        public int Quantity { get; set; }
-        public List<RecipeCost> Costs { get; set; } = new List<RecipeCost>();
+        public Item             Result      { get; set; }
+        public int              Quantity    { get; set; }
+        public List<RecipeCost> Costs       { get; set; } = new List<RecipeCost>();
 
         public Recipe(Item result, int quantity)
         {

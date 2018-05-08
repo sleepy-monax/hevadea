@@ -20,8 +20,8 @@ namespace Hevadea.Scenes.MainMenu
         {
             Rise.Scene.SetBackground(Ressources.ParalaxeForest);
 
-            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, Scale = 1.5f};
-            var creators = new Label { Text = "(c) 2017-2018 Interesting Games", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, Scale = 1f };
+            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, TextSize = 1.5f};
+            var creators = new Label { Text = "(c) 2017-2018 Interesting Games", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
             var continueButton = new Button
                 {
                     Text = "Continue",

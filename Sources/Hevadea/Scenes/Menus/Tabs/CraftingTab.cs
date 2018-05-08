@@ -16,8 +16,8 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class CraftingListItem : ListItem
     {
-        private readonly Recipe _recipe;
-        private readonly ItemStorage _storage;
+        readonly Recipe _recipe;
+        readonly ItemStorage _storage;
 
         public CraftingListItem(Recipe recipe, ItemStorage storage)
         {
@@ -83,7 +83,7 @@ namespace Hevadea.Scenes.Menus.Tabs
             };
         }
 
-        private void Craft(Widget widget)
+        void Craft(Widget widget)
         {
             if (CraftingList.SelectedItem is CraftingListItem craft)
             {

@@ -6,9 +6,10 @@ namespace Hevadea.Framework.Graphic.Particles
 {
     public class Color2Particle : Particle
     {
+		float maxLife = -1;
+
         public Color Color { get; set; } = Color.Red;
         public Color FadingColor { get; set; } = Color.Blue;
-        private float maxLife = -1;
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {

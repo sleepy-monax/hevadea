@@ -2,6 +2,7 @@
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
+using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;

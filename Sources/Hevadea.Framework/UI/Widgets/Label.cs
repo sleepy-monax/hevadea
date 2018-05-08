@@ -7,7 +7,7 @@ namespace Hevadea.Framework.UI.Widgets
     public class Label : Widget
     {
         public string Text { get; set; } = "label";
-        public float Scale { get; set; } = 1f;
+        public float TextSize { get; set; } = 1f;
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
         public Color TextColor { get; set; } = Color.White;
         public DrawText.Alignement TextAlignement { get; set; } = DrawText.Alignement.Center;
@@ -16,8 +16,8 @@ namespace Hevadea.Framework.UI.Widgets
         {
             if (Text != null)
             {
-                var texSize = Font.MeasureString(Text) * Scale;
-                spriteBatch.DrawString(Font, Text, Host, TextAlignement, DrawText.TextStyle.DropShadow, TextColor, Rise.Ui.ScaleFactor * Scale);
+                var texSize = Font.MeasureString(Text) * TextSize;
+                spriteBatch.DrawString(Font, Text, Host, TextAlignement, DrawText.TextStyle.DropShadow, TextColor, Rise.Ui.ScaleFactor * TextSize);
             }
         }
     }
