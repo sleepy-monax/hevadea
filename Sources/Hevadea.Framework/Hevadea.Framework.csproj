@@ -110,6 +110,7 @@
     <Compile Include="Utils\RectangleF.cs" />
     <Compile Include="Utils\Texture2DUtils.cs" />
     <Compile Include="Utils\XnaUtils.cs" />
+    <Compile Include="Utils\FastRandom.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />

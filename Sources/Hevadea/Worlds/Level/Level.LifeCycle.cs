@@ -13,7 +13,7 @@ namespace Hevadea.Worlds.Level
 {
     public partial class Level
     {
-        private bool _isInitialized;
+        bool _isInitialized;
 
         public bool IsInitialized
         {

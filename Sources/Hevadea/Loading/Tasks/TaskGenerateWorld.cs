@@ -5,8 +5,8 @@ namespace Hevadea.Loading.Tasks
 {
     public class TaskGenerateWorld : LoadingTask
     {
-        private int _seed ;
-        private Generator _generator;
+        int _seed ;
+        Generator _generator;
 
         public TaskGenerateWorld(int seed)
         {

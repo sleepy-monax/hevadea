@@ -81,27 +81,26 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         public void Do(Item item)
         {
             var entities = Owner.GetFacingEntities(26);
-            var asInteracted = false;
             
-            if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true && entities.Count > 0)
-            {
-
-                foreach (var e in entities)
-                {
-                    var interactable = e.GetComponent<Interactable>();
-
-                    if (interactable != null)
-                    {
-                        interactable.Interacte(Owner, Owner.Facing, item);
-                        asInteracted = true;
-                        break;
-                    }
-                }
-            }
-
+			var asInteracted = item?.Tag<InteractItemTag>()?.InteracteOn(Owner, SelectedTile) ?? false;
+           
             if (!asInteracted)
             {
-                item?.Tag<InteractItemTag>()?.InteracteOn(Owner, SelectedTile);
+				if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true && entities.Count > 0)
+                {
+
+                    foreach (var e in entities)
+                    {
+                        var interactable = e.GetComponent<Interactable>();
+
+                        if (interactable != null)
+                        {
+                            interactable.Interacte(Owner, Owner.Facing, item);
+                            asInteracted = true;
+                            break;
+                        }
+                    }
+                }
             }
         }
     }

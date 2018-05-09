@@ -10,7 +10,7 @@ namespace Hevadea.GameObjects.Items.Tags
 
         public override void InteracteOn(Entity user, TilePosition pos)
         {
-            Action?.Invoke(user, pos);
+			Action.Invoke(user, pos);
         }
     }
 }

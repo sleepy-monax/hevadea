@@ -6,6 +6,7 @@ using Hevadea.Framework.Ressource;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -35,7 +36,7 @@ namespace Hevadea.Framework
         public static SceneManager Scene;
         public static UiManager Ui;
         public static RessourceManager Ressource;
-        public static Random Rnd = new Random();
+		public static FastRandom Rnd = new FastRandom();
 
         private static Scene _startScene;
         

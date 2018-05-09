@@ -65,6 +65,13 @@ namespace Hevadea.Loading.Tasks
             game.MainPlayer = player;
         }
 
+		public static Level LoadLevel(string json)
+		{
+			LevelStorage levelStorage = json.FromJson<LevelStorage>();
+			Level level = new Level(levelStorage);
+			return level;
+		}
+
         public Level LoadLevel(string levelName, string path)
         {
             SetProgress(0);

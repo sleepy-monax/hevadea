@@ -26,7 +26,7 @@ namespace Hevadea.Worlds.Level
 
             return result;
         }
-        
+
         public bool IsAll<T>(Rectangle rectangle) where T: TileComponent
         {
             var beginX = rectangle.X / GLOBAL.Unit;
@@ -36,11 +36,14 @@ namespace Hevadea.Worlds.Level
             var endY = (rectangle.Y + rectangle.Height) / GLOBAL.Unit;
 
             bool result =  GetTile(beginX, beginY).HasTag<T>();;
+
             for (var x = beginX; x <= endX; x++)
             for (var y = beginY; y <= endY; y++)
             {
+
                 if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
-                result &= GetTile(x, y).HasTag<T>();
+               
+				result &= GetTile(x, y).HasTag<T>();
             }
 
             return result;
@@ -73,8 +76,9 @@ namespace Hevadea.Worlds.Level
                 {
                     var xx = tx + x;
                     var yy = ty + y;
-                        if (xx >= 0 && yy >= 0 && xx < Width && yy < Height)
-                            CachedTileConnection[xx, yy] = null;
+
+                    if (xx >= 0 && yy >= 0 && xx < Width && yy < Height)
+                        CachedTileConnection[xx, yy] = null;
                 }
             }
             

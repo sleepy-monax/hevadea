@@ -10,14 +10,13 @@ namespace Hevadea.Networking
         
          
         EntityMove, EntityUpdate, EntityRemove, EntityAdded
-       
     }
     
     public static class PacketFactorie
     {
         public static DataBuffer ConstructLogin(string playerName, string gameInfo)
             => new DataBuffer()
-                .WriteInteger((int)PacketType.LoginToken)
+                .WriteInteger((int)PacketType.Login)
                 .WriteStringASCII(playerName)
                 .WriteStringASCII(gameInfo);
         

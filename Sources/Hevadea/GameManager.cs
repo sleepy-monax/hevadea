@@ -8,12 +8,11 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea
 {
-    public partial class GameManager
+    public class GameManager
     {
-        public string SavePath { get; set; } = "./test/";
-        
-        private Menu _currentMenu;
+        Menu _currentMenu;
 
+		public string SavePath { get; set; } = "./test/";
         public World World { get; set; }
         public EntityPlayer MainPlayer { get; set; }
         public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
@@ -52,13 +51,9 @@ namespace Hevadea
             if (MainPlayer.Removed)
             { 
                 if (MainPlayer.X == 0f && MainPlayer.Y == 0f)
-                {
                     World.SpawnPlayer(MainPlayer);
-                }
-                else
-                {
-                    World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
-                }
+                else 
+					World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
             }
             
             PlayerInput = new PlayerInputHandler(MainPlayer);

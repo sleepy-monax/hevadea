@@ -3,14 +3,16 @@ using Hevadea.Framework.Graphic.Particles;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Renderers;
+using Hevadea.Registry;
+using Hevadea.Storage;
 
 namespace Hevadea.Worlds.Level
 {
     public partial class Level
     {
-        private GameManager _game;
-        private World _world;
-        private List<Entity>[,] _entitiesOnTiles;
+        GameManager _game;
+        World _world;
+        List<Entity>[,] _entitiesOnTiles;
         
         public TileConection[,] CachedTileConnection;
         public Minimap Minimap;
@@ -27,6 +29,13 @@ namespace Hevadea.Worlds.Level
         
         public ParticleSystem ParticleSystem { get; }
         
+		public Level(LevelStorage levelStorage) : this(LEVELS.GetProperties(levelStorage.Type), levelStorage.Width, levelStorage.Height)
+		{
+			Name = levelStorage.Name;
+			Id = levelStorage.Id;
+			TilesData = levelStorage.TilesData;
+		}
+
         public Level(LevelProperties properties, int width, int height)
         {
             Properties = properties;

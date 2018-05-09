@@ -22,7 +22,7 @@ namespace Hevadea.Scenes
 
         public override void Load()
         {
-            maze = new Maze(mazeSize, mazeSize, Rise.Rnd);
+            maze = new Maze(mazeSize, mazeSize, new Random());
             sb = Rise.Graphic.CreateSpriteBatch();
         }
 
@@ -51,7 +51,7 @@ namespace Hevadea.Scenes
         {
             if (Rise.Input.KeyDown(Keys.A))
             {
-                maze = new Maze(mazeSize, mazeSize, Rise.Rnd);
+                maze = new Maze(mazeSize, mazeSize, new Random());
             }    
         }
 
