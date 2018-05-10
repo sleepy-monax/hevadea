@@ -34,8 +34,9 @@ FPS and UPS not accurate!
     Draw:   {Rise.MonoGame.DrawTime}
 
 Running on platform: '{Rise.Platform.GetPlatformName()}'
+    Family: {Rise.Platform.Family}
+    Hardware Screen {Rise.Platform.GetScreenWidth()}, {Rise.Platform.GetScreenHeight()}
     Screen: {Rise.Graphic.GetWidth()}, {Rise.Graphic.GetHeight()}
-
 Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name} 
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}";
 

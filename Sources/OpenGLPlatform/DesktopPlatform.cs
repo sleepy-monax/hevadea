@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Platform;
 using System;
+using System.Windows.Forms;
 
 namespace OpenGLPlatform
 {
@@ -14,9 +15,8 @@ namespace OpenGLPlatform
 
         public override string GetPlatformName() => "OpenGl";
 
-        public override int GetScreenWidth() => 1280;
-
-        public override int GetScreenHeight() => 720;
+        public override int GetScreenWidth() => Screen.PrimaryScreen.Bounds.Width;      
+		public override int GetScreenHeight() => Screen.PrimaryScreen.Bounds.Height;
 
         public override string GetStorageFolder()
         {
