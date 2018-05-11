@@ -12,6 +12,7 @@ namespace Hevadea.Framework.Utils
         private bool _ended;
 
         public AnimationEndedHandler AnimationEnded;
+
         public delegate void AnimationEndedHandler(EasingManager sender);
 
         public void Reset()
@@ -21,18 +22,18 @@ namespace Hevadea.Framework.Utils
         }
 
         public float GetValueInv(EasingFunctions show, EasingFunctions hide) => (1f - GetValue(show, hide));
-        
+
         public float GetValue(EasingFunctions show, EasingFunctions hide)
         {
             return GetValue(Show ? show : hide);
         }
-        
+
         public float GetValue(EasingFunctions function)
         {
             return Easing.Interpolate(_value, function);
         }
 
-        public float GetValueInv(EasingFunctions function) => (1f - GetValue(function)); 
+        public float GetValueInv(EasingFunctions function) => (1f - GetValue(function));
 
         public void Update(double deltaTime)
         {

@@ -12,7 +12,7 @@ namespace Hevadea.Framework.Scening
         private Scene _nextScene;
         private ParalaxeBackground _background;
         private SpriteBatch _spritebatch;
-        
+
         public SceneManager()
         {
             _currentScene = null;
@@ -33,7 +33,7 @@ namespace Hevadea.Framework.Scening
         {
             return _currentScene;
         }
-        
+
         public void Switch(Scene nextScene)
         {
             var s = new Stopwatch();
@@ -44,15 +44,14 @@ namespace Hevadea.Framework.Scening
             s.Stop();
             Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
         }
-        
+
         public void Update(GameTime gameTime)
         {
-
             if (_nextScene != null)
             {
                 SwitchInternal();
             }
-            
+
             _currentScene?.Update(gameTime);
         }
 
@@ -68,11 +67,10 @@ namespace Hevadea.Framework.Scening
                 _spritebatch.FillRectangle(Rise.Graphic.GetBound(), Color.Black * 0.3f);
                 _spritebatch.End();
             }
-     
+
             _currentScene?.Draw(_spritebatch, gameTime);
         }
 
-        
         private void SwitchInternal()
         {
             if (_nextScene == null) return;
@@ -89,7 +87,6 @@ namespace Hevadea.Framework.Scening
                 _currentScene.Unload();
                 s.Stop();
                 Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{_currentScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to unload.");
-
 
                 Logger.Log<SceneManager>(LoggerLevel.Info, $"Scene switch from '{_currentScene.GetType().FullName}' to '{_nextScene.GetType().FullName}' is done.");
             }

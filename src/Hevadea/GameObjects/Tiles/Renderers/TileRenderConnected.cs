@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds.Level;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles.Renderers
 {
@@ -15,7 +15,7 @@ namespace Hevadea.GameObjects.Tiles.Renderers
             {
                 return level.CachedTileConnection[pos.X, pos.Y];
             }
-            
+
             var Up = false;
             var Down = false;
             var Left = false;
@@ -27,25 +27,25 @@ namespace Hevadea.GameObjects.Tiles.Renderers
 
             if (ConnectTo.Count > 0)
             {
-                Up        |= ConnectTo.Contains(level.GetTile(pos.X,     pos.Y - 1));
-                Down      |= ConnectTo.Contains(level.GetTile(pos.X,     pos.Y + 1));
-                Left      |= ConnectTo.Contains(level.GetTile(pos.X - 1, pos.Y    ));
-                Right     |= ConnectTo.Contains(level.GetTile(pos.X + 1, pos.Y    ));
-                UpLeft    |= ConnectTo.Contains(level.GetTile(pos.X - 1, pos.Y - 1));
-                UpRight   |= ConnectTo.Contains(level.GetTile(pos.X + 1, pos.Y - 1));
-                DownLeft  |= ConnectTo.Contains(level.GetTile(pos.X - 1, pos.Y + 1));
+                Up |= ConnectTo.Contains(level.GetTile(pos.X, pos.Y - 1));
+                Down |= ConnectTo.Contains(level.GetTile(pos.X, pos.Y + 1));
+                Left |= ConnectTo.Contains(level.GetTile(pos.X - 1, pos.Y));
+                Right |= ConnectTo.Contains(level.GetTile(pos.X + 1, pos.Y));
+                UpLeft |= ConnectTo.Contains(level.GetTile(pos.X - 1, pos.Y - 1));
+                UpRight |= ConnectTo.Contains(level.GetTile(pos.X + 1, pos.Y - 1));
+                DownLeft |= ConnectTo.Contains(level.GetTile(pos.X - 1, pos.Y + 1));
                 DownRight |= ConnectTo.Contains(level.GetTile(pos.X + 1, pos.Y + 1));
             }
 
-            if (!DoNotConnectToMe || (Up || Down || Left || Right || UpLeft || UpRight|| DownLeft || DownRight))
+            if (!DoNotConnectToMe || (Up || Down || Left || Right || UpLeft || UpRight || DownLeft || DownRight))
             {
-                Up        |= level.GetTile(pos.X, pos.Y - 1)     == Tile;
-                Down      |= level.GetTile(pos.X, pos.Y + 1)     == Tile;
-                Left      |= level.GetTile(pos.X - 1, pos.Y)     == Tile;
-                Right     |= level.GetTile(pos.X + 1, pos.Y)     == Tile;
-                UpLeft    |= level.GetTile(pos.X - 1, pos.Y - 1) == Tile;
-                UpRight   |= level.GetTile(pos.X + 1, pos.Y - 1) == Tile;
-                DownLeft  |= level.GetTile(pos.X - 1, pos.Y + 1) == Tile;
+                Up |= level.GetTile(pos.X, pos.Y - 1) == Tile;
+                Down |= level.GetTile(pos.X, pos.Y + 1) == Tile;
+                Left |= level.GetTile(pos.X - 1, pos.Y) == Tile;
+                Right |= level.GetTile(pos.X + 1, pos.Y) == Tile;
+                UpLeft |= level.GetTile(pos.X - 1, pos.Y - 1) == Tile;
+                UpRight |= level.GetTile(pos.X + 1, pos.Y - 1) == Tile;
+                DownLeft |= level.GetTile(pos.X - 1, pos.Y + 1) == Tile;
                 DownRight |= level.GetTile(pos.X + 1, pos.Y + 1) == Tile;
             }
 

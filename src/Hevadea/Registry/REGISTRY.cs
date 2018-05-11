@@ -8,7 +8,7 @@ namespace Hevadea.Registry
         public static void Initialize()
         {
             Logger.Log("Initializing game registery.");
-            
+
             TILES.Initialize();
             EntityFactory.Initialize();
             ITEMS.Initialize();

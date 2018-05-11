@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.GameObjects.Entities;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Entities.Blueprints;
-using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
 using Hevadea.GameObjects.Items.Tags;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects
 {
@@ -40,31 +38,30 @@ namespace Hevadea.GameObjects
         public static Item PICKAXE;
         public static Item SHOVEl;
         public static Item HOE;
-        
+
         public static void Initialize()
         {
-
-            BELT           = new Item("belt",           new Sprite(Ressources.TileItems, new Point(9, 0)));
-            CHEST          = new Item("chest",          new Sprite(Ressources.TileEntities, new Point(0, 1)));
+            BELT = new Item("belt", new Sprite(Ressources.TileItems, new Point(9, 0)));
+            CHEST = new Item("chest", new Sprite(Ressources.TileEntities, new Point(0, 1)));
             CRAFTING_BENCH = new Item("crafting_bench", new Sprite(Ressources.TileEntities, new Point(1, 0)));
-            FURNACE        = new Item("furnace",        new Sprite(Ressources.TileEntities, new Point(1, 1)));
-            
-            LIGHTER        = new Item("lighter", new Sprite(Ressources.TileEntities, new Point(4, 0)));
-            GRASS_PATCH    = new Item("grass_patch",    new Sprite(Ressources.TileItems, new Point(7, 2)));
-            COAL           = new Item("coal",           new Sprite(Ressources.TileItems, new Point(6, 2)));
-            IRON_ORE       = new Item("iron_ore",       new Sprite(Ressources.TileItems, new Point(8, 0)));  
-            PINE_CONE      = new Item("pine_cone",      new Sprite(Ressources.TileItems, new Point(5, 2)));
-            RAW_FISH       = new Item("raw_fish", new Sprite(Ressources.TileEntities, new Point(11, 0)));
-            SAND           = new Item("sand",           new Sprite(Ressources.TileItems, new Point(7, 3)));
-            STONE          = new Item("stone",          new Sprite(Ressources.TileItems, new Point(7, 0)));
-            TNT            = new Item("tnt", new Sprite(Ressources.TileItems, new Point(0, 0)));
-            TORCH          = new Item("torch",          new Sprite(Ressources.TileEntities, new Point(4, 0)));
-            WOOD_FLOOR     = new Item("wood_floor",     new Sprite(Ressources.TileItems, new Point(7, 5)));
-            WOOD_LOG       = new Item("wood_log",       new Sprite(Ressources.TileItems, 6));
-            WOOD_PLANK     = new Item("wood_plank",     new Sprite(Ressources.TileItems, new Point(6, 1)));
-            WOOD_STICK     = new Item("wood_stick",     new Sprite(Ressources.TileItems, 5));
-            WOOD_WALL      = new Item("wood_wall",      new Sprite(Ressources.TileItems, new Point(7, 4)));
-            
+            FURNACE = new Item("furnace", new Sprite(Ressources.TileEntities, new Point(1, 1)));
+
+            LIGHTER = new Item("lighter", new Sprite(Ressources.TileEntities, new Point(4, 0)));
+            GRASS_PATCH = new Item("grass_patch", new Sprite(Ressources.TileItems, new Point(7, 2)));
+            COAL = new Item("coal", new Sprite(Ressources.TileItems, new Point(6, 2)));
+            IRON_ORE = new Item("iron_ore", new Sprite(Ressources.TileItems, new Point(8, 0)));
+            PINE_CONE = new Item("pine_cone", new Sprite(Ressources.TileItems, new Point(5, 2)));
+            RAW_FISH = new Item("raw_fish", new Sprite(Ressources.TileEntities, new Point(11, 0)));
+            SAND = new Item("sand", new Sprite(Ressources.TileItems, new Point(7, 3)));
+            STONE = new Item("stone", new Sprite(Ressources.TileItems, new Point(7, 0)));
+            TNT = new Item("tnt", new Sprite(Ressources.TileItems, new Point(0, 0)));
+            TORCH = new Item("torch", new Sprite(Ressources.TileEntities, new Point(4, 0)));
+            WOOD_FLOOR = new Item("wood_floor", new Sprite(Ressources.TileItems, new Point(7, 5)));
+            WOOD_LOG = new Item("wood_log", new Sprite(Ressources.TileItems, 6));
+            WOOD_PLANK = new Item("wood_plank", new Sprite(Ressources.TileItems, new Point(6, 1)));
+            WOOD_STICK = new Item("wood_stick", new Sprite(Ressources.TileItems, 5));
+            WOOD_WALL = new Item("wood_wall", new Sprite(Ressources.TileItems, new Point(7, 4)));
+
             AXE = new Item("axe", new Sprite(Ressources.TileItems, new Point(0, 0)));
             PICKAXE = new Item("pickaxe", new Sprite(Ressources.TileItems, new Point(1, 0)));
             SHOVEl = new Item("shovel", new Sprite(Ressources.TileItems, new Point(2, 0)));
@@ -78,12 +75,12 @@ namespace Hevadea.GameObjects
             CRAFTING_BENCH.AddTag(new PlaceEntity(EntityFactory.CRAFTING_BENCH));
             FURNACE.AddTag(new PlaceEntity(EntityFactory.FURNACE));
             TORCH.AddTag(new PlaceEntity(EntityFactory.TORCH));
-            
-            WOOD_FLOOR.AddTag(new PlaceTile(TILES.WOOD_FLOOR){CanBePlaceOn = {TILES.DIRT}});
-            WOOD_WALL.AddTag(new PlaceTile(TILES.WOOD_WALL){CanBePlaceOn = {TILES.DIRT}});
-            GRASS_PATCH.AddTag(new PlaceTile(TILES.GRASS){CanBePlaceOn = {TILES.DIRT}});
-            SAND.AddTag(new PlaceTile(TILES.SAND){CanBePlaceOn = {TILES.DIRT}});
-            
+
+            WOOD_FLOOR.AddTag(new PlaceTile(TILES.WOOD_FLOOR) { CanBePlaceOn = { TILES.DIRT } });
+            WOOD_WALL.AddTag(new PlaceTile(TILES.WOOD_WALL) { CanBePlaceOn = { TILES.DIRT } });
+            GRASS_PATCH.AddTag(new PlaceTile(TILES.GRASS) { CanBePlaceOn = { TILES.DIRT } });
+            SAND.AddTag(new PlaceTile(TILES.SAND) { CanBePlaceOn = { TILES.DIRT } });
+
             BELT.AddTag(new PlaceEntity(EntityFactory.BELT));
             TNT.AddTag(new PlaceEntity(EntityFactory.TNT));
             LIGHTER.AddTag(new ActionItemTag()
@@ -106,7 +103,7 @@ namespace Hevadea.GameObjects
                     new GroupeDamage<EntityBlueprint>(EntityFactory.GROUPE_CREATURE, 1.3f)
                 }
             });
-            
+
             SWORD.AddTag(new DamageTag()
             {
                 PerEntityDamage =
@@ -115,7 +112,6 @@ namespace Hevadea.GameObjects
                     new GroupeDamage<EntityBlueprint>(EntityFactory.GROUPE_CREATURE, 2f)
                 }
             });
-            
         }
     }
 }

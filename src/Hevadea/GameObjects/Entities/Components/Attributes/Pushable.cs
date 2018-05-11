@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects.Entities.Blueprints;
+﻿using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Attributes
 {
@@ -12,7 +12,7 @@ namespace Hevadea.GameObjects.Entities.Components.Attributes
         public Entity IsPushBy { get; private set; }
         public List<EntityBlueprint> CanBePushBy { get; set; } = new List<EntityBlueprint>();
         public bool CanBePushByAnything => CanBePushBy.Count == 0;
-        
+
         public bool Push(Entity pusher, Direction direction, float strength)
         {
             if (IsPushBy != null) return false;

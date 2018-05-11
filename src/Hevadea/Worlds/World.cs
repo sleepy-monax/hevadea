@@ -1,25 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows.Forms;
-using Hevadea.Framework;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Worlds
 {
     public class World
     {
         private readonly SpriteBatch _spriteBatch;
+
         private readonly BlendState _lightBlend = new BlendState
         {
             ColorBlendFunction = BlendFunction.Add,
             ColorSourceBlend = Blend.DestinationColor,
             ColorDestinationBlend = Blend.Zero
         };
-        
+
         public GameManager Game;
         public List<Level.Level> Levels = new List<Level.Level>();
         public DayNightCycle DayNightCycle { get; }
@@ -28,14 +26,14 @@ namespace Hevadea.Worlds
         public World()
         {
             _spriteBatch = Rise.Graphic.CreateSpriteBatch();
-            DayNightCycle = new DayNightCycle(                
+            DayNightCycle = new DayNightCycle(
                 new DayStage("Day", 600, Color.White),
-                
+
                 new DayStage("Dusk0", 30, new Color(187, 104, 50)),
                 new DayStage("Dusk1", 30, new Color(125, 54, 48)),
                 new DayStage("Dusk2", 30, new Color(75, 32, 32)),
                 new DayStage("Dusk3", 30, new Color(25, 26, 25)),
-                
+
                 new DayStage("Night", 600, Color.Blue * 0.1f),
 
                 new DayStage("Dawn0", 30, new Color(25, 26, 25)),
@@ -72,23 +70,22 @@ namespace Hevadea.Worlds
             var level = camera.FocusEntity.Level;
             var state = level.GetRenderState(camera);
             var cameraTransform = camera.GetTransform();
-            
+
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[1]);
-            
-            _spriteBatch.Begin(SpriteSortMode.Deferred,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawTerrain(state, _spriteBatch, gameTime);
             _spriteBatch.End();
-            
-            _spriteBatch.Begin(SpriteSortMode.Deferred,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawEntities(state, _spriteBatch, gameTime);
             _spriteBatch.End();
-            
-            _spriteBatch.Begin(SpriteSortMode.Deferred,samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
             level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
             _spriteBatch.End();
-            
-            Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
 
+            Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
 
             var ambiantColor = level.Properties.AffectedByDayNightCycle
                 ? DayNightCycle.GetAmbiantLight()
@@ -117,10 +114,10 @@ namespace Hevadea.Worlds
         public int GetUeid()
         {
             var ueid = 0;
-            
-            do ueid = Rise.Rnd.Next(); 
+
+            do ueid = Rise.Rnd.Next();
             while (GetEntityByUeid(ueid) != null);
-            
+
             return ueid;
         }
 
@@ -136,7 +133,7 @@ namespace Hevadea.Worlds
 
             return null;
         }
-        
+
         public void Initialize(GameManager game)
         {
             Game = game;

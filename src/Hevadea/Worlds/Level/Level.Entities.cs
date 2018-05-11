@@ -30,7 +30,7 @@ namespace Hevadea.Worlds.Level
             SpawnEntity(entity, tx, ty, offX, offY);
             return entity;
         }
-        
+
         public void AddEntity(Entity e)
         {
             e.Removed = false;
@@ -82,15 +82,14 @@ namespace Hevadea.Worlds.Level
             var endX = (area.X + area.Width) / GLOBAL.Unit + 1;
             var endY = (area.Y + area.Height) / GLOBAL.Unit + 1;
 
-
             for (int x = (int)beginX; x < endX; x++)
-            for (int y = (int)beginY; y < endY; y++)
-            {
-                if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
-                var entities = _entitiesOnTiles[x, y];
+                for (int y = (int)beginY; y < endY; y++)
+                {
+                    if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
+                    var entities = _entitiesOnTiles[x, y];
 
-                result.AddRange(entities.Where(i => i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position)));
-            }
+                    result.AddRange(entities.Where(i => i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position)));
+                }
 
             return result;
         }

@@ -24,7 +24,7 @@ namespace Hevadea.Framework.Utils.Json
             return stringBuilder.ToString();
         }
 
-        static void AppendValue(StringBuilder stringBuilder, object item)
+        private static void AppendValue(StringBuilder stringBuilder, object item)
         {
             if (item == null)
             {
@@ -43,27 +43,35 @@ namespace Hevadea.Framework.Utils.Json
                         case '\\':
                             stringBuilder.Append("\\\\");
                             break;
+
                         case '\"':
                             stringBuilder.Append("\\\"");
                             break;
+
                         case '\b':
                             stringBuilder.Append("\\b");
                             break;
+
                         case '\f':
                             stringBuilder.Append("\\f");
                             break;
+
                         case '\t':
                             stringBuilder.Append("\\t");
                             break;
+
                         case '\n':
                             stringBuilder.Append("\\n");
                             break;
+
                         case '\r':
                             stringBuilder.Append("\\r");
                             break;
+
                         case '\0':
                             stringBuilder.Append("\\0");
                             break;
+
                         default:
                             stringBuilder.Append(str[i]);
                             break;
@@ -118,14 +126,14 @@ namespace Hevadea.Framework.Utils.Json
                 stringBuilder.Append('{');
                 var dict = item as IDictionary;
                 var isFirst = true;
-                
+
                 foreach (object key in dict.Keys)
                 {
                     if (isFirst)
                         isFirst = false;
                     else
                         stringBuilder.Append(',');
-                    
+
                     stringBuilder.Append('\"');
                     if (keyType == typeof(string))
                     {
@@ -136,8 +144,7 @@ namespace Hevadea.Framework.Utils.Json
                         stringBuilder.Append(key.ToString());
                     }
                     stringBuilder.Append("\":");
-                    
-                    
+
                     AppendValue(stringBuilder, dict[key]);
                 }
 

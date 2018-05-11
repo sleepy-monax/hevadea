@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Hevadea.GameObjects.Tiles;
+using Hevadea.Worlds.Level;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hevadea.GameObjects.Tiles;
-using Hevadea.Registry;
-using Hevadea.Worlds.Level;
 
 namespace Hevadea.GameObjects.Items
 {
@@ -11,7 +10,7 @@ namespace Hevadea.GameObjects.Items
     {
         public Dictionary<int, int> Items { get; set; }
         public int Capacity { get; }
-        
+
         public ItemStorage(int capacity = 256)
         {
             Items = new Dictionary<int, int>();
@@ -21,7 +20,7 @@ namespace Hevadea.GameObjects.Items
         public int Add(Item item, int quantity)
         {
             if (item == null) return quantity;
-            
+
             var count = quantity;
             for (var i = 0; i < quantity; i++)
                 if (Add(item))
@@ -33,16 +32,16 @@ namespace Hevadea.GameObjects.Items
         public bool Add(Item item)
         {
             if (item == null || !HasFreeSlot()) return false;
-            
+
             if (Items.ContainsKey(item.Id))
             {
                 Items[item.Id] = Items[item.Id] + 1;
             }
             else
             {
-                Items.Add(item.Id, 1);    
+                Items.Add(item.Id, 1);
             }
-                
+
             return true;
         }
 
@@ -62,7 +61,7 @@ namespace Hevadea.GameObjects.Items
 
             return result;
         }
-        
+
         public int Count(Item item)
         {
             if (item == null || !Items.ContainsKey(item.Id)) return 0;
@@ -78,7 +77,7 @@ namespace Hevadea.GameObjects.Items
         {
             return ITEMS.ById[Items.Keys.ElementAt(index)];
         }
-        
+
         public void Remove(Item item, int quantity)
         {
             if (item == null || !Items.ContainsKey(item.Id)) return;
@@ -105,8 +104,8 @@ namespace Hevadea.GameObjects.Items
 
             Items.Clear();
         }
-        
-        public void DropOnGround(Level level, Item item, TilePosition pos , int count)
+
+        public void DropOnGround(Level level, Item item, TilePosition pos, int count)
         {
             for (var i = 0; i < count; i++)
             {

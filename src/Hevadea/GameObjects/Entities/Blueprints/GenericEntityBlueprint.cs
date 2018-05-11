@@ -11,7 +11,6 @@
             var entity = new T();
             entity.Blueprint = this;
             return entity;
-
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Hevadea.Framework;
+﻿using Hevadea.Craftings;
+using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
+using Hevadea.GameObjects.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Hevadea.Craftings;
-using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -15,7 +15,7 @@ namespace Hevadea.Scenes.Widgets
         private readonly List<Recipe> _recipies;
 
         private Recipe _selectedRecipe;
-        
+
         public WidgetCrafting(ItemStorage i, List<Recipe> recipies)
         {
             _inventory = i;
@@ -33,7 +33,7 @@ namespace Hevadea.Scenes.Widgets
                 {
                     var canBeCrafted = c.CanBeCrafted(_inventory);
 
-                    var p = new Point(Host.X + Scale(4), Host.Y + index * Scale( 56));
+                    var p = new Point(Host.X + Scale(4), Host.Y + index * Scale(56));
 
                     var rect = new Rectangle(p.X, p.Y, Host.Width - Scale(8), Scale(48));
                     var spriteRect = new Rectangle(p.X + Scale(8), p.Y + Scale(8), Scale(32), Scale(32));

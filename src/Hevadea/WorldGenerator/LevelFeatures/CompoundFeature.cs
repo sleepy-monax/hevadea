@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using Hevadea.Worlds;
-using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds.Level;
+using System.Collections.Generic;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
@@ -8,12 +7,12 @@ namespace Hevadea.WorldGenerator.LevelFeatures
     {
         private string _description;
         public List<LevelFeature> Content { get; set; } = new List<LevelFeature>();
-        
+
         public CompoundFeature(string description)
         {
             _description = description;
         }
-        
+
         public override string GetName()
         {
             return _description;

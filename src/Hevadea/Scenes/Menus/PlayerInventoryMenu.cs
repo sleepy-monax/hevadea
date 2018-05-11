@@ -16,7 +16,6 @@ using System.Collections.Generic;
 
 namespace Hevadea.Scenes.Menus
 {
-
     public abstract class InventoryTab : Tab
     {
         public GameManager Game { get; }
@@ -30,8 +29,8 @@ namespace Hevadea.Scenes.Menus
     public class PlayerInventoryMenu : Menu
     {
         private WidgetItemContainer _inventory;
-        private CraftingTab         _crafting;
-        private WidgetTabContainer  _sideMenu;
+        private CraftingTab _crafting;
+        private WidgetTabContainer _sideMenu;
 
         public PlayerInventoryMenu(GameManager game) : base(game)
         {
@@ -41,7 +40,7 @@ namespace Hevadea.Scenes.Menus
         public void InitializeComponents()
         {
             PauseGame = true;
-            
+
             var r = new List<List<Recipe>>();
             foreach (var e in Game.MainPlayer.Level.GetEntitiesOnRadius(Game.MainPlayer.X, Game.MainPlayer.Y, GLOBAL.Unit * 3))
             {
@@ -54,14 +53,14 @@ namespace Hevadea.Scenes.Menus
                     }
                 }
             }
-            
+
             var recipies = new List<Recipe>();
             recipies.AddRange(RECIPIES.HandCrafted);
             foreach (var i in r)
             {
                 recipies.AddRange(i);
             }
-            
+
             _inventory = new WidgetItemContainer(Game.MainPlayer.GetComponent<Inventory>().Content);
             _crafting = new CraftingTab(Game, recipies);
 
@@ -109,16 +108,15 @@ namespace Hevadea.Scenes.Menus
                     _crafting,
                     new MinimapTab(Game),
                     new PlayerStatesTab(),
-                    new EquipmentTab(),  
+                    new EquipmentTab(),
                     new SaveTab(Game),
                 }
             };
 
             Content = new Container()
             {
-                Childrens = {_sideMenu },
+                Childrens = { _sideMenu },
             };
-            
         }
 
         private void CloseBtnOnMouseClick(Widget sender)

@@ -2,12 +2,12 @@
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Utils;
+using Hevadea.Registry;
 using Hevadea.Scenes.MainMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using System.Threading;
-using Hevadea.Registry;
 
 namespace Hevadea.Scenes
 {
@@ -18,7 +18,6 @@ namespace Hevadea.Scenes
         private SpriteBatch _sb;
         private float _alpha = 0f;
 
-
         public override void Load()
         {
             new Thread(() =>
@@ -26,7 +25,7 @@ namespace Hevadea.Scenes
                 Ressources.Load();
                 REGISTRY.Initialize();
                 Directory.CreateDirectory(GLOBAL.GetSavePath());
-                
+
                 Rise.Ui.DefaultFont = Ressources.FontRomulus;
                 Rise.Ui.DebugFont = Ressources.FontHack;
                 _loadingDone = true;
@@ -46,13 +45,13 @@ namespace Hevadea.Scenes
             _once = false;
         }
 
-        float r = 0;
+        private float r = 0;
 
         public override void OnDraw(GameTime gameTime)
         {
             _sb.Begin(samplerState: SamplerState.PointWrap);
             _sb.FillRectangle(Rise.Graphic.GetBound(), Color.White);
-            
+
             if (_loadingDone)
             {
                 _alpha *= 0.95f;
@@ -67,15 +66,15 @@ namespace Hevadea.Scenes
             _sb.FillRectangle(
                 Rise.Graphic.GetWidth() / 2, Rise.Graphic.GetHeight() / 2,
                 128 * f, 128 * f,
-                ColorPalette.Accent * _alpha,r
+                ColorPalette.Accent * _alpha, r
                 , 0.5f, 0.5f);
-            
+
             if (Ressources.FontRomulus != null)
             {
                 _sb.DrawString(Ressources.FontRomulus, "Loading...", Rise.Graphic.GetBound(), DrawText.Alignement.Center, DrawText.TextStyle.Regular, Color.Black, 2f);
             }
-            
-            _sb.End();  
+
+            _sb.End();
         }
     }
 }

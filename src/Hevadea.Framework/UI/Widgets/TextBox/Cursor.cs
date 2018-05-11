@@ -36,7 +36,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 {
                     if (value.Value != TextCursor)
                     {
-                        selectedChar = (short) (value.Value.Clamp(0, textBox.Text.Length));
+                        selectedChar = (short)(value.Value.Clamp(0, textBox.Text.Length));
                     }
                 }
                 else
@@ -87,7 +87,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 Point sc = GetPosition(x, y, selectedChar.Value);
                 if (sc.X > cp.X)
                 {
-                    spriteBatch.Draw(Rise.Graphic.GetPixel() ,
+                    spriteBatch.Draw(Rise.Graphic.GetPixel(),
                         new Rectangle(cp.X, cp.Y, sc.X - cp.X, textBox.Renderer.Font.LineSpacing), Icon, SelectionColor);
                 }
                 else
@@ -131,5 +131,5 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             }
             return new Point(x, y);
         }
-}
+    }
 }

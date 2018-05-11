@@ -9,7 +9,7 @@ namespace Hevadea.Framework.Graphic.Text
         private RenderTarget2D _renderTarget;
         private SpriteBatch _sb;
         private Texture2D _renderedText; // Cached texture that has all of the characters.
-        
+
         public Rectangle Destination { get; set; }
         public SpriteFont Font { get; set; }
         public Color Color { get; set; } = Color.White;
@@ -19,6 +19,7 @@ namespace Hevadea.Framework.Graphic.Text
 
         // With of the character.
         internal byte[] Width;
+
         // Row the character is on.
         private readonly byte[] row;
 
@@ -33,7 +34,6 @@ namespace Hevadea.Framework.Graphic.Text
             row = new byte[_text.MaxLength];
         }
 
-
         public void Dispose()
         {
             _renderedText?.Dispose();
@@ -44,7 +44,6 @@ namespace Hevadea.Framework.Graphic.Text
             _sb?.Dispose();
             _sb = null;
         }
-
 
         public void Update()
         {
@@ -100,7 +99,6 @@ namespace Hevadea.Framework.Graphic.Text
             return _text.Length;
         }
 
-
         private Texture2D RenderText()
         {
             if (_sb == null)
@@ -140,7 +138,7 @@ namespace Hevadea.Framework.Graphic.Text
         {
             int breakLocation = start;
             float lineLength = 0.0f;
-            byte r = (byte) (height / Font.LineSpacing);
+            byte r = (byte)(height / Font.LineSpacing);
 
             string t = _text.String;
             string tempText;
@@ -149,8 +147,8 @@ namespace Hevadea.Framework.Graphic.Text
             for (int iCount = start; iCount < _text.Length; iCount++)
             {
                 // Calculate screen location of current character.
-                X[iCount] = (short) lineLength;
-                Y[iCount] = (short) height;
+                X[iCount] = (short)lineLength;
+                Y[iCount] = (short)height;
                 row[iCount] = r;
 
                 // Calculate the width of the current line.
@@ -199,5 +197,5 @@ namespace Hevadea.Framework.Graphic.Text
             spriteBatch.DrawString(Font, tempText, new Vector2(0.0f, height), Color);
             return _text.Length;
         }
-}
+    }
 }

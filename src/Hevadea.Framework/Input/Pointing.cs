@@ -14,7 +14,7 @@ namespace Hevadea.Framework.Input
         private TouchCollection _oldTouchState;
         private MouseState _oldMouseState;
         private MouseState _mouseState;
-        
+
         public void Update()
         {
             _oldTouchState = _touchState;
@@ -35,7 +35,7 @@ namespace Hevadea.Framework.Input
                 spritebatch.PutPixel(f.Position, Color.Red, 4);
             }
         }
-        
+
         public bool AreaDown(Rectangle area)
         {
             foreach (var finger in _touchState)
@@ -69,19 +69,18 @@ namespace Hevadea.Framework.Input
 
         public bool AreaClick(Rectangle area)
         {
-
             if (_touchState.Count > 0)
             {
-                return _touchState.Where((t, i) => 
+                return _touchState.Where((t, i) =>
                     area.Contains(t.Position) &&
                     (t.State == TouchLocationState.Released &&
                      _oldTouchState[i].State == TouchLocationState.Moved)).Any();
             }
 
-            if (area.Contains(_mouseState.Position) && 
+            if (area.Contains(_mouseState.Position) &&
                 _mouseState.LeftButton == ButtonState.Released &&
                 _oldMouseState.LeftButton == ButtonState.Pressed) return true;
-            
+
             return false;
         }
 

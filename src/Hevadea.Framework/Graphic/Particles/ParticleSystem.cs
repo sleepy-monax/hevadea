@@ -24,8 +24,15 @@ namespace Hevadea.Framework.Graphic.Particles
             EmiteAt(particle, x, y, vec.X, vec.Y);
         }
 
-        public void Clear() { _particles.Clear(); _counter = 0; }
-        public int Count() { return _counter; }
+        public void Clear()
+        {
+            _particles.Clear(); _counter = 0;
+        }
+
+        public int Count()
+        {
+            return _counter;
+        }
 
         public void Update(GameTime gameTime)
         {

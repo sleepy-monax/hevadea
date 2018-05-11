@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Worlds
 {
@@ -9,7 +9,7 @@ namespace Hevadea.Worlds
     {
         public readonly string Name;
         public readonly double Duration;
-        public readonly Color  LightColor;
+        public readonly Color LightColor;
 
         public DayStage(string name, double duration, Color lightColor)
         {
@@ -29,13 +29,13 @@ namespace Hevadea.Worlds
         public double CycleDuration { get; }
         public double Transition { get; set; } = 5;
         public double TimeOfTheDay => (Time % CycleDuration);
-        public int DayCount => (int) (Time / CycleDuration);
+        public int DayCount => (int)(Time / CycleDuration);
 
         public DayNightCycle(params DayStage[] dayStages)
         {
             Time = 0;
             _stages = dayStages.ToList();
-            CycleDuration = _stages.Select(x=>x.Duration).Aggregate((a, b) => a + b);
+            CycleDuration = _stages.Select(x => x.Duration).Aggregate((a, b) => a + b);
         }
 
         public DayStage GetDayStage(double time)
@@ -93,7 +93,7 @@ namespace Hevadea.Worlds
         {
             if (_previousStage == null) return _currentStage.LightColor;
 
-            return Color.Lerp(_previousStage.LightColor, _currentStage.LightColor, Mathf.Clamp01((float)(GetTimeOfTheCurrentStage() * (1/Transition))));
+            return Color.Lerp(_previousStage.LightColor, _currentStage.LightColor, Mathf.Clamp01((float)(GetTimeOfTheCurrentStage() * (1 / Transition))));
         }
     }
 }

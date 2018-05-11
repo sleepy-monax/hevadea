@@ -8,12 +8,14 @@ namespace Hevadea.Framework.Networking
     public class PacketDispacher<packetT> where packetT : struct, IConvertible
     {
         public delegate void PacketHandler(Socket socket, DataBuffer data);
+
         private Dictionary<int, PacketHandler> _handlers = new Dictionary<int, PacketHandler>();
+
         public event PacketHandler UnknowPacket;
-        
+
         public PacketDispacher(Peer netPeer)
         {
-            netPeer.DataReceived = OnDataRecived;   
+            netPeer.DataReceived = OnDataRecived;
         }
 
         private void OnDataRecived(Socket socket, DataBuffer packet)
@@ -33,7 +35,7 @@ namespace Hevadea.Framework.Networking
         public void RegisterHandler(packetT type, PacketHandler handler)
         {
             var packetId = type.ToInt32(CultureInfo.InvariantCulture);
-            
+
             if (_handlers.ContainsKey(packetId))
             {
                 _handlers[packetId] = handler;

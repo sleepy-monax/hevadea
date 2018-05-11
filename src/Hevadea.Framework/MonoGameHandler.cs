@@ -10,13 +10,19 @@ namespace Hevadea.Framework
         private Stopwatch _drawStopwatch = new Stopwatch();
         private Stopwatch _updateStopwatch = new Stopwatch();
         private bool _windowSizeIsBeingChanged = false;
-        
+
         public delegate void GameEventHandler(Game sender, GameTime gameTime);
+
         public GraphicsDeviceManager Graphics;
+
         public event EventHandler OnInitialize;
+
         public event EventHandler OnLoadContent;
+
         public event EventHandler OnUnloadContent;
+
         public event GameEventHandler OnDraw;
+
         public event GameEventHandler OnUpdate;
 
         public int DrawTime { get; private set; } = 0;
@@ -68,7 +74,7 @@ namespace Hevadea.Framework
         protected override void Draw(GameTime gameTime)
         {
             if (UiThread == null) UiThread = Thread.CurrentThread;
-            
+
             _drawStopwatch.Start();
             OnDraw?.Invoke(this, gameTime);
             _drawStopwatch.Stop();

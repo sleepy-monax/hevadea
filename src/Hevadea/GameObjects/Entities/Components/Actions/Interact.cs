@@ -10,16 +10,16 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 {
     public class Interact : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable
     {
-        Sprite _cursor;
-        Sprite _cursorTile;
-        Sprite _cursorEntity;
-        bool _isEntitySelected = false;
+        private Sprite _cursor;
+        private Sprite _cursorTile;
+        private Sprite _cursorEntity;
+        private bool _isEntitySelected = false;
 
-        float _cursorTileX = 0;
-        float _cursorTileY = 0;
+        private float _cursorTileX = 0;
+        private float _cursorTileY = 0;
 
-        float _cursorX = 0;
-        float _cursorY = 0;
+        private float _cursorX = 0;
+        private float _cursorY = 0;
 
         public Interact()
         {
@@ -70,28 +70,22 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             _cursorTileX += (tx - _cursorTileX) * 0.1f;
             _cursorTileY += (ty - _cursorTileY) * 0.1f;
 
-
             _cursorX += (ex - _cursorX) * 0.5f;
             _cursorY += (ey - _cursorY) * 0.5f;
-            
-
-
         }
 
         public void Do(Item item)
         {
-            
-            if (item.HasTag<InteractItemTag>())
+            if (item?.HasTag<InteractItemTag>() ?? false)
             {
                 item.Tag<InteractItemTag>().InteracteOn(Owner, SelectedTile);
             }
             else
             {
-				var entities = Owner.GetFacingEntities(26);
+                var entities = Owner.GetFacingEntities(26);
 
-				if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true && entities.Count > 0)
+                if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true && entities.Count > 0)
                 {
-
                     foreach (var e in entities)
                     {
                         var interactable = e.GetComponent<Interactable>();

@@ -6,12 +6,15 @@ namespace Hevadea.Framework.Utils
 {
     public static class Compression
     {
-        public static byte[] Zip(this string str) {
+        public static byte[] Zip(this string str)
+        {
             var bytes = Encoding.UTF8.GetBytes(str);
 
             using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream()) {
-                using (var gs = new GZipStream(mso, CompressionMode.Compress)) {
+            using (var mso = new MemoryStream())
+            {
+                using (var gs = new GZipStream(mso, CompressionMode.Compress))
+                {
                     msi.CopyTo(gs);
                 }
 
@@ -19,10 +22,13 @@ namespace Hevadea.Framework.Utils
             }
         }
 
-        public static string Unzip(this byte[] bytes) {
+        public static string Unzip(this byte[] bytes)
+        {
             using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream()) {
-                using (var gs = new GZipStream(msi, CompressionMode.Decompress)) {
+            using (var mso = new MemoryStream())
+            {
+                using (var gs = new GZipStream(msi, CompressionMode.Decompress))
+                {
                     gs.CopyTo(mso);
                 }
 

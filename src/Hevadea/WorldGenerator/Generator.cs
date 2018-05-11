@@ -1,7 +1,7 @@
 ﻿using Hevadea.Framework.Utils;
+using Hevadea.Worlds;
 using System;
 using System.Collections.Generic;
-using Hevadea.Worlds;
 
 namespace Hevadea.WorldGenerator
 {
@@ -16,7 +16,7 @@ namespace Hevadea.WorldGenerator
         public Random Random { get; private set; }
 
         public LevelGenerator CurrentLevel = null;
-        
+
         public World Generate()
         {
             var w = new World();
@@ -33,7 +33,7 @@ namespace Hevadea.WorldGenerator
             {
                 wf.Apply(this, w);
             }
-            
+
             return w;
         }
     }

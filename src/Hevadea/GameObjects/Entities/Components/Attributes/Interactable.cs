@@ -1,6 +1,6 @@
-﻿using System;
-using Hevadea.GameObjects.Items;
+﻿using Hevadea.GameObjects.Items;
 using Hevadea.Utils;
+using System;
 
 namespace Hevadea.GameObjects.Entities.Components.Attributes
 {
@@ -17,7 +17,7 @@ namespace Hevadea.GameObjects.Entities.Components.Attributes
             Item = item;
         }
     }
-    
+
     public class Interactable : EntityComponent
     {
         public delegate void OnInteractHandle(object sender, InteractEventArg e);

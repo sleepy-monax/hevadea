@@ -25,22 +25,21 @@ namespace Hevadea.Framework.Graphic
             Layers = layers;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Rectangle destination,GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, Rectangle destination, GameTime gameTime)
         {
             Position = Position + gameTime.ElapsedGameTime.TotalSeconds;
             foreach (var l in Layers)
             {
                 var onScreenPos = (Position * l.Factor) % destination.Width;
 
-
                 var dest = new Rectangle(
-                    (int) onScreenPos + destination.X, destination.Y,
+                    (int)onScreenPos + destination.X, destination.Y,
                     destination.Width,
                     destination.Height
                 );
 
                 var dest2 = new Rectangle(
-                    (int) onScreenPos - destination.Width + destination.X, destination.Y,
+                    (int)onScreenPos - destination.Width + destination.X, destination.Y,
                     destination.Width,
                     destination.Height
                 );

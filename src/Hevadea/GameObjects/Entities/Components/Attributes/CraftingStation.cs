@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Hevadea.Craftings;
+﻿using Hevadea.Craftings;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Attributes
 {

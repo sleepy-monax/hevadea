@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Actions
 {
@@ -18,7 +18,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             IsMoving = false;
         }
 
-        public void MoveTo(TilePosition tilePosition, float speed = 1f,  bool setFacing = false)
+        public void MoveTo(TilePosition tilePosition, float speed = 1f, bool setFacing = false)
         {
             var destination = tilePosition.GetCenter();
             MoveTo(destination.X, destination.Y, speed, setFacing);
@@ -28,7 +28,6 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         {
             var dir = new Vector2(x - Owner.X, y - Owner.Y);
 
-            
             if (dir.Length() > 1f)
             {
                 dir.Normalize();
@@ -49,7 +48,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             }
             return true;
         }
-        
+
         public bool Do(float sx, float sy)
         {
             if (Owner.Removed) return false;
@@ -65,7 +64,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             // Stop the entity on world borders.
             if (Owner.X + sx >= Owner.Level.Width * GLOBAL.Unit) sx = 0;
             if (Owner.Y + sy >= Owner.Level.Height * GLOBAL.Unit) sy = 0;
-            
+
             if (Owner.X + sx < 0) sx = 0;
             if (Owner.Y + sy < 0) sy = 0;
 
@@ -77,7 +76,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                 var ownerhitbox = ownerColider.GetHitBox();
                 var futurPositionX = new RectangleF(ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height);
                 var futurPositionY = new RectangleF(ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
-                
+
                 var futurPosition = new RectangleF(ownerhitbox.X + sx, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height);
 
                 var colidingEntity = new HashSet<Entity>();
@@ -97,7 +96,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                     eHitbox = eColider.GetHitBox();
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
 
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, sx, 0f); IsMoving = true;}
+                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, sx, 0f); IsMoving = true; }
                     eHitbox = eColider.GetHitBox();
                     if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
                 }

@@ -2,7 +2,6 @@
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
-using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes
@@ -50,6 +49,5 @@ namespace Hevadea.Scenes
                 }
             };
         }
-
     }
 }

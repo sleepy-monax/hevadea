@@ -7,18 +7,19 @@ using Hevadea.GameObjects.Tiles.Components;
 
 namespace Hevadea.GameObjects.Entities.Components
 {
-    public class Explode:EntityComponent
+    public class Explode : EntityComponent
     {
         private float _strenght;
         private float _radius;
         private bool _hasExplosed;
 
-        public Explode(float strenght = 1f , float radius = 3f)
+        public Explode(float strenght = 1f, float radius = 3f)
         {
             _strenght = strenght;
             _radius = radius;
             _hasExplosed = false;
         }
+
         public void Do()
         {
             if (_hasExplosed) return;
@@ -27,11 +28,11 @@ namespace Hevadea.GameObjects.Entities.Components
             var entities = Owner.Level.GetEntitiesOnRadius(Owner.X, Owner.Y, _radius * GLOBAL.Unit);
             Owner.Game.Camera.Thrauma += 0.2f;
 
-            foreach (var e in entities) 
+            foreach (var e in entities)
             {
                 if (e != Owner)
                 {
-                    var distance =  Mathf.Distance(e.X, e.Y, Owner.X, Owner.Y); 
+                    var distance = Mathf.Distance(e.X, e.Y, Owner.X, Owner.Y);
                     e.GetComponent<Health>()?.Hurt(Owner, GetDammage(distance) * Rise.Rnd.NextFloat());
 
                     if (e == Owner.Game.MainPlayer)
@@ -46,7 +47,6 @@ namespace Hevadea.GameObjects.Entities.Components
                         e.GetComponent<Burnable>()?.SetInFire();
                     }
                 }
-
             }
 
             var pos = Owner.GetTilePosition();
@@ -60,29 +60,26 @@ namespace Hevadea.GameObjects.Entities.Components
 
                     if (distance < _radius * GLOBAL.Unit)
                     {
-                        tile.Tag<DamageTile>()?.Hurt(GetDammage(distance)* Rise.Rnd.NextFloat(), tilePos, Owner.Level);
+                        tile.Tag<DamageTile>()?.Hurt(GetDammage(distance) * Rise.Rnd.NextFloat(), tilePos, Owner.Level);
 
-                        if (Rise.Rnd.NextDouble() * 1.25 < 1f-(distance/ (_radius * GLOBAL.Unit)))
+                        if (Rise.Rnd.NextDouble() * 1.25 < 1f - (distance / (_radius * GLOBAL.Unit)))
                         {
-                            tile.Tag<BreakableTile>()?.Break(tilePos,Owner.Level);
+                            tile.Tag<BreakableTile>()?.Break(tilePos, Owner.Level);
                         }
-
                     }
                 }
             }
         }
 
-        float GetPower(float distance)
+        private float GetPower(float distance)
         {
             return (1f - (distance / (_radius * GLOBAL.Unit)));
         }
 
         public float GetDammage(float distance)
         {
-
-           var value = _strenght* GetPower(distance);
+            var value = _strenght * GetPower(distance);
             return value;
         }
-        
     }
 }

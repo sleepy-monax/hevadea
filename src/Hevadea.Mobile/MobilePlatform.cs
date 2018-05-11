@@ -5,8 +5,8 @@ namespace AndroidPlatform
 {
     public class MobilePlatform : PlatformBase
     {
-        Resources _ress;
-        HevadeaActivity _activity;
+        private Resources _ress;
+        private HevadeaActivity _activity;
 
         public MobilePlatform(Resources resource, HevadeaActivity activity)
         {
@@ -15,10 +15,10 @@ namespace AndroidPlatform
             Family = PlatformFamily.Mobile;
         }
 
-
         public override string GetPlatformName() => "Android";
 
         public override int GetScreenWidth() => _ress.DisplayMetrics.WidthPixels;
+
         public override int GetScreenHeight() => _ress.DisplayMetrics.HeightPixels;
 
         public override void Initialize()
@@ -26,7 +26,7 @@ namespace AndroidPlatform
         }
 
         public override void Update()
-        {    
+        {
         }
 
         public override string GetStorageFolder()

@@ -1,6 +1,5 @@
 ﻿using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Worlds.Level
@@ -18,16 +17,16 @@ namespace Hevadea.Worlds.Level
             var result = true;
 
             for (var x = beginX; x < endX; x++)
-            for (var y = beginY; y < endY; y++)
-            {
-                if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
-                result &= GetTile(x, y) == tile;
-            }
+                for (var y = beginY; y < endY; y++)
+                {
+                    if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
+                    result &= GetTile(x, y) == tile;
+                }
 
             return result;
         }
 
-        public bool IsAll<T>(Rectangle rectangle) where T: TileComponent
+        public bool IsAll<T>(Rectangle rectangle) where T : TileComponent
         {
             var beginX = rectangle.X / GLOBAL.Unit;
             var beginY = rectangle.Y / GLOBAL.Unit;
@@ -35,16 +34,15 @@ namespace Hevadea.Worlds.Level
             var endX = (rectangle.X + rectangle.Width) / GLOBAL.Unit;
             var endY = (rectangle.Y + rectangle.Height) / GLOBAL.Unit;
 
-            bool result =  GetTile(beginX, beginY).HasTag<T>();;
+            bool result = GetTile(beginX, beginY).HasTag<T>(); ;
 
             for (var x = beginX; x <= endX; x++)
-            for (var y = beginY; y <= endY; y++)
-            {
+                for (var y = beginY; y <= endY; y++)
+                {
+                    if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
 
-                if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
-               
-				result &= GetTile(x, y).HasTag<T>();
-            }
+                    result &= GetTile(x, y).HasTag<T>();
+                }
 
             return result;
         }
@@ -68,22 +66,22 @@ namespace Hevadea.Worlds.Level
         public bool SetTile(int tx, int ty, Tile tile)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return false;
-                        
-            if (IsInitialized)
-            {   
-                for (var x = -1; x <= 1; x++)
-                for (var y = -1; y <= 1; y++)
-                {
-                    var xx = tx + x;
-                    var yy = ty + y;
 
-                    if (xx >= 0 && yy >= 0 && xx < Width && yy < Height)
-                        CachedTileConnection[xx, yy] = null;
-                }
+            if (IsInitialized)
+            {
+                for (var x = -1; x <= 1; x++)
+                    for (var y = -1; y <= 1; y++)
+                    {
+                        var xx = tx + x;
+                        var yy = ty + y;
+
+                        if (xx >= 0 && yy >= 0 && xx < Width && yy < Height)
+                            CachedTileConnection[xx, yy] = null;
+                    }
             }
-            
+
             Tiles[tx + ty * Width] = tile;
-            
+
             return true;
         }
 
@@ -119,6 +117,6 @@ namespace Hevadea.Worlds.Level
         public void SetTileData<T>(int tx, int ty, string dataName, T value)
         {
             TilesData[tx + ty * Width][dataName] = value;
-        }   
+        }
     }
 }

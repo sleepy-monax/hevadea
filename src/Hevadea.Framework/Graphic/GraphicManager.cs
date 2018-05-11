@@ -17,8 +17,6 @@ namespace Hevadea.Framework.Graphic
             _graphicsDeviceManager = graphicsDeviceManager;
             _graphicsDevice = graphicsDevice;
         }
-        
-        #region Drawing
 
         public void Clear(Color clearColor)
         {
@@ -27,14 +25,15 @@ namespace Hevadea.Framework.Graphic
 
         private Texture2D _pixel;
         private Texture2D _fallback;
+
         public Texture2D GetPixel()
         {
             if (_pixel == null)
             {
                 _pixel = new Texture2D(_graphicsDevice, 1, 1, false, SurfaceFormat.Color);
-                _pixel.SetData(new[] {Color.White});
+                _pixel.SetData(new[] { Color.White });
             }
-            
+
             return _pixel;
         }
 
@@ -54,10 +53,6 @@ namespace Hevadea.Framework.Graphic
         {
             return new SpriteBatch(_graphicsDevice);
         }
-        
-        #endregion
-
-        #region Geometry
 
         public Rectangle GetBound()
         {
@@ -68,7 +63,7 @@ namespace Hevadea.Framework.Graphic
         {
             return GetBound().Center;
         }
-        
+
         public Point GetSize()
         {
             return new Point(GetWidth(), GetHeight());
@@ -78,12 +73,12 @@ namespace Hevadea.Framework.Graphic
         {
             return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenWidth() : _graphicsDeviceManager.PreferredBackBufferWidth;
         }
-        
+
         public int GetHeight()
         {
             return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenHeight() : _graphicsDeviceManager.PreferredBackBufferHeight;
         }
- 
+
         public void SetSize(int sx, int sy)
         {
             _graphicsDeviceManager.PreferredBackBufferWidth = sx;
@@ -103,15 +98,11 @@ namespace Hevadea.Framework.Graphic
             _graphicsDeviceManager.IsFullScreen = false;
             _graphicsDeviceManager.ApplyChanges();
         }
-        
+
         public void SetSize(Point size)
         {
             SetSize(size.X, size.Y);
         }
-
-        #endregion
-
-        #region RederTagets
 
         public void ResetRenderTargets()
         {
@@ -131,7 +122,7 @@ namespace Hevadea.Framework.Graphic
         {
             return new RenderTarget2D(_graphicsDevice, width, height);
         }
-        
+
         public RenderTarget2D CreateFullscreenRenderTarget()
         {
             Logger.Log<GraphicManager>($"Generating render target {GetWidth()}/{GetHeight()}");
@@ -140,7 +131,7 @@ namespace Hevadea.Framework.Graphic
 
         public void SetRenderTarget(RenderTarget2D renderTarget)
         {
-            _graphicsDevice.SetRenderTarget(renderTarget);   
+            _graphicsDevice.SetRenderTarget(renderTarget);
         }
 
         public void SetDefaultRenderTarget()
@@ -148,11 +139,7 @@ namespace Hevadea.Framework.Graphic
             _graphicsDevice.SetRenderTarget(null);
         }
 
-        #endregion
-
-        #region Scissorrectangle
-
-        public void SetScissor( Rectangle rect )
+        public void SetScissor(Rectangle rect)
         {
             _graphicsDevice.ScissorRectangle = rect;
         }
@@ -161,7 +148,5 @@ namespace Hevadea.Framework.Graphic
         {
             SetScissor(GetBound());
         }
-        
-        #endregion
     }
 }

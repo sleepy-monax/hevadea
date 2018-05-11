@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.GameObjects.Tiles.Renderers;
 using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles
 {
@@ -17,7 +17,7 @@ namespace Hevadea.GameObjects.Tiles
         private TileRender _render = null;
 
         public Color MiniMapColor { get; }
-        
+
         public Tile(string name, Color? minimapColor = null)
         {
             Name = name;
@@ -27,7 +27,7 @@ namespace Hevadea.GameObjects.Tiles
 
         public Tile(string name, TileRender renderer, Color? minimapColor = null) : this(name, minimapColor)
         {
-            Render = renderer;            
+            Render = renderer;
         }
 
         public void Update(TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
@@ -42,14 +42,12 @@ namespace Hevadea.GameObjects.Tiles
         {
             spriteBatch.FillRectangle(position.ToRectangle(), new Color(148, 120, 92));
             _render?.Draw(spriteBatch, position, level);
-            
+
             foreach (var t in _tags)
             {
                 if (t is IDrawableTileComponent d) d.Draw(this, spriteBatch, position, data, level, gameTime);
             }
         }
-
-        #region Tags
 
         public bool HasTag<T>()
         {
@@ -71,8 +69,14 @@ namespace Hevadea.GameObjects.Tiles
             return null;
         }
 
-        public void AddTag(TileComponent tag) { tag.AttachedTile = this; _tags.Add(tag); }
-        public void AddTag(params TileComponent[] tags) { foreach (var t in tags) AddTag(t); }
-        #endregion
+        public void AddTag(TileComponent tag)
+        {
+            tag.AttachedTile = this; _tags.Add(tag);
+        }
+
+        public void AddTag(params TileComponent[] tags)
+        {
+            foreach (var t in tags) AddTag(t);
+        }
     }
 }

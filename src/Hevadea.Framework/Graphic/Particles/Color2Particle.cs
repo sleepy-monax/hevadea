@@ -6,7 +6,7 @@ namespace Hevadea.Framework.Graphic.Particles
 {
     public class Color2Particle : Particle
     {
-		float maxLife = -1;
+        private float maxLife = -1;
 
         public Color Color { get; set; } = Color.Red;
         public Color FadingColor { get; set; } = Color.Blue;
@@ -16,7 +16,7 @@ namespace Hevadea.Framework.Graphic.Particles
             if (maxLife == -1) maxLife = Life;
 
             var s = Size * Easing.Interpolate(FadeOutAnimation, FadeOutEasing);
-            spriteBatch.PutPixel(new Vector2(X, Y) - new Vector2(s, s) / 2, Color.Lerp(FadingColor, Color, Life /maxLife), s);
+            spriteBatch.PutPixel(new Vector2(X, Y) - new Vector2(s, s) / 2, Color.Lerp(FadingColor, Color, Life / maxLife), s);
         }
     }
 }

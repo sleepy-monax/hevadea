@@ -3,6 +3,7 @@
 namespace Hevadea.Framework.Utils
 {
     public enum LoggerLevel { None, Debug, Fine, Info, Warning, Error, Severe }
+
     public static class Logger
     {
         public static void Log(Exception ex)
@@ -27,7 +28,7 @@ namespace Hevadea.Framework.Utils
 
         public static void Log<T>(LoggerLevel level, string message)
         {
-            Log(typeof(T).Name, level, message);   
+            Log(typeof(T).Name, level, message);
         }
 
         public static void Log(string callingClass, LoggerLevel level, string message)

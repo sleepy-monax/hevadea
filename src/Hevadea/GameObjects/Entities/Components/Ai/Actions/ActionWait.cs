@@ -15,7 +15,6 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
 
         public void DrawDebugInfo(Agent agent, SpriteBatch spriteBatch)
         {
-
         }
 
         public bool IsStillRunning(Agent agent)

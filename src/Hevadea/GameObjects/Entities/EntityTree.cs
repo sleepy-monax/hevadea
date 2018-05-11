@@ -3,7 +3,6 @@ using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Items;
-using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -15,7 +14,7 @@ namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
 
         public EntityTree()
         {
-            treeSprite = new Sprite(Ressources.TileEntities, new Point(6, 4), new Point(2, 6) );
+            treeSprite = new Sprite(Ressources.TileEntities, new Point(6, 4), new Point(2, 6));
 
             AddComponent(new Dropable { Items = { new Drop(ITEMS.WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3) } });
             AddComponent(new Health(5));

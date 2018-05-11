@@ -31,13 +31,16 @@ namespace Hevadea.Framework.Input
 
         public delegate void KeyEventHandler(object sender, KeyEventArgs e, KeyboardState ks);
 
-        public readonly char[] SPECIAL_CHARACTERS = {'\a', '\b', '\n', '\r', '\f', '\t', '\v'};
+        public readonly char[] SPECIAL_CHARACTERS = { '\a', '\b', '\n', '\r', '\f', '\t', '\v' };
 
         private Game game;
 
         public event CharEnteredHandler CharPressed;
+
         public event KeyEventHandler KeyPressed;
+
         public event KeyEventHandler KeyDown;
+
         public event KeyEventHandler KeyUp;
 
         private KeyboardState prevKeyState;
@@ -48,7 +51,6 @@ namespace Hevadea.Framework.Input
         private int repsPerSec;
         private DateTime lastRep = DateTime.Now;
         private bool filterSpecialCharacters;
-
 
         public void Initialize(Game g, float timeUntilRepInMilliseconds, int repsPerSecond, bool filterSpecialCharactersFromCharPressed = true)
         {
@@ -101,7 +103,7 @@ namespace Hevadea.Framework.Input
         {
             KeyboardState keyState = Keyboard.GetState();
 
-            foreach (Keys key in (Keys[]) Enum.GetValues(typeof(Keys)))
+            foreach (Keys key in (Keys[])Enum.GetValues(typeof(Keys)))
             {
                 if (JustPressed(keyState, key))
                 {
@@ -166,5 +168,5 @@ namespace Hevadea.Framework.Input
             KeyPressed = null;
             KeyUp = null;
         }
-}
+    }
 }

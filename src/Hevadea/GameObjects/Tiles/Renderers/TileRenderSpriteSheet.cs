@@ -7,7 +7,7 @@ namespace Hevadea.GameObjects.Tiles.Renderers
 {
     public class TileRenderSpriteSheet : TileRenderConnected
     {
-        SpriteSheet spriteSheet;
+        private SpriteSheet spriteSheet;
 
         public TileRenderSpriteSheet(SpriteSheet spriteSheet)
         {

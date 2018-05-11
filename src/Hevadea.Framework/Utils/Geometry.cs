@@ -6,7 +6,7 @@ namespace Hevadea.Framework.Utils
     public static class Geometry
     {
         private static readonly Dictionary<string, List<Vector2>> CircleCache = new Dictionary<string, List<Vector2>>();
-        
+
         /// <summary>
         /// Creates a list of vectors that represents a circle
         /// </summary>
@@ -29,7 +29,6 @@ namespace Hevadea.Framework.Utils
             {
                 vectors.Add(new Vector2(radius * Mathf.Cos(theta), radius * Mathf.Sin(theta)));
             }
-
 
             vectors.Add(new Vector2(radius * Mathf.Cos(0), radius * Mathf.Sin(0)));
             CircleCache.Add(circleKey, vectors);
@@ -69,7 +68,7 @@ namespace Hevadea.Framework.Utils
             points.Add(points[0]);
 
             // Now remove the points at the end of the circle to create the arc
-            int sidesInArc = (int) ((radians / anglePerSide) + 0.5);
+            int sidesInArc = (int)((radians / anglePerSide) + 0.5);
             points.RemoveRange(sidesInArc + 1, points.Count - sidesInArc - 1);
 
             return points;

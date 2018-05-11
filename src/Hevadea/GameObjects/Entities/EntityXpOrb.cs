@@ -10,12 +10,11 @@ namespace Hevadea.GameObjects.Entities
     public class EntityXpOrb : Entity
     {
         public int Value { get; private set; }
-        
+
         public EntityXpOrb(int value)
         {
             Value = value;
             AddComponent(new Move());
-            
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -40,7 +39,7 @@ namespace Hevadea.GameObjects.Entities
                         exp.TakeXP(this);
                         Remove();
                         break;
-                    } 
+                    }
                 }
             }
         }

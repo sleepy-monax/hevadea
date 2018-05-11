@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities
 {
@@ -37,7 +37,7 @@ namespace Hevadea.GameObjects.Entities
             var entities = Level.GetEntityOnTile(GetTilePosition());
             foreach (var e in entities)
             {
-                e.GetComponent<Move>()?.MoveTo(GetFacingTile(), speed:0.5f);
+                e.GetComponent<Move>()?.MoveTo(GetFacingTile(), speed: 0.5f);
             }
         }
 

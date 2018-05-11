@@ -11,7 +11,7 @@ namespace Hevadea.Framework.UI.Widgets
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
         public Color TextColor { get; set; } = Color.White;
         public DrawText.Alignement TextAlignement { get; set; } = DrawText.Alignement.Center;
-        
+
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (Text != null)

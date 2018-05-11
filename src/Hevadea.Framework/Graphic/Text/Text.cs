@@ -37,7 +37,6 @@ namespace Hevadea.Framework.Graphic.Text
             }
         }
 
-
         public TextWrapper(int maxLength)
         {
             MaxLength = maxLength;

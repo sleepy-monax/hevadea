@@ -22,13 +22,13 @@ namespace Hevadea.Framework.UI.Widgets
             spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
             spriteBatch.DrawRectangle(Host, IdleColor * _easing.GetValueInv(EasingFunctions.Linear), Scale(4));
 
-            var bounceW = (int) (Host.Width *  _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
-            var bounceH = (int) (Host.Height * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
-            
+            var bounceW = (int)(Host.Width * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
+            var bounceH = (int)(Host.Height * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
+
             var rect = new Rectangle(Host.X + Host.Width / 2 - bounceW / 2,
-                Host.Y + Host.Height / 2 - bounceH / 2, 
+                Host.Y + Host.Height / 2 - bounceH / 2,
                                      bounceW, bounceH);
-            
+
             spriteBatch.FillRectangle(rect, OverColor * 0.5f * _easing.GetValue(EasingFunctions.Linear));
             spriteBatch.DrawRectangle(rect, OverColor * _easing.GetValue(EasingFunctions.Linear), Scale(4));
 
@@ -36,6 +36,5 @@ namespace Hevadea.Framework.UI.Widgets
 
             spriteBatch.DrawString(Font, Text, Host, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, TextColor, Rise.Ui.ScaleFactor);
         }
-
     }
 }

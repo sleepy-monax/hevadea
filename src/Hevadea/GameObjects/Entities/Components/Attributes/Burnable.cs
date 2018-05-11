@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.GameObjects.Entities.Components.Attributes
 {
-    class Burnable : Light, IEntityComponentUpdatable
+    internal class Burnable : Light, IEntityComponentUpdatable
     {
         private float _dammages;
         private float _chanceToBreak;
@@ -100,7 +100,6 @@ namespace Hevadea.GameObjects.Entities.Components.Attributes
                 if (Rise.Rnd.NextDouble() < _chanceToBreak)
                     Owner.GetComponent<Breakable>()?.Break();
             }
-
         }
     }
 }

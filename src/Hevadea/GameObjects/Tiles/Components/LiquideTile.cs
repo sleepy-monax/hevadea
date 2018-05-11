@@ -1,5 +1,4 @@
 ﻿using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.States;
 
 namespace Hevadea.GameObjects.Tiles.Components

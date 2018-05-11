@@ -20,16 +20,16 @@ namespace Hevadea.Scenes.MainMenu
         {
             Rise.Scene.SetBackground(Ressources.ParalaxeForest);
 
-            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, TextSize = 1.5f};
+            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, TextSize = 1.5f };
             var creators = new Label { Text = "(c) 2017-2018 Interesting Games", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
             var continueButton = new Button
-                {
-                    Text = "Continue",
-                    Anchor = Anchor.Center,
-                    Origine = Anchor.Top,
-                    UnitBound = new Rectangle(0, 0, 256, 64),
-                    UnitOffset = new Point(0, 64)
-                }
+            {
+                Text = "Continue",
+                Anchor = Anchor.Center,
+                Origine = Anchor.Top,
+                UnitBound = new Rectangle(0, 0, 256, 64),
+                UnitOffset = new Point(0, 64)
+            }
                 .RegisterMouseClickEvent(ContinueLastGame);
             var menu = new WidgetTabContainer
             {
@@ -61,11 +61,11 @@ namespace Hevadea.Scenes.MainMenu
             };
 
             if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
-            {   
-                var container = (Container) menu.Tabs[0].Content;
+            {
+                var container = (Container)menu.Tabs[0].Content;
                 container.Childrens.Add(continueButton);
             }
-            
+
             if (Rise.Platform.Family == PlatformFamily.Mobile)
             {
                 Container = menu;
@@ -77,7 +77,6 @@ namespace Hevadea.Scenes.MainMenu
                     Childrens = { menu },
                 };
             }
-
         }
 
         private void ContinueLastGame(Widget sender)
@@ -98,7 +97,6 @@ namespace Hevadea.Scenes.MainMenu
 
         public override void OnDraw(GameTime gameTime)
         {
-
         }
     }
 }

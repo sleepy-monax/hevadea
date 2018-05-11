@@ -10,6 +10,7 @@ namespace Hevadea.Framework.UI.Widgets
     public abstract class ListItem
     {
         public ListWidget Parent;
+
         public abstract void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime);
     }
 
@@ -29,7 +30,7 @@ namespace Hevadea.Framework.UI.Widgets
     }
 
     public class ListWidget : Widget
-     {
+    {
         public int ItemHeight { get; set; } = 48;
         public int ItemMarging { get; set; } = 8;
         public Color BackColor { get; set; } = Color.White * 0.1f;
@@ -47,7 +48,6 @@ namespace Hevadea.Framework.UI.Widgets
 
         public void RemoveItem(ListItem item)
         {
-
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -85,10 +85,8 @@ namespace Hevadea.Framework.UI.Widgets
                     index++;
                 }
 
-
             if (_items.Count == 0)
                 spriteBatch.DrawString(Rise.Ui.DefaultFont, "Empty", Bound, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, Color.White);
-
 
             if (Rise.Pointing.AreaOver(Bound))
             {
@@ -105,7 +103,7 @@ namespace Hevadea.Framework.UI.Widgets
             Rise.Graphic.ResetScissor();
         }
 
-        bool IsDown = false;
+        private bool IsDown = false;
         private Point _lastPoint = Point.Zero;
         private Point _downPoint = Point.Zero;
 
@@ -120,10 +118,9 @@ namespace Hevadea.Framework.UI.Widgets
 
                 _lastPoint = Rise.Pointing.GetAreaOver(Bound)[0];
                 _downPoint = Rise.Pointing.GetAreaOver(Bound)[0];
-                
+
                 Logger.Log<ListWidget>("Down");
             }
-
 
             if (Rise.Pointing.AreaDown(Bound) && IsDown)
             {
@@ -142,13 +139,13 @@ namespace Hevadea.Framework.UI.Widgets
                 {
                     SelectedItem = _overItem;
                 }
-                
+
                 IsDown = false;
                 _lastPoint = Point.Zero;
                 _downPoint = Point.Zero;
                 Logger.Log<ListWidget>("Up");
             }
-            
+
             if (!Rise.Pointing.AreaDown(Bound) && IsDown)
             {
                 IsDown = false;

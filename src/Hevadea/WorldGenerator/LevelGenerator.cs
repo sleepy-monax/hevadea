@@ -1,9 +1,9 @@
 ﻿using Hevadea.Framework.Utils;
-using System.Collections.Generic;
-using System.Linq;
 using Hevadea.Registry;
 using Hevadea.Worlds;
 using Hevadea.Worlds.Level;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.WorldGenerator
 {
@@ -13,13 +13,12 @@ namespace Hevadea.WorldGenerator
         public string LevelName { get; set; } = "none";
         public LevelProperties Properties { get; set; } = LEVELS.SURFACE;
 
-
         public List<LevelFeature> Features { get; set; } = new List<LevelFeature>();
         public LevelFeature CurrentFeature;
 
         public Level Generate(Generator gen)
         {
-            var level = new Level(Properties, gen.Size, gen.Size) {Id = LevelId, Name = LevelName};
+            var level = new Level(Properties, gen.Size, gen.Size) { Id = LevelId, Name = LevelName };
 
             foreach (var f in Features)
             {

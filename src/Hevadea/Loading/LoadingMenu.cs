@@ -63,7 +63,7 @@ namespace Hevadea.Loading
                         Padding = new Padding(16),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
-						Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
+                        Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
                         Content = new Container
                         {
                             Childrens =

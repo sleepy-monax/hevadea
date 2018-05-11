@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Items;
@@ -10,21 +9,20 @@ using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Actions
 {
     public class Attack : EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawable
     {
         public bool IsAttacking { get; private set; }
-     
+
         public float BaseDamages { get; set; } = 1f;
         public bool CanAttackTile { get; set; } = true;
         public bool CanAttackEntities { get; set; } = true;
         public double AttackCooldown { get; set; } = 1;
-        
+
         public int HitBoxSize { get; set; } = 26;
-        
+
         private Direction _lastDirection = Direction.North;
         private double _speedFactor = 1;
         private double _timer;
@@ -41,7 +39,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             _swingLeft = new Sprite(Ressources.TileIcons, 6);
             _swingRight = new Sprite(Ressources.TileIcons, 4);
         }
-        
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (!IsAttacking) return;
@@ -53,12 +51,15 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                 case Direction.North:
                     _swingUP.Draw(spriteBatch, HitBox, Color.White);
                     break;
+
                 case Direction.East:
                     _swingRight.Draw(spriteBatch, HitBox, Color.White);
                     break;
+
                 case Direction.South:
                     _swingDown.Draw(spriteBatch, HitBox, Color.White);
                     break;
+
                 case Direction.West:
                     _swingLeft.Draw(spriteBatch, HitBox, Color.White);
                     break;
@@ -88,51 +89,47 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
             return damages;
         }
-       
-		public float GetDamages(Item weapon, Entity target)
-		{
-			return GetBaseDamages() * (weapon?.Tag<DamageTag>()?.GetDamages(target) ?? 1f);
-		}
 
-		public float GetDamages(Item weapon, Tile tile)
-		{
-			return GetBaseDamages() * (weapon?.Tag<DamageTag>()?.GetDamages(tile) ?? 1f);
-		}
+        public float GetDamages(Item weapon, Entity target)
+        {
+            return GetBaseDamages() * (weapon?.Tag<DamageTag>()?.GetDamages(target) ?? 1f);
+        }
 
-		public bool AttackEntity(Item weapon, Entity target)
-		{
-			var breakable = target.GetComponent<Breakable>();
-			var health    = target.GetComponent<Health>();
+        public float GetDamages(Item weapon, Tile tile)
+        {
+            return GetBaseDamages() * (weapon?.Tag<DamageTag>()?.GetDamages(tile) ?? 1f);
+        }
 
-			if (breakable != null)
-				breakable.Break();
-			
-			else if (health != null)
-				health.Hurt(Owner, GetDamages(weapon, target), Owner.Facing);
-			
-			else return false;
+        public bool AttackEntity(Item weapon, Entity target)
+        {
+            var breakable = target.GetComponent<Breakable>();
+            var health = target.GetComponent<Health>();
 
-			return true;
-		}
+            if (breakable != null)
+                breakable.Break();
+            else if (health != null)
+                health.Hurt(Owner, GetDamages(weapon, target), Owner.Facing);
+            else return false;
 
-		public bool AttackTile(Item weapon, TilePosition tilePosition)
-		{
-			var tile = Owner.Level.GetTile(tilePosition);
+            return true;
+        }
 
-			var damages = tile.Tag<DamageTile>();
-			var breakable = tile.Tag<BreakableTile>();
+        public bool AttackTile(Item weapon, TilePosition tilePosition)
+        {
+            var tile = Owner.Level.GetTile(tilePosition);
 
-			if (breakable != null)
-				breakable.Break(tilePosition, Owner.Level);
+            var damages = tile.Tag<DamageTile>();
+            var breakable = tile.Tag<BreakableTile>();
 
-			else if (damages != null)
-				damages.Hurt(GetDamages(weapon, tile), tilePosition, Owner.Level);
-			
-			else return false;
+            if (breakable != null)
+                breakable.Break(tilePosition, Owner.Level);
+            else if (damages != null)
+                damages.Hurt(GetDamages(weapon, tile), tilePosition, Owner.Level);
+            else return false;
 
-			return true;
-		}
-        
+            return true;
+        }
+
         public void Do(Item weapon)
         {
             if (IsAttacking) return;
@@ -144,18 +141,17 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
             if (CanAttackEntities)
             {
-				var facingEntities = Owner.GetFacingEntities(HitBoxSize);
-                
+                var facingEntities = Owner.GetFacingEntities(HitBoxSize);
+
                 foreach (var e in facingEntities)
-					if (e != Owner && AttackEntity(weapon, e))
-				    {
-					    IsAttacking = true;
-					    break;
-                    } 
-                    
+                    if (e != Owner && AttackEntity(weapon, e))
+                    {
+                        IsAttacking = true;
+                        break;
+                    }
             }
-            
-			if (CanAttackTile && !IsAttacking && AttackTile(weapon, Owner.GetFacingTile()))
+
+            if (CanAttackTile && !IsAttacking && AttackTile(weapon, Owner.GetFacingTile()))
                 IsAttacking = true;
 
             if (IsAttacking && Owner == Owner.Game.MainPlayer)

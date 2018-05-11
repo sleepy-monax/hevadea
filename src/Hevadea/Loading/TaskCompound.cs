@@ -6,13 +6,13 @@ namespace Hevadea.Loading
 {
     public class TaskCompound
     {
-        LoadingTask _currentTask;
-        Queue<LoadingTask> _tasksQueue;
-        List<LoadingTask> _finishedTasks = new List<LoadingTask>();
-        GameManager _game;
+        private LoadingTask _currentTask;
+        private Queue<LoadingTask> _tasksQueue;
+        private List<LoadingTask> _finishedTasks = new List<LoadingTask>();
+        private GameManager _game;
 
-        bool _started = false;
-        bool _aborted = false;
+        private bool _started = false;
+        private bool _aborted = false;
 
         public List<LoadingTask> Tasks { get; set; } = new List<LoadingTask>();
         public Action LoadingFinished;
@@ -84,7 +84,7 @@ namespace Hevadea.Loading
 
                 if (_tasksQueue.Count > 0)
                 {
-                    if (_currentTask!= null && _currentTask.Exception != null)
+                    if (_currentTask != null && _currentTask.Exception != null)
                     {
                         Abort();
                         LoadingException?.Invoke(_currentTask.Exception);
@@ -102,6 +102,5 @@ namespace Hevadea.Loading
                 }
             }
         }
-
     }
 }

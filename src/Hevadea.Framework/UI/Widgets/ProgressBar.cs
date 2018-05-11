@@ -13,7 +13,7 @@ namespace Hevadea.Framework.UI.Widgets
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.FillRectangle(Host, Color);
-            spriteBatch.FillRectangle( new Rectangle(Host.Location, new Point((int)(Host.Width * Value), Host.Height)), ProgressColor);
+            spriteBatch.FillRectangle(new Rectangle(Host.Location, new Point((int)(Host.Width * Value), Host.Height)), ProgressColor);
         }
     }
 }

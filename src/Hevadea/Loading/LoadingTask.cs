@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Hevadea.Framework.Utils;
+using System;
 using System.Threading;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Loading
 {
     public abstract class LoadingTask
     {
-        float _progress;
-        string _status;
+        private float _progress;
+        private string _status;
 
         public Thread Thread { get; set; }
         public bool HasFinish { get; private set; } = false;
@@ -39,13 +39,13 @@ namespace Hevadea.Loading
             return _status;
         }
 
-        void TaskInternal(object game)
+        private void TaskInternal(object game)
         {
 #if !DEBUG
             try
             {
 #endif
-                Task((GameManager)game);
+            Task((GameManager)game);
 #if !DEBUG
             }
             catch (ThreadAbortException) {}

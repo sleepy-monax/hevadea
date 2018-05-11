@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Items;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components
 {
@@ -38,7 +38,7 @@ namespace Hevadea.GameObjects.Entities.Components
 
         public void OnGameLoad(EntityStorage store)
         {
-            var l = (Dictionary<string,object>)store.Get(nameof(Content), new Dictionary<string,object>());
+            var l = (Dictionary<string, object>)store.Get(nameof(Content), new Dictionary<string, object>());
             foreach (var i in l)
             {
                 Content.Items.Add(int.Parse(i.Key), (int)i.Value);
@@ -70,7 +70,7 @@ namespace Hevadea.GameObjects.Entities.Components
             {
                 _lastAdded = null;
             }
-            
+
             if (_lastAdded != null && _addedTimer >= 0.5f)
             {
                 _ix += (Owner.X - _ix) * 0.3f;
@@ -82,13 +82,13 @@ namespace Hevadea.GameObjects.Entities.Components
                 _iy += ((Owner.Y) - _iy) * 0.2f;
             }
         }
-        
+
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (_lastAdded != null)
             {
-                var scale = Mathf.Clamp01((float) _addedTimer / 0.5f);
-                _lastAdded.GetSprite().Draw(spriteBatch, new Vector2(_ix - 8f * scale, _iy - 8f * scale),  scale,Color.White);
+                var scale = Mathf.Clamp01((float)_addedTimer / 0.5f);
+                _lastAdded.GetSprite().Draw(spriteBatch, new Vector2(_ix - 8f * scale, _iy - 8f * scale), scale, Color.White);
             }
         }
     }

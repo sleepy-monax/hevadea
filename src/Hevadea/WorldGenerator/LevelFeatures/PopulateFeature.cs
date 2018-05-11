@@ -1,11 +1,8 @@
-﻿using Hevadea.WorldGenerator.Functions;
-using System.Collections.Generic;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Blueprints;
+﻿using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.Registry;
-using Hevadea.Worlds;
+using Hevadea.WorldGenerator.Functions;
 using Hevadea.Worlds.Level;
+using System.Collections.Generic;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
@@ -17,15 +14,15 @@ namespace Hevadea.WorldGenerator.LevelFeatures
         public int Chance { get; set; } = 1;
         public int RandomOffset { get; set; } = 4;
         public int Spacing { get; set; } = 1;
-        
+
         private float _progress = 0;
         private EntityBlueprint _blueprint;
-        
+
         public PopulateFeature(EntityBlueprint blueprint)
         {
             _blueprint = blueprint;
         }
-        
+
         public override float GetProgress()
         {
             return _progress;
@@ -33,16 +30,16 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 
         public override void Apply(Generator gen, LevelGenerator levelGen, Level level)
         {
-            for (var x = 0; x < gen.Size; x+= Spacing)
+            for (var x = 0; x < gen.Size; x += Spacing)
             {
-                for (var y = 0; y < gen.Size; y+= Spacing)
-                {   
+                for (var y = 0; y < gen.Size; y += Spacing)
+                {
                     if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(x, y)) && PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold && level.GetEntityOnTile(x, y).Count == 0)
                         level.SpawnEntity(_blueprint.Construct(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));
                 }
-                
-                _progress = (x / (float) gen.Size);
-            }                                                              
+
+                _progress = (x / (float)gen.Size);
+            }
         }
 
         public override string GetName()

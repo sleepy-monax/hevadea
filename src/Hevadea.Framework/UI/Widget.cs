@@ -58,8 +58,11 @@ namespace Hevadea.Framework.UI
         public bool IsDisable { get => !IsEnable; set { IsEnable = !value; } }
 
         public float Scale(float val) => val * Rise.Ui.ScaleFactor;
-        public int Scale(int val) =>  (int)(val * Rise.Ui.ScaleFactor);
+
+        public int Scale(int val) => (int)(val * Rise.Ui.ScaleFactor);
+
         public Point Scale(Point p) => new Point(Scale(p.X), Scale(p.Y));
+
         public Rectangle Scale(Rectangle rect) => new Rectangle(Scale(rect.X), Scale(rect.Y), Scale(rect.Width), Scale(rect.Height));
 
         public Rectangle UnitBound { get; set; } = new Rectangle(0, 0, 64, 64);
@@ -67,28 +70,50 @@ namespace Hevadea.Framework.UI
         public Point UnitOffset { get; set; } = Point.Zero;
         public Padding Padding { get; set; } = new Padding(0);
 
-        public Anchor Anchor  { get; set; } = Anchor.TopLeft;
+        public Anchor Anchor { get; set; } = Anchor.TopLeft;
         public Anchor Origine { get; set; } = Anchor.TopLeft;
 
         public delegate void WidgetEventHandler(Widget sender);
+
         public event WidgetEventHandler MouseClick;
+
         public event WidgetEventHandler MouseHold;
+
         public Dock Dock { get; set; } = Dock.None;
         public MouseState MouseState { get; set; } = MouseState.None;
         public bool CanGetFocus { get; set; }
         public bool IsFocus { get { return Rise.Ui.FocusWidget == this; } }
-        
+
         protected Rectangle Bound => new Rectangle((int)(UnitBound.X * Rise.Ui.ScaleFactor), (int)(UnitBound.Y * Rise.Ui.ScaleFactor), (int)(UnitBound.Width * Rise.Ui.ScaleFactor), (int)(UnitBound.Height * Rise.Ui.ScaleFactor));
         protected Rectangle Host => new Rectangle((int)(UnitHost.X * Rise.Ui.ScaleFactor), (int)(UnitHost.Y * Rise.Ui.ScaleFactor), (int)(UnitHost.Width * Rise.Ui.ScaleFactor), (int)(UnitHost.Height * Rise.Ui.ScaleFactor));
         protected Point Offset => new Point((int)(UnitOffset.X * Rise.Ui.ScaleFactor), (int)(UnitOffset.Y * Rise.Ui.ScaleFactor));
-        
-        public virtual void RefreshLayout() {}
-        public virtual void Update(GameTime gameTime) {}
-        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime) { }
 
-        public void Disable() { IsDisable = true; }
-        public void Enable() { IsEnable = true; }
-        public void Toggle() { IsEnable = !IsEnable; }
+        public virtual void RefreshLayout()
+        {
+        }
+
+        public virtual void Update(GameTime gameTime)
+        {
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+        }
+
+        public void Disable()
+        {
+            IsDisable = true;
+        }
+
+        public void Enable()
+        {
+            IsEnable = true;
+        }
+
+        public void Toggle()
+        {
+            IsEnable = !IsEnable;
+        }
 
         public void UpdateInternal(GameTime gameTime)
         {
@@ -110,7 +135,7 @@ namespace Hevadea.Framework.UI
                     MouseState = MouseState.Down;
                     MouseHold?.Invoke(this);
                 }
-                
+
                 if (Rise.Pointing.AreaClick(Bound))
                 {
                     MouseClick?.Invoke(this);

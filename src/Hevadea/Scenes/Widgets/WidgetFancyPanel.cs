@@ -12,7 +12,7 @@ namespace Hevadea.Scenes.Widgets
 
         public WidgetFancyPanel()
         {
-            _background = new Sprite(Ressources.TileGui, new Point(4, 0), new Point(2,2));
+            _background = new Sprite(Ressources.TileGui, new Point(4, 0), new Point(2, 2));
         }
 
         public override void RefreshLayout()

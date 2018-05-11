@@ -22,7 +22,7 @@ namespace Hevadea.Scenes
 
         private void Game_CurrentMenuChange(Menu oldMenu, Menu newMenu)
         {
-            var p = (Panel) Container;
+            var p = (Panel)Container;
             p.Content = newMenu;
             Container.RefreshLayout();
         }

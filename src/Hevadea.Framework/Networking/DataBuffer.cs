@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Hevadea.Framework.Networking
 {
-    enum TypeId
+    internal enum TypeId
     {
         IntType,
         FloatType,
         StringType,
         BoolType,
     }
-    
+
     public sealed class DataBuffer
     {
         private byte[] _buffer;
@@ -38,7 +38,7 @@ namespace Hevadea.Framework.Networking
         {
             return _buffer;
         }
-        
+
         private void Resize(int newSize)
         {
             if (newSize < _buffer.Length) return;
@@ -85,7 +85,7 @@ namespace Hevadea.Framework.Networking
 
                 return tmp;
             }
-            
+
             return _buffer;
         }
 
@@ -115,8 +115,6 @@ namespace Hevadea.Framework.Networking
             foreach (byte t in bytes)
                 _buffer[_offset++] = t;
         }
-
-        #region "Writer"
 
         public DataBuffer WriteByte(byte value)
         {
@@ -163,8 +161,9 @@ namespace Hevadea.Framework.Networking
         }
 
         public DataBuffer WriteStringASCII(string value) => WriteString(value, Encoding.ASCII);
+
         public DataBuffer WriteStringUTF8(string value) => WriteString(value, Encoding.UTF8);
-        
+
         public DataBuffer WriteString(string value, Encoding encoding)
         {
             byte[] tmp = encoding.GetBytes(value);
@@ -186,7 +185,6 @@ namespace Hevadea.Framework.Networking
             return this;
         }
 
-
         public DataBuffer WriteFloat(Single value)
         {
             BitConverter.GetBytes(value);
@@ -198,19 +196,19 @@ namespace Hevadea.Framework.Networking
             WriteBytes(buffer.GetBuffer());
             return this;
         }
-        
+
         public DataBuffer WriteBuffer(DataBuffer buffer, int begin, int end)
         {
             var bufferData = buffer.GetBuffer();
             end = Math.Min(end, bufferData.Length);
-            
+
             Resize(_offset + (end - begin));
-            
+
             for (int i = begin; i < end; i++)
             {
                 _buffer[_offset++] = bufferData[i];
             }
-            
+
             return this;
         }
 
@@ -218,11 +216,7 @@ namespace Hevadea.Framework.Networking
         {
             return this;
         }
-        
-        #endregion
 
-        #region "Reader"
-        
         public DataBuffer ReadBool(out bool outValue)
         {
             outValue = (ReadByte() == 1);
@@ -269,7 +263,7 @@ namespace Hevadea.Framework.Networking
         {
             return (int)(_buffer[_offset++] | _buffer[_offset++] << 8 | _buffer[_offset++] << 16 | _buffer[_offset++] << 24);
         }
-        
+
         public DataBuffer ReadLong(out long outValue)
         {
             outValue = BitConverter.ToInt64(_buffer, _offset);
@@ -287,7 +281,7 @@ namespace Hevadea.Framework.Networking
 
             return value;
         }
-        
+
         public DataBuffer ReadString(out string outValue)
         {
             var size = ReadInteger();
@@ -315,7 +309,5 @@ namespace Hevadea.Framework.Networking
 
             return Encoding.ASCII.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
         }
-
-        #endregion
     }
 }

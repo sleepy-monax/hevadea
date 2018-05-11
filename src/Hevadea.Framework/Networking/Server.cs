@@ -168,7 +168,8 @@ namespace Hevadea.Framework.Networking
                     {
                     }
                 }
-            }) { Name = "NetServer Incoming Connection Thread" };
+            })
+            { Name = "NetServer Incoming Connection Thread" };
 
             listenerThread.Start();
         }

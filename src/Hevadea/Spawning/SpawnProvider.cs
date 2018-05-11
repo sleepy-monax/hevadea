@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Blueprints;
+﻿using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.Registry;
 using Hevadea.Worlds;
 using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea.Spawning
 {
@@ -26,7 +24,6 @@ namespace Hevadea.Spawning
 
         public void TrySpawn(Level level, Rectangle area)
         {
-
         }
     }
 }

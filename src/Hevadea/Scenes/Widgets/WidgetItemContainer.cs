@@ -2,12 +2,11 @@
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects;
+using Hevadea.GameObjects.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.GameObjects;
-using Hevadea.GameObjects.Items;
-using Hevadea.Registry;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -70,11 +69,9 @@ namespace Hevadea.Scenes.Widgets
                     }
                 }
 
-            
             if (Content.GetStackCount() == 0)
                 spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow,
                     Color.White);
-
 
             if (Rise.Pointing.AreaOver(Bound))
             {
@@ -82,21 +79,20 @@ namespace Hevadea.Scenes.Widgets
                 //if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
                 //if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
 
-
                 var maxScroll = Content.GetStackCount() * Scale(52);
                 var contentHeight = Math.Max(maxScroll, Host.Height);
-                var thumbHeight = Host.Height * (Host.Height / (float) contentHeight);
+                var thumbHeight = Host.Height * (Host.Height / (float)contentHeight);
                 var scrollJump = (contentHeight - Host.Height) / (Host.Height - thumbHeight);
 
                 spriteBatch.FillRectangle(
-                    new Rectangle(Host.X + Host.Width - Scale(2), Host.Y + (int) (-_scrollOffset / scrollJump), Scale(2),
-                        (int) thumbHeight), Color.Gold);
+                    new Rectangle(Host.X + Host.Width - Scale(2), Host.Y + (int)(-_scrollOffset / scrollJump), Scale(2),
+                        (int)thumbHeight), Color.Gold);
             }
 
             Rise.Graphic.ResetScissor();
         }
 
-        bool IsDown = false;
+        private bool IsDown = false;
         private Point _lastPoint = Point.Zero;
 
         public override void Update(GameTime gameTime)

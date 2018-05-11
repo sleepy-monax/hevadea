@@ -15,14 +15,14 @@ namespace Hevadea.Framework.Utils
         Bottom,
         BottomRight
     }
-    
+
     public static class AnchorExt
     {
         public static Point GetAnchorPoint(this Rectangle rect, Anchor anchor)
         {
             switch (anchor)
             {
-                case Anchor.TopLeft: return new Point(0, 0);                   
+                case Anchor.TopLeft: return new Point(0, 0);
                 case Anchor.Top: return new Point(rect.Width / 2, 0);
                 case Anchor.TopRight: return new Point(rect.Width, 0);
                 case Anchor.Left: return new Point(0, rect.Height / 2);

@@ -1,10 +1,10 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.GameObjects.Items;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -13,13 +13,14 @@ namespace Hevadea.Scenes.Widgets
         public ItemStorage Inventory { get; set; }
         private float _offset = 0f;
         private int _selected = 0;
+
         public event EventHandler ItemSelected;
 
         public WidgetHotBar(ItemStorage inventory)
         {
             Inventory = inventory;
         }
-        
+
         public override void Update(GameTime gameTime)
         {
             _selected = _selected.Clamp(0, Inventory.GetStackCount() - 1);

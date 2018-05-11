@@ -9,7 +9,7 @@ namespace Hevadea.GameObjects.Entities
     public class EntityFlower : Entity
     {
         public int Variant { get; set; } = 0;
-        private static Sprite[] _sprites; 
+        private static Sprite[] _sprites;
 
         public EntityFlower()
         {

@@ -63,7 +63,6 @@ namespace Hevadea.Registry
                                 Function = new CombinedFunction(new PerlinFunction(2, 0.5, 15), new IslandFunction()),
                                 TileRequired = {TILES.GRASS}
                             }
-
                         }
                     },
                     new HouseFeature(),
@@ -97,7 +96,6 @@ namespace Hevadea.Registry
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = new PerlinFunction(2, 0.5, 15),
                                 Threashold = 0.7f,
- 
                             },
                             new PopulateFeature(EntityFactory.FLOWER)
                             {
@@ -117,7 +115,6 @@ namespace Hevadea.Registry
                     }
                 }
             };
-
 
             CAVE = new LevelGenerator
             {
@@ -144,12 +141,12 @@ namespace Hevadea.Registry
                                 Threashold = 1.1f,
                                 Function = new PerlinFunction(2, 1, 30)
                             },
-							new TerrainLayer
+                            new TerrainLayer
                             {
                                 Priority = 1,
                                 Tile = TILES.WATER,
                                 Threashold = 1.6f,
-								TileRequired = { TILES.DIRT },
+                                TileRequired = { TILES.DIRT },
                                 Function = new PerlinFunction(3, 1, 20, 679d)
                             },
                             new TerrainLayer
@@ -162,13 +159,13 @@ namespace Hevadea.Registry
                             }
                         }
                     },
-					new BspDecorator
-					{
-						GenerateFloor = false,
+                    new BspDecorator
+                    {
+                        GenerateFloor = false,
                         GenerateWall = false,
                         GeneratePath = true,
                         Depth = 7,
-					},
+                    },
                     new HouseFeature
                     {
                         CanBePlacedOn = { TILES.DIRT, TILES.ROCK },
@@ -186,9 +183,10 @@ namespace Hevadea.Registry
 
             DEFAULT = new Generator
             {
-                Size = 256, Seed = 0,
+                Size = 256,
+                Seed = 0,
                 Levels = { OVERWORLD, CAVE },
-				WorldFeatures = {new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature()}
+                WorldFeatures = { new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature() }
             };
         }
     }

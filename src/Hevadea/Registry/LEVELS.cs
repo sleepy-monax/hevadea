@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Hevadea.Worlds;
+﻿using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea.Registry
 {
@@ -15,13 +15,13 @@ namespace Hevadea.Registry
         {
             return _levelProperties.ContainsKey(name) ? _levelProperties[name] : SURFACE;
         }
-        
+
         public static LevelProperties Register(LevelProperties level)
         {
             _levelProperties.Add(level.Name, level);
             return level;
         }
-        
+
         public static void Initialize()
         {
             SURFACE = Register(new LevelProperties("surface", true, Color.White));

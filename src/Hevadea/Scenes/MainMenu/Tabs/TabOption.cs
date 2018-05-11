@@ -10,7 +10,6 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 {
     public class TabOption : Tab
     {
-
         public TabOption()
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(2, 4));
@@ -24,6 +23,5 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 },
             };
         }
-
     }
 }

@@ -12,27 +12,27 @@ namespace Hevadea.GameObjects.Entities.Components.States
     public sealed class Health : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
         private float _maxValue, _value, _knckbckX, _knckbckY, _coolDown, _heathbarTimer = 0f;
-        
+
         public bool Invicible { get; set; } = false;
         public bool ShowHealthBar { get; set; } = true;
         public bool TakeKnockback { get; set; } = true;
         public bool NaturalRegeneration { get; set; } = false;
 
         public double NaturalregenerationSpeed { get; set; } = 1.0;
-        
+
         public float Value => _value;
         public float MaxValue => _maxValue;
         public float ValuePercent => _value / _maxValue;
 
-
         public delegate void GetHurtByEntityHandle(Entity entity, float damages);
+
         public delegate void GetHurtByTileHandler(Tile tile, float damages, int tX, int tY);
-        
 
         public event EventHandler Killed;
-        public event GetHurtByTileHandler HurtedByTile;
-        public event GetHurtByEntityHandle HurtedByEntity;
 
+        public event GetHurtByTileHandler HurtedByTile;
+
+        public event GetHurtByEntityHandle HurtedByEntity;
 
         public Health(float maxHealth)
         {
@@ -46,13 +46,13 @@ namespace Hevadea.GameObjects.Entities.Components.States
             {
                 var barY = Owner.Y + 4;
                 var barX = Owner.X - 15;
-                
-                var rect = new Rectangle((int) barX, (int) barY, (int) (30 * ValuePercent), 2);
 
-                spriteBatch.FillRectangle(new Rectangle((int) barX + 1, (int) barY + 1, rect.Width, rect.Height),
+                var rect = new Rectangle((int)barX, (int)barY, (int)(30 * ValuePercent), 2);
+
+                spriteBatch.FillRectangle(new Rectangle((int)barX + 1, (int)barY + 1, rect.Width, rect.Height),
                     Color.Black * 0.45f);
 
-                var red =   (int)Math.Sqrt(255 * 255 * (1 - ValuePercent));
+                var red = (int)Math.Sqrt(255 * 255 * (1 - ValuePercent));
                 var green = (int)Math.Sqrt(255 * 255 * (ValuePercent));
                 spriteBatch.FillRectangle(rect, new Color(red, green, 0));
             }
@@ -86,7 +86,6 @@ namespace Hevadea.GameObjects.Entities.Components.States
                 _knckbckX *= 0.9f;
                 _knckbckY *= 0.9f;
             }
-            
         }
 
         // Entity get hurt by a other entity (ex: Zombie)
@@ -116,7 +115,6 @@ namespace Hevadea.GameObjects.Entities.Components.States
             Hurt(entity, damages, dir.X * damages, dir.Y * damages);
         }
 
-
         public void Hurt(Entity entity, float damages, float knockbackX, float knockbackY)
         {
             if (Invicible) return;
@@ -143,7 +141,6 @@ namespace Hevadea.GameObjects.Entities.Components.States
 
             if (Math.Abs(_value) < 0.1f) Die();
         }
-
 
         // The mob is heal by a mod (healing itself)
         public void Heal(Entity entity, float damages, Direction attackDirection)

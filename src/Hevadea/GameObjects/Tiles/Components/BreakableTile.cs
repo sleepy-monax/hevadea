@@ -1,5 +1,4 @@
-﻿using Hevadea.Registry;
-using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds.Level;
 
 namespace Hevadea.GameObjects.Tiles.Components
 {

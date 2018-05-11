@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.Registry;
 using Hevadea.Worlds.Level;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Items
 {
@@ -14,7 +12,7 @@ namespace Hevadea.GameObjects.Items
         private readonly string _name;
         private readonly Sprite _sprite;
         private List<ItemTag> _tags;
-        
+
         public Item(string name, Sprite sprite)
         {
             Id = ITEMS.ById.Count;
@@ -56,9 +54,16 @@ namespace Hevadea.GameObjects.Items
             return null;
         }
 
-        public void AddTag(ItemTag tag) {tag.AttachedItem = this; _tags.Add(tag); }
-        public void AddTags(params ItemTag[] tags) { foreach (var t in tags) AddTag(t); }
-        
+        public void AddTag(ItemTag tag)
+        {
+            tag.AttachedItem = this; _tags.Add(tag);
+        }
+
+        public void AddTags(params ItemTag[] tags)
+        {
+            foreach (var t in tags) AddTag(t);
+        }
+
         public void Drop(Level level, float x, float y, int quantity)
         {
             for (var i = 0; i < quantity; i++)
@@ -67,7 +72,7 @@ namespace Hevadea.GameObjects.Items
                 dropItem.Item = this;
                 dropItem.SpeedX = Rise.Rnd.Next(-50, 50) / 10f;
                 dropItem.SpeedY = Rise.Rnd.Next(-50, 50) / 10f;
-                
+
                 level.AddEntity(dropItem);
                 dropItem.SetPosition(x, y);
             }

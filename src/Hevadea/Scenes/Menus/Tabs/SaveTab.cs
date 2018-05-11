@@ -34,8 +34,7 @@ namespace Hevadea.Scenes.Menus.Tabs
                 }
             };
 
-
-            container.AddChild(new Button { Text = "Quick save", Padding = new Padding(4) } )
+            container.AddChild(new Button { Text = "Quick save", Padding = new Padding(4) })
             .RegisterMouseClickEvent((sender) =>
             {
                 game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game));
@@ -49,7 +48,6 @@ namespace Hevadea.Scenes.Menus.Tabs
                 {
                     Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructSaveWorldAndExit(game)));
                 });
-            
 
             container.AddChild(new Button
             {

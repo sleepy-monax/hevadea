@@ -13,9 +13,9 @@ namespace Hevadea.Loading
 {
     public class LoadingScene : Scene
     {
-        TaskCompound _task;
-        Label _progressLabel;
-        ProgressBar _progressBar;
+        private TaskCompound _task;
+        private Label _progressLabel;
+        private ProgressBar _progressBar;
 
         public LoadingScene(TaskCompound task)
         {
@@ -82,7 +82,6 @@ namespace Hevadea.Loading
 
         public override void OnDraw(GameTime gameTime)
         {
-
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -100,7 +99,6 @@ namespace Hevadea.Loading
 
         public override void Unload()
         {
-            
         }
     }
 }

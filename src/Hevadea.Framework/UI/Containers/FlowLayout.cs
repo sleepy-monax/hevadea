@@ -21,14 +21,17 @@ namespace Hevadea.Framework.UI.Containers
                         c.UnitBound = new Rectangle(UnitHost.X, UnitHost.Y + offset, UnitHost.Width, c.UnitBound.Height);
                         offset += c.UnitBound.Height;
                         break;
+
                     case FlowDirection.BottomToTop:
                         c.UnitBound = new Rectangle(UnitHost.X, UnitHost.Y + UnitHost.Height - offset, UnitHost.Width, c.UnitBound.Height);
                         offset += c.UnitBound.Height;
                         break;
+
                     case FlowDirection.LeftToRight:
                         c.UnitBound = new Rectangle(UnitHost.X + offset, UnitHost.Y, c.UnitBound.Width, UnitHost.Height);
                         offset += c.UnitBound.Width;
                         break;
+
                     case FlowDirection.RightToLeft:
                         c.UnitBound = new Rectangle(UnitHost.X + UnitHost.Width - offset, UnitHost.Y, c.UnitBound.Width, UnitHost.Height);
                         offset += c.UnitBound.Width;

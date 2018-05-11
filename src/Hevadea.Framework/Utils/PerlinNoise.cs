@@ -5,6 +5,7 @@ namespace Hevadea.Framework.Utils
     public class PerlinNoise
     {
         private readonly int[] _permutation;
+
         public PerlinNoise(int seed)
         {
             _permutation = new int[512];

@@ -25,7 +25,6 @@ namespace Hevadea.Framework.Utils
             if (bit)
             {
                 return (byte)(value | (1 << selectedBit));
-
             }
 
             return (byte)(value & ~(1 << selectedBit));
@@ -36,7 +35,6 @@ namespace Hevadea.Framework.Utils
             if (bit)
             {
                 return (value | (1 << selectedBit));
-
             }
 
             return (value & ~(1 << selectedBit));
@@ -72,33 +70,32 @@ namespace Hevadea.Framework.Utils
 
         // Fast Random utils ---------------------------------------------------
 
-
         public static float NextFloat(this FastRandom rnd, float max)
         {
             return (float)rnd.NextDouble() * max;
         }
 
-		public static float NextFloat(this FastRandom rnd)
+        public static float NextFloat(this FastRandom rnd)
         {
             return (float)rnd.NextDouble();
         }
 
-		public static float NextFloatRange(this FastRandom rnd, float max)
+        public static float NextFloatRange(this FastRandom rnd, float max)
         {
             return (rnd.NextFloat() - 0.5f) * 2f * max;
         }
 
-		public static float NextFloatRange(this FastRandom rnd)
+        public static float NextFloatRange(this FastRandom rnd)
         {
             return (rnd.NextFloat() - 0.5f) * 2f;
         }
 
-		public static T NextValue<T>(this FastRandom rnd, params T[] values)
+        public static T NextValue<T>(this FastRandom rnd, params T[] values)
         {
             return values[rnd.Next(values.Length)];
         }
 
-		public static void Shuffle<T>(this FastRandom rng, T[] array)
+        public static void Shuffle<T>(this FastRandom rng, T[] array)
         {
             int n = array.Length;
             while (n > 1)
@@ -136,7 +133,7 @@ namespace Hevadea.Framework.Utils
         {
             return values[rnd.Next(values.Length)];
         }
-        
+
         public static void Shuffle<T>(this Random rng, T[] array)
         {
             int n = array.Length;
@@ -148,11 +145,11 @@ namespace Hevadea.Framework.Utils
                 array[k] = temp;
             }
         }
-        
+
         public static T Clamp<T>(this T val, T min, T max) where T : IComparable<T>
         {
             if (val.CompareTo(min) < 0) return min;
-            else if(val.CompareTo(max) > 0) return max;
+            else if (val.CompareTo(max) > 0) return max;
             else return val;
         }
     }

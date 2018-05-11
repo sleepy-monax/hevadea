@@ -6,7 +6,7 @@ namespace Hevadea
     public class Camera : Framework.Graphic.Camera
     {
         public Entity FocusEntity;
-        
+
         public Camera(Entity focusEntity)
         {
             FocusEntity = focusEntity;

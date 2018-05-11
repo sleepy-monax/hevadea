@@ -23,6 +23,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
             get { return _textCursor; }
             set { _textCursor = value.Clamp(0, Text.Length); }
         }
+
         public int? SelectedChar
         {
             get { return _selectedChar; }
@@ -43,6 +44,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         }
 
         public TextWrapper Text { get; private set; }
+
         public event EventHandler<KeyboardInputManager.KeyEventArgs> EnterDown;
 
         public SingleLineTextBoxWidget(int maxCharacters, string text, SpriteFont spriteFont)
@@ -76,6 +78,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                     case Keys.Enter:
                         EnterDown?.Invoke(this, e);
                         break;
+
                     case Keys.Left:
                         if (Rise.Keyboard.CtrlDown)
                         {
@@ -87,6 +90,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                         }
                         ShiftMod(oldPos);
                         break;
+
                     case Keys.Right:
                         if (Rise.Keyboard.CtrlDown)
                         {
@@ -98,20 +102,24 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                         }
                         ShiftMod(oldPos);
                         break;
+
                     case Keys.Home:
                         TextCursor = 0;
                         ShiftMod(oldPos);
                         break;
+
                     case Keys.End:
                         TextCursor = Text.Length;
                         ShiftMod(oldPos);
                         break;
+
                     case Keys.Delete:
                         if (DelSelection() == null && TextCursor < Text.Length)
                         {
                             Text.RemoveCharacters(TextCursor, TextCursor + 1);
                         }
                         break;
+
                     case Keys.Back:
                         if (DelSelection() == null && TextCursor > 0)
                         {
@@ -119,6 +127,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                             TextCursor--;
                         }
                         break;
+
                     case Keys.A:
                         if (Rise.Keyboard.CtrlDown)
                         {
@@ -129,12 +138,14 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                             }
                         }
                         break;
+
                     case Keys.C:
                         if (Rise.Keyboard.CtrlDown)
                         {
                             clipboard = DelSelection(true);
                         }
                         break;
+
                     case Keys.X:
                         if (Rise.Keyboard.CtrlDown)
                         {
@@ -144,6 +155,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                             }
                         }
                         break;
+
                     case Keys.V:
                         if (Rise.Keyboard.CtrlDown)
                         {
@@ -288,8 +300,6 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 var curx = Scale(Text.MeasureCharacterWidths(TextCursor, Font));
                 var pos = Host.Center.Y - Scale(Font.LineSpacing) / 2;
 
-
-
                 if (_selectedChar.HasValue)
                 {
                     var selx = Scale(Text.MeasureCharacterWidths(SelectedChar ?? 0, Font));
@@ -308,7 +318,6 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
                 {
                     spriteBatch.FillRectangle(new Rectangle(Host.X + curx, pos, Scale(1), Scale(Font.LineSpacing)), ColorPalette.Accent);
                 }
-
             }
 
             spriteBatch.DrawString(Font, Text.String, Host, DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, TextColor, Scale(1f));

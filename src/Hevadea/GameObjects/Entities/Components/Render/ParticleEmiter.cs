@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.GameObjects.Entities.Components.Render
 {
@@ -48,7 +48,7 @@ namespace Hevadea.GameObjects.Entities.Components.Render
 
             foreach (var p in _particles)
             {
-                p.Position = p.Position + p.Momentum * (float) gameTime.ElapsedGameTime.TotalSeconds;
+                p.Position = p.Position + p.Momentum * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 p.LifeTime -= gameTime.ElapsedGameTime.TotalSeconds;
 
                 if (p.LifeTime < 0) toRemove.Add(p);

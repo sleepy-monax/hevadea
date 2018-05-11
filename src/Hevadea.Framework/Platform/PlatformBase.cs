@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System;
 
-
 namespace Hevadea.Framework.Platform
 {
     public abstract class PlatformBase
@@ -15,12 +14,18 @@ namespace Hevadea.Framework.Platform
             TextInput?.Invoke(this, new PlatformTextInputEventArg(c, key));
         }
 
-        public virtual void Stop() { }
+        public virtual void Stop()
+        {
+        }
 
         public abstract void Initialize();
+
         public abstract string GetPlatformName();
+
         public abstract int GetScreenWidth();
+
         public abstract int GetScreenHeight();
+
         public abstract string GetStorageFolder();
 
         public abstract void Update();

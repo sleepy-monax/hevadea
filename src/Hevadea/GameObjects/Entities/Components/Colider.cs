@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components
 {
     public class Colider : EntityComponent, IEntityComponentDrawableOverlay
     {
-        public Func<Entity, bool> ColidePredicat = b => { return true;};
+        public Func<Entity, bool> ColidePredicat = b => { return true; };
         private RectangleF _hitbox;
 
         public Colider(Rectangle hitbox)

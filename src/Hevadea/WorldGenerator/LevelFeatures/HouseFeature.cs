@@ -1,23 +1,21 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Hevadea.GameObjects;
+﻿using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.Registry;
-using Hevadea.Worlds;
 using Hevadea.Worlds.Level;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
     public class HouseFeature : LevelFeature
     {
-        public Tile Wall     { get; set; } = TILES.WOOD_WALL;
-        public Tile Floor    { get; set; } = TILES.WOOD_FLOOR;
+        public Tile Wall { get; set; } = TILES.WOOD_WALL;
+        public Tile Floor { get; set; } = TILES.WOOD_FLOOR;
         public Point MinSize { get; set; } = new Point(4, 4);
         public Point MaxSize { get; set; } = new Point(7, 5);
-        public List<Tile> CanBePlacedOn { get; set; } = new List<Tile>(){ TILES.GRASS, TILES.ROCK };
-        
+        public List<Tile> CanBePlacedOn { get; set; } = new List<Tile>() { TILES.GRASS, TILES.ROCK };
+
         private float _progress = 0f;
-        
+
         public override string GetName()
         {
             return "Adding houses";

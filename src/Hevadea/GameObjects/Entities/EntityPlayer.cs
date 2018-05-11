@@ -13,20 +13,20 @@ namespace Hevadea.GameObjects.Entities
     public class EntityPlayer : Entity
     {
         public int LastLevel { get; set; }
-		public Item HoldingItem { get; set; }
+        public Item HoldingItem { get; set; }
 
         public EntityPlayer()
         {
-			LastLevel = 0;
+            LastLevel = 0;
             HoldingItem = null;
 
             AddComponent(new Health(20) { ShowHealthBar = false, NaturalRegeneration = true });
             AddComponent(new Attack());
             AddComponent(new Energy());
             AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
-            AddComponent(new Inventory(64) {AlowPickUp = true});
+            AddComponent(new Inventory(64) { AlowPickUp = true });
             AddComponent(new Interact());
-            AddComponent(new Light {On = true, Color = Color.White * 0.50f, Power = 64});
+            AddComponent(new Light { On = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new Move());
             AddComponent(new Swim());
             AddComponent(new Pushable());

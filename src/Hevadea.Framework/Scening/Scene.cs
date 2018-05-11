@@ -9,12 +9,12 @@ namespace Hevadea.Framework.Scening
     public abstract class Scene
     {
         public Widget Container { get; set; }
-                
+
         protected Scene()
         {
             Container = new Container();
         }
-        
+
         public virtual string GetDebugInfo()
         {
             return "";
@@ -34,10 +34,10 @@ namespace Hevadea.Framework.Scening
                 RefreshLayout();
                 Container.UpdateInternal(gameTime);
             }
-            
+
             OnUpdate(gameTime);
         }
-        
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             OnDraw(gameTime);
@@ -49,10 +49,13 @@ namespace Hevadea.Framework.Scening
                 spriteBatch.End();
             }
         }
-        
+
         public abstract void Load();
+
         public abstract void OnUpdate(GameTime gameTime);
+
         public abstract void OnDraw(GameTime gameTime);
+
         public abstract void Unload();
     }
 }

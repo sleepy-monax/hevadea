@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects;
+﻿using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.Registry;
 using Hevadea.WorldGenerator.Functions;
-using Hevadea.Worlds;
 using Hevadea.Worlds.Level;
+using System.Collections.Generic;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
@@ -16,12 +14,12 @@ namespace Hevadea.WorldGenerator.LevelFeatures
         public int Priority { get; set; } = 0;
         public List<Tile> TileRequired { get; set; } = new List<Tile>();
     }
-    
+
     public class Terrain : LevelFeature
     {
         public List<TerrainLayer> Layers { get; set; } = new List<TerrainLayer>();
         private float _progress = 0;
-        
+
         public override string GetName()
         {
             return "Base Terrain";
@@ -55,7 +53,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
                     level.SetTile(x, y, tile);
                 }
 
-                _progress = (x / (float) gen.Size);
+                _progress = (x / (float)gen.Size);
             }
         }
     }

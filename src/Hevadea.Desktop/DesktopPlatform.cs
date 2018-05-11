@@ -7,7 +7,6 @@ namespace OpenGLPlatform
 {
     public class DesktopPlatform : PlatformBase
     {
-
         private void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
         {
             RaiseTextInput(e.Character, e.Key);
@@ -15,8 +14,9 @@ namespace OpenGLPlatform
 
         public override string GetPlatformName() => "OpenGl";
 
-        public override int GetScreenWidth() => Screen.PrimaryScreen.Bounds.Width;      
-		public override int GetScreenHeight() => Screen.PrimaryScreen.Bounds.Height;
+        public override int GetScreenWidth() => Screen.PrimaryScreen.Bounds.Width;
+
+        public override int GetScreenHeight() => Screen.PrimaryScreen.Bounds.Height;
 
         public override string GetStorageFolder()
         {
@@ -37,7 +37,6 @@ namespace OpenGLPlatform
 
         public override void Update()
         {
-            
         }
     }
 }

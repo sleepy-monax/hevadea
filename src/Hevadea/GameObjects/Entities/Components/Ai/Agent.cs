@@ -1,23 +1,22 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Ai
 {
     public enum AgentAbortReason { None, ImStuck, PickedUp, TagetLost }
 
-    public class Agent: EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
+    public class Agent : EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
     {
         public Queue<IAction> ActionQueue { get; } = new Queue<IAction>();
         public IAction CurrentAction { get; private set; }
-        
+
         public IBehavior Behavior { get; set; }
 
         public Agent()
         {
-            
         }
 
         public bool IsBusy()
@@ -32,7 +31,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
             Logger.Log<Agent>($"{Owner.GetIdentifier()} aborted: {why}");
             Behavior?.IaAborted(this, why);
         }
-        
+
         public void Update(GameTime gameTime)
         {
             Behavior?.Update(this, gameTime);
@@ -44,7 +43,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
             else
             {
                 CurrentAction = null;
-                
+
                 if (ActionQueue.Count > 0)
                 {
                     CurrentAction = ActionQueue.Dequeue();
@@ -57,11 +56,10 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            
             if (Rise.ShowDebug)
-            {    
+            {
                 CurrentAction?.DrawDebugInfo(this, spriteBatch);
-                
+
                 foreach (var a in ActionQueue)
                 {
                     a.DrawDebugInfo(this, spriteBatch);

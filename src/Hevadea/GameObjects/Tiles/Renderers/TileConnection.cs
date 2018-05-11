@@ -7,11 +7,11 @@ namespace Hevadea.GameObjects.Tiles.Renderers
     {
         public bool Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight;
         public Tile Tile;
-        
+
         public TileConection(Tile tile, bool u, bool d, bool l, bool r, bool ul, bool ur, bool dl, bool dr)
         {
             Tile = tile;
-            
+
             Up = u;
             Down = d;
             Left = l;
@@ -34,7 +34,6 @@ namespace Hevadea.GameObjects.Tiles.Renderers
             v = v.WriteBit(5, DownLeft & Down & Left);
             v = v.WriteBit(6, Down);
             v = v.WriteBit(7, DownRight & Down & Right);
-
 
             if (conv.ContainsKey(v))
                 return conv[v];

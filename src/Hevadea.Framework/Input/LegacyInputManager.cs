@@ -22,6 +22,7 @@ namespace Hevadea.Framework.Input
         {
             oldKeyState = newKeyState = Keyboard.GetState();
         }
+
         public void Update(GameTime gameTime)
         {
             oldKeyState = newKeyState;

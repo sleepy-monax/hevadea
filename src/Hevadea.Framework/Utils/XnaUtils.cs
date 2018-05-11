@@ -5,7 +5,6 @@ namespace Hevadea.Framework.Utils
 {
     public static class XnaUtils
     {
-
         public static bool IsLegalCharacter(this SpriteFont font, char c)
         {
             return font.Characters.Contains(c) || c == '\r' || c == '\n';

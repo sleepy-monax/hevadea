@@ -8,13 +8,11 @@ namespace Hevadea
 {
     public static class Ressources
     {
-        
-        
         public static ParalaxeBackground ParalaxeForest;
 
         public static Sprite SprPickup;
         public static Sprite SprUnderWater;
-        public static Sprite[]    MinimapIcon = new Sprite[16];
+        public static Sprite[] MinimapIcon = new Sprite[16];
 
         public static SpriteFont FontAlagard;
         public static SpriteFont FontAlagardBig;
@@ -95,7 +93,7 @@ namespace Hevadea
             {
                 MinimapIcon[i] = new Sprite(TileMinimapIcon, i);
             }
-            
+
             ParalaxeForest = new ParalaxeBackground(
                 new ParalaxeLayer(ImgForestBackground, 32f),
                 new ParalaxeLayer(ImgForestTrees0, 64f),

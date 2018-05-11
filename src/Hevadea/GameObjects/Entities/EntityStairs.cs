@@ -10,10 +10,10 @@ namespace Hevadea.GameObjects.Entities
     {
         public int Destination { get; set; } = 1;
         public bool GoUp { get; set; } = false;
-        
+
         private Sprite _spriteUp;
         private Sprite _spriteDown;
-        
+
         public EntityStairs(bool goUp, int destination) : this()
         {
             GoUp = goUp;
@@ -31,7 +31,7 @@ namespace Hevadea.GameObjects.Entities
                     Level.RemoveEntity(arg.Entity);
                     World.GetLevel(Destination).AddEntity(arg.Entity);
                 };
-            
+
             _spriteUp = new Sprite(Ressources.TileEntities, new Point(8, 0));
             _spriteDown = new Sprite(Ressources.TileEntities, new Point(8, 1));
         }
@@ -40,11 +40,11 @@ namespace Hevadea.GameObjects.Entities
         {
             if (GoUp)
             {
-                _spriteUp.Draw(spriteBatch, new Rectangle((int)X - 8, (int) Y - 8, 16, 16), Color.White);
+                _spriteUp.Draw(spriteBatch, new Rectangle((int)X - 8, (int)Y - 8, 16, 16), Color.White);
             }
             else
             {
-                _spriteDown.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
+                _spriteDown.Draw(spriteBatch, new Rectangle((int)X - 8, (int)Y - 8, 16, 16), Color.White);
             }
         }
 

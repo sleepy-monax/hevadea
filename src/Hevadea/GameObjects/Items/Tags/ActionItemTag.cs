@@ -1,6 +1,6 @@
-﻿using System;
-using Hevadea.GameObjects.Entities;
+﻿using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
+using System;
 
 namespace Hevadea.GameObjects.Items.Tags
 {
@@ -10,7 +10,7 @@ namespace Hevadea.GameObjects.Items.Tags
 
         public override void InteracteOn(Entity user, TilePosition pos)
         {
-			Action.Invoke(user, pos);
+            Action.Invoke(user, pos);
         }
     }
 }

@@ -8,7 +8,7 @@
         {
             XP += points;
         }
-        
+
         public void TakeXP(EntityXpOrb orb)
         {
             TakeXP(orb.Value);

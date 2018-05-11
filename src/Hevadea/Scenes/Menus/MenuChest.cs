@@ -17,14 +17,14 @@ namespace Hevadea.Scenes.Menus
     {
         private readonly WidgetItemContainer _inventoryA;
         private readonly WidgetItemContainer _inventoryB;
-        
+
         public MenuChest(Entity entity, Entity chest, GameManager game) : base(game)
         {
             PauseGame = true;
-            
-            _inventoryA = new WidgetItemContainer(entity.GetComponent<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
-            _inventoryB = new WidgetItemContainer(chest.GetComponent<Inventory>().Content) {Padding = new Padding(4, 4), Dock = Dock.Fill};
-            
+
+            _inventoryA = new WidgetItemContainer(entity.GetComponent<Inventory>().Content) { Padding = new Padding(4, 4), Dock = Dock.Fill };
+            _inventoryB = new WidgetItemContainer(chest.GetComponent<Inventory>().Content) { Padding = new Padding(4, 4), Dock = Dock.Fill };
+
             _inventoryA.MouseClick += Tranfer;
             _inventoryB.MouseClick += Tranfer;
 
@@ -40,7 +40,6 @@ namespace Hevadea.Scenes.Menus
 
             Content = new WidgetFancyPanel()
             {
-
                 Content = new Container()
                 {
                     Childrens =
@@ -53,18 +52,16 @@ namespace Hevadea.Scenes.Menus
                         GuiFactory.CreateSplitContainer(new Rectangle(0, 0, 64, 64), "Inventory", _inventoryA, "Chest", _inventoryB),
                     }
                 }
-
             };
         }
 
         private void Tranfer(Widget sender)
         {
-            
             WidgetItemContainer invA = (WidgetItemContainer)sender;
             WidgetItemContainer invB = (WidgetItemContainer)sender == _inventoryA ? _inventoryB : _inventoryA;
-            
+
             Item item = invA.SelectedItem;
-            
+
             if (Rise.Input.KeyDown(Keys.LeftShift))
             {
                 while (invA.Content.Count(item) > 0 && invB.Content.HasFreeSlot())

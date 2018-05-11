@@ -80,7 +80,6 @@ namespace Hevadea.Scenes.Menus
                 UnitOffset = new Point(16, 16),
             };
 
-
             _minimap = new WidgetFancyPanel()
             {
                 Anchor = Anchor.TopRight,
@@ -88,8 +87,7 @@ namespace Hevadea.Scenes.Menus
                 UnitBound = new Rectangle(0, 0, 320, 320),
                 UnitOffset = new Point(-16, 16),
                 Content = new WidgetMinimap(game)
-                
-            }; 
+            };
 
             _hotBar = new WidgetHotBar(Game.MainPlayer.GetComponent<Inventory>().Content)
             {
@@ -97,7 +95,7 @@ namespace Hevadea.Scenes.Menus
                 Origine = Anchor.Bottom,
                 UnitOffset = new Point(0, -16)
             };
-            
+
             Content = new AnchoredContainer
             {
                 Childrens =
@@ -109,10 +107,10 @@ namespace Hevadea.Scenes.Menus
                 }
             };
 
-            btnAction.MouseClick  += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Action); };
-            btnAttack.MouseHold   += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Attack); };
-            btnDrop.MouseClick    += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.DropItem); };
-            btnPickup.MouseClick  += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Pickup); };
+            btnAction.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Action); };
+            btnAttack.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Attack); };
+            btnDrop.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.DropItem); };
+            btnPickup.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Pickup); };
             btnMinimap.MouseClick += (sender) => { _minimap.Enable(); sender.Disable(); };
 
             _minimap.MouseClick += (sender) => { sender.Disable(); btnMinimap.Enable(); };

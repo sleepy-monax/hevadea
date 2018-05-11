@@ -19,23 +19,22 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
         }
 
         public override void Update(Agent agent, GameTime gameTime)
-        {   
+        {
             if (Target != null &&
                 Target.Level == agent.Owner.Level &&
                 Mathf.Distance(agent.Owner.Position, Target.Position) > FollowRange * 16 && !agent.IsBusy())
 
             {
                 agent.Abort(AgentAbortReason.TagetLost);
-                Target = null; 
+                Target = null;
             }
-            
+
             if (!agent.IsBusy())
             {
-                
                 if (Target == null)
                 {
                     var game = agent.Owner.Game;
-                    
+
                     if (game.MainPlayer != null &&
                         game.MainPlayer.Level == agent.Owner.Level &&
                         Mathf.Distance(game.MainPlayer.Position, agent.Owner.Position) < AgroRange * 16 &&
@@ -49,11 +48,10 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
                 {
                     agent.MoveTo(Target.GetTilePosition(), MoveSpeedAgro, true, (int)(FollowRange + 4));
                 }
-                
             }
-            
+
             if (!agent.IsBusy())
-                base.Update(agent, gameTime);                
+                base.Update(agent, gameTime);
         }
     }
 }

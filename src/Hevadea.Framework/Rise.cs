@@ -18,6 +18,7 @@ namespace Hevadea.Framework
     {
         // Configs
         public static bool ShowDebugOverlay { get; set; } = false;
+
         public static bool DebugUi { get; set; } = false;
         public static bool ShowDebug { get; set; } = false;
         public static List<AsyncTask> AsyncTasks = new List<AsyncTask>();
@@ -28,7 +29,7 @@ namespace Hevadea.Framework
         public static KeyboardInputManager Keyboard;
         public static Controller Controller;
         public static Pointing Pointing;
-        
+
         public static PlatformBase Platform;
         public static DebugManager Debug;
         public static GraphicManager Graphic;
@@ -36,29 +37,29 @@ namespace Hevadea.Framework
         public static SceneManager Scene;
         public static UiManager Ui;
         public static RessourceManager Ressource;
-		public static FastRandom Rnd = new FastRandom();
+        public static FastRandom Rnd = new FastRandom();
 
         private static Scene _startScene;
-        
+
         public static void Initialize(PlatformBase platform)
         {
             Platform = platform;
-            
+
             MonoGame = new MonoGameHandler();
             MonoGame.OnInitialize += MonoGameOnInitialize;
             MonoGame.OnLoadContent += MonoGameOnLoadContent;
             MonoGame.OnUnloadContent += MonoGameOnUnloadContent;
-            
+
             MonoGame.OnUpdate += MonoGameOnUpdate;
             MonoGame.OnDraw += MonoGameOnDraw;
-        } 
+        }
 
         public static void Start(Scene startScene)
         {
             _startScene = startScene;
             MonoGame.Run();
         }
-        
+
         private static void MonoGameOnInitialize(object sender, EventArgs eventArgs)
         {
             Ressource = new RessourceManager();
@@ -69,7 +70,7 @@ namespace Hevadea.Framework
             Controller = new Controller();
             Pointing = new Pointing();
             Input = new LegacyInputManager();
-            
+
             Graphic = new GraphicManager(MonoGame.Graphics, MonoGame.GraphicsDevice);
             Scene = new SceneManager();
             Ui = new UiManager();
@@ -91,15 +92,13 @@ namespace Hevadea.Framework
                 Graphic.SetSize(1366, 768);
             }
         }
-        
+
         private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)
         {
-
         }
 
         private static void MonoGameOnUnloadContent(object sender, EventArgs eventArgs)
         {
-
         }
 
         private static void MonoGameOnUpdate(Game sender, GameTime gameTime)
@@ -111,10 +110,10 @@ namespace Hevadea.Framework
                     task.Task();
                     task.Done = true;
                 }
-                
+
                 AsyncTasks.Clear();
             }
-            
+
             Pointing.Update();
             Input.Update(gameTime);
             Keyboard.Update();
@@ -125,12 +124,11 @@ namespace Hevadea.Framework
             {
                 DebugUi = !DebugUi;
             }
-            
+
             if (Input.KeyPress(Keys.F2))
             {
                 ShowDebug = !ShowDebug;
             }
-
 
             if (Input.KeyPress(Keys.F3))
             {
@@ -143,7 +141,7 @@ namespace Hevadea.Framework
                 Ui.ScaleFactor *= 2f;
                 Scene.GetCurrentScene()?.RefreshLayout();
             }
-            
+
             if (Input.KeyPress(Keys.F5))
             {
                 ShowDebugOverlay = !ShowDebugOverlay;
@@ -155,7 +153,7 @@ namespace Hevadea.Framework
             Graphic.ResetScissor();
             Graphic.Clear(Color.Black);
             Scene.Draw(gameTime);
-            
+
             if (ShowDebugOverlay)
                 Debug.Draw(gameTime);
         }

@@ -116,6 +116,7 @@ namespace Hevadea.Framework.Utils
                    (this.Y <= rect.Y) &&
                    ((rect.Y + rect.Height) <= (this.Y + this.Height));
         }
+
         public override int GetHashCode()
         {
             return unchecked((int)((UInt32)X ^
@@ -164,7 +165,6 @@ namespace Hevadea.Framework.Utils
             if (x2 >= x1
                 && y2 >= y1)
             {
-
                 return new RectangleF(x1, y1, x2 - x1, y2 - y1);
             }
             return RectangleF.Empty;

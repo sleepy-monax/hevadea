@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects.Items;
+﻿using Hevadea.GameObjects.Items;
+using System.Collections.Generic;
 
 namespace Hevadea.Craftings
 {
     public class Recipe
     {
-        public Item             Result      { get; set; }
-        public int              Quantity    { get; set; }
-        public List<RecipeCost> Costs       { get; set; } = new List<RecipeCost>();
+        public Item Result { get; set; }
+        public int Quantity { get; set; }
+        public List<RecipeCost> Costs { get; set; } = new List<RecipeCost>();
 
         public Recipe(Item result, int quantity)
         {
             Result = result;
             Quantity = quantity;
         }
-        
+
         public Recipe(Item result, int quantity, params RecipeCost[] costs)
         {
             Result = result;
@@ -27,14 +27,14 @@ namespace Hevadea.Craftings
             Costs.Add(new RecipeCost(item, quantity));
             return this;
         }
-        
+
         public virtual bool CanBeCrafted(ItemStorage inventory)
         {
             var result = true;
-            
-            foreach (var cost in Costs) 
+
+            foreach (var cost in Costs)
                 result &= inventory.Count(cost.Item) >= cost.Count;
-            
+
             return result;
         }
 

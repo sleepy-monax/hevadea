@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Items;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components
 {

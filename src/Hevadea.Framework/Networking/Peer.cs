@@ -12,6 +12,7 @@ namespace Hevadea.Framework.Networking
         protected Socket Socket;
 
         public delegate void DataReceivedHandler(Socket socket, DataBuffer packet);
+
         public DataReceivedHandler DataReceived;
 
         protected Peer(bool noDelay = false)
@@ -86,7 +87,6 @@ namespace Hevadea.Framework.Networking
                     var dataBuffer = new DataBuffer(data);
                     DataReceived?.Invoke(socket, dataBuffer);
                 }
-
                 catch (ObjectDisposedException) { break; }
                 catch (SocketException) { break; }
             }
@@ -129,9 +129,9 @@ namespace Hevadea.Framework.Networking
                 SendRawData(socket, packetHeader);
                 SendRawData(socket, packetBody);
             }
-            catch (NullReferenceException) {}
-            catch (SocketException) {}
-            catch (ObjectDisposedException) {}
+            catch (NullReferenceException) { }
+            catch (SocketException) { }
+            catch (ObjectDisposedException) { }
         }
 
         private void SendRawData(Socket socket, byte[] data)

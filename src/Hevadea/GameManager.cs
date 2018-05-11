@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects.Entities;
+﻿using Hevadea.GameObjects.Entities;
 using Hevadea.Player;
 using Hevadea.Scenes.Menus;
 using Hevadea.Worlds;
 using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Hevadea
 {
     public class GameManager
     {
-        Menu _currentMenu;
+        private Menu _currentMenu;
 
-		public string SavePath { get; set; } = "./test/";
+        public string SavePath { get; set; } = "./test/";
         public World World { get; set; }
         public EntityPlayer MainPlayer { get; set; }
         public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
@@ -21,8 +21,9 @@ namespace Hevadea
         public PlayerInputHandler PlayerInput { get; set; }
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
+
         public event CurrentMenuChangeHandler CurrentMenuChange;
-        
+
         public Menu CurrentMenu
         {
             get => _currentMenu;
@@ -49,19 +50,19 @@ namespace Hevadea
             CurrentMenu = new MenuInGame(this);
 
             if (MainPlayer.Removed)
-            { 
+            {
                 if (MainPlayer.X == 0f && MainPlayer.Y == 0f)
                     World.SpawnPlayer(MainPlayer);
-                else 
-					World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
+                else
+                    World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
             }
-            
+
             PlayerInput = new PlayerInputHandler(MainPlayer);
             Camera = new Camera(MainPlayer);
             Camera.JumpToFocusEntity();
         }
 
-		public string GetRemotePlayerPath()
+        public string GetRemotePlayerPath()
             => $"{SavePath}/remotes_players";
 
         public string GetGameSaveFile()
@@ -91,10 +92,9 @@ namespace Hevadea
         {
             Camera.Update(gameTime);
             PlayerInput.Update(gameTime);
-            
+
             if (!CurrentMenu?.PauseGame ?? false)
             {
-            
                 foreach (var l in World.Levels)
                 {
                     var state = l.GetRenderState(Camera);

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Items;
 using Hevadea.Worlds.Level;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles.Components
 {
@@ -9,7 +9,10 @@ namespace Hevadea.GameObjects.Tiles.Components
     {
         public List<Drop> Items { get; set; } = new List<Drop>();
 
-        public DroppableTile() { }
+        public DroppableTile()
+        {
+        }
+
         public DroppableTile(params Drop[] items)
         {
             foreach (var item in items)

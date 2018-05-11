@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects.Entities;
-using Hevadea.Registry;
-using System.Linq;
-using System.Security.Policy;
+﻿using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Items.Tags
 {
@@ -12,22 +9,25 @@ namespace Hevadea.GameObjects.Items.Tags
     {
         public BlueprintGroupe<TGroupe> Groupe { get; }
         public float Damages { get; }
+
         public GroupeDamage(BlueprintGroupe<TGroupe> groupe, float damages)
         {
             Groupe = groupe;
             Damages = damages;
-        }        
+        }
     }
-    
+
     public class DamageTag : ItemTag
     {
         public float BaseEntityDamage { get; }
         public float BaseTileDamage { get; }
-        public List<GroupeDamage<EntityBlueprint>> PerEntityDamage { get; set; } 
+
+        public List<GroupeDamage<EntityBlueprint>> PerEntityDamage { get; set; }
             = new List<GroupeDamage<EntityBlueprint>>();
-        public List<GroupeDamage<Tile>> PerTileDamages { get; set; } 
+
+        public List<GroupeDamage<Tile>> PerTileDamages { get; set; }
             = new List<GroupeDamage<Tile>>();
-        
+
         public DamageTag(float dmg = 1f, float dmgTile = 1f)
         {
             BaseEntityDamage = dmg;

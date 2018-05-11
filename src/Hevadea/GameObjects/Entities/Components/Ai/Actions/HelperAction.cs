@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects.Tiles;
+﻿using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
 {
@@ -17,7 +17,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
                 {
                     return false;
                 }
-                
+
                 foreach (var n in path)
                 {
                     ag.MoveTo(new TilePosition(n.X, n.Y), speed);
@@ -25,9 +25,9 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
             }
             else
             {
-                ag.ActionQueue.Enqueue(new ActionMoveToLocation(pos, speed)); 
+                ag.ActionQueue.Enqueue(new ActionMoveToLocation(pos, speed));
             }
-            
+
             return true;
         }
     }

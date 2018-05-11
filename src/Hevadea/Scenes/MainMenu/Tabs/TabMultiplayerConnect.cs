@@ -1,11 +1,9 @@
-﻿using Hevadea.Framework;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.UI.Widgets.TextBox;
-using Hevadea.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 
@@ -24,7 +22,6 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             var connectButton = new Button { Text = "Connect", Dock = Dock.Bottom }
                 .RegisterMouseClickEvent(Connect);
 
-
             var connectionOptions = new FlowLayout
             {
                 Flow = FlowDirection.TopToBottom,
@@ -34,7 +31,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                     new Label { Text = "IP:", Padding = new Padding(8), TextAlignement = DrawText.Alignement.Left},
                     connectIpTextBox,
                         new Label { Text = "Port:", Padding = new Padding(8), TextAlignement = DrawText.Alignement.Left},
-                    connectPortTextBox,   
+                    connectPortTextBox,
                 }
             };
 

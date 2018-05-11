@@ -2,8 +2,6 @@
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
-using Hevadea.GameObjects.Entities.Components.Attributes;
-using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,7 +26,7 @@ namespace Hevadea.GameObjects.Items
             move.Do(SpeedX, SpeedY);
             SpeedX = SpeedX / 2;
             SpeedY = SpeedY / 2;
-            
+
             var entities = Level.GetEntitiesOnArea(new Rectangle((int)X - 8, (int)Y - 8, 16, 16));
             foreach (var e in entities)
             {

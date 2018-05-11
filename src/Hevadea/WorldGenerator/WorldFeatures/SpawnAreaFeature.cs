@@ -1,5 +1,4 @@
 ﻿using Hevadea.GameObjects;
-using Hevadea.Registry;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
@@ -8,7 +7,6 @@ namespace Hevadea.WorldGenerator.WorldFeatures
     public class SpawnAreaFeature : WorldFeature
     {
         public string SpawnLevelName { get; set; } = "overworld";
-
 
         public override void Apply(Generator gen, World world)
         {

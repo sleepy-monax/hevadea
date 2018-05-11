@@ -9,14 +9,14 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
     public class ActionMoveToLocation : IAction
     {
         private readonly TilePosition _destination;
-        private readonly float        _speed;
-        
+        private readonly float _speed;
+
         public ActionMoveToLocation(TilePosition destination, float speed = 1f)
         {
             _destination = destination;
             _speed = speed;
         }
-        
+
         public bool IsStillRunning(Agent agent)
         {
             return !(_destination.GetCenter() == agent.Owner.Position) && agent.Owner.HasComponent<Move>();
@@ -26,7 +26,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
         {
             var agentPosition = agent.Owner.Position;
             agent.Owner.GetComponent<Move>()?.MoveTo(_destination, _speed, true);
-            
+
             if (agentPosition == agent.Owner.Position)
             {
                 // Agent Stuck... abort

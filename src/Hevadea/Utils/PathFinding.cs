@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Components;
-using Hevadea.Registry;
-using Hevadea.Worlds;
 using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.Utils
 {
@@ -27,8 +25,10 @@ namespace Hevadea.Utils
             public int fCost => gCost + hCost;
             public Node Parent;
 
-            public Node(bool isWalkable, int x, int y) : this(isWalkable ? 1f: 0f, x, y){}
-            
+            public Node(bool isWalkable, int x, int y) : this(isWalkable ? 1f : 0f, x, y)
+            {
+            }
+
             public Node(float penalty, int x, int y)
             {
                 IsWalkable = penalty != 0.0f;
@@ -36,19 +36,18 @@ namespace Hevadea.Utils
                 X = x;
                 Y = y;
             }
-
         }
-        
+
         private Node[,] _nodes;
         private Level _level;
         private Entity _entity;
-        
+
         public List<EntityBlueprint> IngnoredEntity { get; set; } = new List<EntityBlueprint>();
         public int MaxSearchDistance;
-        
+
         public PathFinder(Level level, Entity entity, int maxSearch)
         {
-            _nodes = new Node[level.Width,level.Height];
+            _nodes = new Node[level.Width, level.Height];
             _level = level;
             _entity = entity;
             MaxSearchDistance = maxSearch;
@@ -114,7 +113,7 @@ namespace Hevadea.Utils
 
             return _nodes[tx, ty];
         }
-        
+
         private List<Node> GetNeighbours(int tx, int ty, TilePosition start)
         {
             var neighbours = new List<Node>();
@@ -123,14 +122,13 @@ namespace Hevadea.Utils
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    if ((x == 0 && y == 0) )
+                    if ((x == 0 && y == 0))
                         continue;
-
 
                     int checkX = tx + x;
                     int checkY = ty + y;
 
-                    if (checkX >= 0 && 
+                    if (checkX >= 0 &&
                         checkX < _level.Width &&
                         checkY >= 0 &&
                         checkY < _level.Height &&
@@ -138,14 +136,12 @@ namespace Hevadea.Utils
                     {
                         neighbours.Add(GetNode(checkX, checkY));
                     }
-                    
                 }
             }
 
             return neighbours;
         }
-        
-                
+
         private static List<Node> RetracePath(Node startNode, Node endNode)
         {
             var path = new List<Node>();
@@ -159,7 +155,7 @@ namespace Hevadea.Utils
             path.Reverse();
             return path;
         }
-        
+
         public static void DrawPath(SpriteBatch sb, List<Node> path, Color color)
         {
             Node lastNode = null;
@@ -173,7 +169,5 @@ namespace Hevadea.Utils
                 lastNode = n;
             }
         }
-        
-       
     }
 }

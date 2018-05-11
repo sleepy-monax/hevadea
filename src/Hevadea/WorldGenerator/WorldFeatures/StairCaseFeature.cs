@@ -1,27 +1,28 @@
-﻿using System.Collections.Generic;
-using Hevadea.GameObjects;
+﻿using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Worlds;
+using System.Collections.Generic;
 
 namespace Hevadea.WorldGenerator.WorldFeatures
 {
     public class StairCaseFeature : WorldFeature
     {
-		float _progress = 0f;
-		LevelGenerator _from;
-		LevelGenerator _to;
-		      
+        private float _progress = 0f;
+        private LevelGenerator _from;
+        private LevelGenerator _to;
+
         public List<Tile> CanbegeneratedOn { get; set; } = new List<Tile>();
-        public int StairesCount { get; set; } = 5; 
-        
+        public int StairesCount { get; set; } = 5;
+
         public StairCaseFeature(LevelGenerator from, LevelGenerator to)
         {
             _from = from;
             _to = to;
         }
-        
-		public override string GetName() => "staires";
+
+        public override string GetName() => "staires";
+
         public override float GetProgress()
         {
             return _progress;
@@ -31,11 +32,11 @@ namespace Hevadea.WorldGenerator.WorldFeatures
         {
             var from = world.GetLevel(_from.LevelName);
             var to = world.GetLevel(_to.LevelName);
-			int staireCount = 0;
-            
-			while (staireCount < StairesCount)
-			{
-				var x = gen.Random.Next(0, gen.Size);
+            int staireCount = 0;
+
+            while (staireCount < StairesCount)
+            {
+                var x = gen.Random.Next(0, gen.Size);
                 var y = gen.Random.Next(0, gen.Size);
 
                 if (from.IsValid(x, y, 5, 5, true, new List<Tile> { TILES.ROCK })
@@ -52,9 +53,9 @@ namespace Hevadea.WorldGenerator.WorldFeatures
                     upStaire.GoUp = true;
                     upStaire.Destination = from.Id;
 
-					staireCount++;
+                    staireCount++;
                 }
-			}
+            }
         }
     }
 }

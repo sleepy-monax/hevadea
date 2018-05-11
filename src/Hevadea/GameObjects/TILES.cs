@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Items;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Components;
 using Hevadea.GameObjects.Tiles.Renderers;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.GameObjects
 {
@@ -16,7 +16,7 @@ namespace Hevadea.GameObjects
         public static BlueprintGroupe<Tile> GROUPE_SOIL;
         public static BlueprintGroupe<Tile> GROUPE_ROCK;
         public static BlueprintGroupe<Tile> GROUPE_WOOD;
-        
+
         public static Tile DIRT;
         public static Tile GRASS;
         public static Tile IRON_ORE;
@@ -56,34 +56,33 @@ namespace Hevadea.GameObjects
 
         public static void Initialize()
         {
-            DIRT       = RegisterTile(new Tile("dirt", new TileRenderComposite(new Sprite(Ressources.TileTiles, 9)), Color.Brown));
-            GRASS      = RegisterTile(new Tile("grass", Color.Green));
-            IRON_ORE   = RegisterTile(new Tile("iron_ore", new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)), Color.Orange));
-            ROCK       = RegisterTile( new Tile("rock"));
-            SAND       = RegisterTile( new Tile("sand", Color.Yellow));
-            VOID       = RegisterTile( new Tile("void"));
-            WATER      = RegisterTile( new Tile("water", Color.Blue));
-            WOOD_FLOOR = RegisterTile( new Tile("wood_floor", new TileRenderComposite(new Sprite(Ressources.TileTiles, 5)), Color.SandyBrown));
-			WOOD_WALL  = RegisterTile( new Tile("wood_wall", new TileRenderComposite(new Sprite(Ressources.TileTiles, 6)), Color.SandyBrown));
-            
-            GROUPE_ROCK = new BlueprintGroupe<Tile>("rock"){Members = { IRON_ORE, ROCK }};
-            GROUPE_SOIL = new BlueprintGroupe<Tile>("soil"){Members = { DIRT }};
-            GROUPE_WOOD = new BlueprintGroupe<Tile>("wood"){Members = { WOOD_FLOOR, WOOD_WALL }};
+            DIRT = RegisterTile(new Tile("dirt", new TileRenderComposite(new Sprite(Ressources.TileTiles, 9)), Color.Brown));
+            GRASS = RegisterTile(new Tile("grass", Color.Green));
+            IRON_ORE = RegisterTile(new Tile("iron_ore", new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)), Color.Orange));
+            ROCK = RegisterTile(new Tile("rock"));
+            SAND = RegisterTile(new Tile("sand", Color.Yellow));
+            VOID = RegisterTile(new Tile("void"));
+            WATER = RegisterTile(new Tile("water", Color.Blue));
+            WOOD_FLOOR = RegisterTile(new Tile("wood_floor", new TileRenderComposite(new Sprite(Ressources.TileTiles, 5)), Color.SandyBrown));
+            WOOD_WALL = RegisterTile(new Tile("wood_wall", new TileRenderComposite(new Sprite(Ressources.TileTiles, 6)), Color.SandyBrown));
+
+            GROUPE_ROCK = new BlueprintGroupe<Tile>("rock") { Members = { IRON_ORE, ROCK } };
+            GROUPE_SOIL = new BlueprintGroupe<Tile>("soil") { Members = { DIRT } };
+            GROUPE_WOOD = new BlueprintGroupe<Tile>("wood") { Members = { WOOD_FLOOR, WOOD_WALL } };
         }
 
         public static void AttachRender()
         {
-            GRASS.Render    = new TileRenderSpriteSheet(Ressources.TileGrass);
+            GRASS.Render = new TileRenderSpriteSheet(Ressources.TileGrass);
             IRON_ORE.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 10)) { ConnectTo = { ROCK } };
-            ROCK.Render     = new TileRenderComposite(new Sprite(Ressources.TileTiles, 1)) { ConnectTo = { IRON_ORE } };
-            SAND.Render     = new TileRenderComposite(new Sprite(Ressources.TileTiles, 3));
-            VOID.Render     = new TileRenderComposite(new Sprite(Ressources.TileTiles, 8)) { ConnectTo = { WATER } };
-            WATER.Render    = new TileRenderComposite(new Sprite(Ressources.TileTiles, 4)) { ConnectTo = { VOID } };
+            ROCK.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 1)) { ConnectTo = { IRON_ORE } };
+            SAND.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 3));
+            VOID.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 8)) { ConnectTo = { WATER } };
+            WATER.Render = new TileRenderComposite(new Sprite(Ressources.TileTiles, 4)) { ConnectTo = { VOID } };
         }
 
         public static void AttachTags()
         {
-
             DIRT.AddTag(new DamageTile { ReplacementTile = VOID });
 
             GRASS.AddTag(new BreakableTile { ReplacementTile = DIRT });
@@ -93,7 +92,7 @@ namespace Hevadea.GameObjects
             IRON_ORE.AddTag(new DroppableTile(new Drop(ITEMS.IRON_ORE, 1f, 1, 2)));
             IRON_ORE.AddTag(new SolideTile(), new DamageTile { ReplacementTile = DIRT });
 
-            ROCK.AddTag(new DroppableTile(new Drop(ITEMS.STONE,1f, 2, 3), new Drop(ITEMS.COAL,1f, 0, 2)));
+            ROCK.AddTag(new DroppableTile(new Drop(ITEMS.STONE, 1f, 2, 3), new Drop(ITEMS.COAL, 1f, 0, 2)));
             ROCK.AddTag(new SolideTile(), new DamageTile { ReplacementTile = DIRT });
 
             SAND.AddTag(new BreakableTile { ReplacementTile = DIRT });

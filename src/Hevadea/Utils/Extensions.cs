@@ -3,7 +3,7 @@
 namespace Hevadea.Utils
 {
     public static partial class Extensions
-    {        
+    {
         public static Direction ToDirection(this Vector2 vec)
         {
             if (-vec.Y > 0.3) return Direction.North;

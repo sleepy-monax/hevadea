@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Registry;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles.Components
 {
@@ -15,7 +14,6 @@ namespace Hevadea.GameObjects.Tiles.Components
 
         public DamageTile()
         {
-
             if (damageSprites == null)
             {
                 damageSprites = new Sprite[]
@@ -26,7 +24,6 @@ namespace Hevadea.GameObjects.Tiles.Components
                         new Sprite(Ressources.TileIcons, new Point(3,1))
                 };
             }
-
         }
 
         public void Draw(Tile tile, SpriteBatch spriteBatch, TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
@@ -54,6 +51,5 @@ namespace Hevadea.GameObjects.Tiles.Components
                 level.SetTileData(position, "damages", dmg);
             }
         }
-
     }
 }

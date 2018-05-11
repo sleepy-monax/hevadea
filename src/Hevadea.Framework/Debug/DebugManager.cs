@@ -1,14 +1,14 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Hevadea.Framework.Debug
 {
     public class DebugManager
     {
-        SpriteBatch _spriteBatch;
-		float fps;
-        float ups;
+        private SpriteBatch _spriteBatch;
+        private float fps;
+        private float ups;
 
         public DebugManager()
         {
@@ -17,9 +17,9 @@ namespace Hevadea.Framework.Debug
 
         public void Update(GameTime gameTime)
         {
-			fps += ((1f / (Math.Max(1, Rise.MonoGame.DrawTime) / 1000f)) - fps) * 0.01f;
-			ups += ((1f / (Math.Max(1, Rise.MonoGame.UpdateTime) / 1000f)) - ups) * 0.01f;
-		}
+            fps += ((1f / (Math.Max(1, Rise.MonoGame.DrawTime) / 1000f)) - fps) * 0.01f;
+            ups += ((1f / (Math.Max(1, Rise.MonoGame.UpdateTime) / 1000f)) - ups) * 0.01f;
+        }
 
         public void Draw(GameTime gameTime)
         {
@@ -37,7 +37,7 @@ Running on platform: '{Rise.Platform.GetPlatformName()}'
     Family: {Rise.Platform.Family}
     Hardware Screen {Rise.Platform.GetScreenWidth()}, {Rise.Platform.GetScreenHeight()}
     Screen: {Rise.Graphic.GetWidth()}, {Rise.Graphic.GetHeight()}
-Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name} 
+Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name}
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}";
 
             _spriteBatch.DrawString(Rise.Ui.DebugFont, text, new Vector2(16, 16 + 1), Color.Black);

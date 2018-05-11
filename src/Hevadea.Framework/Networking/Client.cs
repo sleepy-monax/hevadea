@@ -12,6 +12,7 @@ namespace Hevadea.Framework.Networking
         public bool Connected => GetIsConnected(Socket);
 
         public delegate void ConnectionChangeHandler();
+
         public ConnectionChangeHandler ConnectionLost;
 
         public Client(bool noDelay = false) : base(noDelay)
@@ -42,7 +43,7 @@ namespace Hevadea.Framework.Networking
                 }
                 catch (SocketException) { }
                 catch (InvalidOperationException) { }
-                
+
                 Socket.Close();
             }
             return false;

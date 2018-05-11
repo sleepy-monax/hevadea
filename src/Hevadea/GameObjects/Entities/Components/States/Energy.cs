@@ -29,7 +29,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
         public void Update(GameTime gameTime)
         {
             if (EnableNaturalRegeneration)
-            {   
+            {
                 Value = Mathf.Min(MaxValue, Value + Regeneration);
                 Regeneration = Mathf.Min(MaxRegeneration, Mathf.Max(Regeneration, 0.01f) * 1.02f);
             }

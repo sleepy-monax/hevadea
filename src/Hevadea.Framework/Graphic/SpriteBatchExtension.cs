@@ -11,7 +11,7 @@ namespace Hevadea.Framework.Graphic
         {
             spriteBatch.Begin(spriteBatchBeginState.SortMode, spriteBatchBeginState.BlendState, spriteBatchBeginState.SamplerState, spriteBatchBeginState.DepthStencilState, spriteBatchBeginState.RasterizerState, spriteBatchBeginState.Effect, spriteBatchBeginState.TransformMatrix);
         }
-        
+
         public static void BeginDrawEnd(this SpriteBatch sb, DrawTask task, GameTime gameTime = null, SpriteBatchBeginState state = null)
         {
             if (state != null)
@@ -22,7 +22,7 @@ namespace Hevadea.Framework.Graphic
             {
                 sb.Begin();
             }
-            
+
             task(sb, gameTime);
             sb.End();
         }

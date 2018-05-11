@@ -12,16 +12,16 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Hevadea.GameObjects.Entities
 {
     public class EntityFish : Entity
-    {        
+    {
         private readonly Sprite _sprite;
-        
+
         public EntityFish()
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(11, 0));
 
             AddComponent(new Move());
             AddComponent(new Breakable());
-            AddComponent(new Swim { IsSwimingPainfull = false});
+            AddComponent(new Swim { IsSwimingPainfull = false });
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.RAW_FISH, 1f, 1, 1) } });
             AddComponent(new Pushable { CanBePushBy = { EntityFactory.PLAYER } });

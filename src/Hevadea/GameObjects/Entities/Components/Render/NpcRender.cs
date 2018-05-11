@@ -11,7 +11,7 @@ namespace Hevadea.GameObjects.Entities.Components.Render
         private bool _isWalking;
         private bool _isSwiming;
         private bool _isPickingItem;
-        
+
         public Sprite Sprite { get; set; }
 
         public NpcRender(Sprite sprite)
@@ -26,12 +26,11 @@ namespace Hevadea.GameObjects.Entities.Components.Render
             _isSwiming = Owner.GetComponent<Swim>()?.IsSwiming ?? false;
             _isPickingItem = (Owner.GetComponent<Inventory>()?.HasPickup ?? false) || ((Owner.GetComponent<Pickup>()?.GetPickupEntity() ?? null) != null);
         }
-        
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            
-            var frame = new[] {0, 2, 1, 2}[(int) (gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
-            var selectedFrame = _isWalking ? new Point(frame, (int) Owner.Facing) : new Point(2, (int) Owner.Facing);
+            var frame = new[] { 0, 2, 1, 2 }[(int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
+            var selectedFrame = _isWalking ? new Point(frame, (int)Owner.Facing) : new Point(2, (int)Owner.Facing);
 
             if (_isPickingItem)
             {
@@ -45,7 +44,7 @@ namespace Hevadea.GameObjects.Entities.Components.Render
             }
 
             if (_isSwiming)
-            {                
+            {
                 Ressources.SprUnderWater
                 .DrawSubSprite(spriteBatch, new Vector2(Owner.X - 8, Owner.Y - 24), selectedFrame, Color.White);
             }

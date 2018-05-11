@@ -15,7 +15,7 @@ namespace Hevadea.Player
 {
     public enum PlayerInput
     {
-        MoveLeft, MoveRight, MoveUp, MoveDown, 
+        MoveLeft, MoveRight, MoveUp, MoveDown,
         Action, Attack, Pickup, DropItem,
         AddWaypoint,
         OpenMenu, ZoomIn, ZoomOut
@@ -35,22 +35,22 @@ namespace Hevadea.Player
             var game = Player.Game;
             var input = Rise.Input;
             var screenBound = Rise.Graphic.GetBound();
-            
+
             if (!game.CurrentMenu?.PauseGame ?? false)
-            {                  
+            {
                 if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
-                {                
-					if (input.KeyDown(Keys.Z) != input.KeyDown(Keys.S))
-					{
-						if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
-						if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);                  
+                {
+                    if (input.KeyDown(Keys.Z) != input.KeyDown(Keys.S))
+                    {
+                        if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
+                        if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
                     }
-                    
-					if (input.KeyDown(Keys.Q) != input.KeyDown(Keys.D))
-					{
+
+                    if (input.KeyDown(Keys.Q) != input.KeyDown(Keys.D))
+                    {
                         if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
                         if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
-					}
+                    }
 
                     if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
@@ -73,15 +73,15 @@ namespace Hevadea.Player
                     }
                 }
             }
-            
+
             if (input.KeyPress(Keys.E) || input.KeyPress(Keys.Escape)) HandleInput(PlayerInput.OpenMenu);
         }
-        
+
         public void HandleInput(PlayerInput input)
         {
             var game = Player.Game;
             var playerMovement = Player.GetComponent<Move>();
-            
+
             switch (input)
             {
                 case PlayerInput.MoveLeft:
@@ -127,18 +127,18 @@ namespace Hevadea.Player
                     else
                         game.CurrentMenu = new MenuInGame(game);
                     break;
-                
+
                 case PlayerInput.ZoomIn:
-                    if(game.Camera.Zoom < 8) game.Camera.Zoom /= 0.8f;
+                    if (game.Camera.Zoom < 8) game.Camera.Zoom /= 0.8f;
                     break;
 
                 case PlayerInput.ZoomOut:
-                    if(game.Camera.Zoom > 2) game.Camera.Zoom *= 0.8f;
+                    if (game.Camera.Zoom > 2) game.Camera.Zoom *= 0.8f;
                     break;
 
                 case PlayerInput.AddWaypoint:
                     var pos = game.MainPlayer.GetTilePosition();
-                    game.MainPlayer.Level.Minimap.Waypoints.Add(new MinimapWaypoint{X = pos.X, Y = pos.Y, Icon = 0});
+                    game.MainPlayer.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
                     break;
             }
         }

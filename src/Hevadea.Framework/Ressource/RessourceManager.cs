@@ -12,7 +12,6 @@ namespace Hevadea.Framework.Ressource
         private Dictionary<string, SpriteFont> FontCache = new Dictionary<string, SpriteFont>();
         private Dictionary<string, Texture2D> TextureCache = new Dictionary<string, Texture2D>();
 
-
         public Texture2D GetTexture(string name)
         {
             var fullName = $"assets/{name}.png";
@@ -28,7 +27,7 @@ namespace Hevadea.Framework.Ressource
                 else
                 {
                     Logger.Log<RessourceManager>(LoggerLevel.Warning, $"Ressource: '{name}' not found !");
-                    TextureCache.Add(name, Rise.Graphic.GetFallbackTexture() );
+                    TextureCache.Add(name, Rise.Graphic.GetFallbackTexture());
                 }
             }
 
@@ -61,7 +60,8 @@ namespace Hevadea.Framework.Ressource
             return TextureCache["icon:" + name];
         }
 
-        [Obsolete] public Texture2D GetImage(string name)
+        [Obsolete]
+        public Texture2D GetImage(string name)
         {
             if (!TextureCache.ContainsKey("img:" + name))
             {

@@ -22,13 +22,13 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Dropable { Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1) } });
             AddComponent(new Move());
             AddComponent(new Pushable());
-            AddComponent(new Colider( new Rectangle(-6, -2, 12, 8) ));
+            AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Pickupable(_sprite));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _sprite.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
+            _sprite.Draw(spriteBatch, new Rectangle((int)X - 8, (int)Y - 8, 16, 16), Color.White);
         }
     }
 }

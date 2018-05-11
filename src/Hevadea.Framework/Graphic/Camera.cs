@@ -6,7 +6,7 @@ namespace Hevadea.Framework.Graphic
 {
     public class Camera
     {
-        double _thrauma;
+        private double _thrauma;
 
         public float X { get; set; } = 0;
         public float Y { get; set; } = 0;
@@ -27,17 +27,17 @@ namespace Hevadea.Framework.Graphic
             return (int)(Rise.Graphic.GetHeight() / Zoom);
         }
 
-        float value = 0f;
+        private float value = 0f;
 
         public Matrix GetTransform()
         {
-            float shakeAngle =   (float)(MaxShakeAngle  * ScreenShake * (Rise.Rnd.NextDouble() * 2 - 1f));
+            float shakeAngle = (float)(MaxShakeAngle * ScreenShake * (Rise.Rnd.NextDouble() * 2 - 1f));
             float shakeOffsetX = (float)(MaxShakeOffset * ScreenShake * (Rise.Rnd.NextDouble() * 2 - 1f));
             float shakeOffsetY = (float)(MaxShakeOffset * ScreenShake * (Rise.Rnd.NextDouble() * 2 - 1f));
 
             return Matrix.CreateScale(Zoom) * Matrix.CreateTranslation(
                        Mathf.Floor(-((X + shakeOffsetX) * Zoom)),
-                       Mathf.Floor(-((Y + shakeOffsetY) * Zoom)), 0f) * Matrix.CreateRotationZ(shakeAngle) * Matrix.CreateTranslation(Rise.Graphic.GetWidth() / 2f, Rise.Graphic.GetHeight() / 2f, 0) ;
+                       Mathf.Floor(-((Y + shakeOffsetY) * Zoom)), 0f) * Matrix.CreateRotationZ(shakeAngle) * Matrix.CreateTranslation(Rise.Graphic.GetWidth() / 2f, Rise.Graphic.GetHeight() / 2f, 0);
         }
 
         public Vector2 ToWorldSpace(Vector2 screen)
@@ -50,7 +50,7 @@ namespace Hevadea.Framework.Graphic
         {
             return new Vector2();
         }
-        
+
         public void Update(GameTime gameTime)
         {
             if (Rise.Input.KeyDown(Microsoft.Xna.Framework.Input.Keys.T))
@@ -63,6 +63,8 @@ namespace Hevadea.Framework.Graphic
             value += 0.01f;
         }
 
-        public virtual void Animate(GameTime gameTime) { }
+        public virtual void Animate(GameTime gameTime)
+        {
+        }
     }
 }

@@ -3,28 +3,26 @@ using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
+using Hevadea.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.IO;
-using Hevadea.Loading;
 
 namespace Hevadea.Scenes.MainMenu.Tabs
 {
     public class TabLoadWorld : Tab
     {
-
         public TabLoadWorld()
         {
-            Icon = new Sprite(Ressources.TileIcons, new Point(2,2));
+            Icon = new Sprite(Ressources.TileIcons, new Point(2, 2));
             var saveList = new ListWidget()
             {
                 Dock = Dock.Fill
             };
 
-            var loadButton = new Button{ Text = "Load", Dock = Dock.Bottom }
+            var loadButton = new Button { Text = "Load", Dock = Dock.Bottom }
             .RegisterMouseClickEvent((sender) =>
             {
-
                 if (saveList.SelectedItem != null)
                 {
                     var item = (ListItemText)saveList.SelectedItem;
@@ -49,7 +47,5 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 saveList.AddItem(new ListItemText(save));
             }
         }
-
-       
     }
 }

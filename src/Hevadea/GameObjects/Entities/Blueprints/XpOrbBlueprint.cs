@@ -2,8 +2,8 @@
 {
     public class XpOrbBlueprint : EntityBlueprint
     {
-        int _value;
-        
+        private int _value;
+
         public XpOrbBlueprint(string name, int value) : base(name)
         {
             _value = value;
@@ -15,6 +15,5 @@
             e.Blueprint = this;
             return e;
         }
-
     }
 }

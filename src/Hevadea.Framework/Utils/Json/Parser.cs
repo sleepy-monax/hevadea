@@ -26,15 +26,16 @@ namespace Hevadea.Framework.Utils.Json
     - No JIT Emit support to parse structures quickly
     - Limited to parsing <2GB JSON files (due to int.MaxValue)
     - Parsing of abstract classes or interfaces is NOT supported and will throw an exception.*/
+
     public static class Parser
     {
-        static Stack<List<string>> splitArrayPool = new Stack<List<string>>();
-        static StringBuilder stringBuilder = new StringBuilder();
+        private static Stack<List<string>> splitArrayPool = new Stack<List<string>>();
+        private static StringBuilder stringBuilder = new StringBuilder();
 
-        static readonly Dictionary<Type, Dictionary<string, FieldInfo>> fieldInfoCache =
+        private static readonly Dictionary<Type, Dictionary<string, FieldInfo>> fieldInfoCache =
             new Dictionary<Type, Dictionary<string, FieldInfo>>();
 
-        static readonly Dictionary<Type, Dictionary<string, PropertyInfo>> propertyInfoCache =
+        private static readonly Dictionary<Type, Dictionary<string, PropertyInfo>> propertyInfoCache =
             new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
         public static T FromJson<T>(this string json)
@@ -57,10 +58,10 @@ namespace Hevadea.Framework.Utils.Json
             }
 
             //Parse the thing!
-            return (T) ParseValue(typeof(T), stringBuilder.ToString());
+            return (T)ParseValue(typeof(T), stringBuilder.ToString());
         }
 
-        static int AppendUntilStringEnd(bool appendEscapeCharacter, int startIdx, string json)
+        private static int AppendUntilStringEnd(bool appendEscapeCharacter, int startIdx, string json)
         {
             stringBuilder.Append(json[startIdx]);
             for (int i = startIdx + 1; i < json.Length; i++)
@@ -85,7 +86,7 @@ namespace Hevadea.Framework.Utils.Json
         }
 
         //Splits { <value>:<value>, <value>:<value> } and [ <value>, <value> ] into a list of <value> strings
-        static List<string> Split(string json)
+        private static List<string> Split(string json)
         {
             List<string> splitArray = splitArrayPool.Count > 0 ? splitArrayPool.Pop() : new List<string>();
             splitArray.Clear();
@@ -101,10 +102,12 @@ namespace Hevadea.Framework.Utils.Json
                     case '{':
                         parseDepth++;
                         break;
+
                     case ']':
                     case '}':
                         parseDepth--;
                         break;
+
                     case '\"':
                         i = AppendUntilStringEnd(true, i, json);
                         continue;
@@ -144,27 +147,35 @@ namespace Hevadea.Framework.Utils.Json
                             case '"':
                                 stringBuilder.Append('"');
                                 break;
+
                             case '\\':
                                 stringBuilder.Append("\\");
                                 break;
+
                             case 'b':
                                 stringBuilder.Append("\b");
                                 break;
+
                             case 'f':
                                 stringBuilder.Append("\f");
                                 break;
+
                             case 't':
                                 stringBuilder.Append("\t");
                                 break;
+
                             case 'n':
                                 stringBuilder.Append("\n");
                                 break;
+
                             case 'r':
                                 stringBuilder.Append("\r");
                                 break;
+
                             case '0':
                                 stringBuilder.Append("\0");
                                 break;
+
                             default:
                                 stringBuilder.Append(json[i]);
                                 break;
@@ -234,7 +245,7 @@ namespace Hevadea.Framework.Utils.Json
                     return null;
 
                 List<string> elems = Split(json);
-                var list = (IList) type.GetConstructor(new Type[] {typeof(int)}).Invoke(new object[] {elems.Count});
+                var list = (IList)type.GetConstructor(new Type[] { typeof(int) }).Invoke(new object[] { elems.Count });
                 for (int i = 0; i < elems.Count; i++)
                     list.Add(ParseValue(listType, elems[i]));
                 splitArrayPool.Push(elems);
@@ -261,8 +272,8 @@ namespace Hevadea.Framework.Utils.Json
                 if (elems.Count % 2 != 0)
                     return null;
 
-                var dictionary = (IDictionary) type.GetConstructor(new Type[] {typeof(int)})
-                    .Invoke(new object[] {elems.Count / 2});
+                var dictionary = (IDictionary)type.GetConstructor(new Type[] { typeof(int) })
+                    .Invoke(new object[] { elems.Count / 2 });
                 for (int i = 0; i < elems.Count; i += 2)
                 {
                     if (elems[i].Length <= 2)
@@ -288,7 +299,7 @@ namespace Hevadea.Framework.Utils.Json
             return null;
         }
 
-        static object ParseAnonymousValue(string json)
+        private static object ParseAnonymousValue(string json)
         {
             if (json.Length == 0)
                 return null;
@@ -322,7 +333,7 @@ namespace Hevadea.Framework.Utils.Json
             {
                 if (json.EndsWith("f"))
                 {
-                    float.TryParse(json.Replace("f",""), NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
+                    float.TryParse(json.Replace("f", ""), NumberStyles.Float, CultureInfo.InvariantCulture, out var result);
                     return result;
                 }
                 else if (json.EndsWith("d"))
@@ -332,7 +343,7 @@ namespace Hevadea.Framework.Utils.Json
                 }
                 else
                 {
-                    int.TryParse(json,NumberStyles.Integer, CultureInfo.InvariantCulture, out var result);
+                    int.TryParse(json, NumberStyles.Integer, CultureInfo.InvariantCulture, out var result);
                     return result;
                 }
             }
@@ -346,7 +357,7 @@ namespace Hevadea.Framework.Utils.Json
             return null;
         }
 
-        static object ParseObject(Type type, string json)
+        private static object ParseObject(Type type, string json)
         {
             object instance = FormatterServices.GetUninitializedObject(type);
 
