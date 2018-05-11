@@ -1,0 +1,10 @@
+﻿using System;
+namespace Hevadea.Worlds
+{
+	public class World
+	{
+		public World()
+		{
+		}
+	}
+}

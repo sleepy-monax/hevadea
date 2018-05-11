@@ -1,0 +1,62 @@
+﻿using System.Collections.Generic;
+using Hevadea.GameObjects;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.Registry;
+using Hevadea.WorldGenerator.Functions;
+using Hevadea.Worlds;
+using Hevadea.Worlds.Level;
+
+namespace Hevadea.WorldGenerator.LevelFeatures
+{
+    public class TerrainLayer
+    {
+        public Tile Tile { get; set; } = TILES.WATER;
+        public IFunction Function { get; set; } = new FlatFunction(1f);
+        public float Threashold { get; set; } = 1f;
+        public int Priority { get; set; } = 0;
+        public List<Tile> TileRequired { get; set; } = new List<Tile>();
+    }
+    
+    public class Terrain : LevelFeature
+    {
+        public List<TerrainLayer> Layers { get; set; } = new List<TerrainLayer>();
+        private float _progress = 0;
+        
+        public override string GetName()
+        {
+            return "Base Terrain";
+        }
+
+        public override float GetProgress()
+        {
+            return _progress;
+        }
+
+        public override void Apply(Generator gen, LevelGenerator levelGen, Level level)
+        {
+            Layers.Sort((a, b) => a.Priority.CompareTo(b.Priority));
+
+            for (var x = 0; x < gen.Size; x++)
+            {
+                for (var y = 0; y < gen.Size; y++)
+                {
+                    Tile tile = TILES.VOID;
+
+                    foreach (var layer in Layers)
+                    {
+                        var value = layer.Function.Compute(x, y, gen, levelGen, level);
+
+                        var canBeAdded = value >= layer.Threashold &&
+                                         (layer.TileRequired.Count == 0 || layer.TileRequired.Contains(tile));
+
+                        if (canBeAdded) tile = layer.Tile;
+                    }
+
+                    level.SetTile(x, y, tile);
+                }
+
+                _progress = (x / (float) gen.Size);
+            }
+        }
+    }
+}
