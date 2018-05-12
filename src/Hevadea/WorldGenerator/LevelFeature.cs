@@ -1,4 +1,4 @@
-﻿using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds;
 
 namespace Hevadea.WorldGenerator
 {

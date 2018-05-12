@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Items;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles.Components

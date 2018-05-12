@@ -1,4 +1,4 @@
-﻿using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds;
 using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles.Renderers
@@ -9,11 +9,12 @@ namespace Hevadea.GameObjects.Tiles.Renderers
         public bool OnlyRenderOnConnection = false;
         public bool DoNotConnectToMe { get; set; } = false;
 
-        public TileConection GetTileConnection(Level level, TilePosition pos)
+        public TileConnection GetTileConnection(Level level, TilePosition pos)
         {
-            if ((level.CachedTileConnection[pos.X, pos.Y] != null && level.CachedTileConnection[pos.X, pos.Y].Tile == Tile))
+            TileConnection cache = level.GetTileConnection(pos);
+            if ((cache != null && cache.Tile == Tile))
             {
-                return level.CachedTileConnection[pos.X, pos.Y];
+                return cache;
             }
 
             var Up = false;
@@ -49,8 +50,8 @@ namespace Hevadea.GameObjects.Tiles.Renderers
                 DownRight |= level.GetTile(pos.X + 1, pos.Y + 1) == Tile;
             }
 
-            var connections = new TileConection(Tile, Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight);
-            level.CachedTileConnection[pos.X, pos.Y] = connections;
+            var connections = new TileConnection(Tile, Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight);
+            level.SetTileConnection(pos, connections);
             return connections;
         }
     }

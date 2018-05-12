@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Utils;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 

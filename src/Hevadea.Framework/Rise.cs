@@ -17,6 +17,7 @@ namespace Hevadea.Framework
     public static class Rise
     {
         // Configs
+        public static bool ShowGui { get; set; } = true;
         public static bool ShowDebugOverlay { get; set; } = false;
 
         public static bool DebugUi { get; set; } = false;
@@ -145,6 +146,11 @@ namespace Hevadea.Framework
             if (Input.KeyPress(Keys.F5))
             {
                 ShowDebugOverlay = !ShowDebugOverlay;
+            }
+
+            if (Input.KeyPress(Keys.F6))
+            {
+                ShowGui = !ShowGui;
             }
         }
 

@@ -8,6 +8,11 @@ namespace Hevadea.Framework.Utils
 {
     public static class GenericExtension
     {
+        public static TValue GetValueOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+        {
+            return dictionary.TryGetValue(key, out TValue value) ? value : defaultValue;
+        }
+
         public static IList<T> Clone<T>(this IList<T> listToClone)
         {
             var result = new List<T>();

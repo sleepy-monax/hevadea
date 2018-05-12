@@ -1,4 +1,4 @@
-﻿using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

@@ -87,7 +87,7 @@ namespace Hevadea.GameObjects
             {
                 Action = (user, pos) =>
                 {
-                    foreach (var e in user.Level.GetEntityOnTile(pos))
+                    foreach (var e in user.Level.GetEntitiesAt(pos))
                     {
                         if (e.HasComponent<Burnable>())
                             e.GetComponent<Burnable>().IsBurnning = true;

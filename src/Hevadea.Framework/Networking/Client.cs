@@ -58,6 +58,6 @@ namespace Hevadea.Framework.Networking
             };
         }
 
-        public void SendData(DataBuffer packet) => SendData(Socket, packet);
+        public void SendData(PacketBuilder packet) => SendData(Socket, packet);
     }
 }

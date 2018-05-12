@@ -1,4 +1,4 @@
-﻿using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds;
 
 namespace Hevadea.GameObjects.Tiles.Components
 {
@@ -9,7 +9,7 @@ namespace Hevadea.GameObjects.Tiles.Components
         public void Break(TilePosition position, Level level)
         {
             level.SetTile(position, ReplacementTile);
-            level.ClearTileData(position);
+            level.ClearTileDataAt(position);
             AttachedTile.Tag<DroppableTile>()?.Drop(position, level);
         }
     }

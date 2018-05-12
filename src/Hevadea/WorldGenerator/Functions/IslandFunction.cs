@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework.Utils;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 
 namespace Hevadea.WorldGenerator.Functions
 {

@@ -1,7 +1,7 @@
 ﻿using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.WorldGenerator.Functions;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using System.Collections.Generic;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
@@ -34,8 +34,8 @@ namespace Hevadea.WorldGenerator.LevelFeatures
             {
                 for (var y = 0; y < gen.Size; y += Spacing)
                 {
-                    if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(x, y)) && PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold && level.GetEntityOnTile(x, y).Count == 0)
-                        level.SpawnEntity(_blueprint.Construct(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));
+                    if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(x, y)) && PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold && level.GetEntitiesAt(x, y).Count == 0)
+                        level.AddEntityAt(_blueprint.Construct(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));
                 }
 
                 _progress = (x / (float)gen.Size);

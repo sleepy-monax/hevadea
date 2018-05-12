@@ -34,7 +34,7 @@ namespace Hevadea.GameObjects.Entities
 
         public override void OnUpdate(GameTime gameTime)
         {
-            var entities = Level.GetEntityOnTile(GetTilePosition());
+            var entities = Level.GetEntitiesAt(GetTilePosition());
             foreach (var e in entities)
             {
                 e.GetComponent<Move>()?.MoveTo(GetFacingTile(), speed: 0.5f);

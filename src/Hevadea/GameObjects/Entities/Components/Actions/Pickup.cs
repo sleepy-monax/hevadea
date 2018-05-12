@@ -51,10 +51,10 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         {
             var facingTile = Owner.GetFacingTile();
 
-            if (Owner.Level.GetEntityOnTile(facingTile).Count != 0) return false;
+            if (Owner.Level.GetEntitiesAt(facingTile).Count != 0) return false;
 
             _pickupedEntity.Facing = Owner.Facing;
-            Owner.Level.SpawnEntity(_pickupedEntity, facingTile.X, facingTile.Y);
+            Owner.Level.AddEntityAt(_pickupedEntity, facingTile.X, facingTile.Y);
             _pickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
             _pickupedEntity = null;
 

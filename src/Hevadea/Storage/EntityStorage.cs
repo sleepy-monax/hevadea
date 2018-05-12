@@ -23,10 +23,6 @@ namespace Hevadea.Storage
             Data = data;
         }
 
-        public void SaveToDataBuffer(DataBuffer data)
-        {
-        }
-
         public float GetFloat(string name, float defaultValue = 0f)
         {
             return Convert.ToSingle(Get(name, defaultValue));

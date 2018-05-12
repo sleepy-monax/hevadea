@@ -19,7 +19,7 @@ namespace Hevadea.Worlds
         };
 
         public GameManager Game;
-        public List<Level.Level> Levels = new List<Level.Level>();
+        public List<Level> Levels = new List<Level>();
         public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
 
@@ -47,20 +47,20 @@ namespace Hevadea.Worlds
         public void SpawnPlayer(EntityPlayer player)
         {
             var level = GetLevel(PlayerSpawnLevel);
-            level.SpawnEntity(player, level.Width / 2, level.Height / 2);
+            level.AddEntityAt(player, level.Width / 2, level.Height / 2);
         }
 
-        public Level.Level GetLevel(string name)
+        public Level GetLevel(string name)
         {
             return Levels.FirstOrDefault(l => l.Name == name);
         }
 
-        public Level.Level GetLevel(int id)
+        public Level GetLevel(int id)
         {
             return Levels.FirstOrDefault(l => l.Id == id);
         }
 
-        public void AddLevel(Level.Level level)
+        public void AddLevel(Level level)
         {
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
@@ -81,9 +81,12 @@ namespace Hevadea.Worlds
             level.DrawEntities(state, _spriteBatch, gameTime);
             _spriteBatch.End();
 
-            _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
-            level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
-            _spriteBatch.End();
+            if (Rise.ShowGui)
+            {
+                _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
+                level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
+                _spriteBatch.End();
+            }
 
             Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
 
@@ -125,9 +128,12 @@ namespace Hevadea.Worlds
         {
             foreach (var l in Levels)
             {
-                foreach (var e in l.Entities)
+                foreach (var c in l.Chunks)
                 {
-                    if (e.Ueid == Ueid) return e;
+                    foreach (var e in c.Entities)
+                    {
+                        if (e.Ueid == Ueid) return e;
+                    }
                 }
             }
 

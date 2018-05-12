@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Hevadea.Worlds.Level
+namespace Hevadea.Worlds
 {
     public partial class Level
     {
@@ -31,7 +31,7 @@ namespace Hevadea.Worlds.Level
             _world = world;
             _game = game;
             Logger.Log<Level>(LoggerLevel.Info, "Initializing entities...");
-            foreach (var e in Entities) e.Initialize(this, world, _game);
+            foreach (var c in Chunks) foreach (var e in c.Entities) e.Initialize(this, world, _game);
             Logger.Log<Level>(LoggerLevel.Fine, "Done!");
 
             IsInitialized = true;
@@ -44,7 +44,7 @@ namespace Hevadea.Worlds.Level
                 var tx = Rise.Rnd.Next(Width);
                 var ty = Rise.Rnd.Next(Height);
                 var tile = GetTile(tx, ty);
-                tile.Update(new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
+                tile.Update(new TilePosition(tx, ty), GetTileDataAt(tx, ty), this, gameTime);
             }
 
             ParticleSystem.Update(gameTime);
@@ -70,7 +70,7 @@ namespace Hevadea.Worlds.Level
 
             for (var tx = state.Begin.X; tx < state.End.X; tx++)
                 for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
-                    entitiesOnScreen.AddRange(_entitiesOnTiles[tx, ty]);
+                    entitiesOnScreen.AddRange(GetEntitiesAt(tx, ty));
 
             entitiesOnScreen.Sort((a, b) => (a.Y + a.SortingOffset).CompareTo(b.Y + b.SortingOffset));
 
@@ -85,8 +85,7 @@ namespace Hevadea.Worlds.Level
             {
                 for (var tx = state.Begin.X; tx < state.End.X; tx++)
                 {
-                    GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), TilesData[tx + ty * Width], this, gameTime);
-                    spriteBatch.DrawString(Ressources.FontHack, GetEntityOnTile(tx, ty).Count.ToString(), new Rectangle(tx * 16, ty * 16, 16, 16), DrawText.Alignement.Center, DrawText.TextStyle.Regular, Color.White);
+                    GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), GetTileDataAt(tx, ty), this, gameTime);
                 }
             }
 

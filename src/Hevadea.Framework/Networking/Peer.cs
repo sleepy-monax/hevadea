@@ -11,7 +11,7 @@ namespace Hevadea.Framework.Networking
         private readonly bool _noDelay;
         protected Socket Socket;
 
-        public delegate void DataReceivedHandler(Socket socket, DataBuffer packet);
+        public delegate void DataReceivedHandler(Socket socket, PacketBuilder packet);
 
         public DataReceivedHandler DataReceived;
 
@@ -84,7 +84,7 @@ namespace Hevadea.Framework.Networking
                     while (curRead < pLength)
                         curRead += socket.Receive(data, curRead, pLength - curRead, SocketFlags.None);
 
-                    var dataBuffer = new DataBuffer(data);
+                    var dataBuffer = new PacketBuilder(data);
                     DataReceived?.Invoke(socket, dataBuffer);
                 }
                 catch (ObjectDisposedException) { break; }
@@ -119,7 +119,7 @@ namespace Hevadea.Framework.Networking
                 server.RemoveConnection(socketIndex);
         }
 
-        protected void SendData(Socket socket, DataBuffer packet)
+        protected void SendData(Socket socket, PacketBuilder packet)
         {
             try
             {

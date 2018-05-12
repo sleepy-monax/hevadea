@@ -5,7 +5,6 @@ using Hevadea.GameObjects.Entities.Graphic;
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Hevadea.Worlds;
-using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -31,14 +30,21 @@ namespace Hevadea.GameObjects.Entities
 
         public void SetPosition(float x, float y)
         {
-            var oldPosition = GetTilePosition();
+            var oldPos = GetTilePosition();
+            Chunk oldChunk = Level.GetChunkAt(oldPos);
 
             X = x; Y = y;
 
-            var pos = GetTilePosition();
+            var newPos = GetTilePosition();
+            Chunk newChunk = Level.GetChunkAt(newPos);
 
-            Level?.RemoveEntityFromTile(oldPosition, this);
-            Level?.AddEntityToTile(pos, this);
+            // Remove the entity from his previous position.
+            oldChunk.Entities.Remove(this);
+            oldChunk.EntitiesOnTiles[oldPos.X % Chunk.CHUNK_SIZE, oldPos.Y % Chunk.CHUNK_SIZE].Remove(this);
+
+            // Add the entity to his new position.
+            newChunk.Entities.Add(this);
+            newChunk.EntitiesOnTiles[newPos.X % Chunk.CHUNK_SIZE, newPos.Y % Chunk.CHUNK_SIZE].Add(this);
         }
 
         public string GetIdentifier()

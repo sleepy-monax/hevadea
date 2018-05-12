@@ -29,7 +29,7 @@ namespace Hevadea.Framework.Scening
 
         public void Update(GameTime gameTime)
         {
-            if (Container != null)
+            if (Container != null && Rise.ShowGui)
             {
                 RefreshLayout();
                 Container.UpdateInternal(gameTime);
@@ -42,7 +42,7 @@ namespace Hevadea.Framework.Scening
         {
             OnDraw(gameTime);
 
-            if (Container != null)
+            if (Container != null && Rise.ShowGui)
             {
                 spriteBatch.Begin(new SpriteBatchBeginState { SortMode = SpriteSortMode.Immediate, BlendState = BlendState.AlphaBlend, SamplerState = SamplerState.PointWrap, RasterizerState = new RasterizerState() { ScissorTestEnable = true } });
                 Container.Draw(spriteBatch, gameTime);

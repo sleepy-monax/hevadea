@@ -2,7 +2,7 @@
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System;
 

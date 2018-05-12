@@ -58,7 +58,7 @@
     <Compile Include="Input\LegacyInputManager.cs" />
     <Compile Include="MonoGameHandler.cs" />
     <Compile Include="Networking\Client.cs" />
-    <Compile Include="Networking\DataBuffer.cs" />
+    <Compile Include="Networking\PacketBuilder.cs" />
     <Compile Include="Networking\PacketDispacher.cs" />
     <Compile Include="Networking\Peer.cs" />
     <Compile Include="Networking\Server.cs" />

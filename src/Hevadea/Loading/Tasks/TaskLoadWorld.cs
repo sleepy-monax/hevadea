@@ -6,7 +6,6 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Worlds;
-using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
@@ -63,13 +62,6 @@ namespace Hevadea.Loading.Tasks
             game.MainPlayer = player;
         }
 
-        public static Level LoadLevel(string json)
-        {
-            LevelStorage levelStorage = json.FromJson<LevelStorage>();
-            Level level = new Level(levelStorage);
-            return level;
-        }
-
         public Level LoadLevel(string levelName, string path)
         {
             SetProgress(0);
@@ -81,12 +73,12 @@ namespace Hevadea.Loading.Tasks
             {
                 Name = levelData.Name,
                 Id = levelData.Id,
-                TilesData = levelData.TilesData,
+                //TilesData = levelData.TilesData,
             };
 
             for (int i = 0; i < levelData.Width * levelData.Height; i++)
             {
-                level.Tiles[i] = TILES.GetTile(levelData.TileBidinding[levelData.Tiles[i].ToString()]);
+                //level.Tiles[i] = TILES.GetTile(levelData.TileBidinding[levelData.Tiles[i].ToString()]);
             }
 
             SetStatus($"Loading entities of the '{level.Name}'...");

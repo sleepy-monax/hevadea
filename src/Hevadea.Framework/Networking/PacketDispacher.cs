@@ -7,7 +7,7 @@ namespace Hevadea.Framework.Networking
 {
     public class PacketDispacher<packetT> where packetT : struct, IConvertible
     {
-        public delegate void PacketHandler(Socket socket, DataBuffer data);
+        public delegate void PacketHandler(Socket socket, PacketBuilder data);
 
         private Dictionary<int, PacketHandler> _handlers = new Dictionary<int, PacketHandler>();
 
@@ -18,7 +18,7 @@ namespace Hevadea.Framework.Networking
             netPeer.DataReceived = OnDataRecived;
         }
 
-        private void OnDataRecived(Socket socket, DataBuffer packet)
+        private void OnDataRecived(Socket socket, PacketBuilder packet)
         {
             var packetType = packet.ReadInteger();
 

@@ -3,7 +3,7 @@ using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,7 +19,7 @@ namespace Hevadea.GameObjects.Items.Tags
             var inventory = user.GetComponent<Inventory>();
             var level = user.Level;
 
-            var e = user.Level.GetEntityOnTile(pos).FirstOrDefault();
+            var e = user.Level.GetEntitiesAt(pos).FirstOrDefault();
 
             if ((e == null || e.HasComponent<Breakable>()) &&
                (CanBePlaceOn.Count == 0 ||

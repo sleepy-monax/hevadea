@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles.Renderers
 {
-    public class TileConection
+    public class TileConnection
     {
         public bool Up, Down, Left, Right, UpLeft, UpRight, DownLeft, DownRight;
         public Tile Tile;
 
-        public TileConection(Tile tile, bool u, bool d, bool l, bool r, bool ul, bool ur, bool dl, bool dr)
+        public TileConnection(Tile tile, bool u, bool d, bool l, bool r, bool ul, bool ur, bool dl, bool dr)
         {
             Tile = tile;
 

@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ namespace Hevadea.GameObjects.Tiles.Components
             if (dmg > MaxDamages)
             {
                 level.SetTile(position, ReplacementTile);
-                level.ClearTileData(position);
+                level.ClearTileDataAt(position);
                 AttachedTile.Tag<DroppableTile>()?.Drop(position, level);
             }
             else

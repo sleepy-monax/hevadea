@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework.Graphic;
 using Hevadea.GameObjects.Tiles.Renderers;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

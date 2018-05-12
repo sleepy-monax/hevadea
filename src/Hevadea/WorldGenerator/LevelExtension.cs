@@ -1,5 +1,5 @@
 ﻿using Hevadea.GameObjects.Tiles;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace Hevadea.WorldGenerator
             for (var offx = 0; offx < w; offx++)
                 for (var offy = 0; offy < h; offy++)
                 {
-                    result &= !level.GetEntityOnTile(x + offx, y + offy).Any();
+                    result &= !level.GetEntitiesAt(x + offx, y + offy).Any();
                 }
             return result;
         }
@@ -43,7 +43,7 @@ namespace Hevadea.WorldGenerator
             for (var offx = 0; offx < w; offx++)
                 for (var offy = 0; offy < h; offy++)
                 {
-                    var entities = level.GetEntityOnTile(x + offx, y + offy);
+                    var entities = level.GetEntitiesAt(x + offx, y + offy);
                     foreach (var e in entities) { level.RemoveEntity(e); }
                 }
         }

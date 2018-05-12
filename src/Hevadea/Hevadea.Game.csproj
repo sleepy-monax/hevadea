@@ -239,11 +239,13 @@
     <Compile Include="WorldGenerator\WorldFeature.cs" />
     <Compile Include="WorldGenerator\WorldFeatures\SpawnAreaFeature.cs" />
     <Compile Include="WorldGenerator\WorldFeatures\StairCaseFeature.cs" />
+    <Compile Include="Worlds\Chunk.cs" />
     <Compile Include="Worlds\DayNightCycle.cs" />
     <Compile Include="Worlds\LevelProperties.cs" />
     <Compile Include="Worlds\LevelRenderState.cs" />
     <Compile Include="Worlds\Level\Level.Base.cs" />
     <Compile Include="Worlds\Level\Level.Entities.cs" />
+    <Compile Include="Worlds\Level\Level.GetSet.cs" />
     <Compile Include="Worlds\Level\Level.LifeCycle.cs" />
     <Compile Include="Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Worlds\Minimap.cs" />

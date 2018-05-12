@@ -4,7 +4,7 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Components;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

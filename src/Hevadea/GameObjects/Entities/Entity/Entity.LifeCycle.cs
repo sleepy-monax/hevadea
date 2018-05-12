@@ -3,7 +3,6 @@ using Hevadea.GameObjects.Entities.Components;
 using Hevadea.Storage;
 using Hevadea.Utils;
 using Hevadea.Worlds;
-using Hevadea.Worlds.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

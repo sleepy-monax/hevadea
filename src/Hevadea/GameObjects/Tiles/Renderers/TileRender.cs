@@ -1,4 +1,4 @@
-﻿using Hevadea.Worlds.Level;
+﻿using Hevadea.Worlds;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.GameObjects.Tiles.Renderers

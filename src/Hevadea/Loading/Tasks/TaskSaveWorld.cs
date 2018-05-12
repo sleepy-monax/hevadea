@@ -5,7 +5,7 @@ using Hevadea.Framework.Utils.Json;
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Storage;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 using System.Collections.Generic;
 using System.IO;
 
@@ -94,7 +94,7 @@ namespace Hevadea.Loading.Tasks
 
             for (int i = 0; i < level.Width * level.Height; i++)
             {
-                tiles[i] = tileToInt[level.Tiles[i]];
+                //tiles[i] = tileToInt[level.Tiles[i]];
             }
 
             var storage = new LevelStorage()
@@ -108,16 +108,16 @@ namespace Hevadea.Loading.Tasks
 
                 Tiles = tiles,
                 TileBidinding = intToName,
-                TilesData = level.TilesData
+                //TilesData = level.TilesData
             };
 
-            foreach (var e in level.Entities)
-            {
-                if (!e.IsMemberOf(EntityFactory.GROUPE_SAVE_EXCUDED))
-                {
-                    storage.Entities.Add(e.Save());
-                }
-            }
+            //foreach (var e in level.Entities)
+            //{
+            //    if (!e.IsMemberOf(EntityFactory.GROUPE_SAVE_EXCUDED))
+            //    {
+            //        storage.Entities.Add(e.Save());
+            //    }
+            //}
 
             return storage.ToJson();
         }

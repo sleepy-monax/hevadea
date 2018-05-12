@@ -20,7 +20,7 @@ namespace Hevadea.Framework.Networking
                 _server = nettyServer;
             }
 
-            public void SendData(DataBuffer packet)
+            public void SendData(PacketBuilder packet)
             {
                 _server.SendData(packet, Socket);
             }
@@ -180,12 +180,12 @@ namespace Hevadea.Framework.Networking
             Socket.Bind(_socketAddress);
         }
 
-        public void SendData(DataBuffer packet, int socketIndex)
+        public void SendData(PacketBuilder packet, int socketIndex)
         {
             SendData(packet, GetConnection(socketIndex).Socket);
         }
 
-        public void BroadcastPacket(DataBuffer packet)
+        public void BroadcastPacket(PacketBuilder packet)
         {
             foreach (var connection in _connections)
             {
@@ -194,7 +194,7 @@ namespace Hevadea.Framework.Networking
             }
         }
 
-        internal void SendData(DataBuffer packet, Socket socket)
+        internal void SendData(PacketBuilder packet, Socket socket)
         {
             SendData(socket, packet);
         }

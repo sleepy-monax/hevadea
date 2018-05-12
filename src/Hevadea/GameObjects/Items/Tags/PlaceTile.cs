@@ -1,6 +1,6 @@
 ﻿using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 
 namespace Hevadea.GameObjects.Items.Tags
 {
@@ -16,7 +16,7 @@ namespace Hevadea.GameObjects.Items.Tags
         public override void Place(Level level, TilePosition tile, Direction facing)
         {
             level.SetTile(tile, _tile);
-            level.ClearTileData(tile);
+            level.ClearTileDataAt(tile);
         }
     }
 }

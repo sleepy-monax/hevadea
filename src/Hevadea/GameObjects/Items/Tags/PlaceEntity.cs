@@ -1,7 +1,7 @@
 ﻿using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Utils;
-using Hevadea.Worlds.Level;
+using Hevadea.Worlds;
 
 namespace Hevadea.GameObjects.Items.Tags
 {
@@ -18,7 +18,7 @@ namespace Hevadea.GameObjects.Items.Tags
         {
             var entity = _blueprint.Construct();
             entity.Facing = facing;
-            level.SpawnEntity(entity, tile.X, tile.Y);
+            level.AddEntityAt(entity, tile.X, tile.Y);
         }
     }
 }
