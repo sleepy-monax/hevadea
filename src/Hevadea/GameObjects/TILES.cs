@@ -109,5 +109,37 @@ namespace Hevadea.GameObjects
             WOOD_WALL.AddTag(new DroppableTile(new Drop(ITEMS.WOOD_WALL, 1f, 1, 1)));
             WOOD_WALL.AddTag(new SolideTile());
         }
+
+        public static Dictionary<string, string> GetIDToName()
+        {
+            Dictionary<string, string> intToName = new Dictionary<string, string>();
+
+            int id = 0;
+
+            foreach (var t in GetTiles())
+            {
+                intToName.Add(id.ToString(), t.Name);
+
+                id++;
+            }
+
+            return intToName;
+        }
+
+        public static Dictionary<Tile, int> GetTileToID()
+        {
+            Dictionary<Tile, int> tileToInt = new Dictionary<Tile, int>();
+
+            int id = 0;
+
+            foreach (var t in GetTiles())
+            {
+                tileToInt.Add(t, id);
+
+                id++;
+            }
+
+            return tileToInt;
+        }
     }
 }

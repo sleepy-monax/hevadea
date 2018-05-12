@@ -200,6 +200,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\Widgets\WidgetTabContainer.cs" />
     <Compile Include="Spawning\SpawnProvider.cs" />
+    <Compile Include="Storage\ChunkStorage.cs" />
     <Compile Include="Storage\EntityStorage.cs" />
     <Compile Include="Storage\LevelStorage.cs" />
     <Compile Include="Storage\WorldStorage.cs" />
@@ -244,10 +245,7 @@
     <Compile Include="Worlds\LevelProperties.cs" />
     <Compile Include="Worlds\LevelRenderState.cs" />
     <Compile Include="Worlds\Level\Level.Base.cs" />
-    <Compile Include="Worlds\Level\Level.Entities.cs" />
-    <Compile Include="Worlds\Level\Level.GetSet.cs" />
     <Compile Include="Worlds\Level\Level.LifeCycle.cs" />
-    <Compile Include="Worlds\Level\Level.Tiles.cs" />
     <Compile Include="Worlds\Minimap.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="Scenes\Menus\MenuRespawn.cs" />

@@ -25,9 +25,9 @@ namespace Hevadea.GameObjects.Entities
 
         public override void OnUpdate(GameTime gameTime)
         {
-            Level.GetEntitiesOnRadius(X, Y, 16);
+            Level.GetEntitiesOnArea(X, Y, 16);
 
-            foreach (var e in Level.GetEntitiesOnRadius(X, Y, 16))
+            foreach (var e in Level.GetEntitiesOnArea(X, Y, 16))
             {
                 if (e != this && e.HasComponent<Experience>())
                 {

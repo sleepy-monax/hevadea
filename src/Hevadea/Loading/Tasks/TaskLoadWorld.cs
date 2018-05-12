@@ -16,86 +16,51 @@ namespace Hevadea.Loading.Tasks
     {
         public override void Task(GameManager game)
         {
-            SetStatus("Loading world...");
+            //SetStatus("Loading world...");
 
-            var world = new World();
-            var player = (EntityPlayer)EntityFactory.PLAYER.Construct();
-            var worldData = File.ReadAllText(game.GetGameSaveFile()).FromJson<WorldStorage>();
+            //var world = new World();
+            //var player = (EntityPlayer)EntityFactory.PLAYER.Construct();
+            //var worldData = File.ReadAllText(game.GetGameSaveFile()).FromJson<WorldStorage>();
 
-            player.Load(File.ReadAllText(game.GetPlayerSaveFile()).FromJson<EntityStorage>());
+            //player.Load(File.ReadAllText(game.GetPlayerSaveFile()).FromJson<EntityStorage>());
 
-            foreach (var levelName in worldData.Levels)
-            {
-                SetStatus($"Loading level the '{levelName}'...");
+            //foreach (var levelName in worldData.Levels)
+            //{
+            //    SetStatus($"Loading level the '{levelName}'...");
 
-                var level = LoadLevel(levelName, game.GetLevelSavePath(levelName));
+            //    var level = LoadLevel(levelName, game.GetLevelSavePath(levelName));
 
-                if (File.Exists(game.GetLevelMinimapDataPath(level)))
-                {
-                    level.Minimap.Waypoints = File.ReadAllText(game.GetLevelMinimapDataPath(level)).FromJson<List<MinimapWaypoint>>()
-                                              ?? new List<MinimapWaypoint>();
-                }
+            //    if (File.Exists(game.GetLevelMinimapDataPath(level)))
+            //    {
+            //        level.Minimap.Waypoints = File.ReadAllText(game.GetLevelMinimapDataPath(level)).FromJson<List<MinimapWaypoint>>()
+            //                                  ?? new List<MinimapWaypoint>();
+            //    }
 
-                if (File.Exists(game.GetLevelMinimapSavePath(level)))
-                {
-                    // Texture should be load from the render thread.
-                    var task = new AsyncTask(() =>
-                    {
-                        var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.Open);
-                        level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
-                        fs.Close();
-                    });
+            //    if (File.Exists(game.GetLevelMinimapSavePath(level)))
+            //    {
+            //        // Texture should be load from the render thread.
+            //        var task = new AsyncTask(() =>
+            //        {
+            //            var fs = new FileStream(game.GetLevelMinimapSavePath(level), FileMode.Open);
+            //            level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
+            //            fs.Close();
+            //        });
 
-                    Rise.AsyncTasks.Add(task);
+            //        Rise.AsyncTasks.Add(task);
 
-                    while (!task.Done)
-                    {
-                        // XXX: Hack to fix the soft lock when loading the world.
-                        System.Threading.Thread.Sleep(10);
-                    }
-                }
+            //        while (!task.Done)
+            //        {
+            //            // XXX: Hack to fix the soft lock when loading the world.
+            //            System.Threading.Thread.Sleep(10);
+            //        }
+            //    }
 
-                world.Levels.Add(level);
-            }
+            //    world.Levels.Add(level);
+            //}
 
-            game.World = world;
-            game.MainPlayer = player;
+            //game.World = world;
+            //game.MainPlayer = player;
         }
 
-        public Level LoadLevel(string levelName, string path)
-        {
-            SetProgress(0);
-            SetStatus($"Reading the '{levelName}' from disk...");
-            var levelData = File.ReadAllText(path).FromJson<LevelStorage>();
-
-            SetStatus($"Decoding data of the '{levelName}'...");
-            var level = new Level(LEVELS.GetProperties(levelData.Type), levelData.Width, levelData.Height)
-            {
-                Name = levelData.Name,
-                Id = levelData.Id,
-                //TilesData = levelData.TilesData,
-            };
-
-            for (int i = 0; i < levelData.Width * levelData.Height; i++)
-            {
-                //level.Tiles[i] = TILES.GetTile(levelData.TileBidinding[levelData.Tiles[i].ToString()]);
-            }
-
-            SetStatus($"Loading entities of the '{level.Name}'...");
-            float entityCount = levelData.Entities.Count;
-
-            for (var i = 0; i < levelData.Entities.Count; i++)
-            {
-                var item = levelData.Entities[i];
-                var e = EntityFactory.Construct(item.Type);
-                e.Load(item);
-                level.AddEntity(e);
-
-                SetProgress(i / entityCount);
-            }
-
-            SetProgress(100);
-            return level;
-        }
     }
 }

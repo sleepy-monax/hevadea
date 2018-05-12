@@ -25,7 +25,7 @@ namespace Hevadea.GameObjects.Entities.Components
             if (_hasExplosed) return;
             _hasExplosed = true;
 
-            var entities = Owner.Level.GetEntitiesOnRadius(Owner.X, Owner.Y, _radius * GLOBAL.Unit);
+            var entities = Owner.Level.GetEntitiesOnArea(Owner.X, Owner.Y, _radius * GLOBAL.Unit);
             Owner.Game.Camera.Thrauma += 0.2f;
 
             foreach (var e in entities)
