@@ -24,7 +24,7 @@ namespace Hevadea.Framework.Utils.Json
             return stringBuilder.ToString();
         }
 
-        private static void AppendValue(StringBuilder stringBuilder, object item)
+        static void AppendValue(StringBuilder stringBuilder, object item)
         {
             if (item == null)
             {
@@ -96,11 +96,11 @@ namespace Hevadea.Framework.Utils.Json
             {
                 stringBuilder.Append(((bool)item) ? "true" : "false");
             }
-            else if (item is IList)
+            else if (item is IList list)
             {
                 stringBuilder.Append('[');
+
                 bool isFirst = true;
-                IList list = item as IList;
                 for (int i = 0; i < list.Count; i++)
                 {
                     if (isFirst)

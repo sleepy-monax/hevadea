@@ -65,14 +65,14 @@ namespace Hevadea.Worlds
         {
             Chunk chunk = new Chunk(store.X, store.Y);
 
-            // Loading tiles
-            chunk.Data = store.Data;
+            // Loading tile
             for (int x = 0; x < CHUNK_SIZE; x++)
             {
                 for (int y = 0; y < CHUNK_SIZE; y++)
                 {
-                    chunk.Tiles[x, y] = TILES.GetTile(store.Registry[store.Tiles[x, y].ToString()]);
-                }
+					chunk.Tiles[x, y] = TILES.GetTile(store.Registry[store.Tiles[y * CHUNK_SIZE + x].ToString()]);
+					chunk.Data[x, y] = store.Data[y * CHUNK_SIZE + x];
+				}
             }
 
             // Loading entities
@@ -89,20 +89,20 @@ namespace Hevadea.Worlds
         public ChunkStorage Save()
         {
             ChunkStorage store = new ChunkStorage();
+			Dictionary<Tile, int> tileToId = TILES.GetTileToID();
 
             store.X = X;
             store.Y = Y;
 
             store.Registry = TILES.GetIDToName();
-            
-
-            // Saving tiles
-            var tileToId = TILES.GetTileToID();
-
-            store.Data = Data;
+           
+            // Saving tile
             for (int x = 0; x < CHUNK_SIZE; x++)            
-                for (int y = 0; y < CHUNK_SIZE; y++)                
-                    store.Tiles[x, y] = tileToId[Tiles[x, y]];                
+				for (int y = 0; y < CHUNK_SIZE; y++)
+    			{
+    				store.Tiles[y * CHUNK_SIZE + x] = tileToId[Tiles[x, y]];                
+				    store.Data[y * CHUNK_SIZE + x] = Data[x, y];
+                }                
             
 
             // Saving entities

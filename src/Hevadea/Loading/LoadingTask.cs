@@ -22,15 +22,17 @@ namespace Hevadea.Loading
         public void SetProgress(float progress)
         {
             _progress = Mathf.Clamp01(progress);
+			Logger.Log<LoadingTask>($"Progress: {(int)(_progress * 100)}%");
         }
 
         public virtual float GetProgress()
         {
-            return _progress;
+			return _progress;
         }
 
         public void SetStatus(string status)
         {
+			Logger.Log<LoadingTask>(status);
             _status = status;
         }
 

@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Framework.Threading
 {
-    public class ProgressRepporter<T>
+    public class ProgressRepporter
     {
-        public T Progress { get; private set; }
+        public float Progress { get; private set; }
+		public string Status { get; private set; }
       
-        event EventHandler<T> ProgressChange;
+        event EventHandler<float> ProgressChange;
+		event EventHandler<string> StatusChange;
 
-        public void Report(T progress)
+		public void RepportStatus(string status)
+		{
+			Status = status;
+			StatusChange?.Invoke(this, status);
+		}
+
+        public void Report(float progress)
         {
-            lock (Progress)
-            {
-                Progress = progress;
-            }
-
+            Progress = progress;         
             ProgressChange?.Invoke(this, Progress);
         }
 

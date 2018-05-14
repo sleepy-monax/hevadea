@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Entities;
+using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -43,6 +44,31 @@ namespace Hevadea.Worlds
                 )
             { Transition = 30 };
         }
+
+		public static World Load(WorldStorage store)
+		{
+			World world = new World();
+
+			world.DayNightCycle.Time = store.Time;
+			world.PlayerSpawnLevel = store.PlayerSpawnLevel;
+
+			return world;
+		}
+
+		public WorldStorage Save()
+		{
+			WorldStorage worldStorage = new WorldStorage();
+
+			worldStorage.Time = DayNightCycle.Time;
+			worldStorage.PlayerSpawnLevel = PlayerSpawnLevel;
+
+            foreach (var l in Levels)
+			{
+				worldStorage.Levels.Add(l.Name);
+			}
+
+			return worldStorage;
+		}
 
         public void SpawnPlayer(EntityPlayer player)
         {

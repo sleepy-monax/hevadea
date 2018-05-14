@@ -1,6 +1,5 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
-using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Tiles;
@@ -13,26 +12,14 @@ namespace Hevadea.Worlds
 {
     public partial class Level
     {
-        private bool _isInitialized;
 
-        public bool IsInitialized
-        {
-            get => _isInitialized;
-            private set
-            {
-                Logger.Log<Level>($"IsInitialized = {value}");
-                _isInitialized = value;
-            }
-        }
+		public bool IsInitialized { get; private set; } = false;
 
         public void Initialize(World world, GameManager game)
         {
-            Logger.Log<Level>(LoggerLevel.Info, "Initializing level...");
             _world = world;
             _game = game;
-            Logger.Log<Level>(LoggerLevel.Info, "Initializing entities...");
             foreach (var c in Chunks) foreach (var e in c.Entities) e.Initialize(this, world, _game);
-            Logger.Log<Level>(LoggerLevel.Fine, "Done!");
 
             IsInitialized = true;
         }
@@ -103,10 +90,8 @@ namespace Hevadea.Worlds
             {
                 e.DrawOverlay(spriteBatch, gameTime);
 
-                if (Rise.ShowDebug)
-                {
-                    spriteBatch.PutPixel(e.Position, Color.Magenta);
-                }
+                if (Rise.ShowDebug)                
+                    spriteBatch.PutPixel(e.Position, Color.Magenta);                
             }
         }
 

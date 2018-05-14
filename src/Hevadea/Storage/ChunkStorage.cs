@@ -10,8 +10,8 @@ namespace Hevadea.Storage
         public int X { get; set; }
         public int Y { get; set; }
 
-        public int[,] Tiles { get; set; }
-        public Dictionary<string, object>[,] Data { get; set; }
+        public int[] Tiles { get; set; }
+        public Dictionary<string, object>[] Data { get; set; }
         public List<EntityStorage> Entities { get; set; }
 
         public ChunkStorage()
@@ -19,8 +19,8 @@ namespace Hevadea.Storage
             X = 0;
             Y = 0;
 
-            Tiles = new int[Chunk.CHUNK_SIZE, Chunk.CHUNK_SIZE];
-            Data = new Dictionary<string, object>[Chunk.CHUNK_SIZE, Chunk.CHUNK_SIZE];
+            Tiles = new int[Chunk.CHUNK_SIZE * Chunk.CHUNK_SIZE];
+            Data = new Dictionary<string, object>[Chunk.CHUNK_SIZE * Chunk.CHUNK_SIZE];
             Entities = new List<EntityStorage>();
         }
     }

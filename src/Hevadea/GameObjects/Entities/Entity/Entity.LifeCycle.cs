@@ -40,11 +40,11 @@ namespace Hevadea.GameObjects.Entities
                 if (c is IEntityComponentSaveLoad s)
                     s.OnGameSave(store);
             OnSave(store);
-
+            
             return store;
         }
 
-        public void Load(EntityStorage store)
+        public Entity Load(EntityStorage store)
         {
             Ueid = store.Ueid;
             X = store.GetFloat("X", X);
@@ -57,6 +57,8 @@ namespace Hevadea.GameObjects.Entities
                     s.OnGameLoad(store);
 
             OnLoad(store);
+
+			return this;
         }
 
         public void Remove()

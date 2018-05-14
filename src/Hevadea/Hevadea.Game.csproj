@@ -157,9 +157,7 @@
     <Compile Include="Loading\Tasks\TaskEnterGame.cs" />
     <Compile Include="Loading\Tasks\TaskGenerateWorld.cs" />
     <Compile Include="Loading\Tasks\TaskInitializeGame.cs" />
-    <Compile Include="Loading\Tasks\TaskLoadWorld.cs" />
     <Compile Include="Loading\Tasks\TaskNewPlayer.cs" />
-    <Compile Include="Loading\Tasks\TaskSaveWorld.cs" />
     <Compile Include="Loading\Tasks\TaskSetLastGame.cs" />
     <Compile Include="Loading\Tasks\TaskSwitchToMenu.cs" />
     <Compile Include="Loading\Tasks\TaskSwitchToScene.cs" />
