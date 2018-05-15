@@ -6,6 +6,7 @@ using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.UI.Widgets.TextBox;
 using Hevadea.Loading;
+using Hevadea.Registry;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 
@@ -21,17 +22,23 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new Padding(8) };
 
-            var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
-            .RegisterMouseClickEvent((sender) =>
-            {
-                var sucess = int.TryParse(worldSeedtextBox.Text.String, out var seed);
-
-                if (!sucess)
-                {
-                    seed = worldSeedtextBox.Text.String.GetHashCode();
-                }
-
-                Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructNewWorld(GLOBAL.GetSavePath() + $"{worldNameTextBox.Text.String}/", seed)));
+			var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
+			.RegisterMouseClickEvent((sender) =>
+			{
+            
+				if (!int.TryParse(worldSeedtextBox.Text.String, out var seed))
+    			{
+    				seed = worldSeedtextBox.Text.String.GetHashCode();
+    			}
+                
+    			var generatorTask = TaskFactorie.NewWorld(GLOBAL.GetSavePath() + $"{worldNameTextBox.Text.String}/", GENERATOR.DEFAULT, seed);
+    			generatorTask.LoadingFinished += (s, e) =>
+    			{
+    			    GameManager game = (GameManager)((LoadingTask)s).Result;
+					game.Initialize();
+					Rise.Scene.Switch(new SceneGameplay(game));
+				};
+				Rise.Scene.Switch(new LoadingScene(generatorTask));
             });
 
             var worldOptions = new FlowLayout

@@ -13,11 +13,11 @@ namespace Hevadea.Loading
 {
     public class LoadingScene : Scene
     {
-        private TaskCompound _task;
+        private LoadingTask _task;
         private Label _progressLabel;
         private ProgressBar _progressBar;
 
-        public LoadingScene(TaskCompound task)
+        public LoadingScene(LoadingTask task)
         {
             _task = task;
         }
@@ -64,7 +64,7 @@ namespace Hevadea.Loading
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
-                        Content = new AnchoredContainer
+                        Content = new Container
                         {
                             Childrens =
                             {
@@ -85,16 +85,9 @@ namespace Hevadea.Loading
         }
 
         public override void OnUpdate(GameTime gameTime)
-        {
-            var currentTask = _task.GetRunningTask();
-
-            if (currentTask != null)
-            {
-                _progressLabel.Text = currentTask.GetStatus();
-                _progressBar.Value = currentTask.GetProgress();
-            }
-
-            _task.Update();
+        {            
+            _progressLabel.Text = _task.ProgressRepporter.Status;
+            _progressBar.Value = _task.ProgressRepporter.Progress;
         }
 
         public override void Unload()

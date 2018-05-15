@@ -26,7 +26,9 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 if (saveList.SelectedItem != null)
                 {
                     var item = (ListItemText)saveList.SelectedItem;
-                    Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructLoadWorld(item.Text)));
+					var loadWorldTask = TaskFactorie.LoadWorld(item.Text);
+                    loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((GameManager)((LoadingTask)task).Result));
+                    Rise.Scene.Switch(new LoadingScene(loadWorldTask));
                 }
             });
 

@@ -30,8 +30,8 @@ namespace Hevadea.WorldGenerator.WorldFeatures
 
         public override void Apply(Generator gen, World world)
         {
-            var from = world.GetLevel(_from.LevelName);
-            var to = world.GetLevel(_to.LevelName);
+            var from = world.GetLevel(_from.Name);
+            var to = world.GetLevel(_to.Name);
             int staireCount = 0;
 
             while (staireCount < StairesCount)

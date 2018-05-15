@@ -88,7 +88,9 @@ namespace Hevadea
                 // Load level data
                 string levelPath = $"{path}{levelName}/";
                 Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
-
+                
+				var a = new { pomme = 1, poire = "lol" };
+                
                 // Load chunks
 				progressRepporter.RepportStatus($"Loading level {level.Name}...");
                 for (int x = 0; x < level.Chunks.GetLength(0); x++)

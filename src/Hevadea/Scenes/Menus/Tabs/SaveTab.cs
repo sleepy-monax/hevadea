@@ -33,21 +33,22 @@ namespace Hevadea.Scenes.Menus.Tabs
                     container
                 }
             };
-
+            
             container.AddChild(new Button { Text = "Quick save", Padding = new Padding(4) })
             .RegisterMouseClickEvent((sender) =>
             {
-                game.CurrentMenu = new LoadingMenu(TaskFactorie.ConstructSaveWorld(game));
+				LoadingTask saveTask = TaskFactorie.SaveWorld(game);
+				saveTask.LoadingFinished += (_, e) => { game.CurrentMenu = new MenuInGame(game); };
+                game.CurrentMenu = new LoadingMenu(saveTask , game);
             });
-            container.AddChild(new Button
+            
+			container.AddChild(new Button { Text = "Save and Exit", Padding = new Padding(4) })
+            .RegisterMouseClickEvent((sender) =>
             {
-                Text = "Save and Exit",
-                Padding = new Padding(4)
-            })
-                .RegisterMouseClickEvent((sender) =>
-                {
-                    Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructSaveWorldAndExit(game)));
-                });
+				var saveTask = TaskFactorie.SaveWorld(game);
+				saveTask.LoadingFinished += (_, e) => { Rise.Scene.Switch(new SceneMainMenu()); };
+				game.CurrentMenu = new LoadingMenu(saveTask, game);
+            });
 
             container.AddChild(new Button
             {

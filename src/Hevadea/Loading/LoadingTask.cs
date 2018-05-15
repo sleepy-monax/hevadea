@@ -1,65 +1,53 @@
-﻿using Hevadea.Framework.Utils;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using Hevadea.Framework.Threading;
 
 namespace Hevadea.Loading
 {
-    public abstract class LoadingTask
+    public class LoadingTask
     {
-        private float _progress;
-        private string _status;
 
-        public Thread Thread { get; set; }
-        public bool HasFinish { get; private set; } = false;
-        public Exception Exception { get; private set; } = null;
+        Thread _thread;
 
-        public void RunTask(GameManager game)
+        public delegate void LoadingTaskJob(LoadingTask task, ProgressRepporter progressRepporter);
+
+        public event EventHandler LoadingAborted;
+        public event EventHandler LoadingFinished;
+        public event EventHandler<Exception> LoadingException;
+
+        public Object Result { get; set; }
+		public ProgressRepporter ProgressRepporter { get; private set; }
+        public bool Started { get; private set; } = false;
+  
+		public LoadingTask(LoadingTaskJob task)
         {
-            Thread = new Thread(TaskInternal);
-            Thread.Start(game);
+			ProgressRepporter = new ProgressRepporter();
+			_thread = new Thread(() => 
+			{
+				task(this, ProgressRepporter);
+				LoadingFinished?.Invoke(this, EventArgs.Empty);
+			});
         }
-
-        public void SetProgress(float progress)
+        
+        public void Start()
         {
-            _progress = Mathf.Clamp01(progress);
-			Logger.Log<LoadingTask>($"Progress: {(int)(_progress * 100)}%");
-        }
-
-        public virtual float GetProgress()
-        {
-			return _progress;
-        }
-
-        public void SetStatus(string status)
-        {
-			Logger.Log<LoadingTask>(status);
-            _status = status;
-        }
-
-        public virtual string GetStatus()
-        {
-            return _status;
-        }
-
-        private void TaskInternal(object game)
-        {
-#if !DEBUG
-            try
+            if (!Started)
             {
-#endif
-            Task((GameManager)game);
-#if !DEBUG
+				_thread.Start();
+                Started = true;
             }
-            catch (ThreadAbortException) {}
-            catch (Exception ex)
-            {
-                Exception = ex;
-                Logger.Log<LoadingTask>(ex.ToString());
-            }
-#endif
-            HasFinish = true;
         }
 
-        public abstract void Task(GameManager game);
+        public void Abort()
+        {
+            if (Started )
+            {
+                _thread.Abort();
+                Started = false;
+				LoadingAborted?.Invoke(this, EventArgs.Empty);
+            }
+        }
     }
 }

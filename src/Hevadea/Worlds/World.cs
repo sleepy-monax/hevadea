@@ -10,9 +10,9 @@ namespace Hevadea.Worlds
 {
     public class World
     {
-        private readonly SpriteBatch _spriteBatch;
+        readonly SpriteBatch _spriteBatch;
 
-        private readonly BlendState _lightBlend = new BlendState
+        readonly BlendState _lightBlend = new BlendState
         {
             ColorBlendFunction = BlendFunction.Add,
             ColorSourceBlend = Blend.DestinationColor,

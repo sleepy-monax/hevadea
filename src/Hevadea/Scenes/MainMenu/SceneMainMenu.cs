@@ -43,7 +43,7 @@ namespace Hevadea.Scenes.MainMenu
                     new Tab
                     {
                         Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
-                        Content = new AnchoredContainer()
+                        Content = new Container()
                         {
                             Childrens =
                             {
@@ -72,7 +72,7 @@ namespace Hevadea.Scenes.MainMenu
             }
             else
             {
-                Container = new AnchoredContainer
+                Container = new Container
                 {
                     Childrens = { menu },
                 };
@@ -83,7 +83,9 @@ namespace Hevadea.Scenes.MainMenu
         {
             if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
             {
-                Rise.Scene.Switch(new LoadingScene(TaskFactorie.ConstructLoadWorld(File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame"))));
+				var loadWorldTask = TaskFactorie.LoadWorld(File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame"));
+                loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((GameManager)((LoadingTask)task).Result));
+				Rise.Scene.Switch(new LoadingScene(loadWorldTask));
             }
         }
 

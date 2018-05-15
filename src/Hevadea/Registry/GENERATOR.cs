@@ -16,8 +16,8 @@ namespace Hevadea.Registry
         {
             OVERWORLD = new LevelGenerator
             {
-                LevelId = 0,
-                LevelName = "overworld",
+                Id = 0,
+                Name = "overworld",
                 Properties = LEVELS.SURFACE,
                 Features =
                 {
@@ -118,8 +118,8 @@ namespace Hevadea.Registry
 
             CAVE = new LevelGenerator
             {
-                LevelId = 1,
-                LevelName = "cave",
+                Id = 1,
+                Name = "cave",
                 Properties = LEVELS.UNDERGROUND,
                 Features =
                 {
@@ -185,7 +185,7 @@ namespace Hevadea.Registry
             {
                 Size = 256,
                 Seed = 0,
-                Levels = { OVERWORLD, CAVE },
+                LevelsGenerators = { OVERWORLD, CAVE },
                 WorldFeatures = { new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature() }
             };
         }

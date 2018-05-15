@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -12,12 +13,12 @@ namespace Hevadea.Loading
 {
     public class LoadingMenu : Menu
     {
-        private TaskCompound _task;
+        private LoadingTask _task;
 
         private Label _progressLabel;
         private ProgressBar _progressBar;
-
-        public LoadingMenu(TaskCompound task) : base(task.GetGame())
+        
+        public LoadingMenu(LoadingTask task, GameManager game) : base(game)
         {
             _task = task;
 
@@ -25,7 +26,7 @@ namespace Hevadea.Loading
 
             _progressLabel = new Label
             {
-                Text = "Generating world...",
+                Text = "Loading...",
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 Font = Ressources.FontRomulus,
@@ -40,13 +41,12 @@ namespace Hevadea.Loading
                 UnitOffset = new Point(0, 24)
             };
 
-            var _cancelButton = new Button
+			var _cancelButton = new SpriteButton()
             {
-                Text = "Cancel",
-                UnitBound = new Rectangle(0, 0, 640, 64),
-                Anchor = Anchor.Center,
-                Origine = Anchor.Top,
-                UnitOffset = new Point(0, 128)
+                Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
+                UnitBound = new Rectangle(0, 0, 64, 64),
+                Anchor = Anchor.TopRight,
+                Origine = Anchor.Center
             }.RegisterMouseClickEvent((sender) =>
             {
                 _task.Abort();
@@ -77,20 +77,18 @@ namespace Hevadea.Loading
                 }
             };
 
+			_task.LoadingFinished += (sender, e) => 
+			{
+				game.CurrentMenu = new MenuInGame(game);
+			};
+
             _task.Start();
         }
 
         public override void Update(GameTime gameTime)
         {
-            var currentTask = _task.GetRunningTask();
-
-            if (currentTask != null)
-            {
-                _progressLabel.Text = currentTask.GetStatus();
-                _progressBar.Value = currentTask.GetProgress();
-            }
-
-            _task.Update();
+			_progressLabel.Text = _task.ProgressRepporter.Status;
+            _progressBar.Value = _task.ProgressRepporter.Progress;
         }
     }
 }

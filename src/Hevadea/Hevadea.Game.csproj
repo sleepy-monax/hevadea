@@ -151,16 +151,7 @@
     <Compile Include="Loading\LoadingMenu.cs" />
     <Compile Include="Loading\LoadingScene.cs" />
     <Compile Include="Loading\LoadingTask.cs" />
-    <Compile Include="Loading\TaskCompound.cs" />
     <Compile Include="Loading\TaskFactorie.cs" />
-    <Compile Include="Loading\Tasks\TaskDownloadWorld.cs" />
-    <Compile Include="Loading\Tasks\TaskEnterGame.cs" />
-    <Compile Include="Loading\Tasks\TaskGenerateWorld.cs" />
-    <Compile Include="Loading\Tasks\TaskInitializeGame.cs" />
-    <Compile Include="Loading\Tasks\TaskNewPlayer.cs" />
-    <Compile Include="Loading\Tasks\TaskSetLastGame.cs" />
-    <Compile Include="Loading\Tasks\TaskSwitchToMenu.cs" />
-    <Compile Include="Loading\Tasks\TaskSwitchToScene.cs" />
     <Compile Include="Networking\PacketFactorie.cs" />
     <Compile Include="Player\PlayerInputHandler.cs" />
     <Compile Include="Registry\GENERATOR.cs" />
@@ -254,8 +245,6 @@
       <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

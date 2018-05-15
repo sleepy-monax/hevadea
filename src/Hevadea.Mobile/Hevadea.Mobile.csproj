@@ -24,6 +24,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AndroidKeyStore>false</AndroidKeyStore>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
