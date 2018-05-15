@@ -59,10 +59,10 @@ namespace Hevadea.GameObjects.Entities
 
         private static Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
         {
-            {Direction.North, Anchor.Bottom},
-            {Direction.South, Anchor.Top},
-            {Direction.West, Anchor.Right},
-            {Direction.East, Anchor.Left},
+            { Direction.North, Anchor.Bottom },
+            { Direction.South, Anchor.Top    },
+            { Direction.West,  Anchor.Right  },
+            { Direction.East,  Anchor.Left   },
         };
 
         public Rectangle GetFacingArea(int size)

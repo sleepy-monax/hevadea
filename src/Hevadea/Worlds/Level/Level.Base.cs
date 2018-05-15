@@ -231,10 +231,9 @@ namespace Hevadea.Worlds
         public void AddEntity(Entity e)
         {
             Chunk chunk = GetChunkAt(e.GetTilePosition());
-
+        
             chunk.AddEntity(e);
 
-            e.Removed = false;
             e.Level = this;
 
             if (IsInitialized)
@@ -269,8 +268,6 @@ namespace Hevadea.Worlds
             Chunk chunk = GetChunkAt(e.GetTilePosition());
 
             chunk.RemoveEntity(e);
-
-            e.Removed = true;
         }
 
         public List<Entity> GetEntitiesAt(TilePosition t) => GetEntitiesAt(t.X, t.Y);

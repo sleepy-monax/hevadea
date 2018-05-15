@@ -51,6 +51,8 @@ namespace Hevadea.Worlds
 
             Entities.Add(e);
             EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Add(e);
+
+            e.Removed = false;
         }
 
         public void RemoveEntity(Entity e)
@@ -59,6 +61,9 @@ namespace Hevadea.Worlds
 
             Entities.Remove(e);
             EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Remove(e);
+
+
+            e.Removed = true;
         }
 
         public static Chunk Load(ChunkStorage store)
@@ -70,9 +75,9 @@ namespace Hevadea.Worlds
             {
                 for (int y = 0; y < CHUNK_SIZE; y++)
                 {
-					chunk.Tiles[x, y] = TILES.GetTile(store.Registry[store.Tiles[y * CHUNK_SIZE + x].ToString()]);
-					chunk.Data[x, y] = store.Data[y * CHUNK_SIZE + x];
-				}
+                    chunk.Tiles[x, y] = TILES.GetTile(store.Registry[store.Tiles[y * CHUNK_SIZE + x].ToString()]);
+                    chunk.Data[x, y] = store.Data[y * CHUNK_SIZE + x];
+                }
             }
 
             // Loading entities
@@ -89,7 +94,7 @@ namespace Hevadea.Worlds
         public ChunkStorage Save()
         {
             ChunkStorage store = new ChunkStorage();
-			Dictionary<Tile, int> tileToId = TILES.GetTileToID();
+            Dictionary<Tile, int> tileToId = TILES.GetTileToID();
 
             store.X = X;
             store.Y = Y;
@@ -98,10 +103,10 @@ namespace Hevadea.Worlds
            
             // Saving tile
             for (int x = 0; x < CHUNK_SIZE; x++)            
-				for (int y = 0; y < CHUNK_SIZE; y++)
-    			{
-    				store.Tiles[y * CHUNK_SIZE + x] = tileToId[Tiles[x, y]];                
-				    store.Data[y * CHUNK_SIZE + x] = Data[x, y];
+                for (int y = 0; y < CHUNK_SIZE; y++)
+                {
+                    store.Tiles[y * CHUNK_SIZE + x] = tileToId[Tiles[x, y]];                
+                    store.Data[y * CHUNK_SIZE + x] = Data[x, y];
                 }                
             
 
