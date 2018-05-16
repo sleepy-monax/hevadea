@@ -1,4 +1,5 @@
 ﻿using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea
@@ -6,6 +7,7 @@ namespace Hevadea
     public class Camera : Framework.Graphic.Camera
     {
         public Entity FocusEntity;
+		public TilePosition FocusedTile => new TilePosition((int)(X / GLOBAL.Unit), (int)(Y / GLOBAL.Unit));
 
         public Camera(Entity focusEntity)
         {

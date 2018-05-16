@@ -8,21 +8,21 @@ namespace Hevadea.GameObjects.Entities.Components.Render
 {
     public class Particle
     {
+		public Color   Color    { get; set; }
+        public float   Size     { get; set; }
+        public Vector2 Position { get; set; }
+        public Vector2 Momentum { get; set; }
+        public double  LifeTime { get; set; }
+
         public Particle(Vector2 position, Vector2 momentum, double lifeTime = 1, float size = 1,
             Color color = default(Color))
         {
-            Color = color;
-            Size = size;
+            Color    = color;
+            Size     = size;
             Position = position;
             Momentum = momentum;
             LifeTime = lifeTime;
         }
-
-        public Color Color { get; set; }
-        public float Size { get; set; }
-        public Vector2 Position { get; set; }
-        public Vector2 Momentum { get; set; }
-        public double LifeTime { get; set; }
     }
 
     public class ParticleEmiter : EntityComponent, IEntityComponentDrawable, IEntityComponentUpdatable

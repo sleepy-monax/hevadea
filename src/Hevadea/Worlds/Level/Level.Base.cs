@@ -50,9 +50,32 @@ namespace Hevadea.Worlds
             }
         }
 
-        /* --- Gameloop -----------------------------------------------------*/
+        /* --- Game Loop -----------------------------------------------------*/
+        
+        public RenderState Prepare()
+        {
+            TilePosition FocusedTile = _game.Camera.FocusedTile;
+            Point renderBegin;
+            Point renderEnd;
 
-        // TODO: move the code here.
+            return new RenderState();
+        }
+
+        public void Update( GameTime gameTime )
+        {
+            RenderState renderState = Prepare();
+
+            renderState.AliveEntities.UpdateAll(gameTime);
+            
+
+        }
+        
+        public void Draw( GameTime gameTime )
+        {
+            RenderState renderState = Prepare();
+
+
+        }
 
         /* --- Save & Load ------------------------------------------------- */
 
@@ -137,16 +160,16 @@ namespace Hevadea.Worlds
         public bool IsAll(Rectangle area, Tile tile) => IsAll(area, (t) => t == tile);
         public bool IsAll(Rectangle area, Predicate<Tile> predicat)
         {
-            var beginX = area.X / GLOBAL.Unit - 1;
-            var beginY = area.Y / GLOBAL.Unit - 1;
+            var beginX = area.X / GLOBAL.Unit;
+            var beginY = area.Y / GLOBAL.Unit;
 
-            var endX = (area.X + area.Width) / GLOBAL.Unit + 1;
-            var endY = (area.Y + area.Height) / GLOBAL.Unit + 1;
+            var endX = (area.X + area.Width) / GLOBAL.Unit;
+            var endY = (area.Y + area.Height) / GLOBAL.Unit;
 
             var result = true;
 
-            for (var x = beginX; x < endX; x++)
-                for (var y = beginY; y < endY; y++)
+            for (var x = beginX; x <= endX; x++)
+                for (var y = beginY; y <= endY; y++)
                 {
                     if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
                     result &= predicat(GetTile(x, y));

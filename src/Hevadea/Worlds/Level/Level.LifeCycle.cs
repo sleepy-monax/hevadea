@@ -24,7 +24,7 @@ namespace Hevadea.Worlds
             IsInitialized = true;
         }
 
-        public void Update(LevelRenderState state, GameTime gameTime)
+        public void Update(RenderState state, GameTime gameTime)
         {
             for (var i = 0; i < Width * Height / 50; i++)
             {
@@ -36,41 +36,45 @@ namespace Hevadea.Worlds
 
             ParticleSystem.Update(gameTime);
 
-            foreach (var e in state.OnScreenEntities) e.Update(gameTime);
+            foreach (var e in state.AliveEntities) e.Update(gameTime);
         }
 
-        public LevelRenderState GetRenderState(Camera camera)
+        public RenderState GetRenderState(Camera camera)
         {
             var entitiesOnScreen = new List<Entity>();
             var focusEntity = new Point((int)camera.X / GLOBAL.Unit, (int)camera.Y / GLOBAL.Unit);
             var dist = new Point(camera.GetWidth() / 2 / GLOBAL.Unit + 1,
                 camera.GetHeight() / 2 / GLOBAL.Unit);
 
-            var state = new LevelRenderState
+            var state = new RenderState
             {
-                Begin = new Point(Math.Max(0, focusEntity.X - dist.X),
+                RenderBegin = new Point(Math.Max(0, focusEntity.X - dist.X),
                     Math.Max(0, focusEntity.Y - dist.Y - 1)),
 
-                End = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
+                RenderEnd = new Point(Math.Min(Width, focusEntity.X + dist.X + 1),
                     Math.Min(Height, focusEntity.Y + dist.Y + 6))
             };
 
-            for (var tx = state.Begin.X; tx < state.End.X; tx++)
-                for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
-                    entitiesOnScreen.AddRange(GetEntitiesAt(tx, ty));
+            for (var tx = state.RenderBegin.X; tx < state.RenderEnd.X; tx++)
+			{
+                for (var ty = state.RenderBegin.Y; ty < state.RenderEnd.Y; ty++)
+				{
+					entitiesOnScreen.AddRange(GetEntitiesAt(tx, ty));
+				}
+			}
 
             entitiesOnScreen.Sort((a, b) => (a.Y + a.SortingOffset).CompareTo(b.Y + b.SortingOffset));
 
-            state.OnScreenEntities = entitiesOnScreen;
+            state.AliveEntities = entitiesOnScreen;
 
             return state;
         }
 
-        public void DrawTerrain(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
+        public void DrawTerrain(RenderState state, SpriteBatch spriteBatch, GameTime gameTime)
         {
-            for (var ty = state.Begin.Y; ty < state.End.Y; ty++)
+            for (var ty = state.RenderBegin.Y; ty < state.RenderEnd.Y; ty++)
             {
-                for (var tx = state.Begin.X; tx < state.End.X; tx++)
+                for (var tx = state.RenderBegin.X; tx < state.RenderEnd.X; tx++)
                 {
                     GetTile(tx, ty).Draw(spriteBatch, new TilePosition(tx, ty), GetTileDataAt(tx, ty), this, gameTime);
                 }
@@ -79,14 +83,14 @@ namespace Hevadea.Worlds
             ParticleSystem.Draw(spriteBatch, gameTime);
         }
 
-        public void DrawEntities(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
+        public void DrawEntities(RenderState state, SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach (var e in state.OnScreenEntities) e.Draw(spriteBatch, gameTime);
+            foreach (var e in state.AliveEntities) e.Draw(spriteBatch, gameTime);
         }
 
-        public void DrawEntitiesOverlay(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
+        public void DrawEntitiesOverlay(RenderState state, SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach (var e in state.OnScreenEntities)
+            foreach (var e in state.AliveEntities)
             {
                 e.DrawOverlay(spriteBatch, gameTime);
 
@@ -95,9 +99,9 @@ namespace Hevadea.Worlds
             }
         }
 
-        public void DrawLightMap(LevelRenderState state, SpriteBatch spriteBatch, GameTime gameTime)
+        public void DrawLightMap(RenderState state, SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach (var e in state.OnScreenEntities)
+            foreach (var e in state.AliveEntities)
             {
                 var light = e.GetComponent<Light>();
 

@@ -9,9 +9,9 @@ namespace Hevadea.GameObjects.Entities.Components.Render
 {
     public class NpcRender : EntityComponent, IEntityComponentDrawable, IEntityComponentUpdatable
     {
-        private bool _isWalking;
-        private bool _isSwiming;
-        private bool _isPickingItem;
+        bool _isWalking;
+        bool _isSwiming;
+        bool _isPickingItem;
 
         public Sprite Sprite { get; set; }
 
@@ -33,7 +33,7 @@ namespace Hevadea.GameObjects.Entities.Components.Render
             var frame = new[] { 0, 2, 1, 2 }[(int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
             var selectedFrame = _isWalking ? new Point(frame, (int)Owner.Facing) : new Point(2, (int)Owner.Facing);
 
-            if (!_isSwiming) spriteBatch.Draw(Ressources.ImgShadow, new Vector2(Owner.X - 6, Owner.Y - 1.5f), new Vector2(12, 6), Color.White);
+            if (!_isSwiming) spriteBatch.Draw(Ressources.ImgShadow, new Vector2(Owner.X - 7, Owner.Y - 1.5f), new Vector2(14, 6), Color.White);
 
             if (_isPickingItem)
             {
