@@ -17,6 +17,7 @@ namespace Hevadea
     public class GameManager
     {
         Menu _currentMenu;
+        LevelSpriteBatchPool _spriteBatchPool;
 
         public string SavePath { get; set; } = "./test/";
         public World World { get; set; }
@@ -42,12 +43,14 @@ namespace Hevadea
 
         public GameManager()
         {
+            _spriteBatchPool = new LevelSpriteBatchPool();
         }
 
         public GameManager(World world, EntityPlayer player)
         {
             World = world;
             MainPlayer = player;
+            _spriteBatchPool = new LevelSpriteBatchPool();
         }
 
         public void Initialize()
@@ -68,12 +71,12 @@ namespace Hevadea
             Camera.JumpToFocusEntity();
         }
         
-		public static GameManager Load(string saveFolder, ProgressRepporter progressRepporter)
+        public static GameManager Load(string saveFolder, ProgressRepporter progressRepporter)
         {
-			GameManager game = new GameManager();
-			game.SavePath = saveFolder;
+            GameManager game = new GameManager();
+            game.SavePath = saveFolder;
             
-			progressRepporter.RepportStatus("Loading world...");
+            progressRepporter.RepportStatus("Loading world...");
             
             // Load the world data and the player.
             string path = game.GetSavePath();
@@ -89,16 +92,16 @@ namespace Hevadea
                 string levelPath = $"{path}{levelName}/";
                 Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
                 
-				var a = new { pomme = 1, poire = "lol" };
+                var a = new { pomme = 1, poire = "lol" };
                 
                 // Load chunks
-				progressRepporter.RepportStatus($"Loading level {level.Name}...");
+                progressRepporter.RepportStatus($"Loading level {level.Name}...");
                 for (int x = 0; x < level.Chunks.GetLength(0); x++)
                 {
                     for (int y = 0; y < level.Chunks.GetLength(1); y++)
                     {
                         level.Chunks[x, y] = Chunk.Load(File.ReadAllText(levelPath + $"r{x}-{y}.json").FromJson<ChunkStorage>());
-						progressRepporter.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
+                        progressRepporter.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
                     }
                 }
 
@@ -126,23 +129,23 @@ namespace Hevadea
             game.World = world;
             game.MainPlayer = (EntityPlayer)player;
 
-			return game;
+            return game;
         }
 
-		public void Save(string savePath, ProgressRepporter progressRepporter)
+        public void Save(string savePath, ProgressRepporter progressRepporter)
         {
-			SavePath = savePath;
+            SavePath = savePath;
 
-			progressRepporter.RepportStatus("Saving world...");
+            progressRepporter.RepportStatus("Saving world...");
             
             var levelsName = new List<string>();
 
-			Directory.CreateDirectory(SavePath);
+            Directory.CreateDirectory(SavePath);
 
             // Saves levels
             foreach (var level in World.Levels)
             {
-				progressRepporter.RepportStatus($"Saving {level.Name}...");
+                progressRepporter.RepportStatus($"Saving {level.Name}...");
                 string path = GetLevelSavePath(level);
                 Directory.CreateDirectory(path);
                 
@@ -152,7 +155,7 @@ namespace Hevadea
                 // Save chunks
                 foreach (var chunk in level.Chunks)
                 {
-					progressRepporter.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
+                    progressRepporter.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
                     File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
                 }
                 
@@ -167,8 +170,8 @@ namespace Hevadea
                     fs.Close();
                 });
 
-				progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
-				progressRepporter.Report(1f);
+                progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
+                progressRepporter.Report(1f);
                 Rise.AsyncTasks.Enqueue(task);
 
                 // Wait for the task to complete.
@@ -200,7 +203,7 @@ namespace Hevadea
 
         public void Draw(GameTime gameTime)
         {
-            World.Draw(gameTime, Camera);
+            Camera.FocusEntity.Level.Draw(_spriteBatchPool, gameTime);
         }
 
         public void Update(GameTime gameTime)
@@ -208,16 +211,9 @@ namespace Hevadea
             Camera.Update(gameTime);
             PlayerInput.Update(gameTime);
 
-            if (!CurrentMenu?.PauseGame ?? false)
-            {
-                foreach (var l in World.Levels)
-                {
-                    var state = l.GetRenderState(Camera);
-                    l.Update(state, gameTime);
-                }
-            }
-
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
+            MainPlayer.Level.Update(gameTime);
+
         }
     }
 }

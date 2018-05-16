@@ -7,6 +7,11 @@ namespace Hevadea.Framework.Graphic
 {
     public static class Primitives
     {
+        public static void Draw(this SpriteBatch spriteBatch, Texture2D texture, float x, float y, float width, float height, Color color, float angle = 0.0f)
+        {
+            spriteBatch.Draw(texture, new Vector2(x, y), null, color, angle, Vector2.Zero, new Vector2(width, height) * new Vector2(1f / texture.Width, 1f / texture.Height), SpriteEffects.None, 0);
+        }
+
         public static void Draw(this SpriteBatch spriteBatch, Texture2D texture, Vector2 location, Vector2 size, Color color, float angle = 0.0f)
         {
             spriteBatch.Draw(texture, location, null, color, angle, Vector2.Zero, size * new Vector2(1f / texture.Width, 1f / texture.Height), SpriteEffects.None, 0);

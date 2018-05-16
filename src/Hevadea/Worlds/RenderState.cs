@@ -1,6 +1,5 @@
 ﻿using Hevadea.GameObjects.Entities;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 namespace Hevadea.Worlds
 {
@@ -8,13 +7,17 @@ namespace Hevadea.Worlds
     {
         public Point RenderBegin;
         public Point RenderEnd;
-		public EntityColection EntityOnScreen = new EntityColection();
-		public EntityColection AliveEntities = new EntityColection();
 
-		public RenderState(Point renderBegin, Point renderEnd, EntityColection entityOnScreen, EntityColection aliveEntities)
-		{
-			RenderBegin = renderBegin;
-			RenderEnd = renderEnd;
-		}
+        public EntityColection OnScreenEntities = new EntityColection();
+        public EntityColection AliveEntities = new EntityColection();
+
+        public RenderState(Point renderBegin, Point renderEnd, EntityColection onScreenEntities, EntityColection aliveEntities)
+        {
+            RenderBegin = renderBegin;
+            RenderEnd = renderEnd;
+
+            OnScreenEntities = onScreenEntities;
+            AliveEntities = aliveEntities;
+        }
     }
 }

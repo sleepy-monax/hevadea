@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.GameObjects.Entities.Components.Attributes
 {
-    internal class Burnable : Light, IEntityComponentUpdatable
+    internal class Burnable : LightSource, IEntityComponentUpdatable
     {
         private float _dammages;
         private float _chanceToBreak;
@@ -55,7 +55,7 @@ namespace Hevadea.GameObjects.Entities.Components.Attributes
         public void Update(GameTime gameTime)
         {
             IsBurnning = !(Owner.GetComponent<Swim>()?.IsSwiming ?? false) && IsBurnning;
-            On = IsBurnning;
+            IsOn = IsBurnning;
 
             if (_burnTimer < 0.01f)
             {

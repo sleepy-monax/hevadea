@@ -232,9 +232,9 @@
     <Compile Include="Worlds\Chunk.cs" />
     <Compile Include="Worlds\DayNightCycle.cs" />
     <Compile Include="Worlds\LevelProperties.cs" />
+    <Compile Include="Worlds\LevelSpriteBatchPool.cs" />
     <Compile Include="Worlds\RenderState.cs" />
-    <Compile Include="Worlds\Level\Level.Base.cs" />
-    <Compile Include="Worlds\Level\Level.LifeCycle.cs" />
+    <Compile Include="Worlds\Level.cs" />
     <Compile Include="Worlds\Minimap.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="Scenes\Menus\MenuRespawn.cs" />

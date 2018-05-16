@@ -26,7 +26,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
             AddComponent(new Inventory(64) { AlowPickUp = true });
             AddComponent(new Interact());
-            AddComponent(new Light { On = true, Color = Color.White * 0.50f, Power = 64 });
+            AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new Move());
             AddComponent(new Swim());
             AddComponent(new Pushable());

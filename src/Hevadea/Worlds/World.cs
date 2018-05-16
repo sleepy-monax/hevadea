@@ -10,23 +10,15 @@ namespace Hevadea.Worlds
 {
     public class World
     {
-        readonly SpriteBatch _spriteBatch;
-
-        readonly BlendState _lightBlend = new BlendState
-        {
-            ColorBlendFunction = BlendFunction.Add,
-            ColorSourceBlend = Blend.DestinationColor,
-            ColorDestinationBlend = Blend.Zero
-        };
-
         public GameManager Game;
         public List<Level> Levels = new List<Level>();
         public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
 
+
+
         public World()
         {
-            _spriteBatch = Rise.Graphic.CreateSpriteBatch();
             DayNightCycle = new DayNightCycle(
                 new DayStage("Day", 600, Color.White),
 
@@ -45,30 +37,30 @@ namespace Hevadea.Worlds
             { Transition = 30 };
         }
 
-		public static World Load(WorldStorage store)
-		{
-			World world = new World();
+        public static World Load(WorldStorage store)
+        {
+            World world = new World();
 
-			world.DayNightCycle.Time = store.Time;
-			world.PlayerSpawnLevel = store.PlayerSpawnLevel;
+            world.DayNightCycle.Time = store.Time;
+            world.PlayerSpawnLevel = store.PlayerSpawnLevel;
 
-			return world;
-		}
+            return world;
+        }
 
-		public WorldStorage Save()
-		{
-			WorldStorage worldStorage = new WorldStorage();
+        public WorldStorage Save()
+        {
+            WorldStorage worldStorage = new WorldStorage();
 
-			worldStorage.Time = DayNightCycle.Time;
-			worldStorage.PlayerSpawnLevel = PlayerSpawnLevel;
+            worldStorage.Time = DayNightCycle.Time;
+            worldStorage.PlayerSpawnLevel = PlayerSpawnLevel;
 
             foreach (var l in Levels)
-			{
-				worldStorage.Levels.Add(l.Name);
-			}
+            {
+                worldStorage.Levels.Add(l.Name);
+            }
 
-			return worldStorage;
-		}
+            return worldStorage;
+        }
 
         public void SpawnPlayer(EntityPlayer player)
         {
@@ -91,54 +83,6 @@ namespace Hevadea.Worlds
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
 
-        public void Draw(GameTime gameTime, Camera camera)
-        {
-            var level = camera.FocusEntity.Level;
-            var state = level.GetRenderState(camera);
-            var cameraTransform = camera.GetTransform();
-
-            Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[1]);
-
-            _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
-            level.DrawTerrain(state, _spriteBatch, gameTime);
-            _spriteBatch.End();
-
-            _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
-            level.DrawEntities(state, _spriteBatch, gameTime);
-            _spriteBatch.End();
-
-            if (Rise.ShowGui)
-            {
-                _spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: cameraTransform);
-                level.DrawEntitiesOverlay(state, _spriteBatch, gameTime);
-                _spriteBatch.End();
-            }
-
-            Rise.Graphic.SetRenderTarget(Rise.Graphic.RenderTarget[0]);
-
-            var ambiantColor = level.Properties.AffectedByDayNightCycle
-                ? DayNightCycle.GetAmbiantLight()
-                : level.Properties.AmbiantLight;
-            Rise.Graphic.Clear(ambiantColor);
-
-            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: cameraTransform);
-            level.DrawLightMap(state, _spriteBatch, gameTime);
-            _spriteBatch.End();
-
-            Rise.Graphic.SetDefaultRenderTarget();
-
-            _spriteBatch.Begin();
-
-            _spriteBatch.Draw(Rise.Graphic.RenderTarget[1], Rise.Graphic.GetBound(), Color.White);
-
-            _spriteBatch.End();
-
-            _spriteBatch.Begin(SpriteSortMode.Immediate, _lightBlend);
-
-            _spriteBatch.Draw(Rise.Graphic.RenderTarget[0], Rise.Graphic.GetBound(), Color.White);
-
-            _spriteBatch.End();
-        }
 
         public int GetUeid()
         {

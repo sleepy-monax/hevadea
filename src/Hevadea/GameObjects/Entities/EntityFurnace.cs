@@ -18,7 +18,7 @@ namespace Hevadea.GameObjects.Entities
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 1));
 
             AddComponent(new Breakable());
-            AddComponent(new Light());
+            AddComponent(new LightSource());
             AddComponent(new Dropable { Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1) } });
             AddComponent(new Move());
             AddComponent(new Pushable());
