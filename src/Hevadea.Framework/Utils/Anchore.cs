@@ -18,6 +18,16 @@ namespace Hevadea.Framework.Utils
 
     public static class AnchorExt
     {
+		public static Rectangle Padding(this Rectangle rect, int all)
+		{
+			return rect.Padding(all, all, all, all);
+		}
+
+		public static Rectangle Padding(this Rectangle rect, int top, int bottom, int left, int right)
+		{
+			return new Rectangle(rect.Location + new Point(left, top), rect.Size - new Point(left + right, top + bottom));
+		}
+
         public static Point GetAnchorPoint(this Rectangle rect, Anchor anchor)
         {
             switch (anchor)

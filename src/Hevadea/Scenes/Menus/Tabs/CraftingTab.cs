@@ -16,8 +16,8 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class CraftingListItem : ListItem
     {
-        private readonly Recipe _recipe;
-        private readonly ItemStorage _storage;
+        Recipe _recipe;
+        ItemStorage _storage;
 
         public CraftingListItem(Recipe recipe, ItemStorage storage)
         {
@@ -32,9 +32,9 @@ namespace Hevadea.Scenes.Menus.Tabs
 
         public override void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime)
         {
-            var color = Color.White * (_recipe.CanBeCrafted(_storage) ? 1f : 0.5f);
-            _recipe.Result.GetSprite().Draw(spriteBatch, new Padding((int)(8 * Rise.Ui.ScaleFactor)).Apply(new Rectangle(host.Location, new Point(host.Height))), color);
-            spriteBatch.DrawString(Ressources.FontRomulus, $"{_recipe.Result.GetName()} x{_recipe.Quantity}", new Padding(0, host.Height / 2, host.Height, 0).Apply(host), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, color, Rise.Ui.ScaleFactor);
+            Color color = Color.White * (_recipe.CanBeCrafted(_storage) ? 1f : 0.5f);
+            _recipe.Result.GetSprite().Draw(spriteBatch, new BoxElement((int)(8 * Rise.Ui.ScaleFactor)).Apply(new Rectangle(host.Location, new Point(host.Height))), color);
+            spriteBatch.DrawString(Ressources.FontRomulus, $"{_recipe.Result.GetName()} x{_recipe.Quantity}", new BoxElement(0, host.Height / 2, host.Height, 0).Apply(host), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, color, Rise.Ui.ScaleFactor);
 
             for (var i = 0; i < _recipe.Costs.Count; i++)
             {
@@ -82,7 +82,7 @@ namespace Hevadea.Scenes.Menus.Tabs
             };
         }
 
-        private void Craft(Widget widget)
+        void Craft(Widget widget)
         {
             if (CraftingList.SelectedItem is CraftingListItem craft)
             {

@@ -10,7 +10,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 {
     public class BspDecorator : LevelFeature
     {
-        public Padding Padding { get; set; } = new Padding(4);
+		public BoxElement Padding { get; set; } = new BoxElement(4);
         public int Depth { get; set; } = 3;
 
         public override string GetName() => "Generating bsp";
@@ -28,9 +28,9 @@ namespace Hevadea.WorldGenerator.LevelFeatures
         {
             var rnd = new Random(gen.Seed);
             var bound = Padding.Apply(new Rectangle(0, 0, level.Width, level.Height));
-            var tree = BspTree.BuildBspTree(Padding.Left, Padding.Up,
+            var tree = BspTree.BuildBspTree(Padding.Left, Padding.Top,
                                  level.Width - Padding.Left - Padding.Right,
-                                 level.Height - Padding.Up - Padding.Down,
+                                 level.Height - Padding.Top - Padding.Bottom,
                                  Depth, rnd);
 
             Build(tree.Root, rnd, level);

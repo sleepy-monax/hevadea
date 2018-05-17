@@ -5,7 +5,7 @@ namespace Hevadea.Framework.UI.Containers
     public class TileLayout : Container
     {
         public FlowDirection Flow { get; set; } = FlowDirection.LeftToRight;
-        public Padding Marging { get; set; } = new Padding(0);
+		public BoxElement Marging { get; set; } = new BoxElement(0);
 
         public override void Layout()
         {

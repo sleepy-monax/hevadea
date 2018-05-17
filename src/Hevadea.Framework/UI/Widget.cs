@@ -7,49 +7,12 @@ namespace Hevadea.Framework.UI
 {
     public enum Dock
     {
-        Top,
-        Right,
-        Bottom,
-        Left,
-        Fill,
-        None
+        Top, Right, Bottom, Left, Fill, None
     }
 
     public enum MouseState
     {
         Over, Down, None
-    }
-
-    public class Padding
-    {
-        public int Up { get; set; }
-        public int Down { get; set; }
-        public int Left { get; set; }
-        public int Right { get; set; }
-
-        public Padding(int up, int down, int left, int right)
-        {
-            Up = up;
-            Down = down;
-            Left = left;
-            Right = right;
-        }
-
-        public Padding(int all)
-        {
-            Up = Down = Left = Right = all;
-        }
-
-        public Padding(int horizontal, int vertical)
-        {
-            Up = Down = vertical;
-            Left = Right = horizontal;
-        }
-
-        public Rectangle Apply(Rectangle rect)
-        {
-            return new Rectangle(rect.X + Left, rect.Y + Up, rect.Width - Left - Right, rect.Height - Up - Down);
-        }
     }
 
     public class Widget
@@ -68,7 +31,7 @@ namespace Hevadea.Framework.UI
         public Rectangle UnitBound { get; set; } = new Rectangle(0, 0, 64, 64);
         public Rectangle UnitHost { get { return Padding.Apply(UnitBound); } }
         public Point UnitOffset { get; set; } = Point.Zero;
-        public Padding Padding { get; set; } = new Padding(0);
+		public BoxElement Padding { get; set; } = new BoxElement(0);
 
         public Anchor Anchor { get; set; } = Anchor.TopLeft;
         public Anchor Origine { get; set; } = Anchor.TopLeft;
