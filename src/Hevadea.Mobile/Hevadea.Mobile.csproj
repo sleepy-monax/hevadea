@@ -102,10 +102,6 @@
       <Project>{44b79eaf-5584-4176-97ad-5bc358a52ae3}</Project>
       <Name>Hevadea.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hevadea.Ressources\Hevadea.Ressources.csproj">
-      <Project>{c3056af3-493c-4eea-a163-b14533134771}</Project>
-      <Name>Hevadea.Ressources</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hevadea\Hevadea.Game.csproj">
       <Project>{76037d71-10ca-4c2e-a64e-563b595ca88f}</Project>
       <Name>Hevadea.Game</Name>

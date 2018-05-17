@@ -16,7 +16,6 @@ namespace Hevadea.Scenes
         private bool _loadingDone = false;
         private bool _once = true;
         private SpriteBatch _sb;
-        private float _alpha = 0f;
 
         public override void Load()
         {
@@ -28,6 +27,8 @@ namespace Hevadea.Scenes
 
                 Rise.Ui.DefaultFont = Ressources.FontRomulus;
                 Rise.Ui.DebugFont = Ressources.FontHack;
+
+                Thread.Sleep(500);
                 _loadingDone = true;
             }).Start();
 
@@ -45,33 +46,15 @@ namespace Hevadea.Scenes
             _once = false;
         }
 
-        private float r = 0;
 
         public override void OnDraw(GameTime gameTime)
         {
             _sb.Begin(samplerState: SamplerState.PointWrap);
             _sb.FillRectangle(Rise.Graphic.GetBound(), Color.White);
 
-            if (_loadingDone)
+            if (Ressources.CompanyLogo != null)
             {
-                _alpha *= 0.95f;
-            }
-            else
-            {
-                _alpha += (1 - _alpha) * 0.95f;
-            }
-
-            var f = (Mathf.Sin((float)gameTime.TotalGameTime.TotalSeconds * Mathf.PI) + 1);
-            r += f * 0.05f;
-            _sb.FillRectangle(
-                Rise.Graphic.GetWidth() / 2, Rise.Graphic.GetHeight() / 2,
-                128 * f, 128 * f,
-                ColorPalette.Accent * _alpha, r
-                , 0.5f, 0.5f);
-
-            if (Ressources.FontRomulus != null)
-            {
-                _sb.DrawString(Ressources.FontRomulus, "Loading...", Rise.Graphic.GetBound(), DrawText.Alignement.Center, DrawText.TextStyle.Regular, Color.Black, 2f);
+                _sb.Draw(Ressources.CompanyLogo, (Rise.Graphic.GetCenter().ToVector2() - Ressources.CompanyLogo.GetCenter()), Color.White);
             }
 
             _sb.End();

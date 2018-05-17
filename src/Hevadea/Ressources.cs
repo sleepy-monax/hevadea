@@ -53,7 +53,7 @@ namespace Hevadea
 
         public static void Load()
         {
-            CompanyLogo = Rise.Ressource.GetTexture("logo/company");
+            CompanyLogo = Rise.Ressource.GetImage("company");
 
             FontAlagard = Rise.Ressource.GetSpriteFont("alagard");
             FontAlagardBig = Rise.Ressource.GetSpriteFont("alagard_big");
@@ -76,7 +76,6 @@ namespace Hevadea
             ImgRock = Rise.Ressource.GetImage("rock");
             ImgGrass = Rise.Ressource.GetImage("grass");
             ImgShadow = Rise.Ressource.GetImage("shadow");
-            ImgSwing = Rise.Ressource.GetImage("swing");
             ImgTiles = Rise.Ressource.GetImage("tiles");
 
             TileCreatures = new SpriteSheet(ImgCreatures, new Point(48, 128));

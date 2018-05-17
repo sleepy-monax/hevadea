@@ -32,12 +32,8 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            _cursorEntity.Draw(spriteBatch, new Vector2(_cursorX - 8, _cursorY - 8), Color.White);
             (_isEntitySelected ? _cursorTile : _cursor).Draw(spriteBatch, new Vector2(_cursorTileX - 8, _cursorTileY - 8), Color.White);
-
-            if (_isEntitySelected)
-            {
-                _cursorEntity.Draw(spriteBatch, new Vector2(_cursorX - 8, _cursorY - 8), Color.White);
-            }
         }
 
         public void Update(GameTime gameTime)
@@ -67,11 +63,14 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                 _isEntitySelected = true;
             }
 
-            _cursorTileX += (tx - _cursorTileX) * 0.1f;
-            _cursorTileY += (ty - _cursorTileY) * 0.1f;
+            _cursorTileX += (tx - _cursorTileX) * 0.2f;
+            _cursorTileY += (ty - _cursorTileY) * 0.2f;
 
-            _cursorX += (ex - _cursorX) * 0.5f;
-            _cursorY += (ey - _cursorY) * 0.5f;
+
+            _cursorX += (ex - _cursorX) * 0.2f;
+            _cursorY += (ey - _cursorY) * 0.2f;
+
+
         }
 
         public void Do(Item item)
