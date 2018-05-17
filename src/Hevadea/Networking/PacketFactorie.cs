@@ -4,25 +4,37 @@ namespace Hevadea.Networking
 {
     public enum PacketType
     {
-        LOGIN, TOKEN, CHUNK, ENTITY_UPDATE, TILE_UPDATE 
+		LOGIN, TOKEN, CHUNK, ENTITY_UPDATE, TILE_UPDATE, ACKNOWLEDGMENT
     }
 
     public static class PacketFactorie
     {
-        public static PacketBuilder ConstructLogin(string playerName, string gameInfo)
+		/* --- Login and control flow --------------------------------------- */
+
+        public static byte[] ConstructLogin(string playerName, string gameInfo)
             => ConstructLogin(playerName, 0, gameInfo);
 
-
-        public static PacketBuilder ConstructLogin(string playerName, int token, string gameInfo)
+		public static byte[] ConstructLogin(string playerName, int token, string gameInfo)
             => new PacketBuilder()
                 .WriteInteger((int)PacketType.LOGIN)
                 .WriteStringASCII(playerName)
                 .WriteInteger(token)
-                .WriteStringASCII(gameInfo);
+                .WriteStringASCII(gameInfo)
+			    .GetBuffer();
 
-        public static PacketBuilder ConstructToken(int token)
+		public static byte[] ConstructToken(int token)
             => new PacketBuilder()
                 .WriteInteger((int)PacketType.TOKEN)
-                .WriteInteger(token);
+                .WriteInteger(token)
+			    .GetBuffer();
+
+		public static byte[] ConstructAcknowledgment()
+			=> new PacketBuilder()
+			    .WriteInteger((int)PacketType.ACKNOWLEDGMENT).GetBuffer();
+
+        /* --- Entity sync -------------------------------------------------- */
+
+        /* --- Tile sync ---------------------------------------------------- */
+        
     }
 }

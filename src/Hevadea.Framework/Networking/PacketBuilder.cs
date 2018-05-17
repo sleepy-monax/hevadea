@@ -29,9 +29,10 @@ namespace Hevadea.Framework.Networking
             _offset = 0;
         }
 
-        public void PreAllocate(int size)
+        public PacketBuilder PreAllocate(int size)
         {
             _buffer = new byte[size];
+			return this;
         }
 
         public byte[] GetBuffer()
