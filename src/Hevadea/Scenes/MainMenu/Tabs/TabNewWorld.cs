@@ -18,9 +18,9 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(1, 2));
 
-            var worldNameTextBox = new SingleLineTextBoxWidget(24, "new world", Ressources.FontRomulus) { Padding = new Padding(8) };
+            var worldNameTextBox = new SingleLineTextBoxWidget(24, "new world", Ressources.FontRomulus) { Padding = new BoxElement(8) };
 
-            var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new Padding(8) };
+			var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new BoxElement(8) };
 
 			var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
 			.RegisterMouseClickEvent((sender) =>
@@ -47,9 +47,9 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Dock = Dock.Fill,
                 Childrens =
                 {
-                    new Label { Text = "World name:", Padding = new Padding(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "World name:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
                     worldNameTextBox,
-                    new Label { Text = "Seed:", Padding = new Padding(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "Seed:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
                     worldSeedtextBox,
                 }
             };

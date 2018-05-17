@@ -112,6 +112,7 @@
     <Compile Include="Utils\Texture2DUtils.cs" />
     <Compile Include="Utils\XnaUtils.cs" />
     <Compile Include="Utils\FastRandom.cs" />
+    <Compile Include="UI\Style.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />

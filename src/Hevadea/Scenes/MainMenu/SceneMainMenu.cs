@@ -36,7 +36,7 @@ namespace Hevadea.Scenes.MainMenu
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitBound = new Rectangle(0, 0, 600, 720),
-                Padding = new Padding(16),
+                Padding = new BoxElement(16),
                 TabAnchore = Rise.Platform.Family == PlatformFamily.Mobile ? TabAnchore.Bottom : TabAnchore.Left,
                 Tabs =
                 {

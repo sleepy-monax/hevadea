@@ -2,6 +2,7 @@
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -23,12 +24,12 @@ namespace Hevadea.Scenes.Widgets
         private Sprite _tab;
         private Sprite _tabSelected;
 
-        private Rectangle _clientArea => new Padding(32 + (TabAnchore == TabAnchore.Top ? 64 : 0),
+        private Rectangle _clientArea => new BoxElement(32 + (TabAnchore == TabAnchore.Top ? 64 : 0),
                                              32 + (TabAnchore == TabAnchore.Bottom ? 64 : 0),
                                              32 + (TabAnchore == TabAnchore.Left ? 64 : 0),
                                              32 + (TabAnchore == TabAnchore.Right ? 64 : 0)).Apply(UnitBound);
 
-        private Rectangle _clientAreaBound => new Padding((TabAnchore == TabAnchore.Top ? 64 : 0),
+		private Rectangle _clientAreaBound => new BoxElement((TabAnchore == TabAnchore.Top ? 64 : 0),
                                                   (TabAnchore == TabAnchore.Bottom ? 64 : 0),
                                                   (TabAnchore == TabAnchore.Left ? 64 : 0),
                                                   (TabAnchore == TabAnchore.Right ? 64 : 0)).Apply(UnitBound);
@@ -82,9 +83,9 @@ namespace Hevadea.Scenes.Widgets
 
         private Rectangle GetTabIconBound(int index, bool isSelected)
         {
-            if (isSelected)
-                return new Padding(Scale(28), Scale(28), Scale(28), Scale(28)).Apply(GetTabBound(index));
-            return new Padding(Scale(32), Scale(32), Scale(32), Scale(32)).Apply(GetTabBound(index));
+			if (isSelected)
+				return GetTabBound(index).Padding(Scale(28), Scale(28), Scale(28), Scale(28));
+			return GetTabBound(index).Padding(Scale(32), Scale(32), Scale(32), Scale(32));
         }
 
         public override void Update(GameTime gameTime)
@@ -111,7 +112,7 @@ namespace Hevadea.Scenes.Widgets
             var size = Scale(64);
             if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First();
 
-            _background.Draw(spriteBatch, new Padding(-4).Apply(Scale(_clientArea)), Color.White * 0.99f);
+			_background.Draw(spriteBatch, Scale(_clientArea).Padding(-4), Color.White * 0.99f);
 
             SelectedTab?.Content?.DrawIternal(spriteBatch, gameTime);
 

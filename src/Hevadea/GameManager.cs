@@ -19,16 +19,16 @@ namespace Hevadea
         Menu _currentMenu;
         LevelSpriteBatchPool _spriteBatchPool;
 
-        public string SavePath { get; set; } = "./test/";
         public World World { get; set; }
-        public EntityPlayer MainPlayer { get; set; }
-        public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
-
         public Camera Camera { get; set; }
-        public PlayerInputHandler PlayerInput { get; set; }
+
+		public EntityPlayer MainPlayer { get; set; }
+		public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
+		public PlayerInputHandler PlayerInput { get; set; }
+        
+		public string SavePath { get; set; } = "./test/";
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
-
         public event CurrentMenuChangeHandler CurrentMenuChange;
 
         public Menu CurrentMenu

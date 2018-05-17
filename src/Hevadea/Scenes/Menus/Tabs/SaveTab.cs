@@ -34,7 +34,7 @@ namespace Hevadea.Scenes.Menus.Tabs
                 }
             };
             
-            container.AddChild(new Button { Text = "Quick save", Padding = new Padding(4) })
+			container.AddChild(new Button { Text = "Quick save", Padding = new BoxElement(4) })
             .RegisterMouseClickEvent((sender) =>
             {
 				LoadingTask saveTask = TaskFactorie.SaveWorld(game);
@@ -42,7 +42,7 @@ namespace Hevadea.Scenes.Menus.Tabs
                 game.CurrentMenu = new LoadingMenu(saveTask , game);
             });
             
-			container.AddChild(new Button { Text = "Save and Exit", Padding = new Padding(4) })
+			container.AddChild(new Button { Text = "Save and Exit", Padding = new BoxElement(4) })
             .RegisterMouseClickEvent((sender) =>
             {
 				var saveTask = TaskFactorie.SaveWorld(game);
@@ -53,7 +53,7 @@ namespace Hevadea.Scenes.Menus.Tabs
             container.AddChild(new Button
             {
                 Text = "Exit",
-                Padding = new Padding(4)
+				Padding = new BoxElement(4)
             })
                 .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneMainMenu()); });
         }

@@ -13,7 +13,7 @@ namespace Hevadea.GameObjects.Entities
 {
     public class EntityFish : Entity
     {
-        private readonly Sprite _sprite;
+        Sprite _sprite;
 
         public EntityFish()
         {
@@ -21,16 +21,16 @@ namespace Hevadea.GameObjects.Entities
 
             AddComponent(new Move());
             AddComponent(new Breakable());
-            AddComponent(new Swim { IsSwimingPainfull = false });
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.RAW_FISH, 1f, 1, 1) } });
             AddComponent(new Pushable { CanBePushBy = { EntityFactory.PLAYER } });
-            AddComponent(new Agent { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeedWandering = 0.5f } });
+            AddComponent(new Agent    { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeedWandering = 0.5f } });
+			AddComponent(new Swim     { IsSwimingPainfull = false });
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _sprite.Draw(spriteBatch, new Rectangle((int)X - 8, (int)Y - 8, 16, 16), Color.White);
+			_sprite.Draw(spriteBatch, new Vector2(X - 8f, Y - 8f), Color.White);
         }
     }
 }
