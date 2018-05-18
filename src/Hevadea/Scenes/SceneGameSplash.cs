@@ -13,9 +13,11 @@ namespace Hevadea.Scenes
 {
     public class SceneGameSplash : Scene
     {
-        private bool _loadingDone = false;
-        private bool _once = true;
-        private SpriteBatch _sb;
+        bool  _loadingDone;
+        bool  _once        = true;
+        float _alpha       = 0.1f;
+
+		SpriteBatch _sb;
 
         public override void Load()
         {
@@ -27,8 +29,7 @@ namespace Hevadea.Scenes
 
                 Rise.Ui.DefaultFont = Ressources.FontRomulus;
                 Rise.Ui.DebugFont = Ressources.FontHack;
-
-                Thread.Sleep(500);
+                
                 _loadingDone = true;
             }).Start();
 
@@ -41,20 +42,26 @@ namespace Hevadea.Scenes
 
         public override void OnUpdate(GameTime gameTime)
         {
-            if (!_once || !_loadingDone) return;
+			_alpha += gameTime.GetDeltaTime() * 0.5f;
+			_alpha = Mathf.Min(1f, _alpha);
+
+            if (!_once || !_loadingDone || _alpha < 1f) return;
             Rise.Scene.Switch(new SceneMainMenu());
             _once = false;
         }
 
-
         public override void OnDraw(GameTime gameTime)
         {
             _sb.Begin(samplerState: SamplerState.PointWrap);
-            _sb.FillRectangle(Rise.Graphic.GetBound(), Color.White);
+            _sb.FillRectangle(Rise.Graphic.GetBound(), Color.White * _alpha);
 
             if (Ressources.CompanyLogo != null)
             {
-                _sb.Draw(Ressources.CompanyLogo, (Rise.Graphic.GetCenter().ToVector2() - Ressources.CompanyLogo.GetCenter()), Color.White);
+				_sb.Draw(
+					Ressources.CompanyLogo,
+					(Rise.Graphic.GetCenter().ToVector2() - Ressources.CompanyLogo.GetCenter()) 
+					    * new Vector2(1f, Easing.CircularEaseOut(_alpha)),
+					new Color(_alpha, _alpha, _alpha));
             }
 
             _sb.End();

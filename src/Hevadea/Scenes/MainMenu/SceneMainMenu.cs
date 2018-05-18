@@ -7,6 +7,7 @@ using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Hevadea.Loading;
+using Hevadea.Registry;
 using Hevadea.Scenes.MainMenu.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -20,8 +21,8 @@ namespace Hevadea.Scenes.MainMenu
         {
             Rise.Scene.SetBackground(Ressources.ParalaxeForest);
 
-            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Center, Font = Ressources.FontAlagardBig, TextSize = 1.5f };
-            var creators = new Label { Text = "(c) 2017-2018 Interesting Games", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
+            var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Bottom, Font = Ressources.FontAlagardBig, TextSize = 1.5f };
+            var creators = new Label { Text = "© 2017-2018 EVIL POPCORN", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
             var continueButton = new Button
             {
                 Text = "Continue",
@@ -68,7 +69,26 @@ namespace Hevadea.Scenes.MainMenu
 
             if (Rise.Platform.Family == PlatformFamily.Mobile)
             {
-                Container = menu;
+				Container container = (Container)menu.Tabs[0].Content;
+				var generateButton = new Button { Text = "New World", Dock = Dock.None, UnitBound = new Rectangle(0, 0, 256, 64),
+					UnitOffset = new Point(0, 128 + 8),
+                    Anchor = Anchor.Center,
+                    Origine = Anchor.Top, }
+                .RegisterMouseClickEvent((sender) =>
+                {
+                    var generatorTask = TaskFactorie.NewWorld(GLOBAL.GetSavePath() + $"world/", GENERATOR.DEFAULT, Rise.Rnd.NextInt());
+                    generatorTask.LoadingFinished += (s, e) =>
+                    {
+                        GameManager game = (GameManager)((LoadingTask)s).Result;
+                        game.Initialize();
+                        Rise.Scene.Switch(new SceneGameplay(game));
+                    };
+                    Rise.Scene.Switch(new LoadingScene(generatorTask));
+                });
+				container.Childrens.Add(generateButton);
+                container.Childrens.Add(continueButton);
+
+				Container = container;
             }
             else
             {
