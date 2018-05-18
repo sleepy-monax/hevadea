@@ -28,7 +28,9 @@ namespace Hevadea
         public static SpriteSheet TileGrass;
         public static SpriteSheet TileTiles;
 
-        public static Texture2D CompanyLogo;
+        public static Texture2D PopCorn;
+        public static Texture2D PopCornHead;
+        public static Texture2D PopCornText;
 
         public static Texture2D ImgCreatures;
         public static Texture2D ImgEngineLogo;
@@ -53,7 +55,9 @@ namespace Hevadea
 
         public static void Load()
         {
-            CompanyLogo = Rise.Ressource.GetImage("company");
+            PopCorn = Rise.Ressource.GetImage("popcorn/popcorn");
+            PopCornHead = Rise.Ressource.GetImage("popcorn/popcorn-head");
+            PopCornText = Rise.Ressource.GetImage("popcorn/popcorn-text");
 
             FontAlagard = Rise.Ressource.GetSpriteFont("alagard");
             FontAlagardBig = Rise.Ressource.GetSpriteFont("alagard_big");

@@ -22,7 +22,7 @@ namespace Hevadea.Scenes.MainMenu
             Rise.Scene.SetBackground(Ressources.ParalaxeForest);
 
             var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Bottom, Font = Ressources.FontAlagardBig, TextSize = 1.5f };
-            var creators = new Label { Text = "© 2017-2018 EVIL POPCORN", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
+            var creators = new Label { Text = "© 2017-2018 POP!CORN", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
             var continueButton = new Button
             {
                 Text = "Continue",
@@ -61,16 +61,16 @@ namespace Hevadea.Scenes.MainMenu
                 }
             };
 
+            var container = (Container)menu.Tabs[0].Content;
+
             if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
             {
-                var container = (Container)menu.Tabs[0].Content;
                 container.Childrens.Add(continueButton);
             }
 
             if (Rise.Platform.Family == PlatformFamily.Mobile)
             {
-				Container container = (Container)menu.Tabs[0].Content;
-				var generateButton = new Button { Text = "New World", Dock = Dock.None, UnitBound = new Rectangle(0, 0, 256, 64),
+				var generateButton = new Button { Text = "New", Dock = Dock.None, UnitBound = new Rectangle(0, 0, 256, 64),
 					UnitOffset = new Point(0, 128 + 8),
                     Anchor = Anchor.Center,
                     Origine = Anchor.Top, }
@@ -86,7 +86,6 @@ namespace Hevadea.Scenes.MainMenu
                     Rise.Scene.Switch(new LoadingScene(generatorTask));
                 });
 				container.Childrens.Add(generateButton);
-                container.Childrens.Add(continueButton);
 
 				Container = container;
             }

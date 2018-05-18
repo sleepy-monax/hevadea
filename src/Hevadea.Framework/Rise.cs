@@ -91,8 +91,9 @@ namespace Hevadea.Framework
 
             if (Platform.Family == PlatformFamily.Desktop)
             {
-                Graphic.SetSize(1366, 768);
+                Graphic.SetSize(800, 600);
             }
+
         }
 
         private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)
@@ -149,6 +150,11 @@ namespace Hevadea.Framework
             if (Input.KeyPress(Keys.F6))
             {
                 ShowGui = !ShowGui;
+            }
+
+            if (Input.KeyPress(Keys.F9))
+            {
+                Platform.Family = PlatformFamily.Mobile;
             }
         }
 

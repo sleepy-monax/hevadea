@@ -22,11 +22,11 @@ namespace Hevadea
         public World World { get; set; }
         public Camera Camera { get; set; }
 
-		public EntityPlayer MainPlayer { get; set; }
-		public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
-		public PlayerInputHandler PlayerInput { get; set; }
+        public EntityPlayer MainPlayer { get; set; }
+        public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
+        public PlayerInputHandler PlayerInput { get; set; }
         
-		public string SavePath { get; set; } = "./test/";
+        public string SavePath { get; set; } = "./test/";
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
         public event CurrentMenuChangeHandler CurrentMenuChange;
@@ -91,8 +91,6 @@ namespace Hevadea
                 // Load level data
                 string levelPath = $"{path}{levelName}/";
                 Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
-                
-                var a = new { pomme = 1, poire = "lol" };
                 
                 // Load chunks
                 progressRepporter.RepportStatus($"Loading level {level.Name}...");

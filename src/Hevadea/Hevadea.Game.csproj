@@ -170,7 +170,6 @@
     <Compile Include="Scenes\Menus\Tabs\CraftingTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\EquipmentTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\MinimapTab.cs" />
-    <Compile Include="Scenes\Menus\Tabs\PlayerStatesTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\SaveTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\ServerAdminTab.cs" />
     <Compile Include="Scenes\TestScene.cs" />

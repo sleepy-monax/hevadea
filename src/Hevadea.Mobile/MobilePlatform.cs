@@ -1,4 +1,5 @@
 ﻿using Android.Content.Res;
+using Android.Util;
 using Hevadea.Framework.Platform;
 
 namespace AndroidPlatform
@@ -29,9 +30,14 @@ namespace AndroidPlatform
         {
         }
 
+        public override float GetSceenScaling()
+        {
+            return TypedValue.ApplyDimension(ComplexUnitType.Dip, 1, _ress.DisplayMetrics);
+        }
+
         public override string GetStorageFolder()
         {
-            return Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            return Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/.hevadea";
         }
 
         public override void Stop()

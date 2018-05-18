@@ -83,7 +83,7 @@ namespace Hevadea.Scenes.Menus
 
             WidgetTabContainer _sideMenu = new WidgetTabContainer
             {
-				Padding = new BoxElement(32),
+                Padding = new BoxElement(32),
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitBound = new Rectangle(0, 0, 600, 720),
@@ -93,8 +93,11 @@ namespace Hevadea.Scenes.Menus
 
                 Tabs =
                 {
+                    new EquipmentTab(),
+                    _crafting,
                     new Tab()
                     {
+                        Icon = new Sprite(Ressources.TileIcons, new Point(2, 3)),
                         Content = new Container()
                         {
                             Childrens =
@@ -104,10 +107,7 @@ namespace Hevadea.Scenes.Menus
                             }
                         }
                     },
-                    _crafting,
                     new MinimapTab(Game),
-                    new PlayerStatesTab(),
-                    new EquipmentTab(),
                     new SaveTab(Game),
                 }
             };

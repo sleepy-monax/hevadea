@@ -29,5 +29,7 @@ namespace Hevadea.Framework.Platform
         public abstract string GetStorageFolder();
 
         public abstract void Update();
+
+        public virtual float GetSceenScaling() => 1;
     }
 }
