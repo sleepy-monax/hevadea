@@ -9,6 +9,7 @@ namespace Hevadea
     public static class Ressources
     {
         public static ParalaxeBackground ParalaxeForest;
+        public static ParalaxeBackground ParalaxeMontain;
 
         public static Sprite SprPickup;
         public static Sprite SprUnderWater;
@@ -28,17 +29,11 @@ namespace Hevadea
         public static SpriteSheet TileGrass;
         public static SpriteSheet TileTiles;
 
-        public static Texture2D PopCorn;
-        public static Texture2D PopCornHead;
-        public static Texture2D PopCornText;
+        public static Texture2D MakerLogo;
 
         public static Texture2D ImgCreatures;
         public static Texture2D ImgEngineLogo;
         public static Texture2D ImgEntities;
-        public static Texture2D ImgForestBackground;
-        public static Texture2D ImgForestLight;
-        public static Texture2D ImgForestTrees0;
-        public static Texture2D ImgForestTrees1;
         public static Texture2D ImgGui;
         public static Texture2D ImgHevadeaLogo;
         public static Texture2D ImgIcons;
@@ -55,9 +50,7 @@ namespace Hevadea
 
         public static void Load()
         {
-            PopCorn = Rise.Ressource.GetImage("popcorn/popcorn");
-            PopCornHead = Rise.Ressource.GetImage("popcorn/popcorn-head");
-            PopCornText = Rise.Ressource.GetImage("popcorn/popcorn-text");
+            MakerLogo = Rise.Ressource.GetImage("maker-logo");
 
             FontAlagard = Rise.Ressource.GetSpriteFont("alagard");
             FontAlagardBig = Rise.Ressource.GetSpriteFont("alagard_big");
@@ -66,10 +59,8 @@ namespace Hevadea
 
             ImgCreatures = Rise.Ressource.GetImage("creatures");
             ImgEntities = Rise.Ressource.GetImage("entities");
-            ImgForestBackground = Rise.Ressource.GetImage("background/forest");
-            ImgForestLight = Rise.Ressource.GetImage("background/forest_light");
-            ImgForestTrees0 = Rise.Ressource.GetImage("background/forest_trees0");
-            ImgForestTrees1 = Rise.Ressource.GetImage("background/forest_trees1");
+
+
             ImgGui = Rise.Ressource.GetImage("gui");
             ImgIcons = Rise.Ressource.GetImage("icons");
             ImgItems = Rise.Ressource.GetImage("items");
@@ -98,10 +89,18 @@ namespace Hevadea
             }
 
             ParalaxeForest = new ParalaxeBackground(
-                new ParalaxeLayer(ImgForestBackground, 32f),
-                new ParalaxeLayer(ImgForestTrees0, 64f),
-                new ParalaxeLayer(ImgForestLight, 128f),
-                new ParalaxeLayer(ImgForestTrees1, 256f)
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest0"), 0f),
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest1"), 64f),
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest2"), 96f),
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest3"), 128f)
+            );
+
+            ParalaxeMontain = new ParalaxeBackground(
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain0"), 0f),
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain1"), 64f),
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain2"), 96f),
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain3"), 128f),
+                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain4"), 160f)
             );
 
             SprUnderWater = new Sprite(TileCreatures, 3, new Point(16, 32));

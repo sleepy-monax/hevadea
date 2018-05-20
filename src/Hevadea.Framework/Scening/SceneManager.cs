@@ -60,7 +60,7 @@ namespace Hevadea.Framework.Scening
             if (_background != null)
             {
                 _spritebatch.Begin();
-                _background.Draw(_spritebatch, Rise.Graphic.GetBound(), gameTime);
+                _background.Draw(_spritebatch, gameTime);
                 _spritebatch.End();
 
                 _spritebatch.Begin();

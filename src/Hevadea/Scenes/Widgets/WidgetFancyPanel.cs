@@ -27,9 +27,9 @@ namespace Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var size = Scale(64);
+            var size = Scale(16 * 3);
 
-            _background.Draw(spriteBatch, new Rectangle(Bound.X + size / 2, Bound.Y + size / 2, Bound.Width - size, Bound.Height - size), Color.White);
+            _background.Draw(spriteBatch, new Rectangle(Bound.X + Scale(3), Bound.Y + Scale(3), Bound.Width - Scale(6), Bound.Height - Scale(6)), Color.White);
             GuiHelper.DrawBox(spriteBatch, Bound, size);
             base.Draw(spriteBatch, gameTime);
         }

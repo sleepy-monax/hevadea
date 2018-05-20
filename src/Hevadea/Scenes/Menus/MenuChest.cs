@@ -31,7 +31,7 @@ namespace Hevadea.Scenes.Menus
             var closeBtn = new SpriteButton()
             {
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
-                UnitBound = new Rectangle(0, 0, 64, 64),
+                UnitBound = new Rectangle(0, 0, 48, 48),
                 Anchor = Anchor.TopLeft,
                 Origine = Anchor.Center
             };

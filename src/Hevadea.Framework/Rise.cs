@@ -91,7 +91,7 @@ namespace Hevadea.Framework
 
             if (Platform.Family == PlatformFamily.Desktop)
             {
-                Graphic.SetSize(800, 600);
+                Graphic.SetSize(1366, 768);
             }
 
         }

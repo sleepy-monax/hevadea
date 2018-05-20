@@ -1,5 +1,6 @@
 ﻿using Hevadea.Craftings;
 using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI;
@@ -12,6 +13,7 @@ using Hevadea.Registry;
 using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Hevadea.Scenes.Menus
@@ -74,16 +76,16 @@ namespace Hevadea.Scenes.Menus
             var closeBtn = new SpriteButton()
             {
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
-                UnitBound = new Rectangle(0, 0, 64, 64),
+                UnitBound = new Rectangle(0, 0, 48, 48),
                 Anchor = Anchor.TopRight,
-                Origine = Anchor.Center
+                Origine = Anchor.TopRight,
+                UnitOffset = new Point(-16,16)
             };
 
             closeBtn.MouseClick += CloseBtnOnMouseClick;
 
             WidgetTabContainer _sideMenu = new WidgetTabContainer
             {
-                Padding = new BoxElement(32),
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitBound = new Rectangle(0, 0, 600, 720),
@@ -121,6 +123,12 @@ namespace Hevadea.Scenes.Menus
         void CloseBtnOnMouseClick(Widget sender)
         {
             Game.CurrentMenu = new MenuInGame(Game);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            spriteBatch.FillRectangle(Rise.Graphic.GetBound(), Color.Black * 0.5f);
+            base.Draw(spriteBatch, gameTime);
         }
     }
 }

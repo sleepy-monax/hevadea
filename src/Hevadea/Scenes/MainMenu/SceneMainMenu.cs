@@ -19,7 +19,7 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-            Rise.Scene.SetBackground(Ressources.ParalaxeForest);
+            Rise.Scene.SetBackground(Rise.Rnd.NextBool() ? Ressources.ParalaxeForest : Ressources.ParalaxeMontain);
 
             var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Bottom, Font = Ressources.FontAlagardBig, TextSize = 1.5f };
             var creators = new Label { Text = "© 2017-2018 POP!CORN", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
@@ -37,7 +37,6 @@ namespace Hevadea.Scenes.MainMenu
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitBound = new Rectangle(0, 0, 600, 720),
-                Padding = new BoxElement(16),
                 TabAnchore = Rise.Platform.Family == PlatformFamily.Mobile ? TabAnchore.Bottom : TabAnchore.Left,
                 Tabs =
                 {
@@ -70,8 +69,8 @@ namespace Hevadea.Scenes.MainMenu
 
             if (Rise.Platform.Family == PlatformFamily.Mobile)
             {
-				var generateButton = new Button { Text = "New", Dock = Dock.None, UnitBound = new Rectangle(0, 0, 256, 64),
-					UnitOffset = new Point(0, 128 + 8),
+                var generateButton = new Button { Text = "New", Dock = Dock.None, UnitBound = new Rectangle(0, 0, 256, 64),
+                    UnitOffset = new Point(0, 128 + 8),
                     Anchor = Anchor.Center,
                     Origine = Anchor.Top, }
                 .RegisterMouseClickEvent((sender) =>
@@ -85,9 +84,9 @@ namespace Hevadea.Scenes.MainMenu
                     };
                     Rise.Scene.Switch(new LoadingScene(generatorTask));
                 });
-				container.Childrens.Add(generateButton);
+                container.Childrens.Add(generateButton);
 
-				Container = container;
+                Container = container;
             }
             else
             {
@@ -102,9 +101,9 @@ namespace Hevadea.Scenes.MainMenu
         {
             if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
             {
-				var loadWorldTask = TaskFactorie.LoadWorld(File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame"));
+                var loadWorldTask = TaskFactorie.LoadWorld(File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame"));
                 loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((GameManager)((LoadingTask)task).Result));
-				Rise.Scene.Switch(new LoadingScene(loadWorldTask));
+                Rise.Scene.Switch(new LoadingScene(loadWorldTask));
             }
         }
 

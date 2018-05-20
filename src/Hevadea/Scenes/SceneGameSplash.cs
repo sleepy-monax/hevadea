@@ -49,9 +49,9 @@ namespace Hevadea.Scenes
 
         public override void OnUpdate(GameTime gameTime)
         {
-            _time += gameTime.GetDeltaTime() * 0.5f;
+            _time += gameTime.GetDeltaTime();
 
-            if (!_once || !_loadingDone || _time < 1.75f) return;
+            if (!_once || !_loadingDone || _time < 2) return;
             Rise.Scene.Switch(new SceneMainMenu());
             _once = false;
         }
@@ -61,20 +61,12 @@ namespace Hevadea.Scenes
             _sb.Begin(samplerState: SamplerState.PointWrap);
             _sb.FillRectangle(Rise.Graphic.GetBound(), Color.White * Mathf.Clamp01(_time));
 
-            if (Ressources.PopCorn != null && Ressources.PopCornHead != null && Ressources.PopCornText != null)
+            if (Ressources.MakerLogo != null)
             {
-                _sb.Draw(
-                    Ressources.PopCorn,
-                    Rise.Graphic.GetCenter().ToVector2() - Ressources.PopCorn.GetCenter(),
-                    new Color(_time, _time, _time));
 
-                _sb.Draw(Ressources.PopCornHead,
-                    Rise.Graphic.GetCenter().ToVector2() + new Vector2(-13, -148), null,
-                    new Color(_time, _time, _time), 0f, Ressources.PopCorn.GetCenter(), Easing.ElasticEaseOut(Mathf.Clamp01(_time*4 - 1f)), SpriteEffects.None, 0);
-
-                _sb.Draw(Ressources.PopCornText,
-                    Rise.Graphic.GetCenter().ToVector2() + new Vector2(0, 168), null,
-                    new Color(_time, _time, _time), 0f, Ressources.PopCornText.GetCenter(), Easing.ElasticEaseOut(Mathf.Clamp01(_time * 4 - 1.5f)), SpriteEffects.None, 0);
+                _sb.Draw(Ressources.MakerLogo,
+                    Rise.Graphic.GetCenter().ToVector2(), null,
+                    new Color(_time, _time, _time), 0f, Ressources.MakerLogo.GetCenter(), Easing.BackEaseOut(Mathf.Clamp01(_time*8 - 3f)), SpriteEffects.None, 0);
             }
 
             _sb.End();

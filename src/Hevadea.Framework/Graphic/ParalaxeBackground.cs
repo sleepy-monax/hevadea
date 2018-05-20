@@ -25,23 +25,43 @@ namespace Hevadea.Framework.Graphic
             Layers = layers;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Rectangle destination, GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            Position = Position + gameTime.ElapsedGameTime.TotalSeconds;
+            Position = Position + gameTime.ElapsedGameTime.TotalSeconds * 0.1f;
+            float screenRation = Rise.Graphic.GetWidth() / (float)Rise.Graphic.GetHeight();
+
             foreach (var l in Layers)
             {
-                var onScreenPos = (Position * l.Factor) % destination.Width;
+                float scale = 0;
+                float layerRation = l.Texture.Width / (float)l.Texture.Height;
+
+
+                if (screenRation > layerRation)
+                {
+                    scale = Rise.Graphic.GetWidth() / (float)l.Texture.Width;
+                }
+                else
+                {
+                    scale = Rise.Graphic.GetHeight() / (float)l.Texture.Height;
+                }
+
+
+
+                float w = l.Texture.Width * scale;
+                float h = l.Texture.Height * scale;
+
+                var onScreenPos = (Position * l.Factor) % l.Texture.Width;
 
                 var dest = new Rectangle(
-                    (int)onScreenPos + destination.X, destination.Y,
-                    destination.Width,
-                    destination.Height
+                    (int)(onScreenPos * scale), 0,
+                    (int)w,
+                    (int)h
                 );
 
                 var dest2 = new Rectangle(
-                    (int)onScreenPos - destination.Width + destination.X, destination.Y,
-                    destination.Width,
-                    destination.Height
+                    (int)(onScreenPos * scale - w), 0,
+                    (int)w,
+                    (int)h
                 );
 
                 spriteBatch.Draw(l.Texture, dest, Color.White);
