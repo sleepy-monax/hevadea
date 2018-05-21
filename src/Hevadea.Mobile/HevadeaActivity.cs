@@ -21,10 +21,12 @@ namespace AndroidPlatform
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 
             Rise.Initialize(new MobilePlatform(Resources, this));
+            Rise.MonoGame.Graphics.IsFullScreen = true;
+
             SetContentView((View)Rise.MonoGame.Services.GetService(typeof(View)));
+
             Rise.Start(new SceneGameSplash());
         }
     }
