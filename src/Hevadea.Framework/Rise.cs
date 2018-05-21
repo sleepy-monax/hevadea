@@ -23,7 +23,7 @@ namespace Hevadea.Framework
 
         public static bool DebugUi { get; set; } = false;
         public static bool ShowDebug { get; set; } = false;
-		public static ConcurrentQueue<AsyncTask> AsyncTasks = new ConcurrentQueue<AsyncTask>();
+        public static ConcurrentQueue<AsyncTask> AsyncTasks = new ConcurrentQueue<AsyncTask>();
 
         // Components
         [Obsolete] public static LegacyInputManager Input;
@@ -107,11 +107,11 @@ namespace Hevadea.Framework
         private static void MonoGameOnUpdate(Game sender, GameTime gameTime)
         {
 
-			if (AsyncTasks.TryDequeue(out var task))
-			{
-				task.Task();
-				task.Done = true;
-			}
+            if (AsyncTasks.TryDequeue(out var task))
+            {
+                task.Task();
+                task.Done = true;
+            }
             
 
             Pointing.Update();

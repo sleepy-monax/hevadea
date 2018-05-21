@@ -11,6 +11,7 @@ using Hevadea.Registry;
 using Hevadea.Scenes.MainMenu.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
+using System;
 using System.IO;
 
 namespace Hevadea.Scenes.MainMenu
@@ -19,10 +20,10 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-            Rise.Scene.SetBackground(Rise.Rnd.NextBool() ? Ressources.ParalaxeForest : Ressources.ParalaxeMontain);
+            Rise.Scene.SetBackground(new Random().NextValue(Ressources.ParalaxeForest, Ressources.ParalaxeMontain));
 
             var hevadeaLogo = new Label { Text = "Hevadea", Anchor = Anchor.Center, Origine = Anchor.Bottom, Font = Ressources.FontAlagardBig, TextSize = 1.5f };
-            var creators = new Label { Text = "© 2017-2018 POP!CORN", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
+            var creators = new Label { Text = "© 2017-2018 MAKER", Anchor = Anchor.Bottom, Origine = Anchor.Bottom, Font = Ressources.FontRomulus, TextSize = 1f };
             var continueButton = new Button
             {
                 Text = "Continue",
@@ -92,7 +93,8 @@ namespace Hevadea.Scenes.MainMenu
             {
                 Container = new Container
                 {
-                    Childrens = { menu },
+                    Childrens = { menu, new Label {UnitBound = new Rectangle(0,0,256,64), Text = "v0.1.0", Anchor = Anchor.BottomRight, Origine = Anchor.BottomRight, Font = Ressources.FontRomulus} },
+            
                 };
             }
         }

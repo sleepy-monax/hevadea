@@ -35,7 +35,6 @@ namespace Hevadea.Framework.Graphic
                 float scale = 0;
                 float layerRation = l.Texture.Width / (float)l.Texture.Height;
 
-
                 if (screenRation > layerRation)
                 {
                     scale = Rise.Graphic.GetWidth() / (float)l.Texture.Width;
@@ -45,21 +44,20 @@ namespace Hevadea.Framework.Graphic
                     scale = Rise.Graphic.GetHeight() / (float)l.Texture.Height;
                 }
 
-
-
                 float w = l.Texture.Width * scale;
                 float h = l.Texture.Height * scale;
 
-                var onScreenPos = (Position * l.Factor) % l.Texture.Width;
+                Vector2 pos = new Vector2(Rise.Graphic.GetWidth()  / 2f - w / 2 + (float)((Position * l.Factor) % l.Texture.Width) * scale,
+                                          Rise.Graphic.GetHeight() / 2f - h / 2);
 
                 var dest = new Rectangle(
-                    (int)(onScreenPos * scale), 0,
+                    (int)pos.X, (int)pos.Y,
                     (int)w,
                     (int)h
                 );
 
                 var dest2 = new Rectangle(
-                    (int)(onScreenPos * scale - w), 0,
+                    (int)(pos.X - w), (int)pos.Y,
                     (int)w,
                     (int)h
                 );

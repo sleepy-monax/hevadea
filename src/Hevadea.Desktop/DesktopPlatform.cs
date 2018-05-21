@@ -32,7 +32,15 @@ namespace OpenGLPlatform
         {
             Rise.MonoGame.Window.TextInput += Window_TextInput;
             Rise.MonoGame.Window.Title = "Hevadea";
-            Console.Title = "Hevadea";
+
+            try
+            {
+                Console.Title = "Hevadea";
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         public override void Update()

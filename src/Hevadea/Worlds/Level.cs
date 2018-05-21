@@ -398,6 +398,11 @@ namespace Hevadea.Worlds
             }
         }
 
+        public Entity AddEntityAt(Entity e, TilePosition t)
+        {
+            return AddEntityAt(e, t.X + 0.5f, t.Y + 0.5f);
+        }
+
         public Entity AddEntityAt(Entity e, float tx, float ty)
         {
             AddEntity(e);

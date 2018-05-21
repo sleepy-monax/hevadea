@@ -33,6 +33,10 @@ namespace Hevadea.Framework
         public MonoGameHandler()
         {
             Graphics = new GraphicsDeviceManager(this);
+
+            //Graphics.SynchronizeWithVerticalRetrace = false;
+            //IsFixedTimeStep = false;
+
             Content.RootDirectory = "Content";
         }
 
@@ -40,6 +44,7 @@ namespace Hevadea.Framework
         {
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
+
             Window.ClientSizeChanged += (sender, args) =>
             {
                 _windowSizeIsBeingChanged = !_windowSizeIsBeingChanged;

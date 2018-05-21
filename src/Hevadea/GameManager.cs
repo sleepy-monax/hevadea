@@ -17,41 +17,23 @@ namespace Hevadea
     public class GameManager
     {
         Menu _currentMenu;
-        LevelSpriteBatchPool _spriteBatchPool;
+        LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
 
-        public World World { get; set; }
+        public string SavePath { get; set; } = "./test/";
+
         public Camera Camera { get; set; }
-
         public EntityPlayer MainPlayer { get; set; }
+        public World World { get; set; }
+
         public List<EntityPlayer> Players { get; } = new List<EntityPlayer>();
         public PlayerInputHandler PlayerInput { get; set; }
         
-        public string SavePath { get; set; } = "./test/";
+        public Menu CurrentMenu { get => _currentMenu; set { CurrentMenuChange?.Invoke(_currentMenu, value); _currentMenu = value; } }
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
         public event CurrentMenuChangeHandler CurrentMenuChange;
 
-        public Menu CurrentMenu
-        {
-            get => _currentMenu;
-            set
-            {
-                CurrentMenuChange?.Invoke(_currentMenu, value);
-                _currentMenu = value;
-            }
-        }
-
-        public GameManager()
-        {
-            _spriteBatchPool = new LevelSpriteBatchPool();
-        }
-
-        public GameManager(World world, EntityPlayer player)
-        {
-            World = world;
-            MainPlayer = player;
-            _spriteBatchPool = new LevelSpriteBatchPool();
-        }
+        // --- Initialize, Update and Draw ---------------------------------- // 
 
         public void Initialize()
         {
@@ -70,14 +52,45 @@ namespace Hevadea
             Camera = new Camera(MainPlayer);
             Camera.JumpToFocusEntity();
         }
-        
+
+        public void Draw(GameTime gameTime)
+        {
+            Camera.FocusEntity.Level.Draw(_spriteBatchPool, gameTime);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            Camera.Update(gameTime);
+            PlayerInput.Update(gameTime);
+
+            World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
+            MainPlayer.Level.Update(gameTime);
+
+        }
+
+        // --- Path generator ----------------------------------------------- // 
+
+        public string GetSavePath()
+            => $"{SavePath}/";
+
+        public string GetLevelSavePath(Level level)
+            => $"{SavePath}/{level.Name}/";
+
+        public string GetLevelMinimapSavePath(Level level)
+            => $"{SavePath}/{level.Name}/minimap.png";
+
+        public string GetLevelMinimapDataPath(Level level)
+            => $"{SavePath}/{level.Name}/minimap.json";
+
+        // --- Save and load ------------------------------------------------ // 
+
         public static GameManager Load(string saveFolder, ProgressRepporter progressRepporter)
         {
             GameManager game = new GameManager();
             game.SavePath = saveFolder;
-            
+
             progressRepporter.RepportStatus("Loading world...");
-            
+
             // Load the world data and the player.
             string path = game.GetSavePath();
 
@@ -91,7 +104,7 @@ namespace Hevadea
                 // Load level data
                 string levelPath = $"{path}{levelName}/";
                 Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
-                
+
                 // Load chunks
                 progressRepporter.RepportStatus($"Loading level {level.Name}...");
                 for (int x = 0; x < level.Chunks.GetLength(0); x++)
@@ -135,7 +148,7 @@ namespace Hevadea
             SavePath = savePath;
 
             progressRepporter.RepportStatus("Saving world...");
-            
+
             var levelsName = new List<string>();
 
             Directory.CreateDirectory(SavePath);
@@ -146,7 +159,7 @@ namespace Hevadea
                 progressRepporter.RepportStatus($"Saving {level.Name}...");
                 string path = GetLevelSavePath(level);
                 Directory.CreateDirectory(path);
-                
+
                 // Save the level information
                 File.WriteAllText(path + "level.json", level.Save().ToJson());
 
@@ -156,7 +169,7 @@ namespace Hevadea
                     progressRepporter.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
                     File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
                 }
-                
+
                 // Save the minimap
                 File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
 
@@ -181,37 +194,7 @@ namespace Hevadea
             }
 
             File.WriteAllText(GetSavePath() + "world.json", World.Save().ToJson());
-            File.WriteAllText(GetSavePath() + "player.json", MainPlayer.Save().ToJson()); 
-        }
-
-        public string GetSavePath()
-            => $"{SavePath}/";
-        
-        public string GetLevelSavePath(Level level)
-            => $"{SavePath}/{level.Name}/";
-
-        public string GetLevelMinimapSavePath(Level level)
-            => $"{SavePath}/{level.Name}/minimap.png";
-
-        public string GetLevelMinimapDataPath(Level level)
-            => $"{SavePath}/{level.Name}/minimap.json";
-
-        public string GetLevelSavePath(string level)
-            => $"{SavePath}/{level}.json";
-
-        public void Draw(GameTime gameTime)
-        {
-            Camera.FocusEntity.Level.Draw(_spriteBatchPool, gameTime);
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            Camera.Update(gameTime);
-            PlayerInput.Update(gameTime);
-
-            World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
-            MainPlayer.Level.Update(gameTime);
-
+            File.WriteAllText(GetSavePath() + "player.json", MainPlayer.Save().ToJson());
         }
     }
 }

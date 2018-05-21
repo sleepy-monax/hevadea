@@ -29,7 +29,7 @@ namespace Hevadea.GameObjects.Entities
                 (sender, arg) =>
                 {
                     Level.RemoveEntity(arg.Entity);
-                    World.GetLevel(Destination).AddEntity(arg.Entity);
+                    World.GetLevel(Destination).AddEntityAt(arg.Entity, GetTilePosition());
                 };
 
             _spriteUp = new Sprite(Ressources.TileEntities, new Point(8, 0));
