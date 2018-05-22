@@ -8,21 +8,29 @@ namespace Hevadea.Framework.Networking
 {
     public class ClientConnection
     {
-        private readonly Server _server;
+        public int Index { get; }
+		public Socket Socket { get; private set; }
+		public Server Server { get; }
 
-        public Socket Socket { get; internal set; }
         public bool Connected => Socket.IsConnected();
 
-        public ClientConnection(Socket socket, Server nettyServer)
+		public ClientConnection(int index, Socket socket, Server server)
         {
+			Index = index;
             Socket = socket;
-            _server = nettyServer;
+            Server = server;
         }
 
         public void SendData(byte[] packet)
         {
-            _server.SendData(Socket, packet);
+            Server.SendData(Socket, packet);
         }
+
+		public void Close()
+		{
+			Socket.Dispose();
+			Socket = null;
+		}
     }
 
     public sealed class Server : Peer
@@ -86,9 +94,7 @@ namespace Hevadea.Framework.Networking
                 if (Connections[index] == null)
                     return;
 
-                Connections[index].Socket.Dispose();
-
-                Connections[index].Socket = null;
+				Connections[index].Close();
                 Connections[index] = null;
 
                 ClientLost?.Invoke(index);
@@ -125,19 +131,17 @@ namespace Hevadea.Framework.Networking
                 Socket.Listen(backLog);
 
                 Logger.Log<Server>("Listening on address: " + Socket.LocalEndPoint);
-
+                
                 while (true)
                 {
-                    var incomingSocket = Socket.Accept();
-
+                    Socket incomingSocket = Socket.Accept();
+					incomingSocket.NoDelay = NoDelay;
+                   
                     for (var i = 0; i < maximumConnections; i++)
                     {
                         if (Connections[i] == null)
                         {
-                            Connections[i] = new ClientConnection(incomingSocket, this)
-                            {
-                                Socket = { NoDelay = Socket.NoDelay }
-                            };
+							Connections[i] = new ClientConnection(i, incomingSocket, this);
 
                             index = i;
                             break;
@@ -150,9 +154,9 @@ namespace Hevadea.Framework.Networking
 
                     try
                     {
-                        var recThread = new Thread(x => BeginReceiving(incomingSocket, index));
-                        recThread.Name = incomingSocket.RemoteEndPoint + ": incoming data thread.";
-                        recThread.Start();
+						var connectionThread = new Thread(x => BeginReceiving(incomingSocket, index));
+                        connectionThread.Name = incomingSocket.RemoteEndPoint + ": incoming data thread.";
+                        connectionThread.Start();
                     }
                     catch (ObjectDisposedException)
                     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Hevadea.Framework.Networking
 {
@@ -42,7 +43,7 @@ namespace Hevadea.Framework.Networking
 
         protected Socket Socket;
 
-        public delegate void DataReceivedHandler(Socket socket, PacketBuilder packet);
+        public delegate void DataReceivedHandler(Socket socket, byte[] data);
         public DataReceivedHandler DataReceived;
 
         protected Peer(bool noDelay = false)
@@ -90,9 +91,8 @@ namespace Hevadea.Framework.Networking
                     // Read any remaining bytes.
                     while (curRead < pLength)
                         curRead += socket.Receive(data, curRead, pLength - curRead, SocketFlags.None);
-
-                    var dataBuffer = new PacketBuilder(data);
-                    DataReceived?.Invoke(socket, dataBuffer);
+                        
+                    DataReceived?.Invoke(socket, data);
                 }
                 catch (ObjectDisposedException) { break; }
                 catch (SocketException) { break; }
@@ -126,5 +126,31 @@ namespace Hevadea.Framework.Networking
             while (sent < data.Length)
                 sent += socket.Send(data, sent, data.Length - sent, SocketFlags.None);
         }
+
+		public byte[] WaitForData()
+		{
+			bool recived = false;
+			byte[] recivedData = null;
+
+			DataReceivedHandler eventHandler = (socket, data) => 
+			{
+				if (!recived)
+				{            
+                    recived = true;
+                    recivedData = data;
+				}
+			};
+
+			DataReceived += eventHandler;
+
+			while (!recived)
+			{
+				Thread.Sleep(10);
+			}
+
+			DataReceived -= eventHandler;
+            
+			return recivedData;
+		}
     }
 }

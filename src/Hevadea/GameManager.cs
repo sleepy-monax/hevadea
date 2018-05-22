@@ -18,8 +18,8 @@ namespace Hevadea
 {
     public class GameManager
     {
-        Client _client;
-        Server _server;
+		public Client Client;
+		public Server Server;
 
         Menu _currentMenu;
         LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
@@ -98,7 +98,7 @@ namespace Hevadea
             client.Connect(address, port, 16);
 
             client.SendData(PacketFactorie.ConstructLogin("testplayer", "{}"));
-            client.
+            
         }
 
         public static GameManager Load(string saveFolder, ProgressRepporter progressRepporter)
