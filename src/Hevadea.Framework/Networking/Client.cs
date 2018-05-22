@@ -7,9 +7,8 @@ namespace Hevadea.Framework.Networking
     public sealed class Client : Peer
     {
         private const int CONNECTION_TIMEOUT = 2000;
-        private bool NoDelay { get; set; }
 
-        public bool Connected => GetIsConnected(Socket);
+        public bool Connected => Socket.IsConnected();
 
         public delegate void ConnectionChangeHandler();
 
@@ -17,7 +16,6 @@ namespace Hevadea.Framework.Networking
 
         public Client(bool noDelay = false) : base(noDelay)
         {
-            NoDelay = noDelay;
         }
 
         public bool Connect(string ip, int port, byte attemptCount)
@@ -54,10 +52,22 @@ namespace Hevadea.Framework.Networking
             Socket.Dispose();
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
             {
-                NoDelay = this.NoDelay
+                NoDelay = NoDelay
             };
         }
 
         public void SendData(PacketBuilder packet) => SendData(Socket, packet);
+        public void SendData(byte[] packet) => SendData(Socket, packet);
+
+        public override void HandleDisconnectedSocket(Socket socket)
+        {
+            ConnectionLost?.Invoke();
+
+            Socket.Dispose();
+            Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+            {
+                NoDelay = base.NoDelay
+            };
+        }
     }
 }

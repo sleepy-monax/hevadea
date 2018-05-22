@@ -1,65 +1,58 @@
-﻿using System;
+﻿using Hevadea.Framework.Utils;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
 namespace Hevadea.Framework.Networking
 {
-    public sealed class Server : Peer
+    public class ClientConnection
     {
-        public class Connection
+        private readonly Server _server;
+
+        public Socket Socket { get; internal set; }
+        public bool Connected => Socket.IsConnected();
+
+        public ClientConnection(Socket socket, Server nettyServer)
         {
-            private readonly Server _server;
-
-            public Socket Socket { get; internal set; }
-            public bool Connected => _server.GetIsConnected(Socket);
-
-            public Connection(Socket socket, Server nettyServer)
-            {
-                Socket = socket;
-                _server = nettyServer;
-            }
-
-            public void SendData(PacketBuilder packet)
-            {
-                _server.SendData(packet, Socket);
-            }
+            Socket = socket;
+            _server = nettyServer;
         }
 
-        private int _socketPort;
+        public void SendData(byte[] packet)
+        {
+            _server.SendData(Socket, packet);
+        }
+    }
+
+    public sealed class Server : Peer
+    {
+        public int Port { get; private set; }
+        public ClientConnection[] Connections { get; private set; }
+
         private IPEndPoint _socketAddress;
-        private Connection[] _connections;
 
-        public delegate void HandleConnectionChange(int socketIndex);
-
+        public delegate void HandleConnectionChange(int connectionIndex);
         public HandleConnectionChange ClientConnected;
         public HandleConnectionChange ClientLost;
 
-        public Server(bool noDelay = false)
-            : base(noDelay)
-        {
-        }
+        public Server(bool noDelay = false) : base(noDelay) {}
 
-        public Connection GetConnection(int index)
+        public ClientConnection GetConnection(int index)
         {
-            if (_connections[index] == null || _connections[index].Socket == null)
+            if (Connections[index] == null || Connections[index].Socket == null)
             {
                 return null;
             }
 
-            return _connections[index];
+            return Connections[index];
         }
 
-        public Connection[] GetConnections()
+        public int GetConnectionIndex(ClientConnection connection)
         {
-            return _connections;
-        }
-
-        public int GetConnectionIndex(Connection connection)
-        {
-            for (int i = 0; i < _connections.Length; i++)
+            for (int i = 0; i < Connections.Length; i++)
             {
-                if (_connections[i] == connection)
+                if (Connections[i] == connection)
                 {
                     return i;
                 }
@@ -70,11 +63,11 @@ namespace Hevadea.Framework.Networking
 
         public int GetConnectionIndex(Socket socket)
         {
-            for (int i = 0; i < _connections.Length; i++)
+            for (int i = 0; i < Connections.Length; i++)
             {
-                if (_connections[i] == null) continue;
+                if (Connections[i] == null) continue;
 
-                if (_connections[i].Socket == socket)
+                if (Connections[i].Socket == socket)
                 {
                     return i;
                 }
@@ -87,16 +80,16 @@ namespace Hevadea.Framework.Networking
         {
             try
             {
-                if (index >= _connections.Length || index < 0)
+                if (index >= Connections.Length || index < 0)
                     return;
 
-                if (_connections[index] == null)
+                if (Connections[index] == null)
                     return;
 
-                _connections[index].Socket.Dispose();
+                Connections[index].Socket.Dispose();
 
-                _connections[index].Socket = null;
-                _connections[index] = null;
+                Connections[index].Socket = null;
+                Connections[index] = null;
 
                 ClientLost?.Invoke(index);
             }
@@ -105,25 +98,22 @@ namespace Hevadea.Framework.Networking
             }
         }
 
-        private void SetAddress(string ip, int port)
+        public void BindSocket(string ip, int port)
         {
             if (Socket.IsBound)
             {
-                throw new Exception("[NetServer] The socket is already bound!");
+                throw new Exception("The socket is already bound!");
             }
 
-            _socketPort = port;
+            Port = port;
             _socketAddress = new IPEndPoint(IPAddress.Parse(ip), port);
-        }
 
-        public void StopListening()
-        {
-            Socket.Shutdown(SocketShutdown.Receive);
+            Socket.Bind(_socketAddress);
         }
 
         public void StartListening(int backLog = 25, int maximumConnections = 60)
         {
-            _connections = new Connection[maximumConnections];
+            Connections = new ClientConnection[maximumConnections];
 
             var listenerThread = new Thread(() =>
             {
@@ -134,7 +124,7 @@ namespace Hevadea.Framework.Networking
 
                 Socket.Listen(backLog);
 
-                Console.WriteLine("[NetServer] Server listening on address: " + Socket.LocalEndPoint);
+                Logger.Log<Server>("Listening on address: " + Socket.LocalEndPoint);
 
                 while (true)
                 {
@@ -142,9 +132,9 @@ namespace Hevadea.Framework.Networking
 
                     for (var i = 0; i < maximumConnections; i++)
                     {
-                        if (_connections[i] == null)
+                        if (Connections[i] == null)
                         {
-                            _connections[i] = new Connection(incomingSocket, this)
+                            Connections[i] = new ClientConnection(incomingSocket, this)
                             {
                                 Socket = { NoDelay = Socket.NoDelay }
                             };
@@ -154,7 +144,7 @@ namespace Hevadea.Framework.Networking
                         }
                     }
 
-                    Console.WriteLine("[NetServer] Received a connection from: " + incomingSocket.RemoteEndPoint);
+                    Logger.Log<Server>("Received a connection from: " + incomingSocket.RemoteEndPoint);
 
                     ClientConnected?.Invoke(index);
 
@@ -174,29 +164,29 @@ namespace Hevadea.Framework.Networking
             listenerThread.Start();
         }
 
-        public void BindSocket(string ip, int port)
+
+        public void StopListening()
         {
-            SetAddress(ip, port);
-            Socket.Bind(_socketAddress);
+            Socket.Shutdown(SocketShutdown.Receive);
         }
 
-        public void SendData(PacketBuilder packet, int socketIndex)
-        {
-            SendData(packet, GetConnection(socketIndex).Socket);
-        }
+        public void SendData(int socketIndex, byte[] data) => SendData(GetConnection(socketIndex).Socket, data);
 
-        public void BroadcastPacket(PacketBuilder packet)
+        public void BroadcastData(byte[] data)
         {
-            foreach (var connection in _connections)
+            foreach (var connection in Connections)
             {
                 if (connection != null)
-                    SendData(packet, connection.Socket);
+                    SendData(connection.Socket, data);
             }
         }
 
-        internal void SendData(PacketBuilder packet, Socket socket)
+        public override void HandleDisconnectedSocket(Socket socket)
         {
-            SendData(socket, packet);
+            int socketIndex = GetConnectionIndex(socket);
+
+            if (socketIndex != -1)
+                RemoveConnection(socketIndex);
         }
     }
 }

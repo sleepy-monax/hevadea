@@ -3,29 +3,12 @@ using System.Net.Sockets;
 
 namespace Hevadea.Framework.Networking
 {
-    public abstract class Peer
+    public static class NetHelper
     {
-        private const int SOCKET_POLL_TIME = 1000;
-        private const int PACKET_HEADER_LENGTH = 4;
+        public const int SOCKET_POLL_TIME = 1000;
+        public const int PACKET_HEADER_LENGTH = 4;
 
-        private readonly bool _noDelay;
-        protected Socket Socket;
-
-        public delegate void DataReceivedHandler(Socket socket, PacketBuilder packet);
-
-        public DataReceivedHandler DataReceived;
-
-        protected Peer(bool noDelay = false)
-        {
-            Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
-            {
-                NoDelay = noDelay
-            };
-
-            this._noDelay = noDelay;
-        }
-
-        protected bool GetIsConnected(Socket socket)
+        public static bool IsConnected(this Socket socket)
         {
             try
             {
@@ -48,16 +31,40 @@ namespace Hevadea.Framework.Networking
                 return false;
             }
         }
+    }
+
+
+    public abstract class Peer
+    {
+
+
+        public bool NoDelay { get; }
+
+        protected Socket Socket;
+
+        public delegate void DataReceivedHandler(Socket socket, PacketBuilder packet);
+        public DataReceivedHandler DataReceived;
+
+        protected Peer(bool noDelay = false)
+        {
+            Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+            {
+                NoDelay = noDelay
+            };
+
+            this.NoDelay = noDelay;
+        }
+
 
         protected void BeginReceiving(Socket socket, int socketIndex)
         {
             // Continue the attempts to receive data so long as the connection is open.
-            while (GetIsConnected(socket))
+            while (socket.IsConnected())
             {
                 try
                 {
                     // Stores our packet header length.
-                    int pLength = PACKET_HEADER_LENGTH;
+                    int pLength = NetHelper.PACKET_HEADER_LENGTH;
                     // Stores the current amount of bytes that have been read.
                     int curRead = 0;
                     // Stores the bytes that we have read from the socket.
@@ -94,40 +101,19 @@ namespace Hevadea.Framework.Networking
             HandleDisconnectedSocket(socket);
         }
 
-        protected void HandleDisconnectedSocket(Socket socket)
-        {
-            if (this is Client)
-            {
-                var client = this as Client;
-                client.ConnectionLost?.Invoke();
+        public abstract void HandleDisconnectedSocket(Socket socket);
 
-                Socket.Dispose();
-                Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
-                {
-                    NoDelay = _noDelay
-                };
 
-                return;
-            }
+        protected void SendData(Socket socket, PacketBuilder data) => SendData(socket, data.GetBuffer());
 
-            // Create a new reference of this object and cast it to NetServer.
-            var server = this as Server;
-
-            int socketIndex = server.GetConnectionIndex(socket);
-
-            if (socketIndex != -1)
-                server.RemoveConnection(socketIndex);
-        }
-
-        protected void SendData(Socket socket, PacketBuilder packet)
+        public void SendData(Socket socket, byte[] packet)
         {
             try
             {
-                byte[] packetBody = packet.ReadBytes();
-                byte[] packetHeader = BitConverter.GetBytes(packetBody.Length);
+                byte[] packetHeader = BitConverter.GetBytes(packet.Length);
 
                 SendRawData(socket, packetHeader);
-                SendRawData(socket, packetBody);
+                SendRawData(socket, packet);
             }
             catch (NullReferenceException) { }
             catch (SocketException) { }

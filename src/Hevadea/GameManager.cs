@@ -1,8 +1,10 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Networking;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
+using Hevadea.Networking;
 using Hevadea.Player;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
@@ -16,6 +18,9 @@ namespace Hevadea
 {
     public class GameManager
     {
+        Client _client;
+        Server _server;
+
         Menu _currentMenu;
         LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
 
@@ -83,6 +88,18 @@ namespace Hevadea
             => $"{SavePath}/{level.Name}/minimap.json";
 
         // --- Save and load ------------------------------------------------ // 
+
+        public static GameManager Connect(string address, int port, ProgressRepporter progressRepporter)
+        {
+            Client client = new Client();
+
+            progressRepporter.RepportStatus($"Connecting to {address}:{port}...");
+
+            client.Connect(address, port, 16);
+
+            client.SendData(PacketFactorie.ConstructLogin("testplayer", "{}"));
+            client.
+        }
 
         public static GameManager Load(string saveFolder, ProgressRepporter progressRepporter)
         {

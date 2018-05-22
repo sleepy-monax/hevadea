@@ -32,7 +32,7 @@ namespace Hevadea.Framework.Networking
         public PacketBuilder PreAllocate(int size)
         {
             _buffer = new byte[size];
-			return this;
+            return this;
         }
 
         public byte[] GetBuffer()
