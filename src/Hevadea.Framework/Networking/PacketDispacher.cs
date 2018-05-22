@@ -18,9 +18,10 @@ namespace Hevadea.Framework.Networking
             netPeer.DataReceived = OnDataRecived;
         }
 
-        private void OnDataRecived(Socket socket, PacketBuilder packet)
+        private void OnDataRecived(Socket socket, byte[] data)
         {
-            var packetType = packet.ReadInteger();
+            PacketBuilder packet = new PacketBuilder(data);
+            int packetType = packet.ReadInteger();
 
             if (_handlers.ContainsKey(packetType))
             {
@@ -34,7 +35,7 @@ namespace Hevadea.Framework.Networking
 
         public void RegisterHandler(packetT type, PacketHandler handler)
         {
-            var packetId = type.ToInt32(CultureInfo.InvariantCulture);
+            int packetId = type.ToInt32(CultureInfo.InvariantCulture);
 
             if (_handlers.ContainsKey(packetId))
             {

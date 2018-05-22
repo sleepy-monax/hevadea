@@ -18,8 +18,8 @@ namespace Hevadea
 {
     public class GameManager
     {
-		public Client Client;
-		public Server Server;
+        public Client Client;
+        public Server Server;
 
         Menu _currentMenu;
         LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
@@ -89,16 +89,17 @@ namespace Hevadea
 
         // --- Save and load ------------------------------------------------ // 
 
-        public static GameManager Connect(string address, int port, ProgressRepporter progressRepporter)
+        public void Connect(string address, int port, ProgressRepporter progressRepporter)
         {
-            Client client = new Client();
+            Client = new Client();
 
             progressRepporter.RepportStatus($"Connecting to {address}:{port}...");
 
-            client.Connect(address, port, 16);
+            Client.Connect(address, port, 16);
 
-            client.SendData(PacketFactorie.ConstructLogin("testplayer", "{}"));
-            
+            Client.SendData(PacketFactorie.ConstructLogin("testplayer", "{}"));
+
+            Client.Wait();
         }
 
         public static GameManager Load(string saveFolder, ProgressRepporter progressRepporter)
@@ -108,21 +109,17 @@ namespace Hevadea
 
             progressRepporter.RepportStatus("Loading world...");
 
-            // Load the world data and the player.
             string path = game.GetSavePath();
 
             WorldStorage worldStorage = File.ReadAllText(path + "world.json").FromJson<WorldStorage>();
             World world = World.Load(worldStorage);
             Entity player = EntityFactory.PLAYER.Construct().Load(File.ReadAllText(path + "player.json").FromJson<EntityStorage>());
 
-            // Load levels of the world.
             foreach (var levelName in worldStorage.Levels)
             {
-                // Load level data
                 string levelPath = $"{path}{levelName}/";
                 Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
 
-                // Load chunks
                 progressRepporter.RepportStatus($"Loading level {level.Name}...");
                 for (int x = 0; x < level.Chunks.GetLength(0); x++)
                 {
@@ -133,7 +130,6 @@ namespace Hevadea
                     }
                 }
 
-                // Load the minimap.
                 level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
 
                 var task = new AsyncTask(() =>
@@ -170,27 +166,22 @@ namespace Hevadea
 
             Directory.CreateDirectory(SavePath);
 
-            // Saves levels
             foreach (var level in World.Levels)
             {
                 progressRepporter.RepportStatus($"Saving {level.Name}...");
                 string path = GetLevelSavePath(level);
                 Directory.CreateDirectory(path);
 
-                // Save the level information
                 File.WriteAllText(path + "level.json", level.Save().ToJson());
 
-                // Save chunks
                 foreach (var chunk in level.Chunks)
                 {
                     progressRepporter.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
                     File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
                 }
 
-                // Save the minimap
                 File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
 
-                // We can only save the minimap texture in the render thread.
                 var task = new AsyncTask(() =>
                 {
                     var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
@@ -202,7 +193,6 @@ namespace Hevadea
                 progressRepporter.Report(1f);
                 Rise.AsyncTasks.Enqueue(task);
 
-                // Wait for the task to complete.
                 while (!task.Done)
                 {
                     // XXX: Hack to fix the soft lock when saving the world.

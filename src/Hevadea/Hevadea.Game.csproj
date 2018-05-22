@@ -147,7 +147,6 @@
     <Compile Include="GameObjects\Items\Tags\PlaceEntity.cs" />
     <Compile Include="GameObjects\Items\Tags\PlaceTile.cs" />
     <Compile Include="GameObjects\TILES.cs" />
-    <Compile Include="Initialization.cs" />
     <Compile Include="Loading\LoadingMenu.cs" />
     <Compile Include="Loading\LoadingScene.cs" />
     <Compile Include="Loading\LoadingTask.cs" />

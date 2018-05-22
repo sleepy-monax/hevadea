@@ -13,7 +13,10 @@ namespace Hevadea.Framework.Graphic.Particles
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (maxLife == -1) maxLife = Life;
+            if (maxLife == -1)
+            {
+                maxLife = Life;
+            }
 
             var s = Size * Easing.Interpolate(FadeOutAnimation, FadeOutEasing);
             spriteBatch.PutPixel(new Vector2(X, Y) - new Vector2(s, s) / 2, Color.Lerp(FadingColor, Color, Life / maxLife), s);

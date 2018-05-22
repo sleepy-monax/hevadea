@@ -9,7 +9,7 @@ namespace Hevadea.Framework.Networking
         public const int SOCKET_POLL_TIME = 1000;
         public const int PACKET_HEADER_LENGTH = 4;
 
-        public static bool IsConnected(this Socket socket)
+        public static bool Connected(this Socket socket)
         {
             try
             {
@@ -32,13 +32,32 @@ namespace Hevadea.Framework.Networking
                 return false;
             }
         }
+
+        public static byte[] Receive(this Socket socket, int size)
+        {
+            int ptr = 0;
+
+            var data = new byte[size];
+
+            ptr = socket.Receive(data, 0, size, SocketFlags.None);
+
+            while (ptr < size)
+                ptr += socket.Receive(data, ptr, size - ptr, SocketFlags.None);
+
+            return data;
+        }
+
+        public static void Send(this Socket socket, byte[] data)
+        {
+            int sent = socket.Send(data);
+            while (sent < data.Length)
+                sent += socket.Send(data, sent, data.Length - sent, SocketFlags.None);
+        }
     }
 
 
     public abstract class Peer
     {
-
-
         public bool NoDelay { get; }
 
         protected Socket Socket;
@@ -56,41 +75,14 @@ namespace Hevadea.Framework.Networking
             this.NoDelay = noDelay;
         }
 
-
-        protected void BeginReceiving(Socket socket, int socketIndex)
+        protected void BeginReceiving(Socket socket)
         {
-            // Continue the attempts to receive data so long as the connection is open.
-            while (socket.IsConnected())
+            while (socket.Connected())
             {
                 try
                 {
-                    // Stores our packet header length.
-                    int pLength = NetHelper.PACKET_HEADER_LENGTH;
-                    // Stores the current amount of bytes that have been read.
-                    int curRead = 0;
-                    // Stores the bytes that we have read from the socket.
-                    var data = new byte[pLength];
-
-                    // Attempt to read from the socket.
-                    curRead = socket.Receive(data, 0, pLength, SocketFlags.None);
-
-                    // Read any remaining bytes.
-                    while (curRead < pLength)
-                        curRead += socket.Receive(data, curRead, pLength - curRead, SocketFlags.None);
-
-                    // Set the current read to 0.
-                    curRead = 0;
-                    // Get the packet length (32 bit integer).
-                    pLength = BitConverter.ToInt32(data, 0);
-                    // Set the data (byte-buffer) to the size of the packet -- determined by pLength.
-                    data = new byte[pLength];
-
-                    // Attempt to read from the socket.
-                    curRead = socket.Receive(data, 0, pLength, SocketFlags.None);
-
-                    // Read any remaining bytes.
-                    while (curRead < pLength)
-                        curRead += socket.Receive(data, curRead, pLength - curRead, SocketFlags.None);
+                    int dataLenght = BitConverter.ToInt32(socket.Receive(4), 0);
+                    byte[] data = socket.Receive(dataLenght);
                         
                     DataReceived?.Invoke(socket, data);
                 }
@@ -98,59 +90,51 @@ namespace Hevadea.Framework.Networking
                 catch (SocketException) { break; }
             }
 
-            HandleDisconnectedSocket(socket);
+            Disconnected(socket);
         }
 
-        public abstract void HandleDisconnectedSocket(Socket socket);
+        public abstract void Disconnected(Socket socket);
 
-
-        protected void SendData(Socket socket, PacketBuilder data) => SendData(socket, data.GetBuffer());
-
-        public void SendData(Socket socket, byte[] packet)
+        public void Send(Socket socket, byte[] data)
         {
             try
             {
-                byte[] packetHeader = BitConverter.GetBytes(packet.Length);
+                byte[] packetHeader = BitConverter.GetBytes(data.Length);
 
-                SendRawData(socket, packetHeader);
-                SendRawData(socket, packet);
+                socket.Send(packetHeader);
+                socket.Send(data);
             }
             catch (NullReferenceException) { }
             catch (SocketException) { }
             catch (ObjectDisposedException) { }
         }
 
-        private void SendRawData(Socket socket, byte[] data)
+
+
+        public byte[] Wait()
         {
-            int sent = socket.Send(data);
-            while (sent < data.Length)
-                sent += socket.Send(data, sent, data.Length - sent, SocketFlags.None);
-        }
+            bool recived = false;
+            byte[] recivedData = null;
 
-		public byte[] WaitForData()
-		{
-			bool recived = false;
-			byte[] recivedData = null;
-
-			DataReceivedHandler eventHandler = (socket, data) => 
-			{
-				if (!recived)
-				{            
+            DataReceivedHandler eventHandler = (socket, data) => 
+            {
+                if (!recived)
+                {            
                     recived = true;
                     recivedData = data;
-				}
-			};
+                }
+            };
 
-			DataReceived += eventHandler;
+            DataReceived += eventHandler;
 
-			while (!recived)
-			{
-				Thread.Sleep(10);
-			}
+            while (!recived)
+            {
+                Thread.Sleep(10);
+            }
 
-			DataReceived -= eventHandler;
+            DataReceived -= eventHandler;
             
-			return recivedData;
-		}
+            return recivedData;
+        }
     }
 }

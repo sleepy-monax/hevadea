@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hevadea.Framework.Utils;
+using System;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -8,7 +9,7 @@ namespace Hevadea.Framework.Networking
     {
         private const int CONNECTION_TIMEOUT = 2000;
 
-        public bool Connected => Socket.IsConnected();
+        public bool Connected => Socket.Connected();
 
         public delegate void ConnectionChangeHandler();
 
@@ -24,17 +25,16 @@ namespace Hevadea.Framework.Networking
             {
                 try
                 {
-                    Socket = new Socket(Socket.AddressFamily, Socket.SocketType, Socket.ProtocolType)
-                    {
-                        NoDelay = this.NoDelay
-                    };
+                    Socket = new Socket(Socket.AddressFamily, Socket.SocketType, Socket.ProtocolType);
+                    Socket.NoDelay = NoDelay;
 
-                    var result = Socket.BeginConnect(ip, port, null, null);
+
+                    IAsyncResult result = Socket.BeginConnect(ip, port, null, null);
 
                     if (result.AsyncWaitHandle.WaitOne(CONNECTION_TIMEOUT, true) && Socket.Connected)
                     {
-                        new Thread(x => BeginReceiving(Socket, 0)).Start();
-                        Console.WriteLine("[NetClient] Connection established with " + ip + ":" + port);
+                        new Thread(x => BeginReceiving(Socket)).Start();
+                        Logger.Log<Client>("Connection established with " + ip + ":" + port);
                         Socket.EndConnect(result);
                         return true;
                     }
@@ -50,16 +50,12 @@ namespace Hevadea.Framework.Networking
         public void Disconnect()
         {
             Socket.Dispose();
-            Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
-            {
-                NoDelay = NoDelay
-            };
+            Socket = null;
         }
 
-        public void SendData(PacketBuilder packet) => SendData(Socket, packet);
-        public void SendData(byte[] packet) => SendData(Socket, packet);
+        public void SendData(byte[] packet) => Send(Socket, packet);
 
-        public override void HandleDisconnectedSocket(Socket socket)
+        public override void Disconnected(Socket socket)
         {
             ConnectionLost?.Invoke();
 

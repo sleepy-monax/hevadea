@@ -7,7 +7,7 @@ namespace Hevadea
     public class Camera : Framework.Graphic.Camera
     {
         public Entity FocusEntity;
-		public TilePosition FocusedTile => new TilePosition((int)(X / GLOBAL.Unit), (int)(Y / GLOBAL.Unit));
+        public TilePosition FocusedTile => new TilePosition((int)(X / GLOBAL.Unit), (int)(Y / GLOBAL.Unit));
 
         public Camera(Entity focusEntity)
         {
