@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Hevadea
 {
@@ -97,7 +98,7 @@ namespace Hevadea
 
             Client.Connect(address, port, 16);
 
-            Client.SendData(PacketFactorie.ConstructLogin("testplayer", "{}"));
+            Client.Send(PacketFactorie.ConstructLogin("testplayer", "{}"));
 
             Client.Wait();
         }
@@ -115,39 +116,10 @@ namespace Hevadea
             World world = World.Load(worldStorage);
             Entity player = EntityFactory.PLAYER.Construct().Load(File.ReadAllText(path + "player.json").FromJson<EntityStorage>());
 
+
             foreach (var levelName in worldStorage.Levels)
             {
-                string levelPath = $"{path}{levelName}/";
-                Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
-
-                progressRepporter.RepportStatus($"Loading level {level.Name}...");
-                for (int x = 0; x < level.Chunks.GetLength(0); x++)
-                {
-                    for (int y = 0; y < level.Chunks.GetLength(1); y++)
-                    {
-                        level.Chunks[x, y] = Chunk.Load(File.ReadAllText(levelPath + $"r{x}-{y}.json").FromJson<ChunkStorage>());
-                        progressRepporter.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
-                    }
-                }
-
-                level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
-
-                var task = new AsyncTask(() =>
-                {
-                    var fs = new FileStream(levelPath + "minimap.png", FileMode.Open);
-                    level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
-                    fs.Close();
-                });
-
-                Rise.AsyncTasks.Enqueue(task);
-
-                while (!task.Done)
-                {
-                    // XXX: Hack to fix the soft lock when loading the world.
-                    System.Threading.Thread.Sleep(10);
-                }
-
-                world.Levels.Add(level);
+                world.Levels.Add(LoadLevel(game, levelName, progressRepporter));
             }
 
             game.World = world;
@@ -156,7 +128,42 @@ namespace Hevadea
             return game;
         }
 
-        public void Save(string savePath, ProgressRepporter progressRepporter)
+        public static Level LoadLevel(GameManager game, string levelName, ProgressRepporter progressRepporter )
+        {
+            string levelPath = $"{game.GetSavePath()}{levelName}/";
+            Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
+
+            progressRepporter.RepportStatus($"Loading level {level.Name}...");
+            for (int x = 0; x < level.Chunks.GetLength(0); x++)
+            {
+                for (int y = 0; y < level.Chunks.GetLength(1); y++)
+                {
+                    level.Chunks[x, y] = Chunk.Load(File.ReadAllText(levelPath + $"r{x}-{y}.json").FromJson<ChunkStorage>());
+                    progressRepporter.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
+                }
+            }
+
+            level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
+
+            var task = new AsyncTask(() =>
+            {
+                var fs = new FileStream(levelPath + "minimap.png", FileMode.Open);
+                level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
+                fs.Close();
+            });
+
+            Rise.AsyncTasks.Enqueue(task);
+
+            while (!task.Done)
+            {
+                // XXX: Hack to fix the soft lock when loading the world.
+                System.Threading.Thread.Sleep(10);
+            }
+
+            return level;
+        }
+
+        public void SaveAsync(string savePath, ProgressRepporter progressRepporter)
         {
             SavePath = savePath;
 
@@ -168,40 +175,46 @@ namespace Hevadea
 
             foreach (var level in World.Levels)
             {
-                progressRepporter.RepportStatus($"Saving {level.Name}...");
-                string path = GetLevelSavePath(level);
-                Directory.CreateDirectory(path);
-
-                File.WriteAllText(path + "level.json", level.Save().ToJson());
-
-                foreach (var chunk in level.Chunks)
-                {
-                    progressRepporter.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
-                    File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
-                }
-
-                File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
-
-                var task = new AsyncTask(() =>
-                {
-                    var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
-                    level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
-                    fs.Close();
-                });
-
-                progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
-                progressRepporter.Report(1f);
-                Rise.AsyncTasks.Enqueue(task);
-
-                while (!task.Done)
-                {
-                    // XXX: Hack to fix the soft lock when saving the world.
-                    System.Threading.Thread.Sleep(10);
-                }
+                SaveLevel(level, progressRepporter);
             }
+
 
             File.WriteAllText(GetSavePath() + "world.json", World.Save().ToJson());
             File.WriteAllText(GetSavePath() + "player.json", MainPlayer.Save().ToJson());
+        }
+
+        private void SaveLevel(Level level, ProgressRepporter progressRepporter)
+        {
+            progressRepporter.RepportStatus($"Saving {level.Name}...");
+            string path = GetLevelSavePath(level);
+            Directory.CreateDirectory(path);
+
+            File.WriteAllText(path + "level.json", level.Save().ToJson());
+
+            foreach (var chunk in level.Chunks)
+            {
+                progressRepporter.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
+                File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
+            }
+
+            File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
+
+            var task = new AsyncTask(() =>
+            {
+                var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
+                level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
+                fs.Close();
+            });
+
+            progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
+            progressRepporter.Report(1f);
+            Rise.AsyncTasks.Enqueue(task);
+
+            while (!task.Done)
+            {
+                // XXX: Hack to fix the soft lock when saving the world.
+                System.Threading.Thread.Sleep(10);
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using Hevadea.WorldGenerator;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Hevadea.Loading
 {
@@ -32,7 +33,7 @@ namespace Hevadea.Loading
             return new LoadingTask((task, reporter) =>
             {
                 SetLastGame(savePath ?? game.SavePath);
-                game.Save(savePath ?? game.SavePath, reporter);
+                game.SaveAsync(savePath ?? game.SavePath, reporter);
             });
         }
 

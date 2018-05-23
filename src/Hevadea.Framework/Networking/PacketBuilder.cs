@@ -283,7 +283,10 @@ namespace Hevadea.Framework.Networking
             return value;
         }
 
-        public PacketBuilder ReadString(out string outValue)
+        public PacketBuilder ReadStringASCII(out string outValue) => ReadString(Encoding.ASCII, out outValue);
+        public PacketBuilder ReadStringUTF8(out string outValue) => ReadString(Encoding.UTF8, out outValue);
+
+        public PacketBuilder ReadString(Encoding encoding, out string outValue)
         {
             var size = ReadInteger();
             var tmpData = new byte[size];
@@ -293,12 +296,15 @@ namespace Hevadea.Framework.Networking
                 tmpData[i] = _buffer[_offset++];
             }
 
-            outValue = Encoding.ASCII.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
+            outValue = encoding.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
 
             return this;
         }
 
-        public string ReadString()
+        public string ReadStringASCII() => ReadString(Encoding.ASCII);
+        public string ReadStringUTF8() => ReadString(Encoding.UTF8);
+
+        public string ReadString(Encoding encoding)
         {
             var size = ReadInteger();
             var tmpData = new byte[size];
@@ -308,7 +314,7 @@ namespace Hevadea.Framework.Networking
                 tmpData[i] = _buffer[_offset++];
             }
 
-            return Encoding.ASCII.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
+            return encoding.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
         }
     }
 }

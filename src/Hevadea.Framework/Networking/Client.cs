@@ -53,7 +53,7 @@ namespace Hevadea.Framework.Networking
             Socket = null;
         }
 
-        public void SendData(byte[] packet) => Send(Socket, packet);
+        public void Send(byte[] data) => Send(Socket, data);
 
         public override void Disconnected(Socket socket)
         {
