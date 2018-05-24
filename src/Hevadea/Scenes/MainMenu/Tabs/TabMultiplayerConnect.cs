@@ -1,11 +1,15 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.UI.Widgets.TextBox;
+using Hevadea.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
+using System.Globalization;
+using System.IO;
 
 namespace Hevadea.Scenes.MainMenu.Tabs
 {
@@ -17,8 +21,8 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         public TabMultiplayerConnect()
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(1, 3));
-			connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new BoxElement(8) };
-			connectPortTextBox = new SingleLineTextBoxWidget(24, $"{77777}", Ressources.FontRomulus) { Padding = new BoxElement(8) };
+            connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new BoxElement(8) };
+            connectPortTextBox = new SingleLineTextBoxWidget(24, "7777", Ressources.FontRomulus) { Padding = new BoxElement(8) };
             var connectButton = new Button { Text = "Connect", Dock = Dock.Bottom }
                 .RegisterMouseClickEvent(Connect);
 
@@ -28,9 +32,9 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Dock = Dock.Fill,
                 Childrens =
                 {
-					new Label { Text = "IP:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "IP:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
                     connectIpTextBox,
-					new Label { Text = "Port:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "Port:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
                     connectPortTextBox,
                 }
             };
@@ -48,6 +52,9 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
         private void Connect(Widget widget)
         {
+            var connectTask = TaskFactorie.ConnectToServer(connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String));
+            connectTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((LoadingTask)task).Result));
+            Rise.Scene.Switch(new LoadingScene(connectTask));
         }
     }
 }

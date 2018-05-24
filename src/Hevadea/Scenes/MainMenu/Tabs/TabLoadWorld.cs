@@ -26,8 +26,8 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 if (saveList.SelectedItem != null)
                 {
                     var item = (ListItemText)saveList.SelectedItem;
-					var loadWorldTask = TaskFactorie.LoadWorld(item.Text);
-                    loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((GameManager)((LoadingTask)task).Result));
+                    var loadWorldTask = TaskFactorie.LoadWorld(item.Text);
+                    loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((LoadingTask)task).Result));
                     Rise.Scene.Switch(new LoadingScene(loadWorldTask));
                 }
             });
@@ -42,7 +42,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 }
             };
 
-            var s = Directory.GetDirectories(GLOBAL.GetSavePath());
+            var s = Directory.GetDirectories(Game.GetSaveFolder());
 
             foreach (var save in s)
             {

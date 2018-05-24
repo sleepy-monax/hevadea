@@ -48,16 +48,16 @@ namespace Hevadea.GameObjects.Items
 
         public override void OnSave(EntityStorage store)
         {
-            store.Set("item", Item.Id);
-            store.Set("sx", SpeedX);
-            store.Set("sy", SpeedY);
+            store.Value("item", Item.Id);
+            store.Value("sx", SpeedX);
+            store.Value("sy", SpeedY);
         }
 
         public override void OnLoad(EntityStorage store)
         {
-            Item = ITEMS.ById[store.GetInt("item")];
-            SpeedX = store.GetFloat("sx", SpeedX);
-            SpeedY = store.GetFloat("sy", SpeedY);
+            Item = ITEMS.ById[store.ValueOf("item", 0)];
+            SpeedX = store.ValueOf("sx", SpeedX);
+            SpeedY = store.ValueOf("sy", SpeedY);
         }
     }
 }

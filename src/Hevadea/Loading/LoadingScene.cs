@@ -55,7 +55,7 @@ namespace Hevadea.Loading
 
             Container = new Container
             {
-				Padding = new BoxElement(16),
+                Padding = new BoxElement(16),
                 Childrens =
                 {
                     new WidgetFancyPanel

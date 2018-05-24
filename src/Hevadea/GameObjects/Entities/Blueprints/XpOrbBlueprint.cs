@@ -11,7 +11,7 @@
 
         public override Entity Construct()
         {
-            var e = new EntityXpOrb(_value);
+            var e = new XpOrb(_value);
             e.Blueprint = this;
             return e;
         }

@@ -30,7 +30,7 @@ namespace Hevadea.GameObjects.Items.Tags
 
                 Place(level, pos, user.Facing);
 
-                if (ConsumeItem && user is EntityPlayer p && p.GetComponent<Inventory>().Content.Count(p.HoldingItem) == 0)
+                if (ConsumeItem && user is Entities.Player p && p.GetComponent<Inventory>().Content.Count(p.HoldingItem) == 0)
                     p.HoldingItem = null;
             }
         }

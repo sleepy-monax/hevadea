@@ -19,6 +19,79 @@ using System.Linq;
 
 namespace Hevadea.Worlds
 {
+    public class LevelProperties
+    {
+        public string Name { get; }
+        public bool AffectedByDayNightCycle { get; }
+        public Color AmbiantLight { get; }
+        public float AmbiantTemperature { get; }
+
+        public LevelProperties(string name, bool affectedByDayNightCycle, Color ambiantLight, float ambiantTemperature = 0.25f)
+        {
+            Name = name;
+            AffectedByDayNightCycle = affectedByDayNightCycle;
+            AmbiantLight = ambiantLight;
+            AmbiantTemperature = ambiantTemperature;
+        }
+    }
+
+    public class LevelSpriteBatchPool
+    {
+
+        public SpriteBatch TileSpriteBatch { get; }
+        public SpriteBatch EntitiesSpriteBatch { get; }
+
+        public SpriteBatch OverlaySpriteBatch { get; }
+        public SpriteBatch LightsSpriteBatch { get; }
+        public SpriteBatch ShadowsSpriteBatch { get; }
+
+        public SpriteBatch GenericSpriteBatch { get; }
+
+        public LevelSpriteBatchPool()
+        {
+            TileSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+
+            EntitiesSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+
+            OverlaySpriteBatch = Rise.Graphic.CreateSpriteBatch();
+            LightsSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+            ShadowsSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+
+            GenericSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+        }
+
+        public void Begin(Camera camera)
+        {
+            Matrix transform = camera.GetTransform();
+
+            TileSpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            EntitiesSpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            OverlaySpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+
+
+            LightsSpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: transform);
+            ShadowsSpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+        }
+    }
+
+    public class RenderState
+    {
+        public Point RenderBegin;
+        public Point RenderEnd;
+
+        public EntityColection OnScreenEntities = new EntityColection();
+        public EntityColection AliveEntities = new EntityColection();
+
+        public RenderState(Point renderBegin, Point renderEnd, EntityColection onScreenEntities, EntityColection aliveEntities)
+        {
+            RenderBegin = renderBegin;
+            RenderEnd = renderEnd;
+
+            OnScreenEntities = onScreenEntities;
+            AliveEntities = aliveEntities;
+        }
+    }
+
     public partial class Level
     {
         public int Id { get; set; }
@@ -32,7 +105,7 @@ namespace Hevadea.Worlds
         public ParticleSystem ParticleSystem { get; }
         public Minimap Minimap { get; set; }
 
-        private GameManager _game;
+        private Game _game;
         private World _world;
 
         private static readonly BlendState LightBlend = new BlendState
@@ -63,11 +136,15 @@ namespace Hevadea.Worlds
 
         /* --- Game Loop -----------------------------------------------------*/
 
-        public void Initialize(World world, GameManager game)
+        public void Initialize(World world, Game game)
         {
             _world = world;
             _game = game;
-            foreach (var c in Chunks) foreach (var e in c.Entities) e.Initialize(this, world, _game);
+            foreach (var c in Chunks)
+            {
+                c.Level = this;
+                foreach (var e in c.Entities) e.Initialize(this, world, _game);
+            }
 
             IsInitialized = true;
         }
@@ -76,7 +153,7 @@ namespace Hevadea.Worlds
         {
             TilePosition focusedTile = _game.Camera.FocusedTile;
 
-            Point dist = new Point(_game.Camera.GetWidth() / 2 / GLOBAL.Unit + 1, _game.Camera.GetHeight() / 2 / GLOBAL.Unit);
+            Point dist = new Point(_game.Camera.GetWidth() / 2 / Game.Unit + 1, _game.Camera.GetHeight() / 2 / Game.Unit);
 
             Point renderBegin = new Point(Math.Max(0, focusedTile.X - dist.X), 
                                           Math.Max(0, focusedTile.Y - dist.Y - 1));
@@ -293,11 +370,11 @@ namespace Hevadea.Worlds
         public bool IsAll(Rectangle area, Tile tile) => IsAll(area, (t) => t == tile);
         public bool IsAll(Rectangle area, Predicate<Tile> predicat)
         {
-            var beginX = area.X / GLOBAL.Unit;
-            var beginY = area.Y / GLOBAL.Unit;
+            var beginX = area.X / Game.Unit;
+            var beginY = area.Y / Game.Unit;
 
-            var endX = (area.X + area.Width) / GLOBAL.Unit;
-            var endY = (area.Y + area.Height) / GLOBAL.Unit;
+            var endX = (area.X + area.Width) / Game.Unit;
+            var endY = (area.Y + area.Height) / Game.Unit;
 
             var result = true;
 
@@ -406,14 +483,14 @@ namespace Hevadea.Worlds
         public Entity AddEntityAt(Entity e, float tx, float ty)
         {
             AddEntity(e);
-            e.SetPosition(tx * GLOBAL.Unit, ty * GLOBAL.Unit);
+            e.SetPosition(tx * Game.Unit, ty * Game.Unit);
             return e;
         }
 
         public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
-            e.SetPosition(tx * GLOBAL.Unit + (GLOBAL.Unit / 2) + offX, ty * GLOBAL.Unit + (GLOBAL.Unit / 2) + offY);
+            e.SetPosition(tx * Game.Unit + (Game.Unit / 2) + offX, ty * Game.Unit + (Game.Unit / 2) + offY);
             return e;
         }
 
@@ -456,11 +533,11 @@ namespace Hevadea.Worlds
         {
             var result = new List<Entity>();
 
-            var beginX = area.X / GLOBAL.Unit - 1;
-            var beginY = area.Y / GLOBAL.Unit - 1;
+            var beginX = area.X / Game.Unit - 1;
+            var beginY = area.Y / Game.Unit - 1;
 
-            var endX = (area.X + area.Width) / GLOBAL.Unit + 1;
-            var endY = (area.Y + area.Height) / GLOBAL.Unit + 1;
+            var endX = (area.X + area.Width) / Game.Unit + 1;
+            var endY = (area.Y + area.Height) / Game.Unit + 1;
 
             for (int x = (int)beginX; x < endX; x++)
                 for (int y = (int)beginY; y < endY; y++)

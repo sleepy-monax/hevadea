@@ -8,14 +8,14 @@ using System.Threading;
 
 namespace Hevadea.Framework.Networking
 {
-    public class ClientConnection
+    public class ConnectedClient
     {
-		public Socket Socket { get; private set; }
-		public Server Server { get; }
+        public Socket Socket { get; private set; }
+        public Server Server { get; }
 
         public bool Connected => Socket.Connected();
 
-		public ClientConnection( Socket socket, Server server)
+        public ConnectedClient( Socket socket, Server server)
         {
             Socket = socket;
             Server = server;
@@ -26,25 +26,25 @@ namespace Hevadea.Framework.Networking
             Server.Send(Socket, packet);
         }
 
-		public void Close()
-		{
-            Server.Connections.Remove(this);
-			Socket.Dispose();
-			Socket = null;
-		}
+        public void Close()
+        {
+            Server.Clients.Remove(this);
+            Socket.Dispose();
+            Socket = null;
+        }
     }
 
     public sealed class Server : Peer
     {
-        public List<ClientConnection> Connections { get; private set; }
+        public List<ConnectedClient> Clients { get; private set; }
 
-        public delegate void HandleConnectionChange(ClientConnection connection);
+        public delegate void HandleConnectionChange(ConnectedClient client);
         public HandleConnectionChange ClientConnected;
         public HandleConnectionChange ClientLost;
 
         public Server(string ip, int port, bool noDelay = false) : base(noDelay)
         {
-            Connections = new List<ClientConnection>();
+            Clients = new List<ConnectedClient>();
             Socket.Bind(new IPEndPoint(IPAddress.Parse(ip), port));
         }
 
@@ -61,10 +61,10 @@ namespace Hevadea.Framework.Networking
                 while (true)
                 {
                     Socket incomingSocket = Socket.Accept();
-					incomingSocket.NoDelay = NoDelay;
-                    var connection = new ClientConnection(incomingSocket, this);
+                    incomingSocket.NoDelay = NoDelay;
+                    var connection = new ConnectedClient(incomingSocket, this);
 
-                    Connections.Add(connection);
+                    Clients.Add(connection);
 
 
                     Logger.Log<Server>("Received a connection from: " + incomingSocket.RemoteEndPoint);
@@ -73,7 +73,7 @@ namespace Hevadea.Framework.Networking
 
                     try
                     {
-						var connectionThread = new Thread(x => BeginReceiving(incomingSocket));
+                        var connectionThread = new Thread(x => BeginReceiving(incomingSocket));
                         connectionThread.Name = incomingSocket.RemoteEndPoint + ": incoming data thread.";
                         connectionThread.Start();
                     }
@@ -87,24 +87,32 @@ namespace Hevadea.Framework.Networking
             listenerThread.Start();
         }
 
+        public ConnectedClient GetClientFrom(Socket socket)
+        {
+            return Clients.Where((c) => c.Socket == socket).First();
+        }
 
         public void Stop()
         {
-            Connections.ForEach((c) => c.Close());
+            Clients.ForEach((c) => c.Close());
             Socket.Shutdown(SocketShutdown.Receive);
         }
 
         public void Broadcast(byte[] data)
         {
-            Connections.ForEach((c) => c.Send(data));
+            Clients.ForEach((c) => c.Send(data));
         }
 
         public override void Disconnected(Socket socket)
         {
-            var connection = Connections.Where((c) => c.Socket == socket).First();
+            var client = GetClientFrom(socket);
 
-            connection.Close();
-            ClientLost?.Invoke(connection);
+            if (client != null)
+            {
+                client.Close();
+                ClientLost?.Invoke(client);
+                Logger.Log<Server>($"Client disconnected!");
+            }
         }
     }
 }

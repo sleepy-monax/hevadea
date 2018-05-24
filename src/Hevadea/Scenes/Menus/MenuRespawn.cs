@@ -2,7 +2,7 @@
 {
     public class MenuRespawn : Menu
     {
-        public MenuRespawn(GameManager game) : base(game)
+        public MenuRespawn(Game game) : base(game)
         {
         }
     }

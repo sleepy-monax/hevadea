@@ -18,7 +18,7 @@ namespace Hevadea.GameObjects.Tiles.Renderers
         {
             var connection = GetTileConnection(level, position);
             var onScreenPosition = position.ToOnScreenPosition();
-            spriteSheet.Draw(spriteBatch, connection.ToByte(), new Rectangle(onScreenPosition.X, onScreenPosition.Y, GLOBAL.Unit, GLOBAL.Unit), Color.White);
+            spriteSheet.Draw(spriteBatch, connection.ToByte(), new Rectangle(onScreenPosition.X, onScreenPosition.Y, Game.Unit, Game.Unit), Color.White);
         }
     }
 }

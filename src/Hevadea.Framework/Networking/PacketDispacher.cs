@@ -7,7 +7,7 @@ namespace Hevadea.Framework.Networking
 {
     public class PacketDispacher<packetT> where packetT : struct, IConvertible
     {
-        public delegate void PacketHandler(Socket socket, PacketBuilder data);
+        public delegate void PacketHandler(Socket socket, byte[] data);
 
         private Dictionary<int, PacketHandler> _handlers = new Dictionary<int, PacketHandler>();
 
@@ -25,11 +25,11 @@ namespace Hevadea.Framework.Networking
 
             if (_handlers.ContainsKey(packetType))
             {
-                _handlers[packetType]?.Invoke(socket, packet);
+                _handlers[packetType]?.Invoke(socket, data);
             }
             else
             {
-                UnknowPacket?.Invoke(socket, packet);
+                UnknowPacket?.Invoke(socket, data);
             }
         }
 

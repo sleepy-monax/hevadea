@@ -6,7 +6,6 @@ using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components;
-using Hevadea.Player;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 
@@ -22,7 +21,7 @@ namespace Hevadea.Scenes.Menus
 
         private readonly SpriteButton btnMinimap;
 
-        public MenuInGame(GameManager game) : base(game)
+        public MenuInGame(Game game) : base(game)
         {
             // On screen button -----------------------------------------------
 

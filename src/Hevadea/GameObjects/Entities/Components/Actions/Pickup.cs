@@ -73,18 +73,18 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         {
             if (_pickupedEntity != null)
             {
-                store.Set("pickup_entity_type", _pickupedEntity.Blueprint.Name);
-                store.Set("pickup_entity_data", _pickupedEntity.Save().Data);
+                store.Value("pickup_entity_type", _pickupedEntity.Blueprint.Name);
+                store.Value("pickup_entity_data", _pickupedEntity.Save().Data);
             }
         }
 
         public void OnGameLoad(EntityStorage store)
         {
-            var entityType = (string)store.Get("pickup_entity_type", "null");
+            var entityType = (string)store.ValueOf<string>("pickup_entity_type", "null");
 
             if (entityType != "null")
             {
-                var entityData = (Dictionary<string, object>)store.Get("pickup_entity_data", new Dictionary<string, object>());
+                var entityData = (Dictionary<string, object>)store.ValueOf("pickup_entity_data", new Dictionary<string, object>());
                 var entity = EntityFactory.Construct(entityType);
                 entity.Load(new EntityStorage(entityType, entityData));
 

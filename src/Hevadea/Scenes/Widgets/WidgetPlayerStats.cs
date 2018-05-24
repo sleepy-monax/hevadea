@@ -12,9 +12,9 @@ namespace Hevadea.Scenes.Widgets
     {
         private readonly Sprite _energy;
         private readonly Sprite _hearth;
-        private readonly EntityPlayer _player;
+        private readonly GameObjects.Entities.Player _player;
 
-        public WidgetPlayerStats(EntityPlayer player)
+        public WidgetPlayerStats(GameObjects.Entities.Player player)
         {
             _player = player;
             _hearth = new Sprite(Ressources.TileIcons, 0);

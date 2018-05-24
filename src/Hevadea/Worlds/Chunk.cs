@@ -21,8 +21,10 @@ namespace Hevadea.Worlds
         public List<Entity>[,] EntitiesOnTiles { get; set; }
         public TileConnection[,] CachedTileConnection { get; set; }
 
+        public Level Level { get; set; }
 
-        public Chunk(int x, int y)
+
+        public Chunk( int x, int y)
         {
             X = x;
             Y = y;
@@ -98,6 +100,7 @@ namespace Hevadea.Worlds
 
             store.X = X;
             store.Y = Y;
+            store.Level = Level.Id;
 
             store.Registry = TILES.GetIDToName();
            

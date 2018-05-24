@@ -33,12 +33,12 @@ namespace Hevadea.GameObjects.Entities.Components
 
         public void OnGameSave(EntityStorage store)
         {
-            store.Set(nameof(Content), Content.Items);
+            store.Value(nameof(Content), Content.Items);
         }
 
         public void OnGameLoad(EntityStorage store)
         {
-            var l = (Dictionary<string, object>)store.Get(nameof(Content), new Dictionary<string, object>());
+            var l = (Dictionary<string, object>)store.ValueOf(nameof(Content), new Dictionary<string, object>());
             foreach (var i in l)
             {
                 Content.Items.Add(int.Parse(i.Key), (int)i.Value);

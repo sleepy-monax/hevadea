@@ -60,16 +60,16 @@ namespace Hevadea.GameObjects.Entities.Components.States
 
         public void OnGameSave(EntityStorage store)
         {
-            store.Set(nameof(Heal), _value);
+            store.Value(nameof(Heal), _value);
             if (NaturalRegeneration)
-                store.Set("natural_regeneration", _coolDown);
+                store.Value("natural_regeneration", _coolDown);
         }
 
         public void OnGameLoad(EntityStorage store)
         {
-            _value = store.GetFloat(nameof(Heal), _value);
+            _value = store.ValueOf(nameof(Heal), _value);
             if (NaturalRegeneration)
-                _coolDown = store.GetFloat("natural_regeneration");
+                _coolDown = store.ValueOf("natural_regeneration", 0f);
         }
 
         public void Update(GameTime gameTime)

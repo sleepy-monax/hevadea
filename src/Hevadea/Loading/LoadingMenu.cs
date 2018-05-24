@@ -18,7 +18,7 @@ namespace Hevadea.Loading
         private Label _progressLabel;
         private ProgressBar _progressBar;
         
-        public LoadingMenu(LoadingTask task, GameManager game) : base(game)
+        public LoadingMenu(LoadingTask task, Game game) : base(game)
         {
             _task = task;
 
@@ -41,7 +41,7 @@ namespace Hevadea.Loading
                 UnitOffset = new Point(0, 24)
             };
 
-			var _cancelButton = new SpriteButton()
+            var _cancelButton = new SpriteButton()
             {
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 48, 48),
@@ -60,7 +60,7 @@ namespace Hevadea.Loading
                     new WidgetFancyPanel
                     {
                         UnitBound = new Rectangle(0, 0, 840, 256),
-						Padding = new BoxElement(16),
+                        Padding = new BoxElement(16),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
@@ -77,17 +77,17 @@ namespace Hevadea.Loading
                 }
             };
 
-			_task.LoadingFinished += (sender, e) => 
-			{
-				game.CurrentMenu = new MenuInGame(game);
-			};
+            _task.LoadingFinished += (sender, e) => 
+            {
+                game.CurrentMenu = new MenuInGame(game);
+            };
 
             _task.Start();
         }
 
         public override void Update(GameTime gameTime)
         {
-			_progressLabel.Text = _task.ProgressRepporter.Status;
+            _progressLabel.Text = _task.ProgressRepporter.Status;
             _progressBar.Value = _task.ProgressRepporter.Progress;
         }
     }

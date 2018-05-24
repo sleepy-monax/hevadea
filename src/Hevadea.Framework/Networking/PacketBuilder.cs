@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Hevadea.Framework.Networking
@@ -14,114 +15,105 @@ namespace Hevadea.Framework.Networking
 
     public sealed class PacketBuilder
     {
-        private byte[] _buffer;
-        private int _offset;
+        public int Offset { get; private set; }
+        public byte[] Buffer { get; private set; }
 
         public PacketBuilder(int preAllocatedSize = 2)
         {
             PreAllocate(preAllocatedSize);
-            _offset = 0;
+            Offset = 0;
         }
 
         public PacketBuilder(byte[] data)
         {
-            _buffer = data;
-            _offset = 0;
+            Buffer = data;
+            Offset = 0;
         }
 
         public PacketBuilder PreAllocate(int size)
         {
-            _buffer = new byte[size];
+            Buffer = new byte[size];
             return this;
-        }
-
-        public byte[] GetBuffer()
-        {
-            return _buffer;
         }
 
         private void Resize(int newSize)
         {
-            if (newSize < _buffer.Length) return;
+            if (newSize < Buffer.Length) return;
 
-            var tmp = new byte[_buffer.Length];
+            var tmp = new byte[Buffer.Length];
 
             while (newSize >= tmp.Length)
                 tmp = new byte[(tmp.Length << 1)];
 
-            for (int i = 0; i < _buffer.Length; i++)
+            for (int i = 0; i < Buffer.Length; i++)
             {
-                tmp[i] = _buffer[i];
+                tmp[i] = Buffer[i];
             }
 
-            _buffer = tmp;
+            Buffer = tmp;
+        }
+
+        public PacketBuilder Ignore(int count)
+        {
+            Offset += count;
+            return this;
         }
 
         public void Flush()
         {
             PreAllocate(2);
-            SetOffset(0);
-        }
-
-        public int GetOffset()
-        {
-            return _offset;
-        }
-
-        public void SetOffset(int value)
-        {
-            _offset = value;
+            Offset = 0;
         }
 
         public byte[] ReadBytes()
         {
-            if (_buffer.Length > _offset)
+            if (Buffer.Length > Offset)
             {
-                var tmp = new byte[_offset];
+                var tmp = new byte[Offset];
 
-                for (int i = 0; i < _offset; i++)
+                for (int i = 0; i < Offset; i++)
                 {
-                    tmp[i] = _buffer[i];
+                    tmp[i] = Buffer[i];
                 }
 
                 return tmp;
             }
 
-            return _buffer;
+            return Buffer;
         }
 
         public void FillBuffer(byte[] bytes)
         {
-            _buffer = bytes;
-            _offset = 0;
+            Buffer = bytes;
+            Offset = 0;
         }
 
         public void Begin()
         {
-            _offset = 0;
+            Offset = 0;
         }
 
         public void WriteBytes(byte[] bytes, int destOffset)
         {
-            Resize(_offset + bytes.Length);
+            Resize(Offset + bytes.Length);
 
             foreach (byte t in bytes)
-                _buffer[destOffset++] = t;
+                Buffer[destOffset++] = t;
         }
 
         public void WriteBytes(byte[] bytes)
         {
-            Resize(_offset + bytes.Length);
+            Resize(Offset + bytes.Length);
 
             foreach (byte t in bytes)
-                _buffer[_offset++] = t;
+                Buffer[Offset++] = t;
         }
 
         public PacketBuilder WriteByte(byte value)
         {
-            Resize(_offset + 1);
+            Resize(Offset + 1);
 
-            _buffer[_offset++] = value;
+            Buffer[Offset++] = value;
 
             return this;
         }
@@ -129,11 +121,11 @@ namespace Hevadea.Framework.Networking
         public PacketBuilder WriteLong(long value)
         {
             byte[] tmp = BitConverter.GetBytes(value);
-            Resize(_offset + tmp.Length);
+            Resize(Offset + tmp.Length);
 
             for (int i = 0; i < 8; i++)
             {
-                _buffer[_offset++] = tmp[i];
+                Buffer[Offset++] = tmp[i];
             }
 
             return this;
@@ -141,22 +133,22 @@ namespace Hevadea.Framework.Networking
 
         public PacketBuilder WriteInteger(int value)
         {
-            Resize(_offset + 4);
+            Resize(Offset + 4);
 
-            _buffer[_offset++] = (byte)(value);
-            _buffer[_offset++] = (byte)(value >> 8);
-            _buffer[_offset++] = (byte)(value >> 16);
-            _buffer[_offset++] = (byte)(value >> 24);
+            Buffer[Offset++] = (byte)(value);
+            Buffer[Offset++] = (byte)(value >> 8);
+            Buffer[Offset++] = (byte)(value >> 16);
+            Buffer[Offset++] = (byte)(value >> 24);
 
             return this;
         }
 
         public PacketBuilder WriteShort(short value)
         {
-            Resize(_offset + 2);
+            Resize(Offset + 2);
 
-            _buffer[_offset++] = (byte)(value);
-            _buffer[_offset++] = (byte)(value >> 8);
+            Buffer[Offset++] = (byte)(value);
+            Buffer[Offset++] = (byte)(value >> 8);
 
             return this;
         }
@@ -169,11 +161,11 @@ namespace Hevadea.Framework.Networking
         {
             byte[] tmp = encoding.GetBytes(value);
             WriteInteger(tmp.Length);
-            Resize(_offset + tmp.Length);
+            Resize(Offset + tmp.Length);
 
             foreach (byte t in tmp)
             {
-                _buffer[_offset++] = t;
+                Buffer[Offset++] = t;
             }
 
             return this;
@@ -192,22 +184,22 @@ namespace Hevadea.Framework.Networking
             return this;
         }
 
-        public PacketBuilder WriteBuffer(PacketBuilder buffer)
+        public PacketBuilder WriteBuffer(PacketBuilder builder)
         {
-            WriteBytes(buffer.GetBuffer());
+            WriteBytes(builder.Buffer);
             return this;
         }
 
-        public PacketBuilder WriteBuffer(PacketBuilder buffer, int begin, int end)
+        public PacketBuilder WriteBuffer(PacketBuilder builder, int begin, int end)
         {
-            var bufferData = buffer.GetBuffer();
+            var bufferData = builder.Buffer;
             end = Math.Min(end, bufferData.Length);
 
-            Resize(_offset + (end - begin));
+            Resize(Offset + (end - begin));
 
             for (int i = begin; i < end; i++)
             {
-                _buffer[_offset++] = bufferData[i];
+                Buffer[Offset++] = bufferData[i];
             }
 
             return this;
@@ -232,53 +224,53 @@ namespace Hevadea.Framework.Networking
 
         public PacketBuilder ReadByte(out byte outValue)
         {
-            outValue = _buffer[_offset++];
+            outValue = Buffer[Offset++];
             return this;
         }
 
         public byte ReadByte()
         {
-            return _buffer[_offset++];
+            return Buffer[Offset++];
         }
 
         public PacketBuilder ReadShort(out short outValue)
         {
-            outValue = (short)(_buffer[_offset++] | _buffer[_offset++] << 8);
+            outValue = (short)(Buffer[Offset++] | Buffer[Offset++] << 8);
 
             return this;
         }
 
         public short ReadShort()
         {
-            return (short)(_buffer[_offset++] | _buffer[_offset++] << 8);
+            return (short)(Buffer[Offset++] | Buffer[Offset++] << 8);
         }
 
         public PacketBuilder ReadInteger(out int outValue)
         {
-            outValue = (int)(_buffer[_offset++] | _buffer[_offset++] << 8 | _buffer[_offset++] << 16 | _buffer[_offset++] << 24);
+            outValue = (int)(Buffer[Offset++] | Buffer[Offset++] << 8 | Buffer[Offset++] << 16 | Buffer[Offset++] << 24);
 
             return this;
         }
 
         public int ReadInteger()
         {
-            return (int)(_buffer[_offset++] | _buffer[_offset++] << 8 | _buffer[_offset++] << 16 | _buffer[_offset++] << 24);
+            return (int)(Buffer[Offset++] | Buffer[Offset++] << 8 | Buffer[Offset++] << 16 | Buffer[Offset++] << 24);
         }
 
         public PacketBuilder ReadLong(out long outValue)
         {
-            outValue = BitConverter.ToInt64(_buffer, _offset);
+            outValue = BitConverter.ToInt64(Buffer, Offset);
 
-            _offset += 8;
+            Offset += 8;
 
             return this;
         }
 
         public long ReadLong()
         {
-            var value = BitConverter.ToInt64(_buffer, _offset);
+            var value = BitConverter.ToInt64(Buffer, Offset);
 
-            _offset += 8;
+            Offset += 8;
 
             return value;
         }
@@ -293,7 +285,7 @@ namespace Hevadea.Framework.Networking
 
             for (int i = 0; i < size; i++)
             {
-                tmpData[i] = _buffer[_offset++];
+                tmpData[i] = Buffer[Offset++];
             }
 
             outValue = encoding.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
@@ -311,7 +303,7 @@ namespace Hevadea.Framework.Networking
 
             for (int i = 0; i < size; i++)
             {
-                tmpData[i] = _buffer[_offset++];
+                tmpData[i] = Buffer[Offset++];
             }
 
             return encoding.GetString(tmpData).TrimEnd('\0').TrimStart('\0');

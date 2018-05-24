@@ -20,25 +20,25 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             var worldNameTextBox = new SingleLineTextBoxWidget(24, "new world", Ressources.FontRomulus) { Padding = new BoxElement(8) };
 
-			var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new BoxElement(8) };
+            var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new BoxElement(8) };
 
-			var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
-			.RegisterMouseClickEvent((sender) =>
-			{
+            var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
+            .RegisterMouseClickEvent((sender) =>
+            {
             
-				if (!int.TryParse(worldSeedtextBox.Text.String, out var seed))
-    			{
-    				seed = worldSeedtextBox.Text.String.GetHashCode();
-    			}
+                if (!int.TryParse(worldSeedtextBox.Text.String, out var seed))
+                {
+                    seed = worldSeedtextBox.Text.String.GetHashCode();
+                }
                 
-    			var generatorTask = TaskFactorie.NewWorld(GLOBAL.GetSavePath() + $"{worldNameTextBox.Text.String}/", GENERATOR.DEFAULT, seed);
-    			generatorTask.LoadingFinished += (s, e) =>
-    			{
-    			    GameManager game = (GameManager)((LoadingTask)s).Result;
-					game.Initialize();
-					Rise.Scene.Switch(new SceneGameplay(game));
-				};
-				Rise.Scene.Switch(new LoadingScene(generatorTask));
+                var generatorTask = TaskFactorie.NewWorld(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", GENERATOR.DEFAULT, seed);
+                generatorTask.LoadingFinished += (s, e) =>
+                {
+                    Game game = (Game)((LoadingTask)s).Result;
+                    game.Initialize();
+                    Rise.Scene.Switch(new SceneGameplay(game));
+                };
+                Rise.Scene.Switch(new LoadingScene(generatorTask));
             });
 
             var worldOptions = new FlowLayout

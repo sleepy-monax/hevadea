@@ -9,7 +9,7 @@ namespace Hevadea.GameObjects.Items
     public class Item
     {
         public int Id { get; }
-        private readonly string _name;
+        private readonly string Name;
         private readonly Sprite _sprite;
         private List<ItemTag> _tags;
 
@@ -20,13 +20,13 @@ namespace Hevadea.GameObjects.Items
             ITEMS.ByName.Add(name, this);
 
             _sprite = sprite;
-            _name = name;
+            Name = name;
             _tags = new List<ItemTag>();
         }
 
         public virtual string GetName()
         {
-            return _name;
+            return Name;
         }
 
         public virtual Sprite GetSprite()
@@ -80,7 +80,7 @@ namespace Hevadea.GameObjects.Items
 
         public void Drop(Level level, TilePosition tilePosition, int quantity)
         {
-            Drop(level, tilePosition.X * GLOBAL.Unit + GLOBAL.Unit / 2, tilePosition.Y * GLOBAL.Unit + GLOBAL.Unit / 2, quantity);
+            Drop(level, tilePosition.X * Game.Unit + Game.Unit / 2, tilePosition.Y * Game.Unit + Game.Unit / 2, quantity);
         }
     }
 }

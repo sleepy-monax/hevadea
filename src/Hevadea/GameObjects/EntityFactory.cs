@@ -33,20 +33,20 @@ namespace Hevadea.GameObjects
         {
             ITEM = RegisterEntityBlueprint(new GenericEntityBlueprint<ItemEntity>("item"));
 
-            BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityBelt>("belt"));
-            CHEST = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChest>("chest"));
-            CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityChiken>("chiken"));
-            CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityCraftingBench>("crafting_bench"));
-            FISH = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFish>("fish"));
-            FLOWER = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFlower>("flower"));
-            FURNACE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityFurnace>("furnace"));
-            GRASS = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityGrass>("grass"));
-            PLAYER = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityPlayer>("player"));
-            STAIRES = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityStairs>("staires"));
-            TNT = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTNT>("tnt"));
-            TORCH = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTorch>("torch"));
+            BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<Belt>("belt"));
+            CHEST = RegisterEntityBlueprint(new GenericEntityBlueprint<Chest>("chest"));
+            CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<Chicken>("chiken"));
+            CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<CraftingBench>("crafting_bench"));
+            FISH = RegisterEntityBlueprint(new GenericEntityBlueprint<Fish>("fish"));
+            FLOWER = RegisterEntityBlueprint(new GenericEntityBlueprint<Flower>("flower"));
+            FURNACE = RegisterEntityBlueprint(new GenericEntityBlueprint<Furnace>("furnace"));
+            GRASS = RegisterEntityBlueprint(new GenericEntityBlueprint<Grass>("grass"));
+            PLAYER = RegisterEntityBlueprint(new GenericEntityBlueprint<Entities.Player>("player"));
+            STAIRES = RegisterEntityBlueprint(new GenericEntityBlueprint<Stairs>("staires"));
+            TNT = RegisterEntityBlueprint(new GenericEntityBlueprint<TNT>("tnt"));
+            TORCH = RegisterEntityBlueprint(new GenericEntityBlueprint<Torch>("torch"));
             TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
-            ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityZombie>("zombie"));
+            ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<Zombie>("zombie"));
 
             GROUPE_CREATURE = new BlueprintGroupe<EntityBlueprint>("creature") { Members = { CHIKEN, FISH, PLAYER, ZOMBIE } };
             GROUPE_TREE = new BlueprintGroupe<EntityBlueprint>("tree") { Members = { TREE } };

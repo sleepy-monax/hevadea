@@ -10,7 +10,7 @@ namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {
-        internal void Initialize(Level level, World world, GameManager game)
+        internal void Initialize(Level level, World world, Game game)
         {
             Level = level;
             World = world;
@@ -32,9 +32,9 @@ namespace Hevadea.GameObjects.Entities
                 Ueid = Ueid
             };
 
-            store.Set("X", X);
-            store.Set("Y", Y);
-            store.Set("Facing", (int)Facing);
+            store.Value("X", X);
+            store.Value("Y", Y);
+            store.Value("Facing", (int)Facing);
 
             foreach (var c in Componenents)
                 if (c is IEntityComponentSaveLoad s)
@@ -47,10 +47,10 @@ namespace Hevadea.GameObjects.Entities
         public Entity Load(EntityStorage store)
         {
             Ueid = store.Ueid;
-            X = store.GetFloat("X", X);
-            Y = store.GetFloat("Y", Y);
+            X = store.ValueOf("X", X);
+            Y = store.ValueOf("Y", Y);
 
-            Facing = (Direction)(int)store.Get("Facing", (int)Facing);
+            Facing = (Direction)store.ValueOf("Facing", (int)Facing);
 
             foreach (var c in Componenents)
                 if (c is IEntityComponentSaveLoad s)

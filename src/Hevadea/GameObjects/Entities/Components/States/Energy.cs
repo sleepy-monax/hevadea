@@ -16,14 +16,14 @@ namespace Hevadea.GameObjects.Entities.Components.States
 
         public void OnGameSave(EntityStorage store)
         {
-            store.Set(nameof(Energy), Value);
-            store.Set(nameof(Energy) + nameof(Regeneration), Regeneration);
+            store.Value(nameof(Energy), Value);
+            store.Value(nameof(Energy) + nameof(Regeneration), Regeneration);
         }
 
         public void OnGameLoad(EntityStorage store)
         {
-            Value = store.GetFloat(nameof(Energy), Value);
-            Regeneration = store.GetFloat(nameof(Energy) + nameof(Regeneration), Regeneration);
+            Value = store.ValueOf(nameof(Energy), Value);
+            Regeneration = store.ValueOf(nameof(Energy) + nameof(Regeneration), Regeneration);
         }
 
         public void Update(GameTime gameTime)

@@ -6,7 +6,7 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class MinimapTab : InventoryTab
     {
-        public MinimapTab(GameManager game) : base(game)
+        public MinimapTab(Game game) : base(game)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(5, 4));
             Content = new WidgetMinimap(game);

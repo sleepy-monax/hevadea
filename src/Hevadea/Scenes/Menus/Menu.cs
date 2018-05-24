@@ -4,10 +4,10 @@ namespace Hevadea.Scenes.Menus
 {
     public class Menu : Panel
     {
-        public GameManager Game;
+        public Game Game;
         public bool PauseGame { get; set; } = false;
 
-        public Menu(GameManager game)
+        public Menu(Game game)
         {
             Game = game;
         }

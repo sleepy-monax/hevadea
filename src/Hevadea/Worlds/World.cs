@@ -10,7 +10,7 @@ namespace Hevadea.Worlds
 {
     public class World
     {
-        public GameManager Game;
+        public Game Game;
         public List<Level> Levels = new List<Level>();
         public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
@@ -62,7 +62,7 @@ namespace Hevadea.Worlds
             return worldStorage;
         }
 
-        public void SpawnPlayer(EntityPlayer player)
+        public void SpawnPlayer(GameObjects.Entities.Player player)
         {
             var level = GetLevel(PlayerSpawnLevel);
             level.AddEntityAt(player, level.Width / 2, level.Height / 2);
@@ -110,7 +110,7 @@ namespace Hevadea.Worlds
             return null;
         }
 
-        public void Initialize(GameManager game)
+        public void Initialize(Game game)
         {
             Game = game;
             foreach (var l in Levels) l.Initialize(this, game);

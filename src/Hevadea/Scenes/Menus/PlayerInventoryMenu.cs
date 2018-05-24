@@ -20,9 +20,9 @@ namespace Hevadea.Scenes.Menus
 {
     public abstract class InventoryTab : Tab
     {
-        public GameManager Game { get; }
+        public Game Game { get; }
 
-        public InventoryTab(GameManager game)
+        public InventoryTab(Game game)
         {
             Game = game;
         }
@@ -33,7 +33,7 @@ namespace Hevadea.Scenes.Menus
         WidgetItemContainer _inventory;
         CraftingTab _crafting;
       
-        public PlayerInventoryMenu(GameManager game) : base(game)
+        public PlayerInventoryMenu(Game game) : base(game)
         {
             InitializeComponents();
         }
@@ -43,7 +43,7 @@ namespace Hevadea.Scenes.Menus
             PauseGame = true;
 
             var r = new List<List<Recipe>>();
-            foreach (var e in Game.MainPlayer.Level.GetEntitiesOnArea(Game.MainPlayer.X, Game.MainPlayer.Y, GLOBAL.Unit * 3))
+            foreach (var e in Game.MainPlayer.Level.GetEntitiesOnArea(Game.MainPlayer.X, Game.MainPlayer.Y, Game.Unit * 3))
             {
                 var s = e.GetComponent<CraftingStation>();
                 if (s != null)

@@ -50,7 +50,7 @@ namespace Hevadea.Scenes.Menus.Tabs
     {
         public ListWidget CraftingList { get; }
 
-        public CraftingTab(GameManager game, List<Recipe> recipies = null) : base(game)
+        public CraftingTab(Game game, List<Recipe> recipies = null) : base(game)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(4, 2));
             CraftingList = new ListWidget

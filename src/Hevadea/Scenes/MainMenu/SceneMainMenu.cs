@@ -76,10 +76,10 @@ namespace Hevadea.Scenes.MainMenu
                     Origine = Anchor.Top, }
                 .RegisterMouseClickEvent((sender) =>
                 {
-                    var generatorTask = TaskFactorie.NewWorld(GLOBAL.GetSavePath() + $"world/", GENERATOR.DEFAULT, Rise.Rnd.NextInt());
+                    var generatorTask = TaskFactorie.NewWorld(Game.GetSaveFolder() + $"world/", GENERATOR.DEFAULT, Rise.Rnd.NextInt());
                     generatorTask.LoadingFinished += (s, e) =>
                     {
-                        GameManager game = (GameManager)((LoadingTask)s).Result;
+                        Game game = (Game)((LoadingTask)s).Result;
                         game.Initialize();
                         Rise.Scene.Switch(new SceneGameplay(game));
                     };
@@ -104,7 +104,7 @@ namespace Hevadea.Scenes.MainMenu
             if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
             {
                 var loadWorldTask = TaskFactorie.LoadWorld(File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame"));
-                loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((GameManager)((LoadingTask)task).Result));
+                loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((LoadingTask)task).Result));
                 Rise.Scene.Switch(new LoadingScene(loadWorldTask));
             }
         }

@@ -17,10 +17,10 @@ namespace Hevadea.Loading
                 reporter.RepportStatus("Generating world...");
                 generator.Seed = seed;
 
-                GameManager game = new GameManager
+                Game game = new Game
                 {
                     SavePath = path,
-                    MainPlayer = (EntityPlayer)EntityFactory.PLAYER.Construct(),
+                    MainPlayer = (Player)EntityFactory.PLAYER.Construct(),
                     World = generator.Generate(reporter)
                 };
 
@@ -28,12 +28,23 @@ namespace Hevadea.Loading
             });
         }
 
-        public static LoadingTask SaveWorld(GameManager game, string savePath = null)
+        public static LoadingTask ConnectToServer(string ip, int port)
+        {
+            return new LoadingTask((task, reporter) =>
+            {
+                var game = new Game();
+                game.Connect(ip, port, reporter);
+                game.Initialize();
+                task.Result = game;
+            });
+        }
+
+        public static LoadingTask SaveWorld(Game game, string savePath = null)
         {
             return new LoadingTask((task, reporter) =>
             {
                 SetLastGame(savePath ?? game.SavePath);
-                game.SaveAsync(savePath ?? game.SavePath, reporter);
+                game.Save(savePath ?? game.SavePath, reporter);
             });
         }
 
@@ -41,7 +52,7 @@ namespace Hevadea.Loading
         {
             return new LoadingTask((task, reporter)=>
             {
-                GameManager game = GameManager.Load(path, reporter);
+                Game game = Game.Load(path, reporter);
                 game.Initialize();
                 task.Result = game;
             });

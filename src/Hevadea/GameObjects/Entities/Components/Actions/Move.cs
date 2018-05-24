@@ -62,8 +62,8 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             }
 
             // Stop the entity on world borders.
-            if (Owner.X + sx >= Owner.Level.Width * GLOBAL.Unit) sx = 0;
-            if (Owner.Y + sy >= Owner.Level.Height * GLOBAL.Unit) sy = 0;
+            if (Owner.X + sx >= Owner.Level.Width * Game.Unit) sx = 0;
+            if (Owner.Y + sy >= Owner.Level.Height * Game.Unit) sy = 0;
 
             if (Owner.X + sx < 0) sx = 0;
             if (Owner.Y + sy < 0) sy = 0;

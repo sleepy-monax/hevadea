@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Hevadea.Framework.Threading;
+using System;
 using System.Threading;
-using Hevadea.Framework.Threading;
 
 namespace Hevadea.Loading
 {
@@ -18,24 +16,24 @@ namespace Hevadea.Loading
         public event EventHandler<Exception> LoadingException;
 
         public Object Result { get; set; }
-		public ProgressRepporter ProgressRepporter { get; private set; }
+        public ProgressRepporter ProgressRepporter { get; private set; }
         public bool Started { get; private set; } = false;
   
-		public LoadingTask(LoadingTaskJob task)
+        public LoadingTask(LoadingTaskJob task)
         {
-			ProgressRepporter = new ProgressRepporter();
-			_thread = new Thread(() => 
-			{
-				task(this, ProgressRepporter);
-				LoadingFinished?.Invoke(this, EventArgs.Empty);
-			});
+            ProgressRepporter = new ProgressRepporter();
+            _thread = new Thread(() => 
+            {
+                task(this, ProgressRepporter);
+                LoadingFinished?.Invoke(this, EventArgs.Empty);
+            });
         }
         
         public void Start()
         {
             if (!Started)
             {
-				_thread.Start();
+                _thread.Start();
                 Started = true;
             }
         }
@@ -46,7 +44,7 @@ namespace Hevadea.Loading
             {
                 _thread.Abort();
                 Started = false;
-				LoadingAborted?.Invoke(this, EventArgs.Empty);
+                LoadingAborted?.Invoke(this, EventArgs.Empty);
             }
         }
     }

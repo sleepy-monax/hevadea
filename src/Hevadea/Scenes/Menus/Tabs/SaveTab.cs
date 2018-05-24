@@ -15,7 +15,7 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class SaveTab : Tab
     {
-        public SaveTab(GameManager game)
+        public SaveTab(Game game)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(3, 2));
 
@@ -34,26 +34,32 @@ namespace Hevadea.Scenes.Menus.Tabs
                 }
             };
             
-			container.AddChild(new Button { Text = "Quick save", Padding = new BoxElement(4) })
+            container.AddChild(new Button { Text = "Quick save", Padding = new BoxElement(4) })
             .RegisterMouseClickEvent((sender) =>
             {
-				LoadingTask saveTask = TaskFactorie.SaveWorld(game);
-				saveTask.LoadingFinished += (_, e) => { game.CurrentMenu = new MenuInGame(game); };
+                LoadingTask saveTask = TaskFactorie.SaveWorld(game);
+                saveTask.LoadingFinished += (_, e) => { game.CurrentMenu = new MenuInGame(game); };
                 game.CurrentMenu = new LoadingMenu(saveTask , game);
             });
-            
-			container.AddChild(new Button { Text = "Save and Exit", Padding = new BoxElement(4) })
+
+            container.AddChild(new Button { Text = "START SERVER", Padding = new BoxElement(4) })
             .RegisterMouseClickEvent((sender) =>
             {
-				var saveTask = TaskFactorie.SaveWorld(game);
-				saveTask.LoadingFinished += (_, e) => { Rise.Scene.Switch(new SceneMainMenu()); };
-				game.CurrentMenu = new LoadingMenu(saveTask, game);
+                game.StartServer("127.0.0.1", 7777, 32);
+            });
+
+            container.AddChild(new Button { Text = "Save and Exit", Padding = new BoxElement(4) })
+            .RegisterMouseClickEvent((sender) =>
+            {
+                var saveTask = TaskFactorie.SaveWorld(game);
+                saveTask.LoadingFinished += (_, e) => { Rise.Scene.Switch(new SceneMainMenu()); };
+                game.CurrentMenu = new LoadingMenu(saveTask, game);
             });
 
             container.AddChild(new Button
             {
                 Text = "Exit",
-				Padding = new BoxElement(4)
+                Padding = new BoxElement(4)
             })
                 .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneMainMenu()); });
         }

@@ -25,7 +25,7 @@ namespace Hevadea.GameObjects.Entities.Components
             if (_hasExplosed) return;
             _hasExplosed = true;
 
-            var entities = Owner.Level.GetEntitiesOnArea(Owner.X, Owner.Y, _radius * GLOBAL.Unit);
+            var entities = Owner.Level.GetEntitiesOnArea(Owner.X, Owner.Y, _radius * Game.Unit);
             Owner.Game.Camera.Thrauma += 0.2f;
 
             foreach (var e in entities)
@@ -58,11 +58,11 @@ namespace Hevadea.GameObjects.Entities.Components
                     var tile = Owner.Level.GetTile(tilePos);
                     var distance = Mathf.Distance(tilePos.WorldX, tilePos.WorldY, Owner.X, Owner.Y);
 
-                    if (distance < _radius * GLOBAL.Unit)
+                    if (distance < _radius * Game.Unit)
                     {
                         tile.Tag<DamageTile>()?.Hurt(GetDammage(distance) * Rise.Rnd.NextFloat(), tilePos, Owner.Level);
 
-                        if (Rise.Rnd.NextDouble() * 1.25 < 1f - (distance / (_radius * GLOBAL.Unit)))
+                        if (Rise.Rnd.NextDouble() * 1.25 < 1f - (distance / (_radius * Game.Unit)))
                         {
                             tile.Tag<BreakableTile>()?.Break(tilePos, Owner.Level);
                         }
@@ -73,7 +73,7 @@ namespace Hevadea.GameObjects.Entities.Components
 
         private float GetPower(float distance)
         {
-            return (1f - (distance / (_radius * GLOBAL.Unit)));
+            return (1f - (distance / (_radius * Game.Unit)));
         }
 
         public float GetDammage(float distance)
