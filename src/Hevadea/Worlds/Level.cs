@@ -287,12 +287,10 @@ namespace Hevadea.Worlds
             spriteBatch.Draw(Ressources.ImgLight, x - power, y - power, power * 2, power * 2, color);
         }
 
-        /* --- Save & Load ------------------------------------------------- */
+        /* --- Save & Load -------------------------------------------------- */
 
         public static Level Load(LevelStorage store)
         {
-            // TODO: Fallback when 'store == null'.
-
             return new Level(LEVELS.GetProperties(store.Type), store.Width, store.Height)
             {
                 Id = store.Id,
@@ -313,7 +311,7 @@ namespace Hevadea.Worlds
             };
         }
 
-        /* --- Chunks ------------------------------------------------------ */
+        /* --- Chunks ------------------------------------------------------- */
 
         public Chunk GetChunkAt(TilePosition t) => GetChunkAt(t.X, t.Y);
         public Chunk GetChunkAt(int tx, int ty)
@@ -322,7 +320,7 @@ namespace Hevadea.Worlds
             return Chunks[tx / Chunk.CHUNK_SIZE, ty / Chunk.CHUNK_SIZE];
         }
 
-        /* --- Tiles ------------------------------------------------------- */
+        /* --- Tiles -------------------------------------------------------- */
 
         public Tile GetTile(TilePosition t) => GetTile(t.X, t.Y);
         public Tile GetTile(int tx, int ty)
@@ -388,7 +386,7 @@ namespace Hevadea.Worlds
             return result;
         }
 
-        /* --- Tile data --------------------------------------------------- */
+        /* --- Tile data ---------------------------------------------------- */
 
         public Dictionary<string, object> GetTileDataAt(TilePosition t) => GetTileDataAt(t.X, t.Y);
         public Dictionary<string, object> GetTileDataAt(int tx, int ty)
@@ -433,7 +431,7 @@ namespace Hevadea.Worlds
             GetTileDataAt(tx, ty)?.Clear();
         }
 
-        /* --- Tile Connections -------------------------------------------- */
+        /* --- Tile Connections --------------------------------------------- */
 
         public TileConnection GetTileConnection(TilePosition t) => GetTileConnection(t.X, t.Y);
         public TileConnection GetTileConnection(int tx, int ty)
@@ -459,7 +457,7 @@ namespace Hevadea.Worlds
             }
         }
 
-        /* --- Entities ---------------------------------------------------- */
+        /* --- Entities ----------------------------------------------------- */
 
         public void AddEntity(Entity e)
         {

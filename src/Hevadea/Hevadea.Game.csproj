@@ -150,11 +150,14 @@
     <Compile Include="Loading\LoadingScene.cs" />
     <Compile Include="Loading\LoadingTask.cs" />
     <Compile Include="Loading\TaskFactorie.cs" />
+    <Compile Include="Multiplayer\HostGame.cs" />
+    <Compile Include="Multiplayer\Packets.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="Registry\GENERATOR.cs" />
     <Compile Include="Registry\LEVELS.cs" />
     <Compile Include="Registry\RECIPIES.cs" />
     <Compile Include="Registry\REGISTRY.cs" />
+    <Compile Include="Multiplayer\RemoteGame.cs" />
     <Compile Include="Scenes\GuiFactory.cs" />
     <Compile Include="Scenes\GuiHelper.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabOption.cs" />

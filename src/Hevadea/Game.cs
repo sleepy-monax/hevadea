@@ -5,6 +5,7 @@ using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
+using Hevadea.Multiplayer;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
 using Hevadea.Worlds;
@@ -29,13 +30,12 @@ namespace Hevadea
         }
 
 
-        public bool IsClient => Client != null;
-        public bool IsServer => Server != null;
-        public bool IsLocal => Client == null && Server == null;
-        public bool IsMaster => !IsLocal;
+        public bool IsClient => this is RemoteGame;
+        public bool IsServer => this is HostGame;
 
-        public Client Client;
-        public Server Server;
+        public bool IsLocal => !IsClient && !IsServer;
+
+        public bool IsMaster => IsLocal || IsServer; 
 
         Menu _currentMenu;
         LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
@@ -121,7 +121,7 @@ namespace Hevadea
             Client.Connect(address, port, 16);
 
             progressRepporter.RepportStatus($"Login in...");
-            Client.Send(ConstructLOGIN("testplayer", "{}"));
+            Client.Send(Packets.Login("testplayer", "{}"));
 
 
             new  PacketBuilder(Client.Wait()).Ignore(sizeof(int)).ReadInteger(out var token);
@@ -136,156 +136,68 @@ namespace Hevadea
         {
             if (IsLocal)
             {
-                Server = new Server(address, port, true);
-                var dispacher = new PacketDispacher<PacketType>(Server);
-                dispacher.RegisterHandler(PacketType.LOGIN, HandleLOGIN);
+                
 
-                Server.Start(25, slots);
             }
         }
 
         // --- Construct and handle packets --------------------------------- // 
 
-        public enum PacketType
-        {
-            NULL, LOGIN, TOKEN, WORLD, LEVEL, CHUNK, ACKNOWLEDGMENT, JOINT
-        }
-
         // LOGIN ===============================================================
-        public static byte[] ConstructLOGIN(string playerName, string gameInfo)
-            => ConstructLOGIN(playerName, 0, gameInfo);
 
-        public static byte[] ConstructLOGIN(string playerName, int token, string gameInfo)
-            => new PacketBuilder()
-                .WriteInteger((int)PacketType.LOGIN)
-                .WriteStringUTF8(playerName)
-                .WriteInteger(token)
-                .WriteStringUTF8(gameInfo)
-                .Buffer;
 
-        public static byte[] ConstructTOKEN(int token)
-            => new PacketBuilder()
-                .WriteInteger((int)PacketType.TOKEN)
-                .WriteInteger(token)
-                .Buffer;
-
-        public void HandleLOGIN(Socket socket, byte[] data )
-        {
-            var client = Server.GetClientFrom(socket);
-
-            new PacketBuilder(data)
-                .Ignore(sizeof(int))
-                .ReadStringUTF8(out var userName)
-                .ReadInteger(out var token)
-                .ReadStringUTF8(out var gameInfo);
-
-            Logger.Log<Game>($"User '{userName}' login with token '{token}'...");
-
-            if (token == 0)
-            {
-                token = Rise.Rnd.NextInt();
-                Logger.Log<Game>($"{userName}' token is now {token}!");
-            }
-
-            client.Send(ConstructTOKEN(token));
-            SendWorld(client);
-
-            var newPlayer = (Player)EntityFactory.PLAYER.Construct();
-            World.SpawnPlayer(newPlayer);
-            client.Send(ConstructJOIN(newPlayer));
-        }
 
         // WORLD ===============================================================
 
-        public byte[] ConstructWORLD()
-            => new PacketBuilder()
-                .WriteInteger((int)PacketType.WORLD)
-                .WriteStringUTF8(World.Save().ToJson()).Buffer;
 
-        public byte[] ConstructLEVEL(Level level)
-            => new PacketBuilder()
-                .WriteInteger((int)PacketType.LEVEL)
-                .WriteStringUTF8(level.Save().ToJson()).Buffer;
-
-        public byte[] ConstructCHUNK(Chunk chunk)
-            => new PacketBuilder()
-                .WriteInteger((int)PacketType.CHUNK)
-                .WriteStringUTF8(chunk.Save().ToJson()).Buffer;
-
-        public void HandleWORLD(Socket socket, byte[] data)
-        {
-            new PacketBuilder(data)
-                .Ignore(sizeof(int))
-                .ReadStringUTF8(out var worldJson);
-
-            WorldStorage worldStorage = worldJson.FromJson<WorldStorage>();
-            World = World.Load(worldStorage);
-        }
-
-        public void HandleLEVEL(Socket socket, byte[] data)
-        {
-            new PacketBuilder(data)
-                .Ignore(sizeof(int))
-                .ReadStringUTF8(out var levelJson);
-
-            LevelStorage levelStorage = levelJson.FromJson<LevelStorage>();
-
-            Logger.Log<Game>($"Loading {levelStorage.Name}...");
-            Level level = Level.Load(levelStorage);
-
-            World.Levels.Add(level);
-        }
-
-        public void HandleCHUNK(Socket socket, byte[] data)
-        {
-            new PacketBuilder(data)
-                .Ignore(sizeof(int))
-                .ReadStringUTF8(out var chunkJson);
-
-            ChunkStorage chunkStorage = chunkJson.FromJson<ChunkStorage>();
-
-            Logger.Log<Game>($"Loading chunk: {chunkStorage.Level}:{chunkStorage.X}-{chunkStorage.Y} ...");
-            Chunk chunk = Chunk.Load(chunkStorage);
-
-            World.GetLevel(chunkStorage.Level).Chunks[chunkStorage.X, chunkStorage.Y] = chunk;
-        }
+        
 
         public void SendWorld(ConnectedClient client)
         {
-            client.Send(ConstructWORLD());
+            client.Send(Packets.World(World));
 
-            foreach (var l in World.Levels)
+            foreach (var level in World.Levels)
             {
-                client.Send(ConstructLEVEL(l));
+                client.Send(Packets.Level(level));
 
-                foreach (var c in l.Chunks)
+                foreach (var chunk in level.Chunks)
                 {
-                    var progress = (c.X * l.Chunks.GetLength(1) + c.Y) / (float)l.Chunks.Length;
+                    var progress = (chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length;
 
-                    Logger.Log<Game>($"Sending '{l.Name}' {(int)(progress * 100)}%");
-                    client.Send(ConstructCHUNK(c));
+                    Logger.Log<Game>($"Sending '{level.Name}' {(int)(progress * 100)}%");
+                    client.Send(Packets.Chunk(chunk));
                 }
             }
         }
 
         // JOINT THE PLAYER ====================================================
 
-        public byte[] ConstructJOIN(Player player)
-        => new PacketBuilder()
-            .WriteInteger((int)PacketType.JOINT)
-            .WriteStringUTF8(player.Save().ToJson()).Buffer;
 
-        private bool _jointed = false;
 
-        public void HandleJOINT(Socket socket, byte[] data)
+        // SYNC ================================================================
+
+        public void HandleTILE(Socket socket, byte[] data)
         {
             new PacketBuilder(data)
                 .Ignore(sizeof(int))
-                .ReadStringUTF8(out var playerJson);
+                .ReadInteger(out var levelId)
+                .ReadInteger(out var x)
+                .ReadInteger(out var y)
+                .ReadStringUTF8(out var tileName);
 
-            Player player = (Player)EntityFactory.PLAYER.Construct().Load(playerJson.FromJson<EntityStorage>());
-            MainPlayer = player;
-            _jointed = true;
+            World.GetLevel(levelId).SetTile(x, y, TILES.GetTile(tileName));
+        }
+
+        public void HandleTILEDATA(Socket socket, byte[] data)
+        {
+            new PacketBuilder(data)
+                .Ignore(sizeof(int))
+                .ReadInteger(out var levelId)
+                .ReadInteger(out var x)
+                .ReadInteger(out var y)
+                .ReadStringUTF8(out var tiledataJson);
+
+            World.GetLevel(levelId).SetTileDataAt(x, y, tiledataJson.FromJson<Dictionary<string, object>>() ?? new Dictionary<string, object>());
         }
 
         // --- Save and load ------------------------------------------------ // 
