@@ -31,7 +31,7 @@ namespace Hevadea.Framework.UI
         public Rectangle UnitBound { get; set; } = new Rectangle(0, 0, 64, 64);
         public Rectangle UnitHost { get { return Padding.Apply(UnitBound); } }
         public Point UnitOffset { get; set; } = Point.Zero;
-		public BoxElement Padding { get; set; } = new BoxElement(0);
+		public Margins Padding { get; set; } = new Margins(0);
 
         public Anchor Anchor { get; set; } = Anchor.TopLeft;
         public Anchor Origine { get; set; } = Anchor.TopLeft;

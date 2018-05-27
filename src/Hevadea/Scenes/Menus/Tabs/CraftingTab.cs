@@ -33,8 +33,8 @@ namespace Hevadea.Scenes.Menus.Tabs
         public override void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime)
         {
             Color color = Color.White * (_recipe.CanBeCrafted(_storage) ? 1f : 0.5f);
-            _recipe.Result.GetSprite().Draw(spriteBatch, new BoxElement((int)(8 * Rise.Ui.ScaleFactor)).Apply(new Rectangle(host.Location, new Point(host.Height))), color);
-            spriteBatch.DrawString(Ressources.FontRomulus, $"{_recipe.Result.GetName()} x{_recipe.Quantity}", new BoxElement(0, host.Height / 2, host.Height, 0).Apply(host), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, color, Rise.Ui.ScaleFactor);
+            _recipe.Result.GetSprite().Draw(spriteBatch, new Margins((int)(8 * Rise.Ui.ScaleFactor)).Apply(new Rectangle(host.Location, new Point(host.Height))), color);
+            spriteBatch.DrawString(Ressources.FontRomulus, $"{_recipe.Result.GetName()} x{_recipe.Quantity}", new Margins(0, host.Height / 2, host.Height, 0).Apply(host), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, color, Rise.Ui.ScaleFactor);
 
             for (var i = 0; i < _recipe.Costs.Count; i++)
             {

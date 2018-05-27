@@ -60,7 +60,7 @@ namespace Hevadea.Loading
                     new WidgetFancyPanel
                     {
                         UnitBound = new Rectangle(0, 0, 840, 256),
-                        Padding = new BoxElement(16),
+                        Padding = new Margins(16),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Center,
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,

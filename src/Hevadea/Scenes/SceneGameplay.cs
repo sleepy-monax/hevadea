@@ -16,7 +16,7 @@ namespace Hevadea.Scenes
             Game.CurrentMenuChange += Game_CurrentMenuChange;
             Container = new Panel
             {
-                Padding = new BoxElement(0)
+                Padding = new Margins(0)
             };
         }
 

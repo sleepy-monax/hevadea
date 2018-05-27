@@ -32,8 +32,8 @@ namespace Hevadea.Loading
         {
             return new LoadingTask((task, reporter) =>
             {
-                var game = new Game();
-                game.Connect(ip, port, reporter);
+                var game = new RemoteGame(ip, port);
+                game.Connect();
                 game.Initialize();
                 task.Result = game;
             });

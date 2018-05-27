@@ -21,8 +21,8 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         public TabMultiplayerConnect()
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(1, 3));
-            connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new BoxElement(8) };
-            connectPortTextBox = new SingleLineTextBoxWidget(24, "7777", Ressources.FontRomulus) { Padding = new BoxElement(8) };
+            connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new Margins(8) };
+            connectPortTextBox = new SingleLineTextBoxWidget(24, "7777", Ressources.FontRomulus) { Padding = new Margins(8) };
             var connectButton = new Button { Text = "Connect", Dock = Dock.Bottom }
                 .RegisterMouseClickEvent(Connect);
 
@@ -32,9 +32,9 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Dock = Dock.Fill,
                 Childrens =
                 {
-                    new Label { Text = "IP:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "IP:", Padding = new Margins(8), TextAlignement = DrawText.Alignement.Left},
                     connectIpTextBox,
-                    new Label { Text = "Port:", Padding = new BoxElement(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "Port:", Padding = new Margins(8), TextAlignement = DrawText.Alignement.Left},
                     connectPortTextBox,
                 }
             };

@@ -10,7 +10,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 {
     public class BspDecorator : LevelFeature
     {
-		public BoxElement Padding { get; set; } = new BoxElement(4);
+		public Margins Padding { get; set; } = new Margins(4);
         public int Depth { get; set; } = 3;
 
         public override string GetName() => "Generating bsp";

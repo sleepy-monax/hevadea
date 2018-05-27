@@ -30,7 +30,7 @@ namespace Hevadea.Scenes.Widgets
                                                            9 + (TabAnchore == TabAnchore.Left   ? 96 : 0),
                                                            9 + (TabAnchore == TabAnchore.Right  ? 96 : 0)); 
 
-        private Rectangle _clientAreaBound => new BoxElement((TabAnchore == TabAnchore.Top ? 96 : 0),
+        private Rectangle _clientAreaBound => new Margins((TabAnchore == TabAnchore.Top ? 96 : 0),
                                                   (TabAnchore == TabAnchore.Bottom ? 96 : 0),
                                                   (TabAnchore == TabAnchore.Left ? 96 : 0),
                                                   (TabAnchore == TabAnchore.Right ? 96 : 0)).Apply(UnitBound);
