@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -28,10 +29,10 @@ namespace Hevadea.Framework.UI
             Left = Right = horizontal;
         }
 
-        public Margins(int up, int down, int left, int right)
+        public Margins(int top, int bottom, int left, int right)
         {
-            Top = up;
-            Bottom = down;
+            Top = top;
+            Bottom = bottom;
             Left = left;
             Right = right;
         }
@@ -39,6 +40,17 @@ namespace Hevadea.Framework.UI
         public Rectangle Apply(Rectangle rect)
         {
             return new Rectangle(rect.X + Left, rect.Y + Top, rect.Width - Left - Right, rect.Height - Top - Bottom);
+        }
+
+        public static Margins Lerp(Margins from, Margins to, float v)
+        {
+            v = Mathf.Clamp01(v);
+
+
+            return new Margins((int)Mathf.Lerp(from.Top, to.Top, v),
+                               (int)Mathf.Lerp(from.Bottom, to.Bottom, v),
+                               (int)Mathf.Lerp(from.Left, to.Left, v),
+                               (int)Mathf.Lerp(from.Right, to.Right, v));
         }
     }
 
@@ -54,6 +66,12 @@ namespace Hevadea.Framework.UI
         {
             Margins = margins;
             Color = color;
+        }
+
+        public static Border Lerp(Border from, Border to, float v)
+        {
+            v = Mathf.Clamp01(v);
+            return new Border(Margins.Lerp(from.Margins, to.Margins, v), Color.Lerp(from.Color, to.Color, v));
         }
     }
 
@@ -82,7 +100,6 @@ namespace Hevadea.Framework.UI
         public void Draw(SpriteBatch spriteBatch, Rectangle destination)
         {
             // Margin
-        
             destination = Margin.Apply(destination);
 
             // Borders
