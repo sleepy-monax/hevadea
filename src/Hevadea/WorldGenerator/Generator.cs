@@ -22,18 +22,18 @@ namespace Hevadea.WorldGenerator
             Random = new Random(Seed);
             Perlin = new PerlinNoise(Seed);
 
-			foreach (var levelGenerator in LevelsGenerators)
+            foreach (var levelGenerator in LevelsGenerators)
             {
-				reporter.RepportStatus($"Generating {levelGenerator.Name}...");
-                
-		        Level level = new Level(levelGenerator.Properties, Size, Size) { Id = levelGenerator.Id, Name = levelGenerator.Name };
+                reporter.RepportStatus($"Generating {levelGenerator.Name}...");
+
+                Level level = new Level(levelGenerator.Properties, Size, Size) { Id = levelGenerator.Id, Name = levelGenerator.Name };
 
                 for (int i = 0; i < levelGenerator.Features.Count; i++)
-				{
-					var f = levelGenerator.Features[i];
-					reporter.Report(i / (float)levelGenerator.Features.Count);
+                {
+                    var f = levelGenerator.Features[i];
+                    reporter.Report(i / (float)levelGenerator.Features.Count);
                     f.Apply(this, levelGenerator, level);
-				}
+                }
 
                 w.AddLevel(level);
             }

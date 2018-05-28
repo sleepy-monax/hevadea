@@ -16,11 +16,11 @@ namespace Hevadea.Scenes.Menus.Tabs
             {
                 Childrens =
                 {
-                    new Label 
-					{
-						Text = "Equipment",
-						Font = Ressources.FontAlagard,
-						Dock = Dock.Top },
+                    new Label
+                    {
+                        Text = "Equipment",
+                        Font = Ressources.FontAlagard,
+                        Dock = Dock.Top },
                 }
             };
         }

@@ -40,7 +40,7 @@ namespace Hevadea.GameObjects.Entities
                 if (c is IEntityComponentSaveLoad s)
                     s.OnGameSave(store);
             OnSave(store);
-            
+
             return store;
         }
 
@@ -58,7 +58,7 @@ namespace Hevadea.GameObjects.Entities
 
             OnLoad(store);
 
-			return this;
+            return this;
         }
 
         public void Remove()

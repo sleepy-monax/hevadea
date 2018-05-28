@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Networking;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
@@ -13,7 +12,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Sockets;
 
 namespace Hevadea
 {
@@ -29,16 +27,15 @@ namespace Hevadea
             return Rise.Platform.GetStorageFolder() + "/Saves/";
         }
 
-
         public bool IsClient => this is RemoteGame;
         public bool IsServer => this is HostGame;
 
         public bool IsLocal => !IsClient && !IsServer;
 
-        public bool IsMaster => IsLocal || IsServer; 
+        public bool IsMaster => IsLocal || IsServer;
 
-        Menu _currentMenu;
-        LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
+        private Menu _currentMenu;
+        private LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
 
         public string SavePath { get; set; } = "./test/";
 
@@ -48,13 +45,14 @@ namespace Hevadea
 
         public List<Player> Players { get; } = new List<Player>();
         public PlayerInputHandler PlayerInput { get; set; }
-        
+
         public Menu CurrentMenu { get => _currentMenu; set { CurrentMenuChange?.Invoke(_currentMenu, value); _currentMenu = value; } }
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
+
         public event CurrentMenuChangeHandler CurrentMenuChange;
 
-        // --- Initialize, Update and Draw ---------------------------------- // 
+        // --- Initialize, Update and Draw ---------------------------------- //
 
         public void Initialize()
         {
@@ -87,10 +85,9 @@ namespace Hevadea
 
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
             MainPlayer.Level.Update(gameTime);
-
         }
 
-        // --- Path generator ----------------------------------------------- // 
+        // --- Path generator ----------------------------------------------- //
 
         public string GetSavePath()
             => $"{SavePath}/";
@@ -104,8 +101,7 @@ namespace Hevadea
         public string GetLevelMinimapDataPath(Level level)
             => $"{SavePath}/{level.Name}/minimap.json";
 
-
-        // --- Save and load ------------------------------------------------ // 
+        // --- Save and load ------------------------------------------------ //
 
         public static Game Load(string saveFolder, ProgressRepporter progressRepporter)
         {
@@ -120,7 +116,6 @@ namespace Hevadea
             World world = World.Load(worldStorage);
             Entity player = EntityFactory.PLAYER.Construct().Load(File.ReadAllText(path + "player.json").FromJson<EntityStorage>());
 
-
             foreach (var levelName in worldStorage.Levels)
             {
                 world.Levels.Add(LoadLevel(game, levelName, progressRepporter));
@@ -132,7 +127,7 @@ namespace Hevadea
             return game;
         }
 
-        public static Level LoadLevel(Game game, string levelName, ProgressRepporter progressRepporter )
+        public static Level LoadLevel(Game game, string levelName, ProgressRepporter progressRepporter)
         {
             string levelPath = $"{game.GetSavePath()}{levelName}/";
             Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
@@ -181,7 +176,6 @@ namespace Hevadea
             {
                 SaveLevel(level, progressRepporter);
             }
-
 
             File.WriteAllText(GetSavePath() + "world.json", World.Save().ToJson());
             File.WriteAllText(GetSavePath() + "player.json", MainPlayer.Save().ToJson());

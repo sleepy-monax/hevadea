@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Networking;
-using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.GameObjects;
@@ -41,10 +40,8 @@ namespace Hevadea
 
             Client.Send(Packets.Login("testplayer", "{}"));
 
-
             new PacketBuilder(Client.Wait()).Ignore(sizeof(int)).ReadInteger(out var token);
             Logger.Log<Game>($"Recived token {token} from server.");
-
 
             while (!_jointed) ;
         }

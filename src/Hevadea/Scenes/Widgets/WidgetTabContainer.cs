@@ -25,10 +25,10 @@ namespace Hevadea.Scenes.Widgets
         private Sprite _tab;
         private Sprite _tabSelected;
 
-        private Rectangle _clientArea => UnitBound.Padding(9 + (TabAnchore == TabAnchore.Top    ? 96 : 0),
+        private Rectangle _clientArea => UnitBound.Padding(9 + (TabAnchore == TabAnchore.Top ? 96 : 0),
                                                            9 + (TabAnchore == TabAnchore.Bottom ? 96 : 0),
-                                                           9 + (TabAnchore == TabAnchore.Left   ? 96 : 0),
-                                                           9 + (TabAnchore == TabAnchore.Right  ? 96 : 0)); 
+                                                           9 + (TabAnchore == TabAnchore.Left ? 96 : 0),
+                                                           9 + (TabAnchore == TabAnchore.Right ? 96 : 0));
 
         private Rectangle _clientAreaBound => new Margins((TabAnchore == TabAnchore.Top ? 96 : 0),
                                                   (TabAnchore == TabAnchore.Bottom ? 96 : 0),
@@ -116,9 +116,7 @@ namespace Hevadea.Scenes.Widgets
 
             SelectedTab?.Content?.DrawIternal(spriteBatch, gameTime);
 
-
             GuiHelper.DrawBox(spriteBatch, Scale(_clientAreaBound), size);
-            
 
             var onScreenIndex = 0;
             foreach (var t in Tabs)
@@ -131,8 +129,6 @@ namespace Hevadea.Scenes.Widgets
                         _tab.Draw(spriteBatch, tabBound, Color.White);
                     t.Icon?.Draw(spriteBatch, GetTabIconBound(onScreenIndex, false), Color.White);
                 }
-
-
 
                 onScreenIndex++;
             }

@@ -17,7 +17,7 @@ namespace Hevadea.Loading
 
         private Label _progressLabel;
         private ProgressBar _progressBar;
-        
+
         public LoadingMenu(LoadingTask task, Game game) : base(game)
         {
             _task = task;
@@ -77,7 +77,7 @@ namespace Hevadea.Loading
                 }
             };
 
-            _task.LoadingFinished += (sender, e) => 
+            _task.LoadingFinished += (sender, e) =>
             {
                 game.CurrentMenu = new MenuInGame(game);
             };

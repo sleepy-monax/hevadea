@@ -25,12 +25,11 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
             .RegisterMouseClickEvent((sender) =>
             {
-            
                 if (!int.TryParse(worldSeedtextBox.Text.String, out var seed))
                 {
                     seed = worldSeedtextBox.Text.String.GetHashCode();
                 }
-                
+
                 var generatorTask = TaskFactorie.NewWorld(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", GENERATOR.DEFAULT, seed);
                 generatorTask.LoadingFinished += (s, e) =>
                 {

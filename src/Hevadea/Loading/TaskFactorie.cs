@@ -1,9 +1,8 @@
 ﻿using Hevadea.Framework;
-using Hevadea.WorldGenerator;
-using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects;
+using Hevadea.GameObjects.Entities;
+using Hevadea.WorldGenerator;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Hevadea.Loading
 {
@@ -50,7 +49,7 @@ namespace Hevadea.Loading
 
         public static LoadingTask LoadWorld(string path)
         {
-            return new LoadingTask((task, reporter)=>
+            return new LoadingTask((task, reporter) =>
             {
                 Game game = Game.Load(path, reporter);
                 game.Initialize();

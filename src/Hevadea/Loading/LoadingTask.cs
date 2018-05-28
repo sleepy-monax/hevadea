@@ -6,29 +6,30 @@ namespace Hevadea.Loading
 {
     public class LoadingTask
     {
-
-        Thread _thread;
+        private Thread _thread;
 
         public delegate void LoadingTaskJob(LoadingTask task, ProgressRepporter progressRepporter);
 
         public event EventHandler LoadingAborted;
+
         public event EventHandler LoadingFinished;
+
         public event EventHandler<Exception> LoadingException;
 
         public Object Result { get; set; }
         public ProgressRepporter ProgressRepporter { get; private set; }
         public bool Started { get; private set; } = false;
-  
+
         public LoadingTask(LoadingTaskJob task)
         {
             ProgressRepporter = new ProgressRepporter();
-            _thread = new Thread(() => 
+            _thread = new Thread(() =>
             {
                 task(this, ProgressRepporter);
                 LoadingFinished?.Invoke(this, EventArgs.Empty);
             });
         }
-        
+
         public void Start()
         {
             if (!Started)
@@ -40,7 +41,7 @@ namespace Hevadea.Loading
 
         public void Abort()
         {
-            if (Started )
+            if (Started)
             {
                 _thread.Abort();
                 Started = false;

@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
@@ -20,7 +19,7 @@ namespace Hevadea.Scenes.Widgets
         {
             if (Content != null)
             {
-				Content.UnitBound = UnitBound.Padding(32);
+                Content.UnitBound = UnitBound.Padding(32);
                 Content.RefreshLayout();
             }
         }

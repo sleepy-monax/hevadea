@@ -14,7 +14,6 @@ namespace Hevadea.Multiplayer
 
     public static class Packets
     {
-
         // LOGIN ===============================================================
         public static byte[] Login(string playerName, string gameInfo)
             => Login(playerName, 0, gameInfo);
@@ -56,7 +55,6 @@ namespace Hevadea.Multiplayer
             => new PacketBuilder()
                 .WriteInteger((int)PacketType.JOINT)
                 .WriteStringUTF8(player.Save().ToJson()).Buffer;
-
 
         // SYNC ================================================================
 

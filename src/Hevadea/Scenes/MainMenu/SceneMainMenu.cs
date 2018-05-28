@@ -70,10 +70,15 @@ namespace Hevadea.Scenes.MainMenu
 
             if (Rise.Platform.Family == PlatformFamily.Mobile)
             {
-                var generateButton = new Button { Text = "New", Dock = Dock.None, UnitBound = new Rectangle(0, 0, 256, 64),
+                var generateButton = new Button
+                {
+                    Text = "New",
+                    Dock = Dock.None,
+                    UnitBound = new Rectangle(0, 0, 256, 64),
                     UnitOffset = new Point(0, 128 + 8),
                     Anchor = Anchor.Center,
-                    Origine = Anchor.Top, }
+                    Origine = Anchor.Top,
+                }
                 .RegisterMouseClickEvent((sender) =>
                 {
                     var generatorTask = TaskFactorie.NewWorld(Game.GetSaveFolder() + $"world/", GENERATOR.DEFAULT, Rise.Rnd.NextInt());
@@ -93,8 +98,7 @@ namespace Hevadea.Scenes.MainMenu
             {
                 Container = new Container
                 {
-                    Childrens = { menu, new Label {UnitBound = new Rectangle(0,0,256,64), Text = "v0.1.0", Anchor = Anchor.BottomRight, Origine = Anchor.BottomRight, Font = Ressources.FontRomulus} },
-            
+                    Childrens = { menu, new Label { UnitBound = new Rectangle(0, 0, 256, 64), Text = "v0.1.0", Anchor = Anchor.BottomRight, Origine = Anchor.BottomRight, Font = Ressources.FontRomulus } },
                 };
             }
         }

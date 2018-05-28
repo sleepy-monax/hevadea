@@ -8,8 +8,6 @@ using Hevadea.Framework.UI.Widgets.TextBox;
 using Hevadea.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
-using System.Globalization;
-using System.IO;
 
 namespace Hevadea.Scenes.MainMenu.Tabs
 {

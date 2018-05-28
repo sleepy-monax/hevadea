@@ -13,7 +13,7 @@ namespace Hevadea.GameObjects.Entities
 {
     public class Fish : Entity
     {
-        Sprite _sprite;
+        private Sprite _sprite;
 
         public Fish()
         {
@@ -23,14 +23,14 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Breakable());
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.RAW_FISH, 1f, 1, 1) } });
-            AddComponent(new Pushable ());
-            AddComponent(new Agent    { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeedWandering = 0.5f } });
-			AddComponent(new Swim     { IsSwimingPainfull = false });
+            AddComponent(new Pushable());
+            AddComponent(new Agent { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeedWandering = 0.5f } });
+            AddComponent(new Swim { IsSwimingPainfull = false });
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-			_sprite.Draw(spriteBatch, new Vector2(X - 8f, Y - 8f), Color.White);
+            _sprite.Draw(spriteBatch, new Vector2(X - 8f, Y - 8f), Color.White);
         }
     }
 }

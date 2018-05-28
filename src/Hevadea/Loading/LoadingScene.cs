@@ -85,7 +85,7 @@ namespace Hevadea.Loading
         }
 
         public override void OnUpdate(GameTime gameTime)
-        {            
+        {
             _progressLabel.Text = _task.ProgressRepporter.Status;
             _progressBar.Value = _task.ProgressRepporter.Progress;
         }

@@ -60,7 +60,6 @@ namespace Hevadea
             ImgCreatures = Rise.Ressource.GetImage("creatures");
             ImgEntities = Rise.Ressource.GetImage("entities");
 
-
             ImgGui = Rise.Ressource.GetImage("gui");
             ImgIcons = Rise.Ressource.GetImage("icons");
             ImgItems = Rise.Ressource.GetImage("items");

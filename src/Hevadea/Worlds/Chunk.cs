@@ -17,14 +17,13 @@ namespace Hevadea.Worlds
         public Tile[,] Tiles { get; set; }
         public List<Entity> Entities { get; set; }
         public Dictionary<string, object>[,] Data { get; set; }
-                
+
         public List<Entity>[,] EntitiesOnTiles { get; set; }
         public TileConnection[,] CachedTileConnection { get; set; }
 
         public Level Level { get; set; }
 
-
-        public Chunk( int x, int y)
+        public Chunk(int x, int y)
         {
             X = x;
             Y = y;
@@ -46,7 +45,6 @@ namespace Hevadea.Worlds
             }
         }
 
-
         public void AddEntity(Entity e)
         {
             TilePosition tPos = e.GetTilePosition();
@@ -63,7 +61,6 @@ namespace Hevadea.Worlds
 
             Entities.Remove(e);
             EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Remove(e);
-
 
             e.Removed = true;
         }
@@ -103,15 +100,14 @@ namespace Hevadea.Worlds
             store.Level = Level.Id;
 
             store.Registry = TILES.GetIDToName();
-           
+
             // Saving tile
-            for (int x = 0; x < CHUNK_SIZE; x++)            
+            for (int x = 0; x < CHUNK_SIZE; x++)
                 for (int y = 0; y < CHUNK_SIZE; y++)
                 {
-                    store.Tiles[y * CHUNK_SIZE + x] = tileToId[Tiles[x, y]];                
+                    store.Tiles[y * CHUNK_SIZE + x] = tileToId[Tiles[x, y]];
                     store.Data[y * CHUNK_SIZE + x] = Data[x, y];
-                }                
-            
+                }
 
             // Saving entities
             foreach (var e in Entities)
@@ -121,7 +117,6 @@ namespace Hevadea.Worlds
                     store.Entities.Add(e.Save());
                 }
             }
-
 
             return store;
         }

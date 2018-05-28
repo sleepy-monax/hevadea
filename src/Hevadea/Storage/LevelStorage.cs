@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Hevadea.Storage
+﻿namespace Hevadea.Storage
 {
     public class LevelStorage
     {

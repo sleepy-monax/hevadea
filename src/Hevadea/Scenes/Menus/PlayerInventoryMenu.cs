@@ -30,9 +30,9 @@ namespace Hevadea.Scenes.Menus
 
     public class PlayerInventoryMenu : Menu
     {
-        WidgetItemContainer _inventory;
-        CraftingTab _crafting;
-      
+        private WidgetItemContainer _inventory;
+        private CraftingTab _crafting;
+
         public PlayerInventoryMenu(Game game) : base(game)
         {
             InitializeComponents();
@@ -79,7 +79,7 @@ namespace Hevadea.Scenes.Menus
                 UnitBound = new Rectangle(0, 0, 48, 48),
                 Anchor = Anchor.TopRight,
                 Origine = Anchor.TopRight,
-                UnitOffset = new Point(-16,16)
+                UnitOffset = new Point(-16, 16)
             };
 
             closeBtn.MouseClick += CloseBtnOnMouseClick;
@@ -120,7 +120,7 @@ namespace Hevadea.Scenes.Menus
             };
         }
 
-        void CloseBtnOnMouseClick(Widget sender)
+        private void CloseBtnOnMouseClick(Widget sender)
         {
             Game.CurrentMenu = new MenuInGame(Game);
         }

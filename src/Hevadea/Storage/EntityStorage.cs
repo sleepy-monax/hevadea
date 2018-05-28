@@ -1,6 +1,4 @@
-﻿using Hevadea.Framework.Networking;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Hevadea.Storage
 {
@@ -22,7 +20,6 @@ namespace Hevadea.Storage
             Type = type;
             Data = data;
         }
-
 
         internal T ValueOf<T>(string name, T defaultValue)
         {

@@ -9,9 +9,9 @@ namespace Hevadea.GameObjects.Entities.Components.Render
 {
     public class NpcRender : EntityComponent, IEntityComponentDrawable, IEntityComponentUpdatable
     {
-        bool _isWalking;
-        bool _isSwiming;
-        bool _isPickingItem;
+        private bool _isWalking;
+        private bool _isSwiming;
+        private bool _isPickingItem;
 
         public Sprite Sprite { get; set; }
 

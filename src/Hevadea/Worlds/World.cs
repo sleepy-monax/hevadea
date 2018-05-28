@@ -2,7 +2,6 @@
 using Hevadea.GameObjects.Entities;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,8 +13,6 @@ namespace Hevadea.Worlds
         public List<Level> Levels = new List<Level>();
         public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
-
-
 
         public World()
         {
@@ -82,7 +79,6 @@ namespace Hevadea.Worlds
         {
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
-
 
         public int GetUeid()
         {

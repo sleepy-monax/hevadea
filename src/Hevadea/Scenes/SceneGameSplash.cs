@@ -7,23 +7,23 @@ using Hevadea.Scenes.MainMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace Hevadea.Scenes
 {
     public class SceneGameSplash : Scene
     {
-        bool  _loadingDone;
-        bool  _once        = true;
-        float _time       = 0.1f;
+        private bool _loadingDone;
+        private bool _once = true;
+        private float _time = 0.1f;
 
-        SpriteBatch _sb;
+        private SpriteBatch _sb;
 
         public static bool Initialized = false;
 
         public override void Load()
         {
-            new Thread(() =>
+            Task.Run(() =>
             {
                 if (!Initialized)
                 {
@@ -36,9 +36,9 @@ namespace Hevadea.Scenes
 
                     Initialized = true;
                 }
-                
+
                 _loadingDone = true;
-            }).Start();
+            });
 
             _sb = Rise.Graphic.CreateSpriteBatch();
         }
@@ -63,10 +63,9 @@ namespace Hevadea.Scenes
 
             if (Ressources.MakerLogo != null)
             {
-
                 _sb.Draw(Ressources.MakerLogo,
                     Rise.Graphic.GetCenter().ToVector2(), null,
-                    new Color(_time, _time, _time), 0f, Ressources.MakerLogo.GetCenter(), Easing.BackEaseOut(Mathf.Clamp01(_time*8 - 3f)), SpriteEffects.None, 0);
+                    new Color(_time, _time, _time), 0f, Ressources.MakerLogo.GetCenter(), Easing.BackEaseOut(Mathf.Clamp01(_time * 8 - 3f)), SpriteEffects.None, 0);
             }
 
             _sb.End();
