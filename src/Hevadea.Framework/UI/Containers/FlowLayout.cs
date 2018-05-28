@@ -13,7 +13,7 @@ namespace Hevadea.Framework.UI.Containers
 
             foreach (var c in Childrens)
             {
-                if (c.IsDisable) continue;
+                if (c.Disabled) continue;
 
                 switch (Flow)
                 {

@@ -12,7 +12,7 @@ namespace Hevadea.Framework.UI.Containers
             var count = 0;
             foreach (var c in Childrens)
             {
-                if (c.IsEnable) count++;
+                if (c.Enabled) count++;
             }
 
             if (count == 0) return;

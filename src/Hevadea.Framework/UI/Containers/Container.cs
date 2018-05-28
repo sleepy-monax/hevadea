@@ -14,6 +14,12 @@ namespace Hevadea.Framework.UI.Containers
     {
         public List<Widget> Childrens { get; set; } = new List<Widget>();
 
+        public Container() { }
+        public Container(params Widget[] widgets)
+        {
+            Childrens.AddRange(widgets);
+        }
+
         public override void RefreshLayout()
         {
             Layout();
@@ -30,7 +36,7 @@ namespace Hevadea.Framework.UI.Containers
 
             foreach (var c in Childrens)
             {
-                if (c.IsDisable) continue;
+                if (c.Disabled) continue;
 
                 var b = c.UnitBound;
                 switch (c.Dock)

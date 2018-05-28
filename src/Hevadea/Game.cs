@@ -151,7 +151,7 @@ namespace Hevadea
                 fs.Close();
             });
 
-            Rise.AsyncTasks.Enqueue(task);
+            Rise.GameLoopThread.Enqueue(task);
 
             while (!task.Done)
             {
@@ -206,7 +206,7 @@ namespace Hevadea
 
             progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
             progressRepporter.Report(1f);
-            Rise.AsyncTasks.Enqueue(task);
+            Rise.GameLoopThread.Enqueue(task);
 
             while (!task.Done)
             {

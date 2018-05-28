@@ -48,7 +48,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
 
         private void KeyPressed(object sender, KeyboardInputManager.KeyEventArgs e, KeyboardState ks)
         {
-            if (IsFocus)
+            if (Focused)
             {
                 int oldPos = Cursor.TextCursor;
                 switch (e.KeyCode)
@@ -172,7 +172,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
 
         private void CharacterTyped(object sender, KeyboardInputManager.CharacterEventArgs e, KeyboardState ks)
         {
-            if (IsFocus && !Rise.Keyboard.CtrlDown)
+            if (Focused && !Rise.Keyboard.CtrlDown)
             {
                 if (Renderer.Font.IsLegalCharacter(e.Character) && !e.Character.Equals('\r') &&
                     !e.Character.Equals('\n'))
@@ -275,7 +275,7 @@ namespace Hevadea.Framework.UI.Widgets.TextBox
         {
             Renderer.Draw(spriteBatch);
 
-            if (IsFocus)
+            if (Focused)
             {
                 Cursor.Draw(spriteBatch);
             }

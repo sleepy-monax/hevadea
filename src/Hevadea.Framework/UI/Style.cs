@@ -43,14 +43,14 @@ namespace Hevadea.Framework.UI
     }
 
 
-    public class Box
+    public class Border
     {
         public Margins Margins { get; set; } = new Margins(0);
         public Color Color { get; set; } = Color.Transparent;
 
-        public Box() { }
+        public Border() { }
 
-        public Box(Margins margins, Color color)
+        public Border(Margins margins, Color color)
         {
             Margins = margins;
             Color = color;
@@ -60,9 +60,9 @@ namespace Hevadea.Framework.UI
     public class Style
     {
 
-        public Box Margin { get; set; }
-        public Box Border  { get; set; }
-        public Box Padding { get; set; }
+        public Margins Margin { get; set; }
+        public Border Border  { get; set; }
+        public Margins Padding { get; set; }
 
         public SpriteFont Font;
 
@@ -71,27 +71,26 @@ namespace Hevadea.Framework.UI
 
         public Style()
         {
-            Margin = new Box();
-            Border = new Box();
-            Padding = new Box();
+            Margin = new Margins();
+            Border = new Border();
+            Padding = new Margins();
         }
 
         public Rectangle GetContent(Rectangle rectangle)
-            => Margin.Margins.Apply(Border.Margins.Apply(Padding.Margins.Apply(rectangle)));
+            => Margin.Apply(Border.Margins.Apply(Padding.Apply(rectangle)));
 
         public void Draw(SpriteBatch spriteBatch, Rectangle destination)
         {
             // Margin
-            spriteBatch.FillRectangle(destination, Margin.Color);
-            destination = Margin.Margins.Apply(destination);
+        
+            destination = Margin.Apply(destination);
 
             // Borders
             spriteBatch.FillRectangle(destination, Border.Color);
             destination = Border.Margins.Apply(destination);
 
             // Padding
-            spriteBatch.FillRectangle(destination, Padding.Color);
-            destination = Padding.Margins.Apply(destination);
+            destination = Padding.Apply(destination);
 
             spriteBatch.FillRectangle(destination, Background);
         }

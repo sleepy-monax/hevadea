@@ -20,7 +20,8 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Dock = Dock.Fill
             };
 
-            var loadButton = new Button { Text = "Load", Dock = Dock.Bottom }
+            var multiplayer = new CheckBox() { Text = "Multiplayer", Dock = Dock.Left, UnitBound = new Rectangle(0, 0, 256, 64) };
+            var loadButton = new Button { Text = "Load", Dock = Dock.Fill }
             .RegisterMouseClickEvent((sender) =>
             {
                 if (saveList.SelectedItem != null)
@@ -37,7 +38,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Childrens =
                 {
                     new Label { Text = "Load World", Font = Ressources.FontAlagard, Dock = Dock.Top },
-                    loadButton,
+                    new Container( multiplayer, loadButton ){ Dock = Dock.Bottom },
                     saveList,
                 }
             };

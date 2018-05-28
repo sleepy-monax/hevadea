@@ -83,7 +83,6 @@
     <Compile Include="UI\Widget.cs" />
     <Compile Include="UI\Widgets\BlurPanel.cs" />
     <Compile Include="UI\Widgets\Button.cs" />
-    <Compile Include="UI\Widgets\CheckBox.cs" />
     <Compile Include="UI\Widgets\Label.cs" />
     <Compile Include="UI\Widgets\ListWidget.cs" />
     <Compile Include="UI\Widgets\Panel.cs" />

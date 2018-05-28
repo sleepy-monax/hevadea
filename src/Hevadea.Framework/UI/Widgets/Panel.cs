@@ -9,7 +9,7 @@ namespace Hevadea.Framework.UI.Widgets
 
         public override void RefreshLayout()
         {
-            if (Content != null && Content.IsEnable)
+            if (Content != null && Content.Enabled)
             {
                 Content.UnitBound = UnitHost;
                 Content.RefreshLayout();

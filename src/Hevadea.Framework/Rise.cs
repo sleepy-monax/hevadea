@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 
 namespace Hevadea.Framework
 {
@@ -23,7 +22,9 @@ namespace Hevadea.Framework
 
         public static bool DebugUi { get; set; } = false;
         public static bool ShowDebug { get; set; } = false;
-        public static ConcurrentQueue<AsyncTask> AsyncTasks = new ConcurrentQueue<AsyncTask>();
+
+        public static ConcurrentQueue<AsyncTask> BackgroundThread = new ConcurrentQueue<AsyncTask>();
+        public static ConcurrentQueue<AsyncTask> GameLoopThread = new ConcurrentQueue<AsyncTask>();
 
         // Components
         [Obsolete] public static LegacyInputManager Input;
@@ -107,7 +108,7 @@ namespace Hevadea.Framework
         private static void MonoGameOnUpdate(Game sender, GameTime gameTime)
         {
 
-            if (AsyncTasks.TryDequeue(out var task))
+            if (GameLoopThread.TryDequeue(out var task))
             {
                 task.Task();
                 task.Done = true;
