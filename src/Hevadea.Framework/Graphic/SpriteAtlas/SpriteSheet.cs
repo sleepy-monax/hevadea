@@ -12,6 +12,8 @@ namespace Hevadea.Framework.Graphic.SpriteAtlas
 
         public SpriteSheet(Texture2D texture, Point tileSize)
         {
+            if (Rise.NoGraphic) return;
+
             Texture = texture;
             TileSize = tileSize;
             TileCount.X = Texture.Width / TileSize.X;
@@ -20,12 +22,16 @@ namespace Hevadea.Framework.Graphic.SpriteAtlas
 
         public Rectangle GetTile(int Index)
         {
+            if (Rise.NoGraphic) return Rectangle.Empty;
+
             var pos = new Point(Index % TileCount.X, Index / TileCount.X);
             return new Rectangle(pos.X * TileSize.X, pos.Y * TileSize.Y, TileSize.X, TileSize.Y);
         }
 
         internal Rectangle GetTile(Point position)
         {
+            if (Rise.NoGraphic) return Rectangle.Empty;
+
             return new Rectangle(position.X * TileSize.X, position.Y * TileSize.Y, TileSize.X, TileSize.Y);
         }
 

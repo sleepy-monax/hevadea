@@ -11,8 +11,8 @@ namespace Hevadea.Framework.Threading
         public float Progress { get; private set; }
 		public string Status { get; private set; }
       
-        event EventHandler<float> ProgressChange;
-		event EventHandler<string> StatusChange;
+        public event EventHandler<float> ProgressChange;
+        public event EventHandler<string> StatusChange;
 
 		public void RepportStatus(string status)
 		{

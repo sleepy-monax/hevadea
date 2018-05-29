@@ -22,6 +22,8 @@ namespace Hevadea.Worlds
 
         public Minimap(Level level)
         {
+            if (Rise.NoGraphic) return;
+
             Texture = new Texture2D(Rise.MonoGame.GraphicsDevice, level.Width, level.Height);
             Texture.Clear(Color.TransparentBlack);
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
 
@@ -33,8 +32,6 @@ namespace Hevadea.Framework.Input
 
         public readonly char[] SPECIAL_CHARACTERS = { '\a', '\b', '\n', '\r', '\f', '\t', '\v' };
 
-        private Game game;
-
         public event CharEnteredHandler CharPressed;
 
         public event KeyEventHandler KeyPressed;
@@ -52,9 +49,8 @@ namespace Hevadea.Framework.Input
         private DateTime lastRep = DateTime.Now;
         private bool filterSpecialCharacters;
 
-        public void Initialize(Game g, float timeUntilRepInMilliseconds, int repsPerSecond, bool filterSpecialCharactersFromCharPressed = true)
+        public void Initialize(float timeUntilRepInMilliseconds, int repsPerSecond, bool filterSpecialCharactersFromCharPressed = true)
         {
-            game = g;
             timeUntilRepInMillis = timeUntilRepInMilliseconds;
             repsPerSec = repsPerSecond;
             filterSpecialCharacters = filterSpecialCharactersFromCharPressed;

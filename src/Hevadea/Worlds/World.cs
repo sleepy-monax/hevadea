@@ -59,7 +59,7 @@ namespace Hevadea.Worlds
             return worldStorage;
         }
 
-        public void SpawnPlayer(GameObjects.Entities.Player player)
+        public void SpawnPlayer(Player player)
         {
             var level = GetLevel(PlayerSpawnLevel);
             level.AddEntityAt(player, level.Width / 2, level.Height / 2);

@@ -20,9 +20,12 @@ namespace Hevadea.Loading
         public ProgressRepporter ProgressRepporter { get; private set; }
         public bool Started { get; private set; } = false;
 
+        LoadingTaskJob _task;
+
         public LoadingTask(LoadingTaskJob task)
         {
             ProgressRepporter = new ProgressRepporter();
+            _task = task;
             _thread = new Thread(() =>
             {
                 task(this, ProgressRepporter);
@@ -31,6 +34,11 @@ namespace Hevadea.Loading
         }
 
         public void Start()
+        {
+            _task(this, ProgressRepporter);
+        }
+
+        public void StartAsync()
         {
             if (!Started)
             {

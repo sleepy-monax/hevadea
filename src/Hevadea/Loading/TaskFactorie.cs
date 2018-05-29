@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
+using Hevadea.Multiplayer;
 using Hevadea.WorldGenerator;
 using System.IO;
 
@@ -47,11 +48,22 @@ namespace Hevadea.Loading
             });
         }
 
+        public static LoadingTask LoadWorldAndStartSever(string worldPath)
+        {
+            return new LoadingTask((task, reporter) =>
+            {
+                HostGame game = (HostGame)new HostGame("127.0.0.1", 7777, 8).Load(worldPath, reporter);
+                game.Initialize();
+                game.Start();
+                task.Result = game;
+            });
+        }
+
         public static LoadingTask LoadWorld(string path)
         {
             return new LoadingTask((task, reporter) =>
             {
-                Game game = Game.Load(path, reporter);
+                Game game = new Game().Load(path, reporter);
                 game.Initialize();
                 task.Result = game;
             });

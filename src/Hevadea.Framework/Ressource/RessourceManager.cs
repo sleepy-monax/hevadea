@@ -12,11 +12,15 @@ namespace Hevadea.Framework.Ressource
 
         public SoundEffect GetSoundEffect(string name)
         {
+            if (Rise.NoGraphic) return null;
+
             return Rise.MonoGame.Content.Load<SoundEffect>($"Sounds/{name}");
         }
 
         public SpriteFont GetSpriteFont(string name)
         {
+            if (Rise.NoGraphic) return null;
+
             if (!FontCache.ContainsKey(name))
             {
                 Logger.Log<RessourceManager>($"Loading <font>{name}");
@@ -26,18 +30,10 @@ namespace Hevadea.Framework.Ressource
             return FontCache[name];
         }
 
-        public Texture2D GetIcon(string name)
-        {
-            if (!TextureCache.ContainsKey("icon:" + name))
-            {
-                TextureCache.Add("icon:" + name, Rise.MonoGame.Content.Load<Texture2D>($"Icons/{name}"));
-            }
-
-            return TextureCache["icon:" + name];
-        }
-
         public Texture2D GetImage(string name)
         {
+            if (Rise.NoGraphic) return null;
+
             if (!TextureCache.ContainsKey("img:" + name))
             {
                 Logger.Log<RessourceManager>($"Loading <image>{name}");

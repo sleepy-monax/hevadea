@@ -77,7 +77,7 @@ namespace Hevadea.Loading
                 }
             };
 
-            _task.Start();
+            _task.StartAsync();
         }
 
         public override void OnDraw(GameTime gameTime)

@@ -23,6 +23,8 @@ namespace Hevadea.Framework
         public static bool DebugUi { get; set; } = false;
         public static bool ShowDebug { get; set; } = false;
 
+        public static bool NoGraphic { get; private set; } = false;
+
         public static ConcurrentQueue<AsyncTask> BackgroundThread = new ConcurrentQueue<AsyncTask>();
         public static ConcurrentQueue<AsyncTask> GameLoopThread = new ConcurrentQueue<AsyncTask>();
 
@@ -44,6 +46,14 @@ namespace Hevadea.Framework
 
         private static Scene _startScene;
 
+        public static void InitializeNoGraphic(PlatformBase platform)
+        {
+            Platform = platform;
+            NoGraphic = true;
+            Graphic = new GraphicManager(null, null);
+            Ressource = new RessourceManager();
+        }
+
         public static void Initialize(PlatformBase platform)
         {
             Platform = platform;
@@ -60,6 +70,7 @@ namespace Hevadea.Framework
         public static void Start(Scene startScene)
         {
             _startScene = startScene;
+            //GCListener.Start();
             MonoGame.Run();
         }
 
@@ -85,7 +96,7 @@ namespace Hevadea.Framework
 
             if (Platform.GetPlatformName() != "Android")
             {
-                Keyboard.Initialize(MonoGame, 300, 5);
+                Keyboard.Initialize(300, 5);
             }
 
             Scene.Switch(_startScene);

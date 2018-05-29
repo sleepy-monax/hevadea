@@ -10,7 +10,9 @@ using Hevadea.Storage;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace Hevadea
@@ -58,7 +60,9 @@ namespace Hevadea
         {
             Logger.Log<Game>("Initializing...");
             World.Initialize(this);
-            CurrentMenu = new MenuInGame(this);
+
+            if (!Rise.NoGraphic)
+                CurrentMenu = new MenuInGame(this);
 
             if (MainPlayer.Removed)
             {
@@ -83,8 +87,13 @@ namespace Hevadea
             Camera.Update(gameTime);
             PlayerInput.Update(gameTime);
 
+
+            if (!IsClient)
+            {
+                MainPlayer.Level.Update(gameTime);
+            }
+
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
-            MainPlayer.Level.Update(gameTime);
         }
 
         // --- Path generator ----------------------------------------------- //
@@ -103,14 +112,13 @@ namespace Hevadea
 
         // --- Save and load ------------------------------------------------ //
 
-        public static Game Load(string saveFolder, ProgressRepporter progressRepporter)
+        public Game Load(string saveFolder, ProgressRepporter progressRepporter)
         {
-            Game game = new Game();
-            game.SavePath = saveFolder;
+            SavePath = saveFolder;
 
             progressRepporter.RepportStatus("Loading world...");
 
-            string path = game.GetSavePath();
+            string path = GetSavePath();
 
             WorldStorage worldStorage = File.ReadAllText(path + "world.json").FromJson<WorldStorage>();
             World world = World.Load(worldStorage);
@@ -118,16 +126,16 @@ namespace Hevadea
 
             foreach (var levelName in worldStorage.Levels)
             {
-                world.Levels.Add(LoadLevel(game, levelName, progressRepporter));
+                world.Levels.Add(LoadLevel(this, levelName, progressRepporter));
             }
 
-            game.World = world;
-            game.MainPlayer = (Player)player;
+            World = world;
+            MainPlayer = (Player)player;
 
-            return game;
+            return this;
         }
 
-        public static Level LoadLevel(Game game, string levelName, ProgressRepporter progressRepporter)
+        public Level LoadLevel(Game game, string levelName, ProgressRepporter progressRepporter)
         {
             string levelPath = $"{game.GetSavePath()}{levelName}/";
             Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
@@ -195,23 +203,27 @@ namespace Hevadea
                 File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
             }
 
-            File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
-
-            var task = new AsyncTask(() =>
+            if (!Rise.NoGraphic)
             {
-                var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
-                level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
-                fs.Close();
-            });
+                File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
 
-            progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
-            progressRepporter.Report(1f);
-            Rise.GameLoopThread.Enqueue(task);
+                var task = new AsyncTask(() =>
+                {
+                    var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
+                    level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
+                    fs.Close();
+                });
 
-            while (!task.Done)
-            {
-                // XXX: Hack to fix the soft lock when saving the world.
-                System.Threading.Thread.Sleep(10);
+                progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
+                progressRepporter.Report(1f);
+
+                Rise.GameLoopThread.Enqueue(task);
+
+                while (!task.Done)
+                {
+                    // XXX: Hack to fix the soft lock when saving the world.
+                    System.Threading.Thread.Sleep(10);
+                }
             }
         }
     }

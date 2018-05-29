@@ -82,7 +82,7 @@ namespace Hevadea.Loading
                 game.CurrentMenu = new MenuInGame(game);
             };
 
-            _task.Start();
+            _task.StartAsync();
         }
 
         public override void Update(GameTime gameTime)

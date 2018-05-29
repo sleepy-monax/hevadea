@@ -14,6 +14,11 @@ namespace Hevadea.Multiplayer
         public int _port;
         public int _slots;
 
+        public HostGame()
+        {
+
+        }
+
         public HostGame(string address, int port, int slots)
         {
             _address = address;

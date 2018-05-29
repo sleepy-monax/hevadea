@@ -51,7 +51,7 @@ namespace Hevadea.Framework.Graphic
 
         public SpriteBatch CreateSpriteBatch()
         {
-            return new SpriteBatch(_graphicsDevice);
+            return Rise.NoGraphic ? null : new SpriteBatch(_graphicsDevice);
         }
 
         public Rectangle GetBound()
