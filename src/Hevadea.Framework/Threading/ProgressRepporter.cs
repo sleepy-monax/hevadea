@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hevadea.Framework.Utils;
 
 namespace Hevadea.Framework.Threading
 {
@@ -16,12 +17,14 @@ namespace Hevadea.Framework.Threading
 
 		public void RepportStatus(string status)
 		{
+			Logger.Log<ProgressRepporter>(LoggerLevel.Info, status);
 			Status = status;
 			StatusChange?.Invoke(this, status);
 		}
 
         public void Report(float progress)
         {
+			Logger.Log<ProgressRepporter>(LoggerLevel.Info, $"{Status}: {(int)(progress * 100)}%");
             Progress = progress;         
             ProgressChange?.Invoke(this, Progress);
         }

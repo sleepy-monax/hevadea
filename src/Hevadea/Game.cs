@@ -150,22 +150,25 @@ namespace Hevadea
                 }
             }
 
-            level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
+			if (!Rise.NoGraphic)
+			{            
+                level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
 
-            var task = new AsyncTask(() =>
-            {
-                var fs = new FileStream(levelPath + "minimap.png", FileMode.Open);
-                level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
-                fs.Close();
-            });
+                var task = new AsyncTask(() =>
+                {
+                    var fs = new FileStream(levelPath + "minimap.png", FileMode.Open);
+                    level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
+                    fs.Close();
+                });
 
-            Rise.GameLoopThread.Enqueue(task);
+                Rise.GameLoopThread.Enqueue(task);
 
-            while (!task.Done)
-            {
-                // XXX: Hack to fix the soft lock when loading the world.
-                System.Threading.Thread.Sleep(10);
-            }
+                while (!task.Done)
+                {
+                    // XXX: Hack to fix the soft lock when loading the world.
+                    System.Threading.Thread.Sleep(10);
+                }
+			}
 
             return level;
         }
