@@ -50,7 +50,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
         private void Connect(Widget widget)
         {
-            var connectTask = TaskFactorie.ConnectToServer(connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String));
+            var connectTask = Jobs.ConnectToServer(connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String));
             connectTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((LoadingTask)task).Result));
             Rise.Scene.Switch(new LoadingScene(connectTask));
         }

@@ -16,7 +16,7 @@ namespace Hevadea.WorldGenerator
         public PerlinNoise Perlin { get; private set; }
         public Random Random { get; private set; }
 
-        public World Generate(ProgressRepporter reporter)
+        public World Generate(Job job)
         {
             var w = new World();
             Random = new Random(Seed);
@@ -24,14 +24,14 @@ namespace Hevadea.WorldGenerator
 
             foreach (var levelGenerator in LevelsGenerators)
             {
-                reporter.RepportStatus($"Generating {levelGenerator.Name}...");
+                job.Report($"Generating {levelGenerator.Name}...");
 
                 Level level = new Level(levelGenerator.Properties, Size, Size) { Id = levelGenerator.Id, Name = levelGenerator.Name };
 
                 for (int i = 0; i < levelGenerator.Features.Count; i++)
                 {
                     var f = levelGenerator.Features[i];
-                    reporter.Report(i / (float)levelGenerator.Features.Count);
+                    job.Report(i / (float)levelGenerator.Features.Count);
                     f.Apply(this, levelGenerator, level);
                 }
 

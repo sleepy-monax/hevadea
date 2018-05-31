@@ -64,21 +64,21 @@ namespace Hevadea.Server
 					{
 						seed = worldSeed.GetHashCode();	
 					}
-
-                    var task = TaskFactorie.NewWorld(Game.GetSaveFolder() + worldName, GENERATOR.DEFAULT, seed);
-                    task.Start();
                     
-                    Game game = (Game)task.Result;
+                    Game game = (Game)Jobs.GenerateWorld.Start(false, Game.GetSaveFolder() + worldName, seed , GENERATOR.DEFAULT).Result;
                     game.Initialize();
-                    var repport = new ProgressRepporter();
-                    repport.StatusChange += (sender, e) => { Console.WriteLine(e); };
-                    game.Save(Game.GetSaveFolder() + worldName, repport);
+
+
+                    var repport = Job.NewEmpty("SaveWorld");
+                    repport.StatusChanged += (sender, e) => { Console.WriteLine(e); };
+
+                    Jobs.SaveWorld.Start(false, game, Game.GetSaveFolder() + worldName);
                 }
 				else if ( int.TryParse(input, out var levelindex))
 				{
 					var path = saves[levelindex];
-					HostGame game = new HostGame("127.0.0.1", 7777, 8);
-					game.Load(path, new ProgressRepporter());
+
+                    HostGame game = Jobs.StartServer.Start(false, path, "127.0.0.1", 7777, 8).Result as HostGame;
 
 					while(true)
 					{

@@ -30,7 +30,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                     seed = worldSeedtextBox.Text.String.GetHashCode();
                 }
 
-                var generatorTask = TaskFactorie.NewWorld(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", GENERATOR.DEFAULT, seed);
+                var generatorTask = Jobs.NewWorld(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", GENERATOR.DEFAULT, seed);
                 generatorTask.LoadingFinished += (s, e) =>
                 {
                     Game game = (Game)((LoadingTask)s).Result;

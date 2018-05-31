@@ -10,9 +10,7 @@ using Hevadea.Storage;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 namespace Hevadea
@@ -24,9 +22,27 @@ namespace Hevadea
         public static readonly string Version = "0.1.0";
         public static readonly int VersionNumber = 1;
 
+
         public static string GetSaveFolder()
         {
             return Rise.Platform.GetStorageFolder() + "/Saves/";
+        }
+
+        public static void SetLastGame(string path)
+        {
+            File.WriteAllText(Rise.Platform.GetStorageFolder() + "/.lastgame", path);
+        }
+
+        public static string GetLastGame()
+        {
+            if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
+            {
+                return File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame");
+            }
+            else
+            {
+                return "";
+            }
         }
 
         public bool IsClient => this is RemoteGame;
@@ -116,7 +132,7 @@ namespace Hevadea
         {
             SavePath = saveFolder;
 
-            progressRepporter.RepportStatus("Loading world...");
+            job.Report("Loading world...");
 
             string path = GetSavePath();
 
@@ -126,7 +142,7 @@ namespace Hevadea
 
             foreach (var levelName in worldStorage.Levels)
             {
-                world.Levels.Add(LoadLevel(this, levelName, progressRepporter));
+                world.Levels.Add(LoadLevel(job, this, levelName));
             }
 
             World = world;
@@ -135,23 +151,23 @@ namespace Hevadea
             return this;
         }
 
-		public Level LoadLevel(Job job, Game game, string levelName)
+        public Level LoadLevel(Job job, Game game, string levelName)
         {
             string levelPath = $"{game.GetSavePath()}{levelName}/";
             Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
 
-            progressRepporter.RepportStatus($"Loading level {level.Name}...");
+            job.Report($"Loading level {level.Name}...");
             for (int x = 0; x < level.Chunks.GetLength(0); x++)
             {
                 for (int y = 0; y < level.Chunks.GetLength(1); y++)
                 {
                     level.Chunks[x, y] = Chunk.Load(File.ReadAllText(levelPath + $"r{x}-{y}.json").FromJson<ChunkStorage>());
-                    progressRepporter.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
+                    job.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
                 }
             }
             
-			if (!Rise.NoGraphic)
-			{            
+            if (!Rise.NoGraphic)
+            {            
                 level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
 
                 var task = new Job((j, args) =>
@@ -160,13 +176,13 @@ namespace Hevadea
                     level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
                     fs.Close();
 
-					return null;
+                    return null;
                 });
 
                 Rise.GameLoopThread.Enqueue(task);
 
-				task.Wait();
-			}
+                task.Wait();
+            }
 
             return level;
         }
@@ -175,7 +191,7 @@ namespace Hevadea
         {
             SavePath = savePath;
 
-			job.Report("Saving world...");
+            job.Report("Saving world...");
 
             var levelsName = new List<string>();
 
@@ -200,31 +216,29 @@ namespace Hevadea
 
             foreach (var chunk in level.Chunks)
             {
-				job.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
+                job.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
                 File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
             }
 
-            if (!Rise.NoGraphic)
+            if (!Rise.NoGraphic) // TODO: Make the minimap store in a bitmap on sever side...
             {
                 File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
 
-                var task = new Job(() =>
+                var task = new Job((j, args) =>
                 {
                     var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
                     level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
                     fs.Close();
+
+                    return null;
                 });
 
-                progressRepporter.RepportStatus($"Saving {level.Name} minimap...");
-                progressRepporter.Report(1f);
+                job.Report($"Saving {level.Name} minimap...");
+                job.Report(1f);
 
                 Rise.GameLoopThread.Enqueue(task);
 
-                while (!task.Done)
-                {
-                    // XXX: Hack to fix the soft lock when saving the world.
-                    System.Threading.Thread.Sleep(10);
-                }
+                task.Wait();
             }
         }
     }

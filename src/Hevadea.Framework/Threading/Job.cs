@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Hevadea.Framework.Utils;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Framework.Threading
 {
     public class Job
     {
-		float _progress = 0f;
+        float _progress = 0f;
         string _status = "";
         public delegate object JobHandler(Job task, object[] args);
 
@@ -19,10 +19,11 @@ namespace Hevadea.Framework.Threading
 
         public event EventHandler Finish;
         public event EventHandler ProgressChanged;
-		public event EventHandler StatusChanged;
-		public event EventHandler<Exception> Exception;
+        public event EventHandler StatusChanged;
+        public event EventHandler<Exception> Exception;
 
-		public string Name { get; }
+        public object Result { get; private set; }
+        public string Name { get; }
         public string Status
         {
             get => _status;
@@ -43,7 +44,7 @@ namespace Hevadea.Framework.Threading
             }
         }
 
-		public Job(JobHandler job)
+        public Job(JobHandler job)
         {
             Name = "null";
             _job = job;
@@ -51,38 +52,45 @@ namespace Hevadea.Framework.Threading
 
         public Job(string name, JobHandler job)
         {
-			Name = name;
+            Name = name;
             _job = job;
         }
 
-        public void Start(bool paralel = true, params object[] v)
+        public static Job NewEmpty(string name)
         {
-			try
-			{
-				if (!Started)
+            return new Job(name, null);
+        }
+
+        public Job Start(bool paralel = true, params object[] args)
+        {
+            try
+            {
+                if (!Started)
                 {
                     Started = true;
                     if (paralel)
                     {
                         Task.Run(() =>
                         {
-                            _job(this, v);
+                            Result = _job?.Invoke(this, args);
                             Finish?.Invoke(this, EventArgs.Empty);
                             Finished = true;
                         });
                     }
                     else
                     {
-                        _job(this, v);
+                        Result = _job?.Invoke(this, args);
                     }
                 }
-			}
-			catch (Exception ex)
-			{
-				Log(LoggerLevel.Warning, "Finish with exception!");
-				Logger.Log(ex);
-				Exception?.Invoke(this, ex);
-			}
+            }
+            catch (Exception ex)
+            {
+                Log(LoggerLevel.Warning, "Finish with exception!");
+                Logger.Log(ex);
+                Exception?.Invoke(this, ex);
+            }
+
+            return this;
         }
 
         public void ThrowIfCanceled()
@@ -109,19 +117,25 @@ namespace Hevadea.Framework.Threading
         public void Report(string status)
         {
             Status = status;
-			Progress = 0;
-			Log(LoggerLevel.Info, status);
+            Progress = 0;
+            Log(LoggerLevel.Info, status);
         }
 
         public void Report(float progress)
         {
             Progress = progress;
-			Log(LoggerLevel.Info, $"{(int)(progress*100)}%");
+            Log(LoggerLevel.Info, $"{(int)(progress*100)}%");
         }
         
-		public void Log(LoggerLevel level, string msg)
-		{
-			Logger.Log("Job:" + Name, level, msg);
-		}
+        public void Log(LoggerLevel level, string msg)
+        {
+            Logger.Log("Job:" + Name, level, msg);
+        }
+
+        public Job Then(EventHandler action)
+        {
+            Finish += action;
+            return this;
+        }
     }
 }

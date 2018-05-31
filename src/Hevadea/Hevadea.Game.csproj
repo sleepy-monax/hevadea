@@ -148,7 +148,7 @@
     <Compile Include="GameObjects\TILES.cs" />
     <Compile Include="Loading\LoadingMenu.cs" />
     <Compile Include="Loading\LoadingScene.cs" />
-    <Compile Include="Loading\TaskFactorie.cs" />
+    <Compile Include="Loading\Jobs.cs" />
     <Compile Include="Multiplayer\HostGame.cs" />
     <Compile Include="Multiplayer\Packets.cs" />
     <Compile Include="PlayerInput.cs" />

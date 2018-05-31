@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Scening;
+using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -13,13 +14,13 @@ namespace Hevadea.Loading
 {
     public class LoadingScene : Scene
     {
-        private LoadingTask _task;
+        private Job _job;
         private Label _progressLabel;
         private ProgressBar _progressBar;
 
-        public LoadingScene(LoadingTask task)
+        public LoadingScene(Job job)
         {
-            _task = task;
+            _job = job;
         }
 
         public override void Load()
@@ -49,7 +50,7 @@ namespace Hevadea.Loading
                 Origine = Anchor.Center
             }.RegisterMouseClickEvent((sender) =>
             {
-                _task.Abort();
+                _job.Cancel();
                 Rise.Scene.Switch(new SceneMainMenu());
             });
 
@@ -77,7 +78,7 @@ namespace Hevadea.Loading
                 }
             };
 
-            _task.StartAsync();
+            _job.Start();
         }
 
         public override void OnDraw(GameTime gameTime)
@@ -86,8 +87,8 @@ namespace Hevadea.Loading
 
         public override void OnUpdate(GameTime gameTime)
         {
-            _progressLabel.Text = _task.ProgressRepporter.Status;
-            _progressBar.Value = _task.ProgressRepporter.Progress;
+            _progressLabel.Text = _job.Status;
+            _progressBar.Value = _job.Progress;
         }
 
         public override void Unload()
