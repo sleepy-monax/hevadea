@@ -38,9 +38,9 @@ namespace Hevadea.WorldGenerator
                 w.AddLevel(level);
             }
 
-            foreach (var wf in WorldFeatures)
+            foreach (var feature in WorldFeatures)
             {
-                wf.Apply(this, w);
+                feature.Apply(this, w);
             }
 
             return w;

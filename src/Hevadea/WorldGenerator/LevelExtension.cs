@@ -18,10 +18,10 @@ namespace Hevadea.WorldGenerator
         {
             bool result = level.IsEmpty(x, y, w, h) || !needToBeEmpty;
 
-            for (var offx = 0; offx < w; offx++)
-                for (var offy = 0; offy < h; offy++)
+            for (var xx = 0; xx < w; xx++)
+                for (var yy = 0; yy < h; yy++)
                 {
-                    result &= AcceptedTiles.Contains(level.GetTile(x + offx, y + offy));
+                    result &= AcceptedTiles.Contains(level.GetTile(x + xx, y + yy));
                 }
 
             return result;
@@ -30,20 +30,20 @@ namespace Hevadea.WorldGenerator
         public static bool IsEmpty(this Level level, int x, int y, int w, int h)
         {
             var result = true;
-            for (var offx = 0; offx < w; offx++)
-                for (var offy = 0; offy < h; offy++)
+            for (var xx = 0; xx < w; xx++)
+                for (var yy = 0; yy < h; yy++)
                 {
-                    result &= !level.GetEntitiesAt(x + offx, y + offy).Any();
+                    result &= !level.GetEntitiesAt(x + xx, y + yy).Any();
                 }
             return result;
         }
 
-        public static void ClearEntitiesAt(this Level level, int x, int y, int w, int h)
+        public static void ClearEntitiesAt(this Level level, int x, int y, int w = 1, int h = 0)
         {
-            for (var offx = 0; offx < w; offx++)
-                for (var offy = 0; offy < h; offy++)
+            for (var xx = 0; xx < w; xx++)
+                for (var yy = 0; yy < h; yy++)
                 {
-                    var entities = level.GetEntitiesAt(x + offx, y + offy);
+                    var entities = level.GetEntitiesAt(x + xx, y + yy);
                     foreach (var e in entities) { level.RemoveEntity(e); }
                 }
         }
@@ -63,10 +63,10 @@ namespace Hevadea.WorldGenerator
 
         public static void FillRectangle(this Level level, int x, int y, int w, int h, Tile tile)
         {
-            for (var offx = 0; offx < w; offx++)
-                for (var offy = 0; offy < h; offy++)
+            for (var xx = 0; xx < w; xx++)
+                for (var yy = 0; yy < h; yy++)
                 {
-                    level.SetTile(x + offx, y + offy, tile);
+                    level.SetTile(x + xx, y + yy, tile);
                 }
         }
 
