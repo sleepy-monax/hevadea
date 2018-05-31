@@ -74,8 +74,7 @@
     <Compile Include="ColorPalette.cs" />
     <Compile Include="Scening\Scene.cs" />
     <Compile Include="Scening\SceneManager.cs" />
-    <Compile Include="Threading\AsyncTask.cs" />
-    <Compile Include="Threading\ProgressRepporter.cs" />
+    <Compile Include="Threading\Job.cs" />
     <Compile Include="UI\Containers\AnchoredContainer.cs" />
     <Compile Include="UI\Containers\Container.cs" />
     <Compile Include="UI\Containers\FlowLayout.cs" />

@@ -112,7 +112,7 @@ namespace Hevadea
 
         // --- Save and load ------------------------------------------------ //
 
-        public Game Load(string saveFolder, ProgressRepporter progressRepporter)
+        public Game Load(Job job, string saveFolder)
         {
             SavePath = saveFolder;
 
@@ -135,7 +135,7 @@ namespace Hevadea
             return this;
         }
 
-        public Level LoadLevel(Game game, string levelName, ProgressRepporter progressRepporter)
+		public Level LoadLevel(Job job, Game game, string levelName)
         {
             string levelPath = $"{game.GetSavePath()}{levelName}/";
             Level level = Level.Load(File.ReadAllText(levelPath + "level.json").FromJson<LevelStorage>());
@@ -149,35 +149,33 @@ namespace Hevadea
                     progressRepporter.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
                 }
             }
-
+            
 			if (!Rise.NoGraphic)
 			{            
                 level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
 
-                var task = new AsyncTask(() =>
+                var task = new Job((j, args) =>
                 {
                     var fs = new FileStream(levelPath + "minimap.png", FileMode.Open);
                     level.Minimap.Texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
                     fs.Close();
+
+					return null;
                 });
 
                 Rise.GameLoopThread.Enqueue(task);
 
-                while (!task.Done)
-                {
-                    // XXX: Hack to fix the soft lock when loading the world.
-                    System.Threading.Thread.Sleep(10);
-                }
+				task.Wait();
 			}
 
             return level;
         }
 
-        public void Save(string savePath, ProgressRepporter progressRepporter)
+        public void Save(Job job, string savePath)
         {
             SavePath = savePath;
 
-            progressRepporter.RepportStatus("Saving world...");
+			job.Report("Saving world...");
 
             var levelsName = new List<string>();
 
@@ -185,16 +183,16 @@ namespace Hevadea
 
             foreach (var level in World.Levels)
             {
-                SaveLevel(level, progressRepporter);
+                SaveLevel(job, level);
             }
 
             File.WriteAllText(GetSavePath() + "world.json", World.Save().ToJson());
             File.WriteAllText(GetSavePath() + "player.json", MainPlayer.Save().ToJson());
         }
 
-        private void SaveLevel(Level level, ProgressRepporter progressRepporter)
+        private void SaveLevel(Job job, Level level)
         {
-            progressRepporter.RepportStatus($"Saving {level.Name}...");
+            job.Report($"Saving {level.Name}...");
             string path = GetLevelSavePath(level);
             Directory.CreateDirectory(path);
 
@@ -202,7 +200,7 @@ namespace Hevadea
 
             foreach (var chunk in level.Chunks)
             {
-                progressRepporter.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
+				job.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
                 File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
             }
 
@@ -210,7 +208,7 @@ namespace Hevadea
             {
                 File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
 
-                var task = new AsyncTask(() =>
+                var task = new Job(() =>
                 {
                     var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
                     level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
