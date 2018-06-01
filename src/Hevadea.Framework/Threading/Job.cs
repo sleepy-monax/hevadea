@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Framework.Threading
 {
-	public class JobArguments
+    public class JobArguments
 	{
 	}
    

@@ -166,10 +166,7 @@ namespace Hevadea
 
                 var task = new Job((j, args) =>
                 {
-                    var fs = new FileStream(levelPath + "minimap.png", FileMode.Open);
-                    level.Minimap._texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, fs);
-                    fs.Close();
-
+                    level.Minimap.LoadFromFile(levelPath + "minimap.png");
                     return null;
                 });
 
@@ -220,10 +217,7 @@ namespace Hevadea
                 
                 var task = new Job((j, args) =>
                 {
-                    var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);
-                    level.Minimap.Texture.SaveAsPng(fs, level.Width, level.Height);
-                    fs.Close();
-
+                    level.Minimap.SaveToFile(path + "minimap.png");
                     return null;
                 });
 

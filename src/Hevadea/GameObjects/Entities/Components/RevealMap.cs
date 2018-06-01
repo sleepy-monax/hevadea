@@ -16,9 +16,7 @@ namespace Hevadea.GameObjects.Entities.Components
         public void Update(GameTime gameTime)
         {
             var p = Owner.GetTilePosition();
-
-            var pp = new Point(Rise.Rnd.Next(-Range, Range) + p.X, Rise.Rnd.Next(-Range, Range) + p.Y);
-            Owner.Level.Minimap.Texture.SetPixel(pp.X, pp.Y, Owner.Level.GetTile(pp.X, pp.Y).MiniMapColor);
+            Owner.Level.Minimap.Reveal(Rise.Rnd.Next(-Range, Range) + p.X, Rise.Rnd.Next(-Range, Range) + p.Y);
         }
     }
 }

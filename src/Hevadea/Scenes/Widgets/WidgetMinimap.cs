@@ -18,10 +18,10 @@ namespace Hevadea.Scenes.Widgets
         {
             //spriteBatch.FillRectangle(Host, Color.Black * 0.5f);
 
-            if (_game?.MainPlayer?.Level?.Minimap?._texture != null)
+            if (_game?.MainPlayer?.Level?.Minimap?.Texture != null)
             {
                 //var states = _game.MainPlayer.Level.GetRenderState(_game.Camera);
-                var map = _game.MainPlayer.Level.Minimap._texture;
+                var map = _game.MainPlayer.Level.Minimap.Texture;
                 var p = _game.MainPlayer.GetTilePosition().ToPoint();
 
                 var dest = UnitHost;

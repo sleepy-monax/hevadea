@@ -398,5 +398,15 @@ namespace Hevadea.Framework.Utils
         {
             return Abs(aX - bX) + Abs(aY - bY);
         }
+
+        public static bool InRange(int min, int max, int value)
+        {
+            return value >= min && value < max;
+        }
+
+        public static bool InRange(float min, float max, float value)
+        {
+            return value >= min && value < max;
+        }
     }
 }
