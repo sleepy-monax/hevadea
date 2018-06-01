@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -27,10 +28,21 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 if (saveList.SelectedItem != null)
                 {
                     var item = (ListItemText)saveList.SelectedItem;
+                    
+					Job job;
 
-                    var loadWorldTask = multiplayer.Checked ? Jobs.LoadWorldAndStartSever(item.Text) : Jobs.LoadWorld(item.Text);
-                    loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((LoadingTask)task).Result));
-                    Rise.Scene.Switch(new LoadingScene(loadWorldTask));
+					if (multiplayer.Checked)
+					{
+						job = Jobs.StartServer.SetArguments(new Jobs.StartServerInfo(item.Text, "127.0.0.1", 7777, 8));
+					}
+					else
+					{
+						job = Jobs.LoadWorld.SetArguments(new Jobs.WorldLoadInfo(item.Text));
+					}
+
+					job.Then((t, e) => Rise.Scene.Switch(new SceneGameplay((Game)((Job)t).Result)));
+                    
+                    Rise.Scene.Switch(new LoadingScene(job));
                 }
             });
 

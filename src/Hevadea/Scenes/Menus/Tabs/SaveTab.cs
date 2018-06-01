@@ -37,16 +37,20 @@ namespace Hevadea.Scenes.Menus.Tabs
             container.AddChild(new Button { Text = "Quick save", Padding = new Margins(4) })
             .RegisterMouseClickEvent((sender) =>
             {
-                var saveWorldJob = Jobs.SaveWorld.Then((_, e) => { game.CurrentMenu = new MenuInGame(game); }).Start(true, game, game.GetSavePath());
-                game.CurrentMenu = new LoadingMenu(saveWorldJob, game);
+                var job = Jobs.SaveWorld.Then((_, e) => { game.CurrentMenu = new MenuInGame(game); });
+				job.SetArguments(new Jobs.WorldSaveInfo(game.GetSavePath(), game));
+
+                game.CurrentMenu = new LoadingMenu(job, game);
             });
 
             container.AddChild(new Button { Text = "Save and Exit", Padding = new Margins(4) })
             .RegisterMouseClickEvent((sender) =>
             {
-                var saveTask = Jobs.SaveWorld(game);
-                saveTask.LoadingFinished += (_, e) => { Rise.Scene.Switch(new SceneMainMenu()); };
-                game.CurrentMenu = new LoadingMenu(saveTask, game);
+				var job = Jobs.SaveWorld;
+                job.SetArguments(new Jobs.WorldSaveInfo(game.GetSavePath(), game));
+				job.Then((_, e) => { Rise.Scene.Switch(new SceneMainMenu()); });
+
+                game.CurrentMenu = new LoadingMenu(job, game);
             });
 
             container.AddChild(new Button

@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -48,11 +49,13 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             };
         }
 
-        private void Connect(Widget widget)
+        void Connect(Widget widget)
         {
-            var connectTask = Jobs.ConnectToServer(connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String));
-            connectTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((LoadingTask)task).Result));
-            Rise.Scene.Switch(new LoadingScene(connectTask));
+            var task = Jobs.ConnectToServer
+						   .SetArguments(new Jobs.ConnectToServerInfo(connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String)))
+			               .Then((t, a) => { Rise.Scene.Switch(new SceneGameplay((Game)((Job)t).Result)); });
+			                             
+			Rise.Scene.Switch(new LoadingScene(task));
         }
     }
 }

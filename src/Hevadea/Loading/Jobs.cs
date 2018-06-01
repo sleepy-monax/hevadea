@@ -8,21 +8,82 @@ namespace Hevadea.Loading
 {
     public static class Jobs
     {
+		public class WorldGeneratorInfo : JobArguments 
+		{
+			public string Path { get; }
+			public int Seed { get; }
+			public Generator Generator { get; }
+   
+			public WorldGeneratorInfo(string path, int seed, Generator generator)
+            {
+                Path = path;
+                Seed = seed;
+                Generator = generator;
+            }         
+		}
+
+		public class WorldSaveInfo : JobArguments
+		{
+			public WorldSaveInfo(string path, Game game)
+			{
+				Path = path;
+				Game = game;
+			}
+
+			public string Path { get; }
+			public Game Game { get; }
+		}
+
+		public class WorldLoadInfo : JobArguments
+        {
+			public WorldLoadInfo(string path)
+            {
+                Path = path;
+            }
+
+            public string Path { get; }
+        }
+
+		public class StartServerInfo : WorldLoadInfo
+		{
+			public StartServerInfo(string path, string address, int port, int slots) : base(path)
+			{
+				Address = address;
+				Port = port;
+				Slots = slots;
+			}
+
+			public string Address { get; }
+			public int Port { get; }
+			public int Slots { get; }
+		}
+
+		public class ConnectToServerInfo : JobArguments 
+		{
+			public ConnectToServerInfo(string address, int port)
+			{
+				Address = address;
+				Port = port;
+			}
+
+			public string Address { get; }
+			public int Port { get; }
+
+		}
+
         public static Job GenerateWorld => new Job("GenerateWorld", (job, args) => 
         {
-            var path = args[0] as string;
-            var seed = args[1] as int?;
-            var generator = args[2] as Generator;
+			var info = args as WorldGeneratorInfo;
 
-            Game.SetLastGame(path);
+            Game.SetLastGame(info.Path);
             job.Report("Generating world...");
-            generator.Seed = seed ?? 0;
+			info.Generator.Seed = info.Seed;
 
             Game game = new Game
             {
-                SavePath = path,
+				SavePath = info.Path,
                 MainPlayer = (Player)EntityFactory.PLAYER.Construct(),
-                World = generator.Generate(job)
+				World = info.Generator.Generate(job)
             };
 
             return game;
@@ -30,18 +91,19 @@ namespace Hevadea.Loading
 
         public static Job SaveWorld => new Job("SaveWorld", (job, args) => 
         {
-            var game = args[1] as Game;
-            var savePath = args[0] as string;
-            Game.SetLastGame(savePath ?? game.SavePath);
-            game.Save(job, savePath ?? game.SavePath);
+			var info = args as WorldSaveInfo; 
+           
+			Game.SetLastGame(info.Path);
+			info.Game.Save(job, info.Path);
 
             return null;
         });
 
         public static Job LoadWorld => new Job("LoadWorld", (job, args) =>
         {
-            var path = args[0] as string;
-            Game game = new Game().Load(job, path);
+			var info = args as WorldLoadInfo;
+            
+			Game game = new Game().Load(job, info.Path);
             game.Initialize();
 
             return game;
@@ -49,12 +111,9 @@ namespace Hevadea.Loading
 
         public static Job StartServer => new Job("StartSever", (job, arg) =>
         {
-            var worldPath = arg[0] as string;
-            var address = arg[1] as string;
-            var port = arg[2] as int?;
-            var slots = arg[3] as int?;
+			var info = arg as StartServerInfo;
 
-            HostGame game = (HostGame)new HostGame(address ?? "127.0.0.1", port ?? 7777, slots ?? 8).Load(job, worldPath);
+			HostGame game = (HostGame)new HostGame(info.Address, info.Port, info.Slots).Load(job, info.Path);
             game.Initialize();
             game.Start();
 
@@ -63,10 +122,9 @@ namespace Hevadea.Loading
 
         public static Job ConnectToServer => new Job("ConnectToServer", (job, arg) => 
         {
-            var address = arg[0] as string;
-            var port = arg[1] as int?;
+			var info = arg as ConnectToServerInfo;
 
-            var game = new RemoteGame(address, port ?? 7777);
+			var game = new RemoteGame(info.Address, info.Port);
             game.Connect();
             game.Initialize();
             return game;

@@ -78,6 +78,8 @@ namespace Hevadea.Loading
                 }
             };
 
+			_job.Start(true);
+
             _job.Finish += (sender, e) =>
             {
                 game.CurrentMenu = new MenuInGame(game);

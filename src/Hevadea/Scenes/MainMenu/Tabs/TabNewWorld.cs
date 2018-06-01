@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -30,14 +31,16 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                     seed = worldSeedtextBox.Text.String.GetHashCode();
                 }
 
-                var generatorTask = Jobs.NewWorld(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", GENERATOR.DEFAULT, seed);
-                generatorTask.LoadingFinished += (s, e) =>
+				var job = Jobs.GenerateWorld;
+				job.SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", seed, GENERATOR.DEFAULT));
+                
+                job.Finish += (s, e) =>
                 {
-                    Game game = (Game)((LoadingTask)s).Result;
+                    Game game = (Game)((Job)s).Result;
                     game.Initialize();
                     Rise.Scene.Switch(new SceneGameplay(game));
                 };
-                Rise.Scene.Switch(new LoadingScene(generatorTask));
+                Rise.Scene.Switch(new LoadingScene(job));
             });
 
             var worldOptions = new FlowLayout

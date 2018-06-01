@@ -5,13 +5,18 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Framework.Threading
 {
-    public class Job
+	public class JobArguments
+	{
+	}
+   
+	public class Job
     {
         float _progress = 0f;
         string _status = "";
-        public delegate object JobHandler(Job task, object[] args);
+        public delegate object JobHandler(Job task, JobArguments args);
 
         JobHandler _job;
+		JobArguments _args;
 
         public bool Started { get; private set; }
         public bool Canceled { get; private set; }
@@ -56,12 +61,18 @@ namespace Hevadea.Framework.Threading
             _job = job;
         }
 
-        public static Job NewEmpty(string name)
+		public static Job NewEmpty(string name)
         {
-            return new Job(name, null);
+			return new Job(name, null);
         }
 
-        public Job Start(bool paralel = true, params object[] args)
+		public Job SetArguments(JobArguments args)
+		{
+			_args = args;
+			return this;
+		}
+
+		public Job Start(bool paralel = true)
         {
             try
             {
@@ -72,14 +83,19 @@ namespace Hevadea.Framework.Threading
                     {
                         Task.Run(() =>
                         {
-                            Result = _job?.Invoke(this, args);
+							if (_job != null)
+                                Result = _job.Invoke(this, _args);
+							
                             Finish?.Invoke(this, EventArgs.Empty);
                             Finished = true;
                         });
                     }
                     else
                     {
-                        Result = _job?.Invoke(this, args);
+						if (_job != null)
+                            Result = _job.Invoke(this, _args);
+
+						Finished = true;
                     }
                 }
             }
@@ -108,10 +124,8 @@ namespace Hevadea.Framework.Threading
 
         public void Wait()
         {
-            while (!Canceled || !Finished)
-            {
+			while (!(Canceled || Finished))
                 Thread.Sleep(10);
-            }
         }
 
         public void Report(string status)
@@ -124,7 +138,7 @@ namespace Hevadea.Framework.Threading
         public void Report(float progress)
         {
             Progress = progress;
-            Log(LoggerLevel.Info, $"{(int)(progress*100)}%");
+			Console.WriteLine($"{(int)(progress * 100)}%");
         }
         
         public void Log(LoggerLevel level, string msg)

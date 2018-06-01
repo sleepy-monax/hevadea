@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Hevadea
 {
@@ -21,7 +22,6 @@ namespace Hevadea
         public static readonly string Name = "Hevadea";
         public static readonly string Version = "0.1.0";
         public static readonly int VersionNumber = 1;
-
 
         public static string GetSaveFolder()
         {
@@ -36,24 +36,18 @@ namespace Hevadea
         public static string GetLastGame()
         {
             if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
-            {
                 return File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame");
-            }
-            else
-            {
-                return "";
-            }
+            
+            return null;
         }
 
         public bool IsClient => this is RemoteGame;
         public bool IsServer => this is HostGame;
-
         public bool IsLocal => !IsClient && !IsServer;
-
         public bool IsMaster => IsLocal || IsServer;
 
-        private Menu _currentMenu;
-        private LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
+        Menu _currentMenu;
+        LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
 
         public string SavePath { get; set; } = "./test/";
 
@@ -223,7 +217,7 @@ namespace Hevadea
             if (!Rise.NoGraphic) // TODO: Make the minimap store in a bitmap on sever side...
             {
                 File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
-
+                
                 var task = new Job((j, args) =>
                 {
                     var fs = new FileStream(path + "minimap.png", FileMode.OpenOrCreate);

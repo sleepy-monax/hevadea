@@ -2,6 +2,7 @@
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
+using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -80,15 +81,17 @@ namespace Hevadea.Scenes.MainMenu
                     Origine = Anchor.Top,
                 }
                 .RegisterMouseClickEvent((sender) =>
-                {
-                    var generatorTask = Jobs.NewWorld(Game.GetSaveFolder() + $"world/", GENERATOR.DEFAULT, Rise.Rnd.NextInt());
-                    generatorTask.LoadingFinished += (s, e) =>
+				{
+				var job = Jobs.GenerateWorld;
+					job.SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + $"world/", Rise.Rnd.NextInt(), GENERATOR.DEFAULT));
+                    
+                    job.Finish += (s, e) =>
                     {
-                        Game game = (Game)((LoadingTask)s).Result;
+                        Game game = (Game)((Job)s).Result;
                         game.Initialize();
                         Rise.Scene.Switch(new SceneGameplay(game));
                     };
-                    Rise.Scene.Switch(new LoadingScene(generatorTask));
+                    Rise.Scene.Switch(new LoadingScene(job));
                 });
                 container.Childrens.Add(generateButton);
 
@@ -103,13 +106,15 @@ namespace Hevadea.Scenes.MainMenu
             }
         }
 
-        private void ContinueLastGame(Widget sender)
+        void ContinueLastGame(Widget sender)
         {
-            if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
+			var lastGame = Game.GetLastGame();
+
+            if (lastGame != null)
             {
-                var loadWorldTask = Jobs.LoadWorld(File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame"));
-                loadWorldTask.LoadingFinished += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((LoadingTask)task).Result));
-                Rise.Scene.Switch(new LoadingScene(loadWorldTask));
+				var job = Jobs.LoadWorld.SetArguments(new Jobs.WorldLoadInfo(lastGame));
+                job.Finish += (task, e) => Rise.Scene.Switch(new SceneGameplay((Game)((Job)task).Result));
+                Rise.Scene.Switch(new LoadingScene(job));
             }
         }
 
