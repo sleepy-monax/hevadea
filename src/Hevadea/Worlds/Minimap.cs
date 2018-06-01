@@ -12,20 +12,28 @@ namespace Hevadea.Worlds
         public int Y { get; set; }
         public int Icon { get; set; }
     }
-
+    
     public class Minimap
     {
-        private Level _level;
+        Level _level;
+		Texture2D _texture;
+
 
         public List<MinimapWaypoint> Waypoints { get; set; } = new List<MinimapWaypoint>();
-        public Texture2D Texture { get; set; }
+        
 
         public Minimap(Level level)
         {
-            if (Rise.NoGraphic) return;
+			if (Rise.NoGraphic) 
+			{
+				_bitmap 
+			}
+			else
+			{
+				_texture = new Texture2D(Rise.MonoGame.GraphicsDevice, level.Width, level.Height);
+				_texture.Clear(Color.TransparentBlack);            
+            }
 
-            Texture = new Texture2D(Rise.MonoGame.GraphicsDevice, level.Width, level.Height);
-            Texture.Clear(Color.TransparentBlack);
 
             _level = level;
         }
