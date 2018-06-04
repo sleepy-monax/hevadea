@@ -9,7 +9,7 @@ namespace Hevadea.Multiplayer
 {
     public enum PacketType
     {
-        NULL, LOGIN, TOKEN, WORLD, LEVEL, CHUNK, ACKNOWLEDGMENT, JOINT, TILE, TILE_DATA
+        NULL, LOGIN, TOKEN, WORLD, LEVEL, CHUNK, ACKNOWLEDGMENT, JOINT, TILE, TILE_DATA, PLAYER_INPUT
     }
 
     public static class Packets
@@ -51,7 +51,7 @@ namespace Hevadea.Multiplayer
 
         // JOINT THE PLAYER ====================================================
 
-        public static byte[] Join(Player player)
+        public static byte[] Join(PlayerSession player)
             => new PacketBuilder()
                 .WriteInteger((int)PacketType.JOINT)
                 .WriteStringUTF8(player.Save().ToJson()).Buffer;
@@ -73,5 +73,11 @@ namespace Hevadea.Multiplayer
             .WriteInteger(pos.X)
             .WriteInteger(pos.Y)
             .WriteStringUTF8(data.ToJson()).Buffer;
+
+        public static byte[] PlayerInput(PlayerInput playerInput)
+            => new PacketBuilder()
+            .WriteInteger((int)PacketType.PLAYER_INPUT)
+            .WriteInteger((int)playerInput)
+            .Buffer;
     }
 }

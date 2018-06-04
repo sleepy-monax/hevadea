@@ -25,8 +25,8 @@ namespace Hevadea.Framework
 
         public static bool NoGraphic { get; private set; } = false;
 
-		public static ConcurrentQueue<Job> BackgroundThread = new ConcurrentQueue<Job>();
-		public static ConcurrentQueue<Job> GameLoopThread = new ConcurrentQueue<Job>();
+        public static ConcurrentQueue<Job> BackgroundThread = new ConcurrentQueue<Job>();
+        public static ConcurrentQueue<Job> GameLoopThread = new ConcurrentQueue<Job>();
 
         // Components
         [Obsolete] public static LegacyInputManager Input;
@@ -119,10 +119,9 @@ namespace Hevadea.Framework
         static void MonoGameOnUpdate(Game sender, GameTime gameTime)
         {
 
-			if (GameLoopThread.TryDequeue(out var job))
+            if (GameLoopThread.TryDequeue(out var job))
             {
-				Logger.Log("Doing job!");
-				job.Start(false);
+                job.Start(false);
             }
             
 

@@ -3,6 +3,7 @@ using Hevadea.Framework.Networking;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
+using System.Collections.Generic;
 using System.Net.Sockets;
 
 namespace Hevadea.Multiplayer
@@ -13,6 +14,7 @@ namespace Hevadea.Multiplayer
         public string _address;
         public int _port;
         public int _slots;
+
 
         public HostGame()
         {
@@ -31,6 +33,7 @@ namespace Hevadea.Multiplayer
             Server = new Server(_address, _port, true);
 
             var dispacher = new PacketDispacher<PacketType>(Server);
+
             dispacher.RegisterHandler(PacketType.LOGIN, HandleLOGIN);
 
             Server.Start(25, _slots);
@@ -56,15 +59,24 @@ namespace Hevadea.Multiplayer
             if (token == 0)
             {
                 token = Rise.Rnd.NextInt();
-                Logger.Log<Game>($"{userName}' token is now {token}!");
+                Logger.Log<Game>($"{userName}'s token is now {token}!");
             }
 
             client.Send(Packets.Token(token));
             SendWorld(client);
 
-            var newPlayer = (Player)EntityFactory.PLAYER.Construct();
-            World.SpawnPlayer(newPlayer);
-            client.Send(Packets.Join(newPlayer));
+
+            var playerSession = new PlayerSession(userName, token, (Player)EntityFactory.PLAYER.Construct());
+            playerSession.Join(this);
+            Players.Add(playerSession);
+            client.Send(Packets.Join(playerSession));
+        }
+
+        public void HandlePLAYER_INPUT(Socket socket, byte[] data)
+        {
+            new PacketBuilder(data)
+                .Ignore(sizeof(int))
+                .ReadInteger(out var inputID);
         }
 
         public void SendWorld(ConnectedClient client)

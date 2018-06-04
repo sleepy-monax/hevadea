@@ -138,7 +138,6 @@ namespace Hevadea.Framework.Threading
         public void Report(float progress)
         {
             Progress = progress;
-			Console.WriteLine($"{(int)(progress * 100)}%");
         }
         
         public void Log(LoggerLevel level, string msg)

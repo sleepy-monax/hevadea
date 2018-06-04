@@ -57,8 +57,9 @@ namespace Hevadea
                 .Ignore(sizeof(int))
                 .ReadStringUTF8(out var playerJson);
 
-            Player player = (Player)EntityFactory.PLAYER.Construct().Load(playerJson.FromJson<EntityStorage>());
-            MainPlayer = player;
+            var session = PlayerSession.Load(playerJson.FromJson<PlayerStorage>());
+            session.Join(this);
+            LocalPlayer = session;
             _jointed = true;
         }
 

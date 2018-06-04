@@ -2,17 +2,14 @@
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
-using Hevadea.GameObjects;
-using Hevadea.GameObjects.Entities;
+
 using Hevadea.Multiplayer;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Hevadea
 {
@@ -52,11 +49,10 @@ namespace Hevadea
         public string SavePath { get; set; } = "./test/";
 
         public Camera Camera { get; set; }
-        public Player MainPlayer { get; set; }
         public World World { get; set; }
 
-        public List<Player> Players { get; } = new List<Player>();
-        public PlayerInputHandler PlayerInput { get; set; }
+        public PlayerSession LocalPlayer { get; set; }
+        public List<PlayerSession> Players { get; } = new List<PlayerSession>();
 
         public Menu CurrentMenu { get => _currentMenu; set { CurrentMenuChange?.Invoke(_currentMenu, value); _currentMenu = value; } }
 
@@ -74,17 +70,12 @@ namespace Hevadea
             if (!Rise.NoGraphic)
                 CurrentMenu = new MenuInGame(this);
 
-            if (MainPlayer.Removed)
+            if (LocalPlayer != null)
             {
-                if (MainPlayer.X == 0f && MainPlayer.Y == 0f)
-                    World.SpawnPlayer(MainPlayer);
-                else
-                    World.GetLevel(MainPlayer.LastLevel).AddEntity(MainPlayer);
+                LocalPlayer.Join(this);
+                Camera = new Camera(LocalPlayer.Entity);
+                Camera.JumpToFocusEntity();
             }
-
-            PlayerInput = new PlayerInputHandler(MainPlayer);
-            Camera = new Camera(MainPlayer);
-            Camera.JumpToFocusEntity();
         }
 
         public void Draw(GameTime gameTime)
@@ -95,12 +86,19 @@ namespace Hevadea
         public void Update(GameTime gameTime)
         {
             Camera.Update(gameTime);
-            PlayerInput.Update(gameTime);
+            LocalPlayer?.InputHandler?.Update(gameTime);
 
 
-            if (!IsClient)
+            if (IsLocal)
             {
-                MainPlayer.Level.Update(gameTime);
+                LocalPlayer.Entity.Level.Update(gameTime);
+            }
+            else if (IsServer)
+            {
+                foreach (var level in World.Levels)
+                {
+                    level.Update(gameTime);
+                }
             }
 
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
@@ -132,7 +130,7 @@ namespace Hevadea
 
             WorldStorage worldStorage = File.ReadAllText(path + "world.json").FromJson<WorldStorage>();
             World world = World.Load(worldStorage);
-            Entity player = EntityFactory.PLAYER.Construct().Load(File.ReadAllText(path + "player.json").FromJson<EntityStorage>());
+            PlayerSession player = PlayerSession.Load(File.ReadAllText(path + "player.json").FromJson<PlayerStorage>());
 
             foreach (var levelName in worldStorage.Levels)
             {
@@ -140,7 +138,7 @@ namespace Hevadea
             }
 
             World = world;
-            MainPlayer = (Player)player;
+            LocalPlayer = player;
 
             return this;
         }
@@ -193,8 +191,16 @@ namespace Hevadea
                 SaveLevel(job, level);
             }
 
+            Directory.CreateDirectory(SavePath + "players");
+
+            foreach (var player in Players)
+            {
+                if (player != LocalPlayer)
+                    File.WriteAllText(SavePath + "players/" + player.Token.ToString("x") + ".json", player.Save().ToJson());
+            }
+
             File.WriteAllText(GetSavePath() + "world.json", World.Save().ToJson());
-            File.WriteAllText(GetSavePath() + "player.json", MainPlayer.Save().ToJson());
+            File.WriteAllText(GetSavePath() + "player.json", LocalPlayer.Save().ToJson());
         }
 
         private void SaveLevel(Job job, Level level)
@@ -229,5 +235,7 @@ namespace Hevadea
                 task.Wait();
             }
         }
+
+
     }
 }

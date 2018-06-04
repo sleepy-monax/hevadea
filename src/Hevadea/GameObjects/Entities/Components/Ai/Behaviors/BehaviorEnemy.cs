@@ -35,12 +35,12 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
                 {
                     var game = agent.Owner.Game;
 
-                    if (game.MainPlayer != null &&
-                        game.MainPlayer.Level == agent.Owner.Level &&
-                        Mathf.Distance(game.MainPlayer.Position, agent.Owner.Position) < AgroRange * 16 &&
+                    if (game.LocalPlayer.Entity != null &&
+                        game.LocalPlayer.Entity.Level == agent.Owner.Level &&
+                        Mathf.Distance(game.LocalPlayer.Entity.Position, agent.Owner.Position) < AgroRange * 16 &&
                         Rise.Rnd.NextFloat() < ChanceToAgro)
                     {
-                        Target = game.MainPlayer;
+                        Target = game.LocalPlayer.Entity;
                     }
                 }
 

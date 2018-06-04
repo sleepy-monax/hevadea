@@ -82,8 +82,7 @@ namespace Hevadea.Worlds
             // Loading entities
             foreach (EntityStorage entityData in store.Entities)
             {
-                Entity entity = EntityFactory.Construct(entityData.Type);
-                entity.Load(entityData);
+                Entity entity = entityData.ConstructEntity();
                 chunk.AddEntity(entity);
             }
 

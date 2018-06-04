@@ -71,7 +71,7 @@ namespace Hevadea.Scenes.Menus
 
             // Hud ------------------------------------------------------------
 
-            _playerStats = new WidgetPlayerStats(game.MainPlayer)
+            _playerStats = new WidgetPlayerStats(Game.LocalPlayer.Entity)
             {
                 Anchor = Anchor.TopLeft,
                 Origine = Anchor.TopLeft,
@@ -88,7 +88,7 @@ namespace Hevadea.Scenes.Menus
                 Content = new WidgetMinimap(game)
             };
 
-            _hotBar = new WidgetHotBar(Game.MainPlayer.GetComponent<Inventory>().Content)
+            _hotBar = new WidgetHotBar(Game.LocalPlayer.Entity.GetComponent<Inventory>().Content)
             {
                 Anchor = Anchor.Bottom,
                 Origine = Anchor.Bottom,
@@ -106,10 +106,10 @@ namespace Hevadea.Scenes.Menus
                 }
             };
 
-            btnAction.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Action); };
-            btnAttack.MouseHold += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Attack); };
-            btnDrop.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.DropItem); };
-            btnPickup.MouseClick += (sender) => { Game.PlayerInput.HandleInput(PlayerInput.Pickup); };
+            btnAction.MouseClick += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.Action); };
+            btnAttack.MouseHold += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.Attack); };
+            btnDrop.MouseClick += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.DropItem); };
+            btnPickup.MouseClick += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.Pickup); };
             btnMinimap.MouseClick += (sender) => { _minimap.Toggle(); sender.Disable(); };
 
             _minimap.MouseClick += (sender) => { sender.Toggle(); btnMinimap.Enable(); };

@@ -154,7 +154,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             if (CanAttackTile && !IsAttacking && AttackTile(weapon, Owner.GetFacingTile()))
                 IsAttacking = true;
 
-            if (IsAttacking && Owner == Owner.Game.MainPlayer)
+            if (IsAttacking && Owner == Owner.Game.LocalPlayer.Entity)
                 Owner.Game.Camera.Thrauma += 0.15f;
 
             _lastDirection = Owner.Facing;

@@ -43,7 +43,7 @@ namespace Hevadea.Scenes.Menus
             PauseGame = true;
 
             var r = new List<List<Recipe>>();
-            foreach (var e in Game.MainPlayer.Level.GetEntitiesOnArea(Game.MainPlayer.X, Game.MainPlayer.Y, Game.Unit * 3))
+            foreach (var e in Game.LocalPlayer.Entity.Level.GetEntitiesOnArea(Game.LocalPlayer.Entity.X, Game.LocalPlayer.Entity.Y, Game.Unit * 3))
             {
                 var s = e.GetComponent<CraftingStation>();
                 if (s != null)
@@ -62,7 +62,7 @@ namespace Hevadea.Scenes.Menus
                 recipies.AddRange(i);
             }
 
-            _inventory = new WidgetItemContainer(Game.MainPlayer.GetComponent<Inventory>().Content);
+            _inventory = new WidgetItemContainer(Game.LocalPlayer.Entity.GetComponent<Inventory>().Content);
             _crafting = new CraftingTab(Game, recipies);
 
             _inventory.Dock = Dock.Fill;
@@ -70,7 +70,7 @@ namespace Hevadea.Scenes.Menus
             _inventory.MouseClick += (sender) =>
             {
                 _inventory.HighlightedItem = _inventory.SelectedItem;
-                Game.MainPlayer.HoldingItem = _inventory.SelectedItem;
+                Game.LocalPlayer.Entity.HoldingItem = _inventory.SelectedItem;
             };
 
             var closeBtn = new SpriteButton()

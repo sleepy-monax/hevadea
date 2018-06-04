@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Hevadea.GameObjects;
+using Hevadea.GameObjects.Entities;
+using System.Collections.Generic;
 
 namespace Hevadea.Storage
 {
@@ -29,6 +31,14 @@ namespace Hevadea.Storage
         public void Value<T>(string name, T value)
         {
             Data[name] = value;
+        }
+
+        public Entity ConstructEntity()
+        {
+            Entity entity = EntityFactory.Construct(Type);
+            entity.Load(this);
+
+            return entity;
         }
     }
 }

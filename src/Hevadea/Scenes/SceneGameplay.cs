@@ -53,7 +53,7 @@ $@"World time: {(int)Game.World.DayNightCycle.Time}
 Time of the day: {(int)Game.World.DayNightCycle.TimeOfTheDay} / {Game.World.DayNightCycle.CycleDuration}
 Days : {Game.World.DayNightCycle.DayCount}
 Current Stage: {Game.World.DayNightCycle.GetCurrentStage().Name} : {(int)Game.World.DayNightCycle.GetTimeOfTheCurrentStage()}/{(int)Game.World.DayNightCycle.GetCurrentStage().Duration}
-Player pos {Game.MainPlayer.X} {Game.MainPlayer.Y}
+Player pos {Game.LocalPlayer.Entity.X} {Game.LocalPlayer.Entity.Y}
 ";
         }
     }

@@ -35,7 +35,7 @@ namespace Hevadea.GameObjects.Entities.Components
                     var distance = Mathf.Distance(e.X, e.Y, Owner.X, Owner.Y);
                     e.GetComponent<Health>()?.Hurt(Owner, GetDammage(distance) * Rise.Rnd.NextFloat());
 
-                    if (e == Owner.Game.MainPlayer)
+                    if (e == Owner.Game.LocalPlayer?.Entity)
                     {
                         Owner.Game.Camera.Thrauma += GetPower(distance);
                     }

@@ -137,8 +137,8 @@ namespace Hevadea
                     break;
 
                 case PlayerInput.AddWaypoint:
-                    var pos = game.MainPlayer.GetTilePosition();
-                    game.MainPlayer.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
+                    var pos = Player.GetTilePosition();
+                    Player.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
                     break;
             }
         }

@@ -151,6 +151,7 @@
     <Compile Include="Loading\Jobs.cs" />
     <Compile Include="Multiplayer\HostGame.cs" />
     <Compile Include="Multiplayer\Packets.cs" />
+    <Compile Include="PlayerSession.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="Registry\GENERATOR.cs" />
     <Compile Include="Registry\LEVELS.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Storage\ChunkStorage.cs" />
     <Compile Include="Storage\EntityStorage.cs" />
     <Compile Include="Storage\LevelStorage.cs" />
+    <Compile Include="Storage\PlayerStorage.cs" />
     <Compile Include="Storage\WorldStorage.cs" />
     <Compile Include="GameObjects\Tiles\Components\BreakableTile.cs" />
     <Compile Include="GameObjects\Tiles\Components\DroppableTile.cs" />
