@@ -237,6 +237,7 @@
     <Compile Include="Scenes\Menus\MenuRespawn.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObjects\Entities\EntityColection.cs" />
+    <Compile Include="Scenes\MainMenu\MobileMainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">

@@ -52,7 +52,7 @@ namespace Hevadea.Scenes
             _time += gameTime.GetDeltaTime();
 
             if (!_once || !_loadingDone || _time < 2) return;
-            Rise.Scene.Switch(new SceneMainMenu());
+            Rise.Scene.Switch(new MobileMainMenu());
             _once = false;
         }
 

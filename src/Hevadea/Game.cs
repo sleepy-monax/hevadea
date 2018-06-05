@@ -2,10 +2,12 @@
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils;
 using Hevadea.Framework.Utils.Json;
-
+using Hevadea.Loading;
 using Hevadea.Multiplayer;
+using Hevadea.Scenes;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
+using Hevadea.WorldGenerator;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -37,6 +39,30 @@ namespace Hevadea
             
             return null;
         }
+
+		public static void Play(string gamePath)
+		{
+			var job = Jobs.LoadWorld.SetArguments(new Jobs.WorldLoadInfo(gamePath));
+
+            job.Finish += (task, e) 
+				=> Rise.Scene.Switch(new SceneGameplay((Game)((Job)task).Result));
+			
+            Rise.Scene.Switch(new LoadingScene(job));   
+		}
+
+		public static void New(string name, Generator generator)
+		{
+			var job = Jobs.GenerateWorld;
+			job.SetArguments(new Jobs.WorldGeneratorInfo($"{GetSaveFolder()}{name}/", Rise.Rnd.NextInt(), generator));
+
+            job.Finish += (s, e) =>
+            {
+                Game game = (Game)((Job)s).Result;
+                game.Initialize();
+                Rise.Scene.Switch(new SceneGameplay(game));
+            };
+            Rise.Scene.Switch(new LoadingScene(job));
+		}
 
         public bool IsClient => this is RemoteGame;
         public bool IsServer => this is HostGame;
@@ -203,7 +229,7 @@ namespace Hevadea
             File.WriteAllText(GetSavePath() + "player.json", LocalPlayer.Save().ToJson());
         }
 
-        private void SaveLevel(Job job, Level level)
+        void SaveLevel(Job job, Level level)
         {
             job.Report($"Saving {level.Name}...");
             string path = GetLevelSavePath(level);
