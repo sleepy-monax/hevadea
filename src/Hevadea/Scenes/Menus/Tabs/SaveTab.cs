@@ -48,7 +48,7 @@ namespace Hevadea.Scenes.Menus.Tabs
             {
 				var job = Jobs.SaveWorld;
                 job.SetArguments(new Jobs.WorldSaveInfo(game.GetSavePath(), game));
-				job.Then((_, e) => { Rise.Scene.Switch(new SceneMainMenu()); });
+				job.Then((_, e) => { Rise.Scene.Switch(new MainMenu.DesktopMainMenu()); });
 
                 game.CurrentMenu = new LoadingMenu(job, game);
             });
@@ -58,7 +58,7 @@ namespace Hevadea.Scenes.Menus.Tabs
                 Text = "Exit",
                 Padding = new Margins(4)
             })
-                .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new SceneMainMenu()); });
+                .RegisterMouseClickEvent((sender) => { Rise.Scene.Switch(new MainMenu.DesktopMainMenu()); });
         }
     }
 }

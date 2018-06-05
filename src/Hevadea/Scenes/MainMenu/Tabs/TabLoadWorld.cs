@@ -16,45 +16,34 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         public TabLoadWorld()
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(2, 2));
+
+            var title = new Label
+            {
+                Text = "Load World",
+                Font = Ressources.FontAlagard,
+                Dock = Dock.Top
+            };
+
             var saveList = new ListWidget()
             {
                 Dock = Dock.Fill
             };
 
-            var multiplayer = new CheckBox() { Text = "Multiplayer", Dock = Dock.Left, UnitBound = new Rectangle(0, 0, 256, 64) };
-            var loadButton = new Button { Text = "Load", Dock = Dock.Fill }
+            var loadButton = new Button
+            {
+                Text = "Load",
+                Dock = Dock.Bottom
+            }
             .RegisterMouseClickEvent((sender) =>
             {
                 if (saveList.SelectedItem != null)
                 {
                     var item = (ListItemText)saveList.SelectedItem;
-                    
-					Job job;
-
-					if (multiplayer.Checked)
-					{
-						job = Jobs.StartServer.SetArguments(new Jobs.StartServerInfo(item.Text, "127.0.0.1", 7777, 8));
-					}
-					else
-					{
-						job = Jobs.LoadWorld.SetArguments(new Jobs.WorldLoadInfo(item.Text));
-					}
-
-					job.Then((t, e) => Rise.Scene.Switch(new SceneGameplay((Game)((Job)t).Result)));
-                    
-                    Rise.Scene.Switch(new LoadingScene(job));
+                    Game.Play(item.Text);
                 }
             });
 
-            Content = new Container()
-            {
-                Childrens =
-                {
-                    new Label { Text = "Load World", Font = Ressources.FontAlagard, Dock = Dock.Top },
-                    new Container( multiplayer, loadButton ){ Dock = Dock.Bottom },
-                    saveList,
-                }
-            };
+            Content = new Container(title, loadButton, saveList);
 
             var s = Directory.GetDirectories(Game.GetSaveFolder());
 

@@ -36,24 +36,24 @@ namespace Hevadea
         {
             if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
                 return File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame");
-            
+
             return null;
         }
 
-		public static void Play(string gamePath)
-		{
-			var job = Jobs.LoadWorld.SetArguments(new Jobs.WorldLoadInfo(gamePath));
+        public static void Play(string gamePath)
+        {
+            var job = Jobs.LoadWorld.SetArguments(new Jobs.WorldLoadInfo(gamePath));
 
-            job.Finish += (task, e) 
-				=> Rise.Scene.Switch(new SceneGameplay((Game)((Job)task).Result));
-			
-            Rise.Scene.Switch(new LoadingScene(job));   
-		}
+            job.Finish += (task, e)
+                => Rise.Scene.Switch(new SceneGameplay((Game)((Job)task).Result));
 
-		public static void New(string name, Generator generator)
-		{
-			var job = Jobs.GenerateWorld;
-			job.SetArguments(new Jobs.WorldGeneratorInfo($"{GetSaveFolder()}{name}/", Rise.Rnd.NextInt(), generator));
+            Rise.Scene.Switch(new LoadingScene(job));
+        }
+
+        public static void New(string name, Generator generator)
+        {
+            var job = Jobs.GenerateWorld;
+            job.SetArguments(new Jobs.WorldGeneratorInfo($"{GetSaveFolder()}{name}/", Rise.Rnd.NextInt(), generator));
 
             job.Finish += (s, e) =>
             {
@@ -62,15 +62,15 @@ namespace Hevadea
                 Rise.Scene.Switch(new SceneGameplay(game));
             };
             Rise.Scene.Switch(new LoadingScene(job));
-		}
+        }
 
         public bool IsClient => this is RemoteGame;
         public bool IsServer => this is HostGame;
         public bool IsLocal => !IsClient && !IsServer;
         public bool IsMaster => IsLocal || IsServer;
 
-        Menu _currentMenu;
-        LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
+        private Menu _currentMenu;
+        private LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
 
         public string SavePath { get; set; } = "./test/";
 
@@ -113,7 +113,6 @@ namespace Hevadea
         {
             Camera.Update(gameTime);
             LocalPlayer?.InputHandler?.Update(gameTime);
-
 
             if (IsLocal)
             {
@@ -183,9 +182,9 @@ namespace Hevadea
                     job.Report((x * level.Chunks.GetLength(1) + y) / (float)level.Chunks.Length);
                 }
             }
-            
+
             if (!Rise.NoGraphic)
-            {            
+            {
                 level.Minimap.Waypoints = File.ReadAllText(levelPath + "minimap.json").FromJson<List<MinimapWaypoint>>();
 
                 var task = new Job((j, args) =>
@@ -229,7 +228,7 @@ namespace Hevadea
             File.WriteAllText(GetSavePath() + "player.json", LocalPlayer.Save().ToJson());
         }
 
-        void SaveLevel(Job job, Level level)
+        private void SaveLevel(Job job, Level level)
         {
             job.Report($"Saving {level.Name}...");
             string path = GetLevelSavePath(level);
@@ -246,7 +245,7 @@ namespace Hevadea
             if (!Rise.NoGraphic) // TODO: Make the minimap store in a bitmap on sever side...
             {
                 File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
-                
+
                 var task = new Job((j, args) =>
                 {
                     level.Minimap.SaveToFile(path + "minimap.png");
@@ -261,7 +260,5 @@ namespace Hevadea
                 task.Wait();
             }
         }
-
-
     }
 }

@@ -183,7 +183,7 @@
     <Compile Include="Scenes\Widgets\WidgetPlayerStats.cs" />
     <Compile Include="Ressources.cs" />
     <Compile Include="Scenes\SceneGameplay.cs" />
-    <Compile Include="Scenes\MainMenu\SceneMainMenu.cs" />
+    <Compile Include="Scenes\MainMenu\DesktopMainMenu.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabLoadWorld.cs" />
     <Compile Include="Scenes\SceneGameSplash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

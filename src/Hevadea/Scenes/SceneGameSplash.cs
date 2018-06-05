@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Utils;
 using Hevadea.Registry;
@@ -52,7 +53,7 @@ namespace Hevadea.Scenes
             _time += gameTime.GetDeltaTime();
 
             if (!_once || !_loadingDone || _time < 2) return;
-            Rise.Scene.Switch(new MobileMainMenu());
+            Rise.Scene.Switch(Rise.Platform.Family == PlatformFamily.Desktop ? new DesktopMainMenu() : (Scene)new MobileMainMenu());
             _once = false;
         }
 
