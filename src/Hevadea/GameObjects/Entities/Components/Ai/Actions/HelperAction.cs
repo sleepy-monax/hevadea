@@ -10,17 +10,16 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
         {
             if (usePathFinding)
             {
-                List<PathFinder.Node> path;
-                path = new PathFinder(ag.Owner.Level, ag.Owner, maxDistance).GetPath(ag.Owner.GetTilePosition(), pos);
-
-                if (path == null)
+                if (ag.Owner.Level.Path(out var path, ag.Owner.GetTilePosition(), pos))
+                {
+                    foreach (var n in path)
+                    {
+                        ag.MoveTo(new TilePosition(n.X, n.Y), speed);
+                    }
+                }
+                else
                 {
                     return false;
-                }
-
-                foreach (var n in path)
-                {
-                    ag.MoveTo(new TilePosition(n.X, n.Y), speed);
                 }
             }
             else

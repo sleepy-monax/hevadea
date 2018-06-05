@@ -211,7 +211,7 @@
     <Compile Include="Utils\Direction.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Maze.cs" />
-    <Compile Include="Utils\PathFinding.cs" />
+    <Compile Include="Utils\PathFinder.cs" />
     <Compile Include="WorldGenerator\Functions\CombinedFunction.cs" />
     <Compile Include="WorldGenerator\Functions\FlatFunction.cs" />
     <Compile Include="WorldGenerator\Functions\IFunction.cs" />

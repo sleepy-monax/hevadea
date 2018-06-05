@@ -157,5 +157,16 @@ namespace Hevadea.Framework.Utils
             else if (val.CompareTo(max) > 0) return max;
             else return val;
         }
+
+        public static void Push<T>(this List<T> list, T item)
+        {
+            list.Insert(0, item);
+        }
+        public static T Pop<T>(this List<T> list)
+        {
+            T r = list[0];
+            list.RemoveAt(0);
+            return r;
+        }
     }
 }
