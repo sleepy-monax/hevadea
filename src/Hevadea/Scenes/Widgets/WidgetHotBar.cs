@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

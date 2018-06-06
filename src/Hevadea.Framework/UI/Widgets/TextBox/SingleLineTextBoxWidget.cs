@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.Text;
 using Hevadea.Framework.Input;
 using Hevadea.Framework.Utils;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hevadea.Framework.Extension;
+using System;
 
 namespace Hevadea.Framework.Utils
 {

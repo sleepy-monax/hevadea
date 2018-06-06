@@ -1,6 +1,5 @@
-﻿using Hevadea.Framework.Utils;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Tiles;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Utils;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +33,6 @@ namespace Hevadea.Utils
                 return Mathf.Distance(X, Y, node.X, node.Y);
             }
         }
-
 
         private static Node GetNode(this Node[,] nodes, Level level, int x, int y)
         {
@@ -114,7 +112,6 @@ namespace Hevadea.Utils
                         n.LocalGoal = localGoal;
                         n.GlobalGoal = n.LocalGoal + n.DistanceTo(endNode);
                     }
-
                 }
             }
 

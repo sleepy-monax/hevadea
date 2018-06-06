@@ -1,8 +1,7 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework.Extension;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 
 namespace Hevadea.Worlds
@@ -13,28 +12,25 @@ namespace Hevadea.Worlds
         public int Y { get; set; }
         public int Icon { get; set; }
     }
-    
+
     public class Minimap
     {
-        Level _level;
+        private Level _level;
 
         public Texture2D Texture { get; private set; }
 
         public List<MinimapWaypoint> Waypoints { get; set; } = new List<MinimapWaypoint>();
-        
 
         public Minimap(Level level)
         {
-            if (Rise.NoGraphic) 
+            if (Rise.NoGraphic)
             {
-
             }
             else
             {
                 Texture = new Texture2D(Rise.MonoGame.GraphicsDevice, level.Width, level.Height);
-                Texture.Clear(Microsoft.Xna.Framework.Color.TransparentBlack);            
+                Texture.Clear(Microsoft.Xna.Framework.Color.TransparentBlack);
             }
-
 
             _level = level;
         }

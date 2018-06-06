@@ -1,15 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Framework.Extension
 {
-    public static class XnaUtils
+    public static class GameTimeExtension
     {
-        public static bool IsLegalCharacter(this SpriteFont font, char c)
-        {
-            return font.Characters.Contains(c) || c == '\r' || c == '\n';
-        }
-
         public static float GetDeltaTime(this GameTime gameTime)
         {
             return (float)gameTime.ElapsedGameTime.TotalSeconds;

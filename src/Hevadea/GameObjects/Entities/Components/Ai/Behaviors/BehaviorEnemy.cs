@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.Ai.Actions;
@@ -64,6 +65,11 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
         {
             spriteBatch.DrawCircle(agent.Owner.Position, AgroRange * Game.Unit, 24, Target == null ? Color.Green : Color.Red);
             spriteBatch.DrawCircle(agent.Owner.Position, FollowRange * Game.Unit, 24, Color.White * 0.5f);
+
+            if (Target != null)
+            {
+                spriteBatch.DrawLine(Target.Position, agent.Owner.Position, Color.Yellow);
+            }
         }
     }
 }

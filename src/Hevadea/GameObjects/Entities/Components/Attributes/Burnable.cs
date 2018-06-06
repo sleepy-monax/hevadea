@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.Particles;
-using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.States;
 using Microsoft.Xna.Framework;
 

@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework.Extension;
 using Hevadea.GameObjects.Entities.Components.Ai.Actions;
 using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
@@ -53,7 +53,6 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 
         public virtual void DrawDebug(SpriteBatch spriteBatch, Agent agent, GameTime gameTime)
         {
-
         }
     }
 }

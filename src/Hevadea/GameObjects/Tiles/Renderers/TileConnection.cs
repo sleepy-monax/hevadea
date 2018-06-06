@@ -1,4 +1,4 @@
-﻿using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework.Extension;
 using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Tiles.Renderers

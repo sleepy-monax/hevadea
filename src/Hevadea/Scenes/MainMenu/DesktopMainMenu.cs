@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
@@ -38,7 +39,6 @@ namespace Hevadea.Scenes.MainMenu
                 TextSize = 1f,
             };
 
-
             var copyright = new Label
             {
                 Text = "© 2017-2018 MAKER",
@@ -56,7 +56,7 @@ namespace Hevadea.Scenes.MainMenu
                 UnitOffset = new Point(0, 72),
                 UnitBound = new Rectangle(0, 0, 256, 64),
             }
-            .RegisterMouseClickEvent((sender)=> Game.Play(Game.GetLastGame()));
+            .RegisterMouseClickEvent((sender) => Game.Play(Game.GetLastGame()));
 
             var menu = new WidgetTabContainer
             {
@@ -79,11 +79,18 @@ namespace Hevadea.Scenes.MainMenu
                 }
             };
             Container = new Container(menu);
-            
         }
 
-        public override void Unload() {}
-        public override void OnUpdate(GameTime gameTime) {}
-        public override void OnDraw(GameTime gameTime) {}
+        public override void Unload()
+        {
+        }
+
+        public override void OnUpdate(GameTime gameTime)
+        {
+        }
+
+        public override void OnDraw(GameTime gameTime)
+        {
+        }
     }
 }

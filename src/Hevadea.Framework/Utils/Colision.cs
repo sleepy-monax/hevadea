@@ -12,9 +12,9 @@ namespace Hevadea.Framework.Utils
                    y2 < y1 + h1;
         }
 
-        public static bool IsColliding(this Rectangle recta, Rectangle rectb)
+        public static bool IsColliding(this Rectangle a, Rectangle b)
         {
-            return recta.Intersects(rectb);
+            return a.Intersects(b);
         }
     }
 }

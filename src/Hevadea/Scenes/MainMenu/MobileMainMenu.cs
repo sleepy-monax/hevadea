@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -14,7 +15,7 @@ namespace Hevadea.Scenes.MainMenu
         public override void Load()
         {
             Rise.Scene.SetBackground(new Random().NextValue(Ressources.ParalaxeForest, Ressources.ParalaxeMontain));
-            
+
             var title = new Label
             {
                 Text = Game.Name,
@@ -35,7 +36,7 @@ namespace Hevadea.Scenes.MainMenu
                 TextSize = 1f,
             };
 
-            var continueButton = new Button 
+            var continueButton = new Button
             {
                 Text = "Continue",
                 Anchor = Anchor.Center,
@@ -44,7 +45,7 @@ namespace Hevadea.Scenes.MainMenu
                 UnitBound = new Rectangle(0, 0, 256, 64),
             }.RegisterMouseClickEvent((sender) => Game.Play(Game.GetLastGame()));
 
-            var newGameButton = new Button 
+            var newGameButton = new Button
             {
                 Text = "New",
                 Anchor = Anchor.Center,
@@ -55,9 +56,17 @@ namespace Hevadea.Scenes.MainMenu
 
             Container = new Container(title, subTitle, newGameButton, continueButton);
         }
-        
-        public override void OnDraw(GameTime gameTime) {}
-        public override void OnUpdate(GameTime gameTime) {}
-        public override void Unload() {}
+
+        public override void OnDraw(GameTime gameTime)
+        {
+        }
+
+        public override void OnUpdate(GameTime gameTime)
+        {
+        }
+
+        public override void Unload()
+        {
+        }
     }
 }
