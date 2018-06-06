@@ -1,7 +1,10 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.Ai.Actions;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 {
@@ -9,9 +12,12 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
     {
         public float AgroRange { get; set; } = 5f;
         public float FollowRange { get; set; } = 7f;
-        public Entity Target { get; private set; } = null;
         public float ChanceToAgro { get; set; } = 0.5f;
         public float MoveSpeedAgro { get; set; } = 0.5f;
+
+        public Entity Target { get; private set; } = null;
+
+        private List<Entity> _targets;
 
         public override void IaAborted(Agent agent, AgentAbortReason why)
         {
@@ -52,6 +58,12 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 
             if (!agent.IsBusy())
                 base.Update(agent, gameTime);
+        }
+
+        public override void DrawDebug(SpriteBatch spriteBatch, Agent agent, GameTime gameTime)
+        {
+            spriteBatch.DrawCircle(agent.Owner.Position, AgroRange * Game.Unit, 24, Target == null ? Color.Green : Color.Red);
+            spriteBatch.DrawCircle(agent.Owner.Position, FollowRange * Game.Unit, 24, Color.White * 0.5f);
         }
     }
 }

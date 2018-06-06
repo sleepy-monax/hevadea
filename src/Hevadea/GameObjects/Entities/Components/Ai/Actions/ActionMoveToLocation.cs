@@ -36,7 +36,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
 
         public void DrawDebugInfo(Agent agent, SpriteBatch spriteBatch)
         {
-            spriteBatch.FillRectangle(_destination.WorldX, _destination.WorldY, 16, 16, Color.AliceBlue * 0.75f);
+            spriteBatch.DrawRectangle(_destination.WorldX + 4, _destination.WorldY + 4, 8, 8, Color.Blue * 0.75f);
         }
     }
 }

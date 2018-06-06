@@ -109,7 +109,12 @@ namespace Hevadea.Framework.Graphic
             DrawPolygon(spriteBatch, center, arc, color, thickness);
         }
 
-        public static void DrawRectangle(this SpriteBatch sb, Point begin, Point end, float thickness, Color color)
+        public static void DrawRectangle(this SpriteBatch sb, int x, int y, int w, int h, Color color, float thickness = 1.0f)
+        {
+            DrawRectangle(sb, new Rectangle(x, y, w, h), color, thickness);
+        }
+
+        public static void DrawRectangle(this SpriteBatch sb, Point begin, Point end, Color color, float thickness = 1.0f)
         {
             DrawLine(sb, new Vector2(begin.X, begin.Y), new Vector2(end.X, begin.Y), color, thickness); // Right
             DrawLine(sb, new Vector2(begin.X + thickness, begin.Y + thickness), new Vector2(begin.X + thickness, end.Y - thickness), color, thickness); // left

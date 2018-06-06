@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.GameObjects.Entities.Components.Ai
 {
@@ -9,5 +10,6 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
         void IaFinish(Agent agent);
 
         void Update(Agent agent, GameTime gameTime);
+        void DrawDebug(SpriteBatch spriteBatch, Agent agent, GameTime gameTime);
     }
 }

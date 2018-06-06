@@ -64,6 +64,8 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
                 {
                     a.DrawDebugInfo(this, spriteBatch);
                 }
+
+                Behavior.DrawDebug(spriteBatch, this, gameTime);
             }
         }
     }
