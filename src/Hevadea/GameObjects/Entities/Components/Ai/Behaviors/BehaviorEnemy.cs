@@ -3,9 +3,13 @@ using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.Ai.Actions;
+using Hevadea.GameObjects.Tiles;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 {
@@ -17,59 +21,90 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
         public float MoveSpeedAgro { get; set; } = 0.5f;
 
         public Entity Target { get; private set; } = null;
+        private TilePosition _lastTagetPosition = null;
+        
 
-        private List<Entity> _targets;
+        private List<Entity> _targetsOnSight;
 
-        public override void IaAborted(Agent agent, AgentAbortReason why)
+        public override void IaAborted(AgentAbortReason why)
         {
-            base.Update(agent, null);
+            base.Update(null);
         }
 
-        public override void Update(Agent agent, GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (Target != null &&
-                Target.Level == agent.Owner.Level &&
-                Mathf.Distance(agent.Owner.Position, Target.Position) > FollowRange * 16 && !agent.IsBusy())
-
+                Target.Level == Agent.Owner.Level &&
+                Mathf.Distance(Agent.Owner.Position, Target.Position) > FollowRange * Game.Unit && !Agent.IsBusy())
             {
-                agent.Abort(AgentAbortReason.TagetLost);
+                Agent.Abort(AgentAbortReason.TagetLost);
                 Target = null;
             }
 
-            if (!agent.IsBusy())
+            _targetsOnSight = Agent.Owner.Level.GetEntitiesOnArea(Agent.Owner.Position, AgroRange * Game.Unit)
+                .Where((e) => e.Blueprint == EntityFactory.PLAYER && CheckLineOfSight(e.GetTilePosition())).ToList();
+
+            if (Target != null && Target.GetTilePosition() != _lastTagetPosition && Mathf.Distance(Agent.Owner.Position, Target.Position) < FollowRange * Game.Unit)
+            {
+                if (CheckLineOfSight(Target.GetTilePosition()))
+                {
+                    Agent.Flush();
+                    _lastTagetPosition = Target.GetTilePosition();
+                    Agent.MoveTo(_lastTagetPosition, MoveSpeedAgro, true, (int)(FollowRange + 4));
+                }
+            }
+
+            if (!Agent.IsBusy())
             {
                 if (Target == null)
                 {
-                    var game = agent.Owner.Game;
+                    _targetsOnSight.Sort((a, b) => Mathf.Distance(a.Position, Agent.Owner.Position)
+                                         .CompareTo(Mathf.Distance(b.Position, Agent.Owner.Position)));
 
-                    if (game.LocalPlayer.Entity != null &&
-                        game.LocalPlayer.Entity.Level == agent.Owner.Level &&
-                        Mathf.Distance(game.LocalPlayer.Entity.Position, agent.Owner.Position) < AgroRange * 16 &&
-                        Rise.Rnd.NextFloat() < ChanceToAgro)
+                    if (_targetsOnSight.Any())
                     {
-                        Target = game.LocalPlayer.Entity;
+                        Target = _targetsOnSight.First();
+                        _lastTagetPosition = Target.GetTilePosition();
+                        Agent.MoveTo(Target.GetTilePosition(), MoveSpeedAgro, true, (int)(FollowRange + 4));
                     }
                 }
 
-                if (Target != null)
-                {
-                    agent.MoveTo(Target.GetTilePosition(), MoveSpeedAgro, true, (int)(FollowRange + 4));
-                }
             }
+            
 
-            if (!agent.IsBusy())
-                base.Update(agent, gameTime);
+            if (!Agent.IsBusy())
+                base.Update(gameTime);
         }
 
-        public override void DrawDebug(SpriteBatch spriteBatch, Agent agent, GameTime gameTime)
+        private bool CheckLineOfSight(TilePosition to)
         {
-            spriteBatch.DrawCircle(agent.Owner.Position, AgroRange * Game.Unit, 24, Target == null ? Color.Green : Color.Red);
-            spriteBatch.DrawCircle(agent.Owner.Position, FollowRange * Game.Unit, 24, Color.White * 0.5f);
-
-            if (Target != null)
+            bool result = true;
+            LoopUtils.Line(Agent.Owner.GetTilePosition().ToPoint(), to.ToPoint(), (p) =>
             {
-                spriteBatch.DrawLine(Target.Position, agent.Owner.Position, Color.Yellow);
+                result &= !Agent.Owner.Level.GetTile(p.X, p.Y).BlockLineOfSight;
+            });
+            return result;
+        }
+
+        public override void DrawDebug(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (Target == null)
+            {
+                spriteBatch.DrawCircle(Agent.Owner.Position, AgroRange * Game.Unit, 24, Color.White * 0.5f);
+
             }
+            else
+            {
+                spriteBatch.DrawCircle(Agent.Owner.Position, FollowRange * Game.Unit, 24, Color.Red);
+            }
+
+            foreach (var t in _targetsOnSight)
+            {
+                spriteBatch.DrawLine(t.Position, Agent.Owner.Position, CheckLineOfSight(t.GetTilePosition()) ? Color.Green : Color.Yellow);
+            }
+
+            
+
         }
     }
 }

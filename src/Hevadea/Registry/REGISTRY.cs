@@ -1,4 +1,4 @@
-﻿using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework;
 using Hevadea.GameObjects;
 
 namespace Hevadea.Registry

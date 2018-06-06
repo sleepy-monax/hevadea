@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Framework
 {
     public enum LoggerLevel { None, Debug, Fine, Info, Warning, Error, Severe }
 

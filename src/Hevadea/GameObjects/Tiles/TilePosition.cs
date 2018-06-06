@@ -35,7 +35,7 @@ namespace Hevadea.GameObjects.Tiles
 
         public bool IsColliding(Entity e, int width, int height)
         {
-            return Colision.Check(X * Game.Unit,
+            return ColisionUtils.Colinding(X * Game.Unit,
                 Y * Game.Unit,
                 Game.Unit, Game.Unit,
                 e.X,
@@ -50,7 +50,7 @@ namespace Hevadea.GameObjects.Tiles
 
         public bool IsColliding(float x, float y, int width, int height)
         {
-            return Colision.Check(X * Game.Unit,
+            return ColisionUtils.Colinding(X * Game.Unit,
                 Y * Game.Unit,
                 Game.Unit, Game.Unit,
                 x,

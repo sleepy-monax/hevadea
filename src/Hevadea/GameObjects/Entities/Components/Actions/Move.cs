@@ -92,13 +92,13 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
                     var eHitbox = eColider.GetHitBox();
 
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, 0f, sy); IsMoving = true; }
+                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, 0f, sy); IsMoving = true; }
                     eHitbox = eColider.GetHitBox();
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
+                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
 
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, sx, 0f); IsMoving = true; }
+                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { e.GetComponent<Pushable>()?.Push(Owner, sx, 0f); IsMoving = true; }
                     eHitbox = eColider.GetHitBox();
-                    if (Colision.Check(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
+                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
                 }
 
                 var entityTilePosition = Owner.GetTilePosition();
@@ -113,8 +113,8 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                         if (!isPassableTile)
                         {
                             var tileRect = tile.ToRectangle();
-                            if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
-                            if (Colision.Check(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
+                            if (ColisionUtils.Colinding(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
+                            if (ColisionUtils.Colinding(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
                         }
                     }
                 }

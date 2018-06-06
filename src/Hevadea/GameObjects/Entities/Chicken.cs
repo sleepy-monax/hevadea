@@ -20,15 +20,12 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Pushable());
 
-            AddComponent(new Agent
-            {
-                Behavior = new BehaviorEnemy
+            AddComponent(new Agent(new BehaviorEnemy
                 {
                     MoveSpeedAgro = 0.75f,
                     MoveSpeedWandering = 0.5f,
                     NaturalEnvironment = { TILES.DIRT, TILES.GRASS, TILES.SAND, TILES.WOOD_FLOOR }
-                }
-            });
+                }));
             //AddComponent(new Agent() { Behavior = new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeedWandering = 0.5f } });
 
 

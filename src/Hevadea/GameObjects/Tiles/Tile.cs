@@ -10,6 +10,7 @@ namespace Hevadea.GameObjects.Tiles
     public class Tile
     {
         public string Name { get; }
+        public bool BlockLineOfSight { get; set; } = false;
 
         private List<TileComponent> Tags => _tags;
         public TileRender Render { get => _render; set { _render = value; _render.Tile = this; } }

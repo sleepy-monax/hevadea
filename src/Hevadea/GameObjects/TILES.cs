@@ -91,9 +91,11 @@ namespace Hevadea.GameObjects
 
             IRON_ORE.AddTag(new DroppableTile(new Drop(ITEMS.IRON_ORE, 1f, 1, 2)));
             IRON_ORE.AddTag(new SolideTile(), new DamageTile { ReplacementTile = DIRT });
+            IRON_ORE.BlockLineOfSight = true;
 
             ROCK.AddTag(new DroppableTile(new Drop(ITEMS.STONE, 1f, 2, 3), new Drop(ITEMS.COAL, 1f, 0, 2)));
             ROCK.AddTag(new SolideTile(), new DamageTile { ReplacementTile = DIRT });
+            ROCK.BlockLineOfSight = true;
 
             SAND.AddTag(new BreakableTile { ReplacementTile = DIRT });
             SAND.AddTag(new DroppableTile(new Drop(ITEMS.SAND, 1f, 1, 1)));
@@ -108,6 +110,7 @@ namespace Hevadea.GameObjects
             WOOD_WALL.AddTag(new DamageTile { ReplacementTile = DIRT });
             WOOD_WALL.AddTag(new DroppableTile(new Drop(ITEMS.WOOD_WALL, 1f, 1, 1)));
             WOOD_WALL.AddTag(new SolideTile());
+            WOOD_WALL.BlockLineOfSight = true;
         }
 
         public static Dictionary<string, string> GetIDToName()

@@ -21,7 +21,7 @@ namespace Hevadea.Framework.Graphic.Particles
 
         public void EmiteAtAngle(Particle particle, float x, float y, float angle, float acceleration)
         {
-            var vec = Mathv.RadianToVector2(angle) * acceleration;
+            var vec = VectorUtils.RadianToVector2(angle) * acceleration;
             EmiteAt(particle, x, y, vec.X, vec.Y);
         }
 

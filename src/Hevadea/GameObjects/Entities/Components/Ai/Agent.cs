@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -10,13 +9,15 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
 
     public class Agent : EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
     {
+        Behavior _behavior;
+
         public Queue<IAction> ActionQueue { get; } = new Queue<IAction>();
         public IAction CurrentAction { get; private set; }
 
-        public IBehavior Behavior { get; set; }
-
-        public Agent()
+        public Agent(Behavior behavior)
         {
+            _behavior = behavior;
+            _behavior.Agent = this;
         }
 
         public bool IsBusy()
@@ -24,17 +25,23 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
             return CurrentAction != null || ActionQueue.Count > 0;
         }
 
+        public void Flush()
+        {
+            CurrentAction = null;
+            ActionQueue.Clear();
+        }
+
         public void Abort(AgentAbortReason why)
         {
             CurrentAction = null;
             ActionQueue.Clear();
             Logger.Log<Agent>($"{Owner.GetIdentifier()} aborted: {why}");
-            Behavior?.IaAborted(this, why);
+            _behavior?.IaAborted(why);
         }
 
         public void Update(GameTime gameTime)
         {
-            Behavior?.Update(this, gameTime);
+            _behavior?.Update(gameTime);
 
             if (CurrentAction != null && CurrentAction.IsStillRunning(this))
             {
@@ -49,7 +56,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
                     CurrentAction = ActionQueue.Dequeue();
 
                     if (ActionQueue.Count == 0)
-                        Behavior?.IaFinish(this);
+                        _behavior?.IaFinish();
                 }
             }
         }
@@ -65,7 +72,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
                     a.DrawDebugInfo(this, spriteBatch);
                 }
 
-                Behavior.DrawDebug(spriteBatch, this, gameTime);
+                _behavior.DrawDebug(spriteBatch, gameTime);
             }
         }
     }

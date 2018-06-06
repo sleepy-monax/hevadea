@@ -122,7 +122,7 @@
     <Compile Include="GameObjects\Entities\Components\Ai\Behaviors\BehaviorAnimal.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Behaviors\BehaviorEnemy.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\IAction.cs" />
-    <Compile Include="GameObjects\Entities\Components\Ai\IBehavior.cs" />
+    <Compile Include="GameObjects\Entities\Components\Ai\Behavior.cs" />
     <Compile Include="GameObjects\Entities\Components\Colider.cs" />
     <Compile Include="GameObjects\Entities\Components\Dropable.cs" />
     <Compile Include="GameObjects\Entities\Components\Explode.cs" />

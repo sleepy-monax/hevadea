@@ -8,20 +8,20 @@ using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 {
-    public class BehaviorAnimal : IBehavior
+    public class BehaviorAnimal : Behavior
     {
         public List<Tile> NaturalEnvironment { get; set; } = new List<Tile>();
         public float MoveSpeedWandering { get; set; } = 1f;
         public float IdleChance { get; set; } = 0.5f;
         public float IdleTime { get; set; } = 1.0f;
 
-        public virtual void Update(Agent agent, GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (agent.IsBusy()) return;
+            if (Agent.IsBusy()) return;
 
             if (Rise.Rnd.NextFloat() < IdleChance)
             {
-                agent.ActionQueue.Enqueue(new ActionWait(Rise.Rnd.NextFloatRange(IdleTime)));
+                Agent.ActionQueue.Enqueue(new ActionWait(Rise.Rnd.NextFloatRange(IdleTime)));
             }
             else
             {
@@ -33,12 +33,12 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
                     Rise.Rnd.NextValue(-1, 1);
                 }
 
-                var entityTilePosition = agent.Owner.GetTilePosition();
+                var entityTilePosition = Agent.Owner.GetTilePosition();
                 var destination = new TilePosition(entityTilePosition.X + dx, entityTilePosition.Y + dy);
 
-                if ((dx != 0 || dy != 0) && (NaturalEnvironment.Contains(agent.Owner.Level.GetTile(destination)) || NaturalEnvironment.Count == 0))
+                if ((dx != 0 || dy != 0) && (NaturalEnvironment.Contains(Agent.Owner.Level.GetTile(destination)) || NaturalEnvironment.Count == 0))
                 {
-                    agent.MoveTo(destination, MoveSpeedWandering);
+                    Agent.MoveTo(destination, MoveSpeedWandering);
                 }
             }
         }
@@ -51,8 +51,5 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
         {
         }
 
-        public virtual void DrawDebug(SpriteBatch spriteBatch, Agent agent, GameTime gameTime)
-        {
-        }
     }
 }

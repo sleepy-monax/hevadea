@@ -2,7 +2,7 @@
 
 namespace Hevadea.Framework.Utils
 {
-    public static class Mathv
+    public static class VectorUtils
     {
         public static Vector2 RadianToVector2(float radian)
         {
