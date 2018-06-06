@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Utils;
+using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace Hevadea.Utils
             public float LocalGoal { get; set; } = float.MaxValue;
             public Node Parent { get; set; }
 
-
             public Node(int x, int y)
             {
                 X = x;
@@ -36,59 +36,57 @@ namespace Hevadea.Utils
         }
 
 
-        public static bool Path(this Level level, out List<Node> result, TilePosition start, TilePosition end, int openSetThreshold = 1000)
+        private static Node GetNode(this Node[,] nodes, Level level, int x, int y)
+        {
+            var n = nodes[x, y];
+
+            if (n == null)
+            {
+                n = new Node(x, y);
+                nodes[x, y] = n;
+            }
+
+            return n;
+        }
+
+        public static List<Node> GetNeighbour(this Node[,] nodes, Level level, Node node)
+        {
+            if (node.Neighbour != null) return node.Neighbour;
+
+            List<Node> r = new List<Node>();
+
+            if (node.X > 0)
+                r.Add(nodes.GetNode(level, node.X - 1, node.Y));
+
+            if (node.X < level.Width - 1)
+                r.Add(nodes.GetNode(level, node.X + 1, node.Y));
+
+            if (node.Y > 0)
+                r.Add(nodes.GetNode(level, node.X, node.Y - 1));
+
+            if (node.Y < level.Height - 1)
+                r.Add(nodes.GetNode(level, node.X, node.Y + 1));
+
+            node.Neighbour = r;
+            return r;
+        }
+
+        public static bool GetPath(this Level level, out List<Node> result, Node startNode, Node endNode, int openSetThreshold = 1000)
         {
             result = new List<Node>();
 
             Node[,] nodes = new Node[level.Width, level.Height];
 
-            Node startNode = new Node(start.X, start.Y);
-            Node endNode = new Node(end.X, end.Y);
             Node currentNode = startNode;
 
-            nodes[start.X, start.Y] = startNode;
-            nodes[end.X, end.Y] = endNode;
+            nodes[startNode.X, startNode.Y] = startNode;
+            nodes[endNode.X, endNode.Y] = endNode;
 
             startNode.LocalGoal = 0.0f;
             startNode.GlobalGoal = startNode.DistanceTo(endNode);
 
             List<Node> openSet = new List<Node>();
             openSet.Add(startNode);
-
-            Node GetNode(int x, int y)
-            {
-                var n = nodes[x, y];
-
-                if (n == null)
-                {
-                    n = new Node(x, y);
-                    nodes[x, y] = n;
-                }
-
-                return n;
-            }
-
-            List<Node> GetNeighbour(Node node)
-            {
-                if (node.Neighbour != null) return node.Neighbour;
-
-                List<Node> r = new List<Node>();
-
-                if (node.X > 0)
-                    r.Add(GetNode(node.X - 1, node.Y));
-
-                if (node.X < level.Width - 1)
-                    r.Add(GetNode(node.X + 1, node.Y));
-
-                if (node.Y > 0)
-                    r.Add(GetNode(node.X, node.Y - 1));
-
-                if (node.Y < level.Height - 1)
-                    r.Add(GetNode(node.X, node.Y + 1));
-
-                node.Neighbour = r;
-                return r;
-            }
 
             while (openSet.Count != 0 && currentNode != endNode)
             {
@@ -104,7 +102,7 @@ namespace Hevadea.Utils
                 currentNode = openSet.First();
                 currentNode.Visited = true;
 
-                foreach (var n in GetNeighbour(currentNode))
+                foreach (var n in nodes.GetNeighbour(level, currentNode))
                 {
                     if (!n.Visited && !n.Blocked) openSet.Add(n);
 

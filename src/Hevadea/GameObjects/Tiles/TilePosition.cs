@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
+using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.GameObjects.Tiles
@@ -93,6 +94,11 @@ namespace Hevadea.GameObjects.Tiles
         public Point ToPoint()
         {
             return new Point(X, Y);
+        }
+
+        public PathFinder.Node AsNode()
+        {
+            return new PathFinder.Node(X, Y);
         }
     }
 }

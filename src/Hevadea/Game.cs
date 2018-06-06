@@ -80,7 +80,15 @@ namespace Hevadea
         public PlayerSession LocalPlayer { get; set; }
         public List<PlayerSession> Players { get; } = new List<PlayerSession>();
 
-        public Menu CurrentMenu { get => _currentMenu; set { CurrentMenuChange?.Invoke(_currentMenu, value); _currentMenu = value; } }
+        public Menu CurrentMenu
+        {
+            get => _currentMenu;
+            set
+            {
+                CurrentMenuChange?.Invoke(_currentMenu, value);
+                _currentMenu = value;
+            }
+        }
 
         public delegate void CurrentMenuChangeHandler(Menu oldMenu, Menu newMenu);
 
