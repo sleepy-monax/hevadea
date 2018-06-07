@@ -43,6 +43,11 @@ namespace OpenGLPlatform
             }
         }
 
+        public override float GetSceenScaling()
+        {
+            return  Rise.Graphic.GetHeight() / 768f;
+        }
+
         public override void Update()
         {
         }

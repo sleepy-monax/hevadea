@@ -14,6 +14,13 @@ namespace Hevadea.Framework.UI.Widgets
         public string Text { get; set; } = "Button";
         private EasingManager _easing = new EasingManager { Speed = 5f };
 
+        public Button() { }
+        public Button(string text)
+        {
+            Text = text;
+            UnitBound = new Rectangle(0, 0, 256, 48);
+        }
+
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             _easing.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;

@@ -44,7 +44,7 @@ namespace Hevadea.Scenes.Menus
                 {
                     Childrens =
                     {
-                        new AnchoredContainer()
+                        new Container()
                         {
                             Dock = Dock.Fill,
                             Childrens = {closeBtn}

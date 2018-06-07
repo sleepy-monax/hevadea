@@ -37,6 +37,8 @@ Running on platform: '{Rise.Platform.GetPlatformName()}'
     Family: {Rise.Platform.Family}
     Hardware Screen {Rise.Platform.GetScreenWidth()}, {Rise.Platform.GetScreenHeight()}
     Screen: {Rise.Graphic.GetWidth()}, {Rise.Graphic.GetHeight()}
+    UiScale: {(int)(Rise.Ui.ScaleFactor * 100)}%
+
 Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name}
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}";
 

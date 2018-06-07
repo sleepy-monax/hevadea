@@ -11,19 +11,16 @@ namespace Hevadea.Framework
         private Stopwatch _updateStopwatch = new Stopwatch();
         private bool _windowSizeIsBeingChanged = false;
 
-        public delegate void GameEventHandler(Game sender, GameTime gameTime);
+        public delegate void GameloopEventHandler(Game sender, GameTime gameTime);
 
         public GraphicsDeviceManager Graphics;
 
         public event EventHandler OnInitialize;
-
         public event EventHandler OnLoadContent;
-
         public event EventHandler OnUnloadContent;
 
-        public event GameEventHandler OnDraw;
-
-        public event GameEventHandler OnUpdate;
+        public event GameloopEventHandler OnDraw;
+        public event GameloopEventHandler OnUpdate;
 
         public int DrawTime { get; private set; } = 0;
         public int UpdateTime { get; private set; } = 0;
@@ -33,6 +30,7 @@ namespace Hevadea.Framework
         public MonoGameHandler()
         {
             Graphics = new GraphicsDeviceManager(this);
+
 
             //Graphics.SynchronizeWithVerticalRetrace = false;
             //IsFixedTimeStep = false;

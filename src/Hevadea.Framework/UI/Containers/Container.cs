@@ -97,12 +97,14 @@ namespace Hevadea.Framework.UI.Containers
             return child;
         }
 
-        public void AddChilds(params Widget[] childrens)
+        public Container AddChilds(params Widget[] childrens)
         {
             foreach (var c in childrens)
             {
                 AddChild(c);
             }
+
+            return this;
         }
     }
 }

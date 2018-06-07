@@ -45,6 +45,7 @@ namespace Hevadea.Framework
         public static FastRandom Rnd = new FastRandom();
 
         private static Scene _startScene;
+        private static Action _initializeAction;
 
         public static void InitializeNoGraphic(PlatformBase platform)
         {
@@ -67,8 +68,9 @@ namespace Hevadea.Framework
             MonoGame.OnDraw += MonoGameOnDraw;
         }
 
-        public static void Start(Scene startScene)
+        public static void Start(Scene startScene, Action initializeAction = null)
         {
+            _initializeAction = initializeAction;
             _startScene = startScene;
             //GCListener.Start();
             MonoGame.Run();
@@ -80,6 +82,8 @@ namespace Hevadea.Framework
 
             Platform.Initialize();
 
+            Logger.Log("Rise", LoggerLevel.Info, "Initializing modules...");
+
             Keyboard = new KeyboardInputManager();
             Controller = new Controller();
             Pointing = new Pointing();
@@ -89,6 +93,8 @@ namespace Hevadea.Framework
             Scene = new SceneManager();
             Ui = new UiManager();
             Debug = new DebugManager();
+
+            _initializeAction?.Invoke();
 
             Graphic.ResetRenderTargets();
             Scene.Initialize();

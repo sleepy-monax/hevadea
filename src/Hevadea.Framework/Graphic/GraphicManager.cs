@@ -81,10 +81,12 @@ namespace Hevadea.Framework.Graphic
 
         public void SetSize(int sx, int sy)
         {
+
             _graphicsDeviceManager.PreferredBackBufferWidth = sx;
             _graphicsDeviceManager.PreferredBackBufferHeight = sy;
             _graphicsDeviceManager.ApplyChanges();
             ResetRenderTargets();
+            
         }
 
         public void SetFullscreen()
@@ -114,7 +116,7 @@ namespace Hevadea.Framework.Graphic
                     RenderTarget[i].Dispose();
                 }
 
-                RenderTarget[i] = CreateFullscreenRenderTarget();
+                RenderTarget[i] = CreateFullscreenRenderTarget(i);
             }
         }
 
@@ -123,9 +125,9 @@ namespace Hevadea.Framework.Graphic
             return new RenderTarget2D(_graphicsDevice, width, height);
         }
 
-        public RenderTarget2D CreateFullscreenRenderTarget()
+        public RenderTarget2D CreateFullscreenRenderTarget(int id)
         {
-            Logger.Log<GraphicManager>($"Generating render target {GetWidth()}/{GetHeight()}");
+            Logger.Log<GraphicManager>($"Generating fullscreen render target id:{id} {GetWidth()}/{GetHeight()}");
             return new RenderTarget2D(_graphicsDevice, GetWidth(), GetHeight());
         }
 

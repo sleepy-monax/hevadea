@@ -95,7 +95,7 @@ namespace Hevadea.Scenes.Menus
                 UnitOffset = new Point(0, -16)
             };
 
-            Content = new AnchoredContainer
+            Content = new Container
             {
                 Childrens =
                 {
