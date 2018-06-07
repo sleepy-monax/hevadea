@@ -51,7 +51,7 @@ namespace Hevadea.Loading
             }.RegisterMouseClickEvent((sender) =>
             {
                 _job.Cancel();
-                Rise.Scene.Switch(new DesktopMainMenu());
+                Game.GoToMainMenu();
             });
 
             Content = new Container

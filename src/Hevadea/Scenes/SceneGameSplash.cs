@@ -54,7 +54,9 @@ namespace Hevadea.Scenes
             _time += gameTime.GetDeltaTime();
 
             if (!_once || !_loadingDone || _time < 2) return;
-            Rise.Scene.Switch(Rise.Platform.Family == PlatformFamily.Desktop ? new DesktopMainMenu() : (Scene)new MobileMainMenu());
+            Rise.Graphic.SetSize(1920, 1080);
+            Rise.Graphic.SetFullscreen();
+            Game.GoToMainMenu();
             _once = false;
         }
 

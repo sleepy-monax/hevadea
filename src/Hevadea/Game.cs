@@ -1,9 +1,12 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Platform;
+using Hevadea.Framework.Scening;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.Utils.Json;
 using Hevadea.Loading;
 using Hevadea.Multiplayer;
 using Hevadea.Scenes;
+using Hevadea.Scenes.MainMenu;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
 using Hevadea.WorldGenerator;
@@ -37,6 +40,11 @@ namespace Hevadea
                 return File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame");
 
             return null;
+        }
+
+        public static void GoToMainMenu()
+        {
+            Rise.Scene.Switch(Rise.Platform.Family == PlatformFamily.Desktop ? new DesktopMainMenu() : (Scene)new MobileMainMenu());
         }
 
         public static void Play(string gamePath)
