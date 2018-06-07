@@ -14,7 +14,10 @@ namespace Hevadea.Framework.UI.Containers
     {
         public List<Widget> Childrens { get; set; } = new List<Widget>();
 
-        public Container() { }
+        public Container()
+        {
+        }
+
         public Container(params Widget[] widgets)
         {
             Childrens.AddRange(widgets);

@@ -16,10 +16,13 @@ namespace Hevadea.Framework
         public GraphicsDeviceManager Graphics;
 
         public event EventHandler OnInitialize;
+
         public event EventHandler OnLoadContent;
+
         public event EventHandler OnUnloadContent;
 
         public event GameloopEventHandler OnDraw;
+
         public event GameloopEventHandler OnUpdate;
 
         public int DrawTime { get; private set; } = 0;
@@ -30,7 +33,6 @@ namespace Hevadea.Framework
         public MonoGameHandler()
         {
             Graphics = new GraphicsDeviceManager(this);
-
 
             //Graphics.SynchronizeWithVerticalRetrace = false;
             //IsFixedTimeStep = false;

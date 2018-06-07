@@ -18,6 +18,7 @@ namespace Hevadea.Framework
     {
         // Configs
         public static bool ShowGui { get; set; } = true;
+
         public static bool ShowDebugOverlay { get; set; } = false;
 
         public static bool DebugUi { get; set; } = false;
@@ -111,25 +112,22 @@ namespace Hevadea.Framework
             {
                 Graphic.SetSize(1366, 768);
             }
-
         }
 
-        static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)
+        private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)
         {
         }
 
-        static void MonoGameOnUnloadContent(object sender, EventArgs eventArgs)
+        private static void MonoGameOnUnloadContent(object sender, EventArgs eventArgs)
         {
         }
 
-        static void MonoGameOnUpdate(Game sender, GameTime gameTime)
+        private static void MonoGameOnUpdate(Game sender, GameTime gameTime)
         {
-
             if (GameLoopThread.TryDequeue(out var job))
             {
                 job.Start(false);
             }
-            
 
             Pointing.Update();
             Input.Update(gameTime);

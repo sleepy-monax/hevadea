@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Platform;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -7,6 +6,8 @@ namespace Hevadea.Framework.Graphic
 {
     public class GraphicManager
     {
+        private Texture2D _pixel;
+        private Texture2D _fallbackTexture;
         private GraphicsDeviceManager _graphicsDeviceManager;
         private GraphicsDevice _graphicsDevice;
 
@@ -17,14 +18,6 @@ namespace Hevadea.Framework.Graphic
             _graphicsDeviceManager = graphicsDeviceManager;
             _graphicsDevice = graphicsDevice;
         }
-
-        public void Clear(Color clearColor)
-        {
-            Rise.MonoGame.GraphicsDevice.Clear(clearColor);
-        }
-
-        private Texture2D _pixel;
-        private Texture2D _fallback;
 
         public Texture2D GetPixel()
         {
@@ -39,54 +32,19 @@ namespace Hevadea.Framework.Graphic
 
         public Texture2D GetFallbackTexture()
         {
-            if (_fallback == null)
+            if (_fallbackTexture == null)
             {
-                _fallback = new Texture2D(_graphicsDevice, 2, 2, false, SurfaceFormat.Color);
-                _fallback.SetData(new[] { Color.Black,    Color.Magenta,
+                _fallbackTexture = new Texture2D(_graphicsDevice, 2, 2, false, SurfaceFormat.Color);
+                _fallbackTexture.SetData(new[] { Color.Black,    Color.Magenta,
                                           Color.Magenta , Color.Black });
             }
 
-            return _fallback;
+            return _fallbackTexture;
         }
 
-        public SpriteBatch CreateSpriteBatch()
+        public void Clear(Color clearColor)
         {
-            return Rise.NoGraphic ? null : new SpriteBatch(_graphicsDevice);
-        }
-
-        public Rectangle GetBound()
-        {
-            return new Rectangle(0, 0, GetWidth(), GetHeight());
-        }
-
-        public Point GetCenter()
-        {
-            return GetBound().Center;
-        }
-
-        public Point GetSize()
-        {
-            return new Point(GetWidth(), GetHeight());
-        }
-
-        public int GetWidth()
-        {
-            return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenWidth() : _graphicsDeviceManager.PreferredBackBufferWidth;
-        }
-
-        public int GetHeight()
-        {
-            return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenHeight() : _graphicsDeviceManager.PreferredBackBufferHeight;
-        }
-
-        public void SetSize(int sx, int sy)
-        {
-
-            _graphicsDeviceManager.PreferredBackBufferWidth = sx;
-            _graphicsDeviceManager.PreferredBackBufferHeight = sy;
-            _graphicsDeviceManager.ApplyChanges();
-            ResetRenderTargets();
-            
+            Rise.MonoGame.GraphicsDevice.Clear(clearColor);
         }
 
         public void SetFullscreen()
@@ -101,10 +59,7 @@ namespace Hevadea.Framework.Graphic
             _graphicsDeviceManager.ApplyChanges();
         }
 
-        public void SetSize(Point size)
-        {
-            SetSize(size.X, size.Y);
-        }
+        /* --- Render targets ---------------------------------------------- */
 
         public void ResetRenderTargets()
         {
@@ -118,6 +73,11 @@ namespace Hevadea.Framework.Graphic
 
                 RenderTarget[i] = CreateFullscreenRenderTarget(i);
             }
+        }
+
+        public SpriteBatch CreateSpriteBatch()
+        {
+            return Rise.NoGraphic ? null : new SpriteBatch(_graphicsDevice);
         }
 
         public RenderTarget2D CreateRenderTarget(int width, int height)
@@ -149,6 +109,43 @@ namespace Hevadea.Framework.Graphic
         public void ResetScissor()
         {
             SetScissor(GetBound());
+        }
+
+        /* --- Screen size ------------------------------------------------- */
+
+        public int GetWidth()
+        {
+            return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenWidth() : _graphicsDeviceManager.PreferredBackBufferWidth;
+        }
+
+        public int GetHeight()
+        {
+            return Rise.Platform.Family == PlatformFamily.Mobile ? Rise.Platform.GetScreenHeight() : _graphicsDeviceManager.PreferredBackBufferHeight;
+        }
+
+        public Point GetSize()
+        {
+            return new Point(GetWidth(), GetHeight());
+        }
+
+        public Point GetCenter()
+        {
+            return GetBound().Center;
+        }
+
+        public Rectangle GetBound()
+        {
+            return new Rectangle(new Point(0), GetSize());
+        }
+
+        public void SetSize(Point size) => SetSize(size.X, size.Y);
+
+        public void SetSize(int sx, int sy)
+        {
+            _graphicsDeviceManager.PreferredBackBufferWidth = sx;
+            _graphicsDeviceManager.PreferredBackBufferHeight = sy;
+            _graphicsDeviceManager.ApplyChanges();
+            ResetRenderTargets();
         }
     }
 }

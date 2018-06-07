@@ -14,7 +14,10 @@ namespace Hevadea.Framework.UI.Widgets
         public string Text { get; set; } = "Button";
         private EasingManager _easing = new EasingManager { Speed = 5f };
 
-        public Button() { }
+        public Button()
+        {
+        }
+
         public Button(string text)
         {
             Text = text;

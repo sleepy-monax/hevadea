@@ -39,13 +39,12 @@ namespace OpenGLPlatform
             }
             catch (Exception)
             {
-
             }
         }
 
         public override float GetSceenScaling()
         {
-            return  Rise.Graphic.GetHeight() / 768f;
+            return Rise.Graphic.GetHeight() / 768f;
         }
 
         public override void Update()

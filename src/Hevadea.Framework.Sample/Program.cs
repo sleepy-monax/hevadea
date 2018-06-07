@@ -13,10 +13,10 @@ namespace Hevadea.Framework.Sample
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Rise.Initialize(new DesktopPlatform());
-            Rise.Start(new UISample(), () => 
+            Rise.Start(new UISample(), () =>
             {
                 var font = Rise.Ressource.GetSpriteFont("font");
                 Rise.Ui.DebugFont = font;
