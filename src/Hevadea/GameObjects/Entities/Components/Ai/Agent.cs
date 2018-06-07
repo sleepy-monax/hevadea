@@ -42,12 +42,8 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
         public void Update(GameTime gameTime)
         {
             _behavior?.Update(gameTime);
-
-            if (CurrentAction != null && CurrentAction.IsStillRunning(this))
-            {
-                CurrentAction.Perform(this, gameTime);
-            }
-            else
+            
+            if (!CurrentAction?.IsStillRunning(this) ?? true)
             {
                 CurrentAction = null;
 
@@ -59,6 +55,8 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
                         _behavior?.IaFinish();
                 }
             }
+
+            CurrentAction?.Perform(this, gameTime);
         }
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)

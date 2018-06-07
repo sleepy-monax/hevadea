@@ -118,7 +118,9 @@ namespace Hevadea.Framework.Utils
                 throw new ArgumentOutOfRangeException("upperBound", upperBound, "upperBound must be >=0");
 
             uint t = (x ^ (x << 11));
-            x = y; y = z; z = w;
+            x = y;
+            y = z;
+            z = w;
 
             // The explicit int cast before the first multiplication gives better performance.
             // See comments in NextDouble.
@@ -138,7 +140,9 @@ namespace Hevadea.Framework.Utils
                 throw new ArgumentOutOfRangeException("upperBound", upperBound, "upperBound must be >=lowerBound");
 
             uint t = (x ^ (x << 11));
-            x = y; y = z; z = w;
+            x = y;
+            y = z;
+            z = w;
 
             // The explicit int cast before the first multiplication gives better performance.
             // See comments in NextDouble.
@@ -161,7 +165,9 @@ namespace Hevadea.Framework.Utils
         public double NextDouble()
         {
             uint t = (x ^ (x << 11));
-            x = y; y = z; z = w;
+            x = y;
+            y = z;
+            z = w;
 
             // Here we can gain a 2x speed improvement by generating a value that can be cast to
             // an int instead of the more easily available uint. If we then explicitly cast to an
@@ -224,7 +230,10 @@ namespace Hevadea.Framework.Utils
                     }
                 }
             }
-            this.x = x; this.y = y; this.z = z; this.w = w;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.w = w;
         }
 
         //      /// <summary>
@@ -276,7 +285,9 @@ namespace Hevadea.Framework.Utils
         public uint NextUInt()
         {
             uint t = (x ^ (x << 11));
-            x = y; y = z; z = w;
+            x = y;
+            y = z;
+            z = w;
             return (w = (w ^ (w >> 19)) ^ (t ^ (t >> 8)));
         }
 
@@ -292,7 +303,9 @@ namespace Hevadea.Framework.Utils
         public int NextInt()
         {
             uint t = (x ^ (x << 11));
-            x = y; y = z; z = w;
+            x = y;
+            y = z;
+            z = w;
             return (int)(0x7FFFFFFF & (w = (w ^ (w >> 19)) ^ (t ^ (t >> 8))));
         }
 
@@ -314,7 +327,9 @@ namespace Hevadea.Framework.Utils
             {
                 // Generate 32 more bits.
                 uint t = (x ^ (x << 11));
-                x = y; y = z; z = w;
+                x = y;
+                y = z;
+                z = w;
                 bitBuffer = w = (w ^ (w >> 19)) ^ (t ^ (t >> 8));
 
                 // Reset the bitMask that tells us which bit to read next.
