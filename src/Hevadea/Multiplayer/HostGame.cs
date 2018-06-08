@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Data;
 using Hevadea.Framework.Networking;
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
@@ -44,7 +45,7 @@ namespace Hevadea.Multiplayer
         {
             var client = Server.GetClientFrom(socket);
 
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadStringUTF8(out var userName)
                 .ReadInteger(out var token)
@@ -69,7 +70,7 @@ namespace Hevadea.Multiplayer
 
         public void HandlePLAYER_INPUT(Socket socket, byte[] data)
         {
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadInteger(out var inputID);
         }
