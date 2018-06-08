@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Networking;
+﻿using Hevadea.Framework.Data;
+using Hevadea.Framework.Networking;
 using System;
 
 namespace Sandbox
@@ -23,11 +24,11 @@ namespace Sandbox
             Client client = new Client(true);
 
             client.Connect("127.0.0.1", 7777, 16);
-
+            
             var i = 0;
 
             while (true)
-                client.Send(new PacketBuilder().WriteStringASCII($"Hello world {i++}!").Buffer);
+                client.Send(new BufferBuilder().WriteStringASCII($"Hello world {i++}!").Buffer);
         }
 
         static void DoServer()
@@ -36,7 +37,7 @@ namespace Sandbox
 
             server.DataReceived = (connection, data) => 
             {
-                Console.Write(new PacketBuilder(data).ReadStringASCII());
+                Console.Write(new BufferReader(data).ReadStringASCII());
             };
 
             server.Start();

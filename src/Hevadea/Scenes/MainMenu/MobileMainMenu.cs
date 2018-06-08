@@ -35,13 +35,11 @@ namespace Hevadea.Scenes.MainMenu
                 TextSize = 1f,
             };
 
-            var continueButton = new Button
+            var continueButton = new Button("Continue")
             {
-                Text = "Continue",
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, 72),
-                UnitBound = new Rectangle(0, 0, 256, 64),
             }.RegisterMouseClickEvent((sender) => Game.Play(Game.GetLastGame()));
 
             var newGameButton = new Button
