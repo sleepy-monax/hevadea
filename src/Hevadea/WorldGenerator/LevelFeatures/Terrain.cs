@@ -52,7 +52,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
                     level.SetTile(x, y, tile);
                 }
 
-                _progress = (x / (float)gen.Size);
+                _progress = ((float)x / gen.Size);
             }
         }
     }

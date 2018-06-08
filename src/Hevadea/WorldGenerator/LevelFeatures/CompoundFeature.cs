@@ -5,7 +5,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 {
     public class CompoundFeature : LevelFeature
     {
-        private string _description;
+        string _description;
         public List<LevelFeature> Content { get; set; } = new List<LevelFeature>();
 
         public CompoundFeature(string description)
@@ -20,7 +20,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 
         public override float GetProgress()
         {
-            var total = 0f;
+            float total = 0f;
 
             foreach (var f in Content)
             {
