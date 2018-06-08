@@ -7,22 +7,22 @@ namespace Hevadea.Scenes.Widgets
 {
     public class WidgetMinimap : Widget
     {
-        private Game _game;
+        private GameState _gameState;
 
-        public WidgetMinimap(Game game)
+        public WidgetMinimap(GameState gameState)
         {
-            _game = game;
+            _gameState = gameState;
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             //spriteBatch.FillRectangle(Host, Color.Black * 0.5f);
 
-            if (_game.LocalPlayer.Entity.Level?.Minimap?.Texture != null)
+            if (_gameState.LocalPlayer.Entity.Level?.Minimap?.Texture != null)
             {
                 //var states = _game.MainPlayer.Level.GetRenderState(_game.Camera);
-                var map = _game.LocalPlayer.Entity.Level.Minimap.Texture;
-                var p = _game.LocalPlayer.Entity.GetTilePosition().ToPoint();
+                var map = _gameState.LocalPlayer.Entity.Level.Minimap.Texture;
+                var p = _gameState.LocalPlayer.Entity.GetTilePosition().ToPoint();
 
                 var dest = UnitHost;
                 var offset = new Point(p.X - dest.Width / 4 / 2, p.Y - dest.Height / 4 / 2);
@@ -31,13 +31,13 @@ namespace Hevadea.Scenes.Widgets
 
                 spriteBatch.Draw(map, Host, src, Color.White);
 
-                foreach (var w in _game.LocalPlayer.Entity.Level.Minimap.Waypoints)
+                foreach (var w in _gameState.LocalPlayer.Entity.Level.Minimap.Waypoints)
                 {
                     Ressources.MinimapIcon[w.Icon].Draw(spriteBatch, new Vector2(Host.X + Mathf.Clamp(Scale((w.X - offset.X) * 4 - 16), 0, Host.Width - Scale(16)),
                                                                                  Host.Y + Mathf.Clamp(Scale((w.Y - offset.Y) * 4 - 16), 0, Host.Height - Scale(16))), new Vector2(Scale(4)), Color.White);
                 }
 
-                Ressources.MinimapIcon[12 + (int)_game.LocalPlayer.Entity.Facing].Draw(spriteBatch,
+                Ressources.MinimapIcon[12 + (int)_gameState.LocalPlayer.Entity.Facing].Draw(spriteBatch,
                     (Host.Location + Scale((p - offset) * new Point(4) - new Point(16))).ToVector2(), new Vector2(Scale(4)),
                     Color.White);
 

@@ -10,11 +10,11 @@ namespace Hevadea.GameObjects.Entities
 {
     public partial class Entity
     {
-        internal void Initialize(Level level, World world, Game game)
+        internal void Initialize(Level level, World world, GameState gameState)
         {
             Level = level;
             World = world;
-            Game = game;
+            GameState = gameState;
 
             Componenents.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
 

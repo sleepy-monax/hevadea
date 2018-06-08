@@ -24,21 +24,21 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new Margins(8) };
 
             var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
-            .RegisterMouseClickEvent((sender) =>
+            .RegisterMouseClickEvent((s) =>
             {
                 if (!int.TryParse(worldSeedtextBox.Text.String, out var seed))
                 {
                     seed = worldSeedtextBox.Text.String.GetHashCode();
                 }
 
-				var job = Jobs.GenerateWorld;
-				job.SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", seed, GENERATOR.DEFAULT));
-                
-                job.Finish += (s, e) =>
+                var job = Jobs.GenerateWorld;
+                job.SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", seed, GENERATOR.DEFAULT));
+
+                job.Finish += (sender, e) =>
                 {
-                    Game game = (Game)((Job)s).Result;
-                    game.Initialize();
-                    Rise.Scene.Switch(new SceneGameplay(game));
+                    GameState gameState = (GameState)((Job)sender).Result;
+                    gameState.Initialize();
+                    Rise.Scene.Switch(new SceneGameplay(gameState));
                 };
                 Rise.Scene.Switch(new LoadingScene(job));
             });

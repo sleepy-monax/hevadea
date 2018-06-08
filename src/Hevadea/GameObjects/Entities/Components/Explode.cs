@@ -27,7 +27,7 @@ namespace Hevadea.GameObjects.Entities.Components
             _hasExplosed = true;
 
             var entities = Owner.Level.GetEntitiesOnArea(Owner.X, Owner.Y, _radius * Game.Unit);
-            Owner.Game.Camera.Thrauma += 0.2f;
+            Owner.GameState.Camera.Thrauma += 0.2f;
 
             foreach (var e in entities)
             {
@@ -36,9 +36,9 @@ namespace Hevadea.GameObjects.Entities.Components
                     var distance = Mathf.Distance(e.X, e.Y, Owner.X, Owner.Y);
                     e.GetComponent<Health>()?.Hurt(Owner, GetDammage(distance) * Rise.Rnd.NextFloat());
 
-                    if (e == Owner.Game.LocalPlayer?.Entity)
+                    if (e == Owner.GameState.LocalPlayer?.Entity)
                     {
-                        Owner.Game.Camera.Thrauma += GetPower(distance);
+                        Owner.GameState.Camera.Thrauma += GetPower(distance);
                     }
 
                     if (Rise.Rnd.NextFloat() <= 0.3f)

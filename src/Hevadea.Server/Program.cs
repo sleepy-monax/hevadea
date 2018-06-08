@@ -1,7 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Threading;
 using Hevadea.Loading;
-using Hevadea.Multiplayer;
 using Hevadea.Registry;
 using System;
 using System.IO;
@@ -15,10 +14,10 @@ namespace Hevadea.Server
     {
         /// <summary>
 
-		/// The main entry point for the application.
+        /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Rise.InitializeNoGraphic(new ServerPlatform());
             Directory.CreateDirectory(Game.GetSaveFolder());
@@ -39,12 +38,11 @@ namespace Hevadea.Server
                     Console.WriteLine($"{i}: {saves[i]}");
                 }
 
-				Console.WriteLine();
+                Console.WriteLine();
 
-				Console.WriteLine("0-99: load world.");
+                Console.WriteLine("0-99: load world.");
                 Console.WriteLine("   n: new world.");
                 Console.WriteLine("   d: delete world.");
-
 
                 Console.Write("\n> ");
                 string input = Console.ReadLine();
@@ -58,33 +56,29 @@ namespace Hevadea.Server
                     Console.Write("World seed: ");
                     var worldSeed = Console.ReadLine();
 
-					int seed = 0;
+                    int seed = 0;
 
-					if (!int.TryParse(worldSeed, out seed))
-					{
-						seed = worldSeed.GetHashCode();	
-					}
-                    
-					Game game = (Game)Jobs.GenerateWorld
-					                      .SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + worldName, seed, GENERATOR.DEFAULT))
-					                      .Start(false)
-					                      .Result;
-                    game.Initialize();
+                    if (!int.TryParse(worldSeed, out seed))
+                    {
+                        seed = worldSeed.GetHashCode();
+                    }
 
-                    
+                    GameState gameState = (GameState)Jobs.GenerateWorld
+                                          .SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + worldName, seed, GENERATOR.DEFAULT))
+                                          .Start(false)
+                                          .Result;
+                    gameState.Initialize();
+
                     var repport = Job.NewEmpty("SaveWorld");
                     repport.StatusChanged += (sender, e) => { Console.WriteLine(e); };
 
-                    
-
-					Jobs.SaveWorld
-					    .SetArguments(new Jobs.WorldSaveInfo(Game.GetSaveFolder() + worldName, game))
-					    .Start(false);
+                    Jobs.SaveWorld
+                        .SetArguments(new Jobs.WorldSaveInfo(Game.GetSaveFolder() + worldName, gameState))
+                        .Start(false);
                 }
-				else if ( int.TryParse(input, out var levelindex))
-				{
-              
-				}
+                else if (int.TryParse(input, out var levelindex))
+                {
+                }
 
                 Console.Clear();
             }

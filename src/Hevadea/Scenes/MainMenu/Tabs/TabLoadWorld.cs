@@ -1,10 +1,7 @@
-﻿using Hevadea.Framework;
-using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Framework.Threading;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.IO;

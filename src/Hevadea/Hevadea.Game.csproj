@@ -67,6 +67,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\EntityBlueprint.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\GenericEntityBlueprint.cs" />
     <Compile Include="GameObjects\Entities\Blueprints\XpOrbBlueprint.cs" />
@@ -238,7 +239,7 @@
     <Compile Include="Worlds\Minimap.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="Scenes\Menus\MenuRespawn.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="GameObjects\Entities\EntityColection.cs" />
     <Compile Include="Scenes\MainMenu\MobileMainMenu.cs" />
   </ItemGroup>

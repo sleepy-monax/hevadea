@@ -37,7 +37,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
 
         public override void Update(GameTime gameTime)
         {
-            if (!Agent.IsBusy() && Target != null && (Target.Level != Agent.Owner.Level || 
+            if (!Agent.IsBusy() && Target != null && (Target.Level != Agent.Owner.Level ||
                 Mathf.Distance(Agent.Owner.Position, Target.Position) > FollowRange * Game.Unit))
             {
                 Agent.Abort(AgentAbortReason.TagetLost);
@@ -61,7 +61,6 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
             }
             else
             {
-
                 if (Target.GetTilePosition() != _lastTagetPosition &&
                     Mathf.Distance(Agent.Owner.Position, Target.Position) < FollowRange * Game.Unit &&
                     CheckLineOfSight(Target.GetTilePosition()))

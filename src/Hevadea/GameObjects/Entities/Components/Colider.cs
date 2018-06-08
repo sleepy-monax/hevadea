@@ -41,7 +41,7 @@ namespace Hevadea.GameObjects.Entities.Components
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (Rise.DebugUi)
-                spriteBatch.DrawRectangle(ToRectangle(), Color.Red, 1 / Owner.Game.Camera.Zoom);
+                spriteBatch.DrawRectangle(ToRectangle(), Color.Red, 1 / Owner.GameState.Camera.Zoom);
         }
     }
 }

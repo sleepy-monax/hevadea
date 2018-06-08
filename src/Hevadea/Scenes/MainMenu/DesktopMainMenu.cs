@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
@@ -9,7 +8,6 @@ using Hevadea.Framework.Utils;
 using Hevadea.Scenes.MainMenu.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace Hevadea.Scenes.MainMenu
 {
@@ -17,7 +15,7 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-			var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
+            var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
             Rise.Scene.SetBackground(background);
 
             var title = new Label
@@ -70,7 +68,7 @@ namespace Hevadea.Scenes.MainMenu
                     new Tab
                     {
                         Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
-						Content = new Container(title, subTitle, copyright, Game.GetLastGame() != null ? continueButton : null)
+                        Content = new Container(title, subTitle, copyright, Game.GetLastGame() != null ? continueButton : null)
                     },
 
                     new TabNewWorld(),

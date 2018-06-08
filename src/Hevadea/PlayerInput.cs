@@ -32,7 +32,7 @@ namespace Hevadea
 
         public void Update(GameTime gameTime)
         {
-            var game = Player.Game;
+            var game = Player.GameState;
             var input = Rise.Input;
             var screenBound = Rise.Graphic.GetBound();
 
@@ -79,7 +79,7 @@ namespace Hevadea
 
         public void HandleInput(PlayerInput input)
         {
-            var game = Player.Game;
+            var game = Player.GameState;
             var playerMovement = Player.GetComponent<Move>();
 
             switch (input)

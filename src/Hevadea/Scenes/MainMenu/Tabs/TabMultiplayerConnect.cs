@@ -49,12 +49,12 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             };
         }
 
-        void Connect(Widget widget)
+        private void Connect(Widget widget)
         {
             var task = Jobs.ConnectToServer
                            .SetArguments(new Jobs.ConnectToServerInfo(connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String)))
-                           .Then((t, a) => { Rise.Scene.Switch(new SceneGameplay((Game)((Job)t).Result)); });
-                                         
+                           .Then((t, a) => { Rise.Scene.Switch(new SceneGameplay((GameState)((Job)t).Result)); });
+
             Rise.Scene.Switch(new LoadingScene(task));
         }
     }

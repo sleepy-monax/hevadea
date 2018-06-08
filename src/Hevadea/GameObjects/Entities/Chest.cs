@@ -32,7 +32,7 @@ namespace Hevadea.GameObjects.Entities
         private void EntityInteracte(object sender, InteractEventArg args)
         {
             if (args.Entity.HasComponent<Inventory>())
-                Game.CurrentMenu = new MenuChest(args.Entity, this, Game);
+                GameState.CurrentMenu = new MenuChest(args.Entity, this, GameState);
         }
 
         private void EntityDie(object sender, EventArgs args)

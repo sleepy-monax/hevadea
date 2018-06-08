@@ -33,7 +33,7 @@ namespace Hevadea.Worlds
         public ParticleSystem ParticleSystem { get; }
         public Minimap Minimap { get; set; }
 
-        private Game _game;
+        private GameState _gameState;
         private World _world;
 
         private static readonly BlendState LightBlend = new BlendState
@@ -64,14 +64,14 @@ namespace Hevadea.Worlds
 
         /* --- Game Loop -----------------------------------------------------*/
 
-        public void Initialize(World world, Game game)
+        public void Initialize(World world, GameState gameState)
         {
             _world = world;
-            _game = game;
+            _gameState = gameState;
             foreach (var c in Chunks)
             {
                 c.Level = this;
-                foreach (var e in c.Entities) e.Initialize(this, world, _game);
+                foreach (var e in c.Entities) e.Initialize(this, world, _gameState);
             }
 
             IsInitialized = true;
@@ -79,10 +79,10 @@ namespace Hevadea.Worlds
 
         public RenderState Prepare(bool drawHint)
         {
-            TilePosition focusedTile = _game.Camera.FocusedTile;
+            TilePosition focusedTile = _gameState.Camera.FocusedTile;
 
-            Point dist = new Point((_game.Camera.GetWidth()  / 2 / Game.Unit) + 1,
-                                    _game.Camera.GetHeight() / 2 / Game.Unit);
+            Point dist = new Point((_gameState.Camera.GetWidth() / 2 / Game.Unit) + 1,
+                                    _gameState.Camera.GetHeight() / 2 / Game.Unit);
 
             Point renderBegin = new Point(Math.Max(0, focusedTile.X - dist.X),
                                           Math.Max(0, focusedTile.Y - dist.Y - 1));
@@ -130,7 +130,7 @@ namespace Hevadea.Worlds
         public void Draw(LevelSpriteBatchPool spriteBatchPool, GameTime gameTime)
         {
             RenderState renderState = Prepare(true);
-            spriteBatchPool.Begin(_game.Camera);
+            spriteBatchPool.Begin(_gameState.Camera);
 
             // Draw Tiles.
             for (int x = renderState.RenderBegin.X; x < renderState.RenderEnd.X; x++)
@@ -242,6 +242,7 @@ namespace Hevadea.Worlds
         /* --- Chunks ------------------------------------------------------- */
 
         public Chunk GetChunkAt(TilePosition t) => GetChunkAt(t.X, t.Y);
+
         public Chunk GetChunkAt(int tx, int ty)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return null;
@@ -251,6 +252,7 @@ namespace Hevadea.Worlds
         /* --- Tiles -------------------------------------------------------- */
 
         public Tile GetTile(TilePosition t) => GetTile(t.X, t.Y);
+
         public Tile GetTile(int tx, int ty)
         {
             Chunk chunk = GetChunkAt(tx, ty);
@@ -264,6 +266,7 @@ namespace Hevadea.Worlds
         }
 
         public bool SetTile(TilePosition t, Tile tile) => SetTile(t.X, t.Y, tile);
+
         public bool SetTile(int tx, int ty, Tile tile)
         {
             Chunk chunk = GetChunkAt(tx, ty);
@@ -292,7 +295,9 @@ namespace Hevadea.Worlds
         }
 
         public bool IsAll<T>(Rectangle area) where T : TileComponent => IsAll(area, (t) => t.HasTag<T>());
+
         public bool IsAll(Rectangle area, Tile tile) => IsAll(area, (t) => t == tile);
+
         public bool IsAll(Rectangle area, Predicate<Tile> predicat)
         {
             var beginX = area.X / Game.Unit;
@@ -316,6 +321,7 @@ namespace Hevadea.Worlds
         /* --- Tile data ---------------------------------------------------- */
 
         public Dictionary<string, object> GetTileDataAt(TilePosition t) => GetTileDataAt(t.X, t.Y);
+
         public Dictionary<string, object> GetTileDataAt(int tx, int ty)
         {
             Chunk chunk = GetChunkAt(tx, ty);
@@ -329,12 +335,14 @@ namespace Hevadea.Worlds
         }
 
         public T GetTileData<T>(TilePosition t, string dataName, T defaultValue) => GetTileData(t.X, t.Y, dataName, defaultValue);
+
         public T GetTileData<T>(int tx, int ty, string dataName, T defaultValue)
         {
             return (T)GetTileDataAt(tx, ty).GetValueOrDefault(dataName, defaultValue);
         }
 
         public void SetTileDataAt(TilePosition t, Dictionary<string, object> data) => SetTileDataAt(t.X, t.Y, data);
+
         public void SetTileDataAt(int tx, int ty, Dictionary<string, object> data)
         {
             Chunk chunk = GetChunkAt(tx, ty);
@@ -346,12 +354,14 @@ namespace Hevadea.Worlds
         }
 
         internal void SetTileData<T>(TilePosition t, string dataName, T value) => SetTileData(t.X, t.Y, dataName, value);
+
         public void SetTileData<T>(int tx, int ty, string dataName, T value)
         {
             GetTileDataAt(tx, ty)[dataName] = value;
         }
 
         public void ClearTileDataAt(TilePosition tilePosition) => ClearTileDataAt(tilePosition.X, tilePosition.Y);
+
         public void ClearTileDataAt(int tx, int ty)
         {
             GetTileDataAt(tx, ty)?.Clear();
@@ -360,6 +370,7 @@ namespace Hevadea.Worlds
         /* --- Tile Connections --------------------------------------------- */
 
         public TileConnection GetTileConnection(TilePosition t) => GetTileConnection(t.X, t.Y);
+
         public TileConnection GetTileConnection(int tx, int ty)
         {
             Chunk chunk = GetChunkAt(tx, ty);
@@ -373,6 +384,7 @@ namespace Hevadea.Worlds
         }
 
         public void SetTileConnection(TilePosition t, TileConnection tileConnection) => SetTileConnection(t.X, t.Y, tileConnection);
+
         public void SetTileConnection(int tx, int ty, TileConnection tileConnection)
         {
             Chunk chunk = GetChunkAt(tx, ty);
@@ -395,7 +407,7 @@ namespace Hevadea.Worlds
 
             if (IsInitialized)
             {
-                e.Initialize(this, _world, _game);
+                e.Initialize(this, _world, _gameState);
             }
         }
 
@@ -434,6 +446,7 @@ namespace Hevadea.Worlds
         }
 
         public List<Entity> GetEntitiesAt(TilePosition t) => GetEntitiesAt(t.X, t.Y);
+
         public List<Entity> GetEntitiesAt(int tx, int ty)
         {
             Chunk chunk = GetChunkAt(tx, ty);
@@ -447,6 +460,7 @@ namespace Hevadea.Worlds
         }
 
         public List<Entity> GetEntitiesOnArea(Vector2 center, float radius) => GetEntitiesOnArea(center.X, center.Y, radius);
+
         public List<Entity> GetEntitiesOnArea(float cx, float cy, float radius)
         {
             var entities = GetEntitiesOnArea(new RectangleF(cx - radius, cy - radius, radius * 2, radius * 2));
@@ -454,6 +468,7 @@ namespace Hevadea.Worlds
         }
 
         public List<Entity> GetEntitiesOnArea(Rectangle area) => GetEntitiesOnArea(new RectangleF(area.X, area.Y, area.Width, area.Height));
+
         public List<Entity> GetEntitiesOnArea(RectangleF area)
         {
             var result = new List<Entity>();

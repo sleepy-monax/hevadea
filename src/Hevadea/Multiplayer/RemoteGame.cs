@@ -10,7 +10,7 @@ using System.Net.Sockets;
 
 namespace Hevadea
 {
-    public class RemoteGame : Game
+    public class RemoteGame : GameState
     {
         public Client Client { get; private set; }
         private bool _jointed = false;
@@ -40,7 +40,7 @@ namespace Hevadea
             Client.Send(Packets.Login("testplayer", "{}"));
 
             new PacketBuilder(Client.Wait()).Ignore(sizeof(int)).ReadInteger(out var token);
-            Logger.Log<Game>($"Recived token {token} from server.");
+            Logger.Log<GameState>($"Recived token {token} from server.");
 
             while (!_jointed) ;
         }
@@ -80,7 +80,7 @@ namespace Hevadea
 
             LevelStorage levelStorage = levelJson.FromJson<LevelStorage>();
 
-            Logger.Log<Game>($"Loading {levelStorage.Name}...");
+            Logger.Log<GameState>($"Loading {levelStorage.Name}...");
             Level level = Level.Load(levelStorage);
 
             World.Levels.Add(level);
@@ -94,7 +94,7 @@ namespace Hevadea
 
             ChunkStorage chunkStorage = chunkJson.FromJson<ChunkStorage>();
 
-            Logger.Log<Game>($"Loading chunk: {chunkStorage.Level}:{chunkStorage.X}-{chunkStorage.Y} ...");
+            Logger.Log<GameState>($"Loading chunk: {chunkStorage.Level}:{chunkStorage.X}-{chunkStorage.Y} ...");
             Chunk chunk = Chunk.Load(chunkStorage);
 
             World.GetLevel(chunkStorage.Level).Chunks[chunkStorage.X, chunkStorage.Y] = chunk;

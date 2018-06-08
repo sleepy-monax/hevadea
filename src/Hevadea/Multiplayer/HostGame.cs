@@ -1,24 +1,20 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Networking;
-using Hevadea.Framework.Utils;
 using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
-using System.Collections.Generic;
 using System.Net.Sockets;
 
 namespace Hevadea.Multiplayer
 {
-    public class HostGame : Game
+    public class HostGame : GameState
     {
         public Server Server;
         public string _address;
         public int _port;
         public int _slots;
 
-
         public HostGame()
         {
-
         }
 
         public HostGame(string address, int port, int slots)
@@ -54,17 +50,16 @@ namespace Hevadea.Multiplayer
                 .ReadInteger(out var token)
                 .ReadStringUTF8(out var gameInfo);
 
-            Logger.Log<Game>($"User '{userName}' login with token '{token}'...");
+            Logger.Log<GameState>($"User '{userName}' login with token '{token}'...");
 
             if (token == 0)
             {
                 token = Rise.Rnd.NextInt();
-                Logger.Log<Game>($"{userName}'s token is now {token}!");
+                Logger.Log<GameState>($"{userName}'s token is now {token}!");
             }
 
             client.Send(Packets.Token(token));
             SendWorld(client);
-
 
             var playerSession = new PlayerSession(userName, token, (Player)EntityFactory.PLAYER.Construct());
             playerSession.Join(this);
@@ -91,7 +86,7 @@ namespace Hevadea.Multiplayer
                 {
                     var progress = (chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length;
 
-                    Logger.Log<Game>($"Sending '{level.Name}' {(int)(progress * 100)}%");
+                    Logger.Log<GameState>($"Sending '{level.Name}' {(int)(progress * 100)}%");
                     client.Send(Packets.Chunk(chunk));
                 }
             }

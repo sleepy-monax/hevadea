@@ -1,12 +1,10 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Extension;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace Hevadea.Scenes.MainMenu
 {
@@ -14,7 +12,7 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-			var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
+            var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
             Rise.Scene.SetBackground(background);
 
             var title = new Label
@@ -55,7 +53,7 @@ namespace Hevadea.Scenes.MainMenu
                 UnitBound = new Rectangle(0, 0, 256, 64),
             }.RegisterMouseClickEvent((sender) => Game.New("world", GENERATOR.DEFAULT));
 
-			Container = new Container(title, subTitle, newGameButton, Game.GetLastGame() != null ? continueButton : null);
+            Container = new Container(title, subTitle, newGameButton, Game.GetLastGame() != null ? continueButton : null);
         }
 
         public override void OnDraw(GameTime gameTime)

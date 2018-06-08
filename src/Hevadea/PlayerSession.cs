@@ -1,11 +1,6 @@
-﻿using Hevadea.GameObjects;
+﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Entities;
 using Hevadea.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea
 {
@@ -16,9 +11,9 @@ namespace Hevadea
         public Player Entity { get; set; }
         public PlayerInputHandler InputHandler { get; set; }
 
-        public bool HasJoined => _game != null;
+        public bool HasJoined => _gameState != null;
 
-        private Game _game;
+        private GameState _gameState;
 
         public PlayerSession(string name, int token, Player entity)
         {
@@ -28,16 +23,18 @@ namespace Hevadea
             InputHandler = new PlayerInputHandler(entity);
         }
 
-        public void Join(Game game)
+        public void Join(GameState gameState)
         {
-            _game = game;
+            _gameState = gameState;
+
+            Logger.Log<PlayerSession>($"{Name} joint the game!");
 
             if (Entity.Removed)
             {
                 if (Entity.X == 0f && Entity.Y == 0f)
-                    _game.World.SpawnPlayer(Entity);
+                    _gameState.World.SpawnPlayer(Entity);
                 else
-                    _game.World.GetLevel(Entity.LastLevel).AddEntity(Entity);
+                    _gameState.World.GetLevel(Entity.LastLevel).AddEntity(Entity);
             }
         }
 

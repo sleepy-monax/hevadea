@@ -5,7 +5,6 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
-using Hevadea.Scenes.MainMenu;
 using Hevadea.Scenes.Menus;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -19,7 +18,7 @@ namespace Hevadea.Loading
         private Label _progressLabel;
         private ProgressBar _progressBar;
 
-        public LoadingMenu(Job job, Game game) : base(game)
+        public LoadingMenu(Job job, GameState gameState) : base(gameState)
         {
             _job = job;
 
@@ -78,13 +77,12 @@ namespace Hevadea.Loading
                 }
             };
 
-			_job.Start(true);
+            _job.Start(true);
 
             _job.Finish += (sender, e) =>
             {
-                game.CurrentMenu = new MenuInGame(game);
+                gameState.CurrentMenu = new MenuInGame(gameState);
             };
-
         }
 
         public override void Update(GameTime gameTime)

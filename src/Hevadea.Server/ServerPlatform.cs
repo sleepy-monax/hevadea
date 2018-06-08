@@ -30,7 +30,6 @@ namespace Hevadea.Server
             }
             catch (Exception)
             {
-
             }
         }
 

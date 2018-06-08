@@ -9,30 +9,30 @@ namespace Hevadea.Loading
 {
     public static class Jobs
     {
-        public class WorldGeneratorInfo : JobArguments 
+        public class WorldGeneratorInfo : JobArguments
         {
             public string Path { get; }
             public int Seed { get; }
             public Generator Generator { get; }
-   
+
             public WorldGeneratorInfo(string path, int seed, Generator generator)
             {
                 Path = path;
                 Seed = seed;
                 Generator = generator;
-            }         
+            }
         }
 
         public class WorldSaveInfo : JobArguments
         {
-            public WorldSaveInfo(string path, Game game)
+            public WorldSaveInfo(string path, GameState gameState)
             {
                 Path = path;
-                Game = game;
+                GameState = gameState;
             }
 
             public string Path { get; }
-            public Game Game { get; }
+            public GameState GameState { get; }
         }
 
         public class WorldLoadInfo : JobArguments
@@ -59,7 +59,7 @@ namespace Hevadea.Loading
             public int Slots { get; }
         }
 
-        public class ConnectToServerInfo : JobArguments 
+        public class ConnectToServerInfo : JobArguments
         {
             public ConnectToServerInfo(string address, int port)
             {
@@ -69,10 +69,9 @@ namespace Hevadea.Loading
 
             public string Address { get; }
             public int Port { get; }
-
         }
 
-        public static Job GenerateWorld => new Job("GenerateWorld", (job, args) => 
+        public static Job GenerateWorld => new Job("GenerateWorld", (job, args) =>
         {
             var info = args as WorldGeneratorInfo;
 
@@ -80,25 +79,25 @@ namespace Hevadea.Loading
             job.Report("Generating world...");
             info.Generator.Seed = info.Seed;
 
-            Game game = new Game
+            GameState gameState = new GameState
             {
                 SavePath = info.Path,
                 World = info.Generator.Generate(job)
             };
 
             var localPlayer = new PlayerSession($"player-{Rise.Rnd.NextInt()}", Rise.Rnd.NextInt(), (Player)EntityFactory.PLAYER.Construct());
-            localPlayer.Join(game);
-            game.LocalPlayer = localPlayer;
+            localPlayer.Join(gameState);
+            gameState.LocalPlayer = localPlayer;
 
-            return game;
+            return gameState;
         });
 
-        public static Job SaveWorld => new Job("SaveWorld", (job, args) => 
+        public static Job SaveWorld => new Job("SaveWorld", (job, args) =>
         {
-            var info = args as WorldSaveInfo; 
-           
+            var info = args as WorldSaveInfo;
+
             Game.SetLastGame(info.Path);
-            info.Game.Save(job, info.Path);
+            info.GameState.Save(job, info.Path);
 
             return null;
         });
@@ -106,11 +105,11 @@ namespace Hevadea.Loading
         public static Job LoadWorld => new Job("LoadWorld", (job, args) =>
         {
             var info = args as WorldLoadInfo;
-            
-            Game game = new Game().Load(job, info.Path);
-            game.Initialize();
 
-            return game;
+            GameState gameState = new GameState().Load(job, info.Path);
+            gameState.Initialize();
+
+            return gameState;
         });
 
         public static Job StartServer => new Job("StartSever", (job, arg) =>
@@ -124,7 +123,7 @@ namespace Hevadea.Loading
             return game;
         });
 
-        public static Job ConnectToServer => new Job("ConnectToServer", (job, arg) => 
+        public static Job ConnectToServer => new Job("ConnectToServer", (job, arg) =>
         {
             var info = arg as ConnectToServerInfo;
 
@@ -133,8 +132,5 @@ namespace Hevadea.Loading
             game.Initialize();
             return game;
         });
-
-
-
     }
 }

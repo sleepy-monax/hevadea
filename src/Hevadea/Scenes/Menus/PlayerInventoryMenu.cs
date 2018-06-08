@@ -20,11 +20,11 @@ namespace Hevadea.Scenes.Menus
 {
     public abstract class InventoryTab : Tab
     {
-        public Game Game { get; }
+        public GameState GameState { get; }
 
-        public InventoryTab(Game game)
+        public InventoryTab(GameState gameState)
         {
-            Game = game;
+            GameState = gameState;
         }
     }
 
@@ -33,7 +33,7 @@ namespace Hevadea.Scenes.Menus
         private WidgetItemContainer _inventory;
         private CraftingTab _crafting;
 
-        public PlayerInventoryMenu(Game game) : base(game)
+        public PlayerInventoryMenu(GameState gameState) : base(gameState)
         {
             InitializeComponents();
         }
@@ -43,7 +43,7 @@ namespace Hevadea.Scenes.Menus
             PauseGame = true;
 
             var r = new List<List<Recipe>>();
-            foreach (var e in Game.LocalPlayer.Entity.Level.GetEntitiesOnArea(Game.LocalPlayer.Entity.X, Game.LocalPlayer.Entity.Y, Game.Unit * 3))
+            foreach (var e in GameState.LocalPlayer.Entity.Level.GetEntitiesOnArea(GameState.LocalPlayer.Entity.X, GameState.LocalPlayer.Entity.Y, Game.Unit * 3))
             {
                 var s = e.GetComponent<CraftingStation>();
                 if (s != null)
@@ -62,15 +62,15 @@ namespace Hevadea.Scenes.Menus
                 recipies.AddRange(i);
             }
 
-            _inventory = new WidgetItemContainer(Game.LocalPlayer.Entity.GetComponent<Inventory>().Content);
-            _crafting = new CraftingTab(Game, recipies);
+            _inventory = new WidgetItemContainer(GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content);
+            _crafting = new CraftingTab(GameState, recipies);
 
             _inventory.Dock = Dock.Fill;
 
             _inventory.MouseClick += (sender) =>
             {
                 _inventory.HighlightedItem = _inventory.SelectedItem;
-                Game.LocalPlayer.Entity.HoldingItem = _inventory.SelectedItem;
+                GameState.LocalPlayer.Entity.HoldingItem = _inventory.SelectedItem;
             };
 
             var closeBtn = new SpriteButton()
@@ -109,8 +109,8 @@ namespace Hevadea.Scenes.Menus
                             }
                         }
                     },
-                    new MinimapTab(Game),
-                    new SaveTab(Game),
+                    new MinimapTab(GameState),
+                    new SaveTab(GameState),
                 }
             };
 
@@ -122,7 +122,7 @@ namespace Hevadea.Scenes.Menus
 
         private void CloseBtnOnMouseClick(Widget sender)
         {
-            Game.CurrentMenu = new MenuInGame(Game);
+            GameState.CurrentMenu = new MenuInGame(GameState);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

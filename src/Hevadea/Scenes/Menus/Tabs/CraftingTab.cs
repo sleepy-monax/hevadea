@@ -50,7 +50,7 @@ namespace Hevadea.Scenes.Menus.Tabs
     {
         public ListWidget CraftingList { get; }
 
-        public CraftingTab(Game game, List<Recipe> recipies = null) : base(game)
+        public CraftingTab(GameState gameState, List<Recipe> recipies = null) : base(gameState)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(4, 2));
             CraftingList = new ListWidget
@@ -69,7 +69,7 @@ namespace Hevadea.Scenes.Menus.Tabs
 
             foreach (var recipe in recipies ?? RECIPIES.HandCrafted)
             {
-                CraftingList.AddItem(new CraftingListItem(recipe, Game.LocalPlayer.Entity.GetComponent<Inventory>().Content));
+                CraftingList.AddItem(new CraftingListItem(recipe, GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content));
             }
 
             Content = new Container()
@@ -86,7 +86,7 @@ namespace Hevadea.Scenes.Menus.Tabs
         {
             if (CraftingList.SelectedItem is CraftingListItem craft)
             {
-                craft.GetRecipe().Craft(Game.LocalPlayer.Entity.GetComponent<Inventory>().Content);
+                craft.GetRecipe().Craft(GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content);
             }
         }
     }

@@ -26,8 +26,7 @@ namespace Hevadea.GameObjects.Entities
             //        MoveSpeedWandering = 0.5f,
             //        NaturalEnvironment = { TILES.DIRT, TILES.GRASS, TILES.SAND, TILES.WOOD_FLOOR }
             //    }));
-            AddComponent(new Agent( new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeedWandering = 0.5f } ));
-
+            AddComponent(new Agent(new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeedWandering = 0.5f }));
 
             AddComponent(new Pickupable(new Sprite(Ressources.TileEntities, new Point(12, 0))));
             AddComponent(new Burnable(1f));

@@ -8,12 +8,12 @@ namespace Hevadea.Scenes
 {
     public class SceneGameplay : Scene
     {
-        public readonly Game Game;
+        public readonly GameState GameState;
 
-        public SceneGameplay(Game game)
+        public SceneGameplay(GameState gameState)
         {
-            Game = game;
-            Game.CurrentMenuChange += Game_CurrentMenuChange;
+            GameState = gameState;
+            GameState.CurrentMenuChange += Game_CurrentMenuChange;
             Container = new Panel
             {
                 Padding = new Margins(0)
@@ -29,17 +29,17 @@ namespace Hevadea.Scenes
 
         public override void Load()
         {
-            Game_CurrentMenuChange(null, Game.CurrentMenu);
+            Game_CurrentMenuChange(null, GameState.CurrentMenu);
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            Game.Update(gameTime);
+            GameState.Update(gameTime);
         }
 
         public override void OnDraw(GameTime gameTime)
         {
-            Game.Draw(gameTime);
+            GameState.Draw(gameTime);
         }
 
         public override void Unload()
@@ -49,11 +49,11 @@ namespace Hevadea.Scenes
         public override string GetDebugInfo()
         {
             return
-$@"World time: {(int)Game.World.DayNightCycle.Time}
-Time of the day: {(int)Game.World.DayNightCycle.TimeOfTheDay} / {Game.World.DayNightCycle.CycleDuration}
-Days : {Game.World.DayNightCycle.DayCount}
-Current Stage: {Game.World.DayNightCycle.GetCurrentStage().Name} : {(int)Game.World.DayNightCycle.GetTimeOfTheCurrentStage()}/{(int)Game.World.DayNightCycle.GetCurrentStage().Duration}
-Player pos {Game.LocalPlayer.Entity.X} {Game.LocalPlayer.Entity.Y}
+$@"World time: {(int)GameState.World.DayNightCycle.Time}
+Time of the day: {(int)GameState.World.DayNightCycle.TimeOfTheDay} / {GameState.World.DayNightCycle.CycleDuration}
+Days : {GameState.World.DayNightCycle.DayCount}
+Current Stage: {GameState.World.DayNightCycle.GetCurrentStage().Name} : {(int)GameState.World.DayNightCycle.GetTimeOfTheCurrentStage()}/{(int)GameState.World.DayNightCycle.GetCurrentStage().Duration}
+Player pos {GameState.LocalPlayer.Entity.X} {GameState.LocalPlayer.Entity.Y}
 ";
         }
     }

@@ -24,7 +24,7 @@ namespace Hevadea.GameObjects.Entities
 
         public Level Level { get; set; }
         public World World { get; private set; }
-        public Game Game { get; private set; }
+        public GameState GameState { get; private set; }
 
         public int SortingOffset { get; set; } = 0;
 

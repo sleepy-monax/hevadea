@@ -13,11 +13,11 @@ namespace Hevadea.Scenes
 {
     public class SceneGameSplash : Scene
     {
-        bool _loadingDone;
-        bool _once = true;
-        float _time = 0.1f;
+        private bool _loadingDone;
+        private bool _once = true;
+        private float _time = 0.1f;
 
-        SpriteBatch _sb;
+        private SpriteBatch _sb;
 
         public static bool Initialized = false;
 

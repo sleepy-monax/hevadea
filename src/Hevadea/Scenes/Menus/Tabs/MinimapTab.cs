@@ -6,10 +6,10 @@ namespace Hevadea.Scenes.Menus.Tabs
 {
     public class MinimapTab : InventoryTab
     {
-        public MinimapTab(Game game) : base(game)
+        public MinimapTab(GameState gameState) : base(gameState)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(5, 4));
-            Content = new WidgetMinimap(game);
+            Content = new WidgetMinimap(gameState);
         }
     }
 }

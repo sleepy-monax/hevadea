@@ -9,7 +9,7 @@ namespace Hevadea.Worlds
 {
     public class World
     {
-        public Game Game;
+        public GameState GameState;
         public List<Level> Levels = new List<Level>();
         public DayNightCycle DayNightCycle { get; }
         public string PlayerSpawnLevel = "overworld";
@@ -106,10 +106,10 @@ namespace Hevadea.Worlds
             return null;
         }
 
-        public void Initialize(Game game)
+        public void Initialize(GameState gameState)
         {
-            Game = game;
-            foreach (var l in Levels) l.Initialize(this, game);
+            GameState = gameState;
+            foreach (var l in Levels) l.Initialize(this, gameState);
         }
     }
 }

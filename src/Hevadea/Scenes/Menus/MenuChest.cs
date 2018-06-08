@@ -18,7 +18,7 @@ namespace Hevadea.Scenes.Menus
         private readonly WidgetItemContainer _inventoryA;
         private readonly WidgetItemContainer _inventoryB;
 
-        public MenuChest(Entity entity, Entity chest, Game game) : base(game)
+        public MenuChest(Entity entity, Entity chest, GameState gameState) : base(gameState)
         {
             PauseGame = true;
 
@@ -82,7 +82,7 @@ namespace Hevadea.Scenes.Menus
 
         private void CloseBtnOnMouseClick(Widget sender)
         {
-            Game.CurrentMenu = new MenuInGame(Game);
+            GameState.CurrentMenu = new MenuInGame(GameState);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Hevadea.Scenes.Menus
 
         private readonly SpriteButton btnMinimap;
 
-        public MenuInGame(Game game) : base(game)
+        public MenuInGame(GameState gameState) : base(gameState)
         {
             // On screen button -----------------------------------------------
 
@@ -71,7 +71,7 @@ namespace Hevadea.Scenes.Menus
 
             // Hud ------------------------------------------------------------
 
-            _playerStats = new WidgetPlayerStats(Game.LocalPlayer.Entity)
+            _playerStats = new WidgetPlayerStats(GameState.LocalPlayer.Entity)
             {
                 Anchor = Anchor.TopLeft,
                 Origine = Anchor.TopLeft,
@@ -85,10 +85,10 @@ namespace Hevadea.Scenes.Menus
                 Origine = Anchor.TopRight,
                 UnitBound = new Rectangle(0, 0, 320, 320),
                 UnitOffset = new Point(-16, 16),
-                Content = new WidgetMinimap(game)
+                Content = new WidgetMinimap(gameState)
             };
 
-            _hotBar = new WidgetHotBar(Game.LocalPlayer.Entity.GetComponent<Inventory>().Content)
+            _hotBar = new WidgetHotBar(GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content)
             {
                 Anchor = Anchor.Bottom,
                 Origine = Anchor.Bottom,
@@ -102,14 +102,14 @@ namespace Hevadea.Scenes.Menus
                     _playerStats, _minimap, btnMinimap, _hotBar,
 
                     new Button{ Text = "Inventory", Origine = Anchor.BottomLeft, Anchor = Anchor.BottomLeft, UnitOffset = new Point(16,-16)}
-                    .RegisterMouseClickEvent((sender)=>{ Game.CurrentMenu = new PlayerInventoryMenu(Game); })
+                    .RegisterMouseClickEvent((sender)=>{ GameState.CurrentMenu = new PlayerInventoryMenu(GameState); })
                 }
             };
 
-            btnAction.MouseClick += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.Action); };
-            btnAttack.MouseHold += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.Attack); };
-            btnDrop.MouseClick += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.DropItem); };
-            btnPickup.MouseClick += (sender) => { Game.LocalPlayer.InputHandler.HandleInput(PlayerInput.Pickup); };
+            btnAction.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Action); };
+            btnAttack.MouseHold += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Attack); };
+            btnDrop.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.DropItem); };
+            btnPickup.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Pickup); };
             btnMinimap.MouseClick += (sender) => { _minimap.Toggle(); sender.Disable(); };
 
             _minimap.MouseClick += (sender) => { sender.Toggle(); btnMinimap.Enable(); };
