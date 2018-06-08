@@ -1,5 +1,5 @@
-﻿using Hevadea.Framework.Networking;
-using Hevadea.Framework.Utils.Json;
+﻿using Hevadea.Framework.Data;
+using Hevadea.Framework.Networking;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Worlds;
@@ -19,7 +19,7 @@ namespace Hevadea.Multiplayer
             => Login(playerName, 0, gameInfo);
 
         public static byte[] Login(string playerName, int token, string gameInfo)
-            => new PacketBuilder()
+            => new BufferBuilder()
                 .WriteInteger((int)PacketType.LOGIN)
                 .WriteStringUTF8(playerName)
                 .WriteInteger(token)
@@ -27,7 +27,7 @@ namespace Hevadea.Multiplayer
                 .Buffer;
 
         public static byte[] Token(int token)
-            => new PacketBuilder()
+            => new BufferBuilder()
                 .WriteInteger((int)PacketType.TOKEN)
                 .WriteInteger(token)
                 .Buffer;
@@ -35,31 +35,31 @@ namespace Hevadea.Multiplayer
         // WORLD ===============================================================
 
         public static byte[] World(World world)
-            => new PacketBuilder()
+            => new BufferBuilder()
                 .WriteInteger((int)PacketType.WORLD)
                 .WriteStringUTF8(world.Save().ToJson()).Buffer;
 
         public static byte[] Level(Level level)
-            => new PacketBuilder()
+            => new BufferBuilder()
                 .WriteInteger((int)PacketType.LEVEL)
                 .WriteStringUTF8(level.Save().ToJson()).Buffer;
 
         public static byte[] Chunk(Chunk chunk)
-            => new PacketBuilder()
+            => new BufferBuilder()
                 .WriteInteger((int)PacketType.CHUNK)
                 .WriteStringUTF8(chunk.Save().ToJson()).Buffer;
 
         // JOINT THE PLAYER ====================================================
 
         public static byte[] Join(PlayerSession player)
-            => new PacketBuilder()
+            => new BufferBuilder()
                 .WriteInteger((int)PacketType.JOINT)
                 .WriteStringUTF8(player.Save().ToJson()).Buffer;
 
         // SYNC ================================================================
 
         public static byte[] Tile(Level level, TilePosition pos, Tile tile)
-            => new PacketBuilder()
+            => new BufferBuilder()
             .WriteInteger((int)PacketType.TILE)
             .WriteInteger(level.Id)
             .WriteInteger(pos.X)
@@ -67,7 +67,7 @@ namespace Hevadea.Multiplayer
             .WriteStringUTF8(tile.Name).Buffer;
 
         public static byte[] TileData(Level level, TilePosition pos, Dictionary<string, object> data)
-            => new PacketBuilder()
+            => new BufferBuilder()
             .WriteInteger((int)PacketType.TILE_DATA)
             .WriteInteger(level.Id)
             .WriteInteger(pos.X)
@@ -75,7 +75,7 @@ namespace Hevadea.Multiplayer
             .WriteStringUTF8(data.ToJson()).Buffer;
 
         public static byte[] PlayerInput(PlayerInput playerInput)
-            => new PacketBuilder()
+            => new BufferBuilder()
             .WriteInteger((int)PacketType.PLAYER_INPUT)
             .WriteInteger((int)playerInput)
             .Buffer;

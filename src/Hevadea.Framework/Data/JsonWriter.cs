@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Hevadea.Framework.Utils.Json
+namespace Hevadea.Framework.Data
 {
     //- Outputs JSON structures from an object
     //- Really simple API (new List<int> { 1, 2, 3 }).ToJson() == "[1,2,3]"
@@ -16,7 +17,7 @@ namespace Hevadea.Framework.Utils.Json
     /// Really simple JSON writer from https://github.com/zanders3/json
     /// with aditional features hacked in.
     /// </summary>
-    public static class Writer
+    public static class JsonWriter
     {
         public static string ToJson(this object item)
         {

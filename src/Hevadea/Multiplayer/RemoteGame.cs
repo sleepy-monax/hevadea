@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Data;
 using Hevadea.Framework.Networking;
-using Hevadea.Framework.Utils.Json;
 using Hevadea.GameObjects;
 using Hevadea.Multiplayer;
 using Hevadea.Storage;
@@ -39,7 +39,7 @@ namespace Hevadea
 
             Client.Send(Packets.Login("testplayer", "{}"));
 
-            new PacketBuilder(Client.Wait()).Ignore(sizeof(int)).ReadInteger(out var token);
+            new BufferReader(Client.Wait()).Ignore(sizeof(int)).ReadInteger(out var token);
             Logger.Log<GameState>($"Recived token {token} from server.");
 
             while (!_jointed) ;
@@ -52,7 +52,7 @@ namespace Hevadea
 
         public void HandleJOINT(Socket socket, byte[] data)
         {
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadStringUTF8(out var playerJson);
 
@@ -64,7 +64,7 @@ namespace Hevadea
 
         public void HandleWORLD(Socket socket, byte[] data)
         {
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadStringUTF8(out var worldJson);
 
@@ -74,7 +74,7 @@ namespace Hevadea
 
         public void HandleLEVEL(Socket socket, byte[] data)
         {
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadStringUTF8(out var levelJson);
 
@@ -88,7 +88,7 @@ namespace Hevadea
 
         public void HandleCHUNK(Socket socket, byte[] data)
         {
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadStringUTF8(out var chunkJson);
 
@@ -102,7 +102,7 @@ namespace Hevadea
 
         public void HandleTILE(Socket socket, byte[] data)
         {
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadInteger(out var levelId)
                 .ReadInteger(out var x)
@@ -114,7 +114,7 @@ namespace Hevadea
 
         public void HandleTILEDATA(Socket socket, byte[] data)
         {
-            new PacketBuilder(data)
+            new BufferReader(data)
                 .Ignore(sizeof(int))
                 .ReadInteger(out var levelId)
                 .ReadInteger(out var x)

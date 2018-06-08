@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hevadea.Framework.Data;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Sockets;
@@ -20,7 +21,7 @@ namespace Hevadea.Framework.Networking
 
         private void OnDataRecived(Socket socket, byte[] data)
         {
-            PacketBuilder packet = new PacketBuilder(data);
+            BufferReader packet = new BufferReader(data);
             int packetType = packet.ReadInteger();
 
             if (_handlers.ContainsKey(packetType))
