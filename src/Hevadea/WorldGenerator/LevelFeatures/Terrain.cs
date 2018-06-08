@@ -1,6 +1,5 @@
 ﻿using Hevadea.GameObjects;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.WorldGenerator.Functions;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 
@@ -9,7 +8,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
     public class TerrainLayer
     {
         public Tile Tile { get; set; } = TILES.WATER;
-        public IFunction Function { get; set; } = new FlatFunction(1f);
+        public GeneratorFunctions Function { get; set; } = Functions.Flat(1f);
         public float Threashold { get; set; } = 1f;
         public int Priority { get; set; } = 0;
         public List<Tile> TileRequired { get; set; } = new List<Tile>();
@@ -42,7 +41,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 
                     foreach (var layer in Layers)
                     {
-                        var value = layer.Function.Compute(x, y, gen, levelGen, level);
+                        var value = layer.Function(x, y, gen, levelGen, level);
 
                         var canBeAdded = value >= layer.Threashold &&
                                          (layer.TileRequired.Count == 0 || layer.TileRequired.Contains(tile));

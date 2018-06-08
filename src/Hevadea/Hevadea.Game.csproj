@@ -213,11 +213,7 @@
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Maze.cs" />
     <Compile Include="Utils\PathFinder.cs" />
-    <Compile Include="WorldGenerator\Functions\CombinedFunction.cs" />
-    <Compile Include="WorldGenerator\Functions\FlatFunction.cs" />
-    <Compile Include="WorldGenerator\Functions\IFunction.cs" />
-    <Compile Include="WorldGenerator\Functions\IslandFunction.cs" />
-    <Compile Include="WorldGenerator\Functions\PerlinFunction.cs" />
+    <Compile Include="WorldGenerator\Functions.cs" />
     <Compile Include="WorldGenerator\LevelExtension.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\BspDecorator.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\Terrain.cs" />

@@ -1,6 +1,5 @@
 ﻿using Hevadea.GameObjects.Entities.Blueprints;
 using Hevadea.GameObjects.Tiles;
-using Hevadea.WorldGenerator.Functions;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 
@@ -9,7 +8,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
     public class PopulateFeature : LevelFeature
     {
         public List<Tile> CanBePlantOn { get; set; } = new List<Tile>();
-        public IFunction PlacingFunction { get; set; } = new FlatFunction(0.9f);
+        public GeneratorFunctions PlacingFunction { get; set; } = Functions.Flat(0.9f);
         public float Threashold { get; set; } = 1f;
         public int Chance { get; set; } = 1;
         public int RandomOffset { get; set; } = 4;
@@ -34,7 +33,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
             {
                 for (var y = 0; y < gen.Size; y += Spacing)
                 {
-                    if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(x, y)) && PlacingFunction.Compute(x, y, gen, levelGen, level) < Threashold && level.GetEntitiesAt(x, y).Count == 0)
+                    if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(x, y)) && PlacingFunction(x, y, gen, levelGen, level) < Threashold && level.GetEntitiesAt(x, y).Count == 0)
                         level.AddEntityAt(_blueprint.Construct(), x, y, gen.Random.Next(-RandomOffset, RandomOffset), gen.Random.Next(-RandomOffset, RandomOffset));
                 }
 
