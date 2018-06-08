@@ -118,6 +118,7 @@
     <Compile Include="Utils\RectangleF.cs" />
     <Compile Include="Utils\FastRandom.cs" />
     <Compile Include="UI\Style.cs" />
+    <Compile Include="Utils\RandomUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />

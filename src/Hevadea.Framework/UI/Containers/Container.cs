@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Framework.UI.Containers
 {
@@ -17,10 +18,10 @@ namespace Hevadea.Framework.UI.Containers
         public Container()
         {
         }
-
+        
         public Container(params Widget[] widgets)
         {
-            Childrens.AddRange(widgets);
+			Childrens.AddRange(widgets.Where(x => x != null));
         }
 
         public override void RefreshLayout()

@@ -1,11 +1,9 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
-using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Utils;
 using Hevadea.Registry;
-using Hevadea.Scenes.MainMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -15,11 +13,11 @@ namespace Hevadea.Scenes
 {
     public class SceneGameSplash : Scene
     {
-        private bool _loadingDone;
-        private bool _once = true;
-        private float _time = 0.1f;
+        bool _loadingDone;
+        bool _once = true;
+        float _time = 0.1f;
 
-        private SpriteBatch _sb;
+        SpriteBatch _sb;
 
         public static bool Initialized = false;
 
@@ -54,8 +52,6 @@ namespace Hevadea.Scenes
             _time += gameTime.GetDeltaTime();
 
             if (!_once || !_loadingDone || _time < 2) return;
-            Rise.Graphic.SetSize(1920, 1080);
-            Rise.Graphic.SetFullscreen();
             Game.GoToMainMenu();
             _once = false;
         }

@@ -17,7 +17,8 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-            Rise.Scene.SetBackground(new Random().NextValue(Ressources.ParalaxeForest, Ressources.ParalaxeMontain));
+			var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
+            Rise.Scene.SetBackground(background);
 
             var title = new Label
             {
@@ -69,7 +70,7 @@ namespace Hevadea.Scenes.MainMenu
                     new Tab
                     {
                         Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
-                        Content = new Container(title, subTitle, copyright, continueButton)
+						Content = new Container(title, subTitle, copyright, Game.GetLastGame() != null ? continueButton : null)
                     },
 
                     new TabNewWorld(),
