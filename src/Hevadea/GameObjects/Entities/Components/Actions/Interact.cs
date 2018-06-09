@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using System.Linq;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
 using Hevadea.GameObjects.Items.Tags;
@@ -72,28 +73,19 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public void Do(Item item)
         {
-            if (item?.HasTag<InteractItemTag>() ?? false)
-            {
-                item.Tag<InteractItemTag>().InteracteOn(Owner, SelectedTile);
-            }
-            else
-            {
-                var entities = Owner.GetFacingEntities(26);
+			if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true)
+			{
+                var entities = Owner.GetFacingEntities(26).Where((e) => e.HasComponent<Interactable>());
 
-                if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true && entities.Count > 0)
+                if (entities.Any())
                 {
-                    foreach (var e in entities)
-                    {
-                        var interactable = e.GetComponent<Interactable>();
-
-                        if (interactable != null)
-                        {
-                            interactable.Interacte(Owner, Owner.Facing, item);
-                            break;
-                        }
-                    }
+					entities.First().GetComponent<Interactable>().Interacte(Owner, Owner.Facing, item);
                 }
-            }
+                else 
+                {
+                    item?.Tag<InteractItemTag>()?.InteracteOn(Owner, SelectedTile);
+                }
+			}
         }
     }
 }

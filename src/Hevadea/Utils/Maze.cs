@@ -38,7 +38,7 @@ namespace Hevadea.Utils
         public List<Door> Doors = new List<Door>();
         public int Width { get; }
         public int Height { get; }
-        private readonly Random _rnd;
+        readonly Random _rnd;
 
         public Maze(int width, int height, Random rnd)
         {
@@ -111,7 +111,7 @@ namespace Hevadea.Utils
             }
         }
 
-        private void Generate()
+        void Generate()
         {
             while (!IsGenerated())
             {

@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Utils;
+﻿using System.Linq;
+using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
@@ -27,17 +28,26 @@ namespace Hevadea.GameObjects.Items
             SpeedX = SpeedX / 2;
             SpeedY = SpeedY / 2;
 
-            var entities = Level.GetEntitiesOnArea(new Rectangle((int)X - 8, (int)Y - 8, 16, 16));
+            var entities = Level.GetEntitiesOnArea(new Rectangle((int)X - 8, (int)Y - 8, 16, 16))
+			                    .Where((e)=>e.GetComponent<Inventory>()?.AlowPickUp ?? false);
+
             foreach (var e in entities)
             {
-                var inv = e.GetComponent<Inventory>();
-                if (inv != null && inv.AlowPickUp)
-                {
-                    move.MoveTo(e.X, e.Y);
-                    if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && inv.Pickup(Item)) Remove();
-                }
+                move.MoveTo(e.X, e.Y);
+				if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && Pickup(e)) return;
+                
             }
         }
+
+		public bool Pickup(Entity entity)
+		{
+			if (entity?.GetComponent<Inventory>()?.Pickup(Item) ?? false)
+			{
+				Remove();
+				return true;
+            }
+			return false;
+		}
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {

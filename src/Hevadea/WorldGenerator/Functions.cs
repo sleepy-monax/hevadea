@@ -7,7 +7,6 @@ namespace Hevadea.WorldGenerator
 
     public static class Functions
     {
-        
         public static GeneratorFunctions Island()
         {
             return new GeneratorFunctions((x, y, gen, levelgen, level) => {

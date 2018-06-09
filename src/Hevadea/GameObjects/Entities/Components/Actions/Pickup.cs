@@ -34,6 +34,24 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public bool PickupEntity(Entity entity)
         {
+			if (entity != null)
+			{
+				if (Owner.HasComponent<Inventory>() && entity.Blueprint == EntityFactory.ITEM)
+				{
+					
+				}
+
+				if (entity.HasComponent<Pickupable>())
+				{
+					_pickupedEntity = entity;
+                    entity.Remove();
+					return true;
+				}
+			}
+
+			return false;
+
+
             if (entity == null) return false;
             if (Owner.HasComponent<Inventory>() && entity is ItemEntity i)
             {
