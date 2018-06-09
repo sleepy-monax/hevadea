@@ -114,7 +114,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             return true;
         }
 
-        public bool AttackTile(Item weapon, TilePosition tilePosition)
+        public bool AttackTile(Item weapon, Coordinates tilePosition)
         {
             var tile = Owner.Level.GetTile(tilePosition);
 

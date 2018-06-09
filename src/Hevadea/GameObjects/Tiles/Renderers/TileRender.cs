@@ -7,6 +7,6 @@ namespace Hevadea.GameObjects.Tiles.Renderers
     {
         public Tile Tile { get; set; }
 
-        public abstract void Draw(SpriteBatch spriteBatch, TilePosition position, Level level);
+        public abstract void Draw(SpriteBatch spriteBatch, Coordinates position, Level level);
     }
 }

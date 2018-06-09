@@ -18,7 +18,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             IsMoving = false;
         }
 
-        public void MoveTo(TilePosition tilePosition, float speed = 1f, bool setFacing = false)
+        public void MoveTo(Coordinates tilePosition, float speed = 1f, bool setFacing = false)
         {
             var destination = tilePosition.GetCenter();
             MoveTo(destination.X, destination.Y, speed, setFacing);
@@ -107,7 +107,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                 {
                     for (var y = -1; y <= 1; y++)
                     {
-                        var tile = new TilePosition(entityTilePosition.X + x, entityTilePosition.Y + y);
+                        var tile = new Coordinates(entityTilePosition.X + x, entityTilePosition.Y + y);
                         var isPassableTile = level.GetTile(tile).Tag<SolideTile>()?.CanPassThrought(Owner) ?? true;
 
                         if (!isPassableTile)

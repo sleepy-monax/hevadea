@@ -29,7 +29,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             _cursorTile = new Sprite(Ressources.TileIcons, new Point(5, 1));
         }
 
-        public TilePosition SelectedTile { get; private set; } = new TilePosition(0, 0);
+        public Coordinates SelectedTile { get; private set; } = new Coordinates(0, 0);
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {

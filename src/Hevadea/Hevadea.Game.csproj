@@ -206,7 +206,7 @@
     <Compile Include="GameObjects\Tiles\Renderers\TileRenderComposite.cs" />
     <Compile Include="GameObjects\Tiles\Renderers\TileRenderConnected.cs" />
     <Compile Include="GameObjects\Tiles\Tile.cs" />
-    <Compile Include="GameObjects\Tiles\TilePosition.cs" />
+    <Compile Include="Coordinates.cs" />
     <Compile Include="GameObjects\Tiles\TileComponent.cs" />
     <Compile Include="Utils\BspTree.cs" />
     <Compile Include="Utils\Direction.cs" />

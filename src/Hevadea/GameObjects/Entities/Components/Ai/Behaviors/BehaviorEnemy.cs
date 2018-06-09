@@ -16,7 +16,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
         public float MoveSpeedAgro { get; set; } = 0.5f;
 
         public Entity Target { get; private set; } = null;
-        private TilePosition _lastTagetPosition = null;
+        private Coordinates _lastTagetPosition = null;
 
         private List<Entity> _targetsOnSight;
 
@@ -25,7 +25,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
             base.Update(null);
         }
 
-        private bool CheckLineOfSight(TilePosition to)
+        private bool CheckLineOfSight(Coordinates to)
         {
             bool result = true;
             LoopUtils.Line(Agent.Owner.GetTilePosition().ToPoint(), to.ToPoint(), (p) =>

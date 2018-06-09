@@ -14,7 +14,7 @@ namespace Hevadea.GameObjects.Items.Tags
         public List<Tile> CanBePlaceOn { get; set; } = new List<Tile>();
         public bool ConsumeItem { get; set; } = true;
 
-        public override void InteracteOn(Entity user, TilePosition pos)
+        public override void InteracteOn(Entity user, Coordinates pos)
         {
             var inventory = user.GetComponent<Inventory>();
             var level = user.Level;
@@ -35,6 +35,6 @@ namespace Hevadea.GameObjects.Items.Tags
             }
         }
 
-        public abstract void Place(Level level, TilePosition tile, Direction facing);
+        public abstract void Place(Level level, Coordinates tile, Direction facing);
     }
 }

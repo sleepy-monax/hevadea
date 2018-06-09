@@ -105,7 +105,7 @@ namespace Hevadea.GameObjects.Items
             Items.Clear();
         }
 
-        public void DropOnGround(Level level, Item item, TilePosition pos, int count)
+        public void DropOnGround(Level level, Item item, Coordinates pos, int count)
         {
             for (var i = 0; i < count; i++)
             {

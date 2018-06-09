@@ -6,7 +6,7 @@ namespace Hevadea.GameObjects.Tiles.Components
     {
         public float MoveSpeed { get; set; } = 1f;
 
-        public virtual void SteppedOn(Entity entity, TilePosition position)
+        public virtual void SteppedOn(Entity entity, Coordinates position)
         {
         }
     }

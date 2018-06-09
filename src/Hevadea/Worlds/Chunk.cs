@@ -47,7 +47,7 @@ namespace Hevadea.Worlds
 
         public void AddEntity(Entity e)
         {
-            TilePosition tPos = e.GetTilePosition();
+            Coordinates tPos = e.GetTilePosition();
 
             Entities.Add(e);
             EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Add(e);
@@ -57,7 +57,7 @@ namespace Hevadea.Worlds
 
         public void RemoveEntity(Entity e)
         {
-            TilePosition tPos = e.GetTilePosition();
+            Coordinates tPos = e.GetTilePosition();
 
             Entities.Remove(e);
             EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Remove(e);

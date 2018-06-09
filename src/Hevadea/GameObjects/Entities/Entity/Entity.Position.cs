@@ -13,17 +13,17 @@ namespace Hevadea.GameObjects.Entities
             return Level.GetTile(GetTilePosition());
         }
 
-        public TilePosition GetTilePosition()
+        public Coordinates GetTilePosition()
         {
-            return new TilePosition((int)(X / Game.Unit), (int)(Y / Game.Unit));
+            return new Coordinates((int)(X / Game.Unit), (int)(Y / Game.Unit));
         }
 
-        public TilePosition GetFacingTile()
+        public Coordinates GetFacingTile()
         {
             var dir = Facing.ToPoint();
             var pos = GetTilePosition();
 
-            return new TilePosition(dir.X + pos.X, dir.Y + pos.Y);
+            return new Coordinates(dir.X + pos.X, dir.Y + pos.Y);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace Hevadea.GameObjects.Items.Tags
 {
     public abstract class InteractItemTag : ItemTag
     {
-        public abstract void InteracteOn(Entity user, TilePosition pos);
+        public abstract void InteracteOn(Entity user, Coordinates pos);
     }
 }

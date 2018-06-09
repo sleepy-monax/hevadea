@@ -36,11 +36,10 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         {
             if (entity != null)
             {
-                if (Owner.HasComponent<Inventory>() && entity.Blueprint == EntityFactory.ITEM)
+                if (entity is ItemEntity item && item.Pickup(Owner))
                 {
                 }
-
-                if (entity.HasComponent<Pickupable>())
+                else if (entity.HasComponent<Pickupable>())
                 {
                     _pickupedEntity = entity;
                     entity.Remove();
@@ -49,25 +48,13 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             }
 
             return false;
-
-            if (entity == null) return false;
-            if (Owner.HasComponent<Inventory>() && entity is ItemEntity i)
-            {
-                if (Owner.GetComponent<Inventory>().Pickup(i.Item))
-                    i.Remove();
-            }
-
-            if (!entity.HasComponent<Pickupable>()) return false;
-            _pickupedEntity = entity;
-            entity.Remove();
-            return true;
         }
 
         public bool LayDownEntity()
         {
             var facingTile = Owner.GetFacingTile();
 
-            if (Owner.Level.GetEntitiesAt(facingTile).Count != 0) return false;
+            if (Owner.Level.GetEntitiesAt(facingTile).Count != 0 || !facingTile.InLevelBound(Owner.Level)) return false;
 
             _pickupedEntity.Facing = Owner.Facing;
             Owner.Level.AddEntityAt(_pickupedEntity, facingTile.X, facingTile.Y);
@@ -100,7 +87,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
             if (entityType != "null")
             {
-                var entityData = (Dictionary<string, object>)store.ValueOf("pickup_entity_data", new Dictionary<string, object>());
+                var entityData = store.ValueOf("pickup_entity_data", new Dictionary<string, object>());
                 var entity = EntityFactory.Construct(entityType);
                 entity.Load(new EntityStorage(entityType, entityData));
 

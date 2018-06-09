@@ -33,7 +33,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
                 }
 
                 var entityTilePosition = Agent.Owner.GetTilePosition();
-                var destination = new TilePosition(entityTilePosition.X + dx, entityTilePosition.Y + dy);
+                var destination = new Coordinates(entityTilePosition.X + dx, entityTilePosition.Y + dy);
 
                 if ((dx != 0 || dy != 0) && (NaturalEnvironment.Contains(Agent.Owner.Level.GetTile(destination)) || NaturalEnvironment.Count == 0))
                 {

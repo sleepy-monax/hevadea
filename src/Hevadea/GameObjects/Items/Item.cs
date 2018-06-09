@@ -78,7 +78,7 @@ namespace Hevadea.GameObjects.Items
             }
         }
 
-        public void Drop(Level level, TilePosition tilePosition, int quantity)
+        public void Drop(Level level, Coordinates tilePosition, int quantity)
         {
             Drop(level, tilePosition.X * Game.Unit + Game.Unit / 2, tilePosition.Y * Game.Unit + Game.Unit / 2, quantity);
         }

@@ -55,7 +55,7 @@ namespace Hevadea.GameObjects.Entities.Components
             {
                 for (int y = -(int)_radius; y <= (int)_radius; y++)
                 {
-                    var tilePos = new TilePosition(pos.X + x, pos.Y + y);
+                    var tilePos = new Coordinates(pos.X + x, pos.Y + y);
                     var tile = Owner.Level.GetTile(tilePos);
                     var distance = Mathf.Distance(tilePos.WorldX, tilePos.WorldY, Owner.X, Owner.Y);
 

@@ -26,7 +26,7 @@ namespace Hevadea.GameObjects.Tiles.Components
             }
         }
 
-        public void Draw(Tile tile, SpriteBatch spriteBatch, TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
+        public void Draw(Tile tile, SpriteBatch spriteBatch, Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
             var damages = level.GetTileData(position, "damages", 0f);
 
@@ -37,7 +37,7 @@ namespace Hevadea.GameObjects.Tiles.Components
             }
         }
 
-        public void Hurt(float damages, TilePosition position, Level level)
+        public void Hurt(float damages, Coordinates position, Level level)
         {
             var dmg = level.GetTileData(position, "damages", 0f) + damages;
             if (dmg > MaxDamages)

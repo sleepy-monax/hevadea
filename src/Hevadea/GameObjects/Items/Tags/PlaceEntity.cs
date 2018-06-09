@@ -14,7 +14,7 @@ namespace Hevadea.GameObjects.Items.Tags
             _blueprint = blueprint;
         }
 
-        public override void Place(Level level, TilePosition tile, Direction facing)
+        public override void Place(Level level, Coordinates tile, Direction facing)
         {
             var entity = _blueprint.Construct();
             entity.Facing = facing;

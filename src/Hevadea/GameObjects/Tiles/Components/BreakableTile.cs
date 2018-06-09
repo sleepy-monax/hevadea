@@ -6,7 +6,7 @@ namespace Hevadea.GameObjects.Tiles.Components
     {
         public Tile ReplacementTile { get; set; } = TILES.VOID;
 
-        public void Break(TilePosition position, Level level)
+        public void Break(Coordinates position, Level level)
         {
             level.SetTile(position, ReplacementTile);
             level.ClearTileDataAt(position);

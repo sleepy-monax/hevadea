@@ -21,7 +21,7 @@ namespace Hevadea.GameObjects.Tiles.Components
             }
         }
 
-        public void Drop(TilePosition position, Level level)
+        public void Drop(Coordinates position, Level level)
         {
             foreach (var d in Items)
                 if (Rise.Rnd.NextDouble() < d.Chance) d.Item.Drop(level, position, Rise.Rnd.Next(d.Min, d.Max + 1));

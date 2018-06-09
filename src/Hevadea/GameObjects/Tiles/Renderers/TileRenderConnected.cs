@@ -9,7 +9,7 @@ namespace Hevadea.GameObjects.Tiles.Renderers
         public bool OnlyRenderOnConnection = false;
         public bool DoNotConnectToMe { get; set; } = false;
 
-        public TileConnection GetTileConnection(Level level, TilePosition pos)
+        public TileConnection GetTileConnection(Level level, Coordinates pos)
         {
             TileConnection cache = level.GetTileConnection(pos);
             if ((cache != null && cache.Tile == Tile))

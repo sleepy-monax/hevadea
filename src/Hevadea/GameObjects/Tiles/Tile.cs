@@ -31,7 +31,7 @@ namespace Hevadea.GameObjects.Tiles
             Render = renderer;
         }
 
-        public void Update(TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
+        public void Update(Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
             foreach (var t in _tags)
             {
@@ -39,7 +39,7 @@ namespace Hevadea.GameObjects.Tiles
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
             spriteBatch.FillRectangle(position.ToRectangle(), new Color(148, 120, 92));
             _render?.Draw(spriteBatch, position, level);

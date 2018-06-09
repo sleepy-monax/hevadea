@@ -8,10 +8,10 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
 {
     public class ActionMoveToLocation : IAction
     {
-        private readonly TilePosition _destination;
+        private readonly Coordinates _destination;
         private readonly float _speed;
 
-        public ActionMoveToLocation(TilePosition destination, float speed = 1f)
+        public ActionMoveToLocation(Coordinates destination, float speed = 1f)
         {
             _destination = destination;
             _speed = speed;

@@ -79,7 +79,7 @@ namespace Hevadea.Worlds
 
         public RenderState Prepare(bool drawHint)
         {
-            TilePosition focusedTile = _gameState.Camera.FocusedTile;
+            Coordinates focusedTile = _gameState.Camera.FocusedTile;
 
             Point dist = new Point((_gameState.Camera.GetWidth() / 2 / Game.Unit) + 1,
                                     _gameState.Camera.GetHeight() / 2 / Game.Unit);
@@ -120,7 +120,7 @@ namespace Hevadea.Worlds
             // Do the random update of tiles.
             for (int i = 0; i < Width * Height / 50; i++)
             {
-                TilePosition tile = new TilePosition(Rise.Rnd.Next(Width), Rise.Rnd.Next(Height));
+                Coordinates tile = new Coordinates(Rise.Rnd.Next(Width), Rise.Rnd.Next(Height));
                 GetTile(tile).Update(tile, GetTileDataAt(tile), this, gameTime);
             }
 
@@ -137,7 +137,7 @@ namespace Hevadea.Worlds
             {
                 for (int y = renderState.RenderBegin.Y; y < renderState.RenderEnd.Y; y++)
                 {
-                    TilePosition tile = new TilePosition(x, y);
+                    Coordinates tile = new Coordinates(x, y);
                     GetTile(tile).Draw(spriteBatchPool.TileSpriteBatch, tile, GetTileDataAt(tile), this, gameTime);
                 }
             }
@@ -241,7 +241,7 @@ namespace Hevadea.Worlds
 
         /* --- Chunks ------------------------------------------------------- */
 
-        public Chunk GetChunkAt(TilePosition t) => GetChunkAt(t.X, t.Y);
+        public Chunk GetChunkAt(Coordinates t) => GetChunkAt(t.X, t.Y);
 
         public Chunk GetChunkAt(int tx, int ty)
         {
@@ -251,7 +251,7 @@ namespace Hevadea.Worlds
 
         /* --- Tiles -------------------------------------------------------- */
 
-        public Tile GetTile(TilePosition t) => GetTile(t.X, t.Y);
+        public Tile GetTile(Coordinates t) => GetTile(t.X, t.Y);
 
         public Tile GetTile(int tx, int ty)
         {
@@ -265,7 +265,7 @@ namespace Hevadea.Worlds
             return TILES.VOID;
         }
 
-        public bool SetTile(TilePosition t, Tile tile) => SetTile(t.X, t.Y, tile);
+        public bool SetTile(Coordinates t, Tile tile) => SetTile(t.X, t.Y, tile);
 
         public bool SetTile(int tx, int ty, Tile tile)
         {
@@ -320,7 +320,7 @@ namespace Hevadea.Worlds
 
         /* --- Tile data ---------------------------------------------------- */
 
-        public Dictionary<string, object> GetTileDataAt(TilePosition t) => GetTileDataAt(t.X, t.Y);
+        public Dictionary<string, object> GetTileDataAt(Coordinates t) => GetTileDataAt(t.X, t.Y);
 
         public Dictionary<string, object> GetTileDataAt(int tx, int ty)
         {
@@ -334,14 +334,14 @@ namespace Hevadea.Worlds
             return null;
         }
 
-        public T GetTileData<T>(TilePosition t, string dataName, T defaultValue) => GetTileData(t.X, t.Y, dataName, defaultValue);
+        public T GetTileData<T>(Coordinates t, string dataName, T defaultValue) => GetTileData(t.X, t.Y, dataName, defaultValue);
 
         public T GetTileData<T>(int tx, int ty, string dataName, T defaultValue)
         {
             return (T)GetTileDataAt(tx, ty).GetValueOrDefault(dataName, defaultValue);
         }
 
-        public void SetTileDataAt(TilePosition t, Dictionary<string, object> data) => SetTileDataAt(t.X, t.Y, data);
+        public void SetTileDataAt(Coordinates t, Dictionary<string, object> data) => SetTileDataAt(t.X, t.Y, data);
 
         public void SetTileDataAt(int tx, int ty, Dictionary<string, object> data)
         {
@@ -353,14 +353,14 @@ namespace Hevadea.Worlds
             }
         }
 
-        internal void SetTileData<T>(TilePosition t, string dataName, T value) => SetTileData(t.X, t.Y, dataName, value);
+        internal void SetTileData<T>(Coordinates t, string dataName, T value) => SetTileData(t.X, t.Y, dataName, value);
 
         public void SetTileData<T>(int tx, int ty, string dataName, T value)
         {
             GetTileDataAt(tx, ty)[dataName] = value;
         }
 
-        public void ClearTileDataAt(TilePosition tilePosition) => ClearTileDataAt(tilePosition.X, tilePosition.Y);
+        public void ClearTileDataAt(Coordinates tilePosition) => ClearTileDataAt(tilePosition.X, tilePosition.Y);
 
         public void ClearTileDataAt(int tx, int ty)
         {
@@ -369,7 +369,7 @@ namespace Hevadea.Worlds
 
         /* --- Tile Connections --------------------------------------------- */
 
-        public TileConnection GetTileConnection(TilePosition t) => GetTileConnection(t.X, t.Y);
+        public TileConnection GetTileConnection(Coordinates t) => GetTileConnection(t.X, t.Y);
 
         public TileConnection GetTileConnection(int tx, int ty)
         {
@@ -383,7 +383,7 @@ namespace Hevadea.Worlds
             return null;
         }
 
-        public void SetTileConnection(TilePosition t, TileConnection tileConnection) => SetTileConnection(t.X, t.Y, tileConnection);
+        public void SetTileConnection(Coordinates t, TileConnection tileConnection) => SetTileConnection(t.X, t.Y, tileConnection);
 
         public void SetTileConnection(int tx, int ty, TileConnection tileConnection)
         {
@@ -411,7 +411,7 @@ namespace Hevadea.Worlds
             }
         }
 
-        public Entity AddEntityAt(Entity e, TilePosition t)
+        public Entity AddEntityAt(Entity e, Coordinates t)
         {
             return AddEntityAt(e, t.X + 0.5f, t.Y + 0.5f);
         }
@@ -445,7 +445,7 @@ namespace Hevadea.Worlds
             chunk.RemoveEntity(e);
         }
 
-        public List<Entity> GetEntitiesAt(TilePosition t) => GetEntitiesAt(t.X, t.Y);
+        public List<Entity> GetEntitiesAt(Coordinates t) => GetEntitiesAt(t.X, t.Y);
 
         public List<Entity> GetEntitiesAt(int tx, int ty)
         {

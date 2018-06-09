@@ -11,7 +11,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
             return !tile.HasTag<LiquideTile>() && !tile.HasTag<SolideTile>();
         }
 
-        public static bool MoveTo(this Agent ag, TilePosition pos, float speed = 1f, bool usePathFinding = false, int maxDistance = 16)
+        public static bool MoveTo(this Agent ag, Coordinates pos, float speed = 1f, bool usePathFinding = false, int maxDistance = 16)
         {
             if (usePathFinding)
             {
@@ -19,7 +19,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
                 {
                     foreach (var n in path)
                     {
-                        ag.MoveTo(new TilePosition(n.X, n.Y), speed);
+                        ag.MoveTo(new Coordinates(n.X, n.Y), speed);
                     }
                 }
                 else

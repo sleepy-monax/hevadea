@@ -56,7 +56,7 @@ namespace Hevadea.Multiplayer
 
         // SYNC ================================================================
 
-        public static byte[] Tile(Level level, TilePosition pos, Tile tile)
+        public static byte[] Tile(Level level, Coordinates pos, Tile tile)
             => new BufferBuilder()
             .WriteInteger((int)PacketType.TILE)
             .WriteInteger(level.Id)
@@ -64,7 +64,7 @@ namespace Hevadea.Multiplayer
             .WriteInteger(pos.Y)
             .WriteStringUTF8(tile.Name).Buffer;
 
-        public static byte[] TileData(Level level, TilePosition pos, Dictionary<string, object> data)
+        public static byte[] TileData(Level level, Coordinates pos, Dictionary<string, object> data)
             => new BufferBuilder()
             .WriteInteger((int)PacketType.TILE_DATA)
             .WriteInteger(level.Id)

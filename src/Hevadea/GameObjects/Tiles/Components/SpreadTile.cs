@@ -11,7 +11,7 @@ namespace Hevadea.GameObjects.Tiles.Components
         public List<Tile> SpreadTo { get; set; } = new List<Tile>();
         public int SpreadChance { get; set; } = 10;
 
-        public void Update(Tile tile, TilePosition position, Dictionary<string, object> data, Level level, GameTime gameTime)
+        public void Update(Tile tile, Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
             if (Rise.Rnd.Next(SpreadChance) == 0)
             {

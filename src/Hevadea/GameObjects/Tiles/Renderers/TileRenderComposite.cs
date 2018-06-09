@@ -14,7 +14,7 @@ namespace Hevadea.GameObjects.Tiles.Renderers
             Sprite = sprite;
         }
 
-        public override void Draw(SpriteBatch spriteBatch, TilePosition position, Level level)
+        public override void Draw(SpriteBatch spriteBatch, Coordinates position, Level level)
         {
             var connection = GetTileConnection(level, position);
             var onScreenPosition = position.ToOnScreenPosition();
