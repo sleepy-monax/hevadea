@@ -6,29 +6,34 @@ using System.Threading.Tasks;
 namespace Hevadea.Framework.Threading
 {
     public class JobArguments
-	{
-	}
-   
-	public class Job
     {
-        float _progress = 0f;
-        string _status = "";
+    }
+
+    public class Job
+    {
+        private float _progress = 0f;
+        private string _status = "";
+
         public delegate object JobHandler(Job task, JobArguments args);
 
-        JobHandler _job;
-		JobArguments _args;
+        private JobHandler _job;
+        private JobArguments _args;
 
         public bool Started { get; private set; }
         public bool Canceled { get; private set; }
         public bool Finished { get; private set; }
 
         public event EventHandler Finish;
+
         public event EventHandler ProgressChanged;
+
         public event EventHandler StatusChanged;
+
         public event EventHandler<Exception> Exception;
 
         public object Result { get; private set; }
         public string Name { get; }
+
         public string Status
         {
             get => _status;
@@ -61,18 +66,18 @@ namespace Hevadea.Framework.Threading
             _job = job;
         }
 
-		public static Job NewEmpty(string name)
+        public static Job NewEmpty(string name)
         {
-			return new Job(name, null);
+            return new Job(name, null);
         }
 
-		public Job SetArguments(JobArguments args)
-		{
-			_args = args;
-			return this;
-		}
+        public Job SetArguments(JobArguments args)
+        {
+            _args = args;
+            return this;
+        }
 
-		public Job Start(bool paralel = true)
+        public Job Start(bool paralel = true)
         {
             try
             {
@@ -83,19 +88,19 @@ namespace Hevadea.Framework.Threading
                     {
                         Task.Run(() =>
                         {
-							if (_job != null)
+                            if (_job != null)
                                 Result = _job.Invoke(this, _args);
-							
+
                             Finish?.Invoke(this, EventArgs.Empty);
                             Finished = true;
                         });
                     }
                     else
                     {
-						if (_job != null)
+                        if (_job != null)
                             Result = _job.Invoke(this, _args);
 
-						Finished = true;
+                        Finished = true;
                     }
                 }
             }
@@ -124,7 +129,7 @@ namespace Hevadea.Framework.Threading
 
         public void Wait()
         {
-			while (!(Canceled || Finished))
+            while (!(Canceled || Finished))
                 Thread.Sleep(10);
         }
 
@@ -139,7 +144,7 @@ namespace Hevadea.Framework.Threading
         {
             Progress = progress;
         }
-        
+
         public void Log(LoggerLevel level, string msg)
         {
             Logger.Log("Job:" + Name, level, msg);

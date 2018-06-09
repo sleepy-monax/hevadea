@@ -87,7 +87,7 @@ namespace Hevadea.Utils
             return bsp;
         }
 
-        static void BuildLeaf(BspTreeNode parent, int depth, Random rnd)
+        private static void BuildLeaf(BspTreeNode parent, int depth, Random rnd)
         {
             if (depth == 0) return;
             int gotoCount = 100;

@@ -69,14 +69,14 @@ namespace Hevadea.Registry
                     {
                         Content =
                         {
-                            new PopulateFeature(EntityFactory.FISH)
+                            new Decorator(EntityFactory.FISH)
                             {
                                 Chance = 25,
                                 CanBePlantOn = {TILES.WATER},
                                 PlacingFunction = Functions.Perlin(1, 0.5, 10),
                                 Threashold = 0.5f,
                             },
-                            new PopulateFeature(EntityFactory.CHIKEN)
+                            new Decorator(EntityFactory.CHIKEN)
                             {
                                 Chance = 100,
                                 CanBePlantOn = {TILES.GRASS},
@@ -89,21 +89,21 @@ namespace Hevadea.Registry
                     {
                         Content =
                         {
-                            new PopulateFeature(EntityFactory.TREE)
+                            new Decorator(EntityFactory.TREE)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = Functions.Perlin(2, 0.5, 15),
                                 Threashold = 0.7f,
                             },
-                            new PopulateFeature(EntityFactory.FLOWER)
+                            new Decorator(EntityFactory.FLOWER)
                             {
                                 Chance = 10,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = Functions.Perlin(1,1,5),
                                 Threashold = 0.5f
                             },
-                            new PopulateFeature(EntityFactory.GRASS)
+                            new Decorator(EntityFactory.GRASS)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
@@ -170,7 +170,7 @@ namespace Hevadea.Registry
                         CanBePlacedOn = { TILES.DIRT, TILES.ROCK },
                         Wall = TILES.ROCK
                     },
-                    new PopulateFeature(EntityFactory.ZOMBIE)
+                    new Decorator(EntityFactory.ZOMBIE)
                     {
                         Chance = 400,
                         CanBePlantOn = {TILES.DIRT},

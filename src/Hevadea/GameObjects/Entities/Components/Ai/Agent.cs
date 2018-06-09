@@ -9,7 +9,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
 
     public class Agent : EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
     {
-        Behavior _behavior;
+        private Behavior _behavior;
 
         public Queue<IAction> ActionQueue { get; } = new Queue<IAction>();
         public IAction CurrentAction { get; private set; }
@@ -42,7 +42,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
         public void Update(GameTime gameTime)
         {
             _behavior?.Update(gameTime);
-            
+
             if (!CurrentAction?.IsStillRunning(this) ?? true)
             {
                 CurrentAction = null;

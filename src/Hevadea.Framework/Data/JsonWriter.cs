@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Framework.Data
 {
@@ -26,7 +24,7 @@ namespace Hevadea.Framework.Data
             return stringBuilder.ToString();
         }
 
-        static void AppendValue(StringBuilder stringBuilder, object item)
+        private static void AppendValue(StringBuilder stringBuilder, object item)
         {
             if (item == null)
             {

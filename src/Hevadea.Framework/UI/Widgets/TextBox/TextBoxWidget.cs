@@ -1,7 +1,6 @@
 ﻿using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.Text;
 using Hevadea.Framework.Input;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

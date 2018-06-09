@@ -26,6 +26,7 @@ namespace Hevadea.Framework.Data
     - No JIT Emit support to parse structures quickly
     - Limited to parsing <2GB JSON files (due to int.MaxValue)
     - Parsing of abstract classes or interfaces is NOT supported and will throw an exception.*/
+
     public static class JsonReader
     {
         private static Stack<List<string>> splitArrayPool = new Stack<List<string>>();

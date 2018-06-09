@@ -6,11 +6,9 @@ namespace Hevadea.Framework.Extension
     {
         public static float NextFloat(this Random rnd, float max)
             => (float)rnd.NextDouble() * max;
-        
 
         public static float NextFloat(this Random rnd)
             => (float)rnd.NextDouble();
-        
 
         public static float NextFloatRange(this Random rnd, float max)
             => (rnd.NextFloat() - 0.5f) * 2f * max;

@@ -1,5 +1,4 @@
-﻿using Hevadea.Framework.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,7 +14,7 @@ namespace Hevadea.Framework.Networking
 
         public bool Connected => Socket.Connected();
 
-        public ConnectedClient( Socket socket, Server server)
+        public ConnectedClient(Socket socket, Server server)
         {
             Socket = socket;
             Server = server;
@@ -39,6 +38,7 @@ namespace Hevadea.Framework.Networking
         public List<ConnectedClient> Clients { get; private set; }
 
         public delegate void HandleConnectionChange(ConnectedClient client);
+
         public HandleConnectionChange ClientConnected;
         public HandleConnectionChange ClientLost;
 
@@ -52,12 +52,10 @@ namespace Hevadea.Framework.Networking
         {
             var listenerThread = new Thread(() =>
             {
-
-
                 Socket.Listen(backLog);
 
                 Logger.Log<Server>("Listening on address: " + Socket.LocalEndPoint);
-                
+
                 while (true)
                 {
                     Socket incomingSocket = Socket.Accept();
@@ -65,7 +63,6 @@ namespace Hevadea.Framework.Networking
                     var connection = new ConnectedClient(incomingSocket, this);
 
                     Clients.Add(connection);
-
 
                     Logger.Log<Server>("Received a connection from: " + incomingSocket.RemoteEndPoint);
 

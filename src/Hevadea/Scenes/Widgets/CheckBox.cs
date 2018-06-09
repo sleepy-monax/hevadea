@@ -36,9 +36,6 @@ namespace Hevadea.Framework.UI.Widgets
             }
 
             spriteBatch.DrawString(Ressources.FontRomulus, Text, new Rectangle(Bound.X + Bound.Height, Bound.Y, Bound.Width - Bound.Height, Bound.Height), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, Color.White, Scale(1f));
-
         }
-
-        
     }
 }

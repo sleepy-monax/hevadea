@@ -3,7 +3,6 @@ using Hevadea.Framework.Extension;
 using Hevadea.GameObjects.Entities.Components.Ai.Actions;
 using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
@@ -50,6 +49,5 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
         public void IaFinish(Agent agent)
         {
         }
-
     }
 }

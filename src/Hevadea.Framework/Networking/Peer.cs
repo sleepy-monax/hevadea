@@ -55,7 +55,6 @@ namespace Hevadea.Framework.Networking
         }
     }
 
-
     public abstract class Peer
     {
         public bool NoDelay { get; }
@@ -63,6 +62,7 @@ namespace Hevadea.Framework.Networking
         protected Socket Socket;
 
         public delegate void DataReceivedHandler(Socket socket, byte[] data);
+
         public DataReceivedHandler DataReceived;
 
         protected Peer(bool noDelay = false)
@@ -83,7 +83,7 @@ namespace Hevadea.Framework.Networking
                 {
                     int dataLenght = BitConverter.ToInt32(socket.Receive(4), 0);
                     byte[] data = socket.Receive(dataLenght);
-                        
+
                     DataReceived?.Invoke(socket, data);
                 }
                 catch (ObjectDisposedException) { break; }
@@ -109,17 +109,15 @@ namespace Hevadea.Framework.Networking
             catch (ObjectDisposedException) { }
         }
 
-
-
         public byte[] Wait()
         {
             bool recived = false;
             byte[] recivedData = null;
 
-            DataReceivedHandler eventHandler = (socket, data) => 
+            DataReceivedHandler eventHandler = (socket, data) =>
             {
                 if (!recived)
-                {            
+                {
                     recived = true;
                     recivedData = data;
                 }
@@ -133,7 +131,7 @@ namespace Hevadea.Framework.Networking
             }
 
             DataReceived -= eventHandler;
-            
+
             return recivedData;
         }
     }

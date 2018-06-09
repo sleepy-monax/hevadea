@@ -47,7 +47,7 @@ namespace Hevadea.Framework.Graphic
                 float w = l.Texture.Width * scale;
                 float h = l.Texture.Height * scale;
 
-                Vector2 pos = new Vector2(Rise.Graphic.GetWidth()  / 2f - w / 2 + (float)((Position * l.Factor) % l.Texture.Width) * scale,
+                Vector2 pos = new Vector2(Rise.Graphic.GetWidth() / 2f - w / 2 + (float)((Position * l.Factor) % l.Texture.Width) * scale,
                                           Rise.Graphic.GetHeight() / 2f - h / 2);
 
                 var dest = new Rectangle(

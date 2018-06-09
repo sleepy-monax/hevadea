@@ -1,6 +1,4 @@
 ﻿using Hevadea.Framework.Data;
-using Hevadea.Framework.Networking;
-using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;

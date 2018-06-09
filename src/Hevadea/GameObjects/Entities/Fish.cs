@@ -24,7 +24,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.RAW_FISH, 1f, 1, 1) } });
             AddComponent(new Pushable());
-            AddComponent(new Agent(new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeedWandering = 0.5f } ));
+            AddComponent(new Agent(new BehaviorAnimal() { NaturalEnvironment = { TILES.WATER }, MoveSpeedWandering = 0.5f }));
             AddComponent(new Swim { IsSwimingPainfull = false });
         }
 

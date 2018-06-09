@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Items;
 using Hevadea.GameObjects.Items.Tags;
 using Hevadea.GameObjects.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Linq;
 
 namespace Hevadea.GameObjects.Entities.Components.Actions
 {
@@ -73,19 +73,19 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public void Do(Item item)
         {
-			if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true)
-			{
+            if (!Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? true)
+            {
                 var entities = Owner.GetFacingEntities(26).Where((e) => e.HasComponent<Interactable>());
 
                 if (entities.Any())
                 {
-					entities.First().GetComponent<Interactable>().Interacte(Owner, Owner.Facing, item);
+                    entities.First().GetComponent<Interactable>().Interacte(Owner, Owner.Facing, item);
                 }
-                else 
+                else
                 {
                     item?.Tag<InteractItemTag>()?.InteracteOn(Owner, SelectedTile);
                 }
-			}
+            }
         }
     }
 }

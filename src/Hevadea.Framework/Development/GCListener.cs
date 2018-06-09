@@ -1,10 +1,7 @@
-﻿using Hevadea.Framework.Utils;
-
-namespace Hevadea.Framework
+﻿namespace Hevadea.Framework
 {
     public class GCListener
     {
-
         public static void Start() => new GCListener();
 
         ~GCListener()

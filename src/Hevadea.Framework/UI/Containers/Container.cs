@@ -18,10 +18,10 @@ namespace Hevadea.Framework.UI.Containers
         public Container()
         {
         }
-        
+
         public Container(params Widget[] widgets)
         {
-			Childrens.AddRange(widgets.Where(x => x != null));
+            Childrens.AddRange(widgets.Where(x => x != null));
         }
 
         public override void RefreshLayout()

@@ -6,14 +6,14 @@ namespace Hevadea.Worlds
 {
     public class LevelSpriteBatchPool
     {
-        public SpriteBatch TileSpriteBatch     { get; }
+        public SpriteBatch TileSpriteBatch { get; }
         public SpriteBatch EntitiesSpriteBatch { get; }
 
-        public SpriteBatch OverlaySpriteBatch  { get; }
-        public SpriteBatch LightsSpriteBatch   { get; }
-        public SpriteBatch ShadowsSpriteBatch  { get; }
+        public SpriteBatch OverlaySpriteBatch { get; }
+        public SpriteBatch LightsSpriteBatch { get; }
+        public SpriteBatch ShadowsSpriteBatch { get; }
 
-        public SpriteBatch GenericSpriteBatch  { get; }
+        public SpriteBatch GenericSpriteBatch { get; }
 
         public LevelSpriteBatchPool()
         {

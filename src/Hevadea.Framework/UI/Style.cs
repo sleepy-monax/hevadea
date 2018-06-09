@@ -16,7 +16,9 @@ namespace Hevadea.Framework.UI
         public int Left { get; set; } = 0;
         public int Right { get; set; } = 0;
 
-        public Margins() { }
+        public Margins()
+        {
+        }
 
         public Margins(int all)
         {
@@ -46,7 +48,6 @@ namespace Hevadea.Framework.UI
         {
             v = Mathf.Clamp01(v);
 
-
             return new Margins((int)Mathf.Lerp(from.Top, to.Top, v),
                                (int)Mathf.Lerp(from.Bottom, to.Bottom, v),
                                (int)Mathf.Lerp(from.Left, to.Left, v),
@@ -54,13 +55,14 @@ namespace Hevadea.Framework.UI
         }
     }
 
-
     public class Border
     {
         public Margins Margins { get; set; } = new Margins(0);
         public Color Color { get; set; } = Color.Transparent;
 
-        public Border() { }
+        public Border()
+        {
+        }
 
         public Border(Margins margins, Color color)
         {
@@ -77,9 +79,8 @@ namespace Hevadea.Framework.UI
 
     public class Style
     {
-
         public Margins Margin { get; set; }
-        public Border Border  { get; set; }
+        public Border Border { get; set; }
         public Margins Padding { get; set; }
 
         public SpriteFont Font;

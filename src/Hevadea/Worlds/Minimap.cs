@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,7 @@ namespace Hevadea.Worlds
         private Level _level;
 
         public Texture2D Texture { get; private set; }
+        public FarbfeldBitmap Bitmap { get; private set; }
 
         public List<MinimapWaypoint> Waypoints { get; set; } = new List<MinimapWaypoint>();
 
@@ -25,6 +27,7 @@ namespace Hevadea.Worlds
         {
             if (Rise.NoGraphic)
             {
+                Bitmap = new FarbfeldBitmap(level.Width, level.Height);
             }
             else
             {
@@ -37,9 +40,17 @@ namespace Hevadea.Worlds
 
         public void Reveal(int tx, int ty)
         {
-            Texture.SetPixel(tx, ty, _level.GetTile(tx, ty).MiniMapColor);
+            if (Rise.NoGraphic)
+            {
+                Bitmap.SetPixel(tx, ty, _level.GetTile(tx, ty).MiniMapColor);
+            }
+            else
+            {
+                Texture.SetPixel(tx, ty, _level.GetTile(tx, ty).MiniMapColor);
+            }
         }
 
+        // TODO: Finalize the support the nographic mod of the engine.
         public void LoadFromFile(string fileName)
         {
             var fs = new FileStream(fileName, FileMode.Open);

@@ -6,6 +6,7 @@ namespace Hevadea.Framework.Utils
     public static class LoopUtils
     {
         public static void Line(Point p0, Point p1, Action<Point> action) => Line(p0.X, p0.Y, p1.X, p1.Y, action);
+
         public static void Line(int x, int y, int x2, int y2, Action<Point> action)
         {
             int w = x2 - x;

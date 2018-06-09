@@ -218,7 +218,7 @@
     <Compile Include="WorldGenerator\LevelFeatures\Terrain.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\CompoundFeature.cs" />
     <Compile Include="WorldGenerator\LevelFeatures\HouseFeature.cs" />
-    <Compile Include="WorldGenerator\LevelFeatures\PopulateFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\Decorator.cs" />
     <Compile Include="WorldGenerator\Generator.cs" />
     <Compile Include="WorldGenerator\LevelFeature.cs" />
     <Compile Include="WorldGenerator\LevelGenerator.cs" />

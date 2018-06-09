@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Framework.Data
 {
@@ -111,6 +108,7 @@ namespace Hevadea.Framework.Data
         }
 
         public BufferReader ReadStringASCII(out string outValue) => ReadString(Encoding.ASCII, out outValue);
+
         public BufferReader ReadStringUTF8(out string outValue) => ReadString(Encoding.UTF8, out outValue);
 
         public BufferReader ReadString(Encoding encoding, out string outValue)
@@ -129,6 +127,7 @@ namespace Hevadea.Framework.Data
         }
 
         public string ReadStringASCII() => ReadString(Encoding.ASCII);
+
         public string ReadStringUTF8() => ReadString(Encoding.UTF8);
 
         public string ReadString(Encoding encoding)

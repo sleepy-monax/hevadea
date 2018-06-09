@@ -5,7 +5,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 {
     public class CompoundFeature : LevelFeature
     {
-        string _description;
+        private string _description;
         public List<LevelFeature> Content { get; set; } = new List<LevelFeature>();
 
         public CompoundFeature(string description)

@@ -1,5 +1,4 @@
-﻿using Hevadea.Framework.Utils;
-using System;
+﻿using System;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -27,7 +26,6 @@ namespace Hevadea.Framework.Networking
                 {
                     Socket = new Socket(Socket.AddressFamily, Socket.SocketType, Socket.ProtocolType);
                     Socket.NoDelay = NoDelay;
-
 
                     IAsyncResult result = Socket.BeginConnect(ip, port, null, null);
 
