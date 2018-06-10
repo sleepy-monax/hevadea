@@ -12,7 +12,7 @@ namespace Hevadea.Worlds
         public GameState GameState;
         public List<Level> Levels = new List<Level>();
         public DayNightCycle DayNightCycle { get; }
-        public string PlayerSpawnLevel = "overworld";
+        public string PlayerSpawnLevel { get; set; } = "overworld";
 
         public World()
         {

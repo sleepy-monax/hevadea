@@ -221,7 +221,8 @@ namespace Hevadea.Registry
             {
                 Size = 256,
                 Seed = 0,
-                LevelsGenerators = { FLAT_LEVEL }
+                LevelsGenerators = { FLAT_LEVEL },
+                WorldFeatures = { new SpawnAreaFeature() { SpawnLevelName = "flat_overworld" } }
             };
 
             GENERATORS.Add("default", DEFAULT);

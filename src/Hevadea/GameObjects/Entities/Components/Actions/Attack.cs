@@ -132,6 +132,8 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public void Do(Item weapon)
         {
+            //TODO: rework this function.
+
             if (IsAttacking) return;
             if (Owner.GetComponent<Pickup>()?.HasPickedUpEntity() ?? false) return;
 

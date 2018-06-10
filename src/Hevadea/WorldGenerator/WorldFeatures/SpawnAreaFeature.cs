@@ -11,6 +11,7 @@ namespace Hevadea.WorldGenerator.WorldFeatures
         public override void Apply(Generator gen, World world)
         {
             var center = new Point(gen.Size / 2, gen.Size / 2);
+            world.PlayerSpawnLevel = SpawnLevelName;
             var spawnLevel = world.GetLevel(SpawnLevelName);
             spawnLevel.ClearEntitiesAt(center.X - 5, center.Y - 5, 10, 10);
             spawnLevel.FillRectangle(center.X - 1, center.Y - 1, 3, 3, TILES.DIRT);
