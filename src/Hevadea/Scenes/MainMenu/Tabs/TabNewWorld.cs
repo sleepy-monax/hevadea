@@ -33,7 +33,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             worldTypeList.SelectFirst();
 
             var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
-            .RegisterMouseClickEvent((s) => Game.New(worldNameTextBox.Text.String, worldSeedtextBox.Text.String, GENERATOR.GENERATORS[(ListItemText)(worldTypeList.SelectedItem).Text]));
+            .RegisterMouseClickEvent((s) => Game.New(worldNameTextBox.Text.String, worldSeedtextBox.Text.String, GENERATOR.GENERATORS[((ListItemText)worldTypeList.SelectedItem).Text]));
 
             var worldOptions = new FlowLayout
             {
