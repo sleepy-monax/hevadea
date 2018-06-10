@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.GameObjects.Tiles;
+using Hevadea.Registry;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 
@@ -68,7 +69,7 @@ namespace Hevadea.GameObjects.Items
         {
             for (var i = 0; i < quantity; i++)
             {
-                var dropItem = (ItemEntity)EntityFactory.ITEM.Construct();
+                var dropItem = (ItemEntity)ENTITIES.ITEM.Construct();
                 dropItem.Item = this;
                 dropItem.SpeedX = Rise.Rnd.Next(-50, 50) / 10f;
                 dropItem.SpeedY = Rise.Rnd.Next(-50, 50) / 10f;

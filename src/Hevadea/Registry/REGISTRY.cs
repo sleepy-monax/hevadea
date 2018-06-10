@@ -10,7 +10,7 @@ namespace Hevadea.Registry
             Logger.Log("Initializing game registery.");
 
             TILES.Initialize();
-            EntityFactory.Initialize();
+            ENTITIES.Initialize();
             ITEMS.Initialize();
             RECIPIES.InitializeHandCraftedRecipe();
             LEVELS.Initialize();

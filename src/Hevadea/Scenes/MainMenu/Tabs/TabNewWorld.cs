@@ -23,25 +23,17 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new Margins(8) };
 
-            var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
-            .RegisterMouseClickEvent((s) =>
+            var worldTypeList = new ListWidget() { UnitBound = new Rectangle(0, 0, 256, 128), AlowUnselecting = false};
+
+            foreach (var item in GENERATOR.GENERATORS)
             {
-                if (!int.TryParse(worldSeedtextBox.Text.String, out var seed))
-                {
-                    seed = worldSeedtextBox.Text.String.GetHashCode();
-                }
+                worldTypeList.AddItem(new ListItemText(item.Key));
+            }
 
-                var job = Jobs.GenerateWorld;
-                job.SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + $"{worldNameTextBox.Text.String}/", seed, GENERATOR.DEFAULT));
+            worldTypeList.SelectFirst();
 
-                job.Finish += (sender, e) =>
-                {
-                    GameState gameState = (GameState)((Job)sender).Result;
-                    gameState.Initialize();
-                    Rise.Scene.Switch(new SceneGameplay(gameState));
-                };
-                Rise.Scene.Switch(new LoadingScene(job));
-            });
+            var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
+            .RegisterMouseClickEvent((s) => Game.New(worldNameTextBox.Text.String, worldSeedtextBox.Text.String, GENERATOR.GENERATORS[(ListItemText)(worldTypeList.SelectedItem).Text]));
 
             var worldOptions = new FlowLayout
             {
@@ -53,6 +45,8 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                     worldNameTextBox,
                     new Label { Text = "Seed:", Padding = new Margins(8), TextAlignement = DrawText.Alignement.Left},
                     worldSeedtextBox,
+                    new Label { Text = "World type:", Padding = new Margins(8), TextAlignement = DrawText.Alignement.Left},
+                    worldTypeList
                 }
             };
 

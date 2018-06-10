@@ -2,6 +2,7 @@
 using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components.Ai.Actions;
 using Hevadea.GameObjects.Tiles;
+using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -47,7 +48,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Behaviors
             if (Target == null)
             {
                 _targetsOnSight = Agent.Owner.Level.GetEntitiesOnArea(Agent.Owner.Position, AgroRange * Game.Unit)
-                                        .Where((e) => e.Blueprint == EntityFactory.PLAYER && CheckLineOfSight(e.GetTilePosition())).ToList();
+                                        .Where((e) => e.Blueprint == ENTITIES.PLAYER && CheckLineOfSight(e.GetTilePosition())).ToList();
 
                 _targetsOnSight.Sort((a, b) => Mathf.Distance(a.Position, Agent.Owner.Position)
                      .CompareTo(Mathf.Distance(b.Position, Agent.Owner.Position)));

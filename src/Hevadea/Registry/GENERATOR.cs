@@ -2,17 +2,46 @@
 using Hevadea.WorldGenerator;
 using Hevadea.WorldGenerator.LevelFeatures;
 using Hevadea.WorldGenerator.WorldFeatures;
+using System.Collections.Generic;
 
 namespace Hevadea.Registry
 {
     public static class GENERATOR
     {
         public static Generator DEFAULT;
+        public static Generator FLAT;
+
+        public static LevelGenerator FLAT_LEVEL;
         public static LevelGenerator OVERWORLD;
         public static LevelGenerator CAVE;
 
+        public static Dictionary<string, Generator> GENERATORS = new Dictionary<string, Generator>();
+
         public static void Initialize()
         {
+            FLAT_LEVEL = new LevelGenerator
+            {
+                Id = 0,
+                Name = "flat_overworld",
+                Properties = LEVELS.SURFACE,
+                Features =
+                {
+                    new Terrain
+                    {
+                        Layers =
+                        {
+                            new TerrainLayer
+                            {
+                                Priority = 0,
+                                Tile = TILES.GRASS,
+                                Threashold = 0f,
+                                Function = Functions.Flat(0f)
+                            }
+                        }
+                    }
+                }
+            };
+
             OVERWORLD = new LevelGenerator
             {
                 Id = 0,
@@ -44,7 +73,7 @@ namespace Hevadea.Registry
                                 Tile = TILES.SAND,
                                 Threashold = 0.8f,
                                 Function = Functions.Combine(Functions.Perlin(2, 0.5, 30), Functions.Island()),
-                                TileRequired = {TILES.WATER}
+                                TileRequired = { TILES.WATER }
                             },
                             new TerrainLayer
                             {
@@ -52,7 +81,7 @@ namespace Hevadea.Registry
                                 Tile = TILES.GRASS,
                                 Threashold = 0.95f,
                                 Function = Functions.Island(),
-                                TileRequired = {TILES.WATER}
+                                TileRequired = { TILES.WATER }
                             },
                             new TerrainLayer
                             {
@@ -69,14 +98,14 @@ namespace Hevadea.Registry
                     {
                         Content =
                         {
-                            new Decorator(EntityFactory.FISH)
+                            new Decorator(ENTITIES.FISH)
                             {
                                 Chance = 25,
                                 CanBePlantOn = {TILES.WATER},
                                 PlacingFunction = Functions.Perlin(1, 0.5, 10),
                                 Threashold = 0.5f,
                             },
-                            new Decorator(EntityFactory.CHIKEN)
+                            new Decorator(ENTITIES.CHIKEN)
                             {
                                 Chance = 100,
                                 CanBePlantOn = {TILES.GRASS},
@@ -89,21 +118,21 @@ namespace Hevadea.Registry
                     {
                         Content =
                         {
-                            new Decorator(EntityFactory.TREE)
+                            new Decorator(ENTITIES.TREE)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = Functions.Perlin(2, 0.5, 15),
                                 Threashold = 0.7f,
                             },
-                            new Decorator(EntityFactory.FLOWER)
+                            new Decorator(ENTITIES.FLOWER)
                             {
                                 Chance = 10,
                                 CanBePlantOn = {TILES.GRASS},
                                 PlacingFunction = Functions.Perlin(1,1,5),
                                 Threashold = 0.5f
                             },
-                            new Decorator(EntityFactory.GRASS)
+                            new Decorator(ENTITIES.GRASS)
                             {
                                 Chance = 3,
                                 CanBePlantOn = {TILES.GRASS},
@@ -170,7 +199,7 @@ namespace Hevadea.Registry
                         CanBePlacedOn = { TILES.DIRT, TILES.ROCK },
                         Wall = TILES.ROCK
                     },
-                    new Decorator(EntityFactory.ZOMBIE)
+                    new Decorator(ENTITIES.ZOMBIE)
                     {
                         Chance = 400,
                         CanBePlantOn = {TILES.DIRT},
@@ -187,6 +216,16 @@ namespace Hevadea.Registry
                 LevelsGenerators = { OVERWORLD, CAVE },
                 WorldFeatures = { new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature() }
             };
+
+            FLAT = new Generator
+            {
+                Size = 256,
+                Seed = 0,
+                LevelsGenerators = { FLAT_LEVEL }
+            };
+
+            GENERATORS.Add("default", DEFAULT);
+            GENERATORS.Add("flat", FLAT);
         }
     }
 }

@@ -114,7 +114,7 @@
     <Compile Include="GameObjects\Entities\Entity\Entity.Position.cs" />
     <Compile Include="GameObjects\Entities\Graphic\NullRenderer.cs" />
     <Compile Include="GameObjects\Entities\Graphic\Renderer.cs" />
-    <Compile Include="GameObjects\EntityFactory.cs" />
+    <Compile Include="Registry\ENTITIES.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionWait.cs" />
@@ -134,7 +134,7 @@
     <Compile Include="GameObjects\Entities\Components\RevealMap.cs" />
     <Compile Include="GameObjects\Tiles\Renderers\TileRenderSpriteSheet.cs" />
     <Compile Include="GameObjects\BlueprintGroupe.cs" />
-    <Compile Include="GameObjects\ITEMS.cs" />
+    <Compile Include="Registry\ITEMS.cs" />
     <Compile Include="GameObjects\Items\Item.cs" />
     <Compile Include="GameObjects\Items\ItemEntity.cs" />
     <Compile Include="GameObjects\Items\ItemStorage.cs" />
@@ -146,7 +146,7 @@
     <Compile Include="GameObjects\Items\Tags\PlacableItemTag.cs" />
     <Compile Include="GameObjects\Items\Tags\PlaceEntity.cs" />
     <Compile Include="GameObjects\Items\Tags\PlaceTile.cs" />
-    <Compile Include="GameObjects\TILES.cs" />
+    <Compile Include="Registry\TILES.cs" />
     <Compile Include="Loading\LoadingMenu.cs" />
     <Compile Include="Loading\LoadingScene.cs" />
     <Compile Include="Loading\Jobs.cs" />

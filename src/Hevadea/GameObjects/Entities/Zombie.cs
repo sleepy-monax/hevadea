@@ -6,6 +6,7 @@ using Hevadea.GameObjects.Entities.Components.Ai.Behaviors;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.Render;
 using Hevadea.GameObjects.Entities.Components.States;
+using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.GameObjects.Entities
@@ -29,7 +30,7 @@ namespace Hevadea.GameObjects.Entities
                     NaturalEnvironment = { TILES.DIRT, TILES.GRASS, TILES.SAND, TILES.WOOD_FLOOR }
                 }
             ));
-            AddComponent(new Pushable { CanBePushBy = { EntityFactory.PLAYER } });
+            AddComponent(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Burnable(1f));
         }

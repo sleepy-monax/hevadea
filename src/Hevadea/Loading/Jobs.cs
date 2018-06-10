@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Threading;
-using Hevadea.GameObjects;
+using Hevadea.Registry;
 using Hevadea.GameObjects.Entities;
 using Hevadea.Multiplayer;
 using Hevadea.WorldGenerator;
@@ -85,7 +85,7 @@ namespace Hevadea.Loading
                 World = info.Generator.Generate(job)
             };
 
-            var localPlayer = new PlayerSession($"player-{Rise.Rnd.NextInt()}", Rise.Rnd.NextInt(), (Player)EntityFactory.PLAYER.Construct());
+            var localPlayer = new PlayerSession($"player-{Rise.Rnd.NextInt()}", Rise.Rnd.NextInt(), (Player)ENTITIES.PLAYER.Construct());
             localPlayer.Join(gameState);
             gameState.LocalPlayer = localPlayer;
 

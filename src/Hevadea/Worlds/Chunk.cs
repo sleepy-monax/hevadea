@@ -3,6 +3,7 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
 using Hevadea.GameObjects.Tiles.Renderers;
 using Hevadea.Storage;
+using Hevadea.Registry;
 using System.Collections.Generic;
 
 namespace Hevadea.Worlds
@@ -111,7 +112,7 @@ namespace Hevadea.Worlds
             // Saving entities
             foreach (var e in Entities)
             {
-                if (!e.IsMemberOf(EntityFactory.GROUPE_SAVE_EXCUDED))
+                if (!e.IsMemberOf(ENTITIES.GROUPE_SAVE_EXCUDED))
                 {
                     store.Entities.Add(e.Save());
                 }

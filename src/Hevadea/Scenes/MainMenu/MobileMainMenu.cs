@@ -49,7 +49,7 @@ namespace Hevadea.Scenes.MainMenu
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, 72 * 2),
                 UnitBound = new Rectangle(0, 0, 256, 64),
-            }.RegisterMouseClickEvent((sender) => Game.New("world", GENERATOR.DEFAULT));
+            }.RegisterMouseClickEvent((sender) => Game.New("world", Rise.Rnd.Next(), GENERATOR.DEFAULT));
 
             Container = new Container(title, subTitle, newGameButton, Game.GetLastGame() != null ? continueButton : null);
         }

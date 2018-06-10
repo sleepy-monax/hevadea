@@ -50,10 +50,20 @@ namespace Hevadea
             Rise.Scene.Switch(new LoadingScene(job));
         }
 
-        public static void New(string name, Generator generator)
+        public static void New(string name, string seedString, Generator generator)
+        {
+            if (!int.TryParse(seedString, out int seed))
+            {
+                seed = seedString.GetHashCode();
+            }
+
+            New(name, seed, generator);
+        }
+
+        public static void New(string name, int seed, Generator generator)
         {
             var job = Jobs.GenerateWorld;
-            job.SetArguments(new Jobs.WorldGeneratorInfo($"{GetSaveFolder()}{name}/", Rise.Rnd.NextInt(), generator));
+            job.SetArguments(new Jobs.WorldGeneratorInfo($"{GetSaveFolder()}{name}/", seed, generator));
 
             job.Finish += (sender, e) =>
             {

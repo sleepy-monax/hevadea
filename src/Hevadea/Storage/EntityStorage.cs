@@ -1,4 +1,4 @@
-﻿using Hevadea.GameObjects;
+﻿using Hevadea.Registry;
 using Hevadea.GameObjects.Entities;
 using System.Collections.Generic;
 
@@ -35,7 +35,7 @@ namespace Hevadea.Storage
 
         public Entity ConstructEntity()
         {
-            Entity entity = EntityFactory.Construct(Type);
+            Entity entity = ENTITIES.Construct(Type);
             entity.Load(this);
 
             return entity;

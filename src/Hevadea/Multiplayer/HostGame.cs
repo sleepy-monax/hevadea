@@ -1,8 +1,8 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Networking;
-using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
+using Hevadea.Registry;
 using System.Net.Sockets;
 
 namespace Hevadea.Multiplayer
@@ -62,7 +62,7 @@ namespace Hevadea.Multiplayer
             client.Send(Packets.Token(token));
             SendWorld(client);
 
-            var playerSession = new PlayerSession(userName, token, (Player)EntityFactory.PLAYER.Construct());
+            var playerSession = new PlayerSession(userName, token, (Player)ENTITIES.PLAYER.Construct());
             playerSession.Join(this);
             Players.Add(playerSession);
             client.Send(Packets.Join(playerSession));

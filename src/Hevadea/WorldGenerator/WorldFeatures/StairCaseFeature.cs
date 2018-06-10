@@ -1,6 +1,7 @@
 ﻿using Hevadea.GameObjects;
 using Hevadea.GameObjects.Entities;
 using Hevadea.GameObjects.Tiles;
+using Hevadea.Registry;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 
@@ -45,11 +46,11 @@ namespace Hevadea.WorldGenerator.WorldFeatures
                     from.FillRectangle(x + 1, y + 1, 3, 3, TILES.DIRT);
                     to.FillRectangle(x + 1, y + 1, 3, 3, TILES.DIRT);
 
-                    var downStaire = (Stairs)from.AddEntityAt(EntityFactory.STAIRES, x + 2, y + 2);
+                    var downStaire = (Stairs)from.AddEntityAt(ENTITIES.STAIRES, x + 2, y + 2);
                     downStaire.GoUp = false;
                     downStaire.Destination = to.Id;
 
-                    var upStaire = (Stairs)to.AddEntityAt(EntityFactory.STAIRES, x + 2, y + 2);
+                    var upStaire = (Stairs)to.AddEntityAt(ENTITIES.STAIRES, x + 2, y + 2);
                     upStaire.GoUp = true;
                     upStaire.Destination = from.Id;
 

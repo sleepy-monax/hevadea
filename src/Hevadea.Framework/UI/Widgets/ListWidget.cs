@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Framework.UI.Widgets
 {
@@ -31,6 +32,7 @@ namespace Hevadea.Framework.UI.Widgets
 
     public class ListWidget : Widget
     {
+        public bool AlowUnselecting { get; set; } = true;
         public int ItemHeight { get; set; } = 48;
         public int ItemMarging { get; set; } = 8;
         public Color BackColor { get; set; } = Color.White * 0.1f;
@@ -44,6 +46,16 @@ namespace Hevadea.Framework.UI.Widgets
         {
             item.Parent = this;
             _items.Add(item);
+        }
+
+        public void AddItems(List<ListItem> items)
+        {
+            items.ForEach((item) => AddItem(item));
+        }
+
+        public void SelectFirst()
+        {
+            SelectedItem = _items.First();
         }
 
         public void RemoveItem(ListItem item)
@@ -137,7 +149,8 @@ namespace Hevadea.Framework.UI.Widgets
 
                 if (dist < 16)
                 {
-                    SelectedItem = _overItem;
+                    if (_overItem != null || AlowUnselecting)
+                        SelectedItem = _overItem;
                 }
 
                 IsDown = false;

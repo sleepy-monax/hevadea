@@ -5,6 +5,7 @@ using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Hevadea.Registry;
 
 namespace Hevadea.GameObjects.Entities.Components.Actions
 {
@@ -88,7 +89,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             if (entityType != "null")
             {
                 var entityData = store.ValueOf("pickup_entity_data", new Dictionary<string, object>());
-                var entity = EntityFactory.Construct(entityType);
+                var entity = ENTITIES.Construct(entityType);
                 entity.Load(new EntityStorage(entityType, entityData));
 
                 _pickupedEntity = entity;
