@@ -1,5 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Entities.Components;
+using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.Storage;
 
 namespace Hevadea
@@ -26,6 +28,7 @@ namespace Hevadea
         public void Join(GameState gameState)
         {
             _gameState = gameState;
+            _gameState.Players.Add(this);
 
             Logger.Log<PlayerSession>($"{Name} joint the game!");
 
@@ -36,6 +39,13 @@ namespace Hevadea
                 else
                     _gameState.World.GetLevel(Entity.LastLevel).AddEntity(Entity);
             }
+        }
+
+        public void Respawn()
+        {
+            Entity.Remove();
+            Entity.GetComponent<Health>().HealAll();
+            _gameState.World.SpawnPlayer(Entity);
         }
 
         public static PlayerSession Load(PlayerStorage store)

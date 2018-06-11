@@ -53,16 +53,23 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public bool LayDownEntity()
         {
-            var facingTile = Owner.GetFacingTile();
+            if (_pickupedEntity != null)
+            {
+                var facingTile = Owner.GetFacingTile();
 
-            if (Owner.Level.GetEntitiesAt(facingTile).Count != 0 || !facingTile.InLevelBound(Owner.Level)) return false;
+                if (Owner.Level.GetEntitiesAt(facingTile).Count != 0 || !facingTile.InLevelBound(Owner.Level)) return false;
 
-            _pickupedEntity.Facing = Owner.Facing;
-            Owner.Level.AddEntityAt(_pickupedEntity, facingTile.X, facingTile.Y);
-            _pickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
-            _pickupedEntity = null;
+                _pickupedEntity.Facing = Owner.Facing;
+                Owner.Level.AddEntityAt(_pickupedEntity, facingTile.X, facingTile.Y);
+                _pickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
+                _pickupedEntity = null;
 
-            return true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

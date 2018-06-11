@@ -20,7 +20,9 @@ namespace Hevadea.GameObjects.Entities
             LastLevel = 0;
             HoldingItem = null;
 
-            AddComponent(new Health(20) { ShowHealthBar = false, NaturalRegeneration = true });
+            var health = new Health(20) { ShowHealthBar = false, NaturalRegeneration = true };
+            health.Killed += Health_Killed;
+            AddComponent(health);
             AddComponent(new Attack());
             AddComponent(new Energy());
             AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
@@ -34,6 +36,11 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Pickup());
             AddComponent(new Burnable(1.5f));
             AddComponent(new RevealMap(16));
+        }
+
+        private void Health_Killed(object sender, System.EventArgs e)
+        {
+            GameState.GetSession(this).Respawn();
         }
 
         public override void OnSave(EntityStorage store)

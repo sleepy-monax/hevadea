@@ -11,7 +11,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
 {
     public sealed class Health : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
-        private float _maxValue, _value, _knckbckX, _knckbckY, _coolDown, _heathbarTimer = 0f;
+        private float _knckbckX, _knckbckY, _coolDown, _heathbarTimer = 0f;
 
         public bool Invicible { get; set; } = false;
         public bool ShowHealthBar { get; set; } = true;
@@ -20,9 +20,10 @@ namespace Hevadea.GameObjects.Entities.Components.States
 
         public double NaturalregenerationSpeed { get; set; } = 1.0;
 
-        public float Value => _value;
-        public float MaxValue => _maxValue;
-        public float ValuePercent => _value / _maxValue;
+        public float Value { get; private set; }
+        public float MaxValue { get; }
+
+        public float ValuePercent => Value / MaxValue;
 
         public delegate void GetHurtByEntityHandle(Entity entity, float damages);
 
@@ -36,13 +37,13 @@ namespace Hevadea.GameObjects.Entities.Components.States
 
         public Health(float maxHealth)
         {
-            _value = maxHealth;
-            _maxValue = maxHealth;
+            Value = maxHealth;
+            MaxValue = maxHealth;
         }
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (ShowHealthBar && Math.Abs(_value - _maxValue) > 0.05)
+            if (ShowHealthBar && Math.Abs(Value - MaxValue) > 0.05)
             {
                 var barY = Owner.Y + 4;
                 var barX = Owner.X - 15;
@@ -60,14 +61,14 @@ namespace Hevadea.GameObjects.Entities.Components.States
 
         public void OnGameSave(EntityStorage store)
         {
-            store.Value(nameof(Heal), _value);
+            store.Value(nameof(Heal), Value);
             if (NaturalRegeneration)
                 store.Value("natural_regeneration", _coolDown);
         }
 
         public void OnGameLoad(EntityStorage store)
         {
-            _value = store.ValueOf(nameof(Heal), _value);
+            Value = store.ValueOf(nameof(Heal), Value);
             if (NaturalRegeneration)
                 _coolDown = store.ValueOf("natural_regeneration", 0f);
         }
@@ -77,7 +78,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
             _coolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (NaturalRegeneration && _coolDown > 5)
             {
-                _value = (float)Math.Min(_maxValue, _value + NaturalregenerationSpeed * gameTime.ElapsedGameTime.TotalSeconds);
+                Value = (float)Math.Min(MaxValue, Value + NaturalregenerationSpeed * gameTime.ElapsedGameTime.TotalSeconds);
             }
 
             if (_knckbckX != 0f || _knckbckY != 0f)
@@ -120,7 +121,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
             if (Invicible) return;
             _coolDown = 0f;
             HurtedByEntity?.Invoke(entity, damages);
-            _value = Math.Max(0, _value - damages);
+            Value = Math.Max(0, Value - damages);
 
             if (TakeKnockback && Owner.HasComponent<Move>())
             {
@@ -128,7 +129,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
                 _knckbckY += knockbackY;
             }
 
-            if (Math.Abs(_value) < 0.1f) Die();
+            if (Math.Abs(Value) < 0.1f) Die();
         }
 
         // Entity get hurt by a tile (ex: lava)
@@ -137,28 +138,36 @@ namespace Hevadea.GameObjects.Entities.Components.States
             if (Invicible) return;
             _coolDown = 0f;
             HurtedByTile?.Invoke(tile, damages, tX, tY);
-            _value = Math.Max(0, _value - damages);
+            Value = Math.Max(0, Value - damages);
 
-            if (Math.Abs(_value) < 0.1f) Die();
+            if (Math.Abs(Value) < 0.1f) Die();
         }
 
         // The mob is heal by a mod (healing itself)
         public void Heal(Entity entity, float damages, Direction attackDirection)
         {
-            _value = Math.Min(_maxValue, _value + damages);
+            Value = Math.Min(MaxValue, Value + damages);
         }
 
         // The entity in heal b
         public void Heal(Tile tile, float damages, int tileX, int tileY)
         {
-            _value = Math.Min(_maxValue, _value + damages);
+            Value = Math.Min(MaxValue, Value + damages);
+        }
+
+        public void HealAll()
+        {
+            Value = MaxValue;
         }
 
         public void Die()
         {
-            Killed?.Invoke(this, null);
+            Owner.GetComponent<Pickup>()?.LayDownEntity();
+            Owner.GetComponent<Inventory>()?.Content.DropOnGround(Owner.Level, Owner.X, Owner.Y);
             Owner.GetComponent<Dropable>()?.Drop();
             Owner.Remove();
+
+            Killed?.Invoke(this, null);
         }
     }
 }

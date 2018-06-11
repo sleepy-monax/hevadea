@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Threading;
+using Hevadea.GameObjects.Entities;
 using Hevadea.Multiplayer;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
@@ -64,6 +65,16 @@ namespace Hevadea
         public void Draw(GameTime gameTime)
         {
             Camera.FocusEntity.Level.Draw(_spriteBatchPool, gameTime);
+        }
+
+        public PlayerSession GetSession(Player entity)
+        {
+            foreach (var p in Players)
+            {
+                if (p.Entity == entity) return p;
+            }
+
+            return null;
         }
 
         public void Update(GameTime gameTime)
