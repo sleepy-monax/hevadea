@@ -18,12 +18,13 @@ namespace Hevadea.GameObjects.Entities
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
 
+            AddComponent(new Dropable() { Items = { new Items.Drop(ITEMS.CHEST, 1f, 1, 1) } });
             AddComponent(new Move());
             AddComponent(new Inventory(128));
             AddComponent(new Pickupable(_sprite));
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Pushable());
-            AddComponent(new Health(10)).Killed += EntityDie;
+            AddComponent(new Health(10));
             AddComponent(new Interactable()).Interacted += EntityInteracte;
             AddComponent(new Pickupable(_sprite));
             AddComponent(new Burnable(1f));
@@ -33,12 +34,6 @@ namespace Hevadea.GameObjects.Entities
         {
             if (args.Entity.HasComponent<Inventory>())
                 GameState.CurrentMenu = new MenuChest(args.Entity, this, GameState);
-        }
-
-        private void EntityDie(object sender, EventArgs args)
-        {
-            GetComponent<Inventory>().Content.DropOnGround(Level, X, Y);
-            ITEMS.CHEST.Drop(Level, X, Y, 1);
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
