@@ -5,6 +5,7 @@ using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.Render;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Items;
+using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 
@@ -20,7 +21,7 @@ namespace Hevadea.GameObjects.Entities
             LastLevel = 0;
             HoldingItem = null;
 
-            var health = new Health(20) { ShowHealthBar = false, NaturalRegeneration = true };
+            var health = new Health(3) { ShowHealthBar = false, NaturalRegeneration = true };
             health.Killed += Health_Killed;
             AddComponent(health);
             AddComponent(new Attack());
@@ -40,7 +41,7 @@ namespace Hevadea.GameObjects.Entities
 
         private void Health_Killed(object sender, System.EventArgs e)
         {
-            GameState.GetSession(this).Respawn();
+            GameState.CurrentMenu = new MenuRespawn(this, GameState);
         }
 
         public override void OnSave(EntityStorage store)

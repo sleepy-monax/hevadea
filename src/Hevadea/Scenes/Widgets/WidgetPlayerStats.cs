@@ -24,16 +24,16 @@ namespace Hevadea.Scenes.Widgets
         {
             if (!_player.HasComponent<Energy>() && !_player.HasComponent<Health>()) return;
 
-            var health = _player.GetComponent<Health>().ValuePercent;
+            var health = _player.GetComponent<Health>().Value;
             var energy = _player.GetComponent<Energy>().ValuePercent;
 
             var i = 0;
             var size = Scale(48);
-            for (i = 0; i <= 10 * health - 1; i++)
+            for (i = 0; i <= health - 1; i++)
                 _hearth.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y, size, size), Color.White);
 
             _hearth.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y, size, size),
-                Color.White * (float)(10 * health - Math.Floor(10 * health)));
+                Color.White * (float)(health - Math.Floor( health)));
 
             for (i = 0; i <= 10 * energy - 1; i++)
                 _energy.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y + size, size, size), Color.White);

@@ -1,6 +1,5 @@
 ﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.Storage;
 
@@ -44,7 +43,8 @@ namespace Hevadea
         public void Respawn()
         {
             Entity.Remove();
-            Entity.GetComponent<Health>().HealAll();
+            Entity.GetComponent<Energy>()?.Restore();
+            Entity.GetComponent<Health>()?.HealAll();
             _gameState.World.SpawnPlayer(Entity);
         }
 

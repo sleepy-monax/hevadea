@@ -6,7 +6,6 @@ using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Hevadea.GameObjects.Entities
 {

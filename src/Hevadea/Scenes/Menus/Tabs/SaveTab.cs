@@ -2,8 +2,6 @@
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-
-using Hevadea.Loading;
 using Hevadea.Scenes.Widgets;
 
 using Microsoft.Xna.Framework;
@@ -32,30 +30,17 @@ namespace Hevadea.Scenes.Menus.Tabs
             };
 
             container.AddChild(new Button { Text = "Quick save", Padding = new Margins(4) })
-            .RegisterMouseClickEvent((sender) =>
-            {
-                var job = Jobs.SaveWorld.Then((_, e) => { gameState.CurrentMenu = new MenuInGame(gameState); });
-                job.SetArguments(new Jobs.WorldSaveInfo(gameState.GetSavePath(), gameState));
-
-                gameState.CurrentMenu = new LoadingMenu(job, gameState);
-            });
+            .RegisterMouseClickEvent(gameState.QuickSave);
 
             container.AddChild(new Button { Text = "Save and Exit", Padding = new Margins(4) })
-            .RegisterMouseClickEvent((sender) =>
-            {
-                var job = Jobs.SaveWorld;
-                job.SetArguments(new Jobs.WorldSaveInfo(gameState.GetSavePath(), gameState));
-                job.Then((_, e) => { Game.GoToMainMenu(); });
-
-                gameState.CurrentMenu = new LoadingMenu(job, gameState);
-            });
+            .RegisterMouseClickEvent(gameState.SaveAndExit);
 
             container.AddChild(new Button
             {
                 Text = "Exit",
                 Padding = new Margins(4)
             })
-            .RegisterMouseClickEvent(sender => Game.GoToMainMenu());
+            .RegisterMouseClickEvent(Game.GoToMainMenu);
         }
     }
 }

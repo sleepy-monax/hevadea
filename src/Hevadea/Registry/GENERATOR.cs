@@ -12,8 +12,11 @@ namespace Hevadea.Registry
         public static Generator FLAT;
 
         public static LevelGenerator FLAT_LEVEL;
+
         public static LevelGenerator OVERWORLD;
         public static LevelGenerator CAVE;
+        public static LevelGenerator DUNGEON;
+        public static LevelGenerator DEEP_CAVE;
 
         public static Dictionary<string, Generator> GENERATORS = new Dictionary<string, Generator>();
 
@@ -202,18 +205,32 @@ namespace Hevadea.Registry
                     new Decorator(ENTITIES.ZOMBIE)
                     {
                         Chance = 400,
-                        CanBePlantOn = {TILES.DIRT},
+                        CanBePlantOn = { TILES.DIRT },
                         PlacingFunction = Functions.Perlin(1, 0.5, 10),
                         Threashold = 0.7f,
                     },
                 }
             };
 
+            DUNGEON = new LevelGenerator
+            {
+                Id = 2,
+                Name = "dungeon",
+                Properties = LEVELS.UNDERGROUND,
+            };
+
+            DEEP_CAVE = new LevelGenerator
+            {
+                Id = 3,
+                Name = "deep_cave",
+                Properties = LEVELS.UNDERGROUND,
+            };
+
             DEFAULT = new Generator
             {
                 Size = 256,
                 Seed = 0,
-                LevelsGenerators = { OVERWORLD, CAVE },
+                LevelsGenerators = { OVERWORLD, CAVE, DUNGEON, DEEP_CAVE },
                 WorldFeatures = { new StairCaseFeature(OVERWORLD, CAVE), new SpawnAreaFeature() }
             };
 

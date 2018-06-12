@@ -10,5 +10,9 @@ namespace Hevadea.Framework.UI
         public SpriteFont DebugFont { get; set; }
         public float ScaleFactor { get => _scaleFactor * Rise.Platform.GetSceenScaling(); set => _scaleFactor = value; }
         public Widget FocusWidget { get; set; }
+
+        public void RefreshLayout()
+        {
+        }
     }
 }

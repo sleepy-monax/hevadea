@@ -2,6 +2,7 @@
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Hevadea.Framework.UI
 {
@@ -117,6 +118,12 @@ namespace Hevadea.Framework.UI
         public Widget RegisterMouseClickEvent(WidgetEventHandler func)
         {
             MouseClick += func;
+            return this;
+        }
+
+        public Widget RegisterMouseClickEvent(Action func)
+        {
+            MouseClick += (sender) => { func(); };
             return this;
         }
     }

@@ -1,6 +1,4 @@
 ﻿using Hevadea.Framework.Scening;
-using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 
@@ -14,17 +12,12 @@ namespace Hevadea.Scenes
         {
             GameState = gameState;
             GameState.CurrentMenuChange += Game_CurrentMenuChange;
-            Container = new Panel
-            {
-                Padding = new Margins(0)
-            };
         }
 
         private void Game_CurrentMenuChange(Menu oldMenu, Menu newMenu)
         {
-            var p = (Panel)Container;
-            p.Content = newMenu;
-            Container.RefreshLayout();
+            Container = newMenu.Content;
+            RefreshLayout();
         }
 
         public override void Load()

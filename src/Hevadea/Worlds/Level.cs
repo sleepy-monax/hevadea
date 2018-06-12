@@ -400,7 +400,6 @@ namespace Hevadea.Worlds
         public void AddEntity(Entity e)
         {
             Chunk chunk = GetChunkAt(e.GetTilePosition());
-
             chunk.AddEntity(e);
 
             e.Level = this;

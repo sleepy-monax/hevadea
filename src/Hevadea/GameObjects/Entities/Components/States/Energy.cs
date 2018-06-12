@@ -35,6 +35,11 @@ namespace Hevadea.GameObjects.Entities.Components.States
             }
         }
 
+        public void Restore()
+        {
+            Value = MaxValue;
+        }
+
         public bool Reduce(float value)
         {
             if (Value >= value)

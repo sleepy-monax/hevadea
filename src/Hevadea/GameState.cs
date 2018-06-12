@@ -2,6 +2,7 @@
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Threading;
 using Hevadea.GameObjects.Entities;
+using Hevadea.Loading;
 using Hevadea.Multiplayer;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
@@ -95,6 +96,23 @@ namespace Hevadea
             }
 
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
+        }
+
+        public void QuickSave()
+        {
+            var job = Jobs.SaveWorld.Then((_, e) => { CurrentMenu = new MenuInGame(this); });
+            job.SetArguments(new Jobs.WorldSaveInfo(GetSavePath(), this));
+
+            CurrentMenu = new LoadingMenu(job, this);
+        }
+
+        public void SaveAndExit()
+        {
+            var job = Jobs.SaveWorld;
+            job.SetArguments(new Jobs.WorldSaveInfo(GetSavePath(), this));
+            job.Then((sender, e) => { Game.GoToMainMenu(); });
+
+            CurrentMenu = new LoadingMenu(job, this);
         }
 
         // --- Path generator ----------------------------------------------- //
@@ -206,6 +224,7 @@ namespace Hevadea
 
             foreach (var chunk in level.Chunks)
             {
+                Logger.Log<GameState>($"Saving chunk {chunk.X}-{chunk.Y}...");
                 job.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
                 File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
             }
