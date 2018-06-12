@@ -30,15 +30,15 @@ namespace Hevadea.Scenes.Widgets
             var i = 0;
             var size = Scale(48);
             for (i = 0; i <= health - 1; i++)
-                _hearth.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y, size, size), Color.White);
+                _hearth.Draw(spriteBatch, new Rectangle(Bound.X + (size * i), Bound.Y, size, size), Color.White);
 
-            _hearth.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y, size, size),
+            _hearth.Draw(spriteBatch, new Rectangle(Bound.X + (size * i), Bound.Y, size, size),
                 Color.White * (float)(health - Math.Floor( health)));
 
             for (i = 0; i <= 10 * energy - 1; i++)
-                _energy.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y + size, size, size), Color.White);
+                _energy.Draw(spriteBatch, new Rectangle(Bound.X + (size * i), Bound.Y + size, size, size), Color.White);
 
-            _energy.Draw(spriteBatch, new Rectangle(Bound.X + size * i, Bound.Y + size, size, size),
+            _energy.Draw(spriteBatch, new Rectangle(Bound.X + (size * i), Bound.Y + size, size, size),
                 Color.White * (float)(10 * energy - Math.Floor(10 * energy)));
         }
     }
