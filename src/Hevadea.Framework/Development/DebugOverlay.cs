@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Graphic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -6,13 +7,18 @@ namespace Hevadea.Framework.Debug
 {
     public class DebugManager
     {
-        private SpriteBatch _spriteBatch;
+        public bool HELP { get; set; }
+        public bool GENERAL { get; set; }
+        public bool GAME { get; set; }
+        public bool UI { get; set; }
+
+        private SpriteBatch _sb;
         private float fps;
         private float ups;
 
         public DebugManager()
         {
-            _spriteBatch = Rise.Graphic.CreateSpriteBatch();
+            _sb = Rise.Graphic.CreateSpriteBatch();
         }
 
         public void Update(GameTime gameTime)
@@ -23,15 +29,18 @@ namespace Hevadea.Framework.Debug
 
         public void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
-
-            var text = $@"Hevadea
+            if (GENERAL)
+            {
+            _sb.Begin();
+            var text = $@"
 FPS and UPS not accurate!
     FPS: {(int)fps}
     UPS: {(int)ups}
 
     Update: {Rise.MonoGame.UpdateTime}
     Draw:   {Rise.MonoGame.DrawTime}
+
+DEBUG UI: {(HELP ? "HELP " : "")}{(GENERAL ? "GENERAL " : "")}{(GAME ? "GAME " : "")}{(UI ? "UI " : "")}
 
 Running on platform: '{Rise.Platform.GetPlatformName()}'
     Family: {Rise.Platform.Family}
@@ -42,10 +51,21 @@ Running on platform: '{Rise.Platform.GetPlatformName()}'
 Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name}
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}";
 
-            _spriteBatch.DrawString(Rise.Ui.DebugFont, text, new Vector2(16, 16 + 1), Color.Black);
-            _spriteBatch.DrawString(Rise.Ui.DebugFont, text, new Vector2(16, 16), Color.White);
-            Rise.Pointing.DrawDebug(_spriteBatch);
-            _spriteBatch.End();
+
+                _sb.DrawString(Rise.Ui.DebugFont, text, Rise.Graphic.GetBound(), DrawText.Alignement.Left, DrawText.TextStyle.Rectangle, Color.White);
+
+                Rise.Pointing.DrawDebug(_sb);
+            _sb.End();
+            }
+
+            if (HELP)
+            {
+                _sb.Begin();
+                var text = @"[F1]: Help [F2, F3, F4]: Toggle debug overlays for Game/General/Ui [F5]: Hide/Show ui [F6/F7]: -/+ Ui Scale";
+
+                _sb.DrawString(Rise.Ui.DebugFont, text, Rise.Graphic.GetBound(), DrawText.Alignement.Bottom, DrawText.TextStyle.DropShadow, Color.White);
+                _sb.End();
+            }
         }
     }
 }

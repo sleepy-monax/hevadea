@@ -6,6 +6,7 @@ using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,8 +14,10 @@ namespace Hevadea.Scenes.Widgets
 {
     public class Tab
     {
+        public bool Transparent { get; set; } = false;
         public Sprite Icon { get; set; }
         public Widget Content { get; set; }
+        public Color Color { get; set; } = Color.White;
     }
 
     public enum TabAnchore { Top = 0, Bottom = 1, Right = 2, Left = 3, None }
@@ -101,6 +104,12 @@ namespace Hevadea.Scenes.Widgets
                 onScreenIndex++;
             }
 
+            if (Rise.Input.KeyPress(Keys.Tab))
+            {
+                int i = Tabs.IndexOf(SelectedTab);
+                SelectedTab = Tabs[(i + 1) % Tabs.Count];
+            }
+
             if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First();
             SelectedTab?.Content?.UpdateInternal(gameTime);
 
@@ -112,11 +121,13 @@ namespace Hevadea.Scenes.Widgets
             var size = Scale(16 * 3);
             if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First();
 
-            _background.Draw(spriteBatch, Scale(_clientArea), Color.White * 0.99f);
+            if (!(SelectedTab?.Transparent ?? false))
+                _background.Draw(spriteBatch, Scale(_clientArea), Color.White * 0.99f);
 
             SelectedTab?.Content?.DrawIternal(spriteBatch, gameTime);
 
-            GuiHelper.DrawBox(spriteBatch, Scale(_clientAreaBound), size);
+            if (!(SelectedTab?.Transparent ?? false))
+                GuiHelper.DrawBox(spriteBatch, Scale(_clientAreaBound), size);
 
             var onScreenIndex = 0;
             foreach (var t in Tabs)
@@ -126,7 +137,7 @@ namespace Hevadea.Scenes.Widgets
                 if (SelectedTab != t)
                 {
                     if (Rise.Platform.Family != PlatformFamily.Mobile)
-                        _tab.Draw(spriteBatch, tabBound, Color.White);
+                        _tab.Draw(spriteBatch, tabBound, t.Color);
                     t.Icon?.Draw(spriteBatch, GetTabIconBound(onScreenIndex, false), Color.White);
                 }
 
@@ -138,7 +149,7 @@ namespace Hevadea.Scenes.Widgets
                 int index = Tabs.IndexOf(SelectedTab);
                 Rectangle tabBound = GetTabBound(index);
 
-                _tabSelected.Draw(spriteBatch, tabBound, Color.White);
+                _tabSelected.Draw(spriteBatch, tabBound, SelectedTab.Color);
                 SelectedTab.Icon?.Draw(spriteBatch, GetTabIconBound(index, false), Color.White);
             }
 

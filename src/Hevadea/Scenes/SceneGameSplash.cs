@@ -52,7 +52,7 @@ namespace Hevadea.Scenes
             _time += gameTime.GetDeltaTime();
 
             if (!_once || !_loadingDone || _time < 2) return;
-            Game.GoToMainMenu();
+            Game.GoToTileScreen();
             _once = false;
         }
 

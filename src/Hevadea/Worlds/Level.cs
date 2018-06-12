@@ -154,7 +154,7 @@ namespace Hevadea.Worlds
                 if (Rise.ShowGui)
                 {
                     e.DrawOverlay(spriteBatchPool.OverlaySpriteBatch, gameTime);
-                    if (Rise.ShowDebugOverlay) spriteBatchPool.OverlaySpriteBatch.PutPixel(e.Position, Color.Magenta);
+                    if (Rise.Debug.GAME) spriteBatchPool.OverlaySpriteBatch.PutPixel(e.Position, Color.Magenta);
                 }
 
                 // Draw Entity light source.

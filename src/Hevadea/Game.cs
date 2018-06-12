@@ -13,7 +13,8 @@ namespace Hevadea
     public static class Game
     {
         public static readonly int Unit = 16;
-        public static readonly string Name = "Hevadea";
+        public static readonly string Title = "Hevadea";
+        public static readonly string SubTitle = "\"Tales of the unknown\"";
         public static readonly string Version = "0.1.0";
         public static readonly int VersionNumber = 1;
 
@@ -33,6 +34,11 @@ namespace Hevadea
                 return File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame");
 
             return null;
+        }
+
+        public static void GoToTileScreen()
+        {
+            Rise.Scene.Switch(new TitleSplash());
         }
 
         public static void GoToMainMenu()

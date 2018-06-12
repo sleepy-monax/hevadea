@@ -29,7 +29,7 @@ namespace Hevadea.Server
 
             while (true)
             {
-                Console.WriteLine($"{Game.Name} Server v{Game.Version}\n");
+                Console.WriteLine($"{Game.Title} Server v{Game.Version}\n");
 
                 var saves = Directory.GetDirectories(Game.GetSaveFolder());
 

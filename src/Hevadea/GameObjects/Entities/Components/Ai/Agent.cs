@@ -61,7 +61,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
 
         public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (Rise.ShowDebug)
+            if (Rise.Debug.GAME)
             {
                 CurrentAction?.DrawDebugInfo(this, spriteBatch);
 

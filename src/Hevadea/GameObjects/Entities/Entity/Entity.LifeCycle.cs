@@ -85,7 +85,7 @@ namespace Hevadea.GameObjects.Entities
             Renderer.Render(this, spriteBatch, gameTime);
             OnDraw(spriteBatch, gameTime);
 
-            if (Rise.ShowDebug)
+            if (Rise.Debug.GAME)
                 spriteBatch.DrawString(Ressources.FontHack, Ueid.ToString(), new Vector2(X, Y), Color.Gold, 0f, Vector2.Zero, 1f / 4f, SpriteEffects.None, 0f);
 
             ParticleSystem.Draw(spriteBatch, gameTime);

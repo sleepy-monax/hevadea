@@ -15,12 +15,11 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-            var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
-            Rise.Scene.SetBackground(background);
+            
 
             var title = new Label
             {
-                Text = Game.Name,
+                Text = Game.Title,
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, -72),
@@ -30,11 +29,12 @@ namespace Hevadea.Scenes.MainMenu
 
             var subTitle = new Label
             {
-                Text = "\"Tales of the unknow\"",
+                Text = Game.SubTitle,
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, -16),
                 Font = Ressources.FontRomulus,
+                TextColor = Color.Gold,
                 TextSize = 1f,
             };
 
@@ -57,6 +57,24 @@ namespace Hevadea.Scenes.MainMenu
             }
             .RegisterMouseClickEvent((sender) => Game.Play(Game.GetLastGame()));
 
+            var version = new Label
+            {
+                Text = $"{Game.Title} {Game.Version}",
+                Anchor = Anchor.BottomRight,
+                Origine = Anchor.BottomRight,
+                UnitOffset = new Point(-16, 0),
+                Font = Ressources.FontHack,
+                TextAlignement = Framework.Graphic.DrawText.Alignement.Right,
+                TextColor = Color.White * 0.5f,
+                TextSize = 1f,
+            };
+
+            var homeTab = new Tab
+            {
+                Icon = new Sprite(Ressources.TileIcons, new Point(0, 4)),
+                Content = new Container(title, subTitle, copyright, Game.GetLastGame() != null ? continueButton : null)
+            };
+
             var menu = new WidgetTabContainer
             {
                 Anchor = Anchor.Center,
@@ -65,19 +83,14 @@ namespace Hevadea.Scenes.MainMenu
                 TabAnchore = Rise.Platform.Family == PlatformFamily.Mobile ? TabAnchore.Bottom : TabAnchore.Left,
                 Tabs =
                 {
-                    new Tab
-                    {
-                        Icon = new Sprite(Ressources.TileIcons, new Point(0,4)),
-                        Content = new Container(title, subTitle, copyright, Game.GetLastGame() != null ? continueButton : null)
-                    },
-
+                    homeTab,
                     new TabNewWorld(),
                     new TabLoadWorld(),
                     new TabMultiplayerConnect(),
                     new TabOption(),
                 }
             };
-            Container = new Container(menu);
+            Container = new Container(menu, version);
         }
 
         public override void Unload()

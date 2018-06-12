@@ -16,7 +16,7 @@ namespace Hevadea.Scenes
 
         private void Game_CurrentMenuChange(Menu oldMenu, Menu newMenu)
         {
-            Container = newMenu.Content;
+            Container = newMenu;
             RefreshLayout();
         }
 

@@ -36,14 +36,14 @@ namespace Hevadea.Framework.Graphic
 
                 case TextStyle.DropShadow:
                     spriteBatch.DrawString(font, text, pos - origin + new Vector2(2 * Rise.Ui.ScaleFactor),
-                        new Color(0, 0, 0, (int)(100f * ((float)color.A / 255f))), 0, Vector2.Zero, scale,
+                        new Color(0, 0, 0, (int)(100f * (color.A / 255f))), 0, Vector2.Zero, scale,
                         SpriteEffects.None, 0);
                     break;
 
                 case TextStyle.Rectangle:
                     spriteBatch.FillRectangle(
-                        new Rectangle((pos - origin - new Vector2(4)).ToPoint(),
-                            new Point((int)textSize.X, (int)textSize.Y) + new Point(8)), Color.Black);
+                        new Rectangle((pos - origin).ToPoint(),
+                            new Point((int)textSize.X, (int)textSize.Y)), Color.Black * 0.5f);
                     break;
             }
 

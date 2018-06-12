@@ -26,7 +26,7 @@ namespace Hevadea.Server
         {
             try
             {
-                Console.Title = $"{Game.Name} {Game.Version}";
+                Console.Title = $"{Game.Title} {Game.Version}";
             }
             catch (Exception)
             {

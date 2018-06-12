@@ -3,12 +3,16 @@ using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
-using Hevadea.Registry;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Hevadea.Scenes.MainMenu
+namespace Hevadea.Scenes
 {
-    public class MobileMainMenu : Scene
+    public class TitleSplash : Scene
     {
         public override void Load()
         {
@@ -20,9 +24,9 @@ namespace Hevadea.Scenes.MainMenu
                 Text = Game.Title,
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
-                UnitOffset = new Point(0, -72),
+                UnitOffset = new Point(0),
                 Font = Ressources.FontAlagard,
-                TextSize = 3f,
+                TextSize = 6f,
             };
 
             var subTitle = new Label
@@ -30,26 +34,22 @@ namespace Hevadea.Scenes.MainMenu
                 Text = Game.SubTitle,
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
-                UnitOffset = new Point(0, -16),
+                UnitOffset = new Point(0, 72),
                 Font = Ressources.FontRomulus,
+                TextColor = Color.Gold,
                 TextSize = 1f,
             };
 
-            var continueButton = new Button("Continue")
+            var prompt = new Label
             {
+                Text = "> Press any key <",
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
-                UnitOffset = new Point(0, 72),
-            }.RegisterMouseClickEvent((sender) => Game.Play(Game.GetLastGame()));
-
-            var newGameButton = new Button
-            {
-                Text = "New",
-                Anchor = Anchor.Center,
-                Origine = Anchor.Center,
-                UnitOffset = new Point(0, 72 * 2),
-                UnitBound = new Rectangle(0, 0, 256, 64),
-            }.RegisterMouseClickEvent((sender) => Game.New("world", Rise.Rnd.Next(), GENERATOR.DEFAULT));
+                UnitOffset = new Point(0, 256),
+                Font = Ressources.FontRomulus,
+                TextColor = Color.White * 0.75f,
+                TextSize = 1f,
+            };
 
             var version = new Label
             {
@@ -63,19 +63,28 @@ namespace Hevadea.Scenes.MainMenu
                 TextSize = 1f,
             };
 
-            Container = new Container(title, subTitle, newGameButton, version, Game.GetLastGame() != null ? continueButton : null);
+            Container = new Container(title, subTitle, prompt, version)
+            {
+
+            };
         }
 
         public override void OnDraw(GameTime gameTime)
         {
+
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
+            if (Rise.Input.AnyKeyDown())
+            {
+                Game.GoToMainMenu();
+            }
         }
 
         public override void Unload()
         {
+
         }
     }
 }

@@ -19,18 +19,13 @@ namespace Hevadea.Framework
         // Configs
         public static bool ShowGui { get; set; } = true;
 
-        public static bool ShowDebugOverlay { get; set; } = false;
-
-        public static bool DebugUi { get; set; } = false;
-        public static bool ShowDebug { get; set; } = false;
-
         public static bool NoGraphic { get; private set; } = false;
 
         public static ConcurrentQueue<Job> BackgroundThread = new ConcurrentQueue<Job>();
         public static ConcurrentQueue<Job> GameLoopThread = new ConcurrentQueue<Job>();
 
         // Components
-        [Obsolete] public static LegacyInputManager Input;
+        public static LegacyInputManager Input;
 
         public static KeyboardInputManager Keyboard;
         public static Controller Controller;
@@ -137,40 +132,41 @@ namespace Hevadea.Framework
 
             if (Input.KeyPress(Keys.F1))
             {
-                DebugUi = !DebugUi;
+                Debug.HELP = !Debug.HELP;
             }
 
             if (Input.KeyPress(Keys.F2))
             {
-                ShowDebug = !ShowDebug;
+                Debug.GAME = !Debug.GAME;
             }
 
             if (Input.KeyPress(Keys.F3))
+            {
+                Debug.GENERAL = !Debug.GENERAL;
+            }
+
+            if (Input.KeyPress(Keys.F4))
+            {
+                Debug.UI = !Debug.UI;
+            }
+
+            if (Input.KeyPress(Keys.F5))
+            {
+                ShowGui = !ShowGui;
+            }
+
+            if (Input.KeyPress(Keys.F6))
             {
                 Ui.ScaleFactor /= 2f;
                 Scene.GetCurrentScene()?.RefreshLayout();
             }
 
-            if (Input.KeyPress(Keys.F4))
+            if (Input.KeyPress(Keys.F7))
             {
                 Ui.ScaleFactor *= 2f;
                 Scene.GetCurrentScene()?.RefreshLayout();
             }
 
-            if (Input.KeyPress(Keys.F5))
-            {
-                ShowDebugOverlay = !ShowDebugOverlay;
-            }
-
-            if (Input.KeyPress(Keys.F6))
-            {
-                ShowGui = !ShowGui;
-            }
-
-            if (Input.KeyPress(Keys.F9))
-            {
-                Platform.Family = PlatformFamily.Mobile;
-            }
         }
 
         private static void MonoGameOnDraw(Game sender, GameTime gameTime)
@@ -178,9 +174,9 @@ namespace Hevadea.Framework
             Graphic.ResetScissor();
             Graphic.Clear(Color.Black);
             Scene.Draw(gameTime);
+            Debug.Draw(gameTime);
 
-            if (ShowDebugOverlay)
-                Debug.Draw(gameTime);
+            
         }
     }
 }

@@ -84,7 +84,7 @@ namespace Hevadea.Framework.UI
             if (Enabled)
             {
                 Draw(spriteBatch, gameTime);
-                if (Rise.DebugUi)
+                if (Rise.Debug.UI)
                 {
                     spriteBatch.DrawRectangle(Host, Color.Cyan);
                     spriteBatch.DrawRectangle(Bound, Color.Black);
