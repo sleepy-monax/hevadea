@@ -195,19 +195,19 @@ namespace Hevadea
 
             var levelsName = new List<string>();
 
-            Directory.CreateDirectory(SavePath);
+            Directory.CreateDirectory(GetSavePath());
 
             foreach (var level in World.Levels)
             {
                 SaveLevel(job, level);
             }
 
-            Directory.CreateDirectory(SavePath + "players");
+            Directory.CreateDirectory(GetSavePath() + "players");
 
             foreach (var player in Players)
             {
                 if (player != LocalPlayer)
-                    File.WriteAllText(SavePath + "players/" + player.Token.ToString("x") + ".json", player.Save().ToJson());
+                    File.WriteAllText(GetSavePath() + "players/" + player.Token.ToString("x") + ".json", player.Save().ToJson());
             }
 
             File.WriteAllText(GetSavePath() + "world.json", World.Save().ToJson());
