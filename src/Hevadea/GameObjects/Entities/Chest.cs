@@ -27,6 +27,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Interactable()).Interacted += EntityInteracte;
             AddComponent(new Pickupable(_sprite));
             AddComponent(new Burnable(1f));
+            AddComponent(new Shadow());
         }
 
         private void EntityInteracte(object sender, InteractEventArg args)

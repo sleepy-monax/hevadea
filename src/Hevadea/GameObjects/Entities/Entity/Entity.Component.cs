@@ -31,6 +31,13 @@ namespace Hevadea.GameObjects.Entities
             return null;
         }
 
+        public bool HasComponent<T>(out T component) where T : EntityComponent
+        {
+            component = GetComponent<T>();
+
+            return component != null;
+        }
+
         public bool HasComponent<T>() where T : EntityComponent
         {
             return Componenents.OfType<T>().Any();

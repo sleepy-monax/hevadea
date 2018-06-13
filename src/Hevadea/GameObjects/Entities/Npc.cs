@@ -2,6 +2,7 @@
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Entities.Components.Attributes;
 using Hevadea.GameObjects.Entities.Components.Render;
+using Hevadea.GameObjects.Entities.Components.States;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.GameObjects.Entities
@@ -14,6 +15,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Interact());
             AddComponent(new Attack());
             AddComponent(new Burnable(1f));
+            AddComponent(new Shadow());
         }
     }
 }

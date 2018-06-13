@@ -3,6 +3,7 @@ using Hevadea.Framework.Utils;
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Entities.Components.Attributes;
+using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,6 +27,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Pushable());
             AddComponent(new Breakable());
             AddComponent(new Pickupable(_sprite));
+            AddComponent(new Shadow());
         }
 
         public override void OnUpdate(GameTime gameTime)

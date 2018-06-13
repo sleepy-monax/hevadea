@@ -24,6 +24,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Pushable());
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Pickupable(_sprite));
+            AddComponent(new Shadow());
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

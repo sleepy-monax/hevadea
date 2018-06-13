@@ -2,6 +2,7 @@
 using Hevadea.GameObjects.Entities.Components;
 using Hevadea.GameObjects.Entities.Components.Actions;
 using Hevadea.GameObjects.Entities.Components.Attributes;
+using Hevadea.GameObjects.Entities.Components.States;
 using Hevadea.GameObjects.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
@@ -25,6 +26,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Burnable(1f));
             AddComponent(new Pickupable(_sprite));
             AddComponent(new CraftingStation(RECIPIES.BenchCrafted));
+            AddComponent(new Shadow());
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

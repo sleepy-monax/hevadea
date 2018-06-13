@@ -30,6 +30,7 @@ namespace Hevadea.GameObjects.Entities
 
             AddComponent(new Pickupable(new Sprite(Ressources.TileEntities, new Point(12, 0))));
             AddComponent(new Burnable(1f));
+            AddComponent(new Shadow());
         }
     }
 }

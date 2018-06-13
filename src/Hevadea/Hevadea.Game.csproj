@@ -91,6 +91,7 @@
     <Compile Include="GameObjects\Entities\Components\States\Health.cs" />
     <Compile Include="GameObjects\Entities\Components\States\IStateProvider.cs" />
     <Compile Include="GameObjects\Entities\Components\States\Light.cs" />
+    <Compile Include="GameObjects\Entities\Components\States\Shadow.cs" />
     <Compile Include="GameObjects\Entities\Components\States\Swim.cs" />
     <Compile Include="GameObjects\Entities\Belt.cs" />
     <Compile Include="GameObjects\Entities\Chest.cs" />

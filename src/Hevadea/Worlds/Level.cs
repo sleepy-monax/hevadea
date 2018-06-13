@@ -164,6 +164,11 @@ namespace Hevadea.Worlds
                     DrawLight(spriteBatchPool.LightsSpriteBatch, e.X, e.Y, light.Power, light.Color);
                 }
 
+                if (e.HasComponent<Shadow>() && !(e.GetComponent<Swim>()?.IsSwiming ?? false))
+                {
+                    spriteBatchPool.ShadowsSpriteBatch.Draw(Ressources.ImgShadow, new Vector2(e.X - 7, e.Y - 1.5f), new Vector2(14, 6), Color.White);
+                }
+
                 // TODO: Draw Entity shadow.
             }
 

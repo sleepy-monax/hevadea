@@ -33,6 +33,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Burnable(1f));
+            AddComponent(new Shadow());
         }
     }
 }

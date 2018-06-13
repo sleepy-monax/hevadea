@@ -20,6 +20,7 @@ namespace Hevadea.GameObjects.Entities.Blueprints.Legacy
             AddComponent(new Health(5));
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Burnable(0.5f));
+            AddComponent(new Shadow());
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

@@ -37,6 +37,7 @@ namespace Hevadea.GameObjects.Entities
             AddComponent(new Pickup());
             AddComponent(new Burnable(1.5f));
             AddComponent(new RevealMap(16));
+            AddComponent(new Shadow());
         }
 
         private void Health_Killed(object sender, System.EventArgs e)
