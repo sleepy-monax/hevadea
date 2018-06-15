@@ -1,7 +1,5 @@
 # Hevadea
- [![CodeFactor](https://www.codefactor.io/repository/github/maker-dev/hevadea/badge)](https://www.codefactor.io/repository/github/maker-dev/hevadea)
-
- [![Github All Releases](https://img.shields.io/github/downloads/maker-dev/hevadea/total.svg)](https://github.com/maker-dev/hevadea)
+ [![CodeFactor](https://www.codefactor.io/repository/github/maker-dev/hevadea/badge)](https://www.codefactor.io/repository/github/maker-dev/hevadea)[![Github All Releases](https://img.shields.io/github/downloads/maker-dev/hevadea/total.svg)](https://github.com/maker-dev/hevadea)
 
 
 Hevadea is a game about exploring a randomly generated world.
