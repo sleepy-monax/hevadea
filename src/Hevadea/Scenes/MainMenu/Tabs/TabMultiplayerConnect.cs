@@ -5,7 +5,6 @@ using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Framework.UI.Widgets.TextBox;
 using Hevadea.Loading;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -14,14 +13,14 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 {
     public class TabMultiplayerConnect : Tab
     {
-        private SingleLineTextBoxWidget connectIpTextBox;
-        private SingleLineTextBoxWidget connectPortTextBox;
+        private TextBox connectIpTextBox;
+        private TextBox connectPortTextBox;
 
         public TabMultiplayerConnect()
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(1, 3));
-            connectIpTextBox = new SingleLineTextBoxWidget(24, "localhost", Ressources.FontRomulus) { Padding = new Margins(8) };
-            connectPortTextBox = new SingleLineTextBoxWidget(24, "7777", Ressources.FontRomulus) { Padding = new Margins(8) };
+            connectIpTextBox = new TextBox() { Padding = new Margins(8), Text = "localhost" };
+            connectPortTextBox = new TextBox() { Padding = new Margins(8), Text = "7777" };
             var connectButton = new Button { Text = "Connect", Dock = Dock.Bottom }
                 .RegisterMouseClickEvent(Connect);
 
@@ -52,7 +51,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         private void Connect(Widget widget)
         {
             var task = Jobs.ConnectToServer
-                           .SetArguments(new Jobs.ConnectToServerInfo(connectIpTextBox.Text.String, int.Parse(connectPortTextBox.Text.String)))
+                           .SetArguments(new Jobs.ConnectToServerInfo(connectIpTextBox.Text, int.Parse(connectPortTextBox.Text)))
                            .Then((t, a) => { Rise.Scene.Switch(new SceneGameplay((GameState)((Job)t).Result)); });
 
             Rise.Scene.Switch(new LoadingScene(task));

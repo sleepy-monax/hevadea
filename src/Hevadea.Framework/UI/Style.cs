@@ -58,7 +58,7 @@ namespace Hevadea.Framework.UI
     public class Border
     {
         public Margins Margins { get; set; } = new Margins(0);
-        public Color Color { get; set; } = Color.Transparent;
+        public Color Color { get; set; } = ColorPalette.Border;
 
         public Border()
         {
@@ -79,20 +79,27 @@ namespace Hevadea.Framework.UI
 
     public class Style
     {
+
+        public static Style Empty => new Style(); 
+
         public Margins Margin { get; set; }
         public Border Border { get; set; }
         public Margins Padding { get; set; }
 
-        public SpriteFont Font;
+        public SpriteFont Font { get; set; }
 
-        public Color TextColor;
-        public Color Background;
+        public Color TextColor { get; set; }
+        public Color Background { get; set; }
 
         public Style()
         {
             Margin = new Margins();
-            Border = new Border();
+            Border = new Border() { Margins = new Margins(4) };
             Padding = new Margins();
+
+            Background = ColorPalette.Background;
+            TextColor = Color.White;
+            Font = Rise.Ui.DefaultFont;
         }
 
         public Rectangle GetContent(Rectangle rectangle)
@@ -104,13 +111,13 @@ namespace Hevadea.Framework.UI
             destination = Margin.Apply(destination);
 
             // Borders
-            spriteBatch.FillRectangle(destination, Border.Color);
+            spriteBatch.FillRectangle(Widget.Scale(destination), Border.Color);
             destination = Border.Margins.Apply(destination);
 
             // Padding
             destination = Padding.Apply(destination);
 
-            spriteBatch.FillRectangle(destination, Background);
+            spriteBatch.FillRectangle(Widget.Scale(destination), Background);
         }
     }
 }

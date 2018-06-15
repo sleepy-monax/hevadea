@@ -5,7 +5,6 @@ using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Framework.UI.Widgets.TextBox;
 using Hevadea.Loading;
 using Hevadea.Registry;
 using Hevadea.Scenes.Widgets;
@@ -19,9 +18,17 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(1, 2));
 
-            var worldNameTextBox = new SingleLineTextBoxWidget(24, "new world", Ressources.FontRomulus) { Padding = new Margins(8) };
+            var worldNameTextBox = new TextBox()
+            {
+                Padding = new Margins(8),
+                Text = "new world"
+            };
 
-            var worldSeedtextBox = new SingleLineTextBoxWidget(24, Rise.Rnd.Next().ToString(), Ressources.FontRomulus) { Padding = new Margins(8) };
+            var worldSeedtextBox = new TextBox()
+            {
+                Padding = new Margins(8),
+                Text = Rise.Rnd.Next().ToString()
+            };
 
             var worldTypeList = new ListWidget() { UnitBound = new Rectangle(0, 0, 256, 128), AlowUnselecting = false};
 
@@ -33,7 +40,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             worldTypeList.SelectFirst();
 
             var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
-            .RegisterMouseClickEvent((s) => Game.New(worldNameTextBox.Text.String, worldSeedtextBox.Text.String, GENERATOR.GENERATORS[((ListItemText)worldTypeList.SelectedItem).Text]));
+            .RegisterMouseClickEvent((s) => Game.New(worldNameTextBox.Text, worldSeedtextBox.Text, GENERATOR.GENERATORS[((ListItemText)worldTypeList.SelectedItem).Text]));
 
             var worldOptions = new FlowLayout
             {

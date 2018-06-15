@@ -100,11 +100,9 @@
     <Compile Include="UI\Widgets\PictureWidget.cs" />
     <Compile Include="UI\Widgets\ProgressBar.cs" />
     <Compile Include="UI\Widgets\SpriteButton.cs" />
-    <Compile Include="UI\Widgets\TextBox\Cursor.cs" />
     <Compile Include="Graphic\Text\Text.cs" />
-    <Compile Include="UI\Widgets\TextBox\SingleLineTextBoxWidget.cs" />
-    <Compile Include="UI\Widgets\TextBox\TextBoxWidget.cs" />
     <Compile Include="Graphic\Text\TextRenderer.cs" />
+    <Compile Include="UI\Widgets\TextBox.cs" />
     <Compile Include="Utils\AnchorUtils.cs" />
     <Compile Include="Utils\ColisionUtils.cs" />
     <Compile Include="Utils\EasingManager.cs" />
