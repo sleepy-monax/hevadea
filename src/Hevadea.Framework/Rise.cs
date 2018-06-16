@@ -27,7 +27,6 @@ namespace Hevadea.Framework
         // Components
         public static LegacyInputManager Input;
 
-        public static KeyboardInputManager Keyboard;
         public static Controller Controller;
         public static Pointing Pointing;
 
@@ -80,7 +79,6 @@ namespace Hevadea.Framework
 
             Logger.Log("Rise", LoggerLevel.Info, "Initializing modules...");
 
-            Keyboard = new KeyboardInputManager();
             Controller = new Controller();
             Pointing = new Pointing();
             Input = new LegacyInputManager();
@@ -95,11 +93,6 @@ namespace Hevadea.Framework
             Graphic.ResetRenderTargets();
             Scene.Initialize();
             Input.Initialize();
-
-            if (Platform.GetPlatformName() != "Android")
-            {
-                Keyboard.Initialize(300, 5);
-            }
 
             Scene.Switch(_startScene);
 
@@ -126,7 +119,6 @@ namespace Hevadea.Framework
 
             Pointing.Update();
             Input.Update(gameTime);
-            Keyboard.Update();
             Scene.Update(gameTime);
             Debug.Update(gameTime);
 

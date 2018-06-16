@@ -80,7 +80,13 @@ namespace Hevadea.Framework.UI
     public class Style
     {
 
-        public static Style Empty => new Style(); 
+        public static Style Idle => new Style();
+        public static Style Focused { get
+            {
+                Style style = new Style();
+                style.Border.Color = ColorPalette.Accent;
+                return style;
+            } }
 
         public Margins Margin { get; set; }
         public Border Border { get; set; }
@@ -89,16 +95,18 @@ namespace Hevadea.Framework.UI
         public SpriteFont Font { get; set; }
 
         public Color TextColor { get; set; }
+        public Color Accent { get; set; }
         public Color Background { get; set; }
 
         public Style()
         {
-            Margin = new Margins();
+            Margin = new Margins(4);
             Border = new Border() { Margins = new Margins(4) };
-            Padding = new Margins();
+            Padding = new Margins(4);
 
             Background = ColorPalette.Background;
             TextColor = Color.White;
+            Accent = ColorPalette.Accent;
             Font = Rise.Ui.DefaultFont;
         }
 
@@ -113,11 +121,10 @@ namespace Hevadea.Framework.UI
             // Borders
             spriteBatch.FillRectangle(Widget.Scale(destination), Border.Color);
             destination = Border.Margins.Apply(destination);
-
-            // Padding
-            destination = Padding.Apply(destination);
-
             spriteBatch.FillRectangle(Widget.Scale(destination), Background);
+
+    
+
         }
     }
 }

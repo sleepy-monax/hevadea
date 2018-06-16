@@ -40,16 +40,14 @@ namespace Hevadea.Scenes
                 TextSize = 1f,
             };
 
-            var prompt = new Label
+            var prompt = new Button("> Press any key <")
             {
-                Text = "> Press any key <",
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, 256),
                 Font = Ressources.FontRomulus,
                 TextColor = Color.White * 0.75f,
-                TextSize = 1f,
-            };
+            }.RegisterMouseClickEvent(Game.GoToMainMenu);
 
             var version = new Label
             {

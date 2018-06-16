@@ -154,7 +154,13 @@ namespace Hevadea.Worlds
                 if (Rise.ShowGui)
                 {
                     e.DrawOverlay(spriteBatchPool.OverlaySpriteBatch, gameTime);
-                    if (Rise.Debug.GAME) spriteBatchPool.OverlaySpriteBatch.PutPixel(e.Position, Color.Magenta);
+                }
+
+                if (Rise.Debug.GAME)
+                {
+                    spriteBatchPool.OverlaySpriteBatch.PutPixel(e.Position, Color.Magenta);
+                    spriteBatchPool.OverlaySpriteBatch.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
+                    spriteBatchPool.OverlaySpriteBatch.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
                 }
 
                 // Draw Entity light source.

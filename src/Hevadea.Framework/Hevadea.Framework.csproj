@@ -69,7 +69,6 @@
     <Compile Include="Graphic\SpriteBatchExtension.cs" />
     <Compile Include="Graphic\Text.cs" />
     <Compile Include="Input\KeyBinding.cs" />
-    <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Input\LegacyInputManager.cs" />
     <Compile Include="MonoGameHandler.cs" />
     <Compile Include="Networking\Client.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="ColorPalette.cs" />
     <Compile Include="Scening\Scene.cs" />
     <Compile Include="Scening\SceneManager.cs" />
+    <Compile Include="Charsets.cs" />
     <Compile Include="Threading\Job.cs" />
     <Compile Include="UI\Containers\Container.cs" />
     <Compile Include="UI\Containers\FlowLayout.cs" />

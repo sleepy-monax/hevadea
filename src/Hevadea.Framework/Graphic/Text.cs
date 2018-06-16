@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Framework.Graphic
@@ -49,6 +50,29 @@ namespace Hevadea.Framework.Graphic
 
             spriteBatch.DrawString(font, text, pos - origin, color, 0f, Vector2.Zero, new Vector2(scale, scale),
                 SpriteEffects.None, 1f);
+        }
+
+        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Color color, Anchor alignement = Anchor.TopLeft, float scale = 1f, Point? offset = null)
+            => DrawString(spriteBatch, font, text, boundary, color, alignement, alignement, scale = 1f, offset);
+
+        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Color color, Anchor origin = Anchor.TopLeft, Anchor alignement = Anchor.TopLeft, float scale = 1f, Point? offset = null)
+        {
+            var size = font.MeasureString(text) * scale;
+
+            var textBound = new Rectangle(Point.Zero, size.ToPoint());
+            var position = boundary.Location + boundary.GetAnchorPoint(alignement) - textBound.GetAnchorPoint(origin) + (offset ?? Point.Zero);
+
+            spriteBatch.DrawString(font, text, position.ToVector2(), color, 0f, Vector2.Zero, new Vector2(scale, scale),
+                SpriteEffects.None, 1f);
+        }
+
+        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Vector2 pos, Color color, Anchor origin = Anchor.TopLeft, float scale = 1f, Vector2? offset = null)
+        {
+            var size = font.MeasureString(text) * scale;
+
+            var textBound = new Rectangle(Point.Zero, size.ToPoint());
+
+            spriteBatch.DrawString(font, text, pos - textBound.GetAnchorPoint(origin).ToVector2() + (offset ?? Vector2.Zero), color,0f, Vector2.Zero, new Vector2(scale, scale), SpriteEffects.None, 0f);
         }
     }
 }
