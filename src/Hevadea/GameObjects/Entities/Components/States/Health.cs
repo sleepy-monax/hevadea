@@ -9,7 +9,7 @@ using System;
 
 namespace Hevadea.GameObjects.Entities.Components.States
 {
-    public sealed class Health : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
+    public sealed class Health : EntityComponent, IEntityComponentOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
         private float _knckbckX, _knckbckY, _coolDown, _heathbarTimer = 0f;
 
@@ -41,7 +41,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
             MaxValue = maxHealth;
         }
 
-        public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (ShowHealthBar && Math.Abs(Value - MaxValue) > 0.05)
             {

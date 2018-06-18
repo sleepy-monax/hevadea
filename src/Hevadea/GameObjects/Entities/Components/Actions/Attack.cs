@@ -139,7 +139,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
             var baseDamages = GetBaseDamages();
             if (!Owner.GetComponent<Energy>()?.Reduce(1f) ?? false) return;
-            var facingTile = Owner.GetFacingTile();
+            var facingTile = Owner.FacingCoordinates;
 
             if (CanAttackEntities)
             {
@@ -153,7 +153,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                     }
             }
 
-            if (CanAttackTile && !IsAttacking && AttackTile(weapon, Owner.GetFacingTile()))
+            if (CanAttackTile && !IsAttacking && AttackTile(weapon, Owner.FacingCoordinates))
                 IsAttacking = true;
 
             if (IsAttacking && Owner == Owner.GameState.LocalPlayer.Entity)

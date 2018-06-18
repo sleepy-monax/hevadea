@@ -38,7 +38,7 @@ namespace Hevadea.GameObjects.Items.Tags
         {
             foreach (var dmg in PerEntityDamage)
             {
-                if (e.IsMemberOf(dmg.Groupe))
+                if (e.MemberOf(dmg.Groupe))
                 {
                     return dmg.Damages;
                 }

@@ -26,6 +26,7 @@ namespace Hevadea.Worlds
         public string Name { get; set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
+        public Point Size => new Point(Width, Height);
         public LevelProperties Properties { get; }
         public bool IsInitialized { get; private set; } = false;
         public Chunk[,] Chunks { get; set; }
@@ -153,7 +154,7 @@ namespace Hevadea.Worlds
                 // Draw Entity overlay.
                 if (Rise.ShowGui)
                 {
-                    e.DrawOverlay(spriteBatchPool.OverlaySpriteBatch, gameTime);
+                    e.Overlay(spriteBatchPool.OverlaySpriteBatch, gameTime);
                 }
 
                 if (Rise.Debug.GAME)
@@ -408,7 +409,7 @@ namespace Hevadea.Worlds
 
         public void AddEntity(Entity e)
         {
-            Chunk chunk = GetChunkAt(e.GetTilePosition());
+            Chunk chunk = GetChunkAt(e.Coordinates);
             chunk.AddEntity(e);
 
             e.Level = this;
@@ -419,23 +420,25 @@ namespace Hevadea.Worlds
             }
         }
 
-        public Entity AddEntityAt(Entity e, Coordinates t)
+        public Entity AddEntityAt(Entity entity, Coordinates coordinates) => AddEntityAt(entity, coordinates, Vector2.Zero);
+        public Entity AddEntityAt(Entity entity, Coordinates coordinates, Vector2 offset)
         {
-            return AddEntityAt(e, t.X + 0.5f, t.Y + 0.5f);
+            AddEntity(entity);
+            entity.Position = coordinates.ToVector2() + new Vector2(Game.Unit / 2) + offset;
+            return entity;
         }
 
-        public Entity AddEntityAt(Entity e, float tx, float ty)
+        public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates, Vector2 offset)
         {
-            AddEntity(e);
-            e.SetPosition(tx * Game.Unit, ty * Game.Unit);
-            return e;
+            var entity = blueprint.Construct();
+            AddEntityAt(entity, coordinates, offset);
+            return entity;
         }
 
         public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
-            e.SetPosition((tx * Game.Unit) + (Game.Unit / 2) + offX,
-                          (ty * Game.Unit) + (Game.Unit / 2) + offY);
+            e.Position = new Vector2(tx, ty) + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
             return e;
         }
 
@@ -448,9 +451,15 @@ namespace Hevadea.Worlds
 
         public void RemoveEntity(Entity e)
         {
-            Chunk chunk = GetChunkAt(e.GetTilePosition());
+            Chunk chunk = GetChunkAt(e.Coordinates);
 
             chunk.RemoveEntity(e);
+        }
+
+        public bool AnyEntityAt(Coordinates t) => AnyEntityAt(t.X, t.Y);
+        public bool AnyEntityAt(int tx, int ty)
+        {
+            return GetEntitiesAt(tx, ty).Count == 0;
         }
 
         public List<Entity> GetEntitiesAt(Coordinates t) => GetEntitiesAt(t.X, t.Y);

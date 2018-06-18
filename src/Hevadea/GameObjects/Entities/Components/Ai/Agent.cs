@@ -7,7 +7,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
 {
     public enum AgentAbortReason { None, ImStuck, PickedUp, TagetLost }
 
-    public class Agent : EntityComponent, IEntityComponentUpdatable, IEntityComponentDrawableOverlay
+    public class Agent : EntityComponent, IEntityComponentUpdatable, IEntityComponentOverlay
     {
         private Behavior _behavior;
 
@@ -35,7 +35,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
         {
             CurrentAction = null;
             ActionQueue.Clear();
-            Logger.Log<Agent>($"{Owner.GetIdentifier()} aborted: {why}");
+            Logger.Log<Agent>($"{Owner.Identifier} aborted: {why}");
             _behavior?.IaAborted(why);
         }
 
@@ -59,7 +59,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai
             CurrentAction?.Perform(this, gameTime);
         }
 
-        public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (Rise.Debug.GAME)
             {

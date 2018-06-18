@@ -49,7 +49,9 @@
     <Compile Include="Extension\DictionaryExtension.cs" />
     <Compile Include="Extension\FastRandomExtension.cs" />
     <Compile Include="Extension\GameTimeExtension.cs" />
+    <Compile Include="Extension\LinqExtension.cs" />
     <Compile Include="Extension\ListExtension.cs" />
+    <Compile Include="Extension\PointExtension.cs" />
     <Compile Include="Extension\RandomExtension.cs" />
     <Compile Include="Extension\SpriteFontExtension.cs" />
     <Compile Include="Extension\Texture2DExtension.cs" />

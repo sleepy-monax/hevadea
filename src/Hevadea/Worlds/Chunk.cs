@@ -48,7 +48,7 @@ namespace Hevadea.Worlds
 
         public void AddEntity(Entity e)
         {
-            Coordinates tPos = e.GetTilePosition();
+            Coordinates tPos = e.Coordinates;
 
             Entities.Add(e);
             EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Add(e);
@@ -58,7 +58,7 @@ namespace Hevadea.Worlds
 
         public void RemoveEntity(Entity e)
         {
-            Coordinates tPos = e.GetTilePosition();
+            Coordinates tPos = e.Coordinates;
 
             Entities.Remove(e);
             EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Remove(e);
@@ -112,7 +112,7 @@ namespace Hevadea.Worlds
             // Saving entities
             foreach (var e in Entities)
             {
-                if (!e.IsMemberOf(ENTITIES.GROUPE_SAVE_EXCUDED))
+                if (!e.MemberOf(ENTITIES.GROUPE_SAVE_EXCUDED))
                 {
                     store.Entities.Add(e.Save());
                 }

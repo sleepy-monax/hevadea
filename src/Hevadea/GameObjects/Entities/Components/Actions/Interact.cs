@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Hevadea.GameObjects.Entities.Components.Actions
 {
-    public class Interact : EntityComponent, IEntityComponentDrawableOverlay, IEntityComponentUpdatable
+    public class Interact : EntityComponent, IEntityComponentOverlay, IEntityComponentUpdatable
     {
         private Sprite _cursor;
         private Sprite _cursorTile;
@@ -31,7 +31,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public Coordinates SelectedTile { get; private set; } = new Coordinates(0, 0);
 
-        public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             _cursorEntity.Draw(spriteBatch, new Vector2(_cursorX - 8, _cursorY - 8), Color.White);
             (_isEntitySelected ? _cursorTile : _cursor).Draw(spriteBatch, new Vector2(_cursorTileX - 8, _cursorTileY - 8), Color.White);
@@ -39,7 +39,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public void Update(GameTime gameTime)
         {
-            SelectedTile = Owner.GetFacingTile();
+            SelectedTile = Owner.FacingCoordinates;
             var selectedEntity = Owner.GetFacingEntity(26);
 
             float tx = 0;

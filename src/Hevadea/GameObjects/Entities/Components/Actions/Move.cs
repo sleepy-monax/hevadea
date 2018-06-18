@@ -53,9 +53,9 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
         {
             if (Owner.Removed) return false;
 
-            if (Owner.Level.GetTile(Owner.GetTilePosition()).HasTag<GroundTile>())
+            if (Owner.Level.GetTile(Owner.Coordinates).HasTag<GroundTile>())
             {
-                var ground = Owner.Level.GetTile(Owner.GetTilePosition()).Tag<GroundTile>();
+                var ground = Owner.Level.GetTile(Owner.Coordinates).Tag<GroundTile>();
 
                 sx *= ground.MoveSpeed;
                 sy *= ground.MoveSpeed;
@@ -101,7 +101,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
                 }
 
-                var entityTilePosition = Owner.GetTilePosition();
+                var entityTilePosition = Owner.Coordinates;
 
                 for (var x = -1; x <= 1; x++)
                 {
@@ -123,7 +123,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
             if (sx != 0 || sy != 0)
             {
                 Owner.SetPosition(Owner.X + sx, Owner.Y + sy);
-                Owner.Level.GetTile(Owner.GetTilePosition()).Tag<GroundTile>()?.SteppedOn(Owner, Owner.GetTilePosition());
+                Owner.Level.GetTile(Owner.Coordinates).Tag<GroundTile>()?.SteppedOn(Owner, Owner.Coordinates);
                 IsMoving = true;
                 return true;
             }

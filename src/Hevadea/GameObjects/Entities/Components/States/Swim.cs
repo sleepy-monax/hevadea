@@ -16,7 +16,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
         {
             var health = Owner.GetComponent<Health>();
             var energy = Owner.GetComponent<Energy>();
-            var position = Owner.GetTilePosition();
+            var position = Owner.Coordinates;
 
             if (Owner.Level.IsAll<LiquideTile>(new Rectangle((int)Owner.X - 4, (int)Owner.Y - 4, 8, 8)))
             {
@@ -29,7 +29,7 @@ namespace Hevadea.GameObjects.Entities.Components.States
                         energy.Reduce(0.01f);
                         if (energy.Value < 0.01f)
                         {
-                            health.Hurt(Owner.GetTileOnMyPosition(), 1f * gameTime.GetDeltaTime(), position.X, position.Y);
+                            health.Hurt(Owner.TileOver, 1f * gameTime.GetDeltaTime(), position.X, position.Y);
                         }
                     }
                 }

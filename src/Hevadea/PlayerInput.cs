@@ -117,7 +117,7 @@ namespace Hevadea
                 case PlayerInput.DropItem:
                     var level = Player.Level;
                     var item = Player.HoldingItem;
-                    var facingTile = Player.GetFacingTile();
+                    var facingTile = Player.FacingCoordinates;
                     Player.GetComponent<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
                     break;
 
@@ -137,7 +137,7 @@ namespace Hevadea
                     break;
 
                 case PlayerInput.AddWaypoint:
-                    var pos = Player.GetTilePosition();
+                    var pos = Player.Coordinates;
                     Player.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
                     break;
             }

@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.GameObjects.Entities;
+using Hevadea.GameObjects.Tiles;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -62,7 +63,7 @@ namespace Hevadea.Worlds
         public void SpawnPlayer(Player player)
         {
             var level = GetLevel(PlayerSpawnLevel);
-            level.AddEntityAt(player, level.Width / 2, level.Height / 2);
+            level.AddEntityAt(player, new Coordinates(level.Width / 2, level.Height / 2));
         }
 
         public Level GetLevel(string name)

@@ -17,6 +17,11 @@ namespace Hevadea.Storage
             Data = new Dictionary<string, object>();
         }
 
+        public EntityStorage(string type, int ueid) : this (type)
+        {
+            Ueid = ueid;
+        }
+
         public EntityStorage(string type, Dictionary<string, object> data)
         {
             Type = type;

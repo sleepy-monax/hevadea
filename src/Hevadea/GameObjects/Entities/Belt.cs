@@ -34,10 +34,10 @@ namespace Hevadea.GameObjects.Entities
 
         public override void OnUpdate(GameTime gameTime)
         {
-            var entities = Level.GetEntitiesAt(GetTilePosition());
+            var entities = Level.GetEntitiesAt(Coordinates);
             foreach (var e in entities)
             {
-                e.GetComponent<Move>()?.MoveTo(GetFacingTile(), speed: 0.5f);
+                e.GetComponent<Move>()?.MoveTo(FacingCoordinates, speed: 0.5f);
             }
         }
 

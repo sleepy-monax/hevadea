@@ -14,7 +14,7 @@ namespace Hevadea.GameObjects.Entities.Components
 
         public void Update(GameTime gameTime)
         {
-            var p = Owner.GetTilePosition();
+            var p = Owner.Coordinates;
             Owner.Level.Minimap.Reveal(Rise.Rnd.Next(-Range, Range) + p.X, Rise.Rnd.Next(-Range, Range) + p.Y);
         }
     }

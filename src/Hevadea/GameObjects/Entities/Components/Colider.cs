@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components
 {
-    public class Colider : EntityComponent, IEntityComponentDrawableOverlay
+    public class Colider : EntityComponent, IEntityComponentOverlay
     {
         public Func<Entity, bool> ColidePredicat = b => { return true; };
         private RectangleF _hitbox;
@@ -38,7 +38,7 @@ namespace Hevadea.GameObjects.Entities.Components
             return ColidePredicat(e);
         }
 
-        public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (Rise.Debug.GAME)
                 spriteBatch.DrawRectangle(ToRectangle(), Color.Red, 1 / Owner.GameState.Camera.Zoom);

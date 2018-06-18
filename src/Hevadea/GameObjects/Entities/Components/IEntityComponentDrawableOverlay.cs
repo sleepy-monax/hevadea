@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.GameObjects.Entities.Components
 {
-    public interface IEntityComponentDrawableOverlay
+    public interface IEntityComponentOverlay
     {
-        void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime);
+        void Overlay(SpriteBatch spriteBatch, GameTime gameTime);
     }
 }

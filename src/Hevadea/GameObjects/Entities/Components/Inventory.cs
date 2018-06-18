@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Hevadea.GameObjects.Entities.Components
 {
-    public class Inventory : EntityComponent, IEntityComponentSaveLoad, IEntityComponentDrawableOverlay, IEntityComponentUpdatable
+    public class Inventory : EntityComponent, IEntityComponentSaveLoad, IEntityComponentOverlay, IEntityComponentUpdatable
     {
         private Item _lastAdded;
         private double _addedTimer = 0;
@@ -83,7 +83,7 @@ namespace Hevadea.GameObjects.Entities.Components
             }
         }
 
-        public void DrawOverlay(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (_lastAdded != null)
             {

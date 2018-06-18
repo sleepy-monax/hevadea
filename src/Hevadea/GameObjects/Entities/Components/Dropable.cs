@@ -10,7 +10,7 @@ namespace Hevadea.GameObjects.Entities.Components
 
         public void Drop()
         {
-            var pos = Owner.GetTilePosition();
+            var pos = Owner.Coordinates;
 
             foreach (var d in Items)
                 if (Rise.Rnd.NextDouble() < d.Chance) d.Item.Drop(Owner.Level, pos, Rise.Rnd.Next(d.Min, d.Max));

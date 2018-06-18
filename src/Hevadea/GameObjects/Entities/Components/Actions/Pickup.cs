@@ -18,7 +18,7 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public void Do()
         {
-            var facingTile = Owner.GetFacingTile();
+            var facingTile = Owner.FacingCoordinates;
 
             if (_pickupedEntity != null) LayDownEntity();
             else PickupEntity(Owner.GetFacingEntity(26));
@@ -54,12 +54,12 @@ namespace Hevadea.GameObjects.Entities.Components.Actions
 
         public bool LayDownEntity()
         {
-            var facingTile = Owner.GetFacingTile();
+            var facingTile = Owner.FacingCoordinates;
 
             if (_pickupedEntity != null && !Owner.Level.GetEntitiesAt(facingTile).Any() && facingTile.InLevelBound(Owner.Level))
             {
                 _pickupedEntity.Facing = Owner.Facing;
-                Owner.Level.AddEntityAt(_pickupedEntity, facingTile.X, facingTile.Y);
+                Owner.Level.AddEntityAt(_pickupedEntity, facingTile);
                 _pickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
                 _pickupedEntity = null;
 

@@ -109,12 +109,7 @@
     <Compile Include="GameObjects\Entities\Tree.cs" />
     <Compile Include="GameObjects\Entities\XpOrb.cs" />
     <Compile Include="GameObjects\Entities\Zombie.cs" />
-    <Compile Include="GameObjects\Entities\Entity\Entity.Base.cs" />
-    <Compile Include="GameObjects\Entities\Entity\Entity.Component.cs" />
-    <Compile Include="GameObjects\Entities\Entity\Entity.LifeCycle.cs" />
-    <Compile Include="GameObjects\Entities\Entity\Entity.Position.cs" />
-    <Compile Include="GameObjects\Entities\Graphic\NullRenderer.cs" />
-    <Compile Include="GameObjects\Entities\Graphic\Renderer.cs" />
+    <Compile Include="GameObjects\Entities\Entity.cs" />
     <Compile Include="Registry\ENTITIES.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="GameObjects\Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />

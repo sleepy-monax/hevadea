@@ -50,7 +50,7 @@ namespace Hevadea.GameObjects.Entities.Components
                 }
             }
 
-            var pos = Owner.GetTilePosition();
+            var pos = Owner.Coordinates;
             for (int x = -(int)_radius; x <= (int)_radius; x++)
             {
                 for (int y = -(int)_radius; y <= (int)_radius; y++)

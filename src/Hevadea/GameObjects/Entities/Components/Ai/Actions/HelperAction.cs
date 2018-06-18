@@ -15,7 +15,7 @@ namespace Hevadea.GameObjects.Entities.Components.Ai.Actions
         {
             if (usePathFinding)
             {
-                if (ag.Owner.Level.GetPath(out var path, ag.Owner.GetTilePosition().AsNode(), pos.AsNode(), WalkablePredicat))
+                if (ag.Owner.Level.GetPath(out var path, ag.Owner.Coordinates.AsNode(), pos.AsNode(), WalkablePredicat))
                 {
                     foreach (var n in path)
                     {

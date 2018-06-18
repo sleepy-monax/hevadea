@@ -3,6 +3,7 @@ using Hevadea.GameObjects.Entities;
 using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace Hevadea.GameObjects.Tiles
 {
@@ -95,6 +96,11 @@ namespace Hevadea.GameObjects.Tiles
         public Point ToPoint()
         {
             return new Point(X, Y);
+        }
+
+        public Vector2 ToVector2()
+        {
+            return new Vector2(X, Y);
         }
 
         public PathFinder.Node AsNode()

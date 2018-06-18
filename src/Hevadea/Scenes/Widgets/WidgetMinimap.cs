@@ -22,7 +22,7 @@ namespace Hevadea.Scenes.Widgets
             {
                 //var states = _game.MainPlayer.Level.GetRenderState(_game.Camera);
                 var map = _gameState.LocalPlayer.Entity.Level.Minimap.Texture;
-                var p = _gameState.LocalPlayer.Entity.GetTilePosition().ToPoint();
+                var p = _gameState.LocalPlayer.Entity.Coordinates.ToPoint();
 
                 var dest = UnitHost;
                 var offset = new Point(p.X - dest.Width / 4 / 2, p.Y - dest.Height / 4 / 2);

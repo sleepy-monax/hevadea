@@ -1,9 +1,20 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace Hevadea.Framework.Extension
 {
     public static class RandomExtension
     {
+        public static Vector2 NextVector2(this Random random, int minX, int maxX, int minY, int maxY)
+        {
+            return new Vector2(random.Next(minX, maxX), random.Next(minY, maxY));
+        }
+
+        public static Vector2 NextVector2(this Random random, int min, int max)
+        {
+            return new Vector2(random.Next(min, max), random.Next(min, max));
+        }
+
         public static float NextFloat(this Random rnd, float max)
             => (float)rnd.NextDouble() * max;
 
