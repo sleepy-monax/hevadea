@@ -15,9 +15,6 @@ namespace Hevadea.GameObjects.Entities
 
         public Belt()
         {
-            AddComponent(new Breakable());
-            AddComponent(new Dropable { Items = { new Drop(ITEMS.BELT, 1f, 1, 1) } });
-
             SortingOffset = -16;
 
             if (_sprites == null)
@@ -30,15 +27,16 @@ namespace Hevadea.GameObjects.Entities
                     new Sprite(Ressources.TileEntities, new Point(10, 3))
                 };
             }
+
+            AddComponent(new Breakable());
+            AddComponent(new Dropable { Items = { new Drop(ITEMS.BELT, 1f, 1, 1) } });
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
-            var entities = Level.GetEntitiesAt(Coordinates);
-            foreach (var e in entities)
-            {
-                e.GetComponent<Move>()?.MoveTo(FacingCoordinates, speed: 0.5f);
-            }
+            Level
+                .GetEntitiesAt(Coordinates)
+                .ForEach(x => x.GetComponent<Move>()?.MoveTo(FacingCoordinates, speed: 0.5f));
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

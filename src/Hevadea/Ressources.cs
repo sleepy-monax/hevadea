@@ -16,24 +16,23 @@ namespace Hevadea
         public static Sprite[] MinimapIcon = new Sprite[16];
 
         public static SpriteFont FontAlagard;
-        public static SpriteFont FontAlagardBig;
         public static SpriteFont FontHack;
         public static SpriteFont FontRomulus;
+
         public static SpriteSheet TileCreatures;
         public static SpriteSheet TileEntities;
+        public static SpriteSheet TileGrass;
         public static SpriteSheet TileGui;
         public static SpriteSheet TileIcons;
         public static SpriteSheet TileItems;
         public static SpriteSheet TileMinimapIcon;
         public static SpriteSheet TileRock;
-        public static SpriteSheet TileGrass;
         public static SpriteSheet TileTiles;
-
-        public static Texture2D MakerLogo;
 
         public static Texture2D ImgCreatures;
         public static Texture2D ImgEngineLogo;
         public static Texture2D ImgEntities;
+        public static Texture2D ImgGrass;
         public static Texture2D ImgGui;
         public static Texture2D ImgHevadeaLogo;
         public static Texture2D ImgIcons;
@@ -43,17 +42,16 @@ namespace Hevadea
         public static Texture2D ImgMapIcon;
         public static Texture2D ImgMapOver;
         public static Texture2D ImgRock;
-        public static Texture2D ImgGrass;
         public static Texture2D ImgShadow;
         public static Texture2D ImgSwing;
         public static Texture2D ImgTiles;
+        public static Texture2D MakerLogo;
 
         public static void Load()
         {
             MakerLogo = Rise.Ressource.GetImage("maker-logo");
 
             FontAlagard = Rise.Ressource.GetSpriteFont("alagard");
-            FontAlagardBig = Rise.Ressource.GetSpriteFont("alagard_big");
             FontHack = Rise.Ressource.GetSpriteFont("hack");
             FontRomulus = Rise.Ressource.GetSpriteFont("romulus");
 

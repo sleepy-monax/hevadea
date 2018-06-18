@@ -11,10 +11,10 @@ namespace Hevadea.GameObjects.Entities
     {
         public Npc()
         {
-            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
-            AddComponent(new Interact());
             AddComponent(new Attack());
             AddComponent(new Burnable(1f));
+            AddComponent(new Interact());
+            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
             AddComponent(new Shadow());
         }
     }

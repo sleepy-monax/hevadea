@@ -18,12 +18,12 @@ namespace Hevadea.GameObjects.Entities
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 1));
 
             AddComponent(new Breakable());
-            AddComponent(new LightSource());
-            AddComponent(new Dropable { Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1) } });
-            AddComponent(new Move());
-            AddComponent(new Pushable());
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
+            AddComponent(new Dropable { Items = { new Drop(ITEMS.FURNACE, 1f, 1, 1) } });
+            AddComponent(new LightSource());
+            AddComponent(new Move());
             AddComponent(new Pickupable(_sprite));
+            AddComponent(new Pushable());
             AddComponent(new Shadow());
         }
 

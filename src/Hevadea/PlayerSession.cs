@@ -11,7 +11,6 @@ namespace Hevadea
         public int Token { get; set; }
         public Player Entity { get; set; }
         public PlayerInputHandler InputHandler { get; set; }
-
         public bool HasJoined => _gameState != null;
 
         private GameState _gameState;

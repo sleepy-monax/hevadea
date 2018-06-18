@@ -21,12 +21,13 @@ namespace Hevadea.GameObjects.Entities
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
             _age = 0;
             _delay = 3f;
-            AddComponent(new Move());
+
+            AddComponent(new Breakable());
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Explode(10f, 3f));
-            AddComponent(new Pushable());
-            AddComponent(new Breakable());
+            AddComponent(new Move());
             AddComponent(new Pickupable(_sprite));
+            AddComponent(new Pushable());
             AddComponent(new Shadow());
         }
 

@@ -40,25 +40,23 @@ namespace Hevadea
             {
                 if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
                 {
-                    if (input.KeyDown(Keys.Z) != input.KeyDown(Keys.S))
-                    {
-                        if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
-                        if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
-                    }
-
+                    if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
                     if (input.KeyDown(Keys.Q) != input.KeyDown(Keys.D))
                     {
                         if (input.KeyDown(Keys.Q)) HandleInput(PlayerInput.MoveLeft);
                         if (input.KeyDown(Keys.D)) HandleInput(PlayerInput.MoveRight);
                     }
-
-                    if (input.KeyDown(Keys.J)) HandleInput(PlayerInput.Attack);
+                    if (input.KeyDown(Keys.Z) != input.KeyDown(Keys.S))
+                    {
+                        if (input.KeyDown(Keys.Z)) HandleInput(PlayerInput.MoveUp);
+                        if (input.KeyDown(Keys.S)) HandleInput(PlayerInput.MoveDown);
+                    }
+                    if (input.KeyPress(Keys.A)) HandleInput(PlayerInput.DropItem);
+                    if (input.KeyPress(Keys.Add) || input.KeyPress(Keys.Up)) HandleInput(PlayerInput.ZoomIn);
                     if (input.KeyPress(Keys.K)) HandleInput(PlayerInput.Action);
                     if (input.KeyPress(Keys.L)) HandleInput(PlayerInput.Pickup);
-                    if (input.KeyPress(Keys.A)) HandleInput(PlayerInput.DropItem);
-                    if (input.KeyPress(Keys.X)) HandleInput(PlayerInput.AddWaypoint);
-                    if (input.KeyPress(Keys.Add) || input.KeyPress(Keys.Up)) HandleInput(PlayerInput.ZoomIn);
                     if (input.KeyPress(Keys.Subtract) || input.KeyPress(Keys.Down)) HandleInput(PlayerInput.ZoomOut);
+                    if (input.KeyPress(Keys.X)) HandleInput(PlayerInput.AddWaypoint);
                 }
 
                 if (Rise.Platform.Family == PlatformFamily.Mobile && Rise.Pointing.AreaDown(screenBound))

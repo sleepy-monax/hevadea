@@ -4,11 +4,11 @@
     {
         public string Name { get; }
 
+        public abstract Entity Construct();
+
         public EntityBlueprint(string name)
         {
             Name = name;
         }
-
-        public abstract Entity Construct();
     }
 }

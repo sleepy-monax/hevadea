@@ -26,27 +26,27 @@ namespace Hevadea.Loading
         {
             _progressLabel = new Label
             {
-                Text = "Generating world...",
                 Anchor = Anchor.Center,
-                Origine = Anchor.Center,
                 Font = Ressources.FontRomulus,
+                Origine = Anchor.Center,
+                Text = "Generating world...",
                 UnitOffset = new Point(0, -24)
             };
 
             _progressBar = new ProgressBar
             {
-                UnitBound = new Rectangle(0, 0, 320, 8),
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
+                UnitBound = new Rectangle(0, 0, 320, 8),
                 UnitOffset = new Point(0, 24)
             };
 
             var _cancelButton = new SpriteButton()
             {
+                Anchor = Anchor.TopRight,
+                Origine = Anchor.Center,
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 48, 48),
-                Anchor = Anchor.TopRight,
-                Origine = Anchor.Center
             }.RegisterMouseClickEvent((sender) =>
             {
                 _job.Cancel();
@@ -60,19 +60,11 @@ namespace Hevadea.Loading
                 {
                     new WidgetFancyPanel
                     {
-                        UnitBound = new Rectangle(0, 0, 840, 256),
                         Anchor = Anchor.Center,
-                        Origine = Anchor.Center,
+                        Content = new Container { Childrens = { _progressBar, _progressLabel, _cancelButton } }
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
-                        Content = new Container
-                        {
-                            Childrens =
-                            {
-                                _progressBar,
-                                _progressLabel,
-                                _cancelButton
-                            }
-                        }
+                        Origine = Anchor.Center,
+                        UnitBound = new Rectangle(0, 0, 840, 256),
                     }
                 }
             };
@@ -86,8 +78,8 @@ namespace Hevadea.Loading
 
         public override void OnUpdate(GameTime gameTime)
         {
-            _progressLabel.Text = _job.Status;
             _progressBar.Value = _job.Progress;
+            _progressLabel.Text = _job.Status;
         }
 
         public override void Unload()

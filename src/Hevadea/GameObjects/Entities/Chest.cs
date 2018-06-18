@@ -17,16 +17,16 @@ namespace Hevadea.GameObjects.Entities
         {
             _sprite = new Sprite(Ressources.TileEntities, new Point(0, 1));
 
-            AddComponent(new Dropable() { Items = { new Items.Drop(ITEMS.CHEST, 1f, 1, 1) } });
-            AddComponent(new Move());
-            AddComponent(new Inventory(128));
-            AddComponent(new Pickupable(_sprite));
+            AddComponent(new Burnable(1f));
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
-            AddComponent(new Pushable());
+            AddComponent(new Dropable() { Items = { new Items.Drop(ITEMS.CHEST, 1f, 1, 1) } });
             AddComponent(new Health(10));
             AddComponent(new Interactable()).Interacted += EntityInteracte;
+            AddComponent(new Inventory(128));
+            AddComponent(new Move());
             AddComponent(new Pickupable(_sprite));
-            AddComponent(new Burnable(1f));
+            AddComponent(new Pickupable(_sprite));
+            AddComponent(new Pushable());
             AddComponent(new Shadow());
         }
 

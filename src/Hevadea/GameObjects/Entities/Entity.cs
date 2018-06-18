@@ -17,31 +17,26 @@ namespace Hevadea.GameObjects.Entities
     public partial class Entity
     {
         public int Ueid { get; set; } = -1;
-        public string Identifier => $"{Blueprint?.Name ?? "none"}:{Ueid:x}";
-
         public float X { get; private set; }
         public float Y { get; private set; }
-
-        public Vector2 Position { get => new Vector2(X, Y); set => SetPosition(value.X, value.Y); }
-        public Coordinates Coordinates => new Coordinates((int)(X / Game.Unit), (int)(Y / Game.Unit));
-        public Tile TileOver { get => Level.GetTile(Coordinates); set => Level.SetTile(Coordinates, value); }
-
-        public int SortingOffset { get; set; } = 0;
-
-        public Direction Facing { get; set; } = Direction.South;
-        public Point FacingVector => Facing.ToPoint();
-        public Coordinates FacingCoordinates => new Coordinates(FacingVector.X + Coordinates.X, FacingVector.Y + Coordinates.Y);
-
         public bool Initialized { get; private set; } = false;
         public bool Removed { get; set; } = true;
-
         public EntityBlueprint Blueprint { get; set; }
-        public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
-        public List<EntityComponent> Componenents { get; set; } = new List<EntityComponent>();
 
-        public Level Level { get; set; }
-        public World World { get; private set; }
+        public Coordinates Coordinates => new Coordinates((int)(X / Game.Unit), (int)(Y / Game.Unit));
+        public Coordinates FacingCoordinates => new Coordinates(FacingVector.X + Coordinates.X, FacingVector.Y + Coordinates.Y);
+        public Direction Facing { get; set; } = Direction.South;
+        public int SortingOffset { get; set; } = 0;
+        public List<EntityComponent> Componenents { get; set; } = new List<EntityComponent>();
+        public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
+        public Point FacingVector => Facing.ToPoint();
+        public string Identifier => $"{Blueprint?.Name ?? "none"}:{Ueid:x}";
+        public Tile TileOver { get => Level.GetTile(Coordinates); set => Level.SetTile(Coordinates, value); }
+        public Vector2 Position { get => new Vector2(X, Y); set => SetPosition(value.X, value.Y); }
+
         public GameState GameState { get; private set; }
+        public World World { get; private set; }
+        public Level Level { get; set; }
 
         public Entity()
         {
@@ -93,10 +88,6 @@ namespace Hevadea.GameObjects.Entities
             Initialized = true;
         }
 
-        public virtual void OnLoad(EntityStorage store)
-        {
-        }
-
         public Entity Load(EntityStorage store)
         {
             Ueid = store.Ueid;
@@ -112,10 +103,6 @@ namespace Hevadea.GameObjects.Entities
             OnLoad(store);
 
             return this;
-        }
-
-        public virtual void OnSave(EntityStorage store)
-        {
         }
 
         public EntityStorage Save()
@@ -145,7 +132,8 @@ namespace Hevadea.GameObjects.Entities
             var oldPos = Coordinates;
             Chunk oldChunk = Level.GetChunkAt(oldPos);
 
-            X = x; Y = y;
+            X = x;
+            Y = y;
 
             var newPos = Coordinates;
             Chunk newChunk = Level.GetChunkAt(newPos);
@@ -160,9 +148,7 @@ namespace Hevadea.GameObjects.Entities
         }
 
         public bool MemberOf(BlueprintGroupe<EntityBlueprint> groupe)
-        {
-            return Blueprint != null && groupe.Members.Contains(Blueprint);
-        }
+            => Blueprint != null && groupe.Members.Contains(Blueprint);
 
         private static Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
         {
@@ -202,9 +188,7 @@ namespace Hevadea.GameObjects.Entities
             return null;
         }
 
-        public virtual void OnUpdate(GameTime gameTime)
-        {
-        }
+        /* --- Game loop --------------------------------------------------- */
 
         public void Update(GameTime gameTime)
         {
@@ -214,10 +198,6 @@ namespace Hevadea.GameObjects.Entities
 
             OnUpdate(gameTime);
             ParticleSystem.Update(gameTime);
-        }
-
-        public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -235,6 +215,24 @@ namespace Hevadea.GameObjects.Entities
             Componenents
                 .OfType<IEntityComponentOverlay>()
                 .ForEarch(x => x.Overlay(spriteBatch, gameTime));
+        }
+
+        /* --- Virtual functions ------------------------------------------- */
+
+        public virtual void OnLoad(EntityStorage store)
+        {
+        }
+
+        public virtual void OnSave(EntityStorage store)
+        {
+        }
+
+        public virtual void OnUpdate(GameTime gameTime)
+        {
+        }
+
+        public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
         }
     }
 }

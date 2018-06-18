@@ -24,20 +24,21 @@ namespace Hevadea.GameObjects.Entities
             var health = new Health(3) { ShowHealthBar = false, NaturalRegeneration = true };
             health.Killed += Health_Killed;
             AddComponent(health);
+
             AddComponent(new Attack());
+            AddComponent(new Burnable(1.5f));
+            AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Energy());
-            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
-            AddComponent(new Inventory(64) { AlowPickUp = true });
             AddComponent(new Interact());
+            AddComponent(new Inventory(64) { AlowPickUp = true });
             AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new Move());
-            AddComponent(new Swim());
-            AddComponent(new Pushable());
-            AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
+            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
             AddComponent(new Pickup());
-            AddComponent(new Burnable(1.5f));
+            AddComponent(new Pushable());
             AddComponent(new RevealMap(16));
             AddComponent(new Shadow());
+            AddComponent(new Swim());
         }
 
         private void Health_Killed(object sender, System.EventArgs e)

@@ -19,13 +19,13 @@ namespace Hevadea.GameObjects.Entities
             _sprite = new Sprite(Ressources.TileEntities, new Point(1, 0));
 
             AddComponent(new Breakable());
-            AddComponent(new Dropable { Items = { new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1) } });
-            AddComponent(new Pushable());
-            AddComponent(new Move());
-            AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Burnable(1f));
-            AddComponent(new Pickupable(_sprite));
+            AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new CraftingStation(RECIPIES.BenchCrafted));
+            AddComponent(new Dropable { Items = { new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1) } });
+            AddComponent(new Move());
+            AddComponent(new Pickupable(_sprite));
+            AddComponent(new Pushable());
             AddComponent(new Shadow());
         }
 
