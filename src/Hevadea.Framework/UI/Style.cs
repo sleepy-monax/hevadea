@@ -79,14 +79,17 @@ namespace Hevadea.Framework.UI
 
     public class Style
     {
-
         public static Style Idle => new Style();
-        public static Style Focused { get
+
+        public static Style Focused
+        {
+            get
             {
                 Style style = new Style();
                 style.Border.Color = ColorPalette.Accent;
                 return style;
-            } }
+            }
+        }
 
         public Margins Margin { get; set; }
         public Border Border { get; set; }
@@ -122,9 +125,6 @@ namespace Hevadea.Framework.UI
             spriteBatch.FillRectangle(Widget.Scale(destination), Border.Color);
             destination = Border.Margins.Apply(destination);
             spriteBatch.FillRectangle(Widget.Scale(destination), Background);
-
-    
-
         }
     }
 }

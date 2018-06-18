@@ -72,7 +72,7 @@ namespace Hevadea.Framework.Graphic
 
             var textBound = new Rectangle(Point.Zero, size.ToPoint());
 
-            spriteBatch.DrawString(font, text, pos - textBound.GetAnchorPoint(origin).ToVector2() + (offset ?? Vector2.Zero), color,0f, Vector2.Zero, new Vector2(scale, scale), SpriteEffects.None, 0f);
+            spriteBatch.DrawString(font, text, pos - textBound.GetAnchorPoint(origin).ToVector2() + (offset ?? Vector2.Zero), color, 0f, Vector2.Zero, new Vector2(scale, scale), SpriteEffects.None, 0f);
         }
     }
 }

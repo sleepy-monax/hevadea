@@ -4,11 +4,6 @@ using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Scenes
 {
@@ -63,13 +58,11 @@ namespace Hevadea.Scenes
 
             Container = new Container(title, subTitle, prompt, version)
             {
-
             };
         }
 
         public override void OnDraw(GameTime gameTime)
         {
-
         }
 
         public override void OnUpdate(GameTime gameTime)
@@ -82,7 +75,6 @@ namespace Hevadea.Scenes
 
         public override void Unload()
         {
-
         }
     }
 }

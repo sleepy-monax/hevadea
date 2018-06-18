@@ -1,11 +1,9 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Loading;
 using Hevadea.Registry;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -30,7 +28,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Text = Rise.Rnd.Next().ToString()
             };
 
-            var worldTypeList = new ListWidget() { UnitBound = new Rectangle(0, 0, 256, 128), AlowUnselecting = false};
+            var worldTypeList = new ListWidget() { UnitBound = new Rectangle(0, 0, 256, 128), AlowUnselecting = false };
 
             foreach (var item in GENERATOR.GENERATORS)
             {

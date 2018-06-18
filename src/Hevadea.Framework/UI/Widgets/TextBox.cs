@@ -1,23 +1,19 @@
-﻿using Hevadea.Framework.Utils;
-using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Platform;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hevadea.Framework.Platform;
 using Microsoft.Xna.Framework.Input;
+using System.Linq;
 
 namespace Hevadea.Framework.UI.Widgets
 {
     public class TextBox : Widget
     {
-        int _cursorIndex = 0;
-        string _text = "";
+        private int _cursorIndex = 0;
+        private string _text = "";
 
-        public Style  Style { get; set; } = Style.Focused;
+        public Style Style { get; set; } = Style.Idle;
         public Style FocusedStyle { get; set; } = Style.Focused;
         public string AcceptedChar { get; set; } = Charsets.ASCII;
 
@@ -36,6 +32,7 @@ namespace Hevadea.Framework.UI.Widgets
             get => _cursorIndex;
             set => _cursorIndex = Mathf.Clamp(value, 0, Text.Length);
         }
+
         public TextBox()
         {
             CanGetFocus = true;
@@ -88,7 +85,7 @@ namespace Hevadea.Framework.UI.Widgets
             var selectionBegin = Scale(Style.Font.MeasureString(Text.Substring(0, CursorIndex)).X);
 
             spriteBatch.DrawString(Style.Font, Text, textBound, Style.TextColor, Anchor.Left, Scale(1f));
-            if (FocusedStyle) spriteBatch.DrawString(Style.Font, "_", new Rectangle(textBound.Location + new Point((int)selectionBegin, Scale(4)), textBound.Size), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, Style.Accent * Mathf.Sin((float)gameTime.TotalGameTime.TotalSeconds * Mathf.PI * Mathf.PI), Scale(1f));
+            if (Focused) spriteBatch.DrawString(Style.Font, "_", new Rectangle(textBound.Location + new Point((int)selectionBegin, Scale(4)), textBound.Size), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, Style.Accent * Mathf.Sin((float)gameTime.TotalGameTime.TotalSeconds * Mathf.PI * Mathf.PI), Scale(1f));
         }
     }
 }

@@ -158,7 +158,6 @@ namespace Hevadea.Framework
                 Ui.ScaleFactor *= 2f;
                 Scene.GetCurrentScene()?.RefreshLayout();
             }
-
         }
 
         private static void MonoGameOnDraw(Game sender, GameTime gameTime)
@@ -167,8 +166,6 @@ namespace Hevadea.Framework
             Graphic.Clear(Color.Black);
             Scene.Draw(gameTime);
             Debug.Draw(gameTime);
-
-            
         }
     }
 }

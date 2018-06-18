@@ -6,7 +6,7 @@ namespace Hevadea.Framework.UI.Widgets
 {
     public class ProgressBar : Widget
     {
-        public Color ProgressColor { get; set; } = Color.Gold;
+        public Color ProgressColor { get; set; } = ColorPalette.Accent;
         public Color Color { get; set; } = Color.White * 0.5f;
         public float Value { get; set; } = 0f;
 
