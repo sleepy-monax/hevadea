@@ -1,7 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Networking;
-using Hevadea.GameObjects;
+using Hevadea;
 using Hevadea.Multiplayer;
 using Hevadea.Storage;
 using Hevadea.Worlds;

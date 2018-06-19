@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework;
-using Hevadea.GameObjects;
+using Hevadea;
 
 namespace Hevadea.Registry
 {

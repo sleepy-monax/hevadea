@@ -1,8 +1,8 @@
-﻿using Hevadea.GameObjects;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Blueprints;
-using Hevadea.GameObjects.Entities.Blueprints.Legacy;
-using Hevadea.GameObjects.Items;
+﻿using Hevadea;
+using Hevadea.Entities;
+using Hevadea.Entities.Blueprints;
+using Hevadea.Entities.Blueprints.Legacy;
+using Hevadea.Items;
 using System.Collections.Generic;
 
 namespace Hevadea.Registry

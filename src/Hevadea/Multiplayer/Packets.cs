@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework.Data;
-using Hevadea.GameObjects.Tiles;
+using Hevadea.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 

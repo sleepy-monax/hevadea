@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Tiles;
+using Hevadea.Entities;
+using Hevadea.Tiles;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

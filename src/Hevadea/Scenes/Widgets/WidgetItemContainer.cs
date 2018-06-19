@@ -2,8 +2,8 @@
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
-using Hevadea.GameObjects;
-using Hevadea.GameObjects.Items;
+using Hevadea;
+using Hevadea.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

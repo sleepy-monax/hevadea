@@ -1,5 +1,6 @@
-﻿using Hevadea.GameObjects;
-using Hevadea.GameObjects.Tiles;
+﻿using Hevadea;
+using Hevadea.Registry;
+using Hevadea.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 

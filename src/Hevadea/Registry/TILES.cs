@@ -1,13 +1,14 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.GameObjects.Items;
-using Hevadea.GameObjects.Tiles;
-using Hevadea.GameObjects.Tiles.Components;
-using Hevadea.GameObjects.Tiles.Renderers;
+using Hevadea;
+using Hevadea.Items;
+using Hevadea.Tiles;
+using Hevadea.Tiles.Components;
+using Hevadea.Tiles.Renderers;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Hevadea.GameObjects
+namespace Hevadea.Registry
 {
     public static class TILES
     {

@@ -1,9 +1,10 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
-using Hevadea.GameObjects.Entities.Components.States;
+using Hevadea.Entities.Components.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Entities;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -11,9 +12,9 @@ namespace Hevadea.Scenes.Widgets
     {
         private readonly Sprite _energy;
         private readonly Sprite _hearth;
-        private readonly GameObjects.Entities.Player _player;
+        private readonly Player _player;
 
-        public WidgetPlayerStats(GameObjects.Entities.Player player)
+        public WidgetPlayerStats(Player player)
         {
             _player = player;
             _hearth = new Sprite(Ressources.TileIcons, 0);

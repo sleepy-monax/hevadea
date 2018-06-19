@@ -1,4 +1,4 @@
-﻿using Hevadea.GameObjects.Entities;
+﻿using Hevadea.Entities;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Worlds

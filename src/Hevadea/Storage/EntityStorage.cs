@@ -1,5 +1,5 @@
 ﻿using Hevadea.Registry;
-using Hevadea.GameObjects.Entities;
+using Hevadea.Entities;
 using System.Collections.Generic;
 
 namespace Hevadea.Storage

@@ -1,11 +1,11 @@
 ﻿using Hevadea.Framework.Utils;
-using Hevadea.GameObjects.Entities;
+using Hevadea.Entities;
 using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace Hevadea.GameObjects.Tiles
+namespace Hevadea.Tiles
 {
     public class Coordinates
     {

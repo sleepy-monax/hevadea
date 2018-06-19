@@ -1,7 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Networking;
-using Hevadea.GameObjects.Entities;
+using Hevadea.Entities;
 using Hevadea.Registry;
 using System.Net.Sockets;
 

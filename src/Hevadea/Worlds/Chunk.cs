@@ -1,7 +1,7 @@
-﻿using Hevadea.GameObjects;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Tiles;
-using Hevadea.GameObjects.Tiles.Renderers;
+﻿using Hevadea;
+using Hevadea.Entities;
+using Hevadea.Tiles;
+using Hevadea.Tiles.Renderers;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using System.Collections.Generic;

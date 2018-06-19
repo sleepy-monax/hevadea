@@ -1,13 +1,13 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.GameObjects.Entities.Blueprints;
-using Hevadea.GameObjects.Entities.Components.Attributes;
-using Hevadea.GameObjects.Items;
-using Hevadea.GameObjects.Items.Tags;
+using Hevadea.Entities.Blueprints;
+using Hevadea.Entities.Components.Attributes;
+using Hevadea.Items;
+using Hevadea.Items.Tags;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Hevadea.GameObjects
+namespace Hevadea.Registry
 {
     public static class ITEMS
     {

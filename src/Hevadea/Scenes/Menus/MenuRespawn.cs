@@ -4,7 +4,7 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
-using Hevadea.GameObjects.Entities;
+using Hevadea.Entities;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 

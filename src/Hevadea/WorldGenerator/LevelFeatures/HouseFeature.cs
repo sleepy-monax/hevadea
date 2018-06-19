@@ -1,5 +1,5 @@
-﻿using Hevadea.GameObjects;
-using Hevadea.GameObjects.Tiles;
+﻿using Hevadea;
+using Hevadea.Tiles;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

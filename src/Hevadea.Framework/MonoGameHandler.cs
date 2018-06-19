@@ -35,8 +35,8 @@ namespace Hevadea.Framework
             Content.RootDirectory = "Content";
             Graphics = new GraphicsDeviceManager(this);
 
-            Graphics.SynchronizeWithVerticalRetrace = false;
-            IsFixedTimeStep = false;
+            //Graphics.SynchronizeWithVerticalRetrace = false;
+            //IsFixedTimeStep = false;
         }
 
         protected override void Initialize()

@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework.Extension;
-using Hevadea.GameObjects.Entities.Blueprints;
-using Hevadea.GameObjects.Tiles;
+using Hevadea.Entities.Blueprints;
+using Hevadea.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 

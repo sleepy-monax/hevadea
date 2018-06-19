@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework.Threading;
 using Hevadea.Framework;
-using Hevadea.GameObjects.Entities;
+using Hevadea.Entities;
 using Hevadea.Multiplayer;
 using Hevadea.Registry;
 using Hevadea.WorldGenerator;

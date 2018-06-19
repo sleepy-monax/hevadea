@@ -1,9 +1,9 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Utils;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Components;
-using Hevadea.GameObjects.Entities.Components.Actions;
+using Hevadea.Entities;
+using Hevadea.Entities.Components;
+using Hevadea.Entities.Components.Actions;
 using Hevadea.Scenes.Menus;
 using Hevadea.Utils;
 using Hevadea.Worlds;

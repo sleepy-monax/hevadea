@@ -1,4 +1,4 @@
-﻿using Hevadea.GameObjects;
+﻿using Hevadea;
 using Hevadea.WorldGenerator;
 using Hevadea.WorldGenerator.LevelFeatures;
 using Hevadea.WorldGenerator.WorldFeatures;

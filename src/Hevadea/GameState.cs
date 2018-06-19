@@ -1,7 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Threading;
-using Hevadea.GameObjects.Entities;
+using Hevadea.Entities;
 using Hevadea.Loading;
 using Hevadea.Multiplayer;
 using Hevadea.Scenes.Menus;

@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
-using Hevadea.GameObjects.Entities;
-using Hevadea.GameObjects.Entities.Components.States;
+using Hevadea.Entities;
+using Hevadea.Entities.Components.States;
 using Hevadea.Storage;
 
 namespace Hevadea
