@@ -61,7 +61,7 @@ namespace Hevadea.Loading
                     new WidgetFancyPanel
                     {
                         Anchor = Anchor.Center,
-                        Content = new Container { Childrens = { _progressBar, _progressLabel, _cancelButton } }
+                        Content = new Container { Childrens = { _progressBar, _progressLabel, _cancelButton } },
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
                         Origine = Anchor.Center,
                         UnitBound = new Rectangle(0, 0, 840, 256),

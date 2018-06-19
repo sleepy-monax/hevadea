@@ -32,12 +32,11 @@ namespace Hevadea.Framework
 
         public MonoGameHandler()
         {
+            Content.RootDirectory = "Content";
             Graphics = new GraphicsDeviceManager(this);
 
-            //Graphics.SynchronizeWithVerticalRetrace = false;
-            //IsFixedTimeStep = false;
-
-            Content.RootDirectory = "Content";
+            Graphics.SynchronizeWithVerticalRetrace = false;
+            IsFixedTimeStep = false;
         }
 
         protected override void Initialize()
