@@ -16,7 +16,7 @@ namespace Hevadea
         public static readonly int VersionNumber = 1;
         public static readonly string SubTitle = "\"Tales of the unknown\"";
         public static readonly string Title = "Hevadea";
-        public static readonly string Version = "0.1.0 ALPHA";
+        public static readonly string Version = "0.2.0";
 
         public static string GetSaveFolder()
         {

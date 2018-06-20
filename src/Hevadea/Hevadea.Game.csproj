@@ -127,6 +127,11 @@
     <Compile Include="Entities\Components\Render\NpcRender.cs" />
     <Compile Include="Entities\Components\Render\ParticleEmiter.cs" />
     <Compile Include="Entities\Components\RevealMap.cs" />
+    <Compile Include="Registry\SYSTEMS.cs" />
+    <Compile Include="Systems\GameSystem.cs" />
+    <Compile Include="Systems\HealthSystem.cs" />
+    <Compile Include="Systems\PhysicSystem.cs" />
+    <Compile Include="Systems\SpawnSystem.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
     <Compile Include="BlueprintGroupe.cs" />
     <Compile Include="Registry\ITEMS.cs" />
