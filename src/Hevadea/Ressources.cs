@@ -1,4 +1,4 @@
-﻿using Hevadea.Framework;
+﻿ using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
@@ -79,6 +79,7 @@ namespace Hevadea
             TileRock = new SpriteSheet(ImgRock, new Point(16, 16));
             TileGrass = new SpriteSheet(ImgGrass, new Point(16, 16));
             TileTiles = new SpriteSheet(ImgTiles, new Point(32, 32));
+
 
             for (int i = 0; i < 16; i++)
             {

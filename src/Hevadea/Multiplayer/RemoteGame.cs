@@ -7,6 +7,7 @@ using Hevadea.Storage;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using Hevadea.Registry;
 
 namespace Hevadea
 {

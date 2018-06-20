@@ -5,6 +5,7 @@ using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System;
+using Hevadea.Registry;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {

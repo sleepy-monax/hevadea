@@ -1,4 +1,5 @@
-﻿using Hevadea.Worlds;
+﻿using Hevadea.Registry;
+using Hevadea.Worlds;
 
 namespace Hevadea.Tiles.Components
 {

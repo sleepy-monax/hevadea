@@ -424,7 +424,7 @@ namespace Hevadea.Worlds
         public Entity AddEntityAt(Entity entity, Coordinates coordinates, Vector2 offset)
         {
             AddEntity(entity);
-            entity.Position = coordinates.ToVector2() + new Vector2(Game.Unit / 2) + offset;
+            entity.Position = coordinates.ToVector2() * Game.Unit + new Vector2(Game.Unit / 2) + offset;
             return entity;
         }
 
@@ -438,7 +438,7 @@ namespace Hevadea.Worlds
         public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
-            e.Position = new Vector2(tx, ty) + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
+            e.Position = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
             return e;
         }
 

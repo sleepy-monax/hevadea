@@ -7,6 +7,7 @@ using Hevadea.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Registry;
 
 namespace Hevadea.Scenes.Widgets
 {

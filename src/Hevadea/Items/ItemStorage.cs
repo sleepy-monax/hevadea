@@ -1,4 +1,5 @@
-﻿using Hevadea.Tiles;
+﻿using Hevadea.Registry;
+using Hevadea.Tiles;
 using Hevadea.Worlds;
 using System;
 using System.Collections.Generic;

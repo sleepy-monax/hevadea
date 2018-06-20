@@ -7,6 +7,7 @@ using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.Render;
 using Hevadea.Entities.Components.States;
 using Microsoft.Xna.Framework;
+using Hevadea.Registry;
 
 namespace Hevadea.Entities
 {
