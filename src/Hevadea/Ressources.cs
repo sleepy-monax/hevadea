@@ -61,14 +61,15 @@ namespace Hevadea
             ImgGui = Rise.Ressource.GetImage("gui");
             ImgIcons = Rise.Ressource.GetImage("icons");
             ImgItems = Rise.Ressource.GetImage("items");
-            ImgLight = Rise.Ressource.GetImage("light");
             ImgMap = Rise.Ressource.GetImage("map");
             ImgMapIcon = Rise.Ressource.GetImage("map_icon");
             ImgMapOver = Rise.Ressource.GetImage("map_overlay");
             ImgRock = Rise.Ressource.GetImage("rock");
             ImgGrass = Rise.Ressource.GetImage("grass");
-            ImgShadow = Rise.Ressource.GetImage("shadow");
             ImgTiles = Rise.Ressource.GetImage("tiles");
+
+            ImgShadow = Rise.Ressource.GetTexture("effects/shadow");
+            ImgLight = Rise.Ressource.GetTexture("effects/light");
 
             TileCreatures = new SpriteSheet(ImgCreatures, new Point(48, 128));
             TileEntities = new SpriteSheet(ImgEntities, new Point(16, 16));
@@ -87,18 +88,18 @@ namespace Hevadea
             }
 
             ParalaxeForest = new ParalaxeBackground(
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest0"), 0f),
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest1"), 64f),
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest2"), 96f),
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/forest3"), 128f)
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/forest0"), 0f),
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/forest1"), 64f),
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/forest2"), 96f),
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/forest3"), 128f)
             );
 
             ParalaxeMontain = new ParalaxeBackground(
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain0"), 0f),
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain1"), 64f),
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain2"), 96f),
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain3"), 128f),
-                new ParalaxeLayer(Rise.Ressource.GetImage("background/montain4"), 160f)
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/montain0"), 0f),
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/montain1"), 64f),
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/montain2"), 96f),
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/montain3"), 128f),
+                new ParalaxeLayer(Rise.Ressource.GetTexture("backgrounds/montain4"), 160f)
             );
 
             SprUnderWater = new Sprite(TileCreatures, 3, new Point(16, 32));

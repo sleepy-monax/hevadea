@@ -30,6 +30,19 @@ namespace Hevadea.Framework.Ressource
             return FontCache[name];
         }
 
+        public Texture2D GetTexture(string name)
+        {
+            if (Rise.NoGraphic) return null;
+
+            if (!TextureCache.ContainsKey("tex:" + name))
+            {
+                Logger.Log<RessourceManager>($"Loading <image>{name}");
+                TextureCache.Add("tex:" + name, Rise.MonoGame.Content.Load<Texture2D>($"textures/{name}"));
+            }
+
+            return TextureCache["tex:" + name];
+        }
+
         public Texture2D GetImage(string name)
         {
             if (Rise.NoGraphic) return null;
