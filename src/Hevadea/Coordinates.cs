@@ -9,16 +9,16 @@ namespace Hevadea.Tiles
 {
     public class Coordinates
     {
+		public int X { get; set; }
+		public int Y { get; set; }
+		public int WorldX => X * Game.Unit;
+		public int WorldY => Y * Game.Unit;
+
         public Coordinates(int x, int y)
         {
             X = x;
             Y = y;
         }
-
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int WorldX => X * Game.Unit;
-        public int WorldY => Y * Game.Unit;
 
         public Point ToOnScreenPosition()
         {
@@ -37,9 +37,11 @@ namespace Hevadea.Tiles
 
         public bool IsColliding(Entity e, int width, int height)
         {
-            return ColisionUtils.Colinding(X * Game.Unit,
-                Y * Game.Unit,
-                Game.Unit, Game.Unit,
+            return ColisionUtils.Colinding(
+				X * Game.Unit,
+				Y * Game.Unit,
+				Game.Unit,
+				Game.Unit,
                 e.X,
                 e.Y,
                 width, height);

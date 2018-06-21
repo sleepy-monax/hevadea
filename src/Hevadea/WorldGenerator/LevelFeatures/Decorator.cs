@@ -3,6 +3,7 @@ using Hevadea.Entities.Blueprints;
 using Hevadea.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;
+using Hevadea.Framework;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
@@ -30,6 +31,7 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 
         public override void Apply(Generator gen, LevelGenerator levelGen, Level level)
         {
+			Logger.Log<Decorator>(GetName());
             for (var x = 0; x < gen.Size; x += Spacing)
             {
                 for (var y = 0; y < gen.Size; y += Spacing)

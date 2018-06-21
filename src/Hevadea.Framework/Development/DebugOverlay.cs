@@ -7,15 +7,15 @@ namespace Hevadea.Framework.Debug
 {
     public class DebugManager
     {
+		SpriteBatch _sb;
+		float fps;
+		float ups;
+
         public bool HELP { get; set; }
         public bool GENERAL { get; set; }
         public bool GAME { get; set; }
         public bool UI { get; set; }
-
-        private SpriteBatch _sb;
-        private float fps;
-        private float ups;
-
+       
         public DebugManager()
         {
             _sb = Rise.Graphic.CreateSpriteBatch();
@@ -26,6 +26,7 @@ namespace Hevadea.Framework.Debug
             fps += ((1f / (Math.Max(1, Rise.MonoGame.DrawTime) / 1000f)) - fps) * 0.01f;
             ups += ((1f / (Math.Max(1, Rise.MonoGame.UpdateTime) / 1000f)) - ups) * 0.01f;
         }
+       
 
         public void Draw(GameTime gameTime)
         {

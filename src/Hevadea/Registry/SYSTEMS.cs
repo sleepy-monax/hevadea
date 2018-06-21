@@ -11,7 +11,7 @@ namespace Hevadea.Registry
     {
         public static List<GameSystem> GetSystems()
         {
-
+			return null;
         }
     }
 }

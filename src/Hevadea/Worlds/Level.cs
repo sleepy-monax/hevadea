@@ -3,7 +3,6 @@ using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Framework.Utils;
-using Hevadea;
 using Hevadea.Entities;
 using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components;
@@ -20,7 +19,7 @@ using System.Linq;
 
 namespace Hevadea.Worlds
 {
-    public partial class Level
+    public class Level
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -407,52 +406,38 @@ namespace Hevadea.Worlds
 
         /* --- Entities ----------------------------------------------------- */
 
-        public void AddEntity(Entity e)
-        {
-            Chunk chunk = GetChunkAt(e.Coordinates);
-            chunk.AddEntity(e);
-
-            e.Level = this;
-
-            if (IsInitialized)
-            {
-                e.Initialize(this, _world, _gameState);
-            }
-        }
-
-        public Entity AddEntityAt(Entity entity, Coordinates coordinates) => AddEntityAt(entity, coordinates, Vector2.Zero);
-        public Entity AddEntityAt(Entity entity, Coordinates coordinates, Vector2 offset)
-        {
-            AddEntity(entity);
-            entity.Position = coordinates.ToVector2() * Game.Unit + new Vector2(Game.Unit / 2) + offset;
-            return entity;
-        }
+		public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates)
+            => AddEntityAt(blueprint.Construct(), coordinates, Vector2.Zero);
 
         public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates, Vector2 offset)
-        {
-            var entity = blueprint.Construct();
-            AddEntityAt(entity, coordinates, offset);
-            return entity;
-        }
+            => AddEntityAt(blueprint.Construct(), coordinates, offset);
+      
+        public Entity AddEntityAt(EntityBlueprint blueprint, int tx, int ty, float offX = 0f, float offY = 0f)
+            => AddEntityAt(blueprint.Construct(), tx, ty, offX, offY);
 
-        public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
+		public Entity AddEntityAt(Entity entity, Coordinates coordinates)
+		    => AddEntityAt(entity, coordinates, Vector2.Zero);
+
+		public Entity AddEntityAt(Entity entity, Coordinates coordinates, Vector2 offset)
+		    => AddEntityAt(entity, coordinates.X, coordinates.Y, offset.X, offset.Y);
+
+		public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
             e.Position = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
             return e;
         }
-
-        public Entity AddEntityAt(EntityBlueprint b, int tx, int ty, float offX = 0f, float offY = 0f)
+    
+		public void AddEntity(Entity e)
         {
-            var entity = b.Construct();
-            AddEntityAt(entity, tx, ty, offX, offY);
-            return entity;
+            GetChunkAt(e.Coordinates).AddEntity(e);
+            e.Level = this;
+            if (IsInitialized) e.Initialize(this, _world, _gameState);
         }
 
         public void RemoveEntity(Entity e)
         {
             Chunk chunk = GetChunkAt(e.Coordinates);
-
             chunk.RemoveEntity(e);
         }
 

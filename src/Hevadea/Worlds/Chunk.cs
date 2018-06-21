@@ -48,20 +48,16 @@ namespace Hevadea.Worlds
 
         public void AddEntity(Entity e)
         {
-            Coordinates tPos = e.Coordinates;
-
             Entities.Add(e);
-            EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Add(e);
+			EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Add(e);
 
             e.Removed = false;
         }
 
         public void RemoveEntity(Entity e)
         {
-            Coordinates tPos = e.Coordinates;
-
             Entities.Remove(e);
-            EntitiesOnTiles[tPos.X % CHUNK_SIZE, tPos.Y % CHUNK_SIZE].Remove(e);
+			EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Remove(e);
 
             e.Removed = true;
         }
