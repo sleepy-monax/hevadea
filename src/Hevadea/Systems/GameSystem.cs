@@ -10,51 +10,6 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Systems
 {
-    public class GameSystem<T0> : GameSystem 
-        where T0 : EntityComponent 
-    {
-        public GameSystem(string name) : base(name, typeof(T0))
-        { }
-    }
-
-    public class GameSystem<T0, T1> : GameSystem 
-        where T0 : EntityComponent 
-        where T1 : EntityComponent
-    {
-        public GameSystem(string name) : base(name, typeof(T0), typeof(T1))
-        { }
-    }
-
-    public class GameSystem<T0, T1, T2> : GameSystem 
-        where T0 : EntityComponent
-        where T1 : EntityComponent
-        where T2 : EntityComponent
-    {
-        public GameSystem(string name) : base(name, typeof(T0), typeof(T1), typeof(T2))
-        { }
-    }
-
-    public class GameSystem<T0, T1, T2, T3> : GameSystem 
-        where T0 : EntityComponent 
-        where T1 : EntityComponent 
-        where T2 : EntityComponent 
-        where T3 : EntityComponent
-    {
-        public GameSystem(string name) : base(name, typeof(T0), typeof(T1), typeof(T2), typeof(T3))
-        { }
-    }
-
-    public class GameSystem<T0, T1, T2, T3, T4> : GameSystem
-        where T0 : EntityComponent
-        where T1 : EntityComponent
-        where T2 : EntityComponent 
-        where T3 : EntityComponent 
-        where T4 : EntityComponent
-    {
-        public GameSystem(string name) : base(name, typeof(T0), typeof(T1), typeof(T2), typeof(T3), typeof(T4))
-        { }
-    }
-
     public class GameSystem 
     {
         private List<Type> _requiredComponents = new List<Type>();

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Hevadea.Entities
 {
@@ -46,8 +47,8 @@ namespace Hevadea.Entities
 
         public T AddComponent<T>(T component) where T : EntityComponent
         {
-            if (Initialized) throw new System.Exception($"Trying to add component ({typeof(T).Name}) at runtime !");
-            if (Componenents.Any(e => e == component)) throw new System.Exception($"Duplicated component ({typeof(T).Name}) !");
+            if (Initialized) throw new Exception($"Trying to add component ({typeof(T).Name}) at runtime !");
+            if (Componenents.Any(e => e == component)) throw new Exception($"Duplicated component ({typeof(T).Name}) !");
 
             Componenents.Add(component);
             component.Owner = this;
@@ -61,14 +62,23 @@ namespace Hevadea.Entities
             return result.Count() > 0 ? result.First() : null;
         }
 
+        public EntityComponent GetEntityComponent(Type type)
+        {
+            var result = Componenents.Where(c => c.GetType() == type);
+            return result.Count() > 0 ? result.First() : null;
+        }
+
         public bool HasComponent<T>(out T component) where T : EntityComponent
         {
             component = GetComponent<T>();
             return component != null;
         }
 
+        public bool HasComponent(Type type)
+            => Componenents.Any(c => c.GetType() == type);
+
         public bool HasComponent<T>() where T : EntityComponent
-            => Componenents.OfType<T>().Any();
+            => Componenents.Any(c=> c is T);
 
         /* --- Operations -------------------------------------------------- */
 

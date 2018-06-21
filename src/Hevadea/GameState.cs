@@ -10,6 +10,7 @@ using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
+using Hevadea.Systems;
 
 namespace Hevadea
 {
@@ -30,6 +31,8 @@ namespace Hevadea
 
         public PlayerSession LocalPlayer { get; set; }
         public List<PlayerSession> Players { get; } = new List<PlayerSession>();
+
+        public List<GameSystem> Systems { get; set; }
 
         public Menu CurrentMenu
         {
