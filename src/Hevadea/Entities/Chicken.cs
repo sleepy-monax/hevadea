@@ -15,11 +15,11 @@ namespace Hevadea.Entities
     {
         public Chicken()
         {
+			AddComponent(new Move());
             AddComponent(new Agent(new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeedWandering = 0.5f }));
             AddComponent(new Burnable(1f));
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Health(3));
-            AddComponent(new Move());
             AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, new Point(4, 0), new Point(42, 128), new Point(16, 32))));
             AddComponent(new Pickupable(new Sprite(Ressources.TileEntities, new Point(12, 0))));
             AddComponent(new Pushable());

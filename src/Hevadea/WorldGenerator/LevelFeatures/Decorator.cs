@@ -37,8 +37,11 @@ namespace Hevadea.WorldGenerator.LevelFeatures
                 for (var y = 0; y < gen.Size; y += Spacing)
                 {
                     var coordinates = new Coordinates(x, y);
-                    if (gen.Random.Next(0, Chance) == 0 && CanBePlantOn.Contains(level.GetTile(coordinates)) && PlacingFunction(x, y, gen, levelGen, level) < Threashold && !level.AnyEntityAt(coordinates))
-                        level.AddEntityAt(_blueprint.Construct(), coordinates, gen.Random.NextVector2(-RandomOffset, RandomOffset));
+                    if (gen.Random.Next(0, Chance) == 0 &&
+					    CanBePlantOn.Contains(level.GetTile(coordinates)) &&
+					    PlacingFunction(x, y, gen, levelGen, level) < Threashold && 
+					    !level.AnyEntityAt(coordinates))
+                        level.AddEntityAt(_blueprint, coordinates, gen.Random.NextVector2(-RandomOffset, RandomOffset));
                 }
 
                 _progress = (x / (float)gen.Size);

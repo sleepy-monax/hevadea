@@ -1,5 +1,4 @@
-﻿using Hevadea;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Renderers;
 using Hevadea.Registry;
@@ -49,7 +48,7 @@ namespace Hevadea.Worlds
         public void AddEntity(Entity e)
         {
             Entities.Add(e);
-			EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Add(e);
+            EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Add(e);
 
             e.Removed = false;
         }
@@ -57,7 +56,7 @@ namespace Hevadea.Worlds
         public void RemoveEntity(Entity e)
         {
             Entities.Remove(e);
-			EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Remove(e);
+            EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Remove(e);
 
             e.Removed = true;
         }
