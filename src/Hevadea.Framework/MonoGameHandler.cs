@@ -27,9 +27,7 @@ namespace Hevadea.Framework
 
         public int DrawTime { get; private set; } = 0;
         public int UpdateTime { get; private set; } = 0;
-
-        public Thread UiThread { get; private set; } = null;
-
+              
         public MonoGameHandler()
         {
             Content.RootDirectory = "Content";
@@ -76,9 +74,7 @@ namespace Hevadea.Framework
         }
 
         protected override void Draw(GameTime gameTime)
-        {
-            if (UiThread == null) UiThread = Thread.CurrentThread;
-
+        {         
             _drawStopwatch.Start();
             OnDraw?.Invoke(this, gameTime);
             _drawStopwatch.Stop();

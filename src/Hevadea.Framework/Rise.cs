@@ -39,8 +39,8 @@ namespace Hevadea.Framework
         public static RessourceManager Ressource;
         public static FastRandom Rnd = new FastRandom();
 
-        private static Scene _startScene;
-        private static Action _initializeAction;
+        static Scene _startScene;
+        static Action _initializeAction;
 
         public static void InitializeNoGraphic(PlatformBase platform)
         {

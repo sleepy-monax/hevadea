@@ -217,7 +217,7 @@ namespace Hevadea
             File.WriteAllText(GetSavePath() + "player.json", LocalPlayer.Save().ToJson());
         }
 
-        private void SaveLevel(Job job, Level level)
+        void SaveLevel(Job job, Level level)
         {
             job.Report($"Saving {level.Name}...");
             string path = GetLevelSavePath(level);

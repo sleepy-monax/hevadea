@@ -74,7 +74,8 @@ namespace Hevadea
             job.Finish += (sender, e) =>
             {
                 GameState gameState = (GameState)((Job)sender).Result;
-                gameState.Initialize();
+				((Job)sender).Report("Initializing...");
+				gameState.Initialize();
                 Rise.Scene.Switch(new SceneGameplay(gameState));
             };
             Rise.Scene.Switch(new LoadingScene(job));

@@ -238,6 +238,7 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Entities\EntityColection.cs" />
     <Compile Include="Scenes\MainMenu\MobileMainMenu.cs" />
+    <Compile Include="Systems\Filter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
