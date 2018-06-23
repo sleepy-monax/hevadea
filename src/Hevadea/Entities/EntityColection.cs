@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Registry;
+using Hevadea.Systems;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace Hevadea.Entities
@@ -12,7 +14,18 @@ namespace Hevadea.Entities
 
         public void UpdateAll(GameTime gameTime)
         {
-            ForEach(e => e.Update(gameTime));
+            foreach (var e in this)
+            {
+                foreach (var sys in SYSTEMS.Systems)
+                {
+                    if (e.Match(sys.Filter) && sys is IProcessSystem process)
+                    {
+                        process.Process(e, gameTime);
+                    }
+                }
+
+                e.Update(gameTime);
+            }
         }
     }
 }

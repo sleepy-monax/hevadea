@@ -27,10 +27,10 @@ namespace Hevadea.Entities.Components.Actions
         private double _speedFactor = 1;
         private double _timer;
 
-        private Sprite _swingUP;
-        private Sprite _swingDown;
-        private Sprite _swingLeft;
-        private Sprite _swingRight;
+        Sprite _swingUP;
+        Sprite _swingDown;
+        Sprite _swingLeft;
+        Sprite _swingRight;
 
         public Attack()
         {

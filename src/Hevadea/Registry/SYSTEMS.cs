@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Registry
 {
-    public class SYSTEMS
+    public static class SYSTEMS
     {
-        public static List<GameSystem> GetSystems()
+        public static List<GameSystem> Systems = new List<GameSystem>();
+
+        public static void Initialize()
         {
-			return null;
+            Systems.Add(new LightSystem());
+            Systems.Add(new ShadowSystem());
         }
     }
 }

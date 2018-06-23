@@ -80,6 +80,56 @@ namespace Hevadea.Entities
         public bool HasComponent<T>() where T : EntityComponent
             => Componenents.Any(c=> c is T);
 
+        public bool HasAnyComponent(params Type[] types)
+        {
+            for (int i = 0; i < types.Length; i++)
+                foreach (var c in Componenents)
+                    if (c.GetType().Equals(types[i]))
+                        return true;
+
+            return types.Length == 0;
+        }
+
+
+        public bool HasNoneComponent(params Type[] types)
+        {
+            foreach (var type in types)
+            {
+                foreach (var c in Componenents)
+                {
+                    if (c.GetType() == type)
+                    {
+                        return false;
+                    };
+                }
+            }
+
+            return true;
+        }
+
+
+        public bool HasAllComponent(params Type[] types)
+        {
+            int matchedComponents = 0;
+
+            for (int i = 0; i < types.Length; i++)
+                foreach (var c in Componenents)
+                    if (c.GetType().Equals(types[i]))
+                    {
+                        matchedComponents++;
+                        break;
+                    }
+
+            return types.Length == 0 || (matchedComponents == types.Length && matchedComponents != 0);
+        }
+
+        public bool Match(Filter filter)
+        {
+            return HasAllComponent(filter.AllType.ToArray()) &&
+                   HasAnyComponent(filter.AnyType.ToArray()) && 
+                   HasNoneComponent(filter.NoneType.ToArray());
+        }
+
         /* --- Operations -------------------------------------------------- */
 
         internal void Initialize(Level level, World world, GameState gameState)

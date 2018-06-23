@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hevadea.Systems;
 
 namespace Hevadea.Worlds
 {
@@ -138,41 +139,38 @@ namespace Hevadea.Worlds
                 for (int y = renderState.RenderBegin.Y; y < renderState.RenderEnd.Y; y++)
                 {
                     Coordinates tile = new Coordinates(x, y);
-                    GetTile(tile).Draw(spriteBatchPool.TileSpriteBatch, tile, GetTileDataAt(tile), this, gameTime);
+                    GetTile(tile).Draw(spriteBatchPool.Tiles, tile, GetTileDataAt(tile), this, gameTime);
                 }
             }
 
-            ParticleSystem.Draw(spriteBatchPool.TileSpriteBatch, gameTime);
+            ParticleSystem.Draw(spriteBatchPool.Tiles, gameTime);
 
             // Draw Entities, Shadows and lights.
             foreach (var e in renderState.OnScreenEntities)
             {
                 // Draw the entity.
-                e.Draw(spriteBatchPool.EntitiesSpriteBatch, gameTime);
+                e.Draw(spriteBatchPool.Entities, gameTime);
 
                 // Draw Entity overlay.
                 if (Rise.ShowGui)
                 {
-                    e.Overlay(spriteBatchPool.OverlaySpriteBatch, gameTime);
+                    e.Overlay(spriteBatchPool.Overlay, gameTime);
                 }
 
                 if (Rise.Debug.GAME)
                 {
-                    spriteBatchPool.OverlaySpriteBatch.PutPixel(e.Position, Color.Magenta);
-                    spriteBatchPool.OverlaySpriteBatch.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
-                    spriteBatchPool.OverlaySpriteBatch.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
+                    spriteBatchPool.Overlay.PutPixel(e.Position, Color.Magenta);
+                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
+                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
                 }
 
                 // Draw Entity light source.
-                LightSource light = e.GetComponent<LightSource>();
-                if (light != null && light.IsOn)
+                foreach (var sys in SYSTEMS.Systems)
                 {
-                    DrawLight(spriteBatchPool.LightsSpriteBatch, e.X, e.Y, light.Power, light.Color);
-                }
-
-                if (e.HasComponent<Shadow>(out var shadow) && !(e.GetComponent<Swim>()?.IsSwiming ?? false))
-                {
-                    spriteBatchPool.ShadowsSpriteBatch.Draw(Ressources.ImgShadow, new Vector2(e.X - 7 * shadow.Scale, e.Y - 3f * shadow.Scale), new Vector2(14, 6) * shadow.Scale, Color.White);
+                    if (e.Match(sys.Filter) && sys is IRenderSystem render)
+                    {
+                        render.Render(e, spriteBatchPool, gameTime);
+                    }
                 }
             }
 
@@ -195,33 +193,28 @@ namespace Hevadea.Worlds
 
             // Draw Entities and tiles to their own rendertarget.
             Rise.Graphic.SetRenderTarget(worldRenderTarget);
-            spriteBatchPool.TileSpriteBatch.End();
-            spriteBatchPool.ShadowsSpriteBatch.End();
-            spriteBatchPool.EntitiesSpriteBatch.End();
-            spriteBatchPool.OverlaySpriteBatch.End();
+            spriteBatchPool.Tiles.End();
+            spriteBatchPool.Shadows.End();
+            spriteBatchPool.Entities.End();
+            spriteBatchPool.Overlay.End();
 
             // Draw shadow to their own rendertarget.
             Rise.Graphic.SetRenderTarget(lightRenderTarget);
             Rise.Graphic.Clear(ambiantLight);
-            spriteBatchPool.LightsSpriteBatch.End();
+            spriteBatchPool.Lights.End();
 
             // Now let's draw everything to the screen.
             Rise.Graphic.SetDefaultRenderTarget();
 
             // Blit the world on screen.
-            spriteBatchPool.GenericSpriteBatch.Begin();
-            spriteBatchPool.GenericSpriteBatch.Draw(worldRenderTarget, Rise.Graphic.GetBound(), Color.White);
-            spriteBatchPool.GenericSpriteBatch.End();
+            spriteBatchPool.Generic.Begin();
+            spriteBatchPool.Generic.Draw(worldRenderTarget, Rise.Graphic.GetBound(), Color.White);
+            spriteBatchPool.Generic.End();
 
             // Apply lightning.
-            spriteBatchPool.GenericSpriteBatch.Begin(SpriteSortMode.Immediate, LightBlend);
-            spriteBatchPool.GenericSpriteBatch.Draw(lightRenderTarget, Rise.Graphic.GetBound(), Color.White);
-            spriteBatchPool.GenericSpriteBatch.End();
-        }
-
-        public static void DrawLight(SpriteBatch spriteBatch, float x, float y, float power, Color color)
-        {
-            spriteBatch.Draw(Ressources.ImgLight, x - power, y - power, power * 2, power * 2, color);
+            spriteBatchPool.Generic.Begin(SpriteSortMode.Immediate, LightBlend);
+            spriteBatchPool.Generic.Draw(lightRenderTarget, Rise.Graphic.GetBound(), Color.White);
+            spriteBatchPool.Generic.End();
         }
 
         /* --- Save & Load -------------------------------------------------- */

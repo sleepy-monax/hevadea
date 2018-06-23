@@ -6,38 +6,38 @@ namespace Hevadea.Worlds
 {
     public class LevelSpriteBatchPool
     {
-        public SpriteBatch TileSpriteBatch { get; }
-        public SpriteBatch EntitiesSpriteBatch { get; }
+        public SpriteBatch Tiles { get; }
+        public SpriteBatch Entities { get; }
 
-        public SpriteBatch OverlaySpriteBatch { get; }
-        public SpriteBatch LightsSpriteBatch { get; }
-        public SpriteBatch ShadowsSpriteBatch { get; }
+        public SpriteBatch Overlay { get; }
+        public SpriteBatch Lights { get; }
+        public SpriteBatch Shadows { get; }
 
-        public SpriteBatch GenericSpriteBatch { get; }
+        public SpriteBatch Generic { get; }
 
         public LevelSpriteBatchPool()
         {
-            TileSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+            Tiles = Rise.Graphic.CreateSpriteBatch();
 
-            EntitiesSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+            Entities = Rise.Graphic.CreateSpriteBatch();
 
-            OverlaySpriteBatch = Rise.Graphic.CreateSpriteBatch();
-            LightsSpriteBatch = Rise.Graphic.CreateSpriteBatch();
-            ShadowsSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+            Overlay = Rise.Graphic.CreateSpriteBatch();
+            Lights = Rise.Graphic.CreateSpriteBatch();
+            Shadows = Rise.Graphic.CreateSpriteBatch();
 
-            GenericSpriteBatch = Rise.Graphic.CreateSpriteBatch();
+            Generic = Rise.Graphic.CreateSpriteBatch();
         }
 
         public void Begin(Camera camera)
         {
             Matrix transform = camera.GetTransform();
 
-            TileSpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
-            EntitiesSpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
-            OverlaySpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            Tiles.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            Entities.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            Overlay.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
 
-            LightsSpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: transform);
-            ShadowsSpriteBatch.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            Lights.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: transform);
+            Shadows.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
         }
     }
 }

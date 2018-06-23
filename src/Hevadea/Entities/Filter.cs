@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Hevadea.Entities;
 
-namespace Hevadea.Systems
+namespace Hevadea.Entities
 {
     public class Filter
     {
