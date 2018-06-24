@@ -30,6 +30,7 @@ namespace Hevadea.Framework
               
         public MonoGameHandler()
         {
+           
             Content.RootDirectory = "Content";
             Graphics = new GraphicsDeviceManager(this);
 
@@ -39,6 +40,8 @@ namespace Hevadea.Framework
 
         protected override void Initialize()
         {
+            Logger.Log<MonoGameHandler>("Initializing...");
+
             Window.AllowUserResizing = true;
             IsMouseVisible = true;
 
@@ -55,11 +58,13 @@ namespace Hevadea.Framework
 
         protected override void LoadContent()
         {
+            Logger.Log<MonoGameHandler>("LoadContent...");
             OnLoadContent?.Invoke(this, EventArgs.Empty);
         }
 
         protected override void UnloadContent()
         {
+            Logger.Log<MonoGameHandler>("UnloadContent...");
             OnUnloadContent?.Invoke(this, EventArgs.Empty);
         }
 

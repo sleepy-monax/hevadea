@@ -16,7 +16,6 @@ namespace Hevadea.Framework
 {
     public static class Rise
     {
-        // Configs
         public static bool NoGraphic { get; private set; } = false;
 
         public static ConcurrentQueue<Job> BackgroundThread = new ConcurrentQueue<Job>();
@@ -24,7 +23,6 @@ namespace Hevadea.Framework
 
         // Components
         public static LegacyInputManager Input;
-
         public static Controller Controller;
         public static Pointing Pointing;
 
@@ -59,13 +57,14 @@ namespace Hevadea.Framework
 
             MonoGame.OnUpdate += MonoGameOnUpdate;
             MonoGame.OnDraw += MonoGameOnDraw;
+
         }
 
         public static void Start(Scene startScene, Action initializeAction = null)
         {
             _initializeAction = initializeAction;
             _startScene = startScene;
-            //GCListener.Start();
+            // GCListener.Start();
             MonoGame.Run();
         }
 

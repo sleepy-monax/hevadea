@@ -42,7 +42,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             Content = new Container(title, loadButton, saveList);
 
-            var s = Directory.GetDirectories(Game.GetSaveFolder());
+            var s = Directory.GetDirectories(GamePaths.SavesFolder);
 
             foreach (var save in s)
             {

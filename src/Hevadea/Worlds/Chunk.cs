@@ -4,6 +4,7 @@ using Hevadea.Tiles.Renderers;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using System.Collections.Generic;
+using Hevadea.Framework.Extension;
 
 namespace Hevadea.Worlds
 {
@@ -47,18 +48,24 @@ namespace Hevadea.Worlds
 
         public void AddEntity(Entity e)
         {
-            Entities.Add(e);
-            EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Add(e);
+            lock (Entities)
+            {
+                Entities.Add(e);
+                EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Add(e);
 
-            e.Removed = false;
+                e.Removed = false;
+            }
         }
 
         public void RemoveEntity(Entity e)
         {
-            Entities.Remove(e);
-            EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Remove(e);
+            lock (Entities)
+            {
+                Entities.Remove(e);
+                EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Remove(e);
 
-            e.Removed = true;
+                e.Removed = true;
+            }
         }
 
         public static Chunk Load(ChunkStorage store)
@@ -105,11 +112,14 @@ namespace Hevadea.Worlds
                 }
 
             // Saving entities
-            foreach (var e in Entities)
+            lock (Entities)
             {
-                if (!e.MemberOf(ENTITIES.GROUPE_SAVE_EXCUDED))
+                foreach (var e in Entities)
                 {
-                    store.Entities.Add(e.Save());
+                    if (!e.MemberOf(ENTITIES.GROUPE_SAVE_EXCUDED))
+                    {
+                        store.Entities.Add(e.Save());
+                    }
                 }
             }
 

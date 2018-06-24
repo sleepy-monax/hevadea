@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Platform;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace OpenGLPlatform
@@ -20,7 +21,7 @@ namespace OpenGLPlatform
 
         public override string GetStorageFolder()
         {
-            return ".";
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games/Hevadea");
         }
 
         public override void Stop()

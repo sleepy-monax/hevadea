@@ -55,6 +55,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>
@@ -110,6 +111,10 @@
     <Compile Include="Entities\XpOrb.cs" />
     <Compile Include="Entities\Zombie.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="GamePaths.cs" />
+    <Compile Include="Modding\IMod.cs" />
+    <Compile Include="Modding\ModBuilder.cs" />
+    <Compile Include="Modding\ModLoader.cs" />
     <Compile Include="Registry\ENTITIES.cs" />
     <Compile Include="Entities\Components\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="Entities\Components\Ai\Actions\ActionMoveToLocation.cs" />

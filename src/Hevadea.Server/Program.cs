@@ -20,7 +20,7 @@ namespace Hevadea.Server
         private static void Main()
         {
             Rise.InitializeNoGraphic(new ServerPlatform());
-            Directory.CreateDirectory(Game.GetSaveFolder());
+            Directory.CreateDirectory(GamePaths.SavesFolder);
 
             Ressources.Load();
             REGISTRY.Initialize();
@@ -31,7 +31,7 @@ namespace Hevadea.Server
             {
                 Console.WriteLine($"{Game.Title} Server v{Game.Version}\n");
 
-                var saves = Directory.GetDirectories(Game.GetSaveFolder());
+                var saves = Directory.GetDirectories(GamePaths.SavesFolder);
 
                 for (int i = 0; i < saves.Length; i++)
                 {
@@ -64,7 +64,7 @@ namespace Hevadea.Server
                     }
 
                     GameState gameState = (GameState)Jobs.GenerateWorld
-                                          .SetArguments(new Jobs.WorldGeneratorInfo(Game.GetSaveFolder() + worldName, seed, GENERATOR.DEFAULT))
+                                          .SetArguments(new Jobs.WorldGeneratorInfo(GamePaths.SavesFolder + worldName, seed, GENERATOR.DEFAULT))
                                           .Start(false)
                                           .Result;
                     gameState.Initialize();
@@ -73,7 +73,7 @@ namespace Hevadea.Server
                     repport.StatusChanged += (sender, e) => { Console.WriteLine(e); };
 
                     Jobs.SaveWorld
-                        .SetArguments(new Jobs.WorldSaveInfo(Game.GetSaveFolder() + worldName, gameState))
+                        .SetArguments(new Jobs.WorldSaveInfo(GamePaths.SavesFolder + worldName, gameState))
                         .Start(false);
                 }
                 else if (int.TryParse(input, out var levelindex))

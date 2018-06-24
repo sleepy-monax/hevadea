@@ -2,7 +2,12 @@
 {
     public class GCListener
     {
-        public static void Start() => new GCListener();
+        public static void Start()
+        {
+            new GCListener();
+            Logger.Log<GCListener>("Started!");
+        }
+
 
         ~GCListener()
         {

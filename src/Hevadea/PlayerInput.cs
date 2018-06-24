@@ -36,7 +36,7 @@ namespace Hevadea
             var input = Rise.Input;
             var screenBound = Rise.Graphic.GetBound();
 
-            if (!game.CurrentMenu?.PauseGame ?? false)
+            if (!(game.CurrentMenu?.PauseGame ?? false))
             {
                 if (game.CurrentMenu == null || !game.CurrentMenu.PauseGame)
                 {

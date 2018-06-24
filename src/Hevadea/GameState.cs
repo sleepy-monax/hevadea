@@ -86,6 +86,9 @@ namespace Hevadea
             Camera.Update(gameTime);
             LocalPlayer?.InputHandler?.Update(gameTime);
 
+            if (CurrentMenu?.PauseGame ?? false)
+                return;
+
             if (IsLocal)
             {
                 LocalPlayer.Entity.Level.Update(gameTime);
@@ -227,7 +230,7 @@ namespace Hevadea
 
             foreach (var chunk in level.Chunks)
             {
-                Logger.Log<GameState>($"Saving chunk {chunk.X}-{chunk.Y}...");
+                job.Log(LoggerLevel.Info, $"Saving chunk {chunk.X}-{chunk.Y}...");
                 job.Report((chunk.X * level.Chunks.GetLength(1) + chunk.Y) / (float)level.Chunks.Length);
                 File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
             }

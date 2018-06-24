@@ -18,20 +18,15 @@ namespace Hevadea
         public static readonly string Title = "Hevadea";
         public static readonly string Version = "0.2.0";
 
-        public static string GetSaveFolder()
-        {
-            return Rise.Platform.GetStorageFolder() + "/Saves/";
-        }
-
         public static void SetLastGame(string path)
         {
-            File.WriteAllText(Rise.Platform.GetStorageFolder() + "/.lastgame", path);
+            File.WriteAllText(GamePaths.LastGameFile, path);
         }
 
         public static string GetLastGame()
         {
-            if (File.Exists(Rise.Platform.GetStorageFolder() + "/.lastgame"))
-                return File.ReadAllText(Rise.Platform.GetStorageFolder() + "/.lastgame");
+            if (File.Exists(GamePaths.LastGameFile))
+                return File.ReadAllText(GamePaths.LastGameFile);
 
             return null;
         }
@@ -69,7 +64,7 @@ namespace Hevadea
         public static void New(string name, int seed, Generator generator)
         {
             var job = Jobs.GenerateWorld;
-            job.SetArguments(new Jobs.WorldGeneratorInfo($"{GetSaveFolder()}{name}/", seed, generator));
+            job.SetArguments(new Jobs.WorldGeneratorInfo(Path.Combine(GamePaths.SavesFolder, $"{name}"), seed, generator));
 
             job.Finish += (sender, e) =>
             {

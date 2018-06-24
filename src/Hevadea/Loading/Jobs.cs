@@ -90,7 +90,6 @@ namespace Hevadea.Loading
         {
             var info = args as WorldGeneratorInfo;
 
-            Game.SetLastGame(info.Path);
             job.Report("Generating world...");
             info.Generator.Seed = info.Seed;
 
@@ -112,6 +111,7 @@ namespace Hevadea.Loading
         {
             var info = args as WorldLoadInfo;
 
+            job.Log(LoggerLevel.Info, $"Loading world from '{info.Path}'...");
             GameState gameState = new GameState().Load(job, info.Path);
             gameState.Initialize();
 
