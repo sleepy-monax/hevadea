@@ -15,6 +15,7 @@ namespace Hevadea.Registry
         {
             Systems.Add(new LightSystem());
             Systems.Add(new ShadowSystem());
+            Systems.Add(new PhysicSystem());
         }
     }
 }

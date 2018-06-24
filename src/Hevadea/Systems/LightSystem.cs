@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Systems
 {
-    public class LightSystem : GameSystem, IRenderSystem
+    public class LightSystem : GameSystem, IEntityRenderSystem
     {
         public LightSystem()
         {

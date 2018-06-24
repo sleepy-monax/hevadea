@@ -17,8 +17,6 @@ namespace Hevadea.Framework
     public static class Rise
     {
         // Configs
-        public static bool ShowGui { get; set; } = true;
-
         public static bool NoGraphic { get; private set; } = false;
 
         public static ConcurrentQueue<Job> BackgroundThread = new ConcurrentQueue<Job>();
@@ -144,7 +142,7 @@ namespace Hevadea.Framework
 
             if (Input.KeyPress(Keys.F5))
             {
-                ShowGui = !ShowGui;
+                Ui.Enabled = !Ui.Enabled;
             }
 
             if (Input.KeyPress(Keys.F6))

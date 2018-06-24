@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
-    public class ShadowSystem : GameSystem, IRenderSystem
+    public class ShadowSystem : GameSystem, IEntityRenderSystem
     {
         public ShadowSystem()
         {

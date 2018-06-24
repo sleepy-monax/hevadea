@@ -116,7 +116,18 @@ namespace Hevadea.Worlds
             RenderState renderState = Prepare(false);
 
             // Update all alive entities.
-            renderState.AliveEntities.UpdateAll(gameTime);
+            foreach (var e in renderState.AliveEntities)
+            {
+                foreach (var sys in SYSTEMS.Systems)
+                {
+                    if (e.Match(sys.Filter) && sys.Enable && sys is IEntityProcessSystem process)
+                    {
+                        process.Process(e, gameTime);
+                    }
+                }
+
+                e.Update(gameTime);
+            }
 
             // Do the random update of tiles.
             for (int i = 0; i < Width * Height / 50; i++)
@@ -152,7 +163,7 @@ namespace Hevadea.Worlds
                 e.Draw(spriteBatchPool.Entities, gameTime);
 
                 // Draw Entity overlay.
-                if (Rise.ShowGui)
+                if (Rise.Ui.Enabled)
                 {
                     e.Overlay(spriteBatchPool.Overlay, gameTime);
                 }
@@ -167,7 +178,7 @@ namespace Hevadea.Worlds
                 // Draw Entity light source.
                 foreach (var sys in SYSTEMS.Systems)
                 {
-                    if (e.Match(sys.Filter) && sys is IRenderSystem render)
+                    if (e.Match(sys.Filter) && sys.Enable && sys is IEntityRenderSystem render)
                     {
                         render.Render(e, spriteBatchPool, gameTime);
                     }

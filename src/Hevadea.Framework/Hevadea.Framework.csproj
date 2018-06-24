@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>default</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +46,7 @@
     <Compile Include="Data\JsonWriter.cs" />
     <Compile Include="Development\DebugOverlay.cs" />
     <Compile Include="Development\GCListener.cs" />
+    <Compile Include="Development\Mesure.cs" />
     <Compile Include="Extension\DictionaryExtension.cs" />
     <Compile Include="Extension\FastRandomExtension.cs" />
     <Compile Include="Extension\GameTimeExtension.cs" />
@@ -123,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\" />
+    <Folder Include="Development\ToolUI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

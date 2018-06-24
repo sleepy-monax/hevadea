@@ -4,17 +4,12 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
-	public enum GameSystemType 
-	{
-		Render, Logic
-	}
-
-    public interface IProcessSystem
+    public interface IEntityProcessSystem
     {
         void Process(Entity entity, GameTime gameTime);
     }
 
-    public interface IRenderSystem
+    public interface IEntityRenderSystem
     {
         void Render(Entity entity, LevelSpriteBatchPool pool,  GameTime gameTime);
     }
@@ -22,7 +17,6 @@ namespace Hevadea.Systems
     public class GameSystem 
     {
         public bool Enable { get; set; } = true;
-		public GameSystemType Type { get; set; } = GameSystemType.Logic;
 		public Filter Filter { get; set; } = new Filter();
     }
 }

@@ -27,11 +27,12 @@ namespace Hevadea.Entities
             AddComponent(new Pickupable(_sprite));
             AddComponent(new Pushable());
             AddComponent(new Shadow());
+            AddComponent(new Physic());
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            _sprite.Draw(spriteBatch, new Rectangle((int)X - 8, (int)Y - 8, 16, 16), Color.White);
+            _sprite.Draw(spriteBatch, new Vector2(X - 8, Y - 8), Color.White);
         }
     }
 }

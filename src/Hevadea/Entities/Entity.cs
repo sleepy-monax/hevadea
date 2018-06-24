@@ -203,8 +203,11 @@ namespace Hevadea.Entities
             oldChunk.EntitiesOnTiles[oldPos.X % Chunk.CHUNK_SIZE, oldPos.Y % Chunk.CHUNK_SIZE].Remove(this);
 
             // Add the entity to his new position.
-            newChunk.Entities.Add(this);
-            newChunk.EntitiesOnTiles[newPos.X % Chunk.CHUNK_SIZE, newPos.Y % Chunk.CHUNK_SIZE].Add(this);
+            if (newChunk != null)
+            {
+                newChunk.Entities.Add(this);
+                newChunk.EntitiesOnTiles[newPos.X % Chunk.CHUNK_SIZE, newPos.Y % Chunk.CHUNK_SIZE].Add(this);
+            }
         }
 
         public bool MemberOf(BlueprintGroupe<EntityBlueprint> groupe)

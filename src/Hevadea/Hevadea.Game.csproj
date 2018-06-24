@@ -44,6 +44,7 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
@@ -67,6 +68,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
+    <Compile Include="Entities\Components\Attributes\Physic.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Entities\Blueprints\EntityBlueprint.cs" />
     <Compile Include="Entities\Blueprints\GenericEntityBlueprint.cs" />
@@ -88,7 +90,6 @@
     <Compile Include="Entities\Components\States\Energy.cs" />
     <Compile Include="Entities\Components\States\Experience.cs" />
     <Compile Include="Entities\Components\States\Health.cs" />
-    <Compile Include="Entities\Components\States\IStateProvider.cs" />
     <Compile Include="Entities\Components\States\Light.cs" />
     <Compile Include="Entities\Components\States\Shadow.cs" />
     <Compile Include="Entities\Components\States\Swim.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Registry\SYSTEMS.cs" />
     <Compile Include="Systems\GameSystem.cs" />
     <Compile Include="Systems\LightSystem.cs" />
+    <Compile Include="Systems\PhysicSystem.cs" />
     <Compile Include="Systems\ShadowSystem.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
     <Compile Include="BlueprintGroupe.cs" />
