@@ -134,6 +134,7 @@
     <Compile Include="Entities\Components\Render\ParticleEmiter.cs" />
     <Compile Include="Entities\Components\RevealMap.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
+    <Compile Include="Scenes\Widgets\Button.cs" />
     <Compile Include="Systems\GameSystem.cs" />
     <Compile Include="Systems\LightSystem.cs" />
     <Compile Include="Systems\PhysicSystem.cs" />

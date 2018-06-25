@@ -15,7 +15,7 @@ namespace Hevadea.Scenes.MainMenu
     {
         public override void Load()
         {
-            
+            Rise.Sound.Play(Ressources.Theme0);
 
             var title = new Label
             {

@@ -382,3 +382,45 @@
 /processorParam:TextureFormat=Color
 /build:textures/entities/zombie.png
 
+#begin songs/overworld0.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:songs/overworld0.mp3
+
+#begin songs/theme0.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:songs/theme0.mp3
+
+#begin effects/swing0.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:effects/swing0.wav
+
+#begin effects/swing1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:effects/swing1.wav
+
+#begin effects/swing2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:effects/swing2.wav
+
+#begin effects/ui0.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:effects/ui0.ogg
+
+#begin effects/ui1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:effects/ui1.wav
+

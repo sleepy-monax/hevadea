@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Debug;
+﻿using Hevadea.Framework.Audio;
+using Hevadea.Framework.Debug;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Input;
 using Hevadea.Framework.Platform;
@@ -22,13 +23,15 @@ namespace Hevadea.Framework
         public static ConcurrentQueue<Job> GameLoopThread = new ConcurrentQueue<Job>();
 
         // Components
-        public static LegacyInputManager Input;
         public static Controller Controller;
         public static Pointing Pointing;
 
+        public static LegacyInputManager Input;
+        public static GraphicManager Graphic;
+        public static SoundManager Sound;
+
         public static PlatformBase Platform;
         public static DebugManager Debug;
-        public static GraphicManager Graphic;
         public static MonoGameHandler MonoGame;
         public static SceneManager Scene;
         public static UiManager Ui;
@@ -80,6 +83,7 @@ namespace Hevadea.Framework
             Pointing = new Pointing();
             Input = new LegacyInputManager();
 
+            Sound = new SoundManager();
             Graphic = new GraphicManager(MonoGame.Graphics, MonoGame.GraphicsDevice);
             Scene = new SceneManager();
             Ui = new UiManager();
@@ -118,6 +122,7 @@ namespace Hevadea.Framework
             Input.Update(gameTime);
             Scene.Update(gameTime);
             Debug.Update(gameTime);
+            Sound.Update(gameTime);
 
             if (Input.KeyPress(Keys.F1))
             {

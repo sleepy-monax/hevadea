@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Scening;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Scening;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
 
@@ -10,6 +11,7 @@ namespace Hevadea.Scenes
 
         public SceneGameplay(GameState gameState)
         {
+            Rise.Sound.Play(Ressources.Overworld0);
             GameState = gameState;
             GameState.CurrentMenuChange += Game_CurrentMenuChange;
         }

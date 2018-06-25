@@ -1,8 +1,11 @@
 ﻿ using Hevadea.Framework;
+using Hevadea.Framework.Audio;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace Hevadea
 {
@@ -46,6 +49,14 @@ namespace Hevadea
         public static Texture2D ImgSwing;
         public static Texture2D ImgTiles;
         public static Texture2D MakerLogo;
+
+        public static SoundEffect UiClick;
+        public static SoundEffect UiOver;
+
+        public static SoundEffectPool PoolSwings;
+
+        public static Song Theme0;
+        public static Song Overworld0;
 
         public static void Load()
         {
@@ -104,6 +115,27 @@ namespace Hevadea
 
             SprUnderWater = new Sprite(TileCreatures, 3, new Point(16, 32));
             SprPickup = new Sprite(TileCreatures, 1, new Point(16, 32));
+
+            // Sound effects --------------------------------------------------
+
+            UiClick = Rise.Ressource.GetSoundEffect("ui1");
+            UiOver = Rise.Ressource.GetSoundEffect("ui0");
+
+            PoolSwings = new SoundEffectPool()
+            {
+                Sounds =
+                {
+                    Rise.Ressource.GetSoundEffect("swing0"),
+                    Rise.Ressource.GetSoundEffect("swing1"),
+                    Rise.Ressource.GetSoundEffect("swing2"),
+                }
+            };
+
+            // Songs ----------------------------------------------------------
+            Theme0 = Rise.Ressource.GetSong("theme0");
+            Overworld0 = Rise.Ressource.GetSong("overworld0");
+
+
         }
     }
 }

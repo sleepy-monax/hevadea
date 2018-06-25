@@ -13,6 +13,7 @@ namespace Hevadea.Scenes
         {
             var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
             Rise.Scene.SetBackground(background);
+            Rise.Sound.Play(Ressources.Theme0);
 
             var title = new Label
             {

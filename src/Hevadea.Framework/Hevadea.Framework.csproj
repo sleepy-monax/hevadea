@@ -40,6 +40,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\SoundEffectPool.cs" />
+    <Compile Include="Audio\SoundManager.cs" />
     <Compile Include="Data\BufferBuilder.cs" />
     <Compile Include="Data\BufferReader.cs" />
     <Compile Include="Data\JsonReader.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Graphic\SpriteBatchBeginState.cs" />
     <Compile Include="Graphic\SpriteBatchExtension.cs" />
     <Compile Include="Graphic\Text.cs" />
+    <Compile Include="Humanizer.cs" />
     <Compile Include="Input\KeyBinding.cs" />
     <Compile Include="Input\LegacyInputManager.cs" />
     <Compile Include="MonoGameHandler.cs" />
@@ -122,8 +125,6 @@
     <Compile Include="UI\Style.cs" />
     <Compile Include="Utils\RandomUtils.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Audio\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

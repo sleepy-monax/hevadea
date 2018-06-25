@@ -1,7 +1,9 @@
 ﻿using Hevadea.Framework.Graphic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
+using System.Linq;
 
 namespace Hevadea.Framework.Debug
 {
@@ -33,7 +35,11 @@ namespace Hevadea.Framework.Debug
             if (GENERAL)
             {
             _sb.Begin();
-            var text = $@"
+
+                var time = MediaPlayer.PlayPosition;
+                var songTime = Rise.Sound.PlayingSong?.Duration;
+
+                var text = $@"
 FPS and UPS not accurate!
     FPS: {(int)fps}
     UPS: {(int)ups}
@@ -42,6 +48,9 @@ FPS and UPS not accurate!
     Draw:   {Rise.MonoGame.DrawTime}
 
 DEBUG UI: {(HELP ? "HELP " : "")}{(GENERAL ? "GENERAL " : "")}{(GAME ? "GAME " : "")}{(UI ? "UI " : "")}
+
+Playing Effects: {Rise.Sound.SoundEffectInstances.Count}
+Playing Song: {Rise.Sound.PlayingSong?.Name ?? "none"} ({time.Humanize()} / {songTime?.Humanize() ?? "00:00"})
 
 Running on platform: '{Rise.Platform.GetPlatformName()}'
     Family: {Rise.Platform.Family}

@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace Hevadea.Framework.Ressource
@@ -14,7 +15,14 @@ namespace Hevadea.Framework.Ressource
         {
             if (Rise.NoGraphic) return null;
 
-            return Rise.MonoGame.Content.Load<SoundEffect>($"Sounds/{name}");
+            return Rise.MonoGame.Content.Load<SoundEffect>($"effects/{name}");
+        }
+
+        public Song GetSong(string name)
+        {
+            if (Rise.NoGraphic) return null;
+
+            return Rise.MonoGame.Content.Load<Song>($"songs/{name}");
         }
 
         public SpriteFont GetSpriteFont(string name)

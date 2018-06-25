@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework.Utils;
+using System.Collections.Generic;
 
 namespace Hevadea.Framework.Extension
 {
@@ -27,6 +28,11 @@ namespace Hevadea.Framework.Extension
         public static T NextValue<T>(this FastRandom rnd, params T[] values)
         {
             return values[rnd.Next(values.Length)];
+        }
+
+        public static T NextValue<T>(this FastRandom rnd, List<T> values)
+        {
+            return values[rnd.Next(values.Count)];
         }
 
         public static void Shuffle<T>(this FastRandom rng, T[] array)

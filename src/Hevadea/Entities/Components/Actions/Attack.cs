@@ -9,6 +9,7 @@ using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Hevadea.Framework;
 
 namespace Hevadea.Entities.Components.Actions
 {
@@ -161,6 +162,11 @@ namespace Hevadea.Entities.Components.Actions
 
             _lastDirection = Owner.Facing;
             _timer = _speedFactor;
+
+            if (IsAttacking)
+            {
+                Rise.Sound.Play(Ressources.PoolSwings);
+            }
         }
     }
 }

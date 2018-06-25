@@ -130,6 +130,12 @@ namespace Hevadea.Entities
                    HasNoneComponent(filter.NoneType.ToArray());
         }
 
+        public static Entity operator +(Entity left, EntityComponent right)
+        {
+            left.AddComponent(right);
+            return left;
+        }
+
         /* --- Operations -------------------------------------------------- */
 
         internal void Initialize(Level level, World world, GameState gameState)
