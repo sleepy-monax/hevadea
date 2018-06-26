@@ -27,6 +27,7 @@ namespace Hevadea.Registry
         public static EntityBlueprint STAIRES;
         public static EntityBlueprint TNT;
         public static EntityBlueprint TORCH;
+        public static EntityBlueprint LANTERN;
         public static EntityBlueprint TREE;
         public static EntityBlueprint ZOMBIE;
 
@@ -46,6 +47,7 @@ namespace Hevadea.Registry
             STAIRES = RegisterEntityBlueprint(new GenericEntityBlueprint<Stairs>("staires"));
             TNT = RegisterEntityBlueprint(new GenericEntityBlueprint<TNT>("tnt"));
             TORCH = RegisterEntityBlueprint(new GenericEntityBlueprint<Torch>("torch"));
+            LANTERN = RegisterEntityBlueprint(new GenericEntityBlueprint<Lantern>("lantern"));
             TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
             ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<Zombie>("zombie"));
 

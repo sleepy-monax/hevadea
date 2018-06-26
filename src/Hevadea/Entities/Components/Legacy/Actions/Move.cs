@@ -91,7 +91,7 @@ namespace Hevadea.Entities.Components.Actions
                 foreach (var e in colidingEntity)
                 {
                     var eColider = e.GetComponent<Colider>();
-                    if (e == Owner || !(eColider?.CanCollideWith(e) ?? false)) continue;
+                    if (e == Owner || !(eColider?.CanCollideWith(Owner) ?? false)) continue;
 
                     var eHitbox = eColider.GetHitBox();
 

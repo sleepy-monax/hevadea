@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hevadea.Entities;
+using Hevadea.Entities.Components;
+using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.States;
 using Hevadea.Framework.Graphic;
 using Hevadea.Worlds;
@@ -16,12 +18,18 @@ namespace Hevadea.Systems
     {
         public LightSystem()
         {
-            Filter.AllOf(typeof(LightSource));
+            Filter.AnyOf(typeof(LightSource), typeof(Pickup));
         }
 
         public void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             LightSource light = entity.GetComponent<LightSource>();
+
+            if (entity.HasComponent<Pickup>(out var pickup) && pickup.PickupedEntity != null)
+            {
+                light = pickup.PickupedEntity.GetComponent<LightSource>();
+            }
+
             if (light != null && light.IsOn)
             {
                 DrawLight(pool.Lights, entity.X, entity.Y, light.Power, light.Color);

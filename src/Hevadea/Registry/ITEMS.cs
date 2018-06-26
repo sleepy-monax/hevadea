@@ -28,6 +28,7 @@ namespace Hevadea.Registry
         public static Item STONE;
         public static Item TNT;
         public static Item TORCH;
+        public static Item LANTERN;
         public static Item WOOD_FLOOR;
         public static Item WOOD_LOG;
         public static Item WOOD_PLANK;
@@ -57,6 +58,7 @@ namespace Hevadea.Registry
             STONE = new Item("stone", new Sprite(Ressources.TileItems, new Point(7, 0)));
             TNT = new Item("tnt", new Sprite(Ressources.TileItems, new Point(0, 0)));
             TORCH = new Item("torch", new Sprite(Ressources.TileEntities, new Point(4, 0)));
+            LANTERN = new Item("lantern", new Sprite(Ressources.TileEntities, new Point(4, 1)));
             WOOD_FLOOR = new Item("wood_floor", new Sprite(Ressources.TileItems, new Point(7, 5)));
             WOOD_LOG = new Item("wood_log", new Sprite(Ressources.TileItems, 6));
             WOOD_PLANK = new Item("wood_plank", new Sprite(Ressources.TileItems, new Point(6, 1)));
@@ -76,6 +78,7 @@ namespace Hevadea.Registry
             CRAFTING_BENCH.AddTag(new PlaceEntity(ENTITIES.CRAFTING_BENCH));
             FURNACE.AddTag(new PlaceEntity(ENTITIES.FURNACE));
             TORCH.AddTag(new PlaceEntity(ENTITIES.TORCH));
+            LANTERN.AddTag(new PlaceEntity(ENTITIES.LANTERN));
 
             WOOD_FLOOR.AddTag(new PlaceTile(TILES.WOOD_FLOOR) { CanBePlaceOn = { TILES.DIRT } });
             WOOD_WALL.AddTag(new PlaceTile(TILES.WOOD_WALL) { CanBePlaceOn = { TILES.DIRT } });

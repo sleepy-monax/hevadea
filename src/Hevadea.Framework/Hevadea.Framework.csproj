@@ -59,6 +59,7 @@
     <Compile Include="Extension\SpriteFontExtension.cs" />
     <Compile Include="Extension\Texture2DExtension.cs" />
     <Compile Include="Extension\ValueExtension.cs" />
+    <Compile Include="Extension\Vector2Extention.cs" />
     <Compile Include="Graphic\Camera.cs" />
     <Compile Include="Graphic\FarbfeldBitmap.cs" />
     <Compile Include="Graphic\GraphicManager.cs" />

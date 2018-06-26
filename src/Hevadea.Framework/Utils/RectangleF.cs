@@ -167,7 +167,7 @@ namespace Hevadea.Framework.Utils
             {
                 return new RectangleF(x1, y1, x2 - x1, y2 - y1);
             }
-            return RectangleF.Empty;
+            return Empty;
         }
 
         public bool IntersectsWith(RectangleF rect)
