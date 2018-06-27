@@ -100,7 +100,7 @@ namespace Hevadea.Framework
 
             Config.Apply();
 
-            Rise.Graphic.AllowUserResizing();
+            Graphic.AllowUserResizing();
         }
 
         private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)
@@ -151,14 +151,21 @@ namespace Hevadea.Framework
 
             if (Input.KeyPress(Keys.F6))
             {
-                Ui.ScaleFactor /= 2f;
-                Scene.GetCurrentScene()?.RefreshLayout();
+                Config.UIScaling /= 2f;
+                Ui.RefreshLayout();
             }
 
             if (Input.KeyPress(Keys.F7))
             {
-                Ui.ScaleFactor *= 2f;
-                Scene.GetCurrentScene()?.RefreshLayout();
+                Config.UIScaling *= 2f;
+                Ui.RefreshLayout();
+            }
+
+
+            if (Input.KeyPress(Keys.F8))
+            {
+                Config.UIScaling = 1f;
+                Ui.RefreshLayout();
             }
         }
 

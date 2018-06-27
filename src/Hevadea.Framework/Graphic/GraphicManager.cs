@@ -155,6 +155,7 @@ namespace Hevadea.Framework.Graphic
             _graphicsDeviceManager.PreferredBackBufferHeight = sy;
             _graphicsDeviceManager.ApplyChanges();
             ResetRenderTargets();
+            Rise.Ui.RefreshLayout();
         }
 
         private bool _windowSizeIsBeingChanged = false;

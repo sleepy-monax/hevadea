@@ -40,6 +40,7 @@ namespace Hevadea.Framework.Scening
 
             s.Start();
             _nextScene.Load();
+            _nextScene.RefreshLayout();
             s.Stop();
             Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
         }

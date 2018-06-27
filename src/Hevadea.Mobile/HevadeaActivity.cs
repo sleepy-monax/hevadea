@@ -2,6 +2,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Hevadea;
 using Hevadea.Framework;
 using Hevadea.Scenes;
 using Microsoft.Xna.Framework;
@@ -27,7 +28,7 @@ namespace AndroidPlatform
 
             SetContentView((View)Rise.MonoGame.Services.GetService(typeof(View)));
 
-            Rise.Start(new SceneGameSplash());
+            Rise.Start(new SceneGameSplash(), () => { Rise.Config.Load(GamePaths.ConfigFile); });
         }
     }
 }

@@ -5,3 +5,4 @@ packages
 .vs
 .idea
 .user
+/src/Hevadea.Mobile/*.user

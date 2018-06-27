@@ -22,6 +22,8 @@ namespace Hevadea.Framework.Scening
 
         public void RefreshLayout()
         {
+            Logger.Log<Scene>("RefreshLayout call!");
+
             var screenSize = Rise.Graphic.GetSize();
             Container.UnitBound = new Rectangle(new Point(0), new Point((int)(screenSize.X / Rise.Ui.ScaleFactor), (int)(screenSize.Y / Rise.Ui.ScaleFactor)));
             Container.RefreshLayout();
@@ -31,11 +33,13 @@ namespace Hevadea.Framework.Scening
         {
             if (Container != null && Rise.Ui.Enabled)
             {
-                RefreshLayout();
                 Container.UpdateInternal(gameTime);
             }
 
             OnUpdate(gameTime);
+
+            //if (Container != null)
+            //    RefreshLayout();
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)

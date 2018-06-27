@@ -10,10 +10,10 @@ namespace Hevadea.Utils
         {
             vec.Normalize();
 
-            if (vec.Y < 0) return Direction.North;
-            if (vec.Y > 0) return Direction.South;
-            if (vec.X < 0) return Direction.West;
-            if (vec.X > 0) return Direction.East;
+            if (vec.Y < -0.5) return Direction.North;
+            if (vec.Y > 0.5) return Direction.South;
+            if (vec.X < -0.5) return Direction.West;
+            if (vec.X > 0.5) return Direction.East;
 
             return Direction.South;
         }

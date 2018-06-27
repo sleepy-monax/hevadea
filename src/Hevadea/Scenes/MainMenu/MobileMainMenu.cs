@@ -14,6 +14,9 @@ namespace Hevadea.Scenes.MainMenu
         {
             var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
             Rise.Scene.SetBackground(background);
+            Rise.Sound.Play(Ressources.Theme0);
+
+            Rise.Debug.GENERAL = true;
 
             var title = new Label
             {
@@ -32,6 +35,7 @@ namespace Hevadea.Scenes.MainMenu
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, -16),
                 Font = Ressources.FontRomulus,
+                TextColor = ColorPalette.Accent,
                 TextSize = 1f,
             };
 
@@ -42,13 +46,11 @@ namespace Hevadea.Scenes.MainMenu
                 UnitOffset = new Point(0, 72),
             }.RegisterMouseClickEvent((sender) => Game.Play(Game.GetLastGame()));
 
-            var newGameButton = new Button
+            var newGameButton = new Button("New")
             {
-                Text = "New",
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, 72 * 2),
-                UnitBound = new Rectangle(0, 0, 256, 64),
             }.RegisterMouseClickEvent((sender) => Game.New("world", Rise.Rnd.Next(), GENERATOR.DEFAULT));
 
             var version = new Label

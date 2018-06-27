@@ -2,12 +2,12 @@
 
 namespace Hevadea.Modding
 {
-    public interface IMod
-    {
-        string Name { get; }
-        string Author { get; }
-        Version Version { get; }
+    //public interface IMod
+    //{
+    //    string Name { get; }
+    //    string Author { get; }
+    //    Version Version { get; }
 
-        void Initialize();
-    }
+    //    void Initialize();
+    //}
 }

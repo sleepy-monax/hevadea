@@ -14,6 +14,8 @@ namespace Hevadea.Framework
         public int ScreenHeight { get; set; } = 768;
         public bool Fullscreen { get; set; } = false;
 
+        public float UIScaling { get; set; } = 1f;
+
         public void Save(string file)
         {
             File.WriteAllText(file, this.ToJson());
