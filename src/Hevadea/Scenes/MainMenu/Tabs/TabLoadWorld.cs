@@ -8,6 +8,15 @@ using System.IO;
 
 namespace Hevadea.Scenes.MainMenu.Tabs
 {
+    public class ListItemWorld : ListItemText
+    {
+        public string WorldPath { get; }
+        public ListItemWorld(string worldName, string worldPath) : base(worldName)
+        {
+            WorldPath = worldPath;
+        }
+    }
+
     public class TabLoadWorld : Tab
     {
         public TabLoadWorld()
@@ -35,8 +44,8 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             {
                 if (saveList.SelectedItem != null)
                 {
-                    var item = (ListItemText)saveList.SelectedItem;
-                    Game.Play(item.Text);
+                    var item = (ListItemWorld)saveList.SelectedItem;
+                    Game.Play(item.WorldPath);
                 }
             });
 
@@ -46,7 +55,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             foreach (var save in s)
             {
-                saveList.AddItem(new ListItemText(save));
+                saveList.AddItem(new ListItemWorld(Path.GetFileName(save), save));
             }
         }
     }

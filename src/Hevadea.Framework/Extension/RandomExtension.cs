@@ -41,5 +41,17 @@ namespace Hevadea.Framework.Extension
                 array[k] = temp;
             }
         }
+
+        public static string NextString(this Random rnd, int length, string charset)
+        {
+            string result = string.Empty;
+
+            for (int i = 0; i < length; i++)
+            {
+                result += charset[rnd.Next(charset.Length)];
+            }
+
+            return result;
+        }
     }
 }

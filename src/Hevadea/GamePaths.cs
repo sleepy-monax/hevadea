@@ -11,9 +11,9 @@ namespace Hevadea
     public static class GamePaths
     {
 
-        public static string LastGameFile => Rise.Platform.GetStorageFolder().CombineWith("/lastgame");
-        public static string ConfigFile => Rise.Platform.GetStorageFolder().CombineWith("/config.json");
-        public static string ServersFile => Rise.Platform.GetStorageFolder().CombineWith("/servers.json");
+        public static string LastGameFile => Rise.Platform.GetStorageFolder().CombineWith("/LastGame");
+        public static string ConfigFile => Rise.Platform.GetStorageFolder().CombineWith("/Config.json");
+        public static string ServersFile => Rise.Platform.GetStorageFolder().CombineWith("/Servers.json");
 
         public static string SavesFolder   => Rise.Platform.GetStorageFolder().CombineWith("/Saves/");
         public static string ModsFolder    => Rise.Platform.GetStorageFolder().CombineWith("/Mods/");
