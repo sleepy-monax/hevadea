@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework;
+﻿using Hevadea;
+using Hevadea.Framework;
 using Hevadea.Scenes;
 using System;
 
@@ -10,7 +11,7 @@ namespace OpenGLPlatform
         private static void Main()
         {
             Rise.Initialize(new DesktopPlatform());
-            Rise.Start(new SceneGameSplash());
+            Rise.Start(new SceneGameSplash(), () => { Rise.Config.Load(GamePaths.ConfigFile); });
             Environment.Exit(0);
         }
     }

@@ -117,6 +117,7 @@
     <Compile Include="Modding\IMod.cs" />
     <Compile Include="Modding\ModBuilder.cs" />
     <Compile Include="Modding\ModLoader.cs" />
+    <Compile Include="Modding\ModManager.cs" />
     <Compile Include="Registry\ENTITIES.cs" />
     <Compile Include="Entities\Components\Legacy\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="Entities\Components\Legacy\Ai\Actions\ActionMoveToLocation.cs" />
@@ -136,7 +137,6 @@
     <Compile Include="Entities\Components\Legacy\Render\ParticleEmiter.cs" />
     <Compile Include="Entities\Components\Legacy\RevealMap.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
-    <Compile Include="Scenes\Widgets\Button.cs" />
     <Compile Include="Systems\GameSystem.cs" />
     <Compile Include="Systems\LightSystem.cs" />
     <Compile Include="Systems\PhysicSystem.cs" />

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Audio\SoundEffectPool.cs" />
     <Compile Include="Audio\SoundManager.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Data\BufferBuilder.cs" />
     <Compile Include="Data\BufferReader.cs" />
     <Compile Include="Data\JsonReader.cs" />

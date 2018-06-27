@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Hevadea.Modding
 {
-    public interface IMod
+    public static class ModManager
     {
-        string Name { get; }
-        string Author { get; }
-        Version Version { get; }
-
-        void Initialize();
+        public static void LoadAll()
+        {
+            
+        }
     }
 }

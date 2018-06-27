@@ -53,7 +53,7 @@ namespace Hevadea.Framework.Graphic
         }
 
         public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Color color, Anchor alignement = Anchor.TopLeft, float scale = 1f, Point? offset = null)
-            => DrawString(spriteBatch, font, text, boundary, color, alignement, alignement, scale = 1f, offset);
+            => DrawString(spriteBatch, font, text, boundary, color, alignement, alignement, scale, offset);
 
         public static void DrawString(this SpriteBatch spriteBatch, SpriteFont font, string text, Rectangle boundary, Color color, Anchor origin = Anchor.TopLeft, Anchor alignement = Anchor.TopLeft, float scale = 1f, Point? offset = null)
         {

@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework.Platform;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Hevadea.Framework.Graphic
 {
@@ -45,6 +46,14 @@ namespace Hevadea.Framework.Graphic
         public void Clear(Color clearColor)
         {
             Rise.MonoGame.GraphicsDevice.Clear(clearColor);
+        }
+
+        public void SetFullscreen(int width, int height)
+        {
+            _graphicsDeviceManager.PreferredBackBufferWidth = width;
+            _graphicsDeviceManager.PreferredBackBufferHeight = height;
+            _graphicsDeviceManager.IsFullScreen = true;
+            _graphicsDeviceManager.ApplyChanges();
         }
 
         public void SetFullscreen()
@@ -146,6 +155,23 @@ namespace Hevadea.Framework.Graphic
             _graphicsDeviceManager.PreferredBackBufferHeight = sy;
             _graphicsDeviceManager.ApplyChanges();
             ResetRenderTargets();
+        }
+
+        bool _windowSizeIsBeingChanged = false;
+
+        public void AllowUserResizing()
+        {
+            Rise.MonoGame.Window.AllowUserResizing = true;
+            Rise.MonoGame.Window.ClientSizeChanged += HandleClientSizeChanged;
+        }
+
+        public void HandleClientSizeChanged(object sender, EventArgs args)
+        {
+            _windowSizeIsBeingChanged = !_windowSizeIsBeingChanged;
+            if (_windowSizeIsBeingChanged)
+            {
+                SetSize(new Point(Rise.MonoGame.Window.ClientBounds.Width, Rise.MonoGame.Window.ClientBounds.Height));
+            }
         }
     }
 }

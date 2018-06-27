@@ -124,16 +124,16 @@ namespace Hevadea
         // --- Path generator ----------------------------------------------- //
 
         public string GetSavePath()
-            => $"{SavePath}/";
+            => SavePath.CombineWith($"/");
 
         public string GetLevelSavePath(Level level)
-            => $"{SavePath}/{level.Name}/";
+            => SavePath.CombineWith($"{level.Name}/");
 
         public string GetLevelMinimapSavePath(Level level)
-            => $"{SavePath}/{level.Name}/minimap.png";
+            => SavePath.CombineWith($"{level.Name}/minimap.png");
 
         public string GetLevelMinimapDataPath(Level level)
-            => $"{SavePath}/{level.Name}/minimap.json";
+            => SavePath.CombineWith($"{level.Name}/minimap.json");
 
         // --- Save and load ------------------------------------------------ //
 

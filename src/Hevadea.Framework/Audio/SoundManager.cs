@@ -15,10 +15,6 @@ namespace Hevadea.Framework.Audio
     {
         float _transition = 1f;
 
-        public float MasterVolume { get; set; } = 1f;
-        public float MusicVolume { get; set; } = 1f;
-        public float EffectVolume { get; set; } = 1f;
-
         public List<SoundEffectInstance> SoundEffectInstances { get; set; } = new List<SoundEffectInstance>();
 
         public Song PlayingSong { get; set; }
@@ -70,7 +66,7 @@ namespace Hevadea.Framework.Audio
                 MediaPlayer.Play(PlayingSong);
             }
 
-            MediaPlayer.Volume = MasterVolume * MusicVolume * _transition;
+            MediaPlayer.Volume = Rise.Config.MasterVolume * Rise.Config.MusicVolume * _transition;
 
             var finishInstance = new List<SoundEffectInstance>();
 
@@ -81,7 +77,7 @@ namespace Hevadea.Framework.Audio
                     finishInstance.Add(i);
                 }
 
-                i.Volume = MasterVolume * EffectVolume;
+                i.Volume = Rise.Config.MasterVolume * Rise.Config.EffectVolume;
             }
 
             finishInstance.ForEach(i => SoundEffectInstances.Remove(i));

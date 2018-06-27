@@ -38,6 +38,8 @@ namespace Hevadea.Framework
         public static RessourceManager Ressource;
         public static FastRandom Rnd = new FastRandom();
 
+        public static Config Config = new Config();
+
         static Scene _startScene;
         static Action _initializeAction;
 
@@ -91,16 +93,14 @@ namespace Hevadea.Framework
 
             _initializeAction?.Invoke();
 
-            Graphic.ResetRenderTargets();
             Scene.Initialize();
             Input.Initialize();
 
             Scene.Switch(_startScene);
 
-            if (Platform.Family == PlatformFamily.Desktop)
-            {
-                Graphic.SetSize(1366, 768);
-            }
+            Config.Apply();
+
+            Rise.Graphic.AllowUserResizing();
         }
 
         private static void MonoGameOnLoadContent(object sender, EventArgs eventArgs)

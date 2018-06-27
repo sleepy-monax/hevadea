@@ -9,8 +9,6 @@ namespace Hevadea.Framework
     {
         Stopwatch _drawStopwatch = new Stopwatch();
         Stopwatch _updateStopwatch = new Stopwatch();
-        bool _windowSizeIsBeingChanged = false;
-
         public delegate void GameloopEventHandler(Game sender, GameTime gameTime);
 
         public GraphicsDeviceManager Graphics;
@@ -41,18 +39,7 @@ namespace Hevadea.Framework
         protected override void Initialize()
         {
             Logger.Log<MonoGameHandler>("Initializing...");
-
-            Window.AllowUserResizing = true;
             IsMouseVisible = true;
-
-            Window.ClientSizeChanged += (sender, args) =>
-            {
-                _windowSizeIsBeingChanged = !_windowSizeIsBeingChanged;
-                if (_windowSizeIsBeingChanged)
-                {
-                    Rise.Graphic.SetSize(new Point(Window.ClientBounds.Width, Window.ClientBounds.Height));
-                }
-            };
             OnInitialize?.Invoke(this, EventArgs.Empty);
         }
 

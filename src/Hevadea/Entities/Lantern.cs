@@ -30,7 +30,7 @@ namespace Hevadea.Entities
             AddComponent(new Colider(new Rectangle(-4, -2, 7, 4)));
 
             AddComponent(new Pushable());
-            AddComponent(new Move());
+            AddComponent(new Physic());
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
