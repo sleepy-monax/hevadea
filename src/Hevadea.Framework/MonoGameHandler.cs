@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
-using System.Threading;
 
 namespace Hevadea.Framework
 {
     public class MonoGameHandler : Game
     {
-        Stopwatch _drawStopwatch = new Stopwatch();
-        Stopwatch _updateStopwatch = new Stopwatch();
+        private Stopwatch _drawStopwatch = new Stopwatch();
+        private Stopwatch _updateStopwatch = new Stopwatch();
+
         public delegate void GameloopEventHandler(Game sender, GameTime gameTime);
 
         public GraphicsDeviceManager Graphics;
@@ -25,10 +25,9 @@ namespace Hevadea.Framework
 
         public int DrawTime { get; private set; } = 0;
         public int UpdateTime { get; private set; } = 0;
-              
+
         public MonoGameHandler()
         {
-           
             Content.RootDirectory = "Content";
             Graphics = new GraphicsDeviceManager(this);
 
@@ -66,7 +65,7 @@ namespace Hevadea.Framework
         }
 
         protected override void Draw(GameTime gameTime)
-        {         
+        {
             _drawStopwatch.Start();
             OnDraw?.Invoke(this, gameTime);
             _drawStopwatch.Stop();

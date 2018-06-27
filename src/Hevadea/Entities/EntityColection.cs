@@ -1,7 +1,4 @@
-﻿using Hevadea.Registry;
-using Hevadea.Systems;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Hevadea.Entities
 {

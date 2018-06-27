@@ -1,4 +1,6 @@
 ﻿using Hevadea.Craftings;
+using Hevadea.Entities.Components;
+using Hevadea.Entities.Components.Attributes;
 using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
@@ -7,8 +9,6 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
-using Hevadea.Entities.Components;
-using Hevadea.Entities.Components.Attributes;
 using Hevadea.Registry;
 using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;

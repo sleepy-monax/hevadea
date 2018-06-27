@@ -1,9 +1,8 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Entities.Blueprints;
+﻿using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components.Attributes;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Items;
 using Hevadea.Items.Tags;
-using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 

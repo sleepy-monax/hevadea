@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework;
-using Hevadea;
 
 namespace Hevadea.Registry
 {
@@ -28,12 +27,10 @@ namespace Hevadea.Registry
 
         public static void Stage1()
         {
-
         }
 
         public static void Stage2()
         {
-
         }
     }
 }

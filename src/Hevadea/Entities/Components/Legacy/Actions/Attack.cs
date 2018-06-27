@@ -1,6 +1,7 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Entities.Components.Attributes;
+﻿using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.States;
+using Hevadea.Framework;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Items;
 using Hevadea.Items.Tags;
 using Hevadea.Tiles;
@@ -9,7 +10,6 @@ using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.Framework;
 
 namespace Hevadea.Entities.Components.Actions
 {
@@ -28,10 +28,10 @@ namespace Hevadea.Entities.Components.Actions
         private double _speedFactor = 1;
         private double _timer;
 
-        Sprite _swingUP;
-        Sprite _swingDown;
-        Sprite _swingLeft;
-        Sprite _swingRight;
+        private Sprite _swingUP;
+        private Sprite _swingDown;
+        private Sprite _swingLeft;
+        private Sprite _swingRight;
 
         public Attack()
         {

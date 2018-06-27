@@ -24,6 +24,7 @@ namespace Hevadea.Framework
 
         // Components
         public static Controller Controller;
+
         public static Pointing Pointing;
 
         public static LegacyInputManager Input;
@@ -40,8 +41,8 @@ namespace Hevadea.Framework
 
         public static Config Config = new Config();
 
-        static Scene _startScene;
-        static Action _initializeAction;
+        private static Scene _startScene;
+        private static Action _initializeAction;
 
         public static void InitializeNoGraphic(PlatformBase platform)
         {
@@ -62,7 +63,6 @@ namespace Hevadea.Framework
 
             MonoGame.OnUpdate += MonoGameOnUpdate;
             MonoGame.OnDraw += MonoGameOnDraw;
-
         }
 
         public static void Start(Scene startScene, Action initializeAction = null)

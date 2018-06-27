@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hevadea.Framework.Extension;
-using Hevadea.Entities;
-using Hevadea.Entities.Components.Attributes;
-using Microsoft.Xna.Framework;
-using Hevadea.Tiles.Components;
-using Hevadea.Entities.Components.Actions;
+﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
+using Hevadea.Entities.Components.Actions;
+using Hevadea.Entities.Components.Attributes;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Utils;
 using Hevadea.Tiles;
+using Hevadea.Tiles.Components;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
     public class PhysicSystem : GameSystem, IEntityProcessSystem
     {
-
         public const float AIR_FRICTION = 0.5f;
 
         public PhysicSystem()
@@ -108,7 +102,7 @@ namespace Hevadea.Systems
 
         public Vector2 GetFriction(Entity entity, Physic physic)
         {
-             return (physic.Velocity * AIR_FRICTION) - physic.Velocity;
+            return (physic.Velocity * AIR_FRICTION) - physic.Velocity;
         }
     }
 }

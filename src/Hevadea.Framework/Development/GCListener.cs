@@ -8,7 +8,6 @@
             Logger.Log<GCListener>("Started!");
         }
 
-
         ~GCListener()
         {
             Logger.Log<GCListener>("Garbage Colected!");

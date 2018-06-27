@@ -1,16 +1,16 @@
-﻿using Hevadea.Framework;
+﻿using Hevadea.Entities;
+using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Threading;
-using Hevadea.Entities;
 using Hevadea.Loading;
 using Hevadea.Multiplayer;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
+using Hevadea.Systems;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
-using Hevadea.Systems;
 
 namespace Hevadea
 {
@@ -220,7 +220,7 @@ namespace Hevadea
             File.WriteAllText(GetSavePath() + "player.json", LocalPlayer.Save().ToJson());
         }
 
-        void SaveLevel(Job job, Level level)
+        private void SaveLevel(Job job, Level level)
         {
             job.Report($"Saving {level.Name}...");
             string path = GetLevelSavePath(level);

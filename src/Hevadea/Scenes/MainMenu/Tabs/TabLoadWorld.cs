@@ -11,6 +11,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
     public class ListItemWorld : ListItemText
     {
         public string WorldPath { get; }
+
         public ListItemWorld(string worldName, string worldPath) : base(worldName)
         {
             WorldPath = worldPath;

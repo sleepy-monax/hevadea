@@ -157,7 +157,7 @@ namespace Hevadea.Framework.Graphic
             ResetRenderTargets();
         }
 
-        bool _windowSizeIsBeingChanged = false;
+        private bool _windowSizeIsBeingChanged = false;
 
         public void AllowUserResizing()
         {

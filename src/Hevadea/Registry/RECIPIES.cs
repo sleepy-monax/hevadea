@@ -1,5 +1,4 @@
 ﻿using Hevadea.Craftings;
-using Hevadea;
 using System.Collections.Generic;
 
 namespace Hevadea.Registry

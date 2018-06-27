@@ -1,12 +1,10 @@
-﻿using Hevadea.Framework.Utils;
-using Hevadea.Framework.Extension;
-using Hevadea.Entities.Components.Attributes;
+﻿using Hevadea.Entities.Components.Attributes;
+using Hevadea.Framework.Utils;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Hevadea.Framework;
 
 namespace Hevadea.Entities.Components.Actions
 {
@@ -14,7 +12,7 @@ namespace Hevadea.Entities.Components.Actions
     {
         public bool IsMoving { get; private set; }
         public bool NoClip { get; set; } = false;
-        float SETime = 0;
+        private float SETime = 0;
 
         public void Update(GameTime gameTime)
         {

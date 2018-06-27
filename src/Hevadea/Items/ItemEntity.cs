@@ -1,12 +1,12 @@
-﻿using Hevadea.Framework.Utils;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
+using Hevadea.Framework.Utils;
+using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
-using Hevadea.Registry;
 
 namespace Hevadea.Items
 {

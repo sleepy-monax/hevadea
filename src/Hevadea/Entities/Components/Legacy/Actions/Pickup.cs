@@ -12,7 +12,6 @@ namespace Hevadea.Entities.Components.Actions
 {
     public class Pickup : EntityComponent, IEntityComponentDrawable, IEntityComponentSaveLoad
     {
-
         public Entity PickupedEntity { get; private set; }
         public int Offset { get; set; } = 16;
 
@@ -28,7 +27,6 @@ namespace Hevadea.Entities.Components.Actions
         {
             return PickupedEntity != null;
         }
-
 
         public bool PickupEntity(Entity entity)
         {

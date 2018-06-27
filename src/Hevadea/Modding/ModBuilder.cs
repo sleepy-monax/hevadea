@@ -1,11 +1,7 @@
 ﻿using Microsoft.CSharp;
 using System;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Modding
 {
@@ -19,7 +15,6 @@ namespace Hevadea.Modding
 
             if (Assemblies == null)
             {
-               
                 Assemblies = AppDomain.CurrentDomain
                             .GetAssemblies()
                             .Where(a => !a.IsDynamic)

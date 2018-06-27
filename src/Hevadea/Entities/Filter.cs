@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Hevadea.Entities;
 
 namespace Hevadea.Entities
 {
     public class Filter
     {
-		public readonly HashSet<Type> AnyType = new HashSet<Type>();
+        public readonly HashSet<Type> AnyType = new HashSet<Type>();
         public readonly HashSet<Type> AllType = new HashSet<Type>();
         public readonly HashSet<Type> NoneType = new HashSet<Type>();
-		
-		public Filter AnyOf(params Type[] includeAnyType)
+
+        public Filter AnyOf(params Type[] includeAnyType)
         {
             if (includeAnyType == null) return this;
 
@@ -21,7 +20,7 @@ namespace Hevadea.Entities
             return this;
         }
 
-		public Filter AllOf(params Type[] includeAllType)
+        public Filter AllOf(params Type[] includeAllType)
         {
             if (includeAllType == null) return this;
 
@@ -32,7 +31,7 @@ namespace Hevadea.Entities
             return this;
         }
 
-		public Filter NoneOf(params Type[] excludeType)
+        public Filter NoneOf(params Type[] excludeType)
         {
             if (excludeType == null) return this;
 

@@ -1,5 +1,4 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;

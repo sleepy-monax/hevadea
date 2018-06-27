@@ -1,11 +1,8 @@
-﻿using Microsoft.CSharp;
-using System;
+﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Modding
 {
@@ -29,7 +26,6 @@ namespace Hevadea.Modding
     {
         public static void LoadFrom(string path)
         {
-
         }
 
         public static List<IMod> LoadFromFile(string path)
@@ -40,8 +36,6 @@ namespace Hevadea.Modding
 
         public static List<IMod> LoadFromAssembly(Assembly assembly)
         {
-            
-
             if (assembly != null)
             {
                 var types = assembly.GetTypes();

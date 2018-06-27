@@ -1,5 +1,5 @@
-﻿using Hevadea.Registry;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
+using Hevadea.Registry;
 using System.Collections.Generic;
 
 namespace Hevadea.Storage
@@ -17,7 +17,7 @@ namespace Hevadea.Storage
             Data = new Dictionary<string, object>();
         }
 
-        public EntityStorage(string type, int ueid) : this (type)
+        public EntityStorage(string type, int ueid) : this(type)
         {
             Ueid = ueid;
         }

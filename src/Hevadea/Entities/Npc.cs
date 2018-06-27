@@ -1,8 +1,8 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Entities.Components.Actions;
+﻿using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.Render;
 using Hevadea.Entities.Components.States;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Entities

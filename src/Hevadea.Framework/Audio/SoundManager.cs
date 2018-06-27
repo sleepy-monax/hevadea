@@ -1,19 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using Hevadea.Framework.Extension;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hevadea.Framework.Utils;
 
 namespace Hevadea.Framework.Audio
 {
     public class SoundManager
     {
-        float _transition = 1f;
+        private float _transition = 1f;
 
         public List<SoundEffectInstance> SoundEffectInstances { get; set; } = new List<SoundEffectInstance>();
 
@@ -39,7 +35,6 @@ namespace Hevadea.Framework.Audio
             {
                 if (PlayingSong == null)
                 {
-
                     PlayingSong = song;
                     MediaPlayer.IsRepeating = true;
                     MediaPlayer.Play(PlayingSong);

@@ -1,9 +1,9 @@
-﻿using Hevadea.Framework.Graphic;
-using Hevadea.Framework.Utils;
-using Hevadea.Entities.Blueprints;
+﻿using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components.Ai.Actions;
-using Hevadea.Tiles;
+using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Utils;
 using Hevadea.Registry;
+using Hevadea.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -22,7 +22,6 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
         private Coordinates _lastTagetPosition = null;
 
         private List<Entity> _targetsOnSight;
-
 
         public override void IaAborted(AgentAbortReason why)
         {

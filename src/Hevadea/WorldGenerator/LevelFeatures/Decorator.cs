@@ -1,9 +1,9 @@
-﻿using Hevadea.Framework.Extension;
-using Hevadea.Entities.Blueprints;
+﻿using Hevadea.Entities.Blueprints;
+using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Tiles;
 using Hevadea.Worlds;
 using System.Collections.Generic;
-using Hevadea.Framework;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {
@@ -31,16 +31,16 @@ namespace Hevadea.WorldGenerator.LevelFeatures
 
         public override void Apply(Generator gen, LevelGenerator levelGen, Level level)
         {
-			Logger.Log<Decorator>(GetName());
+            Logger.Log<Decorator>(GetName());
             for (var x = 0; x < gen.Size; x += Spacing)
             {
                 for (var y = 0; y < gen.Size; y += Spacing)
                 {
                     var coordinates = new Coordinates(x, y);
                     if (gen.Random.Next(0, Chance) == 0 &&
-					    CanBePlantOn.Contains(level.GetTile(coordinates)) &&
-					    PlacingFunction(x, y, gen, levelGen, level) < Threashold && 
-					    !level.AnyEntityAt(coordinates))
+                        CanBePlantOn.Contains(level.GetTile(coordinates)) &&
+                        PlacingFunction(x, y, gen, levelGen, level) < Threashold &&
+                        !level.AnyEntityAt(coordinates))
                         level.AddEntityAt(_blueprint, coordinates, gen.Random.NextVector2(-RandomOffset, RandomOffset));
                 }
 

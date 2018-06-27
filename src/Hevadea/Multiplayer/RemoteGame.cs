@@ -1,13 +1,12 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Networking;
-using Hevadea;
 using Hevadea.Multiplayer;
+using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Worlds;
 using System.Collections.Generic;
 using System.Net.Sockets;
-using Hevadea.Registry;
 
 namespace Hevadea
 {

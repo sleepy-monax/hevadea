@@ -1,5 +1,4 @@
-﻿using Hevadea;
-using Hevadea.Registry;
+﻿using Hevadea.Registry;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 

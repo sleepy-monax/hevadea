@@ -1,13 +1,13 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Entities.Components;
+﻿using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Ai;
 using Hevadea.Entities.Components.Ai.Behaviors;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.Render;
 using Hevadea.Entities.Components.States;
-using Microsoft.Xna.Framework;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Registry;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.Entities
 {
@@ -15,7 +15,7 @@ namespace Hevadea.Entities
     {
         public Chicken()
         {
-			AddComponent(new Move());
+            AddComponent(new Move());
             AddComponent(new Agent(new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeedWandering = 0.5f }));
             AddComponent(new Burnable(1f));
             AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));

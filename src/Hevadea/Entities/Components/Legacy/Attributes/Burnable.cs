@@ -1,7 +1,7 @@
-﻿using Hevadea.Framework;
+﻿using Hevadea.Entities.Components.States;
+using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.Particles;
-using Hevadea.Entities.Components.States;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Entities.Components.Attributes

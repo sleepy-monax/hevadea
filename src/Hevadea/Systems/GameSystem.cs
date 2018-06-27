@@ -11,12 +11,12 @@ namespace Hevadea.Systems
 
     public interface IEntityRenderSystem
     {
-        void Render(Entity entity, LevelSpriteBatchPool pool,  GameTime gameTime);
+        void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime);
     }
 
-    public class GameSystem 
+    public class GameSystem
     {
         public bool Enable { get; set; } = true;
-		public Filter Filter { get; set; } = new Filter();
+        public Filter Filter { get; set; } = new Filter();
     }
 }

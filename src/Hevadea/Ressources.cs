@@ -1,4 +1,4 @@
-﻿ using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Audio;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
@@ -92,7 +92,6 @@ namespace Hevadea
             TileGrass = new SpriteSheet(ImgGrass, new Point(16, 16));
             TileTiles = new SpriteSheet(ImgTiles, new Point(32, 32));
 
-
             for (int i = 0; i < 16; i++)
             {
                 MinimapIcon[i] = new Sprite(TileMinimapIcon, i);
@@ -134,8 +133,6 @@ namespace Hevadea
             // Songs ----------------------------------------------------------
             Theme0 = Rise.Ressource.GetSong("theme0");
             Overworld0 = Rise.Ressource.GetSong("overworld0");
-
-
         }
     }
 }

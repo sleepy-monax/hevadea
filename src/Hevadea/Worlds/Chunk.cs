@@ -1,10 +1,9 @@
 ﻿using Hevadea.Entities;
-using Hevadea.Tiles;
-using Hevadea.Tiles.Renderers;
 using Hevadea.Registry;
 using Hevadea.Storage;
+using Hevadea.Tiles;
+using Hevadea.Tiles.Renderers;
 using System.Collections.Generic;
-using Hevadea.Framework.Extension;
 
 namespace Hevadea.Worlds
 {

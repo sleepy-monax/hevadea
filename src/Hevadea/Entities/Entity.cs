@@ -1,17 +1,17 @@
-﻿using Hevadea.Framework.Extension;
+﻿using Hevadea.Entities.Blueprints;
+using Hevadea.Entities.Components;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Framework.Utils;
-using Hevadea.Entities.Blueprints;
-using Hevadea.Entities.Components;
-using Hevadea.Tiles;
 using Hevadea.Storage;
+using Hevadea.Tiles;
 using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace Hevadea.Entities
 {
@@ -78,7 +78,7 @@ namespace Hevadea.Entities
             => Componenents.Any(c => c.GetType() == type);
 
         public bool HasComponent<T>() where T : EntityComponent
-            => Componenents.Any(c=> c is T);
+            => Componenents.Any(c => c is T);
 
         public bool HasAnyComponent(params Type[] types)
         {
@@ -89,7 +89,6 @@ namespace Hevadea.Entities
 
             return types.Length == 0;
         }
-
 
         public bool HasNoneComponent(params Type[] types)
         {
@@ -106,7 +105,6 @@ namespace Hevadea.Entities
 
             return true;
         }
-
 
         public bool HasAllComponent(params Type[] types)
         {
@@ -126,7 +124,7 @@ namespace Hevadea.Entities
         public bool Match(Filter filter)
         {
             return HasAllComponent(filter.AllType.ToArray()) &&
-                   HasAnyComponent(filter.AnyType.ToArray()) && 
+                   HasAnyComponent(filter.AnyType.ToArray()) &&
                    HasNoneComponent(filter.NoneType.ToArray());
         }
 

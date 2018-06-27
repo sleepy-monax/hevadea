@@ -34,7 +34,7 @@ namespace Hevadea.Scenes.MainMenu
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, -16),
                 Font = Ressources.FontRomulus,
-                TextColor = Color.Gold,
+                TextColor = ColorPalette.Accent,
                 TextSize = 1f,
             };
 

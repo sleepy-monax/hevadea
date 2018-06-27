@@ -32,7 +32,7 @@ namespace Hevadea.Scenes
                 Origine = Anchor.Center,
                 UnitOffset = new Point(0, 72),
                 Font = Ressources.FontRomulus,
-                TextColor = Color.Gold,
+                TextColor = ColorPalette.Accent,
                 TextSize = 1f,
             };
 
@@ -57,9 +57,7 @@ namespace Hevadea.Scenes
                 TextSize = 1f,
             };
 
-            Container = new Container(title, subTitle, prompt, version)
-            {
-            };
+            Container = new Container(title, subTitle, prompt, version);
         }
 
         public override void OnDraw(GameTime gameTime)

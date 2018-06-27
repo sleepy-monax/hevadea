@@ -7,12 +7,12 @@ namespace Hevadea.Framework.Input
 {
     public class LegacyInputManager
     {
-        KeyboardState _oldKeyboardState;
-        KeyboardState _newKeyboardState;
+        private KeyboardState _oldKeyboardState;
+        private KeyboardState _newKeyboardState;
 
         public bool AnyKeyDown()
         {
-            return ((Keys[])Enum.GetValues(typeof(Keys))).Where((k)=>_newKeyboardState.IsKeyDown(k)).Any();
+            return ((Keys[])Enum.GetValues(typeof(Keys))).Where((k) => _newKeyboardState.IsKeyDown(k)).Any();
         }
 
         public bool KeyDown(Keys key)

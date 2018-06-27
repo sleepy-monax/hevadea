@@ -1,11 +1,10 @@
 ﻿using Hevadea.Framework.UI;
-using Hevadea;
+using Hevadea.Registry;
 using Hevadea.Tiles;
 using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using System;
-using Hevadea.Registry;
 
 namespace Hevadea.WorldGenerator.LevelFeatures
 {

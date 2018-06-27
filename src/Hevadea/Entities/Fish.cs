@@ -1,14 +1,14 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Entities.Components;
+﻿using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Ai;
 using Hevadea.Entities.Components.Ai.Behaviors;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.States;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Items;
+using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Hevadea.Registry;
 
 namespace Hevadea.Entities
 {

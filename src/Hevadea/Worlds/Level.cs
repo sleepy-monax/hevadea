@@ -409,31 +409,29 @@ namespace Hevadea.Worlds
         }
 
         /* --- Entities ----------------------------------------------------- */
-      
+
 		public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates)
 		    => AddEntityAt(blueprint.Construct(), coordinates.X, coordinates.Y);
-        
+
 		public Entity AddEntityAt(Entity entity, Coordinates coordinates)
 		    => AddEntityAt(entity, coordinates.X, coordinates.Y);
 
-
         public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates, Vector2 offset)
 		=> AddEntityAt(blueprint.Construct(), coordinates.X, coordinates.Y, offset.X, offset.Y);
-      
+
 		public Entity AddEntityAt(Entity entity, Coordinates coordinates, Vector2 offset)
 		=> AddEntityAt(entity, coordinates.X, coordinates.Y, offset.X, offset.Y);
 
-
         public Entity AddEntityAt(EntityBlueprint blueprint, int tx, int ty, float offX = 0f, float offY = 0f)
             => AddEntityAt(blueprint.Construct(), tx, ty, offX, offY);
-              
+
 		public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
             e.Position = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
             return e;
         }
-    
+
 		public void AddEntity(Entity e)
         {
             GetChunkAt(e.Coordinates).AddEntity(e);
@@ -448,12 +446,14 @@ namespace Hevadea.Worlds
         }
 
 		public bool AnyEntityAt(Coordinates coordinates) => AnyEntityAt(coordinates.X, coordinates.Y);
+
         public bool AnyEntityAt(int tx, int ty)
         {
             return GetEntitiesAt(tx, ty).Any();
         }
 
 		public List<Entity> GetEntitiesAt(Coordinates coordinates) => GetEntitiesAt(coordinates.X, coordinates.Y);
+
         public List<Entity> GetEntitiesAt(int tx, int ty)
         {
             Chunk chunk = GetChunkAt(tx, ty);

@@ -1,18 +1,17 @@
-﻿using Hevadea.Framework.Utils;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
+using Hevadea.Framework.Utils;
 using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace Hevadea.Tiles
 {
     public class Coordinates
     {
-		public int X { get; set; }
-		public int Y { get; set; }
-		public int WorldX => X * Game.Unit;
-		public int WorldY => Y * Game.Unit;
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int WorldX => X * Game.Unit;
+        public int WorldY => Y * Game.Unit;
 
         public Coordinates(int x, int y)
         {
@@ -38,10 +37,10 @@ namespace Hevadea.Tiles
         public bool IsColliding(Entity e, int width, int height)
         {
             return ColisionUtils.Colinding(
-				X * Game.Unit,
-				Y * Game.Unit,
-				Game.Unit,
-				Game.Unit,
+                X * Game.Unit,
+                Y * Game.Unit,
+                Game.Unit,
+                Game.Unit,
                 e.X,
                 e.Y,
                 width, height);

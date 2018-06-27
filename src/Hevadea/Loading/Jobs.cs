@@ -1,6 +1,6 @@
-﻿using Hevadea.Framework.Threading;
+﻿using Hevadea.Entities;
 using Hevadea.Framework;
-using Hevadea.Entities;
+using Hevadea.Framework.Threading;
 using Hevadea.Multiplayer;
 using Hevadea.Registry;
 using Hevadea.WorldGenerator;
@@ -86,7 +86,7 @@ namespace Hevadea.Loading
             return game;
         });
 
-        public static Job GenerateWorld => new Job("GenerateWorld", (job, args) => 
+        public static Job GenerateWorld => new Job("GenerateWorld", (job, args) =>
         {
             var info = args as WorldGeneratorInfo;
 
@@ -118,7 +118,7 @@ namespace Hevadea.Loading
             return gameState;
         });
 
-        public static Job SaveWorld => new Job("SaveWorld", (job, args) => 
+        public static Job SaveWorld => new Job("SaveWorld", (job, args) =>
         {
             var info = args as WorldSaveInfo;
 
@@ -128,7 +128,7 @@ namespace Hevadea.Loading
             return null;
         });
 
-        public static Job StartServer => new Job("StartSever", (job, arg) => 
+        public static Job StartServer => new Job("StartSever", (job, arg) =>
         {
             var info = arg as StartServerInfo;
 

@@ -3,7 +3,7 @@
     public class GenericEntityBlueprint<T> : EntityBlueprint where T : Entity, new()
     {
         public GenericEntityBlueprint(string name) : base(name)
-        {}
+        { }
 
         public override Entity Construct()
         {

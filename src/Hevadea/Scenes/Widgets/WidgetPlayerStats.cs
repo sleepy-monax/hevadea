@@ -1,10 +1,10 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Framework.UI;
+﻿using Hevadea.Entities;
 using Hevadea.Entities.Components.States;
+using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Hevadea.Entities;
 
 namespace Hevadea.Scenes.Widgets
 {
@@ -34,7 +34,7 @@ namespace Hevadea.Scenes.Widgets
                 _hearth.Draw(spriteBatch, new Rectangle(Bound.X + (size * i), Bound.Y, size, size), Color.White);
 
             _hearth.Draw(spriteBatch, new Rectangle(Bound.X + (size * i), Bound.Y, size, size),
-                Color.White * (float)(health - Math.Floor( health)));
+                Color.White * (float)(health - Math.Floor(health)));
 
             for (i = 0; i <= 10 * energy - 1; i++)
                 _energy.Draw(spriteBatch, new Rectangle(Bound.X + (size * i), Bound.Y + size, size, size), Color.White);

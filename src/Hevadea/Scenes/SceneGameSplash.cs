@@ -6,7 +6,6 @@ using Hevadea.Framework.Utils;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace Hevadea.Scenes
@@ -31,7 +30,6 @@ namespace Hevadea.Scenes
 
                     GamePaths.Initialize();
                     REGISTRY.Initialize();
-                    
 
                     Rise.Ui.DefaultFont = Ressources.FontRomulus;
                     Rise.Ui.DebugFont = Ressources.FontHack;

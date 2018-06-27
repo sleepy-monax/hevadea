@@ -1,5 +1,4 @@
-﻿using Hevadea;
-using Hevadea.WorldGenerator;
+﻿using Hevadea.WorldGenerator;
 using Hevadea.WorldGenerator.LevelFeatures;
 using Hevadea.WorldGenerator.WorldFeatures;
 using System.Collections.Generic;

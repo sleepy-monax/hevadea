@@ -3,21 +3,20 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System;
-using System.Linq;
 
 namespace Hevadea.Framework.Debug
 {
     public class DebugManager
     {
-		SpriteBatch _sb;
-		float fps;
-		float ups;
+        private SpriteBatch _sb;
+        private float fps;
+        private float ups;
 
         public bool HELP { get; set; }
         public bool GENERAL { get; set; }
         public bool GAME { get; set; }
         public bool UI { get; set; }
-       
+
         public DebugManager()
         {
             _sb = Rise.Graphic.CreateSpriteBatch();
@@ -28,13 +27,12 @@ namespace Hevadea.Framework.Debug
             fps += ((1f / (Math.Max(1, Rise.MonoGame.DrawTime) / 1000f)) - fps) * 0.01f;
             ups += ((1f / (Math.Max(1, Rise.MonoGame.UpdateTime) / 1000f)) - ups) * 0.01f;
         }
-       
 
         public void Draw(GameTime gameTime)
         {
             if (GENERAL)
             {
-            _sb.Begin();
+                _sb.Begin();
 
                 var time = MediaPlayer.PlayPosition;
                 var songTime = Rise.Sound.PlayingSong?.Duration;
@@ -61,11 +59,10 @@ Running on platform: '{Rise.Platform.GetPlatformName()}'
 Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name}
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}";
 
-
                 _sb.DrawString(Rise.Ui.DebugFont, text, Rise.Graphic.GetBound(), DrawText.Alignement.Left, DrawText.TextStyle.Rectangle, Color.White);
 
                 Rise.Pointing.DrawDebug(_sb);
-            _sb.End();
+                _sb.End();
             }
 
             if (HELP)

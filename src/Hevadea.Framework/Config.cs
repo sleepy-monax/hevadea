@@ -1,11 +1,6 @@
 ﻿using Hevadea.Framework.Data;
 using Hevadea.Framework.Platform;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hevadea.Framework
 {
@@ -38,7 +33,6 @@ namespace Hevadea.Framework
         {
             if (Rise.Platform.Family == PlatformFamily.Desktop)
             {
-
                 if (Fullscreen)
                 {
                     Rise.Graphic.SetFullscreen(ScreenWidth, ScreenHeight);
