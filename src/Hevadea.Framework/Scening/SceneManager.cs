@@ -12,6 +12,8 @@ namespace Hevadea.Framework.Scening
         private ParalaxeBackground _background;
         private SpriteBatch _spritebatch;
 
+        private object _switchlock = new object();
+
         public SceneManager()
         {
             _currentScene = null;
@@ -35,14 +37,17 @@ namespace Hevadea.Framework.Scening
 
         public void Switch(Scene nextScene)
         {
-            var s = new Stopwatch();
-            _nextScene = nextScene;
+            lock (_switchlock)
+            {
+                var s = new Stopwatch();
+                _nextScene = nextScene;
 
-            s.Start();
-            _nextScene.Load();
-            _nextScene.RefreshLayout();
-            s.Stop();
-            Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
+                s.Start();
+                _nextScene.Load();
+                _nextScene.RefreshLayout();
+                s.Stop();
+                Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{nextScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to load.");
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -73,26 +78,29 @@ namespace Hevadea.Framework.Scening
 
         private void SwitchInternal()
         {
-            if (_nextScene == null) return;
-
-            if (_currentScene == null)
+            lock (_switchlock)
             {
-                Logger.Log<SceneManager>(LoggerLevel.Fine, $"Switching scene to '{_nextScene.GetType().FullName}'.");
+                if (_nextScene == null) return;
+
+                if (_currentScene == null)
+                {
+                    Logger.Log<SceneManager>(LoggerLevel.Fine, $"Switching scene to '{_nextScene.GetType().FullName}'.");
+                }
+                else
+                {
+                    var s = new Stopwatch();
+
+                    s.Start();
+                    _currentScene.Unload();
+                    s.Stop();
+                    Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{_currentScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to unload.");
+
+                    Logger.Log<SceneManager>(LoggerLevel.Info, $"Scene switch from '{_currentScene.GetType().FullName}' to '{_nextScene.GetType().FullName}' is done.");
+                }
+
+                _currentScene = _nextScene;
+                _nextScene = null;
             }
-            else
-            {
-                var s = new Stopwatch();
-
-                s.Start();
-                _currentScene.Unload();
-                s.Stop();
-                Logger.Log<SceneManager>(LoggerLevel.Fine, $"Scene: '{_currentScene.GetType().FullName}' took {s.Elapsed.TotalSeconds}sec to unload.");
-
-                Logger.Log<SceneManager>(LoggerLevel.Info, $"Scene switch from '{_currentScene.GetType().FullName}' to '{_nextScene.GetType().FullName}' is done.");
-            }
-
-            _currentScene = _nextScene;
-            _nextScene = null;
         }
     }
 }

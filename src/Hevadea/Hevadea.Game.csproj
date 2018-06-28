@@ -71,6 +71,9 @@
     <Compile Include="Craftings\RecipeCost.cs" />
     <Compile Include="Entities\Components\EntityExtension.cs" />
     <Compile Include="Entities\Components\Physic.cs" />
+    <Compile Include="Entities\Components\Renderer\MobRenderer.cs" />
+    <Compile Include="Entities\Components\Renderer\RendererComponent.cs" />
+    <Compile Include="Entities\Components\Renderer\SpriteRenderer.cs" />
     <Compile Include="Entities\Lantern.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Entities\Blueprints\EntityBlueprint.cs" />
@@ -104,7 +107,6 @@
     <Compile Include="Entities\Flower.cs" />
     <Compile Include="Entities\Furnace.cs" />
     <Compile Include="Entities\Grass.cs" />
-    <Compile Include="Entities\Npc.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Stairs.cs" />
     <Compile Include="Entities\TNT.cs" />
@@ -139,8 +141,11 @@
     <Compile Include="Registry\SYSTEMS.cs" />
     <Compile Include="Systems\GameSystem.cs" />
     <Compile Include="Systems\LightSystem.cs" />
-    <Compile Include="Systems\PhysicSystem.cs" />
+    <Compile Include="Systems\PhysicSystem\PhysicProcessor.cs" />
+    <Compile Include="Systems\PhysicSystem\PhysicRenderer.cs" />
     <Compile Include="Systems\ShadowSystem.cs" />
+    <Compile Include="Systems\SpriteRenderSystem.cs" />
+    <Compile Include="Systems\SwimEffectSystem.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
     <Compile Include="BlueprintGroupe.cs" />
     <Compile Include="Registry\ITEMS.cs" />

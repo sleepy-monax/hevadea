@@ -130,6 +130,14 @@ namespace Hevadea.Framework.Graphic
             DrawLine(spriteBatch, new Vector2(rect.Right, rect.Y + thickness), new Vector2(rect.Right, rect.Bottom - thickness), color, thickness); // right
         }
 
+        public static void DrawRectangle(this SpriteBatch spriteBatch, RectangleF rect, Color color, float thickness = 1.0f)
+        {
+            DrawLine(spriteBatch, new Vector2(rect.X, rect.Y), new Vector2(rect.Right, rect.Y), color, thickness); // Right
+            DrawLine(spriteBatch, new Vector2(rect.X + thickness, rect.Y + thickness), new Vector2(rect.X + thickness, rect.Bottom - thickness), color, thickness); // left
+            DrawLine(spriteBatch, new Vector2(rect.X, rect.Bottom - thickness), new Vector2(rect.Right, rect.Bottom - thickness), color, thickness); // bottom
+            DrawLine(spriteBatch, new Vector2(rect.Right, rect.Y + thickness), new Vector2(rect.Right, rect.Bottom - thickness), color, thickness); // right
+        }
+
         public static void DrawRectangle(this SpriteBatch spriteBatch, Vector2 location, Vector2 size, Color color)
         {
             DrawRectangle(spriteBatch, new Rectangle((int)location.X, (int)location.Y, (int)size.X, (int)size.Y), color, 1.0f);

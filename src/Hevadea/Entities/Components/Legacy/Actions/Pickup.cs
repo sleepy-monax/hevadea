@@ -1,5 +1,6 @@
 ﻿using Hevadea.Entities.Components.Ai;
 using Hevadea.Entities.Components.Attributes;
+using Hevadea.Entities.Components.Renderer;
 using Hevadea.Items;
 using Hevadea.Registry;
 using Hevadea.Storage;
@@ -54,7 +55,10 @@ namespace Hevadea.Entities.Components.Actions
             {
                 PickupedEntity.Facing = Owner.Facing;
                 Owner.Level.AddEntityAt(PickupedEntity, facingTile);
+
                 PickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
+                PickupedEntity.GetComponent<Physic>()?.Stop();
+
                 PickupedEntity = null;
 
                 return true;
@@ -66,9 +70,7 @@ namespace Hevadea.Entities.Components.Actions
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (PickupedEntity == null) return;
-
-            var sprite = PickupedEntity.GetComponent<Pickupable>().OnPickupSprite;
-            sprite.Draw(spriteBatch, new Vector2(Owner.X - sprite.Bound.Width / 2, Owner.Y - sprite.Bound.Width / 2 - Offset), Color.White);
+            PickupedEntity.GetComponent<RendererComponent>().Draw(spriteBatch, PickupedEntity, Owner.Position2D + new Vector2(0, -Offset), gameTime);
         }
 
         public void OnGameSave(EntityStorage store)

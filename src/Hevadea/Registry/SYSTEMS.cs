@@ -1,4 +1,5 @@
 ﻿using Hevadea.Systems;
+using Hevadea.Systems.PhysicSystem;
 using System.Collections.Generic;
 
 namespace Hevadea.Registry
@@ -11,7 +12,10 @@ namespace Hevadea.Registry
         {
             Systems.Add(new LightSystem());
             Systems.Add(new ShadowSystem());
-            Systems.Add(new PhysicSystem());
+            Systems.Add(new PhysicProcessor());
+            Systems.Add(new PhysicRenderer());
+            Systems.Add(new SpriteRenderSystem());
+            Systems.Add(new SwimEffectSystem());
         }
     }
 }

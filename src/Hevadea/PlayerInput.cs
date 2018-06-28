@@ -1,6 +1,7 @@
 ﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
+using Hevadea.Entities.Components.Attributes;
 using Hevadea.Framework;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Utils;
@@ -83,19 +84,29 @@ namespace Hevadea
             switch (input)
             {
                 case PlayerInput.MoveLeft:
-                    playerMovement.Do(-1, 0, Direction.West);
+
+                    Player.Facing = Direction.West;
+                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(-8f,0), Player.MAX_SPEED);
+                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
                     break;
 
                 case PlayerInput.MoveRight:
-                    playerMovement.Do(+1, 0, Direction.East);
+                    Player.Facing = Direction.East;
+                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(8f, 0), Player.MAX_SPEED);
+                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
                     break;
 
                 case PlayerInput.MoveUp:
-                    playerMovement.Do(0, -1, Direction.North);
+                    Player.Facing = Direction.North;
+                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(0, -8f), Player.MAX_SPEED);
+                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
                     break;
 
                 case PlayerInput.MoveDown:
-                    playerMovement.Do(0, +1, Direction.South);
+                    Player.Facing = Direction.South;
+                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(0, 8f), Player.MAX_SPEED);
+                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
+
                     break;
 
                 case PlayerInput.Action:

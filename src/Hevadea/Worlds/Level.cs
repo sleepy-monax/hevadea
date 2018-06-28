@@ -170,9 +170,9 @@ namespace Hevadea.Worlds
 
                 if (Rise.Debug.GAME)
                 {
-                    spriteBatchPool.Overlay.PutPixel(e.Position, Color.Magenta);
-                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
-                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
+                    spriteBatchPool.Overlay.PutPixel(e.Position2D, Color.Magenta);
+                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position2D, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
+                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position2D, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
                 }
 
                 // Draw Entity light source.
@@ -428,7 +428,7 @@ namespace Hevadea.Worlds
 		public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
-            e.Position = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
+            e.Position2D = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
             return e;
         }
 
@@ -492,7 +492,7 @@ namespace Hevadea.Worlds
                     if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
                     var entities = GetEntitiesAt(x, y);
 
-                    result.AddRange(entities.Where(i => i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position)));
+                    result.AddRange(entities.Where(i => i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position2D)));
                 }
 
             return result;

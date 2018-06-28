@@ -2,30 +2,30 @@
 using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
+using Hevadea.Framework;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Utils;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Components;
+using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Systems
+namespace Hevadea.Systems.PhysicSystem
 {
-    public class PhysicSystem : GameSystem, IEntityProcessSystem
+    public class PhysicProcessor : GameSystem, IEntityProcessSystem
     {
-        public const float AIR_FRICTION = 0.5f;
+        public static float AIR_FRICTION = 0.1f;
+        public static float DEFAULT_FRICTION = float.PositiveInfinity;
 
-        public PhysicSystem()
+        public PhysicProcessor()
         {
-            Filter.AllOf(typeof(Physic), typeof(Move));
+            Filter.AllOf(typeof(Physic));
         }
 
         public void Process(Entity entity, GameTime gameTime)
         {
             var physic = entity.GetComponent<Physic>();
-
-            physic.Velocity += physic.Acceleration + (GetFriction(entity, physic) * gameTime.GetDeltaTime());
-            physic.Acceleration = Vector2.Zero;
-
             var delta = physic.Velocity * gameTime.GetDeltaTime();
 
             if (entity.HasComponent<Colider>(out var colider))
@@ -34,14 +34,14 @@ namespace Hevadea.Systems
                     CheckColisionWithTiles(entity, colider.GetHitBox(), delta.GetXVector2()))
                 {
                     delta = delta.GetYVector2();
-                    physic.Velocity = physic.Velocity.GetYVector2();
+                    physic.Velocity = physic.Velocity.GetYVector2() + physic.Velocity.GetXVector2() * -0.5f;
                 }
 
                 if (CheckColisionWithEntities(entity, colider.GetHitBox(), delta.GetYVector2()) ||
                     CheckColisionWithTiles(entity, colider.GetHitBox(), delta.GetYVector2()))
                 {
                     delta = delta.GetXVector2();
-                    physic.Velocity = physic.Velocity.GetXVector2();
+                    physic.Velocity = physic.Velocity.GetXVector2() + physic.Velocity.GetYVector2() * -0.5f;
                 }
 
                 if (CheckColisionWithEntities(entity, colider.GetHitBox(), delta) ||
@@ -52,7 +52,15 @@ namespace Hevadea.Systems
                 }
             }
 
-            entity.Position += delta;
+            entity.Position2D += delta;
+            physic.Velocity += physic.Acceleration;
+            physic.Velocity = ApplyFriction(physic.Velocity, GetFriction(entity), gameTime);
+
+            if (physic.Velocity.Length() < 0.5f) physic.Velocity = Vector2.Zero; 
+
+            physic.Acceleration = Vector2.Zero;
+
+            entity.Z = Mathf.Clamp(entity.Z - gameTime.GetDeltaTime(), 0, 999);
         }
 
         public bool CheckColisionWithEntities(Entity entity, RectangleF colider, Vector2 vec)
@@ -77,6 +85,7 @@ namespace Hevadea.Systems
 
         public bool CheckColisionWithTiles(Entity entity, RectangleF colider, Vector2 vec)
         {
+            var hitbox = new RectangleF(colider.X + vec.X, colider.Y + vec.Y, colider.Width, colider.Height);
             var coliding = false;
             var entityCoords = entity.Coordinates;
 
@@ -90,7 +99,7 @@ namespace Hevadea.Systems
 
                     if (tile.HasTag<SolideTile>() &&
                         !tile.Tag<SolideTile>().CanPassThrought(entity) &&
-                        colider.IntersectsWith(tileHitbox))
+                        hitbox.IntersectsWith(tileHitbox))
                     {
                         coliding = true;
                     }
@@ -100,9 +109,16 @@ namespace Hevadea.Systems
             return coliding;
         }
 
-        public Vector2 GetFriction(Entity entity, Physic physic)
+        public Vector2 ApplyFriction(Vector2 velocity, float friction, GameTime gameTime)
         {
-            return (physic.Velocity * AIR_FRICTION) - physic.Velocity;
+            var xRatio = 1 / (1 + (gameTime.GetDeltaTime() * friction));
+            return velocity * xRatio;
         }
+
+        public float GetFriction(Entity entity)
+        {
+            return AIR_FRICTION + (entity.Z <= 0f ? DEFAULT_FRICTION : 0f);
+        }
+
     }
 }

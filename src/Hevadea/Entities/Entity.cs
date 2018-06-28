@@ -20,6 +20,12 @@ namespace Hevadea.Entities
         public int Ueid { get; set; } = -1;
         public float X { get; private set; }
         public float Y { get; private set; }
+        public float Z { get; set; } = 0f;
+
+        public Vector2 Position2D { get => new Vector2(X, Y); set => SetPosition(value.X, value.Y); }
+        public Vector3 Position3D { get => new Vector3(X, Y, Z); set => SetPosition(value.X, value.Y, value.Z); }
+
+
         public bool Initialized { get; private set; } = false;
         public bool Removed { get; set; } = true;
         public EntityBlueprint Blueprint { get; set; }
@@ -33,7 +39,6 @@ namespace Hevadea.Entities
         public Point FacingVector => Facing.ToPoint();
         public string Identifier => $"{Blueprint?.Name ?? "none"}:{Ueid:x}";
         public Tile TileOver { get => Level.GetTile(Coordinates); set => Level.SetTile(Coordinates, value); }
-        public Vector2 Position { get => new Vector2(X, Y); set => SetPosition(value.X, value.Y); }
 
         public GameState GameState { get; private set; }
         public World World { get; private set; }
@@ -191,14 +196,15 @@ namespace Hevadea.Entities
             Level.RemoveEntity(this);
         }
 
-        public void SetPosition(float x, float y)
+        public void SetPosition(float x, float y) => SetPosition(x, y, Z);
+        public void SetPosition(float x, float y, float z)
         {
             var oldPos = Coordinates;
             Chunk oldChunk = Level.GetChunkAt(oldPos);
 
             X = x;
             Y = y;
-
+            Z = z;
             var newPos = Coordinates;
             Chunk newChunk = Level.GetChunkAt(newPos);
 
@@ -227,7 +233,7 @@ namespace Hevadea.Entities
 
         public Rectangle GetFacingArea(int size)
         {
-            return new Rectangle(Position.ToPoint() - new Rectangle(new Point(0), new Point(size)).GetAnchorPoint(DirectionToAnchore[Facing]), new Point(size));
+            return new Rectangle(Position2D.ToPoint() - new Rectangle(new Point(0), new Point(size)).GetAnchorPoint(DirectionToAnchore[Facing]), new Point(size));
         }
 
         public List<Entity> GetFacingEntities(int area)

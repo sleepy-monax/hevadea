@@ -408,5 +408,6 @@ namespace Hevadea.Framework.Utils
         {
             return value >= min && value < max;
         }
+        
     }
 }

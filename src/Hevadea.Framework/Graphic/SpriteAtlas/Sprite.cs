@@ -8,6 +8,7 @@ namespace Hevadea.Framework.Graphic.SpriteAtlas
         private readonly SpriteSheet Sheet;
         private readonly Point SubSpriteSize;
         public Rectangle Bound { get; private set; }
+        public Vector2 Size => Bound.Size.ToVector2();
 
         // Constructors -------------------------------------------------------
 

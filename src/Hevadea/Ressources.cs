@@ -32,6 +32,8 @@ namespace Hevadea
         public static SpriteSheet TileRock;
         public static SpriteSheet TileTiles;
 
+        public static Texture2D ImgPlayer;
+
         public static Texture2D ImgCreatures;
         public static Texture2D ImgEngineLogo;
         public static Texture2D ImgEntities;
@@ -40,15 +42,17 @@ namespace Hevadea
         public static Texture2D ImgHevadeaLogo;
         public static Texture2D ImgIcons;
         public static Texture2D ImgItems;
-        public static Texture2D ImgLight;
         public static Texture2D ImgMap;
         public static Texture2D ImgMapIcon;
         public static Texture2D ImgMapOver;
         public static Texture2D ImgRock;
-        public static Texture2D ImgShadow;
         public static Texture2D ImgSwing;
         public static Texture2D ImgTiles;
         public static Texture2D MakerLogo;
+
+        public static Texture2D ImgWater;
+        public static Texture2D ImgLight;
+        public static Texture2D ImgShadow;
 
         public static SoundEffect UiClick;
         public static SoundEffect UiOver;
@@ -79,8 +83,11 @@ namespace Hevadea
             ImgGrass = Rise.Ressource.GetImage("grass");
             ImgTiles = Rise.Ressource.GetImage("tiles");
 
+            ImgPlayer = Rise.Ressource.GetTexture("entities/player");
+
             ImgShadow = Rise.Ressource.GetTexture("effects/shadow");
             ImgLight = Rise.Ressource.GetTexture("effects/light");
+            ImgWater = Rise.Ressource.GetTexture("effects/water");
 
             TileCreatures = new SpriteSheet(ImgCreatures, new Point(48, 128));
             TileEntities = new SpriteSheet(ImgEntities, new Point(16, 16));

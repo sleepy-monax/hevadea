@@ -2,6 +2,7 @@
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.Render;
+using Hevadea.Entities.Components.Renderer;
 using Hevadea.Entities.Components.States;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Items;
@@ -13,6 +14,8 @@ namespace Hevadea.Entities
 {
     public class Player : Entity
     {
+        public const float MAX_SPEED = 16f * 2f;
+
         public int LastLevel { get; set; }
         public Item HoldingItem { get; set; }
 
@@ -25,6 +28,9 @@ namespace Hevadea.Entities
             health.Killed += Health_Killed;
             AddComponent(health);
 
+            AddComponent(new MobRenderer(Ressources.ImgPlayer));
+            AddComponent(new Physic());
+
             AddComponent(new Attack());
             AddComponent(new Burnable(1.5f));
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
@@ -33,7 +39,6 @@ namespace Hevadea.Entities
             AddComponent(new Inventory(64) { AlowPickUp = true });
             AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new Move());
-            AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 0, new Point(16, 32))));
             AddComponent(new Pickup());
             AddComponent(new Pushable());
             AddComponent(new RevealMap(16));
