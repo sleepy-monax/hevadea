@@ -17,7 +17,7 @@ namespace Hevadea.Entities.Components.Renderer
     {
         public Texture2D Texture { get; }
         public static readonly int[] Frames = { 0, 2, 1, 2 };
-        private float _animationTime = 0f;
+        float _animationTime = 0f;
 
         public MobRenderer(Texture2D texture)
         {
@@ -28,8 +28,6 @@ namespace Hevadea.Entities.Components.Renderer
         {
             var ratio = (entity.GetComponent<Physic>().Speed / Player.MAX_SPEED);
             _animationTime += (8f * ratio) * gameTime.GetDeltaTime();
-
-            Logger.Log(_animationTime.ToString());
 
             var frame = Frames[(int)(_animationTime % 4)];
 

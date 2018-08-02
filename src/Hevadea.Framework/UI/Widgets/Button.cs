@@ -12,7 +12,7 @@ namespace Hevadea.Framework.UI.Widgets
         public Color TextColor { get; set; } = Color.White;
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
         public string Text { get; set; } = "Button";
-        private EasingManager _easing = new EasingManager { Speed = 5f };
+        private EasingManager _easing = new EasingManager { Speed = 10f };
 
         public Button()
         {
@@ -28,12 +28,12 @@ namespace Hevadea.Framework.UI.Widgets
         {
             _easing.Show = MouseState == MouseState.Over || MouseState == MouseState.Down;
             _easing.Update(gameTime.ElapsedGameTime.TotalSeconds);
-
+            
             spriteBatch.FillRectangle(Host, IdleColor * 0.05f * _easing.GetValueInv(EasingFunctions.Linear));
             spriteBatch.DrawRectangle(Host, IdleColor * _easing.GetValueInv(EasingFunctions.Linear), Scale(4));
 
-            var bounceW = (int)(Host.Width * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
-            var bounceH = (int)(Host.Height * _easing.GetValue(EasingFunctions.QuadraticEaseInOut));
+			var bounceW = (int)(Host.Width * (_easing.GetValue(EasingFunctions.QuadraticEaseInOut) + 9f) / 10f);
+			var bounceH = (int)(Host.Height * (_easing.GetValue(EasingFunctions.QuadraticEaseInOut) + 9f) / 10f);
 
             var rect = new Rectangle(Host.X + Host.Width / 2 - bounceW / 2,
                 Host.Y + Host.Height / 2 - bounceH / 2,

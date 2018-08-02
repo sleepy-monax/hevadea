@@ -14,7 +14,7 @@ namespace Hevadea.Entities
 {
     public class Player : Entity
     {
-        public const float MAX_SPEED = 16f * 2f;
+        public const float MAX_SPEED = 16f * 3f;
 
         public int LastLevel { get; set; }
         public Item HoldingItem { get; set; }
