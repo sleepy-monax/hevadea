@@ -11,24 +11,20 @@ namespace Hevadea.Framework.Threading
 
     public class Job
     {
-        private float _progress = 0f;
-        private string _status = "";
+        float _progress = 0f;
+        string _status = "";
+		JobHandler _job;
+		JobArguments _args;
 
         public delegate object JobHandler(Job task, JobArguments args);
-
-        private JobHandler _job;
-        private JobArguments _args;
-
+      
         public bool Started { get; private set; }
         public bool Canceled { get; private set; }
         public bool Finished { get; private set; }
 
         public event EventHandler Finish;
-
         public event EventHandler ProgressChanged;
-
         public event EventHandler StatusChanged;
-
         public event EventHandler<Exception> Exception;
 
         public object Result { get; private set; }

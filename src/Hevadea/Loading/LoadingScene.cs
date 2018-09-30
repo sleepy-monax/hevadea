@@ -13,9 +13,9 @@ namespace Hevadea.Loading
 {
     public class LoadingScene : Scene
     {
-        private Job _job;
-        private Label _progressLabel;
-        private ProgressBar _progressBar;
+        Job _job;
+        Label _progressLabel;
+        ProgressBar _progressBar;
 
         public LoadingScene(Job job)
         {
@@ -47,6 +47,7 @@ namespace Hevadea.Loading
                 Origine = Anchor.Center,
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 48, 48),
+				UnitOffset = new Point(-8, 8)
             }.RegisterMouseClickEvent((sender) =>
             {
                 _job.Cancel();

@@ -73,7 +73,10 @@ namespace Hevadea.Loading
 
             _job.Finish += (sender, e) =>
             {
-                gameState.CurrentMenu = new MenuInGame(gameState);
+				if (!_job.Canceled)
+				{
+					gameState.CurrentMenu = new MenuInGame(gameState);
+                }
             };
         }
 

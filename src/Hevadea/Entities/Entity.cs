@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace Hevadea.Entities
 {
-    public partial class Entity
+    public class Entity
     {
         public int Ueid { get; set; } = -1;
         public float X { get; private set; }

@@ -27,7 +27,7 @@ namespace Hevadea.Framework.Data
             return this;
         }
 
-        private void Resize(int newSize)
+        void Resize(int newSize)
         {
             if (newSize < Buffer.Length) return;
 
