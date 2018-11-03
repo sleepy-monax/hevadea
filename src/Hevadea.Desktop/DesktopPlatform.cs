@@ -8,7 +8,7 @@ namespace OpenGLPlatform
 {
     public class DesktopPlatform : PlatformBase
     {
-        private void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
+        void Window_TextInput(object sender, Microsoft.Xna.Framework.TextInputEventArgs e)
         {
             RaiseTextInput(e.Character, e.Key);
         }
@@ -38,7 +38,7 @@ namespace OpenGLPlatform
             {
                 Console.Title = "Hevadea";
             }
-            catch (Exception)
+            catch (Exception e)
             {
             }
         }

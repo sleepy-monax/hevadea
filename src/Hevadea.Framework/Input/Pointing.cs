@@ -25,15 +25,15 @@ namespace Hevadea.Framework.Input
 
         public void DrawDebug(SpriteBatch spritebatch)
         {
-            foreach (var f in _oldTouchState)
-            {
-                spritebatch.PutPixel(f.Position, Color.Blue, 4);
-            }
+            //foreach (var f in _oldTouchState)
+            //{
+            //    spritebatch.PutPixel(f.Position, Color.Blue, 4);
+            //}
 
-            foreach (var f in _touchState)
-            {
-                spritebatch.PutPixel(f.Position, Color.Red, 4);
-            }
+            //foreach (var f in _touchState)
+            //{
+            //    spritebatch.PutPixel(f.Position, Color.Red, 4);
+            //}
         }
 
         public bool AreaDown(Rectangle area)

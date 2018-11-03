@@ -73,14 +73,14 @@ namespace Hevadea.Framework.Threading
             return this;
         }
 
-        public Job Start(bool paralel = true)
+        public Job Start(bool async = true)
         {
             try
             {
                 if (!Started)
                 {
                     Started = true;
-                    if (paralel)
+                    if (async)
                     {
                         Task.Run(() =>
                         {

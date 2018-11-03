@@ -13,10 +13,9 @@ namespace Hevadea.Loading
 {
     public class LoadingMenu : Menu
     {
-        private Job _job;
-
-        private Label _progressLabel;
-        private ProgressBar _progressBar;
+        Job _job;
+        Label _progressLabel;
+        ProgressBar _progressBar;
 
         public LoadingMenu(Job job, GameState gameState) : base(gameState)
         {

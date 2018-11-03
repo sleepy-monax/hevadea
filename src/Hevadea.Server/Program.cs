@@ -56,9 +56,7 @@ namespace Hevadea.Server
                     Console.Write("World seed: ");
                     var worldSeed = Console.ReadLine();
 
-                    int seed = 0;
-
-                    if (!int.TryParse(worldSeed, out seed))
+                    if (!int.TryParse(worldSeed, out int seed))
                     {
                         seed = worldSeed.GetHashCode();
                     }

@@ -95,7 +95,7 @@
     <Compile Include="Entities\Components\Legacy\States\Energy.cs" />
     <Compile Include="Entities\Components\Legacy\States\Experience.cs" />
     <Compile Include="Entities\Components\Legacy\States\Health.cs" />
-    <Compile Include="Entities\Components\Light.cs" />
+    <Compile Include="Entities\Components\LightSource.cs" />
     <Compile Include="Entities\Components\Shadow.cs" />
     <Compile Include="Entities\Components\Legacy\States\Swim.cs" />
     <Compile Include="Entities\Belt.cs" />
@@ -115,10 +115,6 @@
     <Compile Include="Entities\Zombie.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="GamePaths.cs" />
-    <Compile Include="Modding\IMod.cs" />
-    <Compile Include="Modding\ModBuilder.cs" />
-    <Compile Include="Modding\ModLoader.cs" />
-    <Compile Include="Modding\ModManager.cs" />
     <Compile Include="Registry\ENTITIES.cs" />
     <Compile Include="Entities\Components\Legacy\Ai\Actions\ActionAttackEntity.cs" />
     <Compile Include="Entities\Components\Legacy\Ai\Actions\ActionMoveToLocation.cs" />
@@ -256,6 +252,7 @@
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

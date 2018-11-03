@@ -65,8 +65,7 @@ namespace Hevadea.Items
 
         public int Count(Item item)
         {
-            if (item == null || !Items.ContainsKey(item.Id)) return 0;
-            return Items[item.Id];
+            return (item == null || !Items.ContainsKey(item.Id)) ? 0 : Items[item.Id];
         }
 
         public int GetStackCount()

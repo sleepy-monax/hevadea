@@ -29,7 +29,7 @@ namespace Hevadea.Loading
                 Anchor = Anchor.Center,
                 Font = Ressources.FontRomulus,
                 Origine = Anchor.Center,
-                Text = "Generating world...",
+                Text = "Loading...",
                 UnitOffset = new Point(0, -24)
             };
 

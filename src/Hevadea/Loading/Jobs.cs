@@ -83,6 +83,8 @@ namespace Hevadea.Loading
             game.Connect();
             game.Initialize();
 
+            job.ThrowIfCanceled();
+
             return game;
         });
 
@@ -104,6 +106,8 @@ namespace Hevadea.Loading
             localPlayer.Join(gameState);
             gameState.LocalPlayer = localPlayer;
 
+            job.ThrowIfCanceled();
+
             return gameState;
         });
 
@@ -115,6 +119,8 @@ namespace Hevadea.Loading
             GameState gameState = new GameState().Load(job, info.Path);
             gameState.Initialize();
 
+            job.ThrowIfCanceled();
+
             return gameState;
         });
 
@@ -124,6 +130,8 @@ namespace Hevadea.Loading
 
             Game.SetLastGame(info.Path);
             info.GameState.Save(job, info.Path);
+
+            job.ThrowIfCanceled();
 
             return null;
         });
@@ -135,6 +143,8 @@ namespace Hevadea.Loading
             HostGame game = (HostGame)new HostGame(info.Address, info.Port, info.Slots).Load(job, info.Path);
             game.Initialize();
             game.Start();
+
+            job.ThrowIfCanceled();
 
             return game;
         });

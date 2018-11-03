@@ -28,6 +28,7 @@ namespace Hevadea.Entities
             health.Killed += Health_Killed;
             AddComponent(health);
 
+            AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new MobRenderer(Ressources.ImgPlayer));
             AddComponent(new Physic());
 
@@ -37,7 +38,6 @@ namespace Hevadea.Entities
             AddComponent(new Energy());
             AddComponent(new Interact());
             AddComponent(new Inventory(64) { AlowPickUp = true });
-            AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new Move());
             AddComponent(new Pickup());
             AddComponent(new Pushable());

@@ -8,7 +8,6 @@ using Hevadea.Framework.Extension;
 using Hevadea.Framework.Utils;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Components;
-using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems.PhysicSystem
@@ -117,7 +116,14 @@ namespace Hevadea.Systems.PhysicSystem
 
         public float GetFriction(Entity entity)
         {
-            return AIR_FRICTION + (entity.Z <= 0f ? DEFAULT_FRICTION : 0f);
+            if (entity.Z <= 0)
+            {
+                return DEFAULT_FRICTION;
+            }
+            else
+            {
+                return AIR_FRICTION;
+            }
         }
 
     }
