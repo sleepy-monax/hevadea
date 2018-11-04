@@ -6,10 +6,10 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Entities.Components.Attributes
 {
-    internal class Burnable : LightSource, IEntityComponentUpdatable
+    public class Burnable : LightSource, IEntityComponentUpdatable
     {
-        private float _dammages;
-        private float _chanceToBreak;
+        float _dammages;
+        float _chanceToBreak;
 
         public float SpreadRange = 2f;
         private bool _isBurnning = false;
@@ -41,7 +41,7 @@ namespace Hevadea.Entities.Components.Attributes
             IsBurnning = true;
         }
 
-        private Particle CreateFireParticle()
+        Particle CreateFireParticle()
         {
             return new Color2Particle
             {

@@ -24,7 +24,7 @@ namespace Hevadea.Entities
             AddComponent(new LightSource());
             AddComponent(new Move());
             AddComponent(new Pushable());
-            AddComponent(new Shadow());
+            AddComponent(new ShadowCaster());
         }
     }
 }

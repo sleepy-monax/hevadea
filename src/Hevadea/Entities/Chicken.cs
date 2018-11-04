@@ -16,7 +16,7 @@ namespace Hevadea.Entities
         public Chicken()
         {
             AddComponent(new Pickupable());
-            AddComponent(new Shadow());
+            AddComponent(new ShadowCaster());
             
             AddComponent(new Move());
             AddComponent(new Agent(new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeedWandering = 0.5f }));

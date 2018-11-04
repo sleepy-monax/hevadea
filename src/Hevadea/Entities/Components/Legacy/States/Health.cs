@@ -11,7 +11,7 @@ namespace Hevadea.Entities.Components.States
 {
     public sealed class Health : EntityComponent, IEntityComponentOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
-        private float _knckbckX, _knckbckY, _coolDown, _heathbarTimer = 0f;
+        float _knckbckX, _knckbckY, _coolDown;
 
         public bool Invicible { get; set; } = false;
         public bool ShowHealthBar { get; set; } = true;

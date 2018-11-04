@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Components.Attributes
+namespace Hevadea.Entities.Components
 {
     public class Physic : EntityComponent
     {

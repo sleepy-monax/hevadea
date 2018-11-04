@@ -10,9 +10,9 @@ namespace Hevadea.Entities.Components
 {
     public class Explode : EntityComponent
     {
-        private float _strenght;
-        private float _radius;
-        private bool _hasExplosed;
+        float _strenght;
+        float _radius;
+        bool _hasExplosed;
 
         public Explode(float strenght = 1f, float radius = 3f)
         {
@@ -72,7 +72,7 @@ namespace Hevadea.Entities.Components
             }
         }
 
-        private float GetPower(float distance)
+        float GetPower(float distance)
         {
             return (1f - (distance / (_radius * Game.Unit)));
         }

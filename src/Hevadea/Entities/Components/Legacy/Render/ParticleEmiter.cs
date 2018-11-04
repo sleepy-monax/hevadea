@@ -27,7 +27,7 @@ namespace Hevadea.Entities.Components.Render
 
     public class ParticleEmiter : EntityComponent, IEntityComponentDrawable, IEntityComponentUpdatable
     {
-        private readonly List<Particle> _particles;
+        readonly List<Particle> _particles;
 
         public ParticleEmiter()
         {

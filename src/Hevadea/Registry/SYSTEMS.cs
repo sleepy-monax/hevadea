@@ -15,7 +15,7 @@ namespace Hevadea.Registry
             Systems.Add(new PhysicProcessor());
             Systems.Add(new PhysicRenderer());
             Systems.Add(new SpriteRenderSystem());
-            Systems.Add(new SwimEffectSystem());
+            Systems.Add(new SwimmingEffect());
         }
     }
 }

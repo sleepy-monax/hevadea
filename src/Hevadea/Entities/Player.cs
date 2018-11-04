@@ -42,7 +42,7 @@ namespace Hevadea.Entities
             AddComponent(new Pickup());
             AddComponent(new Pushable());
             AddComponent(new RevealMap(16));
-            AddComponent(new Shadow());
+            AddComponent(new ShadowCaster());
             AddComponent(new Swim());
         }
 

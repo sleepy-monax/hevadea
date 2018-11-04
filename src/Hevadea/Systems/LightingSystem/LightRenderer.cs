@@ -1,6 +1,6 @@
 ﻿using Hevadea.Entities;
-using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
+using Hevadea.Entities.Components.Attributes;
 using Hevadea.Framework.Graphic;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;

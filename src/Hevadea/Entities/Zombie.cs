@@ -36,7 +36,7 @@ namespace Hevadea.Entities
             AddComponent(new Move());
             AddComponent(new NpcRender(new Sprite(Ressources.TileCreatures, 2, new Point(16, 32))));
             AddComponent(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
-            AddComponent(new Shadow());
+            AddComponent(new ShadowCaster());
             AddComponent(new Swim());
         }
     }

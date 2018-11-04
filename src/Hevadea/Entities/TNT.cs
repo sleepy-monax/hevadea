@@ -28,7 +28,7 @@ namespace Hevadea.Entities
             AddComponent(new Move());
             AddComponent(new Pickupable());
             AddComponent(new Pushable());
-            AddComponent(new Shadow());
+            AddComponent(new ShadowCaster());
         }
 
         public override void OnUpdate(GameTime gameTime)

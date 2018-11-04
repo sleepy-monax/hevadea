@@ -12,8 +12,8 @@ namespace Hevadea.Entities.Components
         {
             var pos = Owner.Coordinates;
 
-            foreach (var d in Items)
-                if (Rise.Rnd.NextDouble() < d.Chance) d.Item.Drop(Owner.Level, pos, Rise.Rnd.Next(d.Min, d.Max));
+            foreach (var i in Items)
+                if (Rise.Rnd.NextDouble() < i.Chance) i.Item.Drop(Owner.Level, pos, Rise.Rnd.Next(i.Min, i.Max));
         }
     }
 }

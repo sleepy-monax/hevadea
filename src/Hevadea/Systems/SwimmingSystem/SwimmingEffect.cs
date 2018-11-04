@@ -12,11 +12,11 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
-    public class SwimEffectSystem : GameSystem, IEntityRenderSystem
+    public class SwimmingEffect : GameSystem, IEntityRenderSystem
     {
         public static readonly Point Size = new Point(16, 8);
 
-        public SwimEffectSystem()
+        public SwimmingEffect()
         {
             Filter.AllOf(typeof(Swim));
         }
@@ -25,7 +25,7 @@ namespace Hevadea.Systems
         {
             if (entity.IsSwiming())
             {
-                var frame = MobRenderer.Frames[(int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
+                var frame = MobRenderer.FRAMES[(int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
 
                 Rectangle source = new Rectangle(new Point(16 * frame, 0), Size);
                 Vector2 position = entity.Position2D - Size.ToVector2() / 2;

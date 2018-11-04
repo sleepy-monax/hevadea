@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Hevadea.Entities.Components
+namespace Hevadea.Entities.Components.Attributes
 {
     public class LightSource : EntityComponent
     {

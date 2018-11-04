@@ -4,7 +4,7 @@ namespace Hevadea.Entities.Components.Attributes
 {
     public class Breakable : EntityComponent
     {
-        private bool DropInventory { get; set; } = false;
+        bool DropInventory { get; set; } = false;
 
         public void Break(Item item = null)
         {

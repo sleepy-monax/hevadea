@@ -11,7 +11,7 @@ namespace Hevadea.Entities.Components
     public class Colider : EntityComponent, IEntityComponentOverlay
     {
         public Func<Entity, bool> ColidePredicat = b => { return true; };
-        private RectangleF _hitbox;
+        RectangleF _hitbox;
 
         public Colider(Rectangle hitbox)
         {

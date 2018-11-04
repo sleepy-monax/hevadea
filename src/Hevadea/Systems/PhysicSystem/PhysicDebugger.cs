@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hevadea.Entities;
-using Hevadea.Entities.Components.Actions;
-using Hevadea.Entities.Components.Attributes;
+﻿using Hevadea.Entities;
+using Hevadea.Entities.Components;
 using Hevadea.Framework;
 using Hevadea.Framework.Graphic;
 using Hevadea.Tiles;
