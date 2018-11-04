@@ -5,6 +5,7 @@ using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
+
 using Hevadea.Scenes.Menus;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -46,6 +47,7 @@ namespace Hevadea.Loading
                 Origine = Anchor.Center,
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 48, 48),
+                UnitOffset = new Point(-8, 8)
             }.RegisterMouseClickEvent((sender) =>
             {
                 _job.Cancel();

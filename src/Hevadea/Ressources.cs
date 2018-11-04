@@ -32,7 +32,9 @@ namespace Hevadea
         public static SpriteSheet TileRock;
         public static SpriteSheet TileTiles;
 
+        public static Texture2D ImgZombie;
         public static Texture2D ImgPlayer;
+        public static Texture2D ImgChicken;
 
         public static Texture2D ImgCreatures;
         public static Texture2D ImgEngineLogo;
@@ -84,6 +86,8 @@ namespace Hevadea
             ImgTiles = Rise.Ressource.GetImage("tiles");
 
             ImgPlayer = Rise.Ressource.GetTexture("entities/player");
+            ImgZombie = Rise.Ressource.GetTexture("entities/zombie");
+            ImgChicken = Rise.Ressource.GetTexture("entities/chicken");
 
             ImgShadow = Rise.Ressource.GetTexture("effects/shadow");
             ImgLight = Rise.Ressource.GetTexture("effects/light");

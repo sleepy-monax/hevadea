@@ -17,7 +17,7 @@ namespace Hevadea.Entities.Components.Renderer
 
         public override void Draw(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
         {
-            var ratio = (entity.GetComponent<Physic>().Speed / Player.MAX_SPEED);
+            var ratio = (entity.GetComponent<Physic>()?.Speed / Player.MAX_SPEED) ?? 1f;
             _animationTime += (8f * ratio) * gameTime.GetDeltaTime();
 
             var frame = FRAMES[(int)(_animationTime % 4)];
