@@ -7,10 +7,10 @@ namespace Hevadea.Framework.Graphic
 {
     public class GraphicManager
     {
-        private Texture2D _pixel;
-        private Texture2D _fallbackTexture;
-        private GraphicsDeviceManager _graphicsDeviceManager;
-        private GraphicsDevice _graphicsDevice;
+        Texture2D _pixel;
+        Texture2D _fallbackTexture;
+        GraphicsDeviceManager _graphicsDeviceManager;
+        GraphicsDevice _graphicsDevice;
 
         public RenderTarget2D[] RenderTarget { get; private set; } = new RenderTarget2D[4];
 
@@ -158,7 +158,7 @@ namespace Hevadea.Framework.Graphic
             Rise.Ui.RefreshLayout();
         }
 
-        private bool _windowSizeIsBeingChanged = false;
+        bool _windowSizeIsBeingChanged = false;
 
         public void AllowUserResizing()
         {

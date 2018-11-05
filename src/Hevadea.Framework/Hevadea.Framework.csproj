@@ -61,7 +61,6 @@
     <Compile Include="Extension\ValueExtension.cs" />
     <Compile Include="Extension\Vector2Extention.cs" />
     <Compile Include="Graphic\Camera.cs" />
-    <Compile Include="Graphic\FarbfeldBitmap.cs" />
     <Compile Include="Graphic\GraphicManager.cs" />
     <Compile Include="Graphic\ParalaxeBackground.cs" />
     <Compile Include="Graphic\Particles\Color2Particle.cs" />

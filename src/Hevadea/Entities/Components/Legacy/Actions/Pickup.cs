@@ -70,7 +70,7 @@ namespace Hevadea.Entities.Components.Actions
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (PickupedEntity == null) return;
-            PickupedEntity.GetComponent<RendererComponent>().Draw(spriteBatch, PickupedEntity, Owner.Position2D + new Vector2(0, -Offset), gameTime);
+            PickupedEntity.GetComponent<RendererComponent>().Render(spriteBatch, PickupedEntity, Owner.Position2D + new Vector2(0, -Offset), gameTime);
         }
 
         public void OnGameSave(EntityStorage store)

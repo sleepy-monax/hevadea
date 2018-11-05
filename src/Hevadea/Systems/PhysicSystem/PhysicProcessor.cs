@@ -71,6 +71,7 @@ namespace Hevadea.Systems.PhysicSystem
                     eColider.CanCollideWith(entity) &&
                     hitbox.IntersectsWith(eColider.GetHitBox()))
                 {
+                    // TODO: push the entity
                     coliding = true;
                 }
             }

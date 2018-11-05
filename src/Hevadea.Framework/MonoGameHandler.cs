@@ -6,8 +6,8 @@ namespace Hevadea.Framework
 {
     public class MonoGameHandler : Game
     {
-        private Stopwatch _drawStopwatch = new Stopwatch();
-        private Stopwatch _updateStopwatch = new Stopwatch();
+        Stopwatch _drawStopwatch = new Stopwatch();
+        Stopwatch _updateStopwatch = new Stopwatch();
 
         public delegate void GameloopEventHandler(Game sender, GameTime gameTime);
 

@@ -15,7 +15,7 @@ namespace Hevadea.Entities.Components.Renderer
             Texture = texture;
         }
 
-        public override void Draw(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
+        public override void Render(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
         {
             var ratio = (entity.GetComponent<Physic>()?.Speed / Player.MAX_SPEED) ?? 1f;
             _animationTime += (8f * ratio) * gameTime.GetDeltaTime();

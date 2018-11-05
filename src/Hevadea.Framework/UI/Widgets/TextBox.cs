@@ -10,8 +10,9 @@ namespace Hevadea.Framework.UI.Widgets
 {
     public class TextBox : Widget
     {
-        private int _cursorIndex = 0;
-        private string _text = "";
+        // FIXME: The cursor get out of bound of the widget.
+        int _cursorIndex = 0;
+        string _text = "";
 
         public Style Style { get; set; } = Style.Idle;
         public Style FocusedStyle { get; set; } = Style.Focused;

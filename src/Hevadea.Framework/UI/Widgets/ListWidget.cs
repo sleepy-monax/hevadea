@@ -50,7 +50,7 @@ namespace Hevadea.Framework.UI.Widgets
 
         public void AddItems(List<ListItem> items)
         {
-            items.ForEach((item) => AddItem(item));
+            items.ForEach(AddItem);
         }
 
         public void SelectFirst()

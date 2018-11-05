@@ -1,4 +1,6 @@
-﻿using Hevadea.Framework;
+﻿using System.IO;
+
+using Hevadea.Framework;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.Threading;
@@ -6,17 +8,16 @@ using Hevadea.Loading;
 using Hevadea.Scenes;
 using Hevadea.Scenes.MainMenu;
 using Hevadea.WorldGenerator;
-using System.IO;
 
 namespace Hevadea
 {
     public static class Game
     {
         public static readonly int Unit = 16;
-        public static readonly int VersionNumber = 1;
-        public static readonly string SubTitle = "\"Tales of the unknown\"";
         public static readonly string Title = "Hevadea";
+        public static readonly string SubTitle = "\"Tales of the unknown\"";
         public static readonly string Version = "0.2.0";
+        public static readonly int VersionNumber = 2;
 
         public static void SetLastGame(string path)
         {
@@ -25,10 +26,9 @@ namespace Hevadea
 
         public static string GetLastGame()
         {
-            if (File.Exists(GamePaths.LastGameFile))
-                return File.ReadAllText(GamePaths.LastGameFile);
-
-            return null;
+            return File.Exists(GamePaths.LastGameFile) 
+                       ? File.ReadAllText(GamePaths.LastGameFile) 
+                       : null;
         }
 
         public static void GoToTileScreen()
@@ -38,7 +38,9 @@ namespace Hevadea
 
         public static void GoToMainMenu()
         {
-            Rise.Scene.Switch(Rise.Platform.Family == PlatformFamily.Desktop ? new DesktopMainMenu() : (Scene)new MobileMainMenu());
+            Rise.Scene.Switch(Rise.Platform.Family == PlatformFamily.Desktop 
+                              ? new DesktopMainMenu() 
+                              : (Scene)new MobileMainMenu());
         }
 
         public static void Play(string gamePath)

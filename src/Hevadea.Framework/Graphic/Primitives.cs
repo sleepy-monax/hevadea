@@ -37,8 +37,7 @@ namespace Hevadea.Framework.Graphic
             DrawLine(spriteBatch, new Vector2(x1, y1), new Vector2(x2, y2), color, 1.0f);
         }
 
-        public static void DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color,
-            float thickness)
+        public static void DrawLine(this SpriteBatch spriteBatch, float x1, float y1, float x2, float y2, Color color, float thickness)
         {
             DrawLine(spriteBatch, new Vector2(x1, y1), new Vector2(x2, y2), color, thickness);
         }
@@ -66,8 +65,7 @@ namespace Hevadea.Framework.Graphic
             spriteBatch.Draw(Rise.Graphic.GetPixel(), point, null, color, angle, Vector2.Zero, new Vector2(length, thickness), SpriteEffects.None, 0);
         }
 
-        private static void DrawPolygon(SpriteBatch spriteBatch, Vector2 position, List<Vector2> points, Color color,
-            float thickness)
+        public static void DrawPolygon(SpriteBatch spriteBatch, Vector2 position, List<Vector2> points, Color color, float thickness)
         {
             if (points.Count < 2)
                 return;

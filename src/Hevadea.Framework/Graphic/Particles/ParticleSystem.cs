@@ -10,8 +10,8 @@ namespace Hevadea.Framework.Graphic.Particles
     {
         public Vector2 Gravity { get; set; } = new Vector2(0, 1000);
 
-        private readonly List<Particle> _particles = new List<Particle>();
-        private int _counter = 0;
+        readonly List<Particle> _particles = new List<Particle>();
+        int _counter = 0;
 
         public void EmiteAt(Particle particle, float x, float y, float ax, float ay)
         {
@@ -42,8 +42,8 @@ namespace Hevadea.Framework.Graphic.Particles
             foreach (var p in particles)
             {
                 p.Update(this, gameTime);
+                p.Life -= gameTime.GetDeltaTime();
 
-                p.Life -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (p.Life <= 0f)
                 {
                     _particles.Remove(p);

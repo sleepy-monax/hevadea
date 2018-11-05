@@ -12,7 +12,7 @@ namespace Hevadea.Framework.UI.Widgets
         public Color TextColor { get; set; } = Color.White;
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
         public string Text { get; set; } = "Button";
-        private EasingManager _easing = new EasingManager { Speed = 10f };
+        EasingManager _easing = new EasingManager { Speed = 10f };
 
         public Button()
         {

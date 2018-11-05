@@ -14,7 +14,7 @@ namespace Hevadea.Systems
 
         public void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
-            entity.GetComponent<RendererComponent>().Draw(pool.Entities, entity, entity.Position2D, gameTime);
+            entity.GetComponent<RendererComponent>().Render(pool.Entities, entity, entity.Position2D, gameTime);
         }
     }
 }

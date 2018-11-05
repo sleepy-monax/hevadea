@@ -41,8 +41,8 @@ namespace Hevadea.Framework
 
         public static Config Config = new Config();
 
-        private static Scene _startScene;
-        private static Action _initializeAction;
+        static Scene _startScene;
+        static Action _initializeAction;
 
         public static void InitializeNoGraphic(PlatformBase platform)
         {
@@ -169,7 +169,7 @@ namespace Hevadea.Framework
             }
         }
 
-        private static void MonoGameOnDraw(Game sender, GameTime gameTime)
+        static void MonoGameOnDraw(Game sender, GameTime gameTime)
         {
             Graphic.ResetScissor();
             Graphic.Clear(Color.Black);

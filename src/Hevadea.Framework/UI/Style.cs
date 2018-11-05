@@ -104,7 +104,7 @@ namespace Hevadea.Framework.UI
         public Style()
         {
             Margin = new Margins(4);
-            Border = new Border() { Margins = new Margins(4) };
+            Border = new Border{ Margins = new Margins(4) };
             Padding = new Margins(4);
 
             Background = ColorPalette.Background;

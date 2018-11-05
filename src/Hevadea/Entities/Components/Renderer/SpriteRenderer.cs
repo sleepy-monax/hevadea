@@ -16,7 +16,7 @@ namespace Hevadea.Entities.Components.Renderer
             Offset = offset;
         }
 
-        public override void Draw(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
+        public override void Render(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
         {
             Sprite.Draw(spriteBatch, position + Offset - Sprite.Size / 2f, 1f, Color.White);
         }

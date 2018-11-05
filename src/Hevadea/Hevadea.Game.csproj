@@ -252,6 +252,8 @@
     <Compile Include="Entities\Components\Attributes\Interactable.cs" />
     <Compile Include="Entities\Components\Attributes\CraftingStation.cs" />
     <Compile Include="Entities\Components\Attributes\Interactive.cs" />
+    <Compile Include="Entities\EntityActions.cs" />
+    <Compile Include="Entities\Components\Attributes\HoldingItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">

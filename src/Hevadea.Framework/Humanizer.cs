@@ -9,10 +9,7 @@ namespace Hevadea.Framework
             int minutes = timeSpan.Minutes;
             int seconds = timeSpan.Seconds;
 
-            if (seconds < 10)
-                return minutes + ":0" + seconds;
-            else
-                return minutes + ":" + seconds;
+            return (minutes < 10 ? "0" : "") + minutes + (seconds < 10 ?  ":0" : ":") + seconds;
         }
     }
 }
