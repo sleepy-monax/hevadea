@@ -16,7 +16,7 @@ namespace Hevadea.Worlds
 
     public class Minimap
     {
-        private Level _level;
+        Level _level;
 
         public Texture2D Texture { get; private set; }
         public FarbfeldBitmap Bitmap { get; private set; }
@@ -50,7 +50,7 @@ namespace Hevadea.Worlds
             }
         }
 
-        // TODO: Finalize the support the nographic mod of the engine.
+        // TODO: Finalize the support of the nographic mod of the engine.
         public void LoadFromFile(string fileName)
         {
             var fs = new FileStream(fileName, FileMode.Open);

@@ -124,6 +124,7 @@
     <Compile Include="Utils\FastRandom.cs" />
     <Compile Include="UI\Style.cs" />
     <Compile Include="Utils\RandomUtils.cs" />
+    <Compile Include="Graphic\FarbfeldBitmap.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -142,5 +142,39 @@ namespace Hevadea.Framework.Data
 
             return encoding.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
         }
+
+        public BufferReader ReadStringASCII(int size, out string outValue) => ReadString(Encoding.ASCII, size, out outValue);
+
+        public BufferReader ReadStringUTF8(int size, out string outValue) => ReadString(Encoding.UTF8, size, out outValue);
+
+        public BufferReader ReadString(Encoding encoding, int size, out string outValue)
+        {
+            var tmpData = new byte[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                tmpData[i] = Buffer[Offset++];
+            }
+
+            outValue = encoding.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
+
+            return this;
+        }
+
+        public string ReadStringASCII(int size) => ReadString(Encoding.ASCII, size);
+
+        public string ReadStringUTF8(int size) => ReadString(Encoding.UTF8, size);
+
+        public string ReadString(Encoding encoding, int size)
+        {
+            var tmpData = new byte[size];
+
+            for (int i = 0; i < size; i++)
+            {
+                tmpData[i] = Buffer[Offset++];
+            }
+
+            return encoding.GetString(tmpData).TrimEnd('\0').TrimStart('\0');
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Hevadea.Framework.Utils;
+﻿using System.IO;
+using Hevadea.Framework.Data;
+using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -32,5 +34,34 @@ namespace Hevadea.Framework.Graphic
 
             return tex;
         }
+
+        /* 
+        public static FarbfeldBitmap FromStream(Stream stream)
+        {
+            byte[] header = new byte[16];
+            stream.Read(header, 0, 16);
+            BufferReader reader = new BufferReader(header);
+
+            reader.ReadStringASCII(out var magic)
+                  .ReadInteger(out var width)
+                  .ReadInteger(out var height);
+
+            if (magic == "farbfeld")
+            {
+                throw new InvalidDataException();
+            }
+
+            if (width == 0 || height == 0)
+            {
+                return null;
+            }
+
+            FarbfeldBitmap bmp = new FarbfeldBitmap(width, height);
+
+
+
+            return bmp;
+        }
+        */
     }
 }
