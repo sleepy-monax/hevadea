@@ -45,7 +45,7 @@ namespace Hevadea.Entities.Components
                     {
                         e.GetComponent<Explode>()?.Do();
                         e.GetComponent<Breakable>()?.Break();
-                        e.GetComponent<Burnable>()?.SetInFire();
+                        e.GetComponent<Flammable>()?.SetInFire();
                     }
                 }
             }

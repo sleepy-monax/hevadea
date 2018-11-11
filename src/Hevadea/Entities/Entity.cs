@@ -261,6 +261,11 @@ namespace Hevadea.Entities
             return null;
         }
 
+        public List<Entity> GetEntitiesInRadius(float radius)
+        {
+            return Level?.GetEntitiesOnArea(Position2D, radius);
+        }
+
         /* --- Game loop --------------------------------------------------- */
 
         public void Update(GameTime gameTime)

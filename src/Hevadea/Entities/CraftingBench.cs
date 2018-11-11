@@ -20,9 +20,9 @@ namespace Hevadea.Entities
             AddComponent(new CraftingStation(RECIPIES.BenchCrafted));
             AddComponent(new ShadowCaster());
             AddComponent(new Pickupable());
+            AddComponent(new Flammable());
 
             AddComponent(new Breakable());
-            AddComponent(new Burnable(1f));
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1) } });
             AddComponent(new Pushable());

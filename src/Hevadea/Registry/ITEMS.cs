@@ -92,8 +92,7 @@ namespace Hevadea.Registry
                 {
                     foreach (var e in user.Level.GetEntitiesAt(pos))
                     {
-                        if (e.HasComponent<Burnable>())
-                            e.GetComponent<Burnable>().IsBurnning = true;
+                        e.GetComponent<Flammable>()?.SetInFire();
                     }
                 }
             });

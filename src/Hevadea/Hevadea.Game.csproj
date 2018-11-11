@@ -81,7 +81,6 @@
     <Compile Include="Entities\Components\Legacy\Actions\Interact.cs" />
     <Compile Include="Entities\Components\Legacy\Actions\Move.cs" />
     <Compile Include="Entities\Components\Legacy\Actions\Pickup.cs" />
-    <Compile Include="Entities\Components\Legacy\Attributes\Burnable.cs" />
     <Compile Include="Entities\Components\Legacy\Attributes\Pushable.cs" />
     <Compile Include="Entities\Components\Legacy\IEntityComponentDrawable.cs" />
     <Compile Include="Entities\Components\Legacy\IEntityComponentDrawableOverlay.cs" />
@@ -246,7 +245,6 @@
     <Compile Include="Entities\Components\Attributes\Flammable.cs" />
     <Compile Include="Entities\EntityComponent.cs" />
     <Compile Include="Systems\ElementalSystem\FireProcessor.cs" />
-    <Compile Include="Systems\ElementalSystem\FireRenderer.cs" />
     <Compile Include="Entities\Components\Attributes\Breakable.cs" />
     <Compile Include="Entities\Components\Attributes\Pickupable.cs" />
     <Compile Include="Entities\Components\Attributes\Interactable.cs" />
@@ -254,6 +252,7 @@
     <Compile Include="Entities\Components\Attributes\Interactive.cs" />
     <Compile Include="Entities\EntityActions.cs" />
     <Compile Include="Entities\Components\Attributes\HoldingItem.cs" />
+    <Compile Include="Systems\ElementalSystem\FireParticles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">

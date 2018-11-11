@@ -27,7 +27,7 @@ namespace Hevadea.Entities
             }
 
             AddComponent(new Breakable());
-            AddComponent(new Burnable(1f));
+            AddComponent(new Flammable());
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

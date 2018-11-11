@@ -31,9 +31,9 @@ namespace Hevadea.Entities
             AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new MobRenderer(Ressources.ImgPlayer));
             AddComponent(new Physic());
+            AddComponent(new Flammable());
 
             AddComponent(new Attack());
-            AddComponent(new Burnable(1.5f));
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Energy());
             AddComponent(new Interact());

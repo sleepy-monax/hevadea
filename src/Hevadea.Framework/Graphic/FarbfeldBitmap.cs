@@ -11,7 +11,7 @@ namespace Hevadea.Framework.Graphic
         public int Width { get; private set; }
         public int Height { get; private set; }
 
-        private Color[] _pixels;
+        Color[] _pixels;
 
         public FarbfeldBitmap(int width, int height)
         {

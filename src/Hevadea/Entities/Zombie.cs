@@ -16,6 +16,9 @@ namespace Hevadea.Entities
     {
         public Zombie()
         {
+            AddComponent(new Flammable());
+            AddComponent(new ShadowCaster());
+
             AddComponent(new Agent(new BehaviorEnemy
             {
                 MoveSpeedAgro = 0.75f,
@@ -32,13 +35,11 @@ namespace Hevadea.Entities
             AddComponent(new MobRenderer(Ressources.ImgZombie));
 
             AddComponent(new Attack());
-            AddComponent(new Burnable(1f));
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Energy());
             AddComponent(new Health(10));
             AddComponent(new Move());
             AddComponent(new Pushable { CanBePushBy = { ENTITIES.PLAYER } });
-            AddComponent(new ShadowCaster());
             AddComponent(new Swim());
         }
     }
