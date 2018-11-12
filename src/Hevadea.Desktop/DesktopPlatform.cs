@@ -38,7 +38,7 @@ namespace OpenGLPlatform
             {
                 Console.Title = "Hevadea";
             }
-            catch (Exception e)
+            catch
             {
             }
         }

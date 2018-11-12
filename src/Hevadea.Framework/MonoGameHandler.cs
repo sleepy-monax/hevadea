@@ -6,34 +6,33 @@ namespace Hevadea.Framework
 {
     public class MonoGameHandler : Game
     {
-        Stopwatch _drawStopwatch = new Stopwatch();
+        public int UpdateTime { get; private set; } = 0;
+        public int DrawTime { get; private set; } = 0;
+
+        public GraphicsDeviceManager Graphics { get; private set; }
+
         Stopwatch _updateStopwatch = new Stopwatch();
+        Stopwatch _drawStopwatch = new Stopwatch();
 
         public delegate void GameloopEventHandler(Game sender, GameTime gameTime);
 
-        public GraphicsDeviceManager Graphics;
-
         public event EventHandler OnInitialize;
-
         public event EventHandler OnLoadContent;
-
         public event EventHandler OnUnloadContent;
-
-        public event GameloopEventHandler OnDraw;
-
+        
         public event GameloopEventHandler OnUpdate;
-
-        public int DrawTime { get; private set; } = 0;
-        public int UpdateTime { get; private set; } = 0;
+        public event GameloopEventHandler OnDraw;
 
         public MonoGameHandler()
         {
             Content.RootDirectory = "Content";
-            Graphics = new GraphicsDeviceManager(this);
 
+            Graphics = new GraphicsDeviceManager(this);
             Graphics.SynchronizeWithVerticalRetrace = false;
-            IsFixedTimeStep = false;
+
+            IsFixedTimeStep = true;
         }
+       
 
         protected override void Initialize()
         {

@@ -7,25 +7,34 @@ namespace Hevadea.Registry
 {
     public static class SYSTEMS
     {
-        public static List<GameSystem> Systems = new List<GameSystem>();
+        public static List<EntitySystem> Systems { get; } = new List<EntitySystem>();
+        public static List<EntityUpdateSystem> UpdateSystems { get; } = new List<EntityUpdateSystem>();
+        public static List<EntityDrawSystem> DrawSystems { get; } = new List<EntityDrawSystem>();
+
+        public static void Register<T>() where T : EntitySystem, new()
+        {
+            var system = new T();
+
+            if (system is EntityUpdateSystem updateSystem) UpdateSystems.Add(updateSystem);
+            if (system is EntityDrawSystem drawSystem) DrawSystems.Add(drawSystem);
+        }
 
         public static void Initialize()
         {
             // Fire
-            Systems.Add(new FireProcessor());
-            Systems.Add(new FireParticles());
+            Register<FireProcessor>();
+            Register<FireParticles>();
 
             // Light and shadow
-            Systems.Add(new LightSystem());
-            Systems.Add(new ShadowSystem());
+            Register<LightSystem>();
+            Register<ShadowSystem>();
 
             // Physic
-            Systems.Add(new PhysicProcessor());
-            Systems.Add(new PhysicRenderer());
+            Register<PhysicProcessor>();
+            Register<PhysicRenderer>();
 
-            Systems.Add(new SpriteRenderSystem());
-
-            Systems.Add(new SwimmingEffect());
+            Register<SpriteRenderSystem>();
+            Register<SwimmingEffect>();
         }
     }
 }

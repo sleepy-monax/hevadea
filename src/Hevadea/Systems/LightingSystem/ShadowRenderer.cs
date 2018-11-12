@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
-    public class ShadowSystem : GameSystem, IEntityRenderSystem
+    public class ShadowSystem : EntityDrawSystem
     {
         public ShadowSystem()
         {
             Filter.AllOf(typeof(ShadowCaster));
         }
 
-        public void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
+        public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             if (entity.HasComponent<ShadowCaster>(out var shadow) && !(entity.GetComponent<Swim>()?.IsSwiming ?? false))
             {

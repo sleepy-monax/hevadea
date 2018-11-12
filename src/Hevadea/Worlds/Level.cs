@@ -118,11 +118,11 @@ namespace Hevadea.Worlds
             // Update all alive entities.
             foreach (var e in renderState.AliveEntities)
             {
-                foreach (var sys in SYSTEMS.Systems)
+                foreach (var sys in SYSTEMS.UpdateSystems)
                 {
-                    if (e.Match(sys.Filter) && sys.Enable && sys is IEntityProcessSystem process)
+                    if (sys.Enable && e.Match(sys.Filter))
                     {
-                        process.Process(e, gameTime);
+                        sys.Update(e, gameTime);
                     }
                 }
 
@@ -176,11 +176,11 @@ namespace Hevadea.Worlds
                 }
 
                 // Draw Entity light source.
-                foreach (var sys in SYSTEMS.Systems)
+                foreach (var sys in SYSTEMS.DrawSystems)
                 {
-                    if (e.Match(sys.Filter) && sys.Enable && sys is IEntityRenderSystem render)
+                    if (sys.Enable && e.Match(sys.Filter))
                     {
-                        render.Render(e, spriteBatchPool, gameTime);
+                        sys.Draw(e, spriteBatchPool, gameTime);
                     }
                 }
             }

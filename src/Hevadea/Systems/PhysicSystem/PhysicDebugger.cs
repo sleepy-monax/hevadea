@@ -9,14 +9,14 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems.PhysicSystem
 {
-    public class PhysicRenderer : GameSystem, IEntityRenderSystem
+    public class PhysicRenderer : EntityDrawSystem
     {
         public PhysicRenderer()
         {
             Filter.AllOf(typeof(Physic));
         }
 
-        public void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
+        public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             if (Rise.Debug.GAME)
             {

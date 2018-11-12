@@ -32,7 +32,7 @@ namespace Hevadea
         public PlayerSession LocalPlayer { get; set; }
         public List<PlayerSession> Players { get; } = new List<PlayerSession>();
 
-        public List<GameSystem> Systems { get; set; }
+        public List<EntitySystem> Systems { get; set; }
 
         public Menu CurrentMenu
         {

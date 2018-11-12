@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
-    public class SwimmingEffect : GameSystem, IEntityRenderSystem
+    public class SwimmingEffect : EntityDrawSystem
     {
         public static readonly Point Size = new Point(16, 8);
 
@@ -21,7 +21,7 @@ namespace Hevadea.Systems
             Filter.AllOf(typeof(Swim));
         }
 
-        public void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
+        public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             if (entity.IsSwiming())
             {

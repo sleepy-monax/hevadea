@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems.PhysicSystem
 {
-    public class PhysicProcessor : GameSystem, IEntityProcessSystem
+    public class PhysicProcessor : EntityUpdateSystem
     {
         public static float AIR_FRICTION = 0.1f;
         public static float DEFAULT_FRICTION = float.PositiveInfinity;
@@ -18,7 +18,7 @@ namespace Hevadea.Systems.PhysicSystem
             Filter.AllOf(typeof(Physic));
         }
 
-        public void Process(Entity entity, GameTime gameTime)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var physic = entity.GetComponent<Physic>();
             var delta = physic.Velocity * gameTime.GetDeltaTime();

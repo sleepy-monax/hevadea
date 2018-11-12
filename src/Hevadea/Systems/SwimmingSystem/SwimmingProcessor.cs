@@ -5,14 +5,14 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
-    public class Swimming : GameSystem, IEntityProcessSystem
+    public class Swimming : EntityUpdateSystem
     {
         public Swimming()
         {
             Filter.AllOf(typeof(Swim));
         }
 
-        public void Process(Entity entity, GameTime gameTime)
+        public override void Update(Entity entity, GameTime gameTime)
         {
 
         }

@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems.ElementalSystem
 {
-    public class FireParticles : GameSystem, IEntityProcessSystem
+    public class FireParticles : EntityUpdateSystem
     {
         public FireParticles()
         {
-            Filter = new Filter().AllOf(typeof(Flammable));
+            Filter.AllOf(typeof(Flammable));
         }
 
         public static Particle CreateFireParticle()
@@ -25,7 +25,7 @@ namespace Hevadea.Systems.ElementalSystem
             };
         }
 
-        public void Process(Entity entity, GameTime gameTime)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var fire = entity.GetComponent<Flammable>();
 

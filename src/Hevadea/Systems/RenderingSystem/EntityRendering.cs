@@ -5,14 +5,14 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems
 {
-    public class SpriteRenderSystem : GameSystem, IEntityRenderSystem
+    public class SpriteRenderSystem : EntityDrawSystem
     {
         public SpriteRenderSystem()
         {
             Filter.AnyOf(typeof(SpriteRenderer), typeof(MobRenderer));
         }
 
-        public void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
+        public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             entity.GetComponent<RendererComponent>().Render(pool.Entities, entity, entity.Position2D, gameTime);
         }

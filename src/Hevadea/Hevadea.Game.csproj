@@ -44,6 +44,7 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
@@ -54,7 +55,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.0</LangVersion>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>
@@ -124,7 +125,7 @@
     <Compile Include="Entities\Components\Legacy\Render\NpcRender.cs" />
     <Compile Include="Entities\Components\Legacy\RevealMap.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
-    <Compile Include="Systems\GameSystem.cs" />
+    <Compile Include="Systems\EntitySystem.cs" />
     <Compile Include="Systems\PhysicSystem\PhysicProcessor.cs" />
     <Compile Include="Systems\PhysicSystem\PhysicDebugger.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="Entities\EntityActions.cs" />
     <Compile Include="Entities\Components\Attributes\HoldingItem.cs" />
     <Compile Include="Systems\ElementalSystem\FireParticles.cs" />
+    <Compile Include="Entities\Components\Attributes\Movable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">

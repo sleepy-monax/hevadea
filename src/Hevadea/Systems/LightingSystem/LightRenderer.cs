@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Systems
 {
-    public class LightSystem : GameSystem, IEntityRenderSystem
+    public class LightSystem : EntityDrawSystem
     {
         public LightSystem()
         {
             Filter.AnyOf(typeof(LightSource), typeof(Pickup));
         }
 
-        public void Render(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
+        public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             LightSource light = entity.GetComponent<LightSource>();
 

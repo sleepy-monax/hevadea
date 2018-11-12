@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems.ElementalSystem
 {
-    public class FireProcessor : GameSystem, IEntityProcessSystem
+    public class FireProcessor : EntityUpdateSystem
     {
         public static readonly float FIRE_SPREAD_RANGE = 32f;
         public static readonly float FIRE_DAMAGES = 1f;
@@ -17,10 +17,10 @@ namespace Hevadea.Systems.ElementalSystem
 
         public FireProcessor()
         {
-            Filter = new Filter().AllOf(typeof(Flammable));
+            Filter.AllOf(typeof(Flammable));
         }
 
-        public void Process(Entity entity, GameTime gameTime)
+        public override void Update(Entity entity, GameTime gameTime)
         {
             var fire = entity.GetComponent<Flammable>();
             var health = entity.GetComponent<Health>();
@@ -45,7 +45,7 @@ namespace Hevadea.Systems.ElementalSystem
                 
                 foreach (var v in victimes)
                 {
-                    if (v != entity && Rise.Rnd.NextDouble() < 0.01)
+                    if (v != entity && Rise.Rnd.NextDouble() < 0.005)
                     {
                         v.GetComponent<Flammable>()?.SetInFire();
                         v.GetComponent<Explode>()?.Do();
@@ -56,7 +56,6 @@ namespace Hevadea.Systems.ElementalSystem
                 health?.Hurt(entity, FIRE_DAMAGES * gameTime.GetDeltaTime(), false);
 
                 // Break it if possible
-                // TODO: make this framerate independant
                 if (Rise.Rnd.NextFloat() < CHANCE_TO_BREAK_FROM_FIRE)
                     entity.GetComponent<Breakable>()?.Break();
             }

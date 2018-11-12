@@ -12,7 +12,6 @@ namespace Hevadea.Entities.Components.Actions
     {
         public bool IsMoving { get; private set; }
         public bool NoClip { get; set; } = false;
-        private float SETime = 0;
 
         public void Update(GameTime gameTime)
         {
