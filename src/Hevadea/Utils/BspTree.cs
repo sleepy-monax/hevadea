@@ -109,7 +109,7 @@ namespace Hevadea.Utils
             }
 
             if (!vecticaly && (parent.Item0.Height / (float)parent.Item0.Width < 0.45
-                           || parent.Item1.Height / (float)parent.Item1.Width < 0.45))
+                           ||  parent.Item1.Height / (float)parent.Item1.Width < 0.45))
             {
                 parent.Clear();
                 goto start;

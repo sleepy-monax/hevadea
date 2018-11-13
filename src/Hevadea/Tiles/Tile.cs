@@ -9,19 +9,19 @@ namespace Hevadea.Tiles
 {
     public class Tile
     {
+        TileRender _render;
+        List<TileComponent> _tags;
+
         public string Name { get; }
         public bool BlockLineOfSight { get; set; } = false;
-
-        private List<TileComponent> Tags { get; }
+        public Color MinimapColor { get; }
         public TileRender Render { get => _render; set { _render = value; _render.Tile = this; } }
-        private TileRender _render = null;
-        public Color MiniMapColor { get; }
 
         public Tile(string name, Color? minimapColor = null)
         {
             Name = name;
-            Tags = new List<TileComponent>();
-            MiniMapColor = minimapColor ?? Color.Gray;
+            _tags = new List<TileComponent>();
+            MinimapColor = minimapColor ?? Color.Gray;
         }
 
         public Tile(string name, TileRender renderer, Color? minimapColor = null) : this(name, minimapColor)
@@ -31,7 +31,7 @@ namespace Hevadea.Tiles
 
         public void Update(Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
-            foreach (var t in Tags)
+            foreach (var t in _tags)
             {
                 if (t is IUpdatableTileComponent u) u.Update(this, position, data, level, gameTime);
             }
@@ -42,7 +42,7 @@ namespace Hevadea.Tiles
             spriteBatch.FillRectangle(position.ToRectangle(), new Color(148, 120, 92));
             _render?.Draw(spriteBatch, position, level);
 
-            foreach (var t in Tags)
+            foreach (var t in _tags)
             {
                 if (t is IDrawableTileComponent d) d.Draw(this, spriteBatch, position, data, level, gameTime);
             }
@@ -50,7 +50,7 @@ namespace Hevadea.Tiles
 
         public bool HasTag<T>()
         {
-            foreach (var t in Tags)
+            foreach (var t in _tags)
             {
                 if (t is T) return true;
             }
@@ -60,7 +60,7 @@ namespace Hevadea.Tiles
 
         public T Tag<T>() where T : TileComponent
         {
-            foreach (var t in Tags)
+            foreach (var t in _tags)
             {
                 if (t is T variable) return variable;
             }
@@ -70,7 +70,7 @@ namespace Hevadea.Tiles
 
         public void AddTag(TileComponent tag)
         {
-            tag.AttachedTile = this; Tags.Add(tag);
+            tag.AttachedTile = this; _tags.Add(tag);
         }
 
         public void AddTag(params TileComponent[] tags)

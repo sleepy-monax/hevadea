@@ -42,11 +42,11 @@ namespace Hevadea.Worlds
         {
             if (Rise.NoGraphic)
             {
-                Bitmap.SetPixel(tx, ty, _level.GetTile(tx, ty).MiniMapColor);
+                Bitmap.SetPixel(tx, ty, _level.GetTile(tx, ty).MinimapColor);
             }
             else
             {
-                Texture.SetPixel(tx, ty, _level.GetTile(tx, ty).MiniMapColor);
+                Texture.SetPixel(tx, ty, _level.GetTile(tx, ty).MinimapColor);
             }
         }
 

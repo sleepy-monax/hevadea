@@ -141,6 +141,7 @@ namespace Hevadea.Entities.Components.Actions
             {
                 Owner.SetPosition(Owner.X + sx, Owner.Y + sy);
                 Owner.Level.GetTile(Owner.Coordinates).Tag<GroundTile>()?.SteppedOn(Owner, Owner.Coordinates);
+
                 IsMoving = true;
                 return true;
             }

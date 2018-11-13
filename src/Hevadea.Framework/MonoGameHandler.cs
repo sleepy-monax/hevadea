@@ -30,7 +30,7 @@ namespace Hevadea.Framework
             Graphics = new GraphicsDeviceManager(this);
             Graphics.SynchronizeWithVerticalRetrace = false;
 
-            IsFixedTimeStep = true;
+            IsFixedTimeStep = false;
         }
        
 
