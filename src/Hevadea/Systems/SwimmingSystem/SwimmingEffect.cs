@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
-using Hevadea.Entities.Components.Renderer;
 using Hevadea.Entities.Components.States;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
@@ -25,7 +19,7 @@ namespace Hevadea.Systems
         {
             if (entity.IsSwiming())
             {
-                var frame = MobRenderer.FRAMES[(int)(gameTime.TotalGameTime.TotalSeconds * 8 % 4)];
+                var frame = (int)(gameTime.TotalGameTime.TotalSeconds * 4) % 4;
 
                 Rectangle source = new Rectangle(new Point(16 * frame, 0), Size);
                 Vector2 position = entity.Position2D - Size.ToVector2() / 2;

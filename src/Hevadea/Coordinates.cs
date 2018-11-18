@@ -68,6 +68,26 @@ namespace Hevadea.Tiles
                 width, height);
         }
 
+        public Point ToPoint()
+        {
+            return new Point(X, Y);
+        }
+
+        public Vector2 ToVector2()
+        {
+            return new Vector2(X, Y);
+        }
+
+        public PathFinder.Node AsNode()
+        {
+            return new PathFinder.Node(X, Y);
+        }
+
+        public bool InLevelBound(Level level)
+        {
+            return !(X < 0 || Y < 0 || X >= level.Width || Y >= level.Height);
+        }
+
         public static Coordinates operator +(Coordinates left, Coordinates right)
         {
             if (left is null && right is null)
@@ -119,26 +139,6 @@ namespace Hevadea.Tiles
             {
                 return (X * 397) ^ Y;
             }
-        }
-
-        public Point ToPoint()
-        {
-            return new Point(X, Y);
-        }
-
-        public Vector2 ToVector2()
-        {
-            return new Vector2(X, Y);
-        }
-
-        public PathFinder.Node AsNode()
-        {
-            return new PathFinder.Node(X, Y);
-        }
-
-        public bool InLevelBound(Level level)
-        {
-            return !(X < 0 || Y < 0 || X >= level.Width || Y >= level.Height);
         }
     }
 }
