@@ -8,6 +8,8 @@ namespace Hevadea.Tiles
 {
     public class Coordinates
     {
+        public static Coordinates Zero => new Coordinates(0, 0);
+
         public int X { get; set; }
         public int Y { get; set; }
         public int WorldX => X * Game.Unit;
@@ -32,6 +34,11 @@ namespace Hevadea.Tiles
         public Rectangle ToRectangle()
         {
             return new Rectangle(ToOnScreenPosition(), new Point(Game.Unit, Game.Unit));
+        }
+
+        public float Distance(Coordinates to)
+        {
+            return Mathf.Distance(X, Y, to.X, to.Y);
         }
 
         public bool IsColliding(Entity e, int width, int height)
@@ -59,6 +66,26 @@ namespace Hevadea.Tiles
                 x,
                 y,
                 width, height);
+        }
+
+        public static Coordinates operator +(Coordinates left, Coordinates right)
+        {
+            if (left is null && right is null)
+            {
+                return Coordinates.Zero;
+            }
+            else if (left is null)
+            {
+                return right;
+            }
+            else if (right is null)
+            {
+                return left;
+            }
+            else
+            {
+                return new Coordinates(left.X + right.X, left.Y + right.Y);
+            }
         }
 
         public static bool operator !=(Coordinates left, Coordinates right)

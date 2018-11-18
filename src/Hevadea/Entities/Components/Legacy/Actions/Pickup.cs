@@ -57,7 +57,6 @@ namespace Hevadea.Entities.Components.Actions
                 Owner.Level.AddEntityAt(PickupedEntity, facingTile);
 
                 PickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
-                PickupedEntity.GetComponent<Physic>()?.Stop();
 
                 PickupedEntity = null;
 

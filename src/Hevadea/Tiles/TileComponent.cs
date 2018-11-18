@@ -7,12 +7,12 @@ namespace Hevadea.Tiles
 {
     public interface IDrawableTileComponent
     {
-        void Draw(Tile tile, SpriteBatch spriteBatch, Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime);
+        void Draw(Tile tile, SpriteBatch spriteBatch, Coordinates coords, Dictionary<string, object> data, Level level, GameTime gameTime);
     }
 
     public interface IUpdatableTileComponent
     {
-        void Update(Tile tile, Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime);
+        void Update(Tile tile, Coordinates coords, Dictionary<string, object> data, Level level, GameTime gameTime);
     }
 
     public class TileComponent

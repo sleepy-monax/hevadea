@@ -65,12 +65,15 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
+    <Compile Include="Entities\Components\Attributes\RevealMap.cs" />
     <Compile Include="Entities\Components\EntityExtension.cs" />
-    <Compile Include="Entities\Components\Physic.cs" />
     <Compile Include="Entities\Components\Renderer\MobRenderer.cs" />
     <Compile Include="Entities\Components\Renderer\RendererComponent.cs" />
     <Compile Include="Entities\Components\Renderer\SpriteRenderer.cs" />
@@ -120,14 +123,10 @@
     <Compile Include="Entities\Components\Legacy\Ai\Behavior.cs" />
     <Compile Include="Entities\Components\Legacy\Dropable.cs" />
     <Compile Include="Entities\Components\Legacy\Explode.cs" />
-    <Compile Include="Entities\Components\Legacy\Grow.cs" />
     <Compile Include="Entities\Components\Legacy\Inventory.cs" />
-    <Compile Include="Entities\Components\Legacy\Render\NpcRender.cs" />
-    <Compile Include="Entities\Components\Legacy\RevealMap.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
     <Compile Include="Systems\EntitySystem.cs" />
-    <Compile Include="Systems\PhysicSystem\PhysicProcessor.cs" />
-    <Compile Include="Systems\PhysicSystem\PhysicDebugger.cs" />
+    <Compile Include="Systems\MinimapSystem\RevealProcessor.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
     <Compile Include="BlueprintGroupe.cs" />
     <Compile Include="Registry\ITEMS.cs" />
@@ -334,13 +333,7 @@
       <Name>Hevadea.Framework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Systems\SwimmingSystem\" />
-    <Folder Include="Systems\LightingSystem\" />
-    <Folder Include="Systems\RenderingSystem\" />
-    <Folder Include="Entities\Components\Attributes\" />
-    <Folder Include="Systems\ElementalSystem\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

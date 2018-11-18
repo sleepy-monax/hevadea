@@ -15,8 +15,8 @@ namespace Hevadea.Entities
     {
         public CraftingBench()
         {
-            AddComponent(new Physic());
-            AddComponent(new SpriteRenderer(new Sprite(Ressources.TileEntities, new Point(1, 0))));
+            AddComponent(new Move());
+            AddComponent(new SpriteRenderer { Sprite = new Sprite(Ressources.TileEntities, new Point(1, 0)) });
             AddComponent(new CraftingStation(RECIPIES.BenchCrafted));
             AddComponent(new ShadowCaster());
             AddComponent(new Pickupable());

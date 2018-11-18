@@ -20,10 +20,8 @@ namespace Hevadea.Entities
         public int Ueid { get; set; } = -1;
         public float X { get; private set; }
         public float Y { get; private set; }
-        public float Z { get; set; } = 0f;
 
         public Vector2 Position2D { get => new Vector2(X, Y); set => SetPosition(value.X, value.Y); }
-        public Vector3 Position3D { get => new Vector3(X, Y, Z); set => SetPosition(value.X, value.Y, value.Z); }
 
 
         public bool Initialized { get; private set; } = false;
@@ -196,15 +194,13 @@ namespace Hevadea.Entities
             Level.RemoveEntity(this);
         }
 
-        public void SetPosition(float x, float y) => SetPosition(x, y, Z);
-        public void SetPosition(float x, float y, float z)
+        public void SetPosition(float x, float y)
         {
             var oldPos = Coordinates;
             Chunk oldChunk = Level.GetChunkAt(oldPos);
 
             X = x;
             Y = y;
-            Z = z;
             var newPos = Coordinates;
             Chunk newChunk = Level.GetChunkAt(newPos);
 

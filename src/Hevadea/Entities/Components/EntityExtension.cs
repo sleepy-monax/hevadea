@@ -2,6 +2,7 @@
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.States;
 using Microsoft.Xna.Framework;
+using System.IO;
 
 namespace Hevadea.Entities.Components
 {
@@ -9,17 +10,12 @@ namespace Hevadea.Entities.Components
     {
         public static bool IsMoving(this Entity entity)
         {
-            return (entity.HasComponent<Physic>(out var physic) && physic.Velocity != Vector2.Zero) || (entity.HasComponent<Move>(out var move) && move.IsMoving);
+            return entity.GetComponent<Move>()?.IsMoving ?? false;
         }
 
         public static bool IsSwiming(this Entity entity)
         {
             return entity.HasComponent<Swim>(out var swim) && swim.IsSwiming;
-        }
-
-        public static bool IsGrounded(this Entity entity)
-        {
-            return entity.Z <= 0f && !entity.IsSwiming();
         }
     }
 }

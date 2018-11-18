@@ -14,11 +14,11 @@ namespace Hevadea.Items.Tags
             _blueprint = blueprint;
         }
 
-        public override void Place(Level level, Coordinates Coordinates, Direction facing)
+        public override void Place(Level level, Coordinates coords, Direction facing)
         {
             var entity = _blueprint.Construct();
             entity.Facing = facing;
-            level.AddEntityAt(entity, Coordinates);
+            level.AddEntityAt(entity, coords);
         }
     }
 }

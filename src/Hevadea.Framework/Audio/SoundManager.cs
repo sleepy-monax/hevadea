@@ -25,6 +25,7 @@ namespace Hevadea.Framework.Audio
         {
             var instance = soundEffect.CreateInstance();
             if (RandomPitch) instance.Pitch = Rise.Rnd.NextFloatRange(0.5f) - 0.25f;
+            instance.Volume = Rise.Config.MasterVolume * Rise.Config.EffectVolume;
             SoundEffectInstances.Add(instance);
             instance.Play();
         }

@@ -19,7 +19,9 @@ namespace Hevadea
         MoveLeft, MoveRight, MoveUp, MoveDown,
         Action, Attack, Pickup, DropItem,
         AddWaypoint,
-        OpenMenu, ZoomIn, ZoomOut
+        OpenMenu, ZoomIn, ZoomOut,
+
+        DEBUGInspect
     }
 
     public class PlayerInputHandler
@@ -58,6 +60,7 @@ namespace Hevadea
                     if (input.KeyPress(Keys.L)) HandleInput(PlayerInput.Pickup);
                     if (input.KeyPress(Keys.Subtract) || input.KeyPress(Keys.Down)) HandleInput(PlayerInput.ZoomOut);
                     if (input.KeyPress(Keys.X)) HandleInput(PlayerInput.AddWaypoint);
+                    if (input.KeyPress(Keys.W)) HandleInput(PlayerInput.DEBUGInspect);
                 }
 
                 if (Rise.Platform.Family == PlatformFamily.Mobile && Rise.Pointing.AreaDown(screenBound))
@@ -84,29 +87,23 @@ namespace Hevadea
             switch (input)
             {
                 case PlayerInput.MoveLeft:
-
                     Player.Facing = Direction.West;
-                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(-8f,0), Player.MAX_SPEED);
-                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
+                    playerMovement.Do(-1f, 0f);
                     break;
 
                 case PlayerInput.MoveRight:
                     Player.Facing = Direction.East;
-                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(8f, 0), Player.MAX_SPEED);
-                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
+                    playerMovement.Do(1f, 0f);
                     break;
 
                 case PlayerInput.MoveUp:
                     Player.Facing = Direction.North;
-                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(0, -8f), Player.MAX_SPEED);
-                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
+                    playerMovement.Do(0f, -1f);
                     break;
 
                 case PlayerInput.MoveDown:
                     Player.Facing = Direction.South;
-                    Player.GetComponent<Physic>().AddVelocityButCapSpeed(new Vector2(0, 8f), Player.MAX_SPEED);
-                    Player.Z = Mathf.Min(Player.Z + 0.1f, 0.1f);
-
+                    playerMovement.Do(0f, 1f);
                     break;
 
                 case PlayerInput.Action:
@@ -148,6 +145,10 @@ namespace Hevadea
                 case PlayerInput.AddWaypoint:
                     var pos = Player.Coordinates;
                     Player.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
+                    break;
+
+                case PlayerInput.DEBUGInspect:
+                    Player.Inspect();
                     break;
             }
         }

@@ -6,8 +6,9 @@ namespace Hevadea.Entities.Components.Renderer
 {
     public class MobRenderer : RendererComponent
     {
-        public Texture2D Texture { get; }
         public static readonly int[] FRAMES = { 0, 2, 1, 2 };
+
+        public Texture2D Texture { get; }
         float _animationTime = 0f;
 
         public MobRenderer(Texture2D texture)
@@ -17,12 +18,11 @@ namespace Hevadea.Entities.Components.Renderer
 
         public override void Render(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
         {
-            var ratio = (entity.GetComponent<Physic>()?.Speed / Player.MAX_SPEED) ?? 1f;
-            _animationTime += (8f * ratio) * gameTime.GetDeltaTime();
+            _animationTime += 8f * gameTime.GetDeltaTime();
 
             var frame = FRAMES[(int)(_animationTime % 4)];
 
-            var framePosition = entity.IsMoving()  ? new Point(frame * 16, (int)Owner.Facing * 32) : new Point(2 * 16, (int)Owner.Facing * 32);
+            var framePosition = entity.IsMoving() ? new Point(frame * 16, (int)Owner.Facing * 32) : new Point(2 * 16, (int)Owner.Facing * 32);
             var frameSize     = entity.IsSwiming() ? new Point(16, 20) : new Point(16, 32);
 
             var sourceRectangle = new Rectangle(framePosition, frameSize);

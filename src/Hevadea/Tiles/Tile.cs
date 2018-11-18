@@ -29,22 +29,22 @@ namespace Hevadea.Tiles
             Render = renderer;
         }
 
-        public void Update(Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime)
+        public void Update(Coordinates coords, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
             foreach (var t in _tags)
             {
-                if (t is IUpdatableTileComponent u) u.Update(this, position, data, level, gameTime);
+                if (t is IUpdatableTileComponent u) u.Update(this, coords, data, level, gameTime);
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Coordinates position, Dictionary<string, object> data, Level level, GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, Coordinates coords, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(position.ToRectangle(), new Color(148, 120, 92));
-            _render?.Draw(spriteBatch, position, level);
+            spriteBatch.FillRectangle(coords.ToRectangle(), new Color(148, 120, 92));
+            _render?.Draw(spriteBatch, coords, level);
 
             foreach (var t in _tags)
             {
-                if (t is IDrawableTileComponent d) d.Draw(this, spriteBatch, position, data, level, gameTime);
+                if (t is IDrawableTileComponent d) d.Draw(this, spriteBatch, coords, data, level, gameTime);
             }
         }
 

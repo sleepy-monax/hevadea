@@ -95,10 +95,6 @@ namespace Hevadea.Entities.Components.Actions
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, 0f, sy);
-                        if (e.HasComponent<Physic>(out var physic))
-                        {
-                            physic.Acceleration += new Vector2(0, sy);
-                        }
                         IsMoving = true;
                     }
 
@@ -108,10 +104,6 @@ namespace Hevadea.Entities.Components.Actions
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, sx, 0f);
-                        if (e.HasComponent<Physic>(out var physic))
-                        {
-                            physic.Acceleration += new Vector2(sx, 0f);
-                        }
                         IsMoving = true;
                     }
                     eHitbox = eColider.GetHitBox();

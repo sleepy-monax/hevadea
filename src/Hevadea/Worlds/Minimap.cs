@@ -1,6 +1,7 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
+using Hevadea.Tiles;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
@@ -38,15 +39,17 @@ namespace Hevadea.Worlds
             _level = level;
         }
 
-        public void Reveal(int tx, int ty)
+        public void Reveal(Coordinates coords)
         {
+            var color = _level.GetTile(coords).MinimapColor;
+
             if (Rise.NoGraphic)
             {
-                Bitmap.SetPixel(tx, ty, _level.GetTile(tx, ty).MinimapColor);
+                Bitmap.SetPixel(coords.X, coords.Y, color);
             }
             else
             {
-                Texture.SetPixel(tx, ty, _level.GetTile(tx, ty).MinimapColor);
+                Texture.SetPixel(coords.X, coords.Y, color);
             }
         }
 

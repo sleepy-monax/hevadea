@@ -7,6 +7,6 @@ namespace Hevadea.Tiles.Renderers
     {
         public Tile Tile { get; set; }
 
-        public abstract void Draw(SpriteBatch spriteBatch, Coordinates position, Level level);
+        public abstract void Draw(SpriteBatch spriteBatch, Coordinates coords, Level level);
     }
 }

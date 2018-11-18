@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Platform;
+using OpenGLPlatform.Inspector;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -27,6 +28,11 @@ namespace OpenGLPlatform
         public override void Stop()
         {
             Rise.MonoGame.Exit();
+        }
+
+        public override void Inspect(object o)
+        {
+            new InspectorForm(o).Show();
         }
 
         public override void Initialize()

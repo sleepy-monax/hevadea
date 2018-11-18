@@ -21,10 +21,10 @@ namespace Hevadea.Tiles.Components
             }
         }
 
-        public void Drop(Coordinates position, Level level)
+        public void Drop(Coordinates coords, Level level)
         {
             foreach (var d in Items)
-                if (Rise.Rnd.NextDouble() < d.Chance) d.Item.Drop(level, position, Rise.Rnd.Next(d.Min, d.Max + 1));
+                if (Rise.Rnd.NextDouble() < d.Chance) d.Item.Drop(level, coords, Rise.Rnd.Next(d.Min, d.Max + 1));
         }
     }
 }

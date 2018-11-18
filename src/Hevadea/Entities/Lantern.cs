@@ -1,4 +1,5 @@
 ﻿using Hevadea.Entities.Components;
+using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.Renderer;
 using Hevadea.Framework.Graphic.SpriteAtlas;
@@ -14,10 +15,14 @@ namespace Hevadea.Entities
         public Lantern()
         {
 
-            AddComponent(new Physic());
+            AddComponent(new Move());
             AddComponent(new Pickupable());
             AddComponent(new Pushable());
-            AddComponent(new SpriteRenderer(new Sprite(Ressources.TileEntities, new Point(4, 1))));
+            AddComponent(new SpriteRenderer
+            {
+                Sprite = new Sprite(Ressources.TileEntities, new Point(4, 1)),
+                Offset = new Vector2(0, -3f)
+            });
 
             AddComponent(new Breakable());
             AddComponent(new Dropable { Items = { new Drop(ITEMS.TORCH, 1f, 1, 1) } });

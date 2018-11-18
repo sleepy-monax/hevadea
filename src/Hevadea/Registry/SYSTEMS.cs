@@ -1,6 +1,6 @@
 ﻿using Hevadea.Systems;
 using Hevadea.Systems.ElementalSystem;
-using Hevadea.Systems.PhysicSystem;
+using Hevadea.Systems.MinimapSystem;
 using System.Collections.Generic;
 
 namespace Hevadea.Registry
@@ -21,6 +21,8 @@ namespace Hevadea.Registry
 
         public static void Initialize()
         {
+            Register<RevealProcessor>();
+
             // Fire
             Register<FireProcessor>();
             Register<FireParticles>();
@@ -28,10 +30,6 @@ namespace Hevadea.Registry
             // Light and shadow
             Register<LightSystem>();
             Register<ShadowSystem>();
-
-            // Physic
-            Register<PhysicProcessor>();
-            Register<PhysicRenderer>();
 
             Register<SpriteRenderSystem>();
             Register<SwimmingEffect>();

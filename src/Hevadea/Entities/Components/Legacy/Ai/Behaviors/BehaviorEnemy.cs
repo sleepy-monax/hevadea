@@ -28,10 +28,10 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
             base.Update(null);
         }
 
-        private bool CheckLineOfSight(Coordinates to)
+        private bool CheckLineOfSight(Coordinates coords)
         {
             bool result = true;
-            LoopUtils.Line(Agent.Owner.Coordinates.ToPoint(), to.ToPoint(), (p) =>
+            LoopUtils.Line(Agent.Owner.Coordinates.ToPoint(), coords.ToPoint(), (p) =>
             {
                 result &= !Agent.Owner.Level.GetTile(p.X, p.Y).BlockLineOfSight;
             });

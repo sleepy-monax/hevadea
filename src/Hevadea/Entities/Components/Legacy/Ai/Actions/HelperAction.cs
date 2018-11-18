@@ -11,11 +11,11 @@ namespace Hevadea.Entities.Components.Ai.Actions
             return !tile.HasTag<LiquideTile>() && !tile.HasTag<SolideTile>();
         }
 
-        public static bool MoveTo(this Agent ag, Coordinates pos, float speed = 1f, bool usePathFinding = false, int maxDistance = 16)
+        public static bool MoveTo(this Agent ag, Coordinates coords, float speed = 1f, bool usePathFinding = false, int maxDistance = 16)
         {
             if (usePathFinding)
             {
-                if (ag.Owner.Level.GetPath(out var path, ag.Owner.Coordinates.AsNode(), pos.AsNode(), WalkablePredicat))
+                if (ag.Owner.Level.GetPath(out var path, ag.Owner.Coordinates.AsNode(), coords.AsNode(), WalkablePredicat))
                 {
                     foreach (var n in path)
                     {
@@ -29,7 +29,7 @@ namespace Hevadea.Entities.Components.Ai.Actions
             }
             else
             {
-                ag.ActionQueue.Enqueue(new ActionMoveToLocation(pos, speed));
+                ag.ActionQueue.Enqueue(new ActionMoveToLocation(coords, speed));
             }
 
             return true;

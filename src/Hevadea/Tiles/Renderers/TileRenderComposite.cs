@@ -14,10 +14,10 @@ namespace Hevadea.Tiles.Renderers
             Sprite = sprite;
         }
 
-        public override void Draw(SpriteBatch spriteBatch, Coordinates position, Level level)
+        public override void Draw(SpriteBatch spriteBatch, Coordinates coords, Level level)
         {
-            var connection = GetTileConnection(level, position);
-            var onScreenPosition = position.ToOnScreenPosition();
+            var connection = GetTileConnection(level, coords);
+            var onScreenPosition = coords.ToOnScreenPosition();
 
             if (!OnlyRenderOnConnection || connection.Up || connection.Down || connection.Left || connection.Right || connection.UpLeft || connection.DownLeft || connection.UpRight || connection.DownRight)
             {

@@ -16,7 +16,7 @@ namespace Hevadea.Entities
         public Chest()
         {
             AddComponent(new Pickupable());
-            AddComponent(new SpriteRenderer(new Sprite(Ressources.TileEntities, new Point(0, 1))));
+            AddComponent(new SpriteRenderer { Sprite = new Sprite(Ressources.TileEntities, new Point(0, 1)) });
             AddComponent(new Flammable());
 
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));

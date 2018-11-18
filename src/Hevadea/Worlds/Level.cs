@@ -6,7 +6,6 @@ using Hevadea.Framework.Utils;
 using Hevadea.Entities;
 using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components;
-using Hevadea.Entities.Components.States;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Renderers;
 using Hevadea.Registry;
@@ -16,7 +15,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hevadea.Systems;
 
 namespace Hevadea.Worlds
 {
@@ -159,6 +157,14 @@ namespace Hevadea.Worlds
             // Draw Entities, Shadows and lights.
             foreach (var e in renderState.OnScreenEntities)
             {
+                foreach (var sys in SYSTEMS.DrawSystems)
+                {
+                    if (sys.Enable && e.Match(sys.Filter))
+                    {
+                        sys.Draw(e, spriteBatchPool, gameTime);
+                    }
+                }
+
                 // Draw the entity.
                 e.Draw(spriteBatchPool.Entities, gameTime);
 
@@ -173,15 +179,6 @@ namespace Hevadea.Worlds
                     spriteBatchPool.Overlay.PutPixel(e.Position2D, Color.Magenta);
                     spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position2D, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
                     spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position2D, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
-                }
-
-                // Draw Entity light source.
-                foreach (var sys in SYSTEMS.DrawSystems)
-                {
-                    if (sys.Enable && e.Match(sys.Filter))
-                    {
-                        sys.Draw(e, spriteBatchPool, gameTime);
-                    }
                 }
             }
 

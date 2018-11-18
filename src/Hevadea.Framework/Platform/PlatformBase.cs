@@ -18,6 +18,8 @@ namespace Hevadea.Framework.Platform
         {
         }
 
+        public virtual void Inspect(object o) { }
+
         public abstract void Initialize();
 
         public abstract string GetPlatformName();

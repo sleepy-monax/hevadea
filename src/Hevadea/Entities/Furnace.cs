@@ -16,7 +16,7 @@ namespace Hevadea.Entities
         public Furnace()
         {
             AddComponent(new Pickupable());
-            AddComponent(new SpriteRenderer(new Sprite(Ressources.TileEntities, new Point(1, 1))));
+            AddComponent(new SpriteRenderer { Sprite = new Sprite(Ressources.TileEntities, new Point(1, 1)) });
 
             AddComponent(new Breakable());
             AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));

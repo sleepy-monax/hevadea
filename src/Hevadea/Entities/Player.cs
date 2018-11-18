@@ -1,10 +1,8 @@
 ﻿using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
-using Hevadea.Entities.Components.Render;
 using Hevadea.Entities.Components.Renderer;
 using Hevadea.Entities.Components.States;
-using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Items;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
@@ -24,13 +22,13 @@ namespace Hevadea.Entities
             LastLevel = 0;
             HoldingItem = null;
 
+            AddComponent(new Move());
             var health = new Health(3) { ShowHealthBar = false, NaturalRegeneration = true };
             health.Killed += Health_Killed;
             AddComponent(health);
 
             AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new MobRenderer(Ressources.ImgPlayer));
-            AddComponent(new Physic());
             AddComponent(new Flammable());
 
             AddComponent(new Attack());
@@ -41,7 +39,7 @@ namespace Hevadea.Entities
             AddComponent(new Move());
             AddComponent(new Pickup());
             AddComponent(new Pushable());
-            AddComponent(new RevealMap(16));
+            AddComponent(new RevealMap());
             AddComponent(new ShadowCaster());
             AddComponent(new Swim());
         }
