@@ -1,8 +1,10 @@
 ﻿using Hevadea.Worlds;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Hevadea.Storage
 {
+    [JsonObject]
     public class ChunkStorage
     {
         public Dictionary<string, string> Registry { get; set; }

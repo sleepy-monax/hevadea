@@ -20,21 +20,14 @@ namespace Hevadea.Worlds
         Level _level;
 
         public Texture2D Texture { get; private set; }
-        public FarbfeldBitmap Bitmap { get; private set; }
 
         public List<MinimapWaypoint> Waypoints { get; set; } = new List<MinimapWaypoint>();
 
         public Minimap(Level level)
         {
-            if (Rise.NoGraphic)
-            {
-                Bitmap = new FarbfeldBitmap(level.Width, level.Height);
-            }
-            else
-            {
-                Texture = new Texture2D(Rise.MonoGame.GraphicsDevice, level.Width, level.Height);
-                Texture.Clear(Microsoft.Xna.Framework.Color.TransparentBlack);
-            }
+            Texture = new Texture2D(Rise.MonoGame.GraphicsDevice, level.Width, level.Height);
+            Texture.Clear(Microsoft.Xna.Framework.Color.TransparentBlack);
+
 
             _level = level;
         }
@@ -43,14 +36,7 @@ namespace Hevadea.Worlds
         {
             var color = _level.GetTile(coords).MinimapColor;
 
-            if (Rise.NoGraphic)
-            {
-                Bitmap.SetPixel(coords.X, coords.Y, color);
-            }
-            else
-            {
-                Texture.SetPixel(coords.X, coords.Y, color);
-            }
+            Texture.SetPixel(coords.X, coords.Y, color);
         }
 
         // TODO: Finalize the support of the nographic mod of the engine.

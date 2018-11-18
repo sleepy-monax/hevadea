@@ -158,8 +158,6 @@ namespace Hevadea.Framework.Graphic
             Rise.Ui.RefreshLayout();
         }
 
-        bool _windowSizeIsBeingChanged = false;
-
         public void AllowUserResizing()
         {
             Rise.MonoGame.Window.AllowUserResizing = true;
@@ -168,11 +166,7 @@ namespace Hevadea.Framework.Graphic
 
         public void HandleClientSizeChanged(object sender, EventArgs args)
         {
-            _windowSizeIsBeingChanged = !_windowSizeIsBeingChanged;
-            if (_windowSizeIsBeingChanged)
-            {
-                SetSize(new Point(Rise.MonoGame.Window.ClientBounds.Width, Rise.MonoGame.Window.ClientBounds.Height));
-            }
+            SetSize(new Point(Rise.MonoGame.Window.ClientBounds.Width, Rise.MonoGame.Window.ClientBounds.Height));
         }
     }
 }

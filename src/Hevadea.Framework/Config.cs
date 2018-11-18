@@ -1,5 +1,6 @@
 ﻿using Hevadea.Framework.Data;
 using Hevadea.Framework.Platform;
+using Newtonsoft.Json;
 using System.IO;
 
 namespace Hevadea.Framework
@@ -18,6 +19,7 @@ namespace Hevadea.Framework
 
         public void Save(string file)
         {
+            
             File.WriteAllText(file, this.ToJson());
         }
 

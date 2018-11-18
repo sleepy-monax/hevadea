@@ -1,7 +1,6 @@
 ﻿using Hevadea.Entities;
 using Hevadea.Framework;
 using Hevadea.Framework.Threading;
-using Hevadea.Multiplayer;
 using Hevadea.Registry;
 using Hevadea.WorldGenerator;
 
@@ -75,19 +74,6 @@ namespace Hevadea.Loading
 
         /* --- Jobs -------------------------------------------------------- */
 
-        public static Job ConnectToServer => new Job("ConnectToServer", (job, arg) =>
-        {
-            var info = arg as ConnectToServerInfo;
-
-            var game = new RemoteGame(info.Address, info.Port);
-            game.Connect();
-            game.Initialize();
-
-            job.ThrowIfCanceled();
-
-            return game;
-        });
-
         public static Job GenerateWorld => new Job("GenerateWorld", (job, args) =>
         {
             var info = args as WorldGeneratorInfo;
@@ -134,19 +120,6 @@ namespace Hevadea.Loading
             job.ThrowIfCanceled();
 
             return null;
-        });
-
-        public static Job StartServer => new Job("StartSever", (job, arg) =>
-        {
-            var info = arg as StartServerInfo;
-
-            HostGame game = (HostGame)new HostGame(info.Address, info.Port, info.Slots).Load(job, info.Path);
-            game.Initialize();
-            game.Start();
-
-            job.ThrowIfCanceled();
-
-            return game;
         });
     }
 }

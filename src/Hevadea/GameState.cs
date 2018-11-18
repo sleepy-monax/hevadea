@@ -3,7 +3,6 @@ using Hevadea.Framework;
 using Hevadea.Framework.Data;
 using Hevadea.Framework.Threading;
 using Hevadea.Loading;
-using Hevadea.Multiplayer;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
 using Hevadea.Systems;
@@ -16,11 +15,6 @@ namespace Hevadea
 {
     public class GameState
     {
-        public bool IsClient => this is RemoteGame;
-        public bool IsServer => this is HostGame;
-        public bool IsLocal => !IsClient && !IsServer;
-        public bool IsMaster => IsLocal || IsServer;
-
         private Menu _currentMenu;
         private LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
 
@@ -89,17 +83,7 @@ namespace Hevadea
             if (CurrentMenu?.PauseGame ?? false)
                 return;
 
-            if (IsLocal)
-            {
-                LocalPlayer.Entity.Level.Update(gameTime);
-            }
-            else if (IsServer)
-            {
-                foreach (var level in World.Levels)
-                {
-                    level.Update(gameTime);
-                }
-            }
+            LocalPlayer.Entity.Level.Update(gameTime);
 
             World.DayNightCycle.UpdateTime(gameTime.ElapsedGameTime.TotalSeconds);
         }

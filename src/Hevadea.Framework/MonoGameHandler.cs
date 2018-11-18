@@ -28,9 +28,9 @@ namespace Hevadea.Framework
             Content.RootDirectory = "Content";
 
             Graphics = new GraphicsDeviceManager(this);
-            Graphics.SynchronizeWithVerticalRetrace = false;
+            Graphics.SynchronizeWithVerticalRetrace = true;
 
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
         }
        
 

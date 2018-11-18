@@ -145,29 +145,24 @@
     <Compile Include="Loading\LoadingMenu.cs" />
     <Compile Include="Loading\LoadingScene.cs" />
     <Compile Include="Loading\Jobs.cs" />
-    <Compile Include="Multiplayer\HostGame.cs" />
-    <Compile Include="Multiplayer\Packets.cs" />
     <Compile Include="PlayerSession.cs" />
     <Compile Include="PlayerInput.cs" />
     <Compile Include="Registry\GENERATOR.cs" />
     <Compile Include="Registry\LEVELS.cs" />
     <Compile Include="Registry\RECIPIES.cs" />
     <Compile Include="Registry\REGISTRY.cs" />
-    <Compile Include="Multiplayer\RemoteGame.cs" />
     <Compile Include="Scenes\GuiFactory.cs" />
     <Compile Include="Scenes\GuiHelper.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabOption.cs" />
     <Compile Include="Scenes\Menus\MenuChest.cs" />
     <Compile Include="Scenes\Menus\MenuInGame.cs" />
     <Compile Include="Scenes\Menus\Menu.cs" />
-    <Compile Include="Scenes\MainMenu\Tabs\TabMultiplayerConnect.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabNewWorld.cs" />
     <Compile Include="Scenes\Menus\PlayerInventoryMenu.cs" />
     <Compile Include="Scenes\Menus\Tabs\CraftingTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\EquipmentTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\MinimapTab.cs" />
     <Compile Include="Scenes\Menus\Tabs\SaveTab.cs" />
-    <Compile Include="Scenes\Menus\Tabs\ServerAdminTab.cs" />
     <Compile Include="Scenes\TestScene.cs" />
     <Compile Include="Scenes\TitleSplash.cs" />
     <Compile Include="Scenes\Widgets\CheckBox.cs" />
@@ -260,6 +255,9 @@
       <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +317,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <InProject>false</InProject>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

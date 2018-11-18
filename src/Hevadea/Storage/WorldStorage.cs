@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Hevadea.Storage
 {
+    [JsonObject]
     public class WorldStorage
     {
         public double Time { get; set; } = 0;
@@ -9,5 +11,7 @@ namespace Hevadea.Storage
 
         public string PlayerSpawnLevel { get; set; } = "null";
         public List<string> Levels { get; set; } = new List<string>();
+
+        public WorldStorage() { }
     }
 }
