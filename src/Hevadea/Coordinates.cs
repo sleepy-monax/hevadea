@@ -75,7 +75,7 @@ namespace Hevadea.Tiles
 
         public Vector2 ToVector2()
         {
-            return new Vector2(X, Y);
+            return new Vector2(X * 16f, Y * 16f);
         }
 
         public PathFinder.Node AsNode()

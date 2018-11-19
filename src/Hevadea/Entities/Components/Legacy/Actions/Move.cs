@@ -81,9 +81,9 @@ namespace Hevadea.Entities.Components.Actions
 
                 var colidingEntity = new HashSet<Entity>();
 
-                colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPosition));
-                colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPositionX));
-                colidingEntity.UnionWith(level.GetEntitiesOnArea(futurPositionY));
+                colidingEntity.UnionWith(level.QueryEntity(futurPosition));
+                colidingEntity.UnionWith(level.QueryEntity(futurPositionX));
+                colidingEntity.UnionWith(level.QueryEntity(futurPositionY));
 
                 foreach (var e in colidingEntity)
                 {

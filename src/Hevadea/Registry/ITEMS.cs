@@ -90,7 +90,7 @@ namespace Hevadea.Registry
             {
                 Action = (user, pos) =>
                 {
-                    foreach (var e in user.Level.GetEntitiesAt(pos))
+                    foreach (var e in user.Level.QueryEntity(pos))
                     {
                         e.GetComponent<Flammable>()?.SetInFire();
                     }

@@ -25,9 +25,7 @@ namespace Hevadea.Entities
 
         public override void OnUpdate(GameTime gameTime)
         {
-            Level.GetEntitiesOnArea(X, Y, 16);
-
-            foreach (var e in Level.GetEntitiesOnArea(X, Y, 16))
+            foreach (var e in Level.QueryEntity(Position2D, 16))
             {
                 if (e != this && e.HasComponent<Experience>())
                 {

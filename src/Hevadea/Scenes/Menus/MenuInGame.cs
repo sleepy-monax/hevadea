@@ -106,12 +106,13 @@ namespace Hevadea.Scenes.Menus
                 }
             };
 
-            btnAction.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Action); };
-            btnAttack.MouseHold += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Attack); };
-            btnDrop.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.DropItem); };
-            btnPickup.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Pickup); };
-            btnMinimap.MouseClick += (sender) => { _minimap.Toggle(); sender.Disable(); };
-
+            // TODO port to new input manager
+            /* btnAction.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Action); };
+               btnAttack.MouseHold += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Attack); };
+               btnDrop.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.DropItem); };
+               btnPickup.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Pickup); };
+               btnMinimap.MouseClick += (sender) => { _minimap.Toggle(); sender.Disable(); };
+            */
             _minimap.MouseClick += (sender) => { sender.Toggle(); btnMinimap.Enable(); };
 
             if (Rise.Platform.Family == PlatformFamily.Mobile)

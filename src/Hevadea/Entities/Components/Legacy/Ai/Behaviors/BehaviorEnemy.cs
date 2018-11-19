@@ -49,7 +49,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
 
             if (Target == null)
             {
-                _targetsOnSight = Agent.Owner.Level.GetEntitiesOnArea(Agent.Owner.Position2D, AgroRange * Game.Unit)
+                _targetsOnSight = Agent.Owner.Level.QueryEntity(Agent.Owner.Position2D, AgroRange * Game.Unit)
                                         .Where((e) => e.MemberOf(Targets) && CheckLineOfSight(e.Coordinates)).ToList();
 
                 _targetsOnSight.Sort((a, b) => Mathf.Distance(a.Position2D, Agent.Owner.Position2D)

@@ -51,7 +51,7 @@ namespace Hevadea.Systems.MovementSystem
             var h = hb.Offset(ox, oy);
 
             // Check colision with entities
-            foreach (var ee in l.GetEntitiesOnArea(h))
+            foreach (var ee in l.QueryEntity(h))
             {
 
             }

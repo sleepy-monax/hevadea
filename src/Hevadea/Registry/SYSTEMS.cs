@@ -1,6 +1,7 @@
 ﻿using Hevadea.Systems;
 using Hevadea.Systems.ElementalSystem;
 using Hevadea.Systems.MinimapSystem;
+using Hevadea.Systems.PlayerSystem;
 using System.Collections.Generic;
 
 namespace Hevadea.Registry
@@ -21,6 +22,8 @@ namespace Hevadea.Registry
 
         public static void Initialize()
         {
+            Register<PlayerInputProcessor>();
+
             Register<RevealProcessor>();
 
             // Fire

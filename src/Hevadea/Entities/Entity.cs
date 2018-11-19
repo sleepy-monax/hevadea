@@ -232,9 +232,9 @@ namespace Hevadea.Entities
             return new Rectangle(Position2D.ToPoint() - new Rectangle(new Point(0), new Point(size)).GetAnchorPoint(DirectionToAnchore[Facing]), new Point(size));
         }
 
-        public List<Entity> GetFacingEntities(int area)
+        public List<Entity> GetFacingEntities(int areaSize)
         {
-            var facingEntities = Level.GetEntitiesOnArea(GetFacingArea(area));
+            var facingEntities = Level.QueryEntity(GetFacingArea(areaSize)).ToList();
             facingEntities.Sort((a, b) =>
             {
                 return Mathf.Distance(a.X, a.Y, X, Y)
@@ -242,6 +242,7 @@ namespace Hevadea.Entities
             });
 
             facingEntities.Remove(this);
+
             return facingEntities;
         }
 
@@ -257,9 +258,9 @@ namespace Hevadea.Entities
             return null;
         }
 
-        public List<Entity> GetEntitiesInRadius(float radius)
+        public IEnumerable<Entity> GetEntitiesInRadius(float radius)
         {
-            return Level?.GetEntitiesOnArea(Position2D, radius);
+            return Level?.QueryEntity(Position2D, radius);
         }
 
         /* --- Game loop --------------------------------------------------- */

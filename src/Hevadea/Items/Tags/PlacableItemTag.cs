@@ -19,7 +19,7 @@ namespace Hevadea.Items.Tags
             var inventory = user.GetComponent<Inventory>();
             var level = user.Level;
 
-            var e = user.Level.GetEntitiesAt(coords).FirstOrDefault();
+            var e = user.Level.QueryEntity(coords).FirstOrDefault();
 
             if ((e == null || e.HasComponent<Breakable>()) &&
                (CanBePlaceOn.Count == 0 ||

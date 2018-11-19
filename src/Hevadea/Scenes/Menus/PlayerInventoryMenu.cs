@@ -43,7 +43,7 @@ namespace Hevadea.Scenes.Menus
             PauseGame = true;
 
             var r = new List<List<Recipe>>();
-            foreach (var e in GameState.LocalPlayer.Entity.Level.GetEntitiesOnArea(GameState.LocalPlayer.Entity.X, GameState.LocalPlayer.Entity.Y, Game.Unit * 3))
+            foreach (var e in GameState.LocalPlayer.Entity.Level.QueryEntity(GameState.LocalPlayer.Entity.Position2D, Game.Unit * 3))
             {
                 var s = e.GetComponent<CraftingStation>();
                 if (s != null)

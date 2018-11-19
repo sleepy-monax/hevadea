@@ -96,7 +96,7 @@ namespace Hevadea.Worlds
             {
                 for (int y = renderBegin.Y; y < renderEnd.Y; y++)
                 {
-                    onScreenEntities.AddRange(GetEntitiesAt(x, y));
+                    onScreenEntities.AddRange(QueryEntity(x, y));
                 }
             }
 
@@ -104,7 +104,7 @@ namespace Hevadea.Worlds
 
             // TODO: For now the alives entities is equal to on screen entities,
             // BUT: in the futur this will depend on the field of view of all the player connected on the server.
-            aliveEntities.AddRange(onScreenEntities);
+            aliveEntities.AddRange(QueryEntity(focusedTile.ToVector2(), 256));
 
             return new RenderState(renderBegin, renderEnd, onScreenEntities, aliveEntities);
         }
@@ -443,59 +443,10 @@ namespace Hevadea.Worlds
         }
 
         public bool AnyEntityAt(Coordinates coords) => QueryEntity(coords).Any();
-        public bool AnyEntityAt(int tx, int ty)
-        {
-            return GetEntitiesAt(tx, ty).Any();
-        }
-
-		public List<Entity> GetEntitiesAt(Coordinates coordinates) => GetEntitiesAt(coordinates.X, coordinates.Y);
-
-        public List<Entity> GetEntitiesAt(int tx, int ty)
-        {
-            Chunk chunk = GetChunkAt(tx, ty);
-
-            if (chunk != null)
-            {
-                return chunk.EntitiesOnTiles[tx % Chunk.CHUNK_SIZE, ty % Chunk.CHUNK_SIZE].ToList();
-            }
-
-            return new List<Entity>();
-        }
-
-        public List<Entity> GetEntitiesOnArea(Vector2 center, float radius) => GetEntitiesOnArea(center.X, center.Y, radius);
-
-        public List<Entity> GetEntitiesOnArea(float cx, float cy, float radius)
-        {
-            var entities = GetEntitiesOnArea(new RectangleF(cx - radius, cy - radius, radius * 2, radius * 2));
-            return entities.Where(e => Mathf.Distance(e.X, e.Y, cx, cy) <= radius).ToList();
-        }
-
-        public List<Entity> GetEntitiesOnArea(Rectangle area) => GetEntitiesOnArea(new RectangleF(area.X, area.Y, area.Width, area.Height));
-
-        public List<Entity> GetEntitiesOnArea(RectangleF area)
-        {
-            var result = new List<Entity>();
-
-            var beginX = (area.X / Game.Unit) - 1;
-            var beginY = (area.Y / Game.Unit) - 1;
-
-            var endX = ((area.X + area.Width) / Game.Unit) + 1;
-            var endY = ((area.Y + area.Height) / Game.Unit) + 1;
-
-            for (int x = (int)beginX; x < endX; x++)
-                for (int y = (int)beginY; y < endY; y++)
-                {
-                    if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
-                    var entities = GetEntitiesAt(x, y);
-
-                    result.AddRange(entities.Where(i => i.GetComponent<Colider>()?.GetHitBox().IntersectsWith(area) ?? area.Contains(i.Position2D)));
-                }
-
-            return result;
-        }
 
         /* --- Entity Query ------------------------------------------------- */
 
+        public IEnumerable<Entity> QueryEntity(Vector2 center, float radius) => QueryEntity(new CircleF(center, radius));
         public IEnumerable<Entity> QueryEntity(CircleF c)
         {
             foreach (var e in QueryEntity(c.Bound))
@@ -504,6 +455,7 @@ namespace Hevadea.Worlds
             }
         }
 
+        public IEnumerable<Entity> QueryEntity(int tx, int ty) => QueryEntity(new Coordinates(tx, ty));
         public IEnumerable<Entity> QueryEntity(Coordinates coords)
         {
             Chunk chunk = GetChunkAt(coords.X, coords.Y);
@@ -517,6 +469,7 @@ namespace Hevadea.Worlds
             }
         }
 
+        public IEnumerable<Entity> QueryEntity(Rectangle r) => QueryEntity(new RectangleF(r.X, r.Y, r.Width, r.Height));
         public IEnumerable<Entity> QueryEntity(RectangleF r)
         {
             var beginX = (r.X / Game.Unit) - 1;

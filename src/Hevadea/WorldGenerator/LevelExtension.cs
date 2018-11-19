@@ -33,7 +33,7 @@ namespace Hevadea.WorldGenerator
             for (var xx = 0; xx < w; xx++)
                 for (var yy = 0; yy < h; yy++)
                 {
-                    result &= !level.GetEntitiesAt(x + xx, y + yy).Any();
+                    result &= !level.QueryEntity(x + xx, y + yy).Any();
                 }
             return result;
         }
@@ -43,8 +43,7 @@ namespace Hevadea.WorldGenerator
             for (var xx = 0; xx < w; xx++)
                 for (var yy = 0; yy < h; yy++)
                 {
-                    var entities = level.GetEntitiesAt(x + xx, y + yy);
-                    foreach (var e in entities) { level.RemoveEntity(e); }
+                    foreach (var e in level.QueryEntity(x + xx, y + yy)) { level.RemoveEntity(e); }
                 }
         }
 

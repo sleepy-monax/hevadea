@@ -42,6 +42,7 @@ namespace Hevadea.Entities
             AddComponent(new RevealMap());
             AddComponent(new ShadowCaster());
             AddComponent(new Swim());
+            AddComponent(new PlayerBody());
         }
 
         private void Health_Killed(object sender, System.EventArgs e)

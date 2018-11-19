@@ -51,7 +51,7 @@ namespace Hevadea.Entities.Components.Actions
         {
             var facingTile = Owner.FacingCoordinates;
 
-            if (PickupedEntity != null && !Owner.Level.GetEntitiesAt(facingTile).Any() && facingTile.InLevelBound(Owner.Level))
+            if (PickupedEntity != null && !Owner.Level.QueryEntity(facingTile).Any() && facingTile.InLevelBound(Owner.Level))
             {
                 PickupedEntity.Facing = Owner.Facing;
                 Owner.Level.AddEntityAt(PickupedEntity, facingTile);

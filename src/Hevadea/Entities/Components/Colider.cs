@@ -28,11 +28,6 @@ namespace Hevadea.Entities.Components
             return new Rectangle((int)(Owner.X + _hitbox.X), (int)(Owner.Y + _hitbox.Y), (int)_hitbox.Width, (int)_hitbox.Height);
         }
 
-        public List<Entity> GetTouchingEntities()
-        {
-            return Owner.Level.GetEntitiesOnArea(ToRectangle());
-        }
-
         public bool CanCollideWith(Entity e)
         {
             return ColidePredicat(e);

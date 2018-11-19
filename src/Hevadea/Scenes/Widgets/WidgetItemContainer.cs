@@ -75,7 +75,7 @@ namespace Hevadea.Scenes.Widgets
 
             if (Rise.Pointing.AreaOver(Bound))
             {
-                // TODO
+                // TODO mouse zoom in and out
                 //if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
                 //if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
 

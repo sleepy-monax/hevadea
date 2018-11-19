@@ -10,17 +10,15 @@ namespace Hevadea
         public string Name { get; set; }
         public int Token { get; set; }
         public Player Entity { get; set; }
-        public PlayerInputHandler InputHandler { get; set; }
         public bool HasJoined => _gameState != null;
 
-        private GameState _gameState;
+        GameState _gameState;
 
         public PlayerSession(string name, int token, Player entity)
         {
             Name = name;
             Token = token;
             Entity = entity;
-            InputHandler = new PlayerInputHandler(entity);
         }
 
         public void Join(GameState gameState)

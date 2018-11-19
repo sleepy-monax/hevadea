@@ -41,9 +41,7 @@ namespace Hevadea.Systems.ElementalSystem
                 fire.BurnningTimer -= gameTime.GetDeltaTime();
 
                 // Spread fire
-                List<Entity> victimes = entity.GetEntitiesInRadius(FIRE_SPREAD_RANGE);
-                
-                foreach (var v in victimes)
+                foreach (var v in entity.GetEntitiesInRadius(FIRE_SPREAD_RANGE))
                 {
                     if (v != entity && Rise.Rnd.NextDouble() < 0.005)
                     {

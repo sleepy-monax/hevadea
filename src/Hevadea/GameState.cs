@@ -78,7 +78,6 @@ namespace Hevadea
         public void Update(GameTime gameTime)
         {
             Camera.Update(gameTime);
-            LocalPlayer?.InputHandler?.Update(gameTime);
 
             if (CurrentMenu?.PauseGame ?? false)
                 return;

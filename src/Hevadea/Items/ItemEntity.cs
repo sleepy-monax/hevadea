@@ -29,13 +29,13 @@ namespace Hevadea.Items
             SpeedX = SpeedX / 2;
             SpeedY = SpeedY / 2;
 
-            var entities = Level.GetEntitiesOnArea(new Rectangle((int)X - 8, (int)Y - 8, 16, 16))
-                                .Where((e) => e.GetComponent<Inventory>()?.AlowPickUp ?? false);
-
-            foreach (var e in entities)
+            foreach (var e in Level.QueryEntity(new CircleF(Position2D, Game.Unit)))
             {
-                move.MoveTo(e.X, e.Y);
-                if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && Pickup(e)) return;
+                if (e.HasComponent<Inventory>(out var i) && i.AlowPickUp)
+                {
+                    move.MoveTo(e.X, e.Y);
+                    if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && Pickup(e)) return;
+                }
             }
         }
 
