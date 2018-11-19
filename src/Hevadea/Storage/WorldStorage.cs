@@ -1,9 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Hevadea.Storage
 {
-    [JsonObject]
     public class WorldStorage
     {
         public double Time { get; set; } = 0;

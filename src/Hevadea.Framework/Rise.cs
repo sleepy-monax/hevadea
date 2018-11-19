@@ -124,45 +124,45 @@ namespace Hevadea.Framework
             Debug.Update(gameTime);
             Sound.Update(gameTime);
 
-            if (Input.KeyPress(Keys.F1))
+            if (Input.KeyTyped(Keys.F1))
             {
                 Debug.HELP = !Debug.HELP;
             }
 
-            if (Input.KeyPress(Keys.F2))
+            if (Input.KeyTyped(Keys.F2))
             {
                 Debug.GAME = !Debug.GAME;
             }
 
-            if (Input.KeyPress(Keys.F3))
+            if (Input.KeyTyped(Keys.F3))
             {
                 Debug.GENERAL = !Debug.GENERAL;
             }
 
-            if (Input.KeyPress(Keys.F4))
+            if (Input.KeyTyped(Keys.F4))
             {
                 Debug.UI = !Debug.UI;
             }
 
-            if (Input.KeyPress(Keys.F5))
+            if (Input.KeyTyped(Keys.F5))
             {
                 Ui.Enabled = !Ui.Enabled;
             }
 
-            if (Input.KeyPress(Keys.F6))
+            if (Input.KeyTyped(Keys.F6))
             {
                 Config.UIScaling /= 2f;
                 Ui.RefreshLayout();
             }
 
-            if (Input.KeyPress(Keys.F7))
+            if (Input.KeyTyped(Keys.F7))
             {
                 Config.UIScaling *= 2f;
                 Ui.RefreshLayout();
             }
 
 
-            if (Input.KeyPress(Keys.F8))
+            if (Input.KeyTyped(Keys.F8))
             {
                 Config.UIScaling = 1f;
                 Ui.RefreshLayout();

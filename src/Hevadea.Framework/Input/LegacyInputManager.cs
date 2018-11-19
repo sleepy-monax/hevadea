@@ -1,18 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Hevadea.Framework.Input
 {
     public class LegacyInputManager
     {
-        private KeyboardState _oldKeyboardState;
-        private KeyboardState _newKeyboardState;
+        KeyboardState _oldKeyboardState;
+        KeyboardState _newKeyboardState;
 
         public bool AnyKeyDown()
         {
-            return ((Keys[])Enum.GetValues(typeof(Keys))).Where((k) => _newKeyboardState.IsKeyDown(k)).Any();
+            return _newKeyboardState.GetPressedKeys().Any();
+        }
+
+        public bool KeyUp(Keys key)
+        {
+            return _newKeyboardState.IsKeyUp(key);
         }
 
         public bool KeyDown(Keys key)
@@ -20,7 +26,7 @@ namespace Hevadea.Framework.Input
             return _newKeyboardState.IsKeyDown(key);
         }
 
-        public bool KeyPress(Keys key)
+        public bool KeyTyped(Keys key)
         {
             return _newKeyboardState.IsKeyUp(key) && _oldKeyboardState.IsKeyDown(key);
         }

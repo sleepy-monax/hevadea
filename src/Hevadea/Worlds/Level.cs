@@ -442,8 +442,7 @@ namespace Hevadea.Worlds
             chunk.RemoveEntity(e);
         }
 
-		public bool AnyEntityAt(Coordinates coordinates) => AnyEntityAt(coordinates.X, coordinates.Y);
-
+        public bool AnyEntityAt(Coordinates coords) => QueryEntity(coords).Any();
         public bool AnyEntityAt(int tx, int ty)
         {
             return GetEntitiesAt(tx, ty).Any();
@@ -493,6 +492,54 @@ namespace Hevadea.Worlds
                 }
 
             return result;
+        }
+
+        /* --- Entity Query ------------------------------------------------- */
+
+        public IEnumerable<Entity> QueryEntity(CircleF c)
+        {
+            foreach (var e in QueryEntity(c.Bound))
+            {
+                if (c.Containe(e.Position2D)) yield return e;
+            }
+        }
+
+        public IEnumerable<Entity> QueryEntity(Coordinates coords)
+        {
+            Chunk chunk = GetChunkAt(coords.X, coords.Y);
+
+            if (chunk != null)
+            {
+                foreach (var e in chunk.EntitiesOnTiles[coords.X % Chunk.CHUNK_SIZE, coords.Y % Chunk.CHUNK_SIZE])
+                {
+                    yield return e;
+                }
+            }
+        }
+
+        public IEnumerable<Entity> QueryEntity(RectangleF r)
+        {
+            var beginX = (r.X / Game.Unit) - 1;
+            var beginY = (r.Y / Game.Unit) - 1;
+
+            var endX = ((r.X + r.Width) / Game.Unit) + 1;
+            var endY = ((r.Y + r.Height) / Game.Unit) + 1;
+
+            for (int x = (int)beginX; x < endX; x++)
+            {
+                for (int y = (int)beginY; y < endY; y++)
+                {
+                    if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
+
+                    foreach (var e in QueryEntity(new Coordinates(x, y)))
+                    {
+                        if (e.GetComponent<Colider>()?.GetHitBox().IntersectsWith(r) ?? r.Contains(e.Position2D))
+                        {
+                            yield return e;
+                        }
+                    }
+                }
+            }
         }
     }
 }

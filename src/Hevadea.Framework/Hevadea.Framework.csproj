@@ -119,6 +119,7 @@
     <Compile Include="Utils\FastRandom.cs" />
     <Compile Include="UI\Style.cs" />
     <Compile Include="Utils\RandomUtils.cs" />
+    <Compile Include="Utils\CircleF.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

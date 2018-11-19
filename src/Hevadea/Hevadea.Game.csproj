@@ -249,6 +249,9 @@
     <Compile Include="Entities\Components\Attributes\HoldingItem.cs" />
     <Compile Include="Systems\ElementalSystem\FireParticles.cs" />
     <Compile Include="Entities\Components\Attributes\Movable.cs" />
+    <Compile Include="Systems\PlayerSystem\PlayerInputProcessor.cs" />
+    <Compile Include="Entities\Components\Attributes\PlayerBody.cs" />
+    <Compile Include="Systems\MovementSystem\Extension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
@@ -329,6 +332,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Systems\PlayerSystem\" />
+    <Folder Include="Systems\MovementSystem\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

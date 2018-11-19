@@ -1,11 +1,9 @@
 ﻿using Hevadea.Entities;
 using Hevadea.Registry;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Hevadea.Storage
 {
-    [JsonObject]
     public class EntityStorage
     {
         public string Type { get; set; }

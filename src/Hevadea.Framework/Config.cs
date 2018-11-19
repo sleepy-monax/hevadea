@@ -1,6 +1,5 @@
 ﻿using Hevadea.Framework.Data;
 using Hevadea.Framework.Platform;
-using Newtonsoft.Json;
 using System.IO;
 
 namespace Hevadea.Framework

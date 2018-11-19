@@ -67,12 +67,12 @@ namespace Hevadea.Framework.UI.Widgets
 
         public override void Update(GameTime gameTime)
         {
-            if (Rise.Input.KeyPress(Keys.Left))
+            if (Rise.Input.KeyTyped(Keys.Left))
             {
                 CursorIndex--;
             }
 
-            if (Rise.Input.KeyPress(Keys.Right))
+            if (Rise.Input.KeyTyped(Keys.Right))
             {
                 CursorIndex++;
             }

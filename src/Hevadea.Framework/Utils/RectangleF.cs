@@ -188,15 +188,14 @@ namespace Hevadea.Framework.Utils
             return new RectangleF(x1, y1, x2 - x1, y2 - y1);
         }
 
-        public void Offset(Vector2 pos)
+        public RectangleF Offset(Vector2 off)
         {
-            Offset(pos.X, pos.Y);
+            return Offset(off.X, off.Y);
         }
 
-        public void Offset(float x, float y)
+        public RectangleF Offset(float ox, float oy)
         {
-            this.X += x;
-            this.Y += y;
+            return new RectangleF(X + ox, Y + oy, Width, Height);
         }
 
         public static implicit operator RectangleF(Rectangle r)

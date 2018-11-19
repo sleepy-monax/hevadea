@@ -104,7 +104,7 @@ namespace Hevadea.Scenes.Widgets
                 onScreenIndex++;
             }
 
-            if (Rise.Input.KeyPress(Keys.Tab))
+            if (Rise.Input.KeyTyped(Keys.Tab))
             {
                 int i = Tabs.IndexOf(SelectedTab);
                 SelectedTab = Tabs[(i + 1) % Tabs.Count];

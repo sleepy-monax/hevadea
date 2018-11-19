@@ -27,7 +27,13 @@ namespace Hevadea.Entities.Components.Renderer
 
             var sourceRectangle = new Rectangle(framePosition, frameSize);
 
+            if (entity.IsSwiming())
+            {
+                spriteBatch.Draw(Texture, position + new Vector2(-8, -24 + 4f), new Rectangle(new Point(2 * 16, (int)Owner.Facing * 32), new Point(16, 32)), Color.Black * 0.5f);
+            }
+
             spriteBatch.Draw(Texture, position + new Vector2(-8, -24 + (entity.IsSwiming() ? 4 : -2f)), sourceRectangle, Color.White);
+        
         }
     }
 }

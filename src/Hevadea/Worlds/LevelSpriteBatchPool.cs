@@ -32,7 +32,7 @@ namespace Hevadea.Worlds
         {
             Matrix transform = camera.GetTransform();
 
-            Tiles.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            Tiles.Begin(SpriteSortMode.Texture, samplerState: SamplerState.PointClamp, transformMatrix: transform);
             Entities.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
             Overlay.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
 
