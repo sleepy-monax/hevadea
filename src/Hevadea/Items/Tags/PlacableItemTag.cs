@@ -1,6 +1,7 @@
 ﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Attributes;
+using Hevadea.Systems.InventorySystem;
 using Hevadea.Tiles;
 using Hevadea.Utils;
 using Hevadea.Worlds;
@@ -30,8 +31,8 @@ namespace Hevadea.Items.Tags
 
                 Place(level, coords, user.Facing);
 
-                if (ConsumeItem && user is Entities.Player p && p.GetComponent<Inventory>().Content.Count(p.HoldingItem) == 0)
-                    p.HoldingItem = null;
+                if (ConsumeItem && user is Entities.Player p && p.GetComponent<Inventory>().Content.Count(p.HoldedItem()) == 0)
+                    p.HoldItem(null);
             }
         }
 

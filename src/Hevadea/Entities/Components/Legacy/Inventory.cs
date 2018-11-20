@@ -9,14 +9,14 @@ namespace Hevadea.Entities.Components
 {
     public class Inventory : EntityComponent, IEntityComponentSaveLoad, IEntityComponentOverlay, IEntityComponentUpdatable
     {
-        private Item _lastAdded;
-        private double _addedTimer = 0;
-        private float _ix;
-        private float _iy;
+        Item _lastAdded;
+        double _addedTimer = 0;
+        float _ix;
+        float _iy;
 
+        bool _alowPickUp = false;
         public bool HasPickup => _addedTimer > 0.5f;
         public float PickupOffset = 16f;
-        private bool _alowPickUp = false;
 
         public Inventory(int slotCount)
         {
@@ -38,7 +38,7 @@ namespace Hevadea.Entities.Components
 
         public void OnGameLoad(EntityStorage store)
         {
-            var l = (Dictionary<string, object>)store.ValueOf(nameof(Content), new Dictionary<string, object>());
+            var l = store.ValueOf(nameof(Content), new Dictionary<string, object>());
             foreach (var i in l)
             {
                 Content.Items.Add(int.Parse(i.Key), (int)i.Value);

@@ -1,6 +1,5 @@
 ﻿using System;
 using Hevadea.Entities;
-using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Framework;

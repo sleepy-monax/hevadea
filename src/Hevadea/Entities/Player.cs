@@ -15,12 +15,10 @@ namespace Hevadea.Entities
         public const float MAX_SPEED = 16f * 3f;
 
         public int LastLevel { get; set; }
-        public Item HoldingItem { get; set; }
 
         public Player()
         {
             LastLevel = 0;
-            HoldingItem = null;
 
             AddComponent(new Move());
             var health = new Health(3) { ShowHealthBar = false, NaturalRegeneration = true };
@@ -30,6 +28,7 @@ namespace Hevadea.Entities
             AddComponent(new LightSource { IsOn = true, Color = Color.White * 0.50f, Power = 64 });
             AddComponent(new MobRenderer(Ressources.ImgPlayer));
             AddComponent(new Flammable());
+            AddComponent(new ItemHolder());
 
             AddComponent(new Attack());
             AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
@@ -45,7 +44,7 @@ namespace Hevadea.Entities
             AddComponent(new PlayerBody());
         }
 
-        private void Health_Killed(object sender, System.EventArgs e)
+        void Health_Killed(object sender, System.EventArgs e)
         {
             GameState.CurrentMenu = new MenuRespawn(this, GameState);
         }

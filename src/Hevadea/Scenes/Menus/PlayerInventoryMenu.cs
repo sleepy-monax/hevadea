@@ -12,6 +12,7 @@ using Hevadea.Framework.Utils;
 using Hevadea.Registry;
 using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
+using Hevadea.Systems.InventorySystem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -70,7 +71,7 @@ namespace Hevadea.Scenes.Menus
             _inventory.MouseClick += (sender) =>
             {
                 _inventory.HighlightedItem = _inventory.SelectedItem;
-                GameState.LocalPlayer.Entity.HoldingItem = _inventory.SelectedItem;
+                GameState.LocalPlayer.Entity.HoldItem(_inventory.SelectedItem);
             };
 
             var closeBtn = new SpriteButton()

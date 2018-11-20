@@ -4,7 +4,6 @@ using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 
 namespace Hevadea.Entities.Components
 {
