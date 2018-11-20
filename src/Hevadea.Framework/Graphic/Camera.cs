@@ -6,7 +6,7 @@ namespace Hevadea.Framework.Graphic
 {
     public class Camera
     {
-        private double _thrauma;
+        double _thrauma;
 
         public float X { get; set; } = 0;
         public float Y { get; set; } = 0;
@@ -17,14 +17,16 @@ namespace Hevadea.Framework.Graphic
         public int MaxShakeOffset { get; set; } = 16;
         public double MaxShakeAngle { get; set; } = Math.PI / 12;
 
-        public int GetWidth()
+        public RectangleF Bound => new RectangleF(X - GetWidth() / 2f, Y - GetHeight() / 2f, GetWidth(), GetHeight());
+
+        public float GetWidth()
         {
-            return (int)(Rise.Graphic.GetWidth() / Zoom);
+            return Rise.Graphic.GetWidth() / Zoom;
         }
 
-        public int GetHeight()
+        public float GetHeight()
         {
-            return (int)(Rise.Graphic.GetHeight() / Zoom);
+            return Rise.Graphic.GetHeight() / Zoom;
         }
 
         private float value = 0f;
@@ -48,6 +50,7 @@ namespace Hevadea.Framework.Graphic
 
         public Vector2 ToScreenSpace(Vector2 world)
         {
+            //TODO: Screen space to world space
             return new Vector2();
         }
 

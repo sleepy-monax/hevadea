@@ -76,45 +76,10 @@ namespace Hevadea.Worlds
             IsInitialized = true;
         }
 
-        public RenderState Prepare(bool drawHint)
-        {
-            Coordinates focusedTile = _gameState.Camera.FocusedTile;
-
-            Point dist = new Point((_gameState.Camera.GetWidth() / 2 / Game.Unit) + 1,
-                                    _gameState.Camera.GetHeight() / 2 / Game.Unit);
-
-            Point renderBegin = new Point(Math.Max(0, focusedTile.X - dist.X),
-                                          Math.Max(0, focusedTile.Y - dist.Y - 1));
-
-            Point renderEnd = new Point(Math.Min(Width, focusedTile.X + dist.X + 1),
-                                        Math.Min(Height, focusedTile.Y + dist.Y + 6));
-
-            EntityColection onScreenEntities = new EntityColection();
-            EntityColection aliveEntities = new EntityColection();
-
-            for (int x = renderBegin.X; x < renderEnd.X; x++)
-            {
-                for (int y = renderBegin.Y; y < renderEnd.Y; y++)
-                {
-                    onScreenEntities.AddRange(QueryEntity(x, y));
-                }
-            }
-
-            if (drawHint) onScreenEntities.SortForRender();
-
-            // TODO: For now the alives entities is equal to on screen entities,
-            // BUT: in the futur this will depend on the field of view of all the player connected on the server.
-            aliveEntities.AddRange(QueryEntity(focusedTile.ToVector2(), 256));
-
-            return new RenderState(renderBegin, renderEnd, onScreenEntities, aliveEntities);
-        }
-
         public void Update(GameTime gameTime)
         {
-            RenderState renderState = Prepare(false);
-
             // Update all alive entities.
-            foreach (var e in renderState.AliveEntities)
+            foreach (var e in QueryEntity(_gameState.Camera.Bound))
             {
                 foreach (var sys in SYSTEMS.UpdateSystems)
                 {
@@ -139,23 +104,18 @@ namespace Hevadea.Worlds
 
         public void Draw(LevelSpriteBatchPool spriteBatchPool, GameTime gameTime)
         {
-            RenderState renderState = Prepare(true);
             spriteBatchPool.Begin(_gameState.Camera);
 
             // Draw Tiles.
-            for (int x = renderState.RenderBegin.X; x < renderState.RenderEnd.X; x++)
+            foreach (var coords in QueryCoordinates(_gameState.Camera.Bound))
             {
-                for (int y = renderState.RenderBegin.Y; y < renderState.RenderEnd.Y; y++)
-                {
-                    Coordinates tile = new Coordinates(x, y);
-                    GetTile(tile).Draw(spriteBatchPool.Tiles, tile, GetTileDataAt(tile), this, gameTime);
-                }
+                GetTile(coords).Draw(spriteBatchPool.Tiles, coords, GetTileDataAt(coords), this, gameTime);
             }
 
             ParticleSystem.Draw(spriteBatchPool.Tiles, gameTime);
 
             // Draw Entities, Shadows and lights.
-            foreach (var e in renderState.OnScreenEntities)
+            foreach (var e in QueryEntity(_gameState.Camera.Bound))
             {
                 foreach (var sys in SYSTEMS.DrawSystems)
                 {
@@ -407,29 +367,29 @@ namespace Hevadea.Worlds
 
         /* --- Entities ----------------------------------------------------- */
 
-		public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates)
-		    => AddEntityAt(blueprint.Construct(), coordinates.X, coordinates.Y);
+        public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates)
+            => AddEntityAt(blueprint.Construct(), coordinates.X, coordinates.Y);
 
-		public Entity AddEntityAt(Entity entity, Coordinates coordinates)
-		    => AddEntityAt(entity, coordinates.X, coordinates.Y);
+        public Entity AddEntityAt(Entity entity, Coordinates coordinates)
+            => AddEntityAt(entity, coordinates.X, coordinates.Y);
 
         public Entity AddEntityAt(EntityBlueprint blueprint, Coordinates coordinates, Vector2 offset)
-		=> AddEntityAt(blueprint.Construct(), coordinates.X, coordinates.Y, offset.X, offset.Y);
+        => AddEntityAt(blueprint.Construct(), coordinates.X, coordinates.Y, offset.X, offset.Y);
 
-		public Entity AddEntityAt(Entity entity, Coordinates coordinates, Vector2 offset)
-		=> AddEntityAt(entity, coordinates.X, coordinates.Y, offset.X, offset.Y);
+        public Entity AddEntityAt(Entity entity, Coordinates coordinates, Vector2 offset)
+        => AddEntityAt(entity, coordinates.X, coordinates.Y, offset.X, offset.Y);
 
         public Entity AddEntityAt(EntityBlueprint blueprint, int tx, int ty, float offX = 0f, float offY = 0f)
             => AddEntityAt(blueprint.Construct(), tx, ty, offX, offY);
 
-		public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
+        public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
             e.Position2D = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
             return e;
         }
 
-		public void AddEntity(Entity e)
+        public void AddEntity(Entity e)
         {
             GetChunkAt(e.Coordinates).AddEntity(e);
             e.Level = this;
@@ -444,9 +404,48 @@ namespace Hevadea.Worlds
 
         public bool AnyEntityAt(Coordinates coords) => QueryEntity(coords).Any();
 
+        /* === Queries ====================================================== */
+
+        /* --- Coordinates Query -------------------------------------------- */
+
+        public IEnumerable<Coordinates> QueryCoordinates(Vector2 center, float radius)
+            => QueryCoordinates(new CircleF(center, radius));
+
+        public IEnumerable<Coordinates> QueryCoordinates(CircleF c)
+        {
+            foreach (var coords in QueryCoordinates(c.Bound))
+            {
+                if (c.Containe(coords.ToVector2())) yield return coords;
+            }
+        }
+
+        public IEnumerable<Coordinates> QueryCoordinates(Rectangle r)
+            => QueryCoordinates(new RectangleF(r.X, r.Y, r.Width, r.Height));
+
+        public IEnumerable<Coordinates> QueryCoordinates(RectangleF r)
+        {
+            var beginX = (r.X / Game.Unit) - 1;
+            var beginY = (r.Y / Game.Unit) - 1;
+
+            var endX = ((r.X + r.Width) / Game.Unit) + 1;
+            var endY = ((r.Y + r.Height) / Game.Unit) + 1;
+
+            for (int x = (int)beginX; x < endX; x++)
+            {
+                for (int y = (int)beginY; y < endY; y++)
+                {
+                    if (x < 0 || y < 0 || x >= Width || y >= Height) continue;
+
+                    yield return new Coordinates(x, y);
+                }
+            }
+        }
+
         /* --- Entity Query ------------------------------------------------- */
 
-        public IEnumerable<Entity> QueryEntity(Vector2 center, float radius) => QueryEntity(new CircleF(center, radius));
+        public IEnumerable<Entity> QueryEntity(Vector2 center, float radius) 
+            => QueryEntity(new CircleF(center, radius));
+
         public IEnumerable<Entity> QueryEntity(CircleF c)
         {
             foreach (var e in QueryEntity(c.Bound))
@@ -455,21 +454,25 @@ namespace Hevadea.Worlds
             }
         }
 
-        public IEnumerable<Entity> QueryEntity(int tx, int ty) => QueryEntity(new Coordinates(tx, ty));
+        public IEnumerable<Entity> QueryEntity(int tx, int ty) 
+            => QueryEntity(new Coordinates(tx, ty));
+
         public IEnumerable<Entity> QueryEntity(Coordinates coords)
         {
             Chunk chunk = GetChunkAt(coords.X, coords.Y);
 
             if (chunk != null)
             {
-                foreach (var e in chunk.EntitiesOnTiles[coords.X % Chunk.CHUNK_SIZE, coords.Y % Chunk.CHUNK_SIZE])
+                foreach (var e in chunk.EntitiesOnTiles[coords.X % Chunk.CHUNK_SIZE, coords.Y % Chunk.CHUNK_SIZE].Clone())
                 {
                     yield return e;
                 }
             }
         }
 
-        public IEnumerable<Entity> QueryEntity(Rectangle r) => QueryEntity(new RectangleF(r.X, r.Y, r.Width, r.Height));
+        public IEnumerable<Entity> QueryEntity(Rectangle r) 
+            => QueryEntity(new RectangleF(r.X, r.Y, r.Width, r.Height));
+
         public IEnumerable<Entity> QueryEntity(RectangleF r)
         {
             var beginX = (r.X / Game.Unit) - 1;

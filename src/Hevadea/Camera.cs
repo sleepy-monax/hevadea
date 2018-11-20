@@ -7,7 +7,7 @@ namespace Hevadea
     public class Camera : Framework.Graphic.Camera
     {
         public Entity FocusEntity { get; set; }
-        public Coordinates FocusedTile => new Coordinates((int)(X / Game.Unit), (int)(Y / Game.Unit));
+        public Coordinates Coordinates => new Coordinates((int)(X / Game.Unit), (int)(Y / Game.Unit));
 
         public Camera(Entity focusEntity)
         {
