@@ -79,18 +79,8 @@ namespace Hevadea.Worlds
         public void Update(GameTime gameTime)
         {
             // Update all alive entities.
-            foreach (var e in QueryEntity(_gameState.Camera.Bound))
-            {
-                foreach (var sys in SYSTEMS.UpdateSystems)
-                {
-                    if (sys.Enable && e.Match(sys.Filter))
-                    {
-                        sys.Update(e, gameTime);
-                    }
-                }
-
-                e.Update(gameTime);
-            }
+            QueryEntity(_gameState.Camera.Bound)
+                .ForEarch((e) => e.Update(gameTime));
 
             // Do the random update of tiles.
             for (int i = 0; i < Width * Height / 50; i++)
@@ -115,18 +105,10 @@ namespace Hevadea.Worlds
             ParticleSystem.Draw(spriteBatchPool.Tiles, gameTime);
 
             // Draw Entities, Shadows and lights.
-            foreach (var e in QueryEntity(_gameState.Camera.Bound))
+            foreach (var e in QueryEntity(_gameState.Camera.Bound.Inflate(Game.Unit * 4f, Game.Unit * 12f)))
             {
-                foreach (var sys in SYSTEMS.DrawSystems)
-                {
-                    if (sys.Enable && e.Match(sys.Filter))
-                    {
-                        sys.Draw(e, spriteBatchPool, gameTime);
-                    }
-                }
-
                 // Draw the entity.
-                e.Draw(spriteBatchPool.Entities, gameTime);
+                e.Draw(spriteBatchPool, gameTime);
 
                 // Draw Entity overlay.
                 if (Rise.Ui.Enabled)

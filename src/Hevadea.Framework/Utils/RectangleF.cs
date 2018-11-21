@@ -47,8 +47,8 @@ namespace Hevadea.Framework.Utils
             get => new Vector2(Width, Height);
             set
             {
-                this.Width = value.X;
-                this.Height = value.Y;
+                Width = value.X;
+                Height = value.Y;
             }
         }
 
@@ -125,24 +125,9 @@ namespace Hevadea.Framework.Utils
             (((UInt32)Height << 7) | ((UInt32)Height >> 25))));
         }
 
-        public void Inflate(float x, float y)
+        public RectangleF Inflate(float x, float y)
         {
-            this.X -= x;
-            this.Y -= y;
-            this.Width += 2 * x;
-            this.Height += 2 * y;
-        }
-
-        public void Inflate(Point size)
-        {
-            Inflate(size.X, size.Y);
-        }
-
-        public static RectangleF Inflate(RectangleF rect, float x, float y)
-        {
-            var r = rect;
-            r.Inflate(x, y);
-            return r;
+            return new RectangleF(X - x/2, Y - y/2, Width + x, Height + y);
         }
 
         public void Intersect(RectangleF rect)

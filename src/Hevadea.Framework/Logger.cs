@@ -34,7 +34,7 @@ namespace Hevadea.Framework
         public static void Log(string callingClass, LoggerLevel level, string message)
         {
             System.Diagnostics.Debug.WriteLine($"{level.ToString()} [{callingClass}] {message}");
-            Console.WriteLine($"{level.ToString()} [{callingClass}] {message}");
+            //Console.WriteLine($"{level.ToString()} [{callingClass}] {message}");
         }
     }
 }

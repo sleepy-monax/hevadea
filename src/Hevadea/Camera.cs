@@ -25,6 +25,9 @@ namespace Hevadea
         {
             X += (FocusEntity.X - X) * (float)gameTime.ElapsedGameTime.TotalSeconds * Zoom;
             Y += (FocusEntity.Y - Y) * (float)gameTime.ElapsedGameTime.TotalSeconds * Zoom;
+
+            //X = FocusEntity.X;
+            //Y = FocusEntity.Y;
         }
     }
 }

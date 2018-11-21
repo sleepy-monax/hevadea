@@ -27,13 +27,14 @@ namespace Hevadea.Entities.Components.Renderer
             var frameSize     = entity.IsSwiming() ? new Point(16, 20) : new Point(16, 32);
 
             var sourceRectangle = new Rectangle(framePosition, frameSize);
+            var sourceRectangleShadow = new Rectangle(framePosition, new Point(16, 32));
 
             if (entity.IsSwiming())
             {
                 spriteBatch.Draw(
                     Texture,
-                    position + new Vector2(-8, -24 + 4f),
-                    new Rectangle(new Point(2 * 16, (int)Owner.Facing * 32), new Point(16, 32)),
+                    position + new Vector2(-8, -24 + (entity.IsSwiming() ? 4 : -2f)),
+                    sourceRectangleShadow,
                     Color.Black * 0.5f);
             }
 

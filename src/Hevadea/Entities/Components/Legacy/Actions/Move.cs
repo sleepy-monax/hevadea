@@ -1,4 +1,5 @@
 ﻿using Hevadea.Entities.Components.Attributes;
+using Hevadea.Framework;
 using Hevadea.Framework.Utils;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Components;
@@ -8,15 +9,12 @@ using System.Collections.Generic;
 
 namespace Hevadea.Entities.Components.Actions
 {
-    public class Move : EntityComponent, IEntityComponentUpdatable
+    public class Move : EntityComponent
     {
-        public bool IsMoving { get; private set; }
-        public bool NoClip { get; set; } = false;
+        private int _moveTick;
 
-        public void Update(GameTime gameTime)
-        {
-            IsMoving = false;
-        }
+        public bool IsMoving => _moveTick == Rise.MonoGame.Tick || _moveTick == Rise.MonoGame.Tick - 1;
+        public bool NoClip { get; set; } = false;
 
         public void MoveTo(Coordinates tilePosition, float speed = 1f, bool setFacing = false)
         {
@@ -95,7 +93,7 @@ namespace Hevadea.Entities.Components.Actions
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, 0f, sy);
-                        IsMoving = true;
+                        _moveTick = Rise.MonoGame.Tick;
                     }
 
                     eHitbox = eColider.GetHitBox();
@@ -104,7 +102,7 @@ namespace Hevadea.Entities.Components.Actions
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, sx, 0f);
-                        IsMoving = true;
+                        _moveTick = Rise.MonoGame.Tick;
                     }
                     eHitbox = eColider.GetHitBox();
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
@@ -134,7 +132,7 @@ namespace Hevadea.Entities.Components.Actions
                 Owner.SetPosition(Owner.X + sx, Owner.Y + sy);
                 Owner.Level.GetTile(Owner.Coordinates).Tag<GroundTile>()?.SteppedOn(Owner, Owner.Coordinates);
 
-                IsMoving = true;
+                _moveTick = Rise.MonoGame.Tick;
                 return true;
             }
 

@@ -15,8 +15,8 @@ namespace Hevadea
 {
     public class GameState
     {
-        private Menu _currentMenu;
-        private LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
+        Menu _currentMenu;
+        LevelSpriteBatchPool _spriteBatchPool = new LevelSpriteBatchPool();
 
         public string SavePath { get; set; } = "./test/";
 
@@ -203,7 +203,7 @@ namespace Hevadea
             File.WriteAllText(GetSavePath() + "player.json", LocalPlayer.Save().ToJson());
         }
 
-        private void SaveLevel(Job job, Level level)
+        void SaveLevel(Job job, Level level)
         {
             job.Report($"Saving {level.Name}...");
             string path = GetLevelSavePath(level);
@@ -218,23 +218,20 @@ namespace Hevadea
                 File.WriteAllText(path + $"r{chunk.X}-{chunk.Y}.json", chunk.Save().ToJson());
             }
 
-            if (!Rise.NoGraphic) // TODO: Make the minimap store in a bitmap on sever side...
+            File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
+
+            var task = new Job((j, args) =>
             {
-                File.WriteAllText(path + "minimap.json", level.Minimap.Waypoints.ToJson());
+                level.Minimap.SaveToFile(path + "minimap.png");
+                return null;
+            });
 
-                var task = new Job((j, args) =>
-                {
-                    level.Minimap.SaveToFile(path + "minimap.png");
-                    return null;
-                });
+            job.Report($"Saving {level.Name} minimap...");
+            job.Report(1f);
 
-                job.Report($"Saving {level.Name} minimap...");
-                job.Report(1f);
+            Rise.GameLoopThread.Enqueue(task);
 
-                Rise.GameLoopThread.Enqueue(task);
-
-                task.Wait();
-            }
+            task.Wait();
         }
     }
 }

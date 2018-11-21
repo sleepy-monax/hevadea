@@ -1,8 +1,10 @@
 ﻿using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components;
+using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.Particles;
 using Hevadea.Framework.Utils;
+using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Tiles;
 using Hevadea.Utils;
@@ -265,24 +267,56 @@ namespace Hevadea.Entities
 
         /* --- Game loop --------------------------------------------------- */
 
+        int _lastUpdateTick = -1;
+
         public void Update(GameTime gameTime)
         {
-            Componenents
-                .OfType<IEntityComponentUpdatable>()
-                .ForEarch(x => x.Update(gameTime));
+            if (_lastUpdateTick != Rise.MonoGame.Tick)
+            {
+                _lastUpdateTick = Rise.MonoGame.Tick;
 
-            OnUpdate(gameTime);
-            ParticleSystem.Update(gameTime);
+                foreach (var sys in SYSTEMS.UpdateSystems)
+                {
+                    if (sys.Enable && Match(sys.Filter))
+                    {
+                        sys.Update(this, gameTime);
+                    }
+                }
+
+
+                Componenents
+                    .OfType<IEntityComponentUpdatable>()
+                    .ForEarch(x => x.Update(gameTime));
+                
+                OnUpdate(gameTime);
+                ParticleSystem.Update(gameTime);
+            }
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            Componenents
-                .OfType<IEntityComponentDrawable>()
-                .ForEarch(x => x.Draw(spriteBatch, gameTime));
+        int _lastDrawTick = -1;
 
-            OnDraw(spriteBatch, gameTime);
-            ParticleSystem.Draw(spriteBatch, gameTime);
+        public void Draw(LevelSpriteBatchPool spriteBatchPool, GameTime gameTime)
+        {
+            if (_lastDrawTick != Rise.MonoGame.Tick)
+            {
+                _lastDrawTick = Rise.MonoGame.Tick;
+               
+                foreach (var sys in SYSTEMS.DrawSystems)
+                {
+                    if (sys.Enable && Match(sys.Filter))
+                    {
+                        sys.Draw(this, spriteBatchPool, gameTime);
+                    }
+                }
+
+
+                Componenents
+                    .OfType<IEntityComponentDrawable>()
+                    .ForEarch(x => x.Draw(spriteBatchPool.Entities, gameTime));
+
+                OnDraw(spriteBatchPool.Entities, gameTime);
+                ParticleSystem.Draw(spriteBatchPool.Entities, gameTime);
+            }
         }
 
         public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)

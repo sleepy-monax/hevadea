@@ -23,6 +23,8 @@ namespace Hevadea.Framework
         public event GameloopEventHandler OnUpdate;
         public event GameloopEventHandler OnDraw;
 
+        public int Tick { get; private set; } = 0;
+
         public MonoGameHandler()
         {
             Content.RootDirectory = "Content";
@@ -61,6 +63,8 @@ namespace Hevadea.Framework
 
             UpdateTime = (int)_updateStopwatch.ElapsedMilliseconds;
             _updateStopwatch.Reset();
+
+            Tick++;
         }
 
         protected override void Draw(GameTime gameTime)
