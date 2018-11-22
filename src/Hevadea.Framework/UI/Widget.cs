@@ -18,24 +18,12 @@ namespace Hevadea.Framework.UI
 
     public class Widget
     {
-        public static float Scale(float v) => v * Rise.Ui.ScaleFactor;
+        bool _enabled = true;
 
-        public static int Scale(int v) => (int)(v * Rise.Ui.ScaleFactor);
-
-        public static Point Scale(Point p) => new Point(Scale(p.X), Scale(p.Y));
-
-        public static Rectangle Scale(Rectangle rect) => new Rectangle(Scale(rect.Location), Scale(rect.Size));
-
-        public bool Enabled { get; set; } = true;
+        public bool Enabled { get { return _enabled; } set { Rise.Ui.RefreshLayout(); _enabled = value; } }
         public bool Disabled { get => !Enabled; set => Enabled = !value; }
         public bool Focused { get => Rise.Ui.FocusWidget == this; }
         public bool CanGetFocus { get; set; }
-
-        public void Enable() => Enabled = true;
-
-        public void Disable() => Disabled = true;
-
-        public void Toggle() => Enabled = !Enabled;
 
         public Margins Padding { get; set; } = new Margins(0);
 
@@ -53,22 +41,26 @@ namespace Hevadea.Framework.UI
         public MouseState MouseState { get; set; } = MouseState.None;
 
         public delegate void WidgetEventHandler(Widget sender);
-
         public event WidgetEventHandler MouseClick;
-
         public event WidgetEventHandler MouseHold;
 
         public virtual void RefreshLayout()
-        {
-        }
+        {}
 
         public virtual void Update(GameTime gameTime)
-        {
-        }
+        {}
 
         public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-        }
+        {}
+
+        public static float Scale(float v) => v * Rise.Ui.ScaleFactor;
+        public static int Scale(int v) => (int)(v * Rise.Ui.ScaleFactor);
+        public static Point Scale(Point p) => new Point(Scale(p.X), Scale(p.Y));
+        public static Rectangle Scale(Rectangle rect) => new Rectangle(Scale(rect.Location), Scale(rect.Size));
+
+        public void Enable() => Enabled = true;
+        public void Disable() => Disabled = true;
+        public void Toggle() => Enabled = !Enabled;
 
         public void UpdateInternal(GameTime gameTime)
         {
@@ -92,7 +84,7 @@ namespace Hevadea.Framework.UI
             }
         }
 
-        private void HandleInput()
+        void HandleInput()
         {
             if (Rise.Pointing.AreaOver(Bound))
             {

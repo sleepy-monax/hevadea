@@ -41,7 +41,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
         public override void Update(GameTime gameTime)
         {
             if (!Agent.IsBusy() && Target != null && (Target.Level != Agent.Owner.Level ||
-                Mathf.Distance(Agent.Owner.Position2D, Target.Position2D) > FollowRange * Game.Unit))
+                Mathf.Distance(Agent.Owner.Position, Target.Position) > FollowRange * Game.Unit))
             {
                 Agent.Abort(AgentAbortReason.TagetLost);
                 Target = null;
@@ -49,11 +49,11 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
 
             if (Target == null)
             {
-                _targetsOnSight = Agent.Owner.Level.QueryEntity(Agent.Owner.Position2D, AgroRange * Game.Unit)
+                _targetsOnSight = Agent.Owner.Level.QueryEntity(Agent.Owner.Position, AgroRange * Game.Unit)
                                         .Where((e) => e.MemberOf(Targets) && CheckLineOfSight(e.Coordinates)).ToList();
 
-                _targetsOnSight.Sort((a, b) => Mathf.Distance(a.Position2D, Agent.Owner.Position2D)
-                     .CompareTo(Mathf.Distance(b.Position2D, Agent.Owner.Position2D)));
+                _targetsOnSight.Sort((a, b) => Mathf.Distance(a.Position, Agent.Owner.Position)
+                     .CompareTo(Mathf.Distance(b.Position, Agent.Owner.Position)));
 
                 if (_targetsOnSight.Any())
                 {
@@ -65,7 +65,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
             else
             {
                 if (Target.Coordinates != _lastTagetPosition &&
-                    Mathf.Distance(Agent.Owner.Position2D, Target.Position2D) < FollowRange * Game.Unit &&
+                    Mathf.Distance(Agent.Owner.Position, Target.Position) < FollowRange * Game.Unit &&
                     CheckLineOfSight(Target.Coordinates))
                 {
                     Agent.Flush();
@@ -82,16 +82,16 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
         {
             if (Target == null)
             {
-                spriteBatch.DrawCircle(Agent.Owner.Position2D, AgroRange * Game.Unit, 24, Color.White * 0.5f);
+                spriteBatch.DrawCircle(Agent.Owner.Position, AgroRange * Game.Unit, 24, Color.White * 0.5f);
             }
             else
             {
-                spriteBatch.DrawCircle(Agent.Owner.Position2D, FollowRange * Game.Unit, 24, Color.Red);
+                spriteBatch.DrawCircle(Agent.Owner.Position, FollowRange * Game.Unit, 24, Color.Red);
             }
 
             foreach (var t in _targetsOnSight)
             {
-                spriteBatch.DrawLine(t.Position2D, Agent.Owner.Position2D, CheckLineOfSight(t.Coordinates) ? Color.Green : Color.Yellow);
+                spriteBatch.DrawLine(t.Position, Agent.Owner.Position, CheckLineOfSight(t.Coordinates) ? Color.Green : Color.Yellow);
             }
         }
     }

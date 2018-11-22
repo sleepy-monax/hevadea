@@ -6,7 +6,6 @@ using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Linq;
 
 namespace Hevadea.Items
 {
@@ -29,11 +28,11 @@ namespace Hevadea.Items
             SpeedX = SpeedX / 2;
             SpeedY = SpeedY / 2;
 
-            foreach (var e in Level.QueryEntity(new CircleF(Position2D, Game.Unit)))
+            foreach (var e in Level.QueryEntity(Position, Game.Unit))
             {
                 if (e.HasComponent<Inventory>(out var i) && i.AlowPickUp)
                 {
-                    move.MoveTo(e.X, e.Y);
+                    move.MoveTo(e.X, e.Y, 2f);
                     if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && Pickup(e)) return;
                 }
             }

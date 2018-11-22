@@ -23,8 +23,7 @@ namespace Hevadea.Entities
         public float X { get; private set; }
         public float Y { get; private set; }
 
-        public Vector2 Position2D { get => new Vector2(X, Y); set => SetPosition(value.X, value.Y); }
-
+        public Vector2 Position { get => new Vector2(X, Y); set => SetPosition(value.X, value.Y); }
 
         public bool Initialized { get; private set; } = false;
         public bool Removed { get; set; } = true;
@@ -64,13 +63,13 @@ namespace Hevadea.Entities
         public T GetComponent<T>() where T : EntityComponent
         {
             var result = Componenents.OfType<T>();
-            return result.Count() > 0 ? result.First() : null;
+            return result.Any()? result.First() : null;
         }
 
         public EntityComponent GetEntityComponent(Type type)
         {
             var result = Componenents.Where(c => c.GetType() == type);
-            return result.Count() > 0 ? result.First() : null;
+            return result.Any()? result.First() : null;
         }
 
         public bool HasComponent<T>(out T component) where T : EntityComponent
@@ -221,7 +220,7 @@ namespace Hevadea.Entities
         public bool MemberOf(BlueprintGroupe<EntityBlueprint> groupe)
             => Blueprint != null && groupe.Members.Contains(Blueprint);
 
-        private static Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
+        static readonly Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()
         {
             { Direction.North, Anchor.Bottom },
             { Direction.South, Anchor.Top    },
@@ -231,7 +230,7 @@ namespace Hevadea.Entities
 
         public Rectangle GetFacingArea(int size)
         {
-            return new Rectangle(Position2D.ToPoint() - new Rectangle(new Point(0), new Point(size)).GetAnchorPoint(DirectionToAnchore[Facing]), new Point(size));
+            return new Rectangle(Position.ToPoint() - new Rectangle(new Point(0), new Point(size)).GetAnchorPoint(DirectionToAnchore[Facing]), new Point(size));
         }
 
         public List<Entity> GetFacingEntities(int areaSize)
@@ -262,7 +261,7 @@ namespace Hevadea.Entities
 
         public IEnumerable<Entity> GetEntitiesInRadius(float radius)
         {
-            return Level?.QueryEntity(Position2D, radius);
+            return Level?.QueryEntity(Position, radius);
         }
 
         /* --- Game loop --------------------------------------------------- */

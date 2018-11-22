@@ -118,9 +118,9 @@ namespace Hevadea.Worlds
 
                 if (Rise.Debug.GAME)
                 {
-                    spriteBatchPool.Overlay.PutPixel(e.Position2D, Color.Magenta);
-                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position2D, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
-                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position2D, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
+                    spriteBatchPool.Overlay.PutPixel(e.Position, Color.Magenta);
+                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, Color.Black * 0.5f, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 5f) * 1 / _gameState.Camera.Zoom);
+                    spriteBatchPool.Overlay.DrawString(Ressources.FontHack, e.Ueid.ToString(), e.Position, ColorPalette.Accent, Anchor.Center, 1 / _gameState.Camera.Zoom, new Vector2(0, 4f) * 1 / _gameState.Camera.Zoom);
                 }
             }
 
@@ -143,6 +143,7 @@ namespace Hevadea.Worlds
 
             // Draw Entities and tiles to their own rendertarget.
             Rise.Graphic.SetRenderTarget(worldRenderTarget);
+            Rise.Graphic.Clear(new Color(148, 120, 92));
             spriteBatchPool.Tiles.End();
             spriteBatchPool.Shadows.End();
             spriteBatchPool.Entities.End();
@@ -367,7 +368,7 @@ namespace Hevadea.Worlds
         public Entity AddEntityAt(Entity e, int tx, int ty, float offX = 0f, float offY = 0f)
         {
             AddEntity(e);
-            e.Position2D = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
+            e.Position = new Vector2(tx, ty) * Game.Unit + new Vector2(Game.Unit / 2) + new Vector2(offX, offY);
             return e;
         }
 
@@ -432,7 +433,7 @@ namespace Hevadea.Worlds
         {
             foreach (var e in QueryEntity(c.Bound))
             {
-                if (c.Containe(e.Position2D)) yield return e;
+                if (c.Containe(e.Position)) yield return e;
             }
         }
 
@@ -471,7 +472,7 @@ namespace Hevadea.Worlds
 
                     foreach (var e in QueryEntity(new Coordinates(x, y)))
                     {
-                        if (e.GetComponent<Colider>()?.GetHitBox().IntersectsWith(r) ?? r.Contains(e.Position2D))
+                        if (e.GetComponent<Colider>()?.GetHitBox().IntersectsWith(r) ?? r.Contains(e.Position))
                         {
                             yield return e;
                         }

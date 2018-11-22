@@ -39,7 +39,7 @@ namespace Hevadea.Tiles
 
         public void Draw(SpriteBatch spriteBatch, Coordinates coords, Dictionary<string, object> data, Level level, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(coords.ToRectangle(), new Color(148, 120, 92));
+            //spriteBatch.FillRectangle(coords.ToRectangle(), new Color(148, 120, 92));
             _render?.Draw(spriteBatch, coords, level);
 
             foreach (var t in _tags)

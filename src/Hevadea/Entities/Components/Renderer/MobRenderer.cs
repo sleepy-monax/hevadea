@@ -50,7 +50,7 @@ namespace Hevadea.Entities.Components.Renderer
             {
                 holdedItem.GetSprite().Draw(
                     spriteBatch,
-                    new Rectangle(entity.Position2D.ToPoint(), new Point(16)),
+                    new Rectangle(entity.Position.ToPoint(), new Point(16)),
                     Color.White);
             }
         }

@@ -28,7 +28,7 @@ namespace Hevadea.Entities.Components
 
             Owner.GameState.Camera.Thrauma += 0.2f;
 
-            foreach (var e in Owner.Level.QueryEntity(Owner.Position2D, _radius * Game.Unit))
+            foreach (var e in Owner.Level.QueryEntity(Owner.Position, _radius * Game.Unit))
             {
                 if (e != Owner)
                 {

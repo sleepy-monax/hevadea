@@ -22,7 +22,7 @@ namespace Hevadea.Systems
                 var frame = (int)(gameTime.TotalGameTime.TotalSeconds * 4) % 4;
 
                 Rectangle source = new Rectangle(new Point(16 * frame, 0), Size);
-                Vector2 position = entity.Position2D - Size.ToVector2() / 2;
+                Vector2 position = entity.Position - Size.ToVector2() / 2;
 
                 pool.Tiles.Draw(Ressources.ImgWater, position, source, Color.White);
             }

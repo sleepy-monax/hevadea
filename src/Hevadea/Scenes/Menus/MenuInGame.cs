@@ -63,7 +63,6 @@ namespace Hevadea.Scenes.Menus
             btnMinimap = new SpriteButton
             {
                 Anchor = Anchor.TopRight,
-                Enabled = false,
                 Origine = Anchor.TopRight,
                 Sprite = new Sprite(Ressources.TileIcons, new Point(5, 4)),
                 UnitOffset = new Point(-16, 16),
@@ -81,6 +80,7 @@ namespace Hevadea.Scenes.Menus
 
             _minimap = new WidgetFancyPanel()
             {
+                Enabled = false,
                 Anchor = Anchor.TopRight,
                 Origine = Anchor.TopRight,
                 UnitBound = new Rectangle(0, 0, 320, 320),
@@ -111,8 +111,8 @@ namespace Hevadea.Scenes.Menus
                btnAttack.MouseHold += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Attack); };
                btnDrop.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.DropItem); };
                btnPickup.MouseClick += (sender) => { GameState.LocalPlayer.InputHandler.HandleInput(PlayerInput.Pickup); };
-               btnMinimap.MouseClick += (sender) => { _minimap.Toggle(); sender.Disable(); };
             */
+            btnMinimap.MouseClick += (sender) => { _minimap.Toggle(); sender.Disable(); };
             _minimap.MouseClick += (sender) => { sender.Toggle(); btnMinimap.Enable(); };
 
             if (Rise.Platform.Family == PlatformFamily.Mobile)
