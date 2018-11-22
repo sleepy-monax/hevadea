@@ -1,11 +1,13 @@
 ﻿using System;
 using Hevadea.Entities;
+using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Framework;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Utils;
 using Hevadea.Scenes.Menus;
+using Hevadea.Systems.InventorySystem;
 using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
@@ -98,26 +100,27 @@ namespace Hevadea.Systems.PlayerSystem
                     break;
 
                 case PlayerInput.Action:
-                    // TODO: fix item holding
-                    // if (player.GetComponent<Inventory>().Content.Count(player.HoldingItem) == 0)
-                    //    player.HoldingItem = null;
-                    // player.GetComponent<Interact>().Do(player.HoldingItem);
+                    if (player.GetComponent<Inventory>().Content.Count(player.HoldedItem()) == 0)
+                        player.HoldItem(null);
+
+                    player.GetComponent<Interact>().Do(player.HoldedItem());
                     break;
 
                 case PlayerInput.Attack:
-                    // player.GetComponent<Attack>().Do(player.HoldingItem);
+                    player.GetComponent<Attack>().Do(player.HoldedItem());
                     break;
 
                 case PlayerInput.Pickup:
-                    // Player.GetComponent<Pickup>().Do();
+                    player.GetComponent<Pickup>().Do();
                     break;
 
                 case PlayerInput.DropItem:
-                    /*var level = player.Level;
-                    var item = player.HoldingItem;
+                    var level = player.Level;
+                    var item = player.HoldedItem();
                     var facingTile = player.FacingCoordinates;
                     player.GetComponent<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
-                    */break;
+
+                    break;
 
                 case PlayerInput.OpenMenu:
                     if (game.CurrentMenu is MenuInGame)

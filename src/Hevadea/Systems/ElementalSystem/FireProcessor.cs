@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.States;
@@ -13,7 +12,7 @@ namespace Hevadea.Systems.ElementalSystem
     {
         public static readonly float FIRE_SPREAD_RANGE = 32f;
         public static readonly float FIRE_DAMAGES = 1f;
-        public static readonly float CHANCE_TO_BREAK_FROM_FIRE = 0.005f;
+        public static readonly float CHANCE_TO_BREAK_FROM_FIRE = 0.01f;
 
         public FireProcessor()
         {
@@ -23,19 +22,20 @@ namespace Hevadea.Systems.ElementalSystem
         public override void Update(Entity entity, GameTime gameTime)
         {
             var fire = entity.GetComponent<Flammable>();
-            var health = entity.GetComponent<Health>();
-            var swim = entity.GetComponent<Swim>();
-
-            if (fire.BurnningTimer < 0.01f) fire.Extinguish();
-
-            // Stop the fire if the entity is in water.
-            if (swim?.IsSwiming ?? false)
-            {
-                fire.Extinguish();
-            }
 
             if (fire.IsBurning)
             {
+                var health = entity.GetComponent<Health>();
+                var swim = entity.GetComponent<Swim>();
+
+                if (fire.BurnningTimer < 0.01f) fire.Extinguish();
+
+                // Stop the fire if the entity is in water.
+                if (swim?.IsSwiming ?? false)
+                {
+                    fire.Extinguish();
+                }
+
 
                 // Reduce burning timer
                 fire.BurnningTimer -= gameTime.GetDeltaTime();
@@ -54,7 +54,7 @@ namespace Hevadea.Systems.ElementalSystem
                 health?.Hurt(entity, FIRE_DAMAGES * gameTime.GetDeltaTime(), false);
 
                 // Break it if possible
-                if (Rise.Rnd.NextFloat() < CHANCE_TO_BREAK_FROM_FIRE)
+                if (Rise.Rnd.NextFloat() <= CHANCE_TO_BREAK_FROM_FIRE)
                     entity.GetComponent<Breakable>()?.Break();
             }
         }

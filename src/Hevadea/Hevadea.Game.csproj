@@ -318,6 +318,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <InProject>false</InProject>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -332,15 +333,12 @@
       <Name>Hevadea.Framework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Systems\PlayerSystem\" />
-    <Folder Include="Systems\MovementSystem\" />
+    <Folder Include="Content\Entities\" />
     <Folder Include="Content\Items\" />
     <Folder Include="Content\Tiles\" />
-    <Folder Include="Content\Entities\" />
-    <Folder Include="Systems\InventorySystem\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
