@@ -22,21 +22,13 @@ namespace Hevadea.Systems.ElementalSystem
         public override void Update(Entity entity, GameTime gameTime)
         {
             var fire = entity.GetComponent<Flammable>();
+            var health = entity.GetComponent<Health>();
 
+            if (fire.BurnningTimer < 0.01f) fire.Extinguish();
+            if (entity.IsSwiming()) fire.Extinguish();
+            
             if (fire.IsBurning)
             {
-                var health = entity.GetComponent<Health>();
-                var swim = entity.GetComponent<Swim>();
-
-                if (fire.BurnningTimer < 0.01f) fire.Extinguish();
-
-                // Stop the fire if the entity is in water.
-                if (swim?.IsSwiming ?? false)
-                {
-                    fire.Extinguish();
-                }
-
-
                 // Reduce burning timer
                 fire.BurnningTimer -= gameTime.GetDeltaTime();
 

@@ -1,15 +1,13 @@
 ﻿using Hevadea.Entities.Components.Actions;
-using Hevadea.Framework.Graphic;
 using Hevadea.Storage;
 using Hevadea.Tiles;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Hevadea.Entities.Components.States
 {
-    public sealed class Health : EntityComponent, IEntityComponentOverlay, IEntityComponentUpdatable, IEntityComponentSaveLoad
+    public sealed class Health : EntityComponent, IEntityComponentUpdatable, IEntityComponentSaveLoad
     {
         float _knckbckX, _knckbckY, _coolDown;
 
@@ -39,24 +37,6 @@ namespace Hevadea.Entities.Components.States
         {
             Value = maxHealth;
             MaxValue = maxHealth;
-        }
-
-        public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            if (ShowHealthBar && Math.Abs(Value - MaxValue) > 0.05)
-            {
-                var barY = Owner.Y + 4;
-                var barX = Owner.X - 15;
-
-                var rect = new Rectangle((int)barX, (int)barY, (int)(30 * ValuePercent), 2);
-
-                spriteBatch.FillRectangle(new Rectangle((int)barX + 1, (int)barY + 1, rect.Width, rect.Height),
-                    Color.Black * 0.45f);
-
-                var red = (int)Math.Sqrt(255 * 255 * (1 - ValuePercent));
-                var green = (int)Math.Sqrt(255 * 255 * (ValuePercent));
-                spriteBatch.FillRectangle(rect, new Color(red, green, 0));
-            }
         }
 
         public void OnGameSave(EntityStorage store)

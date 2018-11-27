@@ -21,8 +21,8 @@ namespace Hevadea.Systems
 
             if (entity.HasComponent<Pickup>(out var pickup) && pickup.PickupedEntity != null)
             {
-                if (pickup.PickupedEntity.HasComponent<LightSource>())
-                    light = pickup.PickupedEntity.GetComponent<LightSource>();
+                if (pickup.PickupedEntity.HasComponent<LightSource>(out var pickupLight))
+                    light = pickupLight;
             }
 
             if (light != null && light.IsOn)

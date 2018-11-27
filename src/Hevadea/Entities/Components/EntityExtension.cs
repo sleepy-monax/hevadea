@@ -15,7 +15,7 @@ namespace Hevadea.Entities.Components
 
         public static bool IsSwiming(this Entity entity)
         {
-            return entity.HasComponent<Swim>(out var swim) && swim.IsSwiming;
+            return entity.GetComponent<Swim>()?.IsSwiming ?? false;
         }
     }
 }

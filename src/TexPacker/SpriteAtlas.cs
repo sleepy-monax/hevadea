@@ -46,9 +46,9 @@ namespace TexPacker
             
 
             // Blit the sprite
-            _graphic.DrawImageUnscaled(sprite, x, y);
-
             var s = new Sprite(this, name, x, y, sprite.Width, sprite.Height);
+
+            _graphic.DrawImageUnscaled(sprite, x, y);
             _sprites.Add(name, s);
 
             return s;

@@ -72,6 +72,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
+    <Compile Include="Entities\Components\Attributes\Explosive.cs" />
     <Compile Include="Entities\Components\Attributes\RevealMap.cs" />
     <Compile Include="Entities\Components\EntityExtension.cs" />
     <Compile Include="Entities\Components\Renderer\MobRenderer.cs" />
@@ -92,7 +93,7 @@
     <Compile Include="Entities\Components\Legacy\IEntityComponentUpdatable.cs" />
     <Compile Include="Entities\Components\Legacy\States\Energy.cs" />
     <Compile Include="Entities\Components\Legacy\States\Experience.cs" />
-    <Compile Include="Entities\Components\Legacy\States\Health.cs" />
+    <Compile Include="Entities\Components\Attributes\Health.cs" />
     <Compile Include="Entities\Components\Legacy\States\Swim.cs" />
     <Compile Include="Entities\Belt.cs" />
     <Compile Include="Entities\Chest.cs" />
@@ -126,6 +127,8 @@
     <Compile Include="Entities\Components\Legacy\Inventory.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
     <Compile Include="Systems\EntitySystem.cs" />
+    <Compile Include="Systems\HealthSystem\Extension.cs" />
+    <Compile Include="Systems\HealthSystem\HealthbarRenderer.cs" />
     <Compile Include="Systems\MinimapSystem\RevealProcessor.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
     <Compile Include="BlueprintGroupe.cs" />
@@ -245,7 +248,6 @@
     <Compile Include="Entities\Components\Attributes\CraftingStation.cs" />
     <Compile Include="Entities\Components\Attributes\Interactive.cs" />
     <Compile Include="Entities\EntityActions.cs" />
-    <Compile Include="Entities\Components\Attributes\HoldingItem.cs" />
     <Compile Include="Systems\ElementalSystem\FireParticles.cs" />
     <Compile Include="Entities\Components\Attributes\Movable.cs" />
     <Compile Include="Systems\PlayerSystem\PlayerInputProcessor.cs" />

@@ -3,7 +3,6 @@ using Hevadea.Entities.Components.States;
 using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Utils;
-using Hevadea.Tiles;
 using Hevadea.Tiles.Components;
 
 namespace Hevadea.Entities.Components
@@ -49,24 +48,15 @@ namespace Hevadea.Entities.Components
                 }
             }
 
-            var pos = Owner.Coordinates;
-            for (int x = -(int)_radius; x <= (int)_radius; x++)
+            foreach (var c in Owner.Level.QueryCoordinates(Owner.Position, _radius * Game.Unit))
             {
-                for (int y = -(int)_radius; y <= (int)_radius; y++)
+                var tile = Owner.Level.GetTile(c);
+                var distance = Mathf.Distance(c.WorldX, c.WorldY, Owner.X, Owner.Y);
+                tile.Tag<DamageTile>()?.Hurt(GetDammage(distance) * Rise.Rnd.NextFloat(), c, Owner.Level);
+
+                if (Rise.Rnd.NextDouble() * 1.25 < 1f - (distance / (_radius * Game.Unit)))
                 {
-                    var tilePos = new Coordinates(pos.X + x, pos.Y + y);
-                    var tile = Owner.Level.GetTile(tilePos);
-                    var distance = Mathf.Distance(tilePos.WorldX, tilePos.WorldY, Owner.X, Owner.Y);
-
-                    if (distance < _radius * Game.Unit)
-                    {
-                        tile.Tag<DamageTile>()?.Hurt(GetDammage(distance) * Rise.Rnd.NextFloat(), tilePos, Owner.Level);
-
-                        if (Rise.Rnd.NextDouble() * 1.25 < 1f - (distance / (_radius * Game.Unit)))
-                        {
-                            tile.Tag<BreakableTile>()?.Break(tilePos, Owner.Level);
-                        }
-                    }
+                    tile.Tag<BreakableTile>()?.Break(c, Owner.Level);
                 }
             }
         }
