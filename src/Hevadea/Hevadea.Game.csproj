@@ -255,6 +255,11 @@
     <Compile Include="Systems\MovementSystem\Extension.cs" />
     <Compile Include="Entities\Components\Attributes\ItemHolder.cs" />
     <Compile Include="Systems\InventorySystem\Extension.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenuProcessor.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenuRenderer.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenu.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenuItem.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenuLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">
@@ -338,6 +343,7 @@
     <Folder Include="Content\Entities\" />
     <Folder Include="Content\Items\" />
     <Folder Include="Content\Tiles\" />
+    <Folder Include="Systems\CircleMenuSystem\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,6 @@ namespace Hevadea.Storage
     public class EntityStorage
     {
         public string Type { get; set; }
-        public int Ueid { get; set; } = -1;
 
         public Dictionary<string, object> Data { get; set; }
 
@@ -15,11 +14,6 @@ namespace Hevadea.Storage
         {
             Type = type;
             Data = new Dictionary<string, object>();
-        }
-
-        public EntityStorage(string type, int ueid) : this(type)
-        {
-            Ueid = ueid;
         }
 
         public EntityStorage(string type, Dictionary<string, object> data)

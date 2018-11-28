@@ -81,32 +81,6 @@ namespace Hevadea.Worlds
             if (GetLevel(level.Id) == null) Levels.Add(level);
         }
 
-        public int GetUeid()
-        {
-            var ueid = 0;
-
-            do ueid = Rise.Rnd.Next();
-            while (GetEntityByUeid(ueid) != null);
-
-            return ueid;
-        }
-
-        public Entity GetEntityByUeid(int Ueid)
-        {
-            foreach (var l in Levels)
-            {
-                foreach (var c in l.Chunks)
-                {
-                    foreach (var e in c.Entities)
-                    {
-                        if (e.Ueid == Ueid) return e;
-                    }
-                }
-            }
-
-            return null;
-        }
-
         public void Initialize(GameState gameState)
         {
             GameState = gameState;

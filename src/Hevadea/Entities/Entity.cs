@@ -19,7 +19,6 @@ namespace Hevadea.Entities
 {
     public class Entity
     {
-        public int Ueid { get; set; } = -1;
         public float X { get; private set; }
         public float Y { get; private set; }
 
@@ -36,7 +35,7 @@ namespace Hevadea.Entities
         public List<EntityComponent> Componenents { get; set; } = new List<EntityComponent>();
         public ParticleSystem ParticleSystem { get; } = new ParticleSystem();
         public Point FacingVector => Facing.ToPoint();
-        public string Identifier => $"{Blueprint?.Name ?? "none"}:{Ueid:x}";
+        public string Identifier => $"{Blueprint?.Name ?? "none"}";
         public Tile TileOver { get => Level.GetTile(Coordinates); set => Level.SetTile(Coordinates, value); }
 
         public GameState GameState { get; private set; }
@@ -148,17 +147,11 @@ namespace Hevadea.Entities
 
             Componenents.Sort((a, b) => (0xff - a.Priority).CompareTo(0xff - b.Priority));
 
-            if (Ueid == -1 && world != null)
-            {
-                Ueid = world.GetUeid();
-            }
-
             Initialized = true;
         }
 
         public Entity Load(EntityStorage store)
         {
-            Ueid = store.Ueid;
             X = store.ValueOf("X", X);
             Y = store.ValueOf("Y", Y);
 
@@ -175,7 +168,7 @@ namespace Hevadea.Entities
 
         public EntityStorage Save()
         {
-            var store = new EntityStorage(Blueprint.Name, Ueid);
+            var store = new EntityStorage(Blueprint.Name);
 
             store.Value("X", X);
             store.Value("Y", Y);

@@ -2,6 +2,7 @@
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.States;
 using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
@@ -19,14 +20,17 @@ namespace Hevadea.Systems.HealthSystem
 
         public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
-            var health = entity.GetComponent<Health>();
+            var health = Mathf.Max(entity.GetComponent<Health>().ValuePercent, 0.05f);
  
-            var barPostion = entity.Position - new Vector2(HEALTH_BAR_WIDTH / 2, HEALTH_BAR_HEIGHT / 2);
-            var barBound = new Vector2(HEALTH_BAR_WIDTH * health.ValuePercent, HEALTH_BAR_HEIGHT);
+            if (health < 0.95f)
+            {
+                var barPostion = entity.Position - new Vector2(HEALTH_BAR_WIDTH / 2, HEALTH_BAR_HEIGHT / 2);
+                var barBound = new Vector2(HEALTH_BAR_WIDTH * health, HEALTH_BAR_HEIGHT);
 
-            pool.Overlay.FillRectangle(barPostion + new Vector2(1f, 1f), barBound, Color.Black * 0.45f);
+                pool.Overlay.FillRectangle(barPostion + new Vector2(1f, 1f), barBound, Color.Black * 0.45f);
 
-            pool.Overlay.FillRectangle(barPostion, barBound, Color.Lerp(Color.Red, Color.Green, health.ValuePercent));
+                pool.Overlay.FillRectangle(barPostion, barBound, Color.Lerp(Color.Red, Color.Green, health));
+            }
         }
     }
 }
