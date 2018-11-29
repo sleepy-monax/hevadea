@@ -6,6 +6,7 @@ using Hevadea.Entities.Components.States;
 using Hevadea.Items;
 using Hevadea.Scenes.Menus;
 using Hevadea.Storage;
+using Hevadea.Systems.CircleMenuSystem;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Entities
@@ -42,6 +43,7 @@ namespace Hevadea.Entities
             AddComponent(new ShadowCaster());
             AddComponent(new Swim());
             AddComponent(new PlayerBody());
+            AddComponent(new CircleMenu());
         }
 
         void Health_Killed(object sender, System.EventArgs e)

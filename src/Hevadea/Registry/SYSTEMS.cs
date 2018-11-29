@@ -1,4 +1,5 @@
 ﻿using Hevadea.Systems;
+using Hevadea.Systems.CircleMenuSystem;
 using Hevadea.Systems.ElementalSystem;
 using Hevadea.Systems.HealthSystem;
 using Hevadea.Systems.MinimapSystem;
@@ -25,6 +26,9 @@ namespace Hevadea.Registry
         {
             Register<HealthbarRenderer>();
             Register<PlayerInputProcessor>();
+
+            Register<CircleMenuRenderer>();
+            Register<CircleMenuProcessor>();
 
             Register<RevealProcessor>();
 

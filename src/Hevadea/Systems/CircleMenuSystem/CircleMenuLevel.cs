@@ -3,13 +3,8 @@ using System.Collections.Generic;
 
 namespace Hevadea.Systems.CircleMenuSystem
 {
-    public class CircleMenuLevel
+    public abstract class CircleMenuLevel
     {
-        List<CircleMenuItem> Items { get; }
-
-        public CircleMenuLevel()
-        {
-            Items = new List<CircleMenuItem>();
-        }
+        public abstract IEnumerable<CircleMenuItem> Items();
     }
 }
