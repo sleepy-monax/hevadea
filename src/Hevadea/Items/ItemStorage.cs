@@ -75,6 +75,7 @@ namespace Hevadea.Items
 
         public Item GetStack(int index)
         {
+            if (index >= Items.Count) return null;
             return ITEMS.ById[Items.Keys.ElementAt(index)];
         }
 

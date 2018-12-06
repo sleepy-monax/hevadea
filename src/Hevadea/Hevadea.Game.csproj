@@ -258,8 +258,6 @@
     <Compile Include="Systems\CircleMenuSystem\CircleMenuProcessor.cs" />
     <Compile Include="Systems\CircleMenuSystem\CircleMenuRenderer.cs" />
     <Compile Include="Systems\CircleMenuSystem\CircleMenu.cs" />
-    <Compile Include="Systems\CircleMenuSystem\CircleMenuItem.cs" />
-    <Compile Include="Systems\CircleMenuSystem\CircleMenuLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, PublicKeyToken=null">

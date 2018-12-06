@@ -1,20 +1,88 @@
 ﻿using Hevadea.Entities.Components;
+using Hevadea.Framework.Utils;
+using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems.CircleMenuSystem
 {
+    public enum CircleMenuState
+    {
+        Visible,
+        FadingOut,
+        FadingIn,
+        Hidden,
+    }
+
+    // TODO: rename this to inventory wheel
+
     public class CircleMenu : EntityComponent
     {
-        CircleMenuLevel _current;
+        float _animation;
 
-        public bool Visible { get; set; }
         public int SelectedItem { get; set; }
-        public float Animation { get; set; }
+        public CircleMenuState State { get; set; } = CircleMenuState.Hidden;
+        public float Animation { get => _animation; set => _animation = Mathf.Clamp01(value); }
 
-        public CircleMenuLevel Root { get; set; }
-        public CircleMenuLevel Current { get => _current ?? Root; set => _current = value; }
-
-        public CircleMenu()
+        public float Opacity
         {
+            get
+            {
+                switch (State)
+                {
+                    case CircleMenuState.FadingIn:
+                        return Animation;
+                    case CircleMenuState.FadingOut:
+                        return 1f - Animation;
+                    case CircleMenuState.Visible:
+                        return 1f;
+                    case CircleMenuState.Hidden:
+                        return 0f;
+                    default:
+                        return 0f;
+                }
+            }
+        }
+       
+        public void Shown()
+        {
+            if (State == CircleMenuState.FadingOut || State == CircleMenuState.Hidden)
+            {
+                State = CircleMenuState.FadingIn;
+                Animation = 0f;
+            }
+
+            if (State == CircleMenuState.Visible)
+            {
+                Animation = 0f;
+            }
+        }
+
+        public void Hide()
+        {
+            State = CircleMenuState.FadingOut;
+            Animation = 0f;
+        }
+
+        public void UpdateAnimation(GameTime gameTime)
+        {
+            if (Animation == 1f)
+            {
+                switch (State)
+                {
+                    case CircleMenuState.FadingIn:
+                        State = CircleMenuState.Visible;
+                        break;
+                    case CircleMenuState.Visible:
+                        State = CircleMenuState.FadingOut;
+                        break;
+                    case CircleMenuState.FadingOut:
+                        State = CircleMenuState.Hidden;
+                        break;
+                }
+
+                Animation = 0f;
+            }
+
+            Animation += (float)gameTime.ElapsedGameTime.TotalSeconds * (State == CircleMenuState.Visible ? 2f : 5);
         }
     }
 }

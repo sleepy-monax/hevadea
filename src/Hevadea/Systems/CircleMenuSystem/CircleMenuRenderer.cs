@@ -1,5 +1,5 @@
-﻿using System;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
+using Hevadea.Entities.Components;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Hevadea.Worlds;
@@ -15,25 +15,35 @@ namespace Hevadea.Systems.CircleMenuSystem
 
         public CircleMenuRenderer()
         {
-            Filter.AnyOf(typeof(CircleMenu));
+            Filter.AnyOf(typeof(CircleMenu), typeof(Inventory));
         }
 
         public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             var center = entity.Position;
             var menu = entity.GetComponent<CircleMenu>();
+            var inventory = entity.GetComponent<Inventory>();
 
-            for (int i = 0; i < 16; i++)
+            var itemCount = inventory.Content.GetStackCount();
+
+            pool.Overlay.DrawCircle(center, DISTANCE_FROM_ENTITY * Easing.CircularEaseInOut(menu.Opacity), 16, Color.White );
+
+            for (int i = 0; i < itemCount; i++)
             {
-                var angle = (i / 16f - menu.Animation / 16f) * Mathf.TwoPI;
-                var isSelected = i == Math.Abs(menu.SelectedItem % 16);
+                var angle = (i / (float)itemCount) * Mathf.TwoPI;
+                var isSelected = (i == menu.SelectedItem);
 
                 var offx = Mathf.Cos(angle) * (isSelected ? DISTANCE_FROM_ENTITY_SELECTED : DISTANCE_FROM_ENTITY);
                 var offy = Mathf.Sin(angle) * (isSelected ? DISTANCE_FROM_ENTITY_SELECTED : DISTANCE_FROM_ENTITY);
 
-                var off = new Vector2(offx, offy);
+                var off = new Vector2(offx, offy) * Easing.CircularEaseInOut(menu.Opacity);
 
-                pool.Overlay.DrawRectangle(center + off - new Vector2(8 * (isSelected ? SELECTED_SIZE : 1f)), new Vector2(16 * (isSelected ? SELECTED_SIZE : 1f)), Color.Black);
+                var itemSprite = inventory.Content.GetStack(i).GetSprite();
+
+                itemSprite.Draw(pool.Overlay,
+              new Vector2(1f) + center + off - new Vector2(8 * (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity), (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity, Color.Black * menu.Opacity * 0.45f);
+                itemSprite.Draw(pool.Overlay,
+                                center + off - new Vector2(8 * (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity), (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity, Color.White * menu.Opacity);
             }
         }
     }

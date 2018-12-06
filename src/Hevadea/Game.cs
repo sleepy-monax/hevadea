@@ -39,7 +39,7 @@ namespace Hevadea
         public static void GoToMainMenu()
         {
             Rise.Scene.Switch(Rise.Platform.Family == PlatformFamily.Desktop 
-                              ? new DesktopMainMenu() 
+                              ? (Scene)new DesktopMainMenu() 
                               : (Scene)new MobileMainMenu());
         }
 
