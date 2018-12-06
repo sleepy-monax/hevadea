@@ -10,7 +10,6 @@ namespace Hevadea.Systems.CircleMenuSystem
     public class CircleMenuRenderer : EntityDrawSystem
     {
         public const float DISTANCE_FROM_ENTITY = 24f;
-        public const float DISTANCE_FROM_ENTITY_SELECTED = 32f;
         public const float SELECTED_SIZE = 1.5f;
 
         public CircleMenuRenderer()
@@ -33,8 +32,8 @@ namespace Hevadea.Systems.CircleMenuSystem
                 var angle = (i / (float)itemCount) * Mathf.TwoPI;
                 var isSelected = (i == menu.SelectedItem);
 
-                var offx = Mathf.Cos(angle) * (isSelected ? DISTANCE_FROM_ENTITY_SELECTED : DISTANCE_FROM_ENTITY);
-                var offy = Mathf.Sin(angle) * (isSelected ? DISTANCE_FROM_ENTITY_SELECTED : DISTANCE_FROM_ENTITY);
+                var offx = Mathf.Cos(angle) * DISTANCE_FROM_ENTITY;
+                var offy = Mathf.Sin(angle) * DISTANCE_FROM_ENTITY;
 
                 var off = new Vector2(offx, offy) * Easing.CircularEaseInOut(menu.Opacity);
 

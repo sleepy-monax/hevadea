@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 
 namespace TexPacker
 {
@@ -12,6 +11,7 @@ namespace TexPacker
         Bitmap _bitmap;
         Graphics _graphic;
         Dictionary<string, Sprite> _sprites;
+        bool[,] _freeArea;
 
         public Sprite this[string name] { get => _sprites[name]; }
 
@@ -20,6 +20,7 @@ namespace TexPacker
             _sprites = new Dictionary<string, Sprite>();
             _bitmap  = new Bitmap(width, height);
             _graphic = Graphics.FromImage(_bitmap);
+            _freeArea = new bool[width / 16, height / 16];
         }
 
         public List<Sprite> InsertSprites(string path)
@@ -35,23 +36,59 @@ namespace TexPacker
             return sprites;
         }
 
-        public Sprite InsertSprite(string name, Bitmap sprite)
+        Point? GetPosition(int width, int height) 
+        {
+            for (int x = 0; x < _bitmap.Width / 16; x++)
+            {
+                for (int y = 0; y < _bitmap.Height / 16; y++)
+                {
+                    var isOk = true;
+
+                    for (int xx = 0; xx < width / 16; xx++)
+                    {
+                        for (int yy = 0; yy < height / 16; yy++)
+                        {
+                            isOk &= !_freeArea[x, y];
+                        }
+                    }
+
+                    if (isOk) 
+                    {
+                        for (int xx = 0; xx < width / 16; xx++)
+                        {
+                            for (int yy = 0; yy < height / 16; yy++)
+                            {
+                                _freeArea[x, y] = true;
+                            }
+                        }
+
+                        return new Point(x * 16, y * 16);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public Sprite? InsertSprite(string name, Bitmap sprite)
         {
             Console.WriteLine($"Loading sprite '{name}'...");
 
-            int x = 0;
-            int y = 0;
-
-            // Get the location for the sprite
-            
+            var p = GetPosition(sprite.Width, sprite.Height) ?? new Point(-1, -1);
 
             // Blit the sprite
-            var s = new Sprite(this, name, x, y, sprite.Width, sprite.Height);
+            if (p.X != -1 && p.Y != -1) 
+            {
+                var s = new Sprite(this, name, p.X, p.Y, sprite.Width, sprite.Height );
 
-            _graphic.DrawImageUnscaled(sprite, x, y);
-            _sprites.Add(name, s);
+                _graphic.DrawImageUnscaled(sprite, p);
+                _sprites.Add(name, s);
 
-            return s;
+                return s;
+            }
+
+            Console.WriteLine("lol");
+            return null;
         }
 
         public Bitmap SaveImage()
