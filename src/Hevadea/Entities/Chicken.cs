@@ -15,7 +15,7 @@ namespace Hevadea.Entities
         public Chicken()
         {
             AddComponent(new Pickupable());
-            AddComponent(new ShadowCaster());
+            AddComponent(new CastShadow());
             AddComponent(new MobRenderer(Ressources.ImgChicken));
             AddComponent(new Flammable());
 

@@ -15,7 +15,7 @@ namespace Hevadea.Entities
         public Zombie()
         {
             AddComponent(new Flammable());
-            AddComponent(new ShadowCaster());
+            AddComponent(new CastShadow());
 
             AddComponent(new Agent(new BehaviorEnemy
             {

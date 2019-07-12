@@ -1,6 +1,6 @@
 ﻿namespace Hevadea.Entities.Components.Attributes
 {
-    public class ShadowCaster : EntityComponent
+    public class CastShadow : EntityComponent
     {
         public float Scale { get; set; } = 1f;
     }

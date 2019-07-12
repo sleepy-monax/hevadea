@@ -26,7 +26,7 @@ namespace Hevadea.Entities
             AddComponent(new Inventory(128));
             AddComponent(new Move());
             AddComponent(new Pushable());
-            AddComponent(new ShadowCaster());
+            AddComponent(new CastShadow());
         }
 
         private void EntityInteracte(object sender, InteractEventArg args)

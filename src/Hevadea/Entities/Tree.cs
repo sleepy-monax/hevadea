@@ -21,7 +21,7 @@ namespace Hevadea.Entities
             AddComponent(new Collider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3) } });
             AddComponent(new Health(5));
-            AddComponent(new ShadowCaster() { Scale = 1.5f });
+            AddComponent(new CastShadow() { Scale = 1.5f });
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)

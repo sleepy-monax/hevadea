@@ -1,4 +1,4 @@
-﻿using Hevadea.Entities.Components;
+using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.States;
@@ -28,7 +28,7 @@ namespace Hevadea.Entities
             AddComponent(new Move());
             AddComponent(new Pickupable());
             AddComponent(new Pushable());
-            AddComponent(new ShadowCaster());
+            AddComponent(new CastShadow());
         }
 
         public override void OnUpdate(GameTime gameTime)

@@ -18,7 +18,7 @@ namespace Hevadea.Entities
             AddComponent(new Move());
             AddComponent(new SpriteRenderer { Sprite = new Sprite(Ressources.TileEntities, new Point(1, 0)) });
             AddComponent(new CraftingStation(RECIPIES.BenchCrafted));
-            AddComponent(new ShadowCaster());
+            AddComponent(new CastShadow());
             AddComponent(new Pickupable());
             AddComponent(new Flammable());
 
