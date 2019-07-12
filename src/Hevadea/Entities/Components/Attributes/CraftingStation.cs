@@ -5,11 +5,11 @@ namespace Hevadea.Entities.Components.Attributes
 {
     public class CraftingStation : EntityComponent
     {
-        public List<Recipe> Recipies { get; }
+        public List<Recipe> Recipes { get; }
 
         public CraftingStation(List<Recipe> recipes)
         {
-            Recipies = recipes;
+            Recipes = recipes;
         }
     }
 }

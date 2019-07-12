@@ -46,13 +46,10 @@ namespace Hevadea.Entities.Components.Renderer
 
             var holdedItem = entity.HoldedItem();
 
-            if (holdedItem != null)
-            {
-                holdedItem.GetSprite().Draw(
-                    spriteBatch,
-                    new Rectangle(entity.Position.ToPoint(), new Point(16)),
-                    Color.White);
-            }
+            holdedItem?.GetSprite().Draw(
+                spriteBatch,
+                new Rectangle(entity.Position.ToPoint(), new Point(16)),
+                Color.White);
         }
     }
 }

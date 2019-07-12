@@ -49,9 +49,9 @@ namespace Hevadea.Scenes.Menus
                 var s = e.GetComponent<CraftingStation>();
                 if (s != null)
                 {
-                    if (!r.Contains(s.Recipies))
+                    if (!r.Contains(s.Recipes))
                     {
-                        r.Add(s.Recipies);
+                        r.Add(s.Recipes);
                     }
                 }
             }
