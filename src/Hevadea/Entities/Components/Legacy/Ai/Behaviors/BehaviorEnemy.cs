@@ -40,8 +40,9 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
 
         public override void Update(GameTime gameTime)
         {
-            if (!Agent.IsBusy() && Target != null && (Target.Level != Agent.Owner.Level ||
-                Mathf.Distance(Agent.Owner.Position, Target.Position) > FollowRange * Game.Unit))
+            if (Target != null && (
+                (Target.Level != Agent.Owner.Level ||
+                Mathf.Distance(Agent.Owner.Position, Target.Position) > FollowRange * Game.Unit)))
             {
                 Agent.Abort(AgentAbortReason.TagetLost);
                 Target = null;
@@ -59,7 +60,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
                 {
                     Target = _targetsOnSight.First();
                     _lastTagetPosition = Target.Coordinates;
-                    Agent.MoveTo(Target.Coordinates, MoveSpeedAgro, true, (int)(FollowRange + 4));
+                    Agent.MoveTo(Target.Coordinates, MoveSpeedAgro, false, (int)(FollowRange + 4));
                 }
             }
             else
@@ -70,7 +71,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
                 {
                     Agent.Flush();
                     _lastTagetPosition = Target.Coordinates;
-                    Agent.MoveTo(_lastTagetPosition, MoveSpeedAgro, true, (int)(FollowRange + 4));
+                    Agent.MoveTo(_lastTagetPosition, MoveSpeedAgro, false, (int)(FollowRange + 4));
                 }
             }
 
@@ -89,9 +90,12 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
                 spriteBatch.DrawCircle(Agent.Owner.Position, FollowRange * Game.Unit, 24, Color.Red);
             }
 
-            foreach (var t in _targetsOnSight)
+            if (_targetsOnSight != null)
             {
-                spriteBatch.DrawLine(t.Position, Agent.Owner.Position, CheckLineOfSight(t.Coordinates) ? Color.Green : Color.Yellow);
+                foreach (var t in _targetsOnSight)
+                {
+                    spriteBatch.DrawLine(t.Position, Agent.Owner.Position, CheckLineOfSight(t.Coordinates) ? Color.Green : Color.Yellow);
+                }
             }
         }
     }
