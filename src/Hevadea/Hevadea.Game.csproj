@@ -76,6 +76,7 @@
     <Compile Include="Entities\Components\Renderer\MobRenderer.cs" />
     <Compile Include="Entities\Components\Renderer\RendererComponent.cs" />
     <Compile Include="Entities\Components\Renderer\SpriteRenderer.cs" />
+    <Compile Include="Entities\Dog.cs" />
     <Compile Include="Entities\Lantern.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Entities\Blueprints\EntityBlueprint.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="Entities\Components\Legacy\Ai\IAction.cs" />
     <Compile Include="Entities\Components\Legacy\Ai\Behavior.cs" />
     <Compile Include="Entities\Components\Legacy\Dropable.cs" />
-    <Compile Include="Entities\Components\Legacy\Explode.cs" />
     <Compile Include="Entities\Components\Legacy\Inventory.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
     <Compile Include="Systems\EntitySystem.cs" />
@@ -235,7 +235,7 @@
     <Compile Include="Systems\LightingSystem\ShadowRenderer.cs" />
     <Compile Include="Systems\RenderingSystem\EntityRendering.cs" />
     <Compile Include="Entities\Components\Collider.cs" />
-    <Compile Include="Entities\Components\Attributes\ShadowCaster.cs" />
+    <Compile Include="Entities\Components\Attributes\CastShadow.cs" />
     <Compile Include="Entities\Components\Attributes\LightSource.cs" />
     <Compile Include="Entities\Components\Attributes\Flammable.cs" />
     <Compile Include="Entities\EntityComponent.cs" />

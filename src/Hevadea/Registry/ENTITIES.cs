@@ -17,6 +17,7 @@ namespace Hevadea.Registry
         public static EntityBlueprint CHEST;
         public static EntityBlueprint CHIKEN;
         public static EntityBlueprint CRAFTING_BENCH;
+        public static EntityBlueprint DOG;
         public static EntityBlueprint FISH;
         public static EntityBlueprint FLOWER;
         public static EntityBlueprint FURNACE;
@@ -37,6 +38,7 @@ namespace Hevadea.Registry
             CHEST = RegisterEntityBlueprint(new GenericEntityBlueprint<Chest>("chest"));
             CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<Chicken>("chiken"));
             CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<CraftingBench>("crafting_bench"));
+            DOG = RegisterEntityBlueprint(new GenericEntityBlueprint<Dog>("dog"));
             FISH = RegisterEntityBlueprint(new GenericEntityBlueprint<Fish>("fish"));
             FLOWER = RegisterEntityBlueprint(new GenericEntityBlueprint<Flower>("flower"));
             FURNACE = RegisterEntityBlueprint(new GenericEntityBlueprint<Furnace>("furnace"));

@@ -114,6 +114,13 @@ namespace Hevadea.Registry
                                 PlacingFunction = Functions.Perlin(1, 0.5, 10),
                                 Threashold = 0.7f,
                             },
+                            new Decorator(ENTITIES.DOG)
+                            {
+                                Chance = 500,
+                                CanBePlantOn = {TILES.GRASS},
+                                PlacingFunction = Functions.Perlin(1, 0.5, 10),
+                                Threashold = 0.75f,
+                            },
                         }
                     },
                     new CompoundFeature("Adding plants...")
