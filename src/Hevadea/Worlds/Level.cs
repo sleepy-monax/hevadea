@@ -1,4 +1,4 @@
-﻿using Hevadea.Framework;
+using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.Particles;
@@ -104,8 +104,12 @@ namespace Hevadea.Worlds
 
             ParticleSystem.Draw(spriteBatchPool.Tiles, gameTime);
 
+            var entitiesToDraw = new EntityCollection();
+            entitiesToDraw.AddRange(QueryEntity(_gameState.Camera.Bound.Inflate(Game.Unit * 4f, Game.Unit * 12f)));
+            entitiesToDraw.SortForRender();
+
             // Draw Entities, Shadows and lights.
-            foreach (var e in QueryEntity(_gameState.Camera.Bound.Inflate(Game.Unit * 4f, Game.Unit * 12f)))
+            foreach (var e in entitiesToDraw)
             {
                 // Draw the entity.
                 e.Draw(spriteBatchPool, gameTime);
