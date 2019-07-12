@@ -4,12 +4,13 @@ using Hevadea.Storage;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Renderers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hevadea.Worlds
 {
     public class Chunk
     {
-        public const int CHUNK_SIZE = 16;
+        public const int SIZE = 16;
 
         public int X { get; }
         public int Y { get; }
@@ -28,15 +29,15 @@ namespace Hevadea.Worlds
             X = x;
             Y = y;
 
-            Tiles = new Tile[CHUNK_SIZE, CHUNK_SIZE];
-            Data = new Dictionary<string, object>[CHUNK_SIZE, CHUNK_SIZE];
-            CachedTileConnection = new TileConnection[CHUNK_SIZE, CHUNK_SIZE];
+            Tiles = new Tile[SIZE, SIZE];
+            Data = new Dictionary<string, object>[SIZE, SIZE];
+            CachedTileConnection = new TileConnection[SIZE, SIZE];
             Entities = new List<Entity>();
-            EntitiesOnTiles = new List<Entity>[CHUNK_SIZE, CHUNK_SIZE];
+            EntitiesOnTiles = new List<Entity>[SIZE, SIZE];
 
-            for (int xx = 0; xx < CHUNK_SIZE; xx++)
+            for (int xx = 0; xx < SIZE; xx++)
             {
-                for (int yy = 0; yy < CHUNK_SIZE; yy++)
+                for (int yy = 0; yy < SIZE; yy++)
                 {
                     Tiles[xx, yy] = TILES.VOID;
                     Data[xx, yy] = new Dictionary<string, object>();
@@ -50,7 +51,7 @@ namespace Hevadea.Worlds
             lock (Entities)
             {
                 Entities.Add(e);
-                EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Add(e);
+                EntitiesOnTiles[e.Coordinates.X % SIZE, e.Coordinates.Y % SIZE].Add(e);
 
                 e.Removed = false;
             }
@@ -61,30 +62,31 @@ namespace Hevadea.Worlds
             lock (Entities)
             {
                 Entities.Remove(e);
-                EntitiesOnTiles[e.Coordinates.X % CHUNK_SIZE, e.Coordinates.Y % CHUNK_SIZE].Remove(e);
+                EntitiesOnTiles[e.Coordinates.X % SIZE, e.Coordinates.Y % SIZE].Remove(e);
 
                 e.Removed = true;
+                e.Level = null;
             }
         }
 
         public static Chunk Load(ChunkStorage store)
         {
-            Chunk chunk = new Chunk(store.X, store.Y);
+            var chunk = new Chunk(store.X, store.Y);
 
             // Loading tile
-            for (int x = 0; x < CHUNK_SIZE; x++)
+            for (var x = 0; x < SIZE; x++)
             {
-                for (int y = 0; y < CHUNK_SIZE; y++)
+                for (var y = 0; y < SIZE; y++)
                 {
-                    chunk.Tiles[x, y] = TILES.GetTile(store.Registry[store.Tiles[y * CHUNK_SIZE + x].ToString()]);
-                    chunk.Data[x, y] = store.Data[y * CHUNK_SIZE + x];
+                    chunk.Tiles[x, y] = TILES.GetTile(store.Registry[store.Tiles[y * SIZE + x].ToString()]);
+                    chunk.Data[x, y] = store.Data[y * SIZE + x];
                 }
             }
 
             // Loading entities
-            foreach (EntityStorage entityData in store.Entities)
+            foreach (var entityData in store.Entities)
             {
-                Entity entity = entityData.ConstructEntity();
+                var entity = entityData.ConstructEntity();
                 chunk.AddEntity(entity);
             }
 
@@ -93,36 +95,35 @@ namespace Hevadea.Worlds
 
         public ChunkStorage Save()
         {
-            ChunkStorage store = new ChunkStorage();
-            Dictionary<Tile, int> tileToId = TILES.GetTileToID();
+            var storage = new ChunkStorage();
+            var tileToId = TILES.GetTileToID();
 
-            store.X = X;
-            store.Y = Y;
-            store.Level = Level.Id;
+            storage.X = X;
+            storage.Y = Y;
+            storage.Level = Level.Id;
 
-            store.Registry = TILES.GetIDToName();
+            storage.Registry = TILES.GetIDToName();
 
             // Saving tile
-            for (int x = 0; x < CHUNK_SIZE; x++)
-                for (int y = 0; y < CHUNK_SIZE; y++)
+            for (var x = 0; x < SIZE; x++)
+            {
+                for (var y = 0; y < SIZE; y++)
                 {
-                    store.Tiles[y * CHUNK_SIZE + x] = tileToId[Tiles[x, y]];
-                    store.Data[y * CHUNK_SIZE + x] = Data[x, y];
+                    storage.Tiles[y * SIZE + x] = tileToId[Tiles[x, y]];
+                    storage.Data[y * SIZE + x] = Data[x, y];
                 }
+            }
 
             // Saving entities
             lock (Entities)
             {
-                foreach (var e in Entities)
+                foreach (var entity in Entities.Where(e => !e.MemberOf(ENTITIES.GROUPE_SAVE_EXCUDED)))
                 {
-                    if (!e.MemberOf(ENTITIES.GROUPE_SAVE_EXCUDED))
-                    {
-                        store.Entities.Add(e.Save());
-                    }
+                    storage.Entities.Add(entity.Save());
                 }
             }
 
-            return store;
+            return storage;
         }
     }
 }

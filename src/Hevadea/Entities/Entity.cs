@@ -200,13 +200,13 @@ namespace Hevadea.Entities
 
             // Remove the entity from his previous position.
             oldChunk.Entities.Remove(this);
-            oldChunk.EntitiesOnTiles[oldPos.X % Chunk.CHUNK_SIZE, oldPos.Y % Chunk.CHUNK_SIZE].Remove(this);
+            oldChunk.EntitiesOnTiles[oldPos.X % Chunk.SIZE, oldPos.Y % Chunk.SIZE].Remove(this);
 
             // Add the entity to his new position.
             if (newChunk != null)
             {
                 newChunk.Entities.Add(this);
-                newChunk.EntitiesOnTiles[newPos.X % Chunk.CHUNK_SIZE, newPos.Y % Chunk.CHUNK_SIZE].Add(this);
+                newChunk.EntitiesOnTiles[newPos.X % Chunk.SIZE, newPos.Y % Chunk.SIZE].Add(this);
             }
         }
 

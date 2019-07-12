@@ -1,4 +1,4 @@
-using Hevadea.Framework;
+﻿using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.Particles;
@@ -201,7 +201,7 @@ namespace Hevadea.Worlds
         public Chunk GetChunkAt(int tx, int ty)
         {
             if (tx < 0 || ty < 0 || tx >= Width || ty >= Height) return null;
-            return Chunks[tx / Chunk.CHUNK_SIZE, ty / Chunk.CHUNK_SIZE];
+            return Chunks[tx / Chunk.SIZE, ty / Chunk.SIZE];
         }
 
         /* --- Tiles -------------------------------------------------------- */
@@ -214,7 +214,7 @@ namespace Hevadea.Worlds
 
             if (chunk != null)
             {
-                return chunk.Tiles[tx % Chunk.CHUNK_SIZE, ty % Chunk.CHUNK_SIZE];
+                return chunk.Tiles[tx % Chunk.SIZE, ty % Chunk.SIZE];
             }
 
             return TILES.VOID;
@@ -228,7 +228,7 @@ namespace Hevadea.Worlds
 
             if (chunk != null)
             {
-                chunk.Tiles[tx % Chunk.CHUNK_SIZE, ty % Chunk.CHUNK_SIZE] = tile;
+                chunk.Tiles[tx % Chunk.SIZE, ty % Chunk.SIZE] = tile;
 
                 if (IsInitialized)
                 {
@@ -283,7 +283,7 @@ namespace Hevadea.Worlds
 
             if (chunk != null)
             {
-                return chunk.Data[tx % Chunk.CHUNK_SIZE, ty % Chunk.CHUNK_SIZE];
+                return chunk.Data[tx % Chunk.SIZE, ty % Chunk.SIZE];
             }
 
             return null;
@@ -304,7 +304,7 @@ namespace Hevadea.Worlds
 
             if (chunk != null)
             {
-                chunk.Data[tx % Chunk.CHUNK_SIZE, ty % Chunk.CHUNK_SIZE] = data;
+                chunk.Data[tx % Chunk.SIZE, ty % Chunk.SIZE] = data;
             }
         }
 
@@ -332,7 +332,7 @@ namespace Hevadea.Worlds
 
             if (chunk != null)
             {
-                return chunk.CachedTileConnection[tx % Chunk.CHUNK_SIZE, ty % Chunk.CHUNK_SIZE];
+                return chunk.CachedTileConnection[tx % Chunk.SIZE, ty % Chunk.SIZE];
             }
 
             return null;
@@ -346,7 +346,7 @@ namespace Hevadea.Worlds
 
             if (chunk != null)
             {
-                chunk.CachedTileConnection[tx % Chunk.CHUNK_SIZE, ty % Chunk.CHUNK_SIZE] = tileConnection;
+                chunk.CachedTileConnection[tx % Chunk.SIZE, ty % Chunk.SIZE] = tileConnection;
             }
         }
 
@@ -448,7 +448,7 @@ namespace Hevadea.Worlds
 
             if (chunk != null)
             {
-                foreach (var e in chunk.EntitiesOnTiles[coords.X % Chunk.CHUNK_SIZE, coords.Y % Chunk.CHUNK_SIZE].Clone())
+                foreach (var e in chunk.EntitiesOnTiles[coords.X % Chunk.SIZE, coords.Y % Chunk.SIZE].Clone())
                 {
                     yield return e;
                 }

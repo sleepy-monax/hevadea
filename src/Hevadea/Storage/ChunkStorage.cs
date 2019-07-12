@@ -21,8 +21,8 @@ namespace Hevadea.Storage
             Y = 0;
             Level = 0;
 
-            Tiles = new int[Chunk.CHUNK_SIZE * Chunk.CHUNK_SIZE];
-            Data = new Dictionary<string, object>[Chunk.CHUNK_SIZE * Chunk.CHUNK_SIZE];
+            Tiles = new int[Chunk.SIZE * Chunk.SIZE];
+            Data = new Dictionary<string, object>[Chunk.SIZE * Chunk.SIZE];
             Entities = new List<EntityStorage>();
             Registry = new Dictionary<string, string>();
         }
