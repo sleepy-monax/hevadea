@@ -8,17 +8,16 @@ namespace Hevadea.Entities.Components.Attributes
 {
     public class Explosive : EntityComponent
     {
-        private bool _damageMyself;
-        private float _range;
-        private float _damages;
-
-        public bool Detonated { get; private set; } = false;
-
+        public bool DamageMyself { get; }
+        public float Range { get; }
+        public float Damages { get; }
+        public bool Detonated { get; private set; }
+        
         public Explosive(bool damageMyself, float range, float damages)
         {
-            _damageMyself = damageMyself;
-            _range = range;
-            _damages = damages;
+            DamageMyself = damageMyself;
+            Range = range;
+            Damages = damages;
         }
 
         public void Detonate()
@@ -28,14 +27,14 @@ namespace Hevadea.Entities.Components.Attributes
 
             Owner.GameState.Camera.Thrauma += 0.2f;
 
-            foreach (var c in Owner.Level.QueryCoordinates(Owner.Position, _range * Game.Unit))
+            foreach (var c in Owner.Level.QueryCoordinates(Owner.Position, Range * Game.Unit))
             {
                 // Apply damages to tiles.
                 var tile = Owner.Level.GetTile(c);
                 var distance = Mathf.Distance(c.WorldX, c.WorldY, Owner.X, Owner.Y);
-                tile.Tag<DamageTile>()?.Hurt(GetDammage(distance) * Rise.Rnd.NextFloat(), c, Owner.Level);
+                tile.Tag<DamageTile>()?.Hurt(GetDamages(distance) * Rise.Rnd.NextFloat(), c, Owner.Level);
 
-                if (Rise.Rnd.NextDouble() * 1.25 < 1f - (distance / (_range * Game.Unit)))
+                if (Rise.Rnd.NextDouble() * 1.25 < 1f - (distance / (Range * Game.Unit)))
                 {
                     tile.Tag<BreakableTile>()?.Break(c, Owner.Level);
                 }
@@ -43,13 +42,13 @@ namespace Hevadea.Entities.Components.Attributes
                 // Apply damages to entities
                 foreach (var e in Owner.Level.QueryEntity(c))
                 {
-                    if (_damageMyself || e != Owner)
+                    if (DamageMyself || e != Owner)
                     {
-                        e.GetComponent<Health>()?.Hurt(Owner, GetDammage(distance) * Rise.Rnd.NextFloat());
+                        e.GetComponent<Health>()?.Hurt(Owner, GetDamages(distance) * Rise.Rnd.NextFloat());
 
                         if (e == Owner.GameState.LocalPlayer?.Entity)
                         {
-                            Owner.GameState.Camera.Thrauma += GetPower(distance);
+                            Owner.GameState.Camera.Thrauma += GetPowerByDistance(distance);
                         }
 
                         if (Rise.Rnd.NextFloat() <= 0.3f)
@@ -63,14 +62,14 @@ namespace Hevadea.Entities.Components.Attributes
             }
         }
 
-        float GetPower(float distance)
+        public float GetPowerByDistance(float distance)
         {
-            return (1f - (distance / (_range * Game.Unit)));
+            return (1f - (distance / (Range * Game.Unit)));
         }
 
-        public float GetDammage(float distance)
+        public float GetDamages(float distance)
         {
-            var value = _damages * GetPower(distance);
+            var value = Damages * GetPowerByDistance(distance);
             return value;
         }
     }

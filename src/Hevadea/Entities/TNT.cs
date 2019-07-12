@@ -1,4 +1,4 @@
-using Hevadea.Entities.Components;
+﻿using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Entities.Components.States;
@@ -24,7 +24,7 @@ namespace Hevadea.Entities
 
             AddComponent(new Breakable());
             AddComponent(new Collider(new Rectangle(-6, -2, 12, 8)));
-            AddComponent(new Explode(10f, 3f));
+            AddComponent(new Explosive(false, 10f, 3f));
             AddComponent(new Move());
             AddComponent(new Pickupable());
             AddComponent(new Pushable());
@@ -36,7 +36,7 @@ namespace Hevadea.Entities
             _age += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (_age > _delay)
             {
-                GetComponent<Explode>().Do();
+                GetComponent<Explosive>().Detonate();
                 Remove();
             }
         }
