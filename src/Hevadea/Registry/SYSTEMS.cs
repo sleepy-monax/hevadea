@@ -24,7 +24,7 @@ namespace Hevadea.Registry
 
         public static void Initialize()
         {
-            Register<HealthbarRenderer>();
+            Register<HealthBarRenderer>();
             Register<PlayerInputProcessor>();
 
             Register<CircleMenuRenderer>();

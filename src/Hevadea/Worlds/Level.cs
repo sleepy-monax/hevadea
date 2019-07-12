@@ -470,7 +470,7 @@ namespace Hevadea.Worlds
 
                     foreach (var e in QueryEntity(new Coordinates(x, y)))
                     {
-                        if (e.GetComponent<Colider>()?.GetHitBox().IntersectsWith(r) ?? r.Contains(e.Position))
+                        if (e.GetComponent<Collider>()?.GetHitBox().IntersectsWith(r) ?? r.Contains(e.Position))
                         {
                             yield return e;
                         }

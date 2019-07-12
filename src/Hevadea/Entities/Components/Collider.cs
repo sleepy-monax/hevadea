@@ -7,12 +7,12 @@ using System;
 
 namespace Hevadea.Entities.Components
 {
-    public class Colider : EntityComponent, IEntityComponentOverlay
+    public class Collider : EntityComponent, IEntityComponentOverlay
     {
-        public Func<Entity, bool> ColidePredicat = b => { return true; };
-        RectangleF _hitbox;
+        public Func<Entity, bool> CollidePredicat = b => true;
+        readonly RectangleF _hitbox;
 
-        public Colider(Rectangle hitbox)
+        public Collider(Rectangle hitbox)
         {
             _hitbox = hitbox;
         }
@@ -29,7 +29,7 @@ namespace Hevadea.Entities.Components
 
         public bool CanCollideWith(Entity e)
         {
-            return ColidePredicat(e);
+            return CollidePredicat(e);
         }
 
         public void Overlay(SpriteBatch spriteBatch, GameTime gameTime)

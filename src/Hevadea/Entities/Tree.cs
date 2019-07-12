@@ -7,7 +7,7 @@ using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Entities.Blueprints.Legacy
+namespace Hevadea.Entities
 {
     public class EntityTree : Entity
     {
@@ -18,7 +18,7 @@ namespace Hevadea.Entities.Blueprints.Legacy
             treeSprite = new Sprite(Ressources.TileEntities, new Point(6, 4), new Point(2, 6));
             AddComponent(new Flammable());
 
-            AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
+            AddComponent(new Collider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Dropable { Items = { new Drop(ITEMS.WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3) } });
             AddComponent(new Health(5));
             AddComponent(new ShadowCaster() { Scale = 1.5f });

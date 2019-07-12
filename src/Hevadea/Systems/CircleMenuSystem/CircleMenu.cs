@@ -1,4 +1,6 @@
-﻿using Hevadea.Entities.Components;
+﻿using System;
+using Hevadea.Entities;
+using Hevadea.Entities.Components;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 
@@ -64,7 +66,7 @@ namespace Hevadea.Systems.CircleMenuSystem
 
         public void UpdateAnimation(GameTime gameTime)
         {
-            if (Animation == 1f)
+            if (Math.Abs(Animation - 1f) < 0.01f)
             {
                 switch (State)
                 {

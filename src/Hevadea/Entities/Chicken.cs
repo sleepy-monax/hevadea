@@ -21,7 +21,7 @@ namespace Hevadea.Entities
 
             AddComponent(new Move());
             AddComponent(new Agent(new BehaviorAnimal() { NaturalEnvironment = { TILES.GRASS }, MoveSpeedWandering = 0.5f }));
-            AddComponent(new Colider(new Rectangle(-4, -4, 8, 8)));
+            AddComponent(new Collider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Health(3));
             AddComponent(new Pushable());
         }

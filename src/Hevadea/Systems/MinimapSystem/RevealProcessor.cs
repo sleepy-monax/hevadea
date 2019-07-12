@@ -19,7 +19,12 @@ namespace Hevadea.Systems.MinimapSystem
         {
             var minimap = entity.Level.Minimap;
 
-            var coordToReveal = entity.Coordinates + new Coordinates(Rise.Rnd.Next(-REVEAL_RANGE, REVEAL_RANGE), Rise.Rnd.Next(-REVEAL_RANGE, REVEAL_RANGE));
+            var coordToReveal = 
+                entity.Coordinates + 
+                new Coordinates(
+                    Rise.Rnd.Next(-REVEAL_RANGE, REVEAL_RANGE), 
+                    Rise.Rnd.Next(-REVEAL_RANGE, REVEAL_RANGE)
+                    );
 
             if (entity.Coordinates.Distance(coordToReveal) <= REVEAL_RANGE)
             {

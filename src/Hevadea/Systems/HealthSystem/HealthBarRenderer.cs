@@ -8,12 +8,12 @@ using Microsoft.Xna.Framework;
 
 namespace Hevadea.Systems.HealthSystem
 {
-    public class HealthbarRenderer : EntityDrawSystem
+    public class HealthBarRenderer : EntityDrawSystem
     {
         public const float HEALTH_BAR_WIDTH  = 24f;
         public const float HEALTH_BAR_HEIGHT = 2f;
 
-        public HealthbarRenderer()
+        public HealthBarRenderer()
         {
             Filter.AllOf(typeof(Health)).NoneOf(typeof(PlayerBody));
         }
@@ -24,12 +24,12 @@ namespace Hevadea.Systems.HealthSystem
  
             if (health < 0.95f)
             {
-                var barPostion = entity.Position - new Vector2(HEALTH_BAR_WIDTH / 2, HEALTH_BAR_HEIGHT / 2);
+                var barPosition = entity.Position - new Vector2(HEALTH_BAR_WIDTH / 2, HEALTH_BAR_HEIGHT / 2);
                 var barBound = new Vector2(HEALTH_BAR_WIDTH * health, HEALTH_BAR_HEIGHT);
 
-                pool.Overlay.FillRectangle(barPostion + new Vector2(1f, 1f), barBound, Color.Black * 0.45f);
+                pool.Overlay.FillRectangle(barPosition + new Vector2(1f, 1f), barBound, Color.Black * 0.45f);
 
-                pool.Overlay.FillRectangle(barPostion, barBound, Color.Lerp(Color.Red, Color.Green, health));
+                pool.Overlay.FillRectangle(barPosition, barBound, Color.Lerp(Color.Red, Color.Green, health));
             }
         }
     }

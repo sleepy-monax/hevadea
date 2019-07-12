@@ -4,7 +4,7 @@ using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Tiles
+namespace Hevadea
 {
     public class Coordinates
     {

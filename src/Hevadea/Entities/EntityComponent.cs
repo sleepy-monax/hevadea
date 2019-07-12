@@ -1,4 +1,4 @@
-﻿namespace Hevadea.Entities.Components
+﻿namespace Hevadea.Entities
 {
     public abstract class EntityComponent
     {

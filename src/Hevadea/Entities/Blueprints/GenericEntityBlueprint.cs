@@ -7,8 +7,7 @@
 
         public override Entity Construct()
         {
-            var entity = new T();
-            entity.Blueprint = this;
+            var entity = new T {Blueprint = this};
             return entity;
         }
     }

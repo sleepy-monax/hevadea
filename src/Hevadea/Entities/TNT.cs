@@ -23,7 +23,7 @@ namespace Hevadea.Entities
             _delay = 3f;
 
             AddComponent(new Breakable());
-            AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
+            AddComponent(new Collider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Explode(10f, 3f));
             AddComponent(new Move());
             AddComponent(new Pickupable());

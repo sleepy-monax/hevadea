@@ -19,7 +19,7 @@ namespace Hevadea.Scenes.Widgets
         {
             if (Content != null)
             {
-                Content.UnitBound = UnitBound.Padding(32);
+                Content.UnitBound = Padding.Apply(UnitBound.Padding(8));
                 Content.RefreshLayout();
             }
         }
@@ -28,8 +28,8 @@ namespace Hevadea.Scenes.Widgets
         {
             var size = Scale(16 * 3);
 
-            _background.Draw(spriteBatch, new Rectangle(Bound.X + Scale(3), Bound.Y + Scale(3), Bound.Width - Scale(6), Bound.Height - Scale(6)), Color.White);
-            GuiHelper.DrawBox(spriteBatch, Bound, size);
+            _background.Draw(spriteBatch, new Rectangle(Bound.X + Scale(4), Bound.Y + Scale(4), Bound.Width - Scale(8), Bound.Height - Scale(8)), Color.White);
+            spriteBatch.DrawBox(Bound, size);
             base.Draw(spriteBatch, gameTime);
         }
     }

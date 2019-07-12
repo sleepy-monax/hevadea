@@ -13,7 +13,7 @@ namespace Hevadea.Entities.Components.Actions
     {
         private int _moveTick;
 
-        public bool IsMoving => _moveTick == Rise.MonoGame.Tick || _moveTick == Rise.MonoGame.Tick - 1;
+        public bool IsMoving => _moveTick == Rise.MonoGame.Ticks || _moveTick == Rise.MonoGame.Ticks - 1;
         public bool NoClip { get; set; } = false;
 
         public void MoveTo(Coordinates tilePosition, float speed = 1f, bool setFacing = false)
@@ -67,7 +67,7 @@ namespace Hevadea.Entities.Components.Actions
             if (Owner.Y + sy < 0) sy = 0;
 
             var level = Owner.Level;
-            var ownerColider = Owner.GetComponent<Colider>();
+            var ownerColider = Owner.GetComponent<Collider>();
 
             if (ownerColider != null)
             {
@@ -85,7 +85,7 @@ namespace Hevadea.Entities.Components.Actions
 
                 foreach (var e in colidingEntity)
                 {
-                    var eColider = e.GetComponent<Colider>();
+                    var eColider = e.GetComponent<Collider>();
                     if (e == Owner || !(eColider?.CanCollideWith(Owner) ?? false)) continue;
 
                     var eHitbox = eColider.GetHitBox();
@@ -93,7 +93,7 @@ namespace Hevadea.Entities.Components.Actions
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, 0f, sy);
-                        _moveTick = Rise.MonoGame.Tick;
+                        _moveTick = Rise.MonoGame.Ticks;
                     }
 
                     eHitbox = eColider.GetHitBox();
@@ -102,7 +102,7 @@ namespace Hevadea.Entities.Components.Actions
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, sx, 0f);
-                        _moveTick = Rise.MonoGame.Tick;
+                        _moveTick = Rise.MonoGame.Ticks;
                     }
                     eHitbox = eColider.GetHitBox();
                     if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
@@ -132,7 +132,7 @@ namespace Hevadea.Entities.Components.Actions
                 Owner.SetPosition(Owner.X + sx, Owner.Y + sy);
                 Owner.Level.GetTile(Owner.Coordinates).Tag<GroundTile>()?.SteppedOn(Owner, Owner.Coordinates);
 
-                _moveTick = Rise.MonoGame.Tick;
+                _moveTick = Rise.MonoGame.Ticks;
                 return true;
             }
 

@@ -263,9 +263,9 @@ namespace Hevadea.Entities
 
         public void Update(GameTime gameTime)
         {
-            if (_lastUpdateTick != Rise.MonoGame.Tick)
+            if (_lastUpdateTick != Rise.MonoGame.Ticks)
             {
-                _lastUpdateTick = Rise.MonoGame.Tick;
+                _lastUpdateTick = Rise.MonoGame.Ticks;
 
                 foreach (var sys in SYSTEMS.UpdateSystems)
                 {
@@ -289,9 +289,9 @@ namespace Hevadea.Entities
 
         public void Draw(LevelSpriteBatchPool spriteBatchPool, GameTime gameTime)
         {
-            if (_lastDrawTick != Rise.MonoGame.Tick)
+            if (_lastDrawTick != Rise.MonoGame.Ticks)
             {
-                _lastDrawTick = Rise.MonoGame.Tick;
+                _lastDrawTick = Rise.MonoGame.Ticks;
                
                 foreach (var sys in SYSTEMS.DrawSystems)
                 {

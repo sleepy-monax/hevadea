@@ -13,7 +13,7 @@ namespace Hevadea.Entities.Components
             return entity.GetComponent<Move>()?.IsMoving ?? false;
         }
 
-        public static bool IsSwiming(this Entity entity)
+        public static bool IsSwimming(this Entity entity)
         {
             return entity.GetComponent<Swim>()?.IsSwiming ?? false;
         }

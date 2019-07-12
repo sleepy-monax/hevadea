@@ -16,8 +16,6 @@ namespace Hevadea.Scenes.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            //spriteBatch.FillRectangle(Host, Color.Black * 0.5f);
-
             if (_gameState.LocalPlayer.Entity.Level?.Minimap?.Texture != null)
             {
                 //var states = _game.MainPlayer.Level.GetRenderState(_game.Camera);

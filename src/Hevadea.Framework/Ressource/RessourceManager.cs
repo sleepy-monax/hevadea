@@ -14,13 +14,17 @@ namespace Hevadea.Framework.Ressource
         {
             if (Rise.NoGraphic) return null;
 
+            Logger.Log<RessourceManager>($"Loading <SoundEffect>{name}");
             return Rise.MonoGame.Content.Load<SoundEffect>($"effects/{name}");
         }
 
         public Song GetSong(string name)
         {
+            // Fixme: can't load songs for some reasons
+            return null;
             if (Rise.NoGraphic) return null;
 
+            Logger.Log<RessourceManager>($"Loading <Song>{name}");
             return Rise.MonoGame.Content.Load<Song>($"songs/{name}");
         }
 

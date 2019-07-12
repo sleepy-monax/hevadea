@@ -33,7 +33,7 @@ namespace Hevadea.Systems.MovementSystem
             if (e.Y + sy < 0) sy = 0;
 
             // Alias the colider
-            var c = e.GetComponent<Colider>();
+            var c = e.GetComponent<Collider>();
 
             if (c != null)
             {

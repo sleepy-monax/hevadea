@@ -25,7 +25,7 @@ namespace Hevadea.Systems.ElementalSystem
             var health = entity.GetComponent<Health>();
 
             if (fire.BurnningTimer < 0.01f) fire.Extinguish();
-            if (entity.IsSwiming()) fire.Extinguish();
+            if (entity.IsSwimming()) fire.Extinguish();
             
             if (fire.IsBurning)
             {

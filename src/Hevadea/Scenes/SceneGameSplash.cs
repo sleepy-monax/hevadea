@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework;
+﻿using System;
+using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Scening;
@@ -24,20 +25,29 @@ namespace Hevadea.Scenes
         {
             Task.Run(() =>
             {
-                if (!Initialized)
+                try
                 {
-                    Ressources.Load();
+                    if (!Initialized)
+                    {
+                        Ressources.Load();
 
-                    GamePaths.Initialize();
-                    REGISTRY.Initialize();
+                        GamePaths.Initialize();
+                        REGISTRY.Initialize();
 
-                    Rise.Ui.DefaultFont = Ressources.FontRomulus;
-                    Rise.Ui.DebugFont = Ressources.FontHack;
+                        Rise.Ui.DefaultFont = Ressources.FontRomulus;
+                        Rise.Ui.DebugFont = Ressources.FontHack;
 
-                    Initialized = true;
+                        Initialized = true;
+                    }
+
+                    _loadingDone = true;
                 }
-
-                _loadingDone = true;
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                
             });
 
             _sb = Rise.Graphic.CreateSpriteBatch();

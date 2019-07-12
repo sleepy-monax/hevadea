@@ -33,7 +33,7 @@ namespace Hevadea.Entities
             AddComponent(new MobRenderer(Ressources.ImgZombie));
 
             AddComponent(new Attack());
-            AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
+            AddComponent(new Collider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Energy());
             AddComponent(new Health(10));
             AddComponent(new Move());

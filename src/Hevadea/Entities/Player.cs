@@ -32,7 +32,7 @@ namespace Hevadea.Entities
             AddComponent(new ItemHolder());
 
             AddComponent(new Attack());
-            AddComponent(new Colider(new Rectangle(-2, -2, 4, 4)));
+            AddComponent(new Collider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new Energy());
             AddComponent(new Interact());
             AddComponent(new Inventory(64) { AlowPickUp = true });

@@ -19,7 +19,7 @@ namespace Hevadea.Entities
             AddComponent(new SpriteRenderer { Sprite = new Sprite(Ressources.TileEntities, new Point(0, 1)) });
             AddComponent(new Flammable());
 
-            AddComponent(new Colider(new Rectangle(-6, -2, 12, 8)));
+            AddComponent(new Collider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new Dropable() { Items = { new Items.Drop(ITEMS.CHEST, 1f, 1, 1) } });
             AddComponent(new Health(10));
             AddComponent(new Interactable()).Interacted += EntityInteracte;

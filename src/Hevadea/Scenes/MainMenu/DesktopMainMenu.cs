@@ -86,7 +86,6 @@ namespace Hevadea.Scenes.MainMenu
                     homeTab,
                     new TabNewWorld(),
                     new TabLoadWorld(),
-                    //new TabMultiplayerConnect(),
                     new TabOption(),
                 }
             };

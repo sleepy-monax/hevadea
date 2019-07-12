@@ -2,7 +2,7 @@
 
 namespace Hevadea.Entities
 {
-    public class EntityColection : List<Entity>
+    public class EntityCollection : List<Entity>
     {
         public void SortForRender()
         {

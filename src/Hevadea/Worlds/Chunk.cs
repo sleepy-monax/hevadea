@@ -9,7 +9,7 @@ namespace Hevadea.Worlds
 {
     public class Chunk
     {
-        public static readonly int CHUNK_SIZE = 16;
+        public const int CHUNK_SIZE = 16;
 
         public int X { get; }
         public int Y { get; }

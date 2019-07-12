@@ -22,7 +22,7 @@ namespace Hevadea.Systems.PlayerSystem
         AddWaypoint,
         OpenMenu, ZoomIn, ZoomOut,
 
-        DEBUGInspect
+        DebugInspect
     }
 
     public class PlayerInputProcessor : EntityUpdateSystem
@@ -56,7 +56,7 @@ namespace Hevadea.Systems.PlayerSystem
             if (i.KeyTyped(Keys.L)) HandleInput(entity, PlayerInput.Pickup);
             if (i.KeyTyped(Keys.Subtract) || i.KeyTyped(Keys.Down)) HandleInput(entity, PlayerInput.ZoomOut);
             if (i.KeyTyped(Keys.X)) HandleInput(entity, PlayerInput.AddWaypoint);
-            if (i.KeyTyped(Keys.W)) HandleInput(entity, PlayerInput.DEBUGInspect);
+            if (i.KeyTyped(Keys.W)) HandleInput(entity, PlayerInput.DebugInspect);
 
             // TODO: refactor
             if (Rise.Platform.Family == PlatformFamily.Mobile && Rise.Pointing.AreaDown(Rise.Graphic.GetBound()))
@@ -142,7 +142,7 @@ namespace Hevadea.Systems.PlayerSystem
                     player.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
                     break;
 
-                case PlayerInput.DEBUGInspect:
+                case PlayerInput.DebugInspect:
                     player.Inspect();
                     break;
             }

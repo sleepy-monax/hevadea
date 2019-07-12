@@ -27,7 +27,7 @@ namespace Hevadea.Entities
             AddComponent(new Breakable());
             AddComponent(new Dropable { Items = { new Drop(ITEMS.LANTERN, 1f, 1, 1) } });
             AddComponent(new LightSource { IsOn = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 96 });
-            AddComponent(new Colider(new Rectangle(-4, -2, 7, 4)));
+            AddComponent(new Collider(new Rectangle(-4, -2, 7, 4)));
 
         }
     }

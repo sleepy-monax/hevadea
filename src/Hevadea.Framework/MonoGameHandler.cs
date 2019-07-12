@@ -23,7 +23,7 @@ namespace Hevadea.Framework
         public event GameloopEventHandler OnUpdate;
         public event GameloopEventHandler OnDraw;
 
-        public int Tick { get; private set; } = 0;
+        public int Ticks { get; private set; } = 0;
 
         public MonoGameHandler()
         {
@@ -64,7 +64,7 @@ namespace Hevadea.Framework
             UpdateTime = (int)_updateStopwatch.ElapsedMilliseconds;
             _updateStopwatch.Reset();
 
-            Tick++;
+            Ticks++;
         }
 
         protected override void Draw(GameTime gameTime)

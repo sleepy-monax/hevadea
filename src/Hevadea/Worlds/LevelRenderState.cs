@@ -8,10 +8,10 @@ namespace Hevadea.Worlds
         public Point RenderBegin;
         public Point RenderEnd;
 
-        public EntityColection OnScreenEntities = new EntityColection();
-        public EntityColection AliveEntities = new EntityColection();
+        public EntityCollection OnScreenEntities = new EntityCollection();
+        public EntityCollection AliveEntities = new EntityCollection();
 
-        public RenderState(Point renderBegin, Point renderEnd, EntityColection onScreenEntities, EntityColection aliveEntities)
+        public RenderState(Point renderBegin, Point renderEnd, EntityCollection onScreenEntities, EntityCollection aliveEntities)
         {
             RenderBegin = renderBegin;
             RenderEnd = renderEnd;
