@@ -44,6 +44,7 @@ namespace Hevadea.Entities
             AddComponent(new Collider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new Health(3));
             AddComponent(new Pushable());
+            AddComponent(new Swim());
         }
     }
 }
