@@ -1,9 +1,8 @@
 ﻿using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components.Ai.Actions;
-using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Utils;
 using Hevadea.Registry;
-using Hevadea.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
         private bool CheckLineOfSight(Coordinates coords)
         {
             bool result = true;
-            LoopUtils.Line(Agent.Owner.Coordinates.ToPoint(), coords.ToPoint(), (p) =>
+            Geometry.Line(Agent.Owner.Coordinates.ToPoint(), coords.ToPoint(), (p) =>
             {
                 result &= !Agent.Owner.Level.GetTile(p.X, p.Y).BlockLineOfSight;
             });

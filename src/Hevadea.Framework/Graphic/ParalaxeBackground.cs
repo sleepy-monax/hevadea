@@ -27,7 +27,7 @@ namespace Hevadea.Framework.Graphic
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            Position = Position + gameTime.ElapsedGameTime.TotalSeconds * 0.1f;
+            Position += gameTime.ElapsedGameTime.TotalSeconds * 0.1f;
             float screenRation = Rise.Graphic.GetWidth() / (float)Rise.Graphic.GetHeight();
 
             foreach (var l in Layers)

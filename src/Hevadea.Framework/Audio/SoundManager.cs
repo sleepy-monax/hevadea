@@ -66,14 +66,14 @@ namespace Hevadea.Framework.Audio
 
             var finishInstance = new List<SoundEffectInstance>();
 
-            foreach (var i in SoundEffectInstances)
+            foreach (var instance in SoundEffectInstances)
             {
-                if (i.State != SoundState.Playing)
+                if (instance.State != SoundState.Playing)
                 {
-                    finishInstance.Add(i);
+                    finishInstance.Add(instance);
                 }
 
-                i.Volume = Rise.Config.MasterVolume * Rise.Config.EffectVolume;
+                instance.Volume = Rise.Config.MasterVolume * Rise.Config.EffectVolume;
             }
 
             finishInstance.ForEach(i => SoundEffectInstances.Remove(i));

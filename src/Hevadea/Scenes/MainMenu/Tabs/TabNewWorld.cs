@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
@@ -28,7 +29,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Text = Rise.Rnd.Next().ToString()
             };
 
-            var worldTypeList = new ListWidget() { UnitBound = new Rectangle(0, 0, 256, 128), AlowUnselecting = false };
+            var worldTypeList = new ListWidget() { UnitBound = new Rectangle(0, 0, 256, 128) };
 
             foreach (var item in GENERATOR.GENERATORS)
             {
@@ -46,17 +47,18 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 Dock = Dock.Fill,
                 Childrens =
                 {
-                    new Label { Text = "World name:", Padding = new Margins(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "World name:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
                     worldNameTextBox,
-                    new Label { Text = "Seed:", Padding = new Margins(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "Seed:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
                     worldSeedtextBox,
-                    new Label { Text = "World type:", Padding = new Margins(8), TextAlignement = DrawText.Alignement.Left},
+                    new Label { Text = "World type:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
                     worldTypeList
                 }
             };
 
             Content = new Container()
             {
+                Padding = new Margins(16),
                 Childrens =
                 {
                     new Label { Text = "New World", Font = Ressources.FontAlagard, Dock = Dock.Top},

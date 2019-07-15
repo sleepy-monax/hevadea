@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Scening;
@@ -40,7 +41,7 @@ namespace Hevadea.Scenes.MainMenu
 
             var copyright = new Label
             {
-                Text = "© 2017-2018 MAKER",
+                Text = "© 2017-2019 N. VAN BOSSUYT",
                 Anchor = Anchor.Bottom,
                 Origine = Anchor.Bottom,
                 Font = Ressources.FontRomulus,
@@ -64,7 +65,7 @@ namespace Hevadea.Scenes.MainMenu
                 Origine = Anchor.BottomRight,
                 UnitOffset = new Point(-16, 0),
                 Font = Ressources.FontHack,
-                TextAlignement = Framework.Graphic.DrawText.Alignement.Right,
+                TextAlignement = TextAlignement.Right,
                 TextColor = Color.White * 0.5f,
                 TextSize = 1f,
             };

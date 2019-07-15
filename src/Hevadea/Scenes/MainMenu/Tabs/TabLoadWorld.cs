@@ -51,6 +51,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
             });
 
             Content = new Container(title, loadButton, saveList);
+            Content.Padding = new Margins(16);
 
             var s = Directory.GetDirectories(GamePaths.SavesFolder);
 

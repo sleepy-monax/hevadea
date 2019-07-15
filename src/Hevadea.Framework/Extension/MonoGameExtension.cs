@@ -1,10 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hevadea.Framework.Graphic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Framework.Extension
 {
-    public static class Texture2DExtension
+    public static class MonoGameExtension
     {
+        public static bool IsLegalCharacter(this SpriteFont font, char c)
+        {
+            return font.Characters.Contains(c) || c == '\r' || c == '\n';
+        }
+
         public static Vector2 GetCenter(this Texture2D tex)
         {
             return tex.Bounds.Center.ToVector2();

@@ -4,6 +4,7 @@ namespace Hevadea.Framework.UI.Containers
 {
     public class FlowLayout : Container
     {
+        public int Marging { get; set; } = 0;
         public FlowDirection Flow { get; set; } = FlowDirection.LeftToRight;
 
         public override void Layout()
@@ -37,6 +38,8 @@ namespace Hevadea.Framework.UI.Containers
                         offset += c.UnitBound.Width;
                         break;
                 }
+
+                offset += Marging;
             }
         }
     }

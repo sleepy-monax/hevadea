@@ -11,7 +11,7 @@ namespace Hevadea.Framework.Platform
         public PlatformTextInputEventArg(char character, Keys key = Keys.None)
         {
             Character = character;
-            Key = Key;
+            Key = key;
         }
     }
 }

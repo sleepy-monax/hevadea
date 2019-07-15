@@ -4,8 +4,7 @@ using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
-using Hevadea.Framework.Utils;
-
+using Hevadea.Framework.Extension;
 using Hevadea.Scenes.Menus;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -47,7 +46,7 @@ namespace Hevadea.Loading
                 Origine = Anchor.Center,
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 48, 48),
-                UnitOffset = new Point(-8, 8)
+                UnitOffset = new Point(-48, 48)
             }.RegisterMouseClickEvent((sender) =>
             {
                 _job.Cancel();
@@ -64,7 +63,6 @@ namespace Hevadea.Loading
                         Content = new Container { Childrens = { _progressBar, _progressLabel, _cancelButton } },
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
                         Origine = Anchor.Center,
-                        Padding = new Margins(16),
                         UnitBound = new Rectangle(0, 0, 840, 256),
                     }
                 }

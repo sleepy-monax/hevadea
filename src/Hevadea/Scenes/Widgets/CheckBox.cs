@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,7 +36,7 @@ namespace Hevadea.Framework.UI.Widgets
                 _unChecked.Draw(spriteBatch, dest, Color.White);
             }
 
-            spriteBatch.DrawString(Ressources.FontRomulus, Text, new Rectangle(Bound.X + Bound.Height, Bound.Y, Bound.Width - Bound.Height, Bound.Height), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, Color.White, Scale(1f));
+            spriteBatch.DrawString(Ressources.FontRomulus, Text, new Rectangle(Bound.X + Bound.Height, Bound.Y, Bound.Width - Bound.Height, Bound.Height), TextAlignement.Left, TextStyle.DropShadow, Color.White, Scale(1f));
         }
     }
 }

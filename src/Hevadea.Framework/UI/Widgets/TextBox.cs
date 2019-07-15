@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
@@ -86,7 +87,7 @@ namespace Hevadea.Framework.UI.Widgets
             var selectionBegin = Scale(Style.Font.MeasureString(Text.Substring(0, CursorIndex)).X);
 
             spriteBatch.DrawString(Style.Font, Text, textBound, Style.TextColor, Anchor.Left, Scale(1f));
-            if (Focused) spriteBatch.DrawString(Style.Font, "_", new Rectangle(textBound.Location + new Point((int)selectionBegin, Scale(4)), textBound.Size), DrawText.Alignement.Left, DrawText.TextStyle.DropShadow, Style.Accent * Mathf.Sin((float)gameTime.TotalGameTime.TotalSeconds * Mathf.PI * Mathf.PI), Scale(1f));
+            if (Focused) spriteBatch.DrawString(Style.Font, "_", new Rectangle(textBound.Location + new Point((int)selectionBegin, Scale(4)), textBound.Size), TextAlignement.Left, TextStyle.DropShadow, Style.Accent * Mathf.Sin((float)gameTime.TotalGameTime.TotalSeconds * Mathf.PI * Mathf.PI), Scale(1f));
         }
     }
 }

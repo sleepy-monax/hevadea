@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,148 +27,137 @@ namespace Hevadea.Framework.UI.Widgets
 
         public override void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime)
         {
-            spriteBatch.DrawString(Rise.Ui.DefaultFont, Text, host, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, Color.White, Rise.Ui.ScaleFactor);
+            spriteBatch.DrawString(Rise.Ui.DefaultFont, Text, host, TextAlignement.Center, TextStyle.DropShadow, Color.White, Rise.Ui.ScaleFactor);
         }
     }
 
     public class ListWidget : Widget
     {
-        public bool AlowUnselecting { get; set; } = true;
-        public int ItemHeight { get; set; } = 48;
-        public int ItemMarging { get; set; } = 8;
-        public Color BackColor { get; set; } = Color.White * 0.1f;
-        public ListItem SelectedItem { get; private set; } = null;
-
-        private List<ListItem> _items = new List<ListItem>();
-        private ListItem _overItem = null;
         private int _scrollOffset;
 
-        public void AddItem(ListItem item)
-        {
-            item.Parent = this;
-            _items.Add(item);
-        }
+        public bool AlowUnselecting { get; set; } = true;
+        public int ItemHeight { get; set; } = 48;
+        public Color BackColor { get; set; } = Color.White * 0.1f;
+        public ListItem SelectedItem { get; private set; } = null;
+        public ListItem OverItem { get; private set; } = null;
+        public List<ListItem> Items { get; private set; } = new List<ListItem>();
 
-        public void AddItems(List<ListItem> items)
+        private Rectangle GetItemBound(int index)
         {
-            items.ForEach(AddItem);
+            var position = new Point(Host.X, Host.Y + index * Scale(ItemHeight) + _scrollOffset);
+            var size = new Point(Host.Width, Scale(ItemHeight));
+
+            return new Rectangle(position, size);
         }
 
         public void SelectFirst()
         {
-            SelectedItem = _items.First();
+            SelectedItem = Items.First();
+        }
+
+        public void AddItem(ListItem item)
+        {
+            item.Parent = this;
+            Items.Add(item);
         }
 
         public void RemoveItem(ListItem item)
         {
+            item.Parent = null;
+            Items.Remove(item);
+        }
+
+        public void Clear()
+        {
+            Items.Clear();
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            OverItem = null;
+
+            for (int i = 0; i < Items.Count; i++)
+            {
+                var currentItem = Items[i];
+                var currentItemBound = GetItemBound(i);
+
+                if (Rise.Pointing.AreaOver(currentItemBound) && AlowUnselecting)
+                {
+                    OverItem = currentItem;
+                }
+
+                if (Rise.Pointing.AreaClick(currentItemBound) && AlowUnselecting)
+                {
+                    SelectedItem = currentItem;
+                }
+            }
+
+            if (Rise.Pointing.AreaOver(Bound))
+            {
+                if (Rise.Pointing.AreaDown(Bound))
+                {
+                    var delta = Rise.Pointing.GetDeltaPosition().Y;
+                    _scrollOffset -= delta;
+                }
+            }
+
+            var maxScroll = Items.Count * Scale(ItemHeight);
+            _scrollOffset = Mathf.Clamp(_scrollOffset, -maxScroll + Math.Min(maxScroll, Host.Height), 0);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var index = 0;
-
             spriteBatch.FillRectangle(Bound, BackColor);
 
-            Rise.Graphic.SetScissor(Bound);
+            if (Items.Count > 0)
+            {
+                Rise.Graphic.SetScissor(Bound);
 
-            _overItem = null;
-
-            foreach (var i in _items)
-                if (i != null)
+                for (int i = 0; i < Items.Count(); i++)
                 {
-                    var p = new Point(Host.X + Scale(4), Host.Y + index * Scale(ItemHeight + ItemMarging) + _scrollOffset);
+                    var currentItem = Items[i];
+                    var currentItemBound = GetItemBound(i);
 
-                    var rect = new Rectangle(p.X, p.Y, Host.Width - Scale(8), Scale(ItemHeight));
-
-                    if (Rise.Pointing.AreaOver(rect) && Rise.Pointing.AreaOver(Host))
+                    if (currentItem == SelectedItem)
                     {
-                        spriteBatch.FillRectangle(rect, ColorPalette.Border * 0.05f);
-                        spriteBatch.DrawRectangle(rect, ColorPalette.Border, Scale(4));
-
-                        _overItem = i;
+                        spriteBatch.FillRectangle(currentItemBound, ColorPalette.Accent * 0.5f);
+                    }
+                    else if (currentItem == OverItem)
+                    {
+                        spriteBatch.FillRectangle(currentItemBound, ColorPalette.Border * 0.5f);
                     }
 
-                    if (i == SelectedItem)
-                    {
-                        spriteBatch.FillRectangle(rect, ColorPalette.Accent * 0.5f);
-                        spriteBatch.DrawRectangle(rect, ColorPalette.Accent, Scale(4));
-                    }
-
-                    i.Draw(spriteBatch, rect, gameTime);
-                    index++;
+                    currentItem.Draw(spriteBatch, currentItemBound, gameTime);
                 }
 
-            if (_items.Count == 0)
-                spriteBatch.DrawString(Rise.Ui.DefaultFont, "Empty", Bound, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow, Color.White);
+                Rise.Graphic.ResetScissor();
+            }
+            else
+            {
+                spriteBatch.DrawString(
+                    Rise.Ui.DefaultFont,
+                    "Empty",
+                    Bound, 
+                    TextAlignement.Center, 
+                    TextStyle.DropShadow, 
+                    Color.White);
+            }
 
             if (Rise.Pointing.AreaOver(Bound))
             {
-                var maxScroll = _items.Count * Scale(ItemHeight + ItemMarging);
+                var maxScroll = Items.Count * Scale(ItemHeight);
                 var contentHeight = Math.Max(maxScroll, Host.Height);
                 var thumbHeight = Host.Height * (Host.Height / (float)contentHeight);
                 var scrollJump = (contentHeight - Host.Height) / (Host.Height - thumbHeight);
 
                 spriteBatch.FillRectangle(
-                    new Rectangle(Host.X + Host.Width - Scale(4), Host.Y + (int)(-_scrollOffset / scrollJump), Scale(4),
-                        (int)thumbHeight), ColorPalette.Accent);
+                    new Rectangle(
+                        Host.X + Host.Width - Scale(4),
+                        Host.Y + (int)(-_scrollOffset / scrollJump),
+                        Scale(4),
+                        (int)thumbHeight),
+                    ColorPalette.Accent);
             }
-
-            Rise.Graphic.ResetScissor();
-        }
-
-        private bool IsDown = false;
-        private Point _lastPoint = Point.Zero;
-        private Point _downPoint = Point.Zero;
-
-        public override void Update(GameTime gameTime)
-        {
-            //if (Rise.Input.MouseScrollUp) _scrollOffset += Scale(16);
-            //if (Rise.Input.MouseScrollDown) _scrollOffset -= Scale(16);
-
-            if (Rise.Pointing.AreaDown(Bound) && !IsDown)
-            {
-                IsDown = true;
-
-                _lastPoint = Rise.Pointing.GetAreaOver(Bound)[0];
-                _downPoint = Rise.Pointing.GetAreaOver(Bound)[0];
-
-                Logger.Log<ListWidget>("Down");
-            }
-
-            if (Rise.Pointing.AreaDown(Bound) && IsDown)
-            {
-                var newPoint = Rise.Pointing.GetAreaOver(Bound)[0];
-                var delta = _lastPoint.Y - newPoint.Y;
-                _lastPoint = newPoint;
-
-                _scrollOffset -= delta;
-            }
-
-            if (Rise.Pointing.AreaClick(Bound))
-            {
-                var dist = Mathf.Distance(_downPoint.ToVector2(), Rise.Pointing.GetAreaOver(Bound)[0].ToVector2());
-
-                if (dist < 16)
-                {
-                    if (_overItem != null || AlowUnselecting)
-                        SelectedItem = _overItem;
-                }
-
-                IsDown = false;
-                _lastPoint = Point.Zero;
-                _downPoint = Point.Zero;
-                Logger.Log<ListWidget>("Up");
-            }
-
-            if (!Rise.Pointing.AreaDown(Bound) && IsDown)
-            {
-                IsDown = false;
-                _lastPoint = Point.Zero;
-                _downPoint = Point.Zero;
-            }
-
-            var maxScroll = _items.Count * Scale(ItemHeight + ItemMarging);
-            _scrollOffset = Mathf.Clamp(_scrollOffset, -maxScroll + Math.Min(maxScroll, Host.Height), 0);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             Content = new Container
             {
+                Padding = new Margins(16),
                 Childrens =
                 {
                     new Button{ Text = "Exit", Dock = Dock.Bottom }

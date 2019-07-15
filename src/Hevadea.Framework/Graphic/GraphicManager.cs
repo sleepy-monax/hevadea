@@ -54,18 +54,24 @@ namespace Hevadea.Framework.Graphic
             _graphicsDeviceManager.PreferredBackBufferHeight = height;
             _graphicsDeviceManager.IsFullScreen = true;
             _graphicsDeviceManager.ApplyChanges();
+
+            ResetRenderTargets();
         }
 
         public void SetFullscreen()
         {
             _graphicsDeviceManager.IsFullScreen = true;
             _graphicsDeviceManager.ApplyChanges();
+
+            ResetRenderTargets();
         }
 
         public void SetWindowed()
         {
             _graphicsDeviceManager.IsFullScreen = false;
             _graphicsDeviceManager.ApplyChanges();
+
+            ResetRenderTargets();
         }
 
         /* --- Render targets ---------------------------------------------- */

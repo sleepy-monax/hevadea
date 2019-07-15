@@ -35,7 +35,6 @@ namespace Hevadea.Framework
             IsFixedTimeStep = true;
         }
        
-
         protected override void Initialize()
         {
             Logger.Log<MonoGameHandler>("Initializing...");

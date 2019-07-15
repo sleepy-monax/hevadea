@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
@@ -59,9 +60,8 @@ Running on platform: '{Rise.Platform.GetPlatformName()}'
 Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name}
 {Rise.Scene?.GetCurrentScene()?.GetDebugInfo() ?? ""}";
 
-                _sb.DrawString(Rise.Ui.DebugFont, text, Rise.Graphic.GetBound(), DrawText.Alignement.Left, DrawText.TextStyle.Rectangle, Color.White);
+                _sb.DrawString(Rise.Ui.DebugFont, text, Rise.Graphic.GetBound(), TextAlignement.Left, TextStyle.Rectangle, Color.White);
 
-                Rise.Pointing.DrawDebug(_sb);
                 _sb.End();
             }
 
@@ -70,7 +70,7 @@ Scene: {Rise.Scene?.GetCurrentScene()?.GetType().Name}
                 _sb.Begin();
                 var text = @"[F1]: Help [F2, F3, F4]: Toggle debug overlays for Game/General/Ui [F5]: Hide/Show ui [F6/F7]: -/+ Ui Scale";
 
-                _sb.DrawString(Rise.Ui.DebugFont, text, Rise.Graphic.GetBound(), DrawText.Alignement.Bottom, DrawText.TextStyle.DropShadow, Color.White);
+                _sb.DrawString(Rise.Ui.DebugFont, text, Rise.Graphic.GetBound(), TextAlignement.Bottom, TextStyle.DropShadow, Color.White);
                 _sb.End();
             }
         }

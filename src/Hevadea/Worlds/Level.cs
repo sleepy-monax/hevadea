@@ -80,7 +80,7 @@ namespace Hevadea.Worlds
         {
             // Update all alive entities.
             QueryEntity(_gameState.Camera.Bound)
-                .ForEarch((e) => e.Update(gameTime));
+                .ForEarch((e) => { if (!e.Removed) e.Update(gameTime); });
 
             // Do the random update of tiles.
             for (int i = 0; i < Width * Height / 50; i++)

@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Scening;
 using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
@@ -11,7 +12,7 @@ namespace Hevadea.Scenes
     {
         public override void Load()
         {
-            var background = RandomUtils.Choose(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
+            var background = Rise.Rnd.Pick(Ressources.ParalaxeForest, Ressources.ParalaxeMontain);
             Rise.Scene.SetBackground(background);
             Rise.Sound.Play(Ressources.Theme0);
 
@@ -52,7 +53,7 @@ namespace Hevadea.Scenes
                 Origine = Anchor.BottomRight,
                 UnitOffset = new Point(-16, 0),
                 Font = Ressources.FontHack,
-                TextAlignement = Framework.Graphic.DrawText.Alignement.Right,
+                TextAlignement = TextAlignement.Right,
                 TextColor = Color.White * 0.5f,
                 TextSize = 1f,
             };

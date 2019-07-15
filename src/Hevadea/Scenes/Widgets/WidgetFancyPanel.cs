@@ -1,4 +1,5 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;

@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Utils;
@@ -70,7 +71,7 @@ namespace Hevadea.Scenes.Widgets
                 }
 
             if (Content.GetStackCount() == 0)
-                spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, DrawText.Alignement.Center, DrawText.TextStyle.DropShadow,
+                spriteBatch.DrawString(Ressources.FontRomulus, "Empty", Bound, TextAlignement.Center, TextStyle.DropShadow,
                     Color.White);
 
             if (Rise.Pointing.AreaOver(Bound))
@@ -101,7 +102,7 @@ namespace Hevadea.Scenes.Widgets
             {
                 IsDown = true;
 
-                _lastPoint = Rise.Pointing.GetAreaOver(Bound)[0];
+                _lastPoint = Rise.Pointing.GetPosition();
             }
 
             if (!Rise.Pointing.AreaDown(Bound) && IsDown)
@@ -112,7 +113,7 @@ namespace Hevadea.Scenes.Widgets
 
             if (Rise.Pointing.AreaDown(Bound) && IsDown)
             {
-                var newPoint = Rise.Pointing.GetAreaOver(Bound)[0];
+                var newPoint = Rise.Pointing.GetPosition();
                 var delta = _lastPoint.Y - newPoint.Y;
                 _lastPoint = newPoint;
 

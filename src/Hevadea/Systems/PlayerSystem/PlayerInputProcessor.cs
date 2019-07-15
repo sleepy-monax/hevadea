@@ -57,19 +57,6 @@ namespace Hevadea.Systems.PlayerSystem
             if (i.KeyTyped(Keys.Subtract) || i.KeyTyped(Keys.Down)) HandleInput(entity, PlayerInput.ZoomOut);
             if (i.KeyTyped(Keys.X)) HandleInput(entity, PlayerInput.AddWaypoint);
             if (i.KeyTyped(Keys.W)) HandleInput(entity, PlayerInput.DebugInspect);
-
-            // TODO: refactor
-            if (Rise.Platform.Family == PlatformFamily.Mobile && Rise.Pointing.AreaDown(Rise.Graphic.GetBound()))
-            {
-                var mousePositionOnScreen = Rise.Pointing.GetAreaOver(Rise.Graphic.GetBound())[0].ToVector2();
-                var mousePositionInWorld = g.Camera.ToWorldSpace(mousePositionOnScreen);
-                var screenCenter = Rise.Graphic.GetCenter();
-
-                if (Mathf.Distance(mousePositionOnScreen.X, mousePositionOnScreen.Y, screenCenter.X, screenCenter.Y) < Math.Min(Rise.Graphic.GetHeight(), Rise.Graphic.GetWidth()) / 2)
-                {
-                    entity.GetComponent<Move>().MoveTo(mousePositionInWorld.X, mousePositionInWorld.Y, 1f, true);
-                }
-            }
         }
 
         public void HandleInput(Entity player, PlayerInput input)

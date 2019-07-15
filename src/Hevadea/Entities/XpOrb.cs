@@ -1,6 +1,6 @@
 ﻿using Hevadea.Entities.Components.Actions;
 using Hevadea.Entities.Components.States;
-using Hevadea.Framework.Graphic;
+using Hevadea.Framework.Extension;
 using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
