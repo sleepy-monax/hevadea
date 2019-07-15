@@ -7,8 +7,8 @@ namespace Hevadea.Framework.Ressource
 {
     public class RessourceManager
     {
-        private Dictionary<string, SpriteFont> FontCache = new Dictionary<string, SpriteFont>();
-        private Dictionary<string, Texture2D> TextureCache = new Dictionary<string, Texture2D>();
+        private readonly Dictionary<string, SpriteFont> _fontCache = new Dictionary<string, SpriteFont>();
+        private readonly Dictionary<string, Texture2D> _textureCache = new Dictionary<string, Texture2D>();
 
         public SoundEffect GetSoundEffect(string name)
         {
@@ -20,8 +20,6 @@ namespace Hevadea.Framework.Ressource
 
         public Song GetSong(string name)
         {
-            // Fixme: can't load songs for some reasons
-            return null;
             if (Rise.NoGraphic) return null;
 
             Logger.Log<RessourceManager>($"Loading <Song>{name}");
@@ -32,39 +30,39 @@ namespace Hevadea.Framework.Ressource
         {
             if (Rise.NoGraphic) return null;
 
-            if (!FontCache.ContainsKey(name))
+            if (!_fontCache.ContainsKey(name))
             {
                 Logger.Log<RessourceManager>($"Loading <font>{name}");
-                FontCache.Add(name, Rise.MonoGame.Content.Load<SpriteFont>($"Fonts/{name}"));
+                _fontCache.Add(name, Rise.MonoGame.Content.Load<SpriteFont>($"Fonts/{name}"));
             }
 
-            return FontCache[name];
+            return _fontCache[name];
         }
 
         public Texture2D GetTexture(string name)
         {
             if (Rise.NoGraphic) return null;
 
-            if (!TextureCache.ContainsKey("tex:" + name))
+            if (!_textureCache.ContainsKey("tex:" + name))
             {
                 Logger.Log<RessourceManager>($"Loading <image>{name}");
-                TextureCache.Add("tex:" + name, Rise.MonoGame.Content.Load<Texture2D>($"textures/{name}"));
+                _textureCache.Add("tex:" + name, Rise.MonoGame.Content.Load<Texture2D>($"textures/{name}"));
             }
 
-            return TextureCache["tex:" + name];
+            return _textureCache["tex:" + name];
         }
 
         public Texture2D GetImage(string name)
         {
             if (Rise.NoGraphic) return null;
 
-            if (!TextureCache.ContainsKey("img:" + name))
+            if (!_textureCache.ContainsKey("img:" + name))
             {
                 Logger.Log<RessourceManager>($"Loading <image>{name}");
-                TextureCache.Add("img:" + name, Rise.MonoGame.Content.Load<Texture2D>($"Images/{name}"));
+                _textureCache.Add("img:" + name, Rise.MonoGame.Content.Load<Texture2D>($"Images/{name}"));
             }
 
-            return TextureCache["img:" + name];
+            return _textureCache["img:" + name];
         }
     }
 }
