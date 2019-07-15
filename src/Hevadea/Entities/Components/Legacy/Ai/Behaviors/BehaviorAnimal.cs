@@ -24,14 +24,9 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
             }
             else
             {
-                var dx = Rise.Rnd.NextValue(-1, 0, 1);
-                var dy = Rise.Rnd.NextValue(-1, 0, 1);
-
-                if (dx == 0)
-                {
-                    Rise.Rnd.NextValue(-1, 1);
-                }
-
+                var dx = Rise.Rnd.Pick(-1, 1);
+                var dy = Rise.Rnd.Pick(-1, 0, 1);
+                
                 var entityTilePosition = Agent.Owner.Coordinates;
                 var destination = new Coordinates(entityTilePosition.X + dx, entityTilePosition.Y + dy);
 

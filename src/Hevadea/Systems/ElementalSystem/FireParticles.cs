@@ -18,7 +18,7 @@ namespace Hevadea.Systems.ElementalSystem
         {
             return new Color2Particle
             {
-                Color = Rise.Rnd.NextValue(Color.Orange, Color.Yellow, Color.Gold, Color.White * 0.5f),
+                Color = Rise.Rnd.Pick(Color.Orange, Color.Yellow, Color.Gold, Color.White * 0.5f),
                 FadingColor = Color.Red * 0.5f,
                 Life = Rise.Rnd.NextFloat(3),
                 Size = Rise.Rnd.NextFloat(8)

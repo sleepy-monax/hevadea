@@ -53,7 +53,7 @@ namespace Hevadea.Entities.Components.Attributes
 
                         if (Rise.Rnd.NextFloat() <= 0.3f)
                         {
-                            e.GetComponent<Explode>()?.Do();
+                            e.GetComponent<Explosive>()?.Detonate();
                             e.GetComponent<Breakable>()?.Break();
                             e.GetComponent<Flammable>()?.SetInFire();
                         }

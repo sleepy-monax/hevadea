@@ -96,7 +96,7 @@ namespace Hevadea.Utils
             if (gotoCount == 0) return;
             gotoCount--;
 
-            var vecticaly = rnd.NextValue(true, false);
+            var vecticaly = rnd.Pick(true, false);
             var where = rnd.Next(vecticaly ? parent.Width / 4 : parent.Height / 4, vecticaly ? parent.Width - parent.Width / 4 : parent.Height - parent.Height / 4);
 
             parent.Split(where, vecticaly);

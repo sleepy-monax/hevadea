@@ -37,7 +37,7 @@ namespace Hevadea.Framework
         public static SceneManager Scene;
         public static UiManager Ui;
         public static RessourceManager Ressource;
-        public static FastRandom Rnd = new FastRandom();
+        public static Random Rnd = new Random();
 
         public static Config Config = new Config();
 

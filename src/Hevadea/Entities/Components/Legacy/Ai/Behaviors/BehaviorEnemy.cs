@@ -22,12 +22,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
         private Coordinates _lastTagetPosition = null;
 
         private List<Entity> _targetsOnSight;
-
-        public override void IaAborted(AgentAbortReason why)
-        {
-            base.Update(null);
-        }
-
+        
         private bool CheckLineOfSight(Coordinates coords)
         {
             bool result = true;

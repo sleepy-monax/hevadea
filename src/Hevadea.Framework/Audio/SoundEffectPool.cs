@@ -10,7 +10,7 @@ namespace Hevadea.Framework.Audio
 
         public SoundEffect PickRandom()
         {
-            return Rise.Rnd.NextValue(Sounds);
+            return Rise.Rnd.Pick(Sounds);
         }
     }
 }

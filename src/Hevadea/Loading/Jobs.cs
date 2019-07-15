@@ -87,7 +87,7 @@ namespace Hevadea.Loading
                 World = info.Generator.Generate(job)
             };
 
-            var localPlayer = new PlayerSession($"player-{Rise.Rnd.NextInt()}", Rise.Rnd.NextInt(), (Player)ENTITIES.PLAYER.Construct());
+            var localPlayer = new PlayerSession($"player-{Rise.Rnd.Next()}", Rise.Rnd.Next(), (Player)ENTITIES.PLAYER.Construct());
 
             localPlayer.Join(gameState);
             gameState.LocalPlayer = localPlayer;

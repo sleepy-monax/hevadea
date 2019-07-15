@@ -10,11 +10,11 @@ namespace Hevadea.Entities.Components.Renderer
         float _animationTime;
 
         public static readonly int[] FRAMES = { 0, 2, 1, 2 };
-        public Texture2D Texture { get; }
+        public Texture2D BaseTexture { get; }
 
-        public MobRenderer(Texture2D texture)
+        public MobRenderer(Texture2D baseTexture)
         {
-            Texture = texture;
+            BaseTexture = baseTexture;
         }
 
         public override void Render(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
@@ -32,14 +32,14 @@ namespace Hevadea.Entities.Components.Renderer
             if (entity.IsSwimming())
             {
                 spriteBatch.Draw(
-                    Texture,
+                    BaseTexture,
                     position + new Vector2(-8, -24 + (entity.IsSwimming() ? 4 : -2f)),
                     sourceRectangleShadow,
                     Color.Black * 0.5f);
             }
 
             spriteBatch.Draw(
-                Texture,
+                BaseTexture,
                 position + new Vector2(-8, -24 + (entity.IsSwimming() ? 4 : -2f)),
                 sourceRectangle,
                 Color.White);
@@ -48,7 +48,7 @@ namespace Hevadea.Entities.Components.Renderer
 
             holdedItem?.GetSprite().Draw(
                 spriteBatch,
-                new Rectangle(entity.Position.ToPoint(), new Point(16)),
+                new Rectangle(entity.Position.ToPoint() - new Point(4), new Point(8)),
                 Color.White);
         }
     }

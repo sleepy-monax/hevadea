@@ -38,7 +38,7 @@ namespace Hevadea.Systems.ElementalSystem
                     if (v != entity && Rise.Rnd.NextDouble() < 0.005)
                     {
                         v.GetComponent<Flammable>()?.SetInFire();
-                        v.GetComponent<Explode>()?.Do();
+                        v.GetComponent<Explosive>()?.Detonate();
                     }
                 }
 

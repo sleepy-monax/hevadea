@@ -48,7 +48,6 @@
     <Compile Include="Development\DebugOverlay.cs" />
     <Compile Include="Development\GCListener.cs" />
     <Compile Include="Extension\DictionaryExtension.cs" />
-    <Compile Include="Extension\FastRandomExtension.cs" />
     <Compile Include="Extension\GameTimeExtension.cs" />
     <Compile Include="Extension\LinqExtension.cs" />
     <Compile Include="Extension\ListExtension.cs" />
@@ -117,7 +116,6 @@
     <Compile Include="Utils\VectorUtils.cs" />
     <Compile Include="Utils\PerlinNoise.cs" />
     <Compile Include="Utils\RectangleF.cs" />
-    <Compile Include="Utils\FastRandom.cs" />
     <Compile Include="UI\Style.cs" />
     <Compile Include="Utils\RandomUtils.cs" />
     <Compile Include="Utils\CircleF.cs" />
