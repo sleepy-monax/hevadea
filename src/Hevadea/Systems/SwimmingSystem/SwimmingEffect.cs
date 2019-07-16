@@ -17,7 +17,7 @@ namespace Hevadea.Systems
 
         public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
-            if (entity.IsSwimming())
+            if (entity.IsSwimming() && entity.GetComponent<Swim>().ShowAnimation)
             {
                 var frame = (int)(gameTime.TotalGameTime.TotalSeconds * 4) % 4;
 

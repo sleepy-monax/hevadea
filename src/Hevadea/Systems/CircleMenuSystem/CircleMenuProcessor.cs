@@ -23,12 +23,14 @@ namespace Hevadea.Systems.CircleMenuSystem
 
             if (Rise.Input.KeyTyped(Keys.U))
             {
-                menu.SelectedItem = MathHelper.Clamp(menu.SelectedItem - 1, 0, inventory.Content.GetStackCount() - 1);
+                menu.SelectedItem = (menu.SelectedItem - 1) % inventory.Content.GetStackCount();
+                if (menu.SelectedItem < 0) menu.SelectedItem = inventory.Content.GetStackCount() - 1;
+
                 menu.Shown();
             }
             else if (Rise.Input.KeyTyped(Keys.I))
             {
-                menu.SelectedItem = MathHelper.Clamp(menu.SelectedItem + 1, 0, inventory.Content.GetStackCount() - 1);
+                menu.SelectedItem = (menu.SelectedItem + 1) % inventory.Content.GetStackCount();
                 menu.Shown();
             }
 

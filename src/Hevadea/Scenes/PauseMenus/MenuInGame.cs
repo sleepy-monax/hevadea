@@ -31,7 +31,7 @@ namespace Hevadea.Scenes.Menus
 
             var minimapPanel = new WidgetFancyPanel()
             {
-                Enabled = true,
+                Enabled = false,
                 Anchor = Anchor.TopRight,
                 Origine = Anchor.TopRight,
                 UnitBound = new Rectangle(0, 0, 320, 320),

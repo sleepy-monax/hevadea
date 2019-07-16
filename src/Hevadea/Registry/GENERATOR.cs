@@ -24,7 +24,7 @@ namespace Hevadea.Registry
             FLAT_LEVEL = new LevelGenerator
             {
                 Id = 0,
-                Name = "flat_overworld",
+                Name = "overworld",
                 Properties = LEVELS.SURFACE,
                 Features =
                 {

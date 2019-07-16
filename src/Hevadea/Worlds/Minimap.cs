@@ -13,11 +13,25 @@ namespace Hevadea.Worlds
         public int X { get; set; }
         public int Y { get; set; }
         public int Icon { get; set; }
+
+        public string Name { get; set; }
+
+        public MinimapWaypoint()
+        {
+        }
+
+        public MinimapWaypoint(Coordinates coordinates, int icon, string name)
+        {
+            X = coordinates.X;
+            Y = coordinates.Y;
+            Icon = icon;
+            Name = name;
+        }
     }
 
     public class Minimap
     {
-        Level _level;
+        private Level _level;
 
         public Texture2D Texture { get; private set; }
 
@@ -39,7 +53,6 @@ namespace Hevadea.Worlds
             Texture.SetPixel(coords.X, coords.Y, color);
         }
 
-        // TODO: Finalize the support of the nographic mod of the engine.
         public void LoadFromFile(string fileName)
         {
             var fs = new FileStream(fileName, FileMode.Open);

@@ -20,7 +20,7 @@ namespace Hevadea.Scenes.Widgets
         {
             if (Content != null)
             {
-                Content.UnitBound = Padding.Apply(UnitBound.Padding(8));
+                Content.UnitBound = Padding.Apply(UnitBound.Padding(9));
                 Content.RefreshLayout();
             }
         }

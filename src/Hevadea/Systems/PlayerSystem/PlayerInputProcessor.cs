@@ -7,6 +7,7 @@ using Hevadea.Framework;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Utils;
 using Hevadea.Scenes.Menus;
+using Hevadea.Scenes.PauseMenus;
 using Hevadea.Systems.InventorySystem;
 using Hevadea.Utils;
 using Hevadea.Worlds;
@@ -125,8 +126,10 @@ namespace Hevadea.Systems.PlayerSystem
                     break;
 
                 case PlayerInput.AddWaypoint:
-                    var pos = player.Coordinates;
-                    player.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
+                    game.CurrentMenu = new MenuMinimapWaypoint(game);
+
+                    // var pos = player.Coordinates;
+                    // player.Level.Minimap.Waypoints.Add(new MinimapWaypoint { X = pos.X, Y = pos.Y, Icon = 0 });
                     break;
 
                 case PlayerInput.DebugInspect:

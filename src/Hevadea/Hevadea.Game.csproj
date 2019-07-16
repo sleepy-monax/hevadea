@@ -113,6 +113,7 @@
     <Compile Include="Entities\Components\Legacy\Dropable.cs" />
     <Compile Include="Entities\Components\Legacy\Inventory.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
+    <Compile Include="Scenes\PauseMenus\MenuMinimapWaypoint.cs" />
     <Compile Include="Systems\EntitySystem.cs" />
     <Compile Include="Systems\HealthSystem\Extension.cs" />
     <Compile Include="Systems\HealthSystem\HealthBarRenderer.cs" />

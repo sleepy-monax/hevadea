@@ -9,6 +9,8 @@ namespace Hevadea.Entities.Components.States
     public class Swim : EntityComponent, IEntityComponentUpdatable
     {
         public bool IsSwiming { get; set; } = false;
+
+        public bool ShowAnimation { get; set; } = true;
         public bool WasSwiming { get; set; } = false;
         public bool IsSwimingPainfull { get; set; } = true;
 

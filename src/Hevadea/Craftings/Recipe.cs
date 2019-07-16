@@ -38,12 +38,14 @@ namespace Hevadea.Craftings
             return result;
         }
 
-        public virtual bool Craft(ItemStorage i)
+        public virtual bool Craft(ItemStorage inventory) => Craft(inventory, inventory);
+
+        public virtual bool Craft(ItemStorage materialStorage, ItemStorage destinationStorage)
         {
-            if (CanBeCrafted(i) && i.GetFreeSpace() >= Quantity)
+            if (CanBeCrafted(materialStorage) && destinationStorage.GetFreeSpace() >= Quantity)
             {
-                i.Add(Result, Quantity);
-                foreach (var c in Costs) i.Remove(c.Item, c.Count);
+                destinationStorage.Add(Result, Quantity);
+                foreach (var c in Costs) materialStorage.Remove(c.Item, c.Count);
 
                 return true;
             }

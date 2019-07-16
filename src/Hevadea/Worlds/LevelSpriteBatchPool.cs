@@ -8,23 +8,18 @@ namespace Hevadea.Worlds
     {
         public SpriteBatch Tiles { get; }
         public SpriteBatch Entities { get; }
-
         public SpriteBatch Overlay { get; }
         public SpriteBatch Lights { get; }
         public SpriteBatch Shadows { get; }
-
         public SpriteBatch Generic { get; }
 
         public LevelSpriteBatchPool()
         {
             Tiles = Rise.Graphic.CreateSpriteBatch();
-
             Entities = Rise.Graphic.CreateSpriteBatch();
-
             Overlay = Rise.Graphic.CreateSpriteBatch();
             Lights = Rise.Graphic.CreateSpriteBatch();
             Shadows = Rise.Graphic.CreateSpriteBatch();
-
             Generic = Rise.Graphic.CreateSpriteBatch();
         }
 
@@ -32,10 +27,9 @@ namespace Hevadea.Worlds
         {
             Matrix transform = camera.GetTransform();
 
-            Tiles.Begin(SpriteSortMode.Texture, samplerState: SamplerState.PointClamp, transformMatrix: transform);
+            Tiles.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
             Entities.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
             Overlay.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
-
             Lights.Begin(SpriteSortMode.Deferred, BlendState.Additive, SamplerState.LinearClamp, transformMatrix: transform);
             Shadows.Begin(SpriteSortMode.Deferred, samplerState: SamplerState.PointClamp, transformMatrix: transform);
         }
