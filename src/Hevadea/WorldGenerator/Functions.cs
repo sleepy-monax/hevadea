@@ -11,7 +11,7 @@ namespace Hevadea.WorldGenerator
         {
             return new GeneratorFunctions((x, y, gen, levelgen, level) =>
             {
-                var ground = gen.Perlin.OctavePerlin(x / 50d, y / 50d, 0, 10, 0.5);
+                var ground = gen.Noise.Generate(x / 50d, y / 50d, 0, 10, 0.5);
                 return ground * Mathf.Min(1, Mathf.Sin((float)x / gen.Size * Mathf.PI) * Mathf.Sin((float)y / gen.Size * Mathf.PI) * 4);
             });
         }
@@ -25,7 +25,7 @@ namespace Hevadea.WorldGenerator
         {
             return new GeneratorFunctions((x, y, gen, levelgen, level) =>
             {
-                return gen.Perlin.OctavePerlin((x + offsetX) / scretch, (y + offsetY) / scretch, 0, octaves, persistance);
+                return gen.Noise.Generate((x + offsetX) / scretch, (y + offsetY) / scretch, 0, octaves, persistance);
             });
         }
 

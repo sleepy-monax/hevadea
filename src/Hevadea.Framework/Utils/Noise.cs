@@ -3,11 +3,11 @@ using System;
 
 namespace Hevadea.Framework.Utils
 {
-    public class PerlinNoise
+    public class Noise
     {
         private readonly int[] _permutation;
 
-        public PerlinNoise(int seed)
+        public Noise(int seed)
         {
             _permutation = new int[512];
             var permutation = new int[256];
@@ -17,22 +17,22 @@ namespace Hevadea.Framework.Utils
                 permutation[i] = i;
             }
 
+            new Random(seed).Shuffle(permutation);
+
             for (int x = 0; x < 512; x++)
             {
                 _permutation[x] = permutation[x % 256];
             }
-
-            new Random(seed).Shuffle(_permutation);
         }
 
-        public double OctavePerlin(double x, double y, double z, int octaves, double persistence)
+        public double Generate(double x, double y, double z, int octaves, double persistence)
         {
             double total = 0;
             double frequency = 1;
             double amplitude = 1;
             for (int i = 0; i < octaves; i++)
             {
-                total += Perlin(x * frequency, y * frequency, z * frequency) * amplitude;
+                total += Generate(x * frequency, y * frequency, z * frequency) * amplitude;
 
                 amplitude *= persistence;
                 frequency *= 2;
@@ -41,7 +41,7 @@ namespace Hevadea.Framework.Utils
             return total;
         }
 
-        public double Perlin(double x, double y, double z)
+        public double Generate(double x, double y, double z)
         {
             int xi = (int)x & 255; // Calculate the "unit cube" that the point asked will be located in
             int yi = (int)y & 255; // The left bound is ( |_x_|,|_y_|,|_z_| ) and the right bound is that

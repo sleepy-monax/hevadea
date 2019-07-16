@@ -13,14 +13,14 @@ namespace Hevadea.WorldGenerator
         public int Seed { get; set; } = 0;
         public int Size { get; set; } = 256;
 
-        public PerlinNoise Perlin { get; private set; }
+        public Noise Noise { get; private set; }
         public Random Random { get; private set; }
 
         public World Generate(Job job)
         {
             var w = new World();
             Random = new Random(Seed);
-            Perlin = new PerlinNoise(Seed);
+            Noise = new Noise(Seed);
 
             foreach (var levelGenerator in LevelsGenerators)
             {
@@ -30,9 +30,9 @@ namespace Hevadea.WorldGenerator
 
                 for (int i = 0; i < levelGenerator.Features.Count; i++)
                 {
-                    var f = levelGenerator.Features[i];
+                    var generatorFeature = levelGenerator.Features[i];
                     job.Report(i / (float)levelGenerator.Features.Count);
-                    f.Apply(this, levelGenerator, level);
+                    generatorFeature.Apply(this, levelGenerator, level);
                 }
 
                 w.AddLevel(level);
