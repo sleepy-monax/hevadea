@@ -1,25 +1,30 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace TexPacker
 {
     public struct Sprite
     {
-        public SpriteAtlas Atlas { get; set; }
-        public string Path { get; }
+        [IgnoreDataMember]
+        public SpriteAtlas Atlas { get; }
+
+        [IgnoreDataMember]
+        public string Name { get; }
 
         public int X { get; }
         public int Y { get; }
         public int Width { get; }
         public int Height { get; }
 
-        public Sprite(SpriteAtlas atlas, string path, int x, int y, int width, int height) : this()
+        public Sprite(SpriteAtlas atlas, string Name, int x, int y, int width, int height) : this()
         {
             Atlas = atlas;
-            Path = path;
+            this.Name = Name;
 
             X = x;
             Y = y;
+
             Width = width;
             Height = height;
         }

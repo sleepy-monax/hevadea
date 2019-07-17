@@ -1,99 +1,129 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace TexPacker
 {
     public class SpriteAtlas
     {
-        Bitmap _bitmap;
-        Graphics _graphic;
-        Dictionary<string, Sprite> _sprites;
-        bool[,] _freeArea;
+        public const int CELL_SIZE = 8;
 
-        public Sprite this[string name] { get => _sprites[name]; }
+        public Bitmap Bitmap { get; }
+        public Dictionary<string, Sprite> Sprites { get; }
+        public Sprite this[string name] { get => Sprites[name]; }
+
+        private Graphics _graphic;
+        private bool[,] _freeArea;
 
         public SpriteAtlas(int width, int height)
         {
-            _sprites = new Dictionary<string, Sprite>();
-            _bitmap  = new Bitmap(width, height);
-            _graphic = Graphics.FromImage(_bitmap);
-            _freeArea = new bool[width / 16, height / 16];
+            Sprites = new Dictionary<string, Sprite>();
+            Bitmap  = new Bitmap(width, height);
+
+            _graphic = Graphics.FromImage(Bitmap);
+            _freeArea = new bool[width / CELL_SIZE, height / CELL_SIZE];
         }
 
         public List<Sprite> InsertSprites(string path)
         {
+            Console.WriteLine("Loading sprites from: " + path);
+
+            var sw = new Stopwatch();
+            sw.Start();
+
             var files = Directory.GetFiles(path, "*.png", SearchOption.AllDirectories);
             var sprites = new List<Sprite>();
 
+            var bitmaps = new Dictionary<string, Bitmap>();
+
             foreach (var file in files)
             {
-                InsertSprite(file.Replace(path, ""), new Bitmap(file));
+                bitmaps.Add(file, new Bitmap(file));
             }
+
+            sw.Stop();
+            Console.WriteLine("Bitmaps loaded from: " + path + " in " + sw.ElapsedMilliseconds + "ms");
+            sw.Restart();
+
+            var keys = bitmaps.Keys.ToList();
+
+            keys.Sort((a, b) => 
+            {
+                var sizeA = bitmaps[a].Width * bitmaps[a].Height;
+                var sizeB = bitmaps[b].Width * bitmaps[b].Height;
+
+                return sizeA.CompareTo(sizeB);
+            });
+
+            keys.Reverse();
+
+            foreach (var k in keys)
+            {
+                var spriteName = k.Replace(path + "\\", "").Replace(".png", "");
+                // Console.WriteLine($"[{keys.IndexOf(k) + 1, 3}/{keys.Count}] {spriteName} from {k}");
+                InsertSprite(spriteName, bitmaps[k]);
+            }
+
+            sw.Stop();
+            Console.WriteLine("Sprites Layout from:" + path + " done in " + sw.ElapsedMilliseconds+"ms");
 
             return sprites;
         }
 
-        Point? GetPosition(int width, int height) 
+        Point GetPosition(int width, int height) 
         {
-            for (int x = 0; x < _bitmap.Width / 16; x++)
+            for (int y = 0; y < Bitmap.Height / CELL_SIZE; y++)
             {
-                for (int y = 0; y < _bitmap.Height / 16; y++)
+                for (int x = 0; x < Bitmap.Width / CELL_SIZE; x++)
                 {
                     var isOk = true;
 
-                    for (int xx = 0; xx < width / 16; xx++)
+                    if (!_freeArea[x, y] &&
+                        x + Math.Max(1, width / CELL_SIZE) <= Bitmap.Width / CELL_SIZE &&
+                        y + Math.Max(1, width / CELL_SIZE) <= Bitmap.Height / CELL_SIZE)
                     {
-                        for (int yy = 0; yy < height / 16; yy++)
+                        for (int xx = 0; xx < Math.Max(1, width / CELL_SIZE); xx++)
                         {
-                            isOk &= !_freeArea[x, y];
+                            for (int yy = 0; yy < Math.Max(1, height / CELL_SIZE); yy++)
+                            {
+                                isOk = isOk && !_freeArea[x + xx, y + yy];
+                            }
                         }
+                    }
+                    else
+                    {
+                        isOk = false;
                     }
 
                     if (isOk) 
                     {
-                        for (int xx = 0; xx < width / 16; xx++)
+                        for (int xx = 0; xx < Math.Max(1, width / CELL_SIZE); xx++)
                         {
-                            for (int yy = 0; yy < height / 16; yy++)
+                            for (int yy = 0; yy < Math.Max(1, height / CELL_SIZE); yy++)
                             {
-                                _freeArea[x, y] = true;
+                                _freeArea[x + xx, y + yy] = true;
                             }
                         }
 
-                        return new Point(x * 16, y * 16);
+                        return new Point(x * CELL_SIZE, y * CELL_SIZE);
                     }
                 }
             }
 
-            return null;
+            return Point.Empty;
         }
 
-        public Sprite? InsertSprite(string name, Bitmap sprite)
+        public void InsertSprite(string name, Bitmap bitmap)
         {
-            Console.WriteLine($"Loading sprite '{name}'...");
+            var position = GetPosition(bitmap.Width, bitmap.Height);
+            var sprite = new Sprite(this, name, position.X, position.Y, bitmap.Width, bitmap.Height);
+            Sprites.Add(name, sprite);
 
-            var p = GetPosition(sprite.Width, sprite.Height) ?? new Point(-1, -1);
-
-            // Blit the sprite
-            if (p.X != -1 && p.Y != -1) 
-            {
-                var s = new Sprite(this, name, p.X, p.Y, sprite.Width, sprite.Height );
-
-                _graphic.DrawImageUnscaled(sprite, p);
-                _sprites.Add(name, s);
-
-                return s;
-            }
-
-            Console.WriteLine("lol");
-            return null;
-        }
-
-        public Bitmap SaveImage()
-        {
-            return _bitmap.Clone(new Rectangle(0, 0, _bitmap.Width, _bitmap.Height), PixelFormat.DontCare);
+            _graphic.DrawImageUnscaled(bitmap, position);
         }
     }
 }

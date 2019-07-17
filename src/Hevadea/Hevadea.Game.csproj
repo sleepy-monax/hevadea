@@ -115,7 +115,6 @@
     <Compile Include="Registry\SYSTEMS.cs" />
     <Compile Include="Scenes\PauseMenus\MenuMinimapWaypoint.cs" />
     <Compile Include="Systems\EntitySystem.cs" />
-    <Compile Include="Systems\HealthSystem\Extension.cs" />
     <Compile Include="Systems\HealthSystem\HealthBarRenderer.cs" />
     <Compile Include="Systems\MinimapSystem\RevealProcessor.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />

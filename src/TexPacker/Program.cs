@@ -1,17 +1,34 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace TexPacker
 {
-    class MainClass
+    public static class MainClass
     {
         [STAThread]
         public static void Main(string[] args)
         {
-            Console.ReadLine();
-            string path = "/home/nicolas/Bureau/assets/";
-            var spriteAtlas = new SpriteAtlas(1024, 1024);
+            var fbd = new FolderBrowserDialog();
+            fbd.ShowDialog();
+            var path = fbd.SelectedPath; // "C:\\Users\\VAN BOSSUYT Nicolas\\source\\repos\\hevadea\\assets";
+
+            var spriteAtlas = new SpriteAtlas(512, 512);
             spriteAtlas.InsertSprites(path);
-            spriteAtlas.SaveImage().Save("out.png");
+
+            var frm = new Form
+            {
+                ClientSize = new Size(512, 512),
+                FormBorderStyle = FormBorderStyle.FixedToolWindow,
+                BackgroundImage = spriteAtlas.Bitmap,
+                BackColor = Color.DarkGreen,
+            };
+            
+            Application.EnableVisualStyles();
+            Application.Run(frm);
+
             Console.ReadLine();
         }
     }
