@@ -1,7 +1,6 @@
 ﻿using Hevadea.Entities.Components.States;
 using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.Utils;
 using Hevadea.Tiles.Components;
 
 namespace Hevadea.Entities.Components.Attributes

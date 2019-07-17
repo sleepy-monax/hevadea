@@ -1,15 +1,13 @@
 ﻿using Hevadea.Framework.Extension;
-using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Platform;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
 
-namespace Hevadea.Framework.UI.Widgets
+namespace Hevadea.Framework.UI
 {
-    public class TextBox : Widget
+    public class WidgetTextBox : Widget
     {
         // FIXME: The cursor get out of bound of the widget.
         int _cursorIndex = 0;
@@ -35,7 +33,7 @@ namespace Hevadea.Framework.UI.Widgets
             set => _cursorIndex = Mathf.Clamp(value, 0, Text.Length);
         }
 
-        public TextBox()
+        public WidgetTextBox()
         {
             CanGetFocus = true;
             Rise.Platform.TextInput += OnTextInput;

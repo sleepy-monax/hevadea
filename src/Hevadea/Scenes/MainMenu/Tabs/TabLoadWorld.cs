@@ -1,7 +1,5 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
 using System.IO;
@@ -24,19 +22,19 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(2, 2));
 
-            var title = new Label
+            var title = new WidgetLabel
             {
                 Text = "Load World",
                 Font = Ressources.FontAlagard,
                 Dock = Dock.Top
             };
 
-            var saveList = new ListWidget()
+            var saveList = new WidgetList()
             {
                 Dock = Dock.Fill
             };
 
-            var loadButton = new Button
+            var loadButton = new WidgetButton
             {
                 Text = "Load",
                 Dock = Dock.Bottom
@@ -50,7 +48,8 @@ namespace Hevadea.Scenes.MainMenu.Tabs
                 }
             });
 
-            Content = new Container(title, loadButton, saveList);
+            Content = new LayoutDock();
+            Content.AddChilds(title, loadButton, saveList);
             Content.Padding = new Margins(16);
 
             var s = Directory.GetDirectories(GamePaths.SavesFolder);

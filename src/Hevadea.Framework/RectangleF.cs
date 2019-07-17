@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Framework
 {
     public struct RectangleF
     {

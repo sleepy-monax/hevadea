@@ -10,7 +10,7 @@ namespace Hevadea.Loading
     {
         /* --- Arguments --------------------------------------------------- */
 
-        public class ConnectToServerInfo : JobArguments
+        public class ConnectToServerInfo : IJobArguments
         {
             public int Port { get; }
             public string Address { get; }
@@ -36,7 +36,7 @@ namespace Hevadea.Loading
             }
         }
 
-        public class WorldGeneratorInfo : JobArguments
+        public class WorldGeneratorInfo : IJobArguments
         {
             public Generator Generator { get; }
             public int Seed { get; }
@@ -50,7 +50,7 @@ namespace Hevadea.Loading
             }
         }
 
-        public class WorldLoadInfo : JobArguments
+        public class WorldLoadInfo : IJobArguments
         {
             public string Path { get; }
 
@@ -60,7 +60,7 @@ namespace Hevadea.Loading
             }
         }
 
-        public class WorldSaveInfo : JobArguments
+        public class WorldSaveInfo : IJobArguments
         {
             public GameState GameState { get; }
             public string Path { get; }

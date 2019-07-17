@@ -4,10 +4,8 @@ using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Input;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.Ressource;
-using Hevadea.Framework.Scening;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -22,12 +20,10 @@ namespace Hevadea.Framework
         public static ConcurrentQueue<Job> BackgroundThread = new ConcurrentQueue<Job>();
         public static ConcurrentQueue<Job> GameLoopThread = new ConcurrentQueue<Job>();
 
-        // Components
         public static Controller Controller;
-
         public static Pointing Pointing;
-
         public static LegacyInputManager Input;
+
         public static GraphicManager Graphic;
         public static SoundManager Sound;
 
@@ -69,7 +65,7 @@ namespace Hevadea.Framework
         {
             _initializeAction = initializeAction;
             _startScene = startScene;
-            GCListener.Start();
+            //GCListener.Start();
             MonoGame.Run();
         }
 

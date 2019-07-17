@@ -1,8 +1,6 @@
-﻿using System.IO;
-
+﻿using System;
+using System.IO;
 using Hevadea.Framework;
-using Hevadea.Framework.Platform;
-using Hevadea.Framework.Scening;
 using Hevadea.Framework.Threading;
 using Hevadea.Loading;
 using Hevadea.Scenes;
@@ -21,7 +19,14 @@ namespace Hevadea
 
         public static void SetLastGame(string path)
         {
-            File.WriteAllText(GamePaths.LastGameFile, path);
+            try
+            {
+                File.WriteAllText(GamePaths.LastGameFile, path);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex);
+            }
         }
 
         public static string GetLastGame()

@@ -5,8 +5,6 @@ using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
@@ -49,18 +47,18 @@ namespace Hevadea.Scenes.Menus.Tabs
 
     public class CraftingTab : InventoryTab
     {
-        public ListWidget CraftingList { get; }
+        public WidgetList CraftingList { get; }
 
         public CraftingTab(GameState gameState, List<Recipe> recipies = null) : base(gameState)
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(4, 2));
-            CraftingList = new ListWidget
+            CraftingList = new WidgetList
             {
                 Dock = Dock.Fill,
                 ItemHeight = 64,
             };
 
-            var craftButton = new Button
+            var craftButton = new WidgetButton
             {
                 Text = "Craft",
                 Dock = Dock.Bottom,
@@ -73,12 +71,12 @@ namespace Hevadea.Scenes.Menus.Tabs
                 CraftingList.AddItem(new CraftingListItem(recipe, GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content));
             }
 
-            Content = new Container()
+            Content = new LayoutDock()
             {
                 Padding = new Margins(16),
                 Childrens =
                 {
-                    new Label {Text = "Crafting", Font = Ressources.FontAlagard, Dock = Dock.Top},
+                    new WidgetLabel {Text = "Crafting", Font = Ressources.FontAlagard, Dock = Dock.Top},
                     craftButton, CraftingList,
                 }
             };

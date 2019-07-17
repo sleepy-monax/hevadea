@@ -1,7 +1,5 @@
 ﻿using Hevadea.Entities.Components.Attributes;
 using Hevadea.Framework;
-using Hevadea.Framework.Utils;
-using Hevadea.Tiles;
 using Hevadea.Tiles.Components;
 using Hevadea.Utils;
 using Microsoft.Xna.Framework;
@@ -90,22 +88,22 @@ namespace Hevadea.Entities.Components.Actions
 
                     var eHitbox = eColider.GetHitBox();
 
-                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height))
+                    if (Colision.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, 0f, sy);
                         _moveTick = Rise.MonoGame.Ticks;
                     }
 
                     eHitbox = eColider.GetHitBox();
-                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
+                    if (Colision.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
 
-                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height))
+                    if (Colision.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height))
                     {
                         e.GetComponent<Pushable>()?.Push(Owner, sx, 0f);
                         _moveTick = Rise.MonoGame.Ticks;
                     }
                     eHitbox = eColider.GetHitBox();
-                    if (ColisionUtils.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
+                    if (Colision.Colinding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
                 }
 
                 var entityTilePosition = Owner.Coordinates;
@@ -120,8 +118,8 @@ namespace Hevadea.Entities.Components.Actions
                         if (!isPassableTile)
                         {
                             var tileRect = tile.ToRectangle();
-                            if (ColisionUtils.Colinding(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
-                            if (ColisionUtils.Colinding(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
+                            if (Colision.Colinding(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X, ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height)) { sy = 0; }
+                            if (Colision.Colinding(tileRect.X, tileRect.Y, tileRect.Width, tileRect.Height, ownerhitbox.X + sx, ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height)) { sx = 0; }
                         }
                     }
                 }

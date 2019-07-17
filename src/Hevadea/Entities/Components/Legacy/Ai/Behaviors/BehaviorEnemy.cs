@@ -1,7 +1,7 @@
 ﻿using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components.Ai.Actions;
+using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.Utils;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +15,7 @@ namespace Hevadea.Entities.Components.Ai.Behaviors
         public float AgroRange { get; set; } = 5f;
         public float FollowRange { get; set; } = 7f;
         public float MoveSpeedAgro { get; set; } = 0.5f;
-        public BlueprintGroupe<EntityBlueprint> Targets { get; set; } = new BlueprintGroupe<EntityBlueprint>("Targets") { Members = { ENTITIES.PLAYER } };
+        public Groupe<EntityBlueprint> Targets { get; set; } = new Groupe<EntityBlueprint>("Targets") { Members = { ENTITIES.PLAYER } };
 
         public Entity Target { get; private set; } = null;
         private Coordinates _lastTagetPosition = null;

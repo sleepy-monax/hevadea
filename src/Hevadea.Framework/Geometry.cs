@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Framework
 {
     public static class Geometry
     {

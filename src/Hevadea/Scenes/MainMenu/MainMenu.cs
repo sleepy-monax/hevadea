@@ -2,10 +2,7 @@
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
-using Hevadea.Framework.Scening;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework.UI;
 using Hevadea.Scenes.MainMenu.Tabs;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -18,7 +15,7 @@ namespace Hevadea.Scenes.MainMenu
         {
             Rise.Sound.Play(Ressources.Theme0);
 
-            var title = new Label
+            var title = new WidgetLabel
             {
                 Text = Game.Title,
                 Anchor = Anchor.Center,
@@ -28,7 +25,7 @@ namespace Hevadea.Scenes.MainMenu
                 TextSize = 3f,
             };
 
-            var subTitle = new Label
+            var subTitle = new WidgetLabel
             {
                 Text = Game.SubTitle,
                 Anchor = Anchor.Center,
@@ -39,7 +36,7 @@ namespace Hevadea.Scenes.MainMenu
                 TextSize = 1f,
             };
 
-            var copyright = new Label
+            var copyright = new WidgetLabel
             {
                 Text = "© 2017-2019 N. VAN BOSSUYT",
                 Anchor = Anchor.Bottom,
@@ -48,7 +45,7 @@ namespace Hevadea.Scenes.MainMenu
                 TextSize = 1f
             };
 
-            var continueButton = new Button
+            var continueButton = new WidgetButton
             {
                 Text = "Continue",
                 Anchor = Anchor.Center,
@@ -58,7 +55,7 @@ namespace Hevadea.Scenes.MainMenu
             }
             .RegisterMouseClickEvent((sender) => Game.Play(Game.GetLastGame()));
 
-            var version = new Label
+            var version = new WidgetLabel
             {
                 Text = $"{Game.Title} {Game.Version}",
                 Anchor = Anchor.BottomRight,
@@ -73,7 +70,13 @@ namespace Hevadea.Scenes.MainMenu
             var homeTab = new Tab
             {
                 Icon = new Sprite(Ressources.TileIcons, new Point(0, 4)),
-                Content = new Container(title, subTitle, copyright, Game.GetLastGame() != null ? continueButton : null)
+                Content = new LayoutDock()
+                {
+                    Childrens =
+                    {
+                        title, subTitle, copyright, Game.GetLastGame() != null ? continueButton : null
+                    }
+                }
             };
 
             var menu = new WidgetTabContainer
@@ -90,7 +93,7 @@ namespace Hevadea.Scenes.MainMenu
                     new TabOption(),
                 }
             };
-            Container = new Container(menu, version);
+            Container = new LayoutDock().AddChilds(menu, version);
         }
 
         public override void Unload()

@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.Xna.Framework;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Framework
 {
     public struct CircleF
     {

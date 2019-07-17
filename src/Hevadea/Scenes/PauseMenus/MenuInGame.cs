@@ -3,8 +3,6 @@ using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Extension;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -15,7 +13,7 @@ namespace Hevadea.Scenes.Menus
     {
         public MenuInGame(GameState gameState) : base(gameState)
         {
-            var btnMinimap = new SpriteButton
+            var btnMinimap = new WidgetSprite
             {
                 Anchor = Anchor.TopRight,
                 Origine = Anchor.TopRight,
@@ -46,13 +44,13 @@ namespace Hevadea.Scenes.Menus
                 UnitOffset = new Point(0, -16)
             };
 
-            Content = new Container
+            Content = new LayoutDock
             {
                 Childrens =
                 {
                     playerStats, minimapPanel, btnMinimap, hotBar,
 
-                    new Button
+                    new WidgetButton
                         {
                             Text = "Inventory",
                             Origine = Anchor.BottomLeft,

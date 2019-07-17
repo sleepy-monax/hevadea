@@ -3,7 +3,6 @@ using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -16,13 +15,13 @@ namespace Hevadea.Scenes.Widgets
     {
         public bool Transparent { get; set; } = false;
         public Sprite Icon { get; set; }
-        public Widget Content { get; set; }
+        public Layout Content { get; set; }
         public Color Color { get; set; } = Color.White;
     }
 
     public enum TabAnchore { Top = 0, Bottom = 1, Right = 2, Left = 3, None }
 
-    public class WidgetTabContainer : Container
+    public class WidgetTabContainer : Widget
     {
         private Sprite _background;
         private Sprite _tab;
@@ -49,10 +48,8 @@ namespace Hevadea.Scenes.Widgets
             _tabSelected = new Sprite(Ressources.TileGui, new Point(0, 2), new Point(2, 2));
         }
 
-        public override void Layout()
+        public override void RefreshLayout()
         {
-            base.Layout();
-
             foreach (var t in Tabs)
             {
                 if (t.Content != null)
@@ -112,8 +109,6 @@ namespace Hevadea.Scenes.Widgets
 
             if (SelectedTab == null && Tabs.Count > 0) SelectedTab = Tabs.First();
             SelectedTab?.Content?.UpdateInternal(gameTime);
-
-            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

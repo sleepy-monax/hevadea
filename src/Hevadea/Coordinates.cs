@@ -1,5 +1,5 @@
 ﻿using Hevadea.Entities;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework;
 using Hevadea.Utils;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
@@ -43,7 +43,7 @@ namespace Hevadea
 
         public bool IsColliding(Entity e, int width, int height)
         {
-            return ColisionUtils.Colinding(
+            return Colision.Colinding(
                 X * Game.Unit,
                 Y * Game.Unit,
                 Game.Unit,
@@ -60,7 +60,7 @@ namespace Hevadea
 
         public bool IsColliding(float x, float y, int width, int height)
         {
-            return ColisionUtils.Colinding(X * Game.Unit,
+            return Colision.Colinding(X * Game.Unit,
                 Y * Game.Unit,
                 Game.Unit, Game.Unit,
                 x,

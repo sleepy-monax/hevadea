@@ -1,5 +1,4 @@
 ﻿using Hevadea.Framework.Extension;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace Hevadea.Framework.Graphic.Particles
 
         public void EmiteAtAngle(Particle particle, float x, float y, float angle, float acceleration)
         {
-            var vec = VectorUtils.RadianToVector2(angle) * acceleration;
+            var vec = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * acceleration;
             EmiteAt(particle, x, y, vec.X, vec.Y);
         }
 

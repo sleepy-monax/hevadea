@@ -7,9 +7,9 @@ namespace Hevadea.Registry
 {
     public static class ENTITIES
     {
-        public static BlueprintGroupe<EntityBlueprint> GROUPE_CREATURE;
-        public static BlueprintGroupe<EntityBlueprint> GROUPE_TREE;
-        public static BlueprintGroupe<EntityBlueprint> GROUPE_SAVE_EXCUDED;
+        public static Groupe<EntityBlueprint> GROUPE_CREATURE;
+        public static Groupe<EntityBlueprint> GROUPE_TREE;
+        public static Groupe<EntityBlueprint> GROUPE_SAVE_EXCUDED;
 
         public static EntityBlueprint ITEM;
 
@@ -51,9 +51,9 @@ namespace Hevadea.Registry
             TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
             ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<Zombie>("zombie"));
 
-            GROUPE_CREATURE = new BlueprintGroupe<EntityBlueprint>("creature") { Members = { CHIKEN, FISH, PLAYER, ZOMBIE } };
-            GROUPE_TREE = new BlueprintGroupe<EntityBlueprint>("tree") { Members = { TREE } };
-            GROUPE_SAVE_EXCUDED = new BlueprintGroupe<EntityBlueprint>("save_excluded") { Members = { PLAYER } };
+            GROUPE_CREATURE = new Groupe<EntityBlueprint>("creature", CHIKEN, FISH, PLAYER, ZOMBIE);
+            GROUPE_TREE = new Groupe<EntityBlueprint>("tree",  TREE);
+            GROUPE_SAVE_EXCUDED = new Groupe<EntityBlueprint>("save_excluded", PLAYER);
         }
 
         private static Dictionary<string, EntityBlueprint> _blueprintLibrary = new Dictionary<string, EntityBlueprint>();

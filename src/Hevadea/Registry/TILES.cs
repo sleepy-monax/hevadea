@@ -13,9 +13,9 @@ namespace Hevadea.Registry
     {
         private static Dictionary<string, Tile> _tiles = new Dictionary<string, Tile>();
 
-        public static BlueprintGroupe<Tile> GROUPE_SOIL;
-        public static BlueprintGroupe<Tile> GROUPE_ROCK;
-        public static BlueprintGroupe<Tile> GROUPE_WOOD;
+        public static Groupe<Tile> GROUPE_SOIL;
+        public static Groupe<Tile> GROUPE_ROCK;
+        public static Groupe<Tile> GROUPE_WOOD;
 
         public static Tile DIRT;
         public static Tile GRASS;
@@ -66,9 +66,9 @@ namespace Hevadea.Registry
             WOOD_FLOOR = RegisterTile(new Tile("wood_floor", new TileRenderComposite(new Sprite(Ressources.TileTiles, 5)), Color.SandyBrown));
             WOOD_WALL = RegisterTile(new Tile("wood_wall", new TileRenderComposite(new Sprite(Ressources.TileTiles, 6)), Color.SandyBrown));
 
-            GROUPE_ROCK = new BlueprintGroupe<Tile>("rock") { Members = { IRON_ORE, ROCK } };
-            GROUPE_SOIL = new BlueprintGroupe<Tile>("soil") { Members = { DIRT } };
-            GROUPE_WOOD = new BlueprintGroupe<Tile>("wood") { Members = { WOOD_FLOOR, WOOD_WALL } };
+            GROUPE_ROCK = new Groupe<Tile>("rock", IRON_ORE, ROCK );
+            GROUPE_SOIL = new Groupe<Tile>("soil", DIRT);
+            GROUPE_WOOD = new Groupe<Tile>("wood", WOOD_FLOOR, WOOD_WALL);
         }
 
         public static void AttachRender()

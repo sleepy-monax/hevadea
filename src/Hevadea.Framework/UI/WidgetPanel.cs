@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.UI.Widgets
+namespace Hevadea.Framework.UI
 {
-    public class Panel : Widget
+    public class WidgetPanel : Widget
     {
         public Widget Content { get; set; } = null;
 

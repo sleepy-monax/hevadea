@@ -3,7 +3,6 @@ using Hevadea.Entities.Components;
 using Hevadea.Framework;
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.Particles;
-using Hevadea.Framework.Utils;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Hevadea.Tiles;
@@ -210,7 +209,7 @@ namespace Hevadea.Entities
             }
         }
 
-        public bool MemberOf(BlueprintGroupe<EntityBlueprint> groupe)
+        public bool MemberOf(Groupe<EntityBlueprint> groupe)
             => Blueprint != null && groupe.Members.Contains(Blueprint);
 
         static readonly Dictionary<Direction, Anchor> DirectionToAnchore = new Dictionary<Direction, Anchor>()

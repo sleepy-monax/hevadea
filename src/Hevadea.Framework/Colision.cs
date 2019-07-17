@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Framework
 {
-    public static class ColisionUtils
+    public static class Colision
     {
         public static bool Colinding(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2)
         {

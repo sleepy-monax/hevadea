@@ -3,8 +3,6 @@ using Hevadea.Entities.Components;
 using Hevadea.Framework;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Extension;
 using Hevadea.Items;
 using Hevadea.Scenes.Widgets;
@@ -28,7 +26,7 @@ namespace Hevadea.Scenes.Menus
             _inventoryA.MouseClick += Tranfer;
             _inventoryB.MouseClick += Tranfer;
 
-            var closeBtn = new SpriteButton()
+            var closeBtn = new WidgetSprite()
             {
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 48, 48),
@@ -40,11 +38,11 @@ namespace Hevadea.Scenes.Menus
 
             Content = new WidgetFancyPanel()
             {
-                Content = new Container()
+                Content = new LayoutDock()
                 {
                     Childrens =
                     {
-                        new Container()
+                        new LayoutDock()
                         {
                             Dock = Dock.Fill,
                             Childrens = {closeBtn}

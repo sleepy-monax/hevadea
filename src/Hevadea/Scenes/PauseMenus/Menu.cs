@@ -1,8 +1,8 @@
-﻿using Hevadea.Framework.UI.Widgets;
+﻿using Hevadea.Framework.UI;
 
 namespace Hevadea.Scenes.Menus
 {
-    public class Menu : Panel
+    public class Menu : WidgetPanel
     {
         public GameState GameState;
         public bool PauseGame { get; set; } = false;

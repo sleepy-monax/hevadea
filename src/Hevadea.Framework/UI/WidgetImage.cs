@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.UI.Widgets
+namespace Hevadea.Framework.UI
 {
-    public class PictureWidget : Widget
+    public class WidgetImage : Widget
     {
         public Texture2D Picture { get; set; } = null;
 

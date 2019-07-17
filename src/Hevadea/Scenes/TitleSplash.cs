@@ -1,9 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.Scening;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 
 namespace Hevadea.Scenes
@@ -16,7 +13,7 @@ namespace Hevadea.Scenes
             Rise.Scene.SetBackground(background);
             Rise.Sound.Play(Ressources.Theme0);
 
-            var title = new Label
+            var title = new WidgetLabel
             {
                 Text = Game.Title,
                 Anchor = Anchor.Center,
@@ -26,7 +23,7 @@ namespace Hevadea.Scenes
                 TextSize = 6f,
             };
 
-            var subTitle = new Label
+            var subTitle = new WidgetLabel
             {
                 Text = Game.SubTitle,
                 Anchor = Anchor.Center,
@@ -37,7 +34,7 @@ namespace Hevadea.Scenes
                 TextSize = 1f,
             };
 
-            var prompt = new Button("> Press any key <")
+            var prompt = new WidgetButton("> Press any key <")
             {
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
@@ -46,7 +43,7 @@ namespace Hevadea.Scenes
                 TextColor = Color.White * 0.75f,
             }.RegisterMouseClickEvent(Game.GoToMainMenu);
 
-            var version = new Label
+            var version = new WidgetLabel
             {
                 Text = $"{Game.Title} {Game.Version}",
                 Anchor = Anchor.BottomRight,
@@ -58,7 +55,12 @@ namespace Hevadea.Scenes
                 TextSize = 1f,
             };
 
-            Container = new Container(title, subTitle, prompt, version);
+            Container = new LayoutDock()
+            {
+                Childrens = {
+                    title, subTitle, prompt, version
+                }
+            };
         }
 
         public override void OnDraw(GameTime gameTime)

@@ -7,10 +7,10 @@ namespace Hevadea.Items.Tags
 {
     public class GroupeDamage<TGroupe>
     {
-        public BlueprintGroupe<TGroupe> Groupe { get; }
+        public Groupe<TGroupe> Groupe { get; }
         public float Damages { get; }
 
-        public GroupeDamage(BlueprintGroupe<TGroupe> groupe, float damages)
+        public GroupeDamage(Groupe<TGroupe> groupe, float damages)
         {
             Groupe = groupe;
             Damages = damages;

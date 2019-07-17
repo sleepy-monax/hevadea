@@ -26,7 +26,7 @@ namespace Hevadea.Entities
                     TILES.SAND,
                     TILES.WOOD_FLOOR
                 },
-                Targets = new BlueprintGroupe<EntityBlueprint>("targets")
+                Targets = new Groupe<EntityBlueprint>("targets")
                 {
                     Members =
                     {

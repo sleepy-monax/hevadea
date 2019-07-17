@@ -1,13 +1,12 @@
 ﻿using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic.SpriteAtlas;
-using Hevadea.Framework.UI.Widgets;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Scenes.Widgets
 {
-    public class WidgetFancyPanel : Panel
+    public class WidgetFancyPanel : WidgetPanel
     {
         private Sprite _background;
 

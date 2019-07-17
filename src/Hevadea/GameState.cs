@@ -182,8 +182,6 @@ namespace Hevadea
 
             job.Report("Saving world...");
 
-            var levelsName = new List<string>();
-
             Directory.CreateDirectory(GetSavePath());
 
             foreach (var level in World.Levels)

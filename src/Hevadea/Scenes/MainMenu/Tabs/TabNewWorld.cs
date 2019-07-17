@@ -3,8 +3,6 @@ using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Registry;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
@@ -17,19 +15,19 @@ namespace Hevadea.Scenes.MainMenu.Tabs
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(1, 2));
 
-            var worldNameTextBox = new TextBox()
+            var worldNameTextBox = new WidgetTextBox()
             {
                 Padding = new Margins(8),
                 Text = "new world"
             };
 
-            var worldSeedtextBox = new TextBox()
+            var worldSeedtextBox = new WidgetTextBox()
             {
                 Padding = new Margins(8),
                 Text = Rise.Rnd.Next().ToString()
             };
 
-            var worldTypeList = new ListWidget() { UnitBound = new Rectangle(0, 0, 256, 128) };
+            var worldTypeList = new WidgetList() { UnitBound = new Rectangle(0, 0, 256, 128) };
 
             foreach (var item in GENERATOR.GENERATORS)
             {
@@ -38,30 +36,30 @@ namespace Hevadea.Scenes.MainMenu.Tabs
 
             worldTypeList.SelectFirst();
 
-            var generateButton = new Button { Text = "Generate", Dock = Dock.Bottom }
+            var generateButton = new WidgetButton { Text = "Generate", Dock = Dock.Bottom }
             .RegisterMouseClickEvent((s) => Game.New(worldNameTextBox.Text, worldSeedtextBox.Text, GENERATOR.GENERATORS[((ListItemText)worldTypeList.SelectedItem).Text]));
 
-            var worldOptions = new FlowLayout
+            var worldOptions = new LayoutFlow
             {
-                Flow = FlowDirection.TopToBottom,
+                Flow = LayoutFlowDirection.TopToBottom,
                 Dock = Dock.Fill,
                 Childrens =
                 {
-                    new Label { Text = "World name:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
+                    new WidgetLabel { Text = "World name:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
                     worldNameTextBox,
-                    new Label { Text = "Seed:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
+                    new WidgetLabel { Text = "Seed:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
                     worldSeedtextBox,
-                    new Label { Text = "World type:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
+                    new WidgetLabel { Text = "World type:", Padding = new Margins(8), TextAlignement = TextAlignement.Left},
                     worldTypeList
                 }
             };
 
-            Content = new Container()
+            Content = new LayoutDock()
             {
                 Padding = new Margins(16),
                 Childrens =
                 {
-                    new Label { Text = "New World", Font = Ressources.FontAlagard, Dock = Dock.Top},
+                    new WidgetLabel { Text = "New World", Font = Ressources.FontAlagard, Dock = Dock.Top},
                     generateButton,
                     worldOptions,
                 }

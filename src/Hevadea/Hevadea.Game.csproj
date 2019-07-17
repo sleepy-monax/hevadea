@@ -113,12 +113,13 @@
     <Compile Include="Entities\Components\Legacy\Dropable.cs" />
     <Compile Include="Entities\Components\Legacy\Inventory.cs" />
     <Compile Include="Registry\SYSTEMS.cs" />
+    <Compile Include="Ressources.cs" />
     <Compile Include="Scenes\PauseMenus\MenuMinimapWaypoint.cs" />
     <Compile Include="Systems\EntitySystem.cs" />
     <Compile Include="Systems\HealthSystem\HealthBarRenderer.cs" />
     <Compile Include="Systems\MinimapSystem\RevealProcessor.cs" />
     <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
-    <Compile Include="BlueprintGroupe.cs" />
+    <Compile Include="Groupe.cs" />
     <Compile Include="Registry\ITEMS.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\ItemEntity.cs" />
@@ -162,7 +163,6 @@
     <Compile Include="Scenes\Widgets\WidgetItemFrame.cs" />
     <Compile Include="Scenes\Widgets\WidgetMinimap.cs" />
     <Compile Include="Scenes\Widgets\WidgetPlayerStats.cs" />
-    <Compile Include="Ressources.cs" />
     <Compile Include="Scenes\SceneGameplay.cs" />
     <Compile Include="Scenes\MainMenu\MainMenu.cs" />
     <Compile Include="Scenes\MainMenu\Tabs\TabLoadWorld.cs" />

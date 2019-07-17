@@ -1,7 +1,7 @@
 ﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Actions;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;

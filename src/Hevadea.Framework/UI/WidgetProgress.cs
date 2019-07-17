@@ -3,9 +3,9 @@ using Hevadea.Framework.Graphic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.UI.Widgets
+namespace Hevadea.Framework.UI
 {
-    public class ProgressBar : Widget
+    public class WidgetProgress : Widget
     {
         public Color ProgressColor { get; set; } = ColorPalette.Accent;
         public Color Color { get; set; } = Color.White * 0.5f;

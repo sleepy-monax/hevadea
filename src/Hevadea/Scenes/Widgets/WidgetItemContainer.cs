@@ -2,7 +2,6 @@
 using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.Utils;
 using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;

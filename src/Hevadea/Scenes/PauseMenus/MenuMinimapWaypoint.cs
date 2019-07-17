@@ -1,15 +1,7 @@
-﻿using Hevadea.Framework;
-using Hevadea.Framework.UI;
+﻿using Hevadea.Framework.UI;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Scenes.Menus;
 using Hevadea.Worlds;
@@ -22,15 +14,15 @@ namespace Hevadea.Scenes.PauseMenus
         {
             PauseGame = true;
 
-            var wayPointNameTextBox = new TextBox() { Dock = Dock.Top };
-            var wayPointAddButton = new Button("Add waypoint") { Dock = Dock.Bottom };
+            var wayPointNameTextBox = new WidgetTextBox() { Dock = Dock.Top };
+            var wayPointAddButton = new WidgetButton("Add waypoint") { Dock = Dock.Bottom };
             wayPointAddButton.RegisterMouseClickEvent(_ => 
             {
                 AddWaypoint(wayPointAddButton.Text);
                 gameState.CurrentMenu = new MenuInGame(gameState);
             });
 
-            Content = new Container
+            Content = new LayoutDock
             {
 
                 Childrens =
@@ -43,18 +35,18 @@ namespace Hevadea.Scenes.PauseMenus
                         Origine   = Anchor.Center,
                         Dock      = Dock.None,
 
-                        Content   = new Container
+                        Content   = new LayoutDock
                         {
                             Childrens =
                             {
-                                new Label()
+                                new WidgetLabel()
                                 {
                                     Text = "Add waypoint",
                                     Font = Ressources.FontAlagard,
                                     TextSize = 1f,
                                     Dock = Dock.Top
                                 },
-                                new SpriteButton()
+                                new WidgetSprite()
                                 {
                                     Anchor = Anchor.TopRight,
                                     Origine = Anchor.Center,
@@ -62,7 +54,7 @@ namespace Hevadea.Scenes.PauseMenus
                                     UnitBound = new Rectangle(0, 0, 48, 48),
                                     UnitOffset = new Point(-24, 24)
                                 }.RegisterMouseClickEvent(sender => gameState.CurrentMenu = new MenuInGame(gameState)),
-                                new Label()
+                                new WidgetLabel()
                                 {
                                     Text = "Name:",
                                     Font = Ressources.FontRomulus,

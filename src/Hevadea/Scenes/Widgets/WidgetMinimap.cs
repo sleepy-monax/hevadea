@@ -1,5 +1,5 @@
-﻿using Hevadea.Framework.UI;
-using Hevadea.Framework.Utils;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

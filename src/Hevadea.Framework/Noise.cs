@@ -1,7 +1,7 @@
 ﻿using Hevadea.Framework.Extension;
 using System;
 
-namespace Hevadea.Framework.Utils
+namespace Hevadea.Framework
 {
     public class Noise
     {

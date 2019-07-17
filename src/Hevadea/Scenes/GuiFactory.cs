@@ -1,6 +1,4 @@
 ﻿using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Extension;
 using Microsoft.Xna.Framework;
 
@@ -10,38 +8,38 @@ namespace Hevadea.Scenes
     {
         public static Widget CreateSplitContainer(Rectangle bound, string panelATitle, Widget panelAContent, string panelBTitle, Widget panelBContent)
         {
-            return new TileLayout()
+            return new LayoutTile()
             {
                 UnitBound = bound,
                 Dock = Dock.Fill,
                 Childrens =
                 {
-                    new Panel()
+                    new WidgetPanel()
                     {
                         UnitBound = new Rectangle(0, 0, 400, 480),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Left,
                         Dock = Dock.Left,
-                        Content = new Container()
+                        Content = new LayoutDock()
                         {
                             Childrens =
                             {
-                                new Label {Text = panelATitle, Font = Ressources.FontAlagard, Dock = Dock.Top},
+                                new WidgetLabel {Text = panelATitle, Font = Ressources.FontAlagard, Dock = Dock.Top},
                                 panelAContent
                             }
                         }
                     },
-                    new Panel()
+                    new WidgetPanel()
                     {
                         UnitBound = new Rectangle(0, 0, 400, 480),
                         Anchor = Anchor.Center,
                         Origine = Anchor.Right,
                         Dock = Dock.Right,
-                        Content = new Container()
+                        Content = new LayoutDock()
                         {
                             Childrens =
                             {
-                                new Label {Text = panelBTitle, Font = Ressources.FontAlagard, Dock = Dock.Top},
+                                new WidgetLabel {Text = panelBTitle, Font = Ressources.FontAlagard, Dock = Dock.Top},
                                 panelBContent
                             }
                         }

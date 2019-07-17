@@ -1,6 +1,4 @@
 ﻿using Hevadea.Framework.Extension;
-using Hevadea.Framework.Graphic;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -27,6 +25,7 @@ namespace Hevadea.Framework.UI
         public bool CanGetFocus { get; set; }
 
         public Margins Padding { get; set; } = new Margins(0);
+        public Margins Margin { get; set; } = new Margins(0);
 
         public Rectangle UnitBound { get; set; } = new Rectangle(0, 0, 64, 64);
         public Rectangle UnitHost { get => Padding.Apply(UnitBound); }
@@ -92,13 +91,18 @@ namespace Hevadea.Framework.UI
                 MouseState = MouseState.Over;
                 if (Rise.Pointing.AreaDown(Bound))
                 {
-                    if (CanGetFocus == true) { Rise.Ui.FocusWidget = this; }
+                    if (CanGetFocus == true)
+                    {
+                        Rise.Ui.FocusWidget = this;
+                    }
+
                     MouseState = MouseState.Down;
                     MouseHold?.Invoke(this);
                 }
 
                 if (Rise.Pointing.AreaClick(Bound))
                 {
+                    Logger.Log<Widget>(this.ToString() + "clicked!");
                     MouseClick?.Invoke(this);
                 }
             }

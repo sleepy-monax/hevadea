@@ -1,22 +1,17 @@
-﻿using Hevadea.Framework.Utils;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Hevadea.Framework.Threading
 {
-    public class JobArguments
-    {
-    }
-
     public class Job
     {
         float _progress = 0f;
         string _status = "";
 		JobHandler _job;
-		JobArguments _args;
+		IJobArguments _args;
 
-        public delegate object JobHandler(Job task, JobArguments args);
+        public delegate object JobHandler(Job task, IJobArguments args);
       
         public bool Started { get; private set; }
         public bool Canceled { get; private set; }
@@ -67,7 +62,7 @@ namespace Hevadea.Framework.Threading
             return new Job(name, null);
         }
 
-        public Job SetArguments(JobArguments args)
+        public Job SetArguments(IJobArguments args)
         {
             _args = args;
             return this;
@@ -75,6 +70,7 @@ namespace Hevadea.Framework.Threading
 
         public Job Start(bool async = true)
         {
+            Logger.Log<Job>("Starting the job...");
             try
             {
                 if (!Started)

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Hevadea.Framework
+namespace Hevadea.Framework.Extension
 {
-    public static class Humanizer
+    public static class HumanizeExtension
     {
         public static string Humanize(this TimeSpan timeSpan)
         {

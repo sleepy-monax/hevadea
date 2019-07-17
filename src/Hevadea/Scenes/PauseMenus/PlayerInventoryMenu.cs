@@ -3,13 +3,9 @@ using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.Attributes;
 using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
-using Hevadea.Framework.Utils;
 using Hevadea.Registry;
 using Hevadea.Scenes.Menus.Tabs;
 using Hevadea.Scenes.Widgets;
@@ -75,7 +71,7 @@ namespace Hevadea.Scenes.Menus
                 GameState.LocalPlayer.Entity.HoldItem(_inventory.SelectedItem);
             };
 
-            var closeBtn = new SpriteButton()
+            var closeBtn = new WidgetSprite()
             {
                 Sprite = new Sprite(Ressources.TileGui, new Point(7, 7)),
                 UnitBound = new Rectangle(0, 0, 48, 48),
@@ -93,7 +89,6 @@ namespace Hevadea.Scenes.Menus
                 UnitBound = new Rectangle(0, 0, 600, 720),
                 Dock = Rise.Platform.Family == PlatformFamily.Mobile ? Dock.Fill : Dock.None,
                 TabAnchore = Rise.Platform.Family == PlatformFamily.Mobile ? TabAnchore.Bottom : TabAnchore.Left,
-                Childrens = { closeBtn },
 
                 Tabs =
                 {
@@ -102,12 +97,12 @@ namespace Hevadea.Scenes.Menus
                     new Tab()
                     {
                         Icon = new Sprite(Ressources.TileIcons, new Point(2, 3)),
-                        Content = new Container()
+                        Content = new LayoutDock()
                         {
                             Padding = new Margins(16),
                             Childrens =
                             {
-                                new Label {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
+                                new WidgetLabel {Text = "Inventory", Font = Ressources.FontAlagard, Dock = Dock.Top},
                                 _inventory,
                             }
                         }
@@ -117,7 +112,7 @@ namespace Hevadea.Scenes.Menus
                 }
             };
 
-            Content = new Container()
+            Content = new LayoutDock()
             {
                 Childrens = { _sideMenu },
             };

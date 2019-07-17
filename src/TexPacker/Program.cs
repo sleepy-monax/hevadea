@@ -13,7 +13,7 @@ namespace TexPacker
         {
             var fbd = new FolderBrowserDialog();
             fbd.ShowDialog();
-            var path = fbd.SelectedPath; // "C:\\Users\\VAN BOSSUYT Nicolas\\source\\repos\\hevadea\\assets";
+            var path = fbd.SelectedPath;
 
             var spriteAtlas = new SpriteAtlas(512, 512);
             spriteAtlas.InsertSprites(path);

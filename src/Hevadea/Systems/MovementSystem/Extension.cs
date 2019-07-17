@@ -1,7 +1,7 @@
 ﻿using System;
 using Hevadea.Entities;
 using Hevadea.Entities.Components;
-using Hevadea.Framework.Utils;
+using Hevadea.Framework;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Components;
 using Hevadea.Worlds;

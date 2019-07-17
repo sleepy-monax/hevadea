@@ -2,7 +2,6 @@
 using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
 using Hevadea.Framework.UI.Widgets;
 using Hevadea.Framework.Extension;
 using Hevadea.Scenes.Menus;
@@ -14,8 +13,8 @@ namespace Hevadea.Loading
     public class LoadingMenu : Menu
     {
         Job _job;
-        Label _progressLabel;
-        ProgressBar _progressBar;
+        WidgetLabel _progressLabel;
+        WidgetProgress _progressBar;
 
         public LoadingMenu(Job job, GameState gameState) : base(gameState)
         {
@@ -23,7 +22,7 @@ namespace Hevadea.Loading
 
             PauseGame = true;
 
-            _progressLabel = new Label
+            _progressLabel = new WidgetLabel
             {
                 Anchor = Anchor.Center,
                 Font = Ressources.FontRomulus,
@@ -32,7 +31,7 @@ namespace Hevadea.Loading
                 UnitOffset = new Point(0, -24)
             };
 
-            _progressBar = new ProgressBar
+            _progressBar = new WidgetProgress
             {
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
@@ -40,7 +39,7 @@ namespace Hevadea.Loading
                 UnitOffset = new Point(0, 24)
             };
 
-            var _cancelButton = new SpriteButton()
+            var _cancelButton = new WidgetSprite()
             {
                 Anchor = Anchor.TopRight,
                 Origine = Anchor.Center,
@@ -53,14 +52,14 @@ namespace Hevadea.Loading
                 Game.GoToMainMenu();
             });
 
-            Content = new Container
+            Content = new LayoutDock
             {
                 Childrens =
                 {
                     new WidgetFancyPanel
                     {
                         Anchor = Anchor.Center,
-                        Content = new Container { Childrens = { _progressBar, _progressLabel, _cancelButton } },
+                        Content = new LayoutDock { Childrens = { _progressBar, _progressLabel, _cancelButton } },
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
                         Origine = Anchor.Center,
                         UnitBound = new Rectangle(0, 0, 840, 256),

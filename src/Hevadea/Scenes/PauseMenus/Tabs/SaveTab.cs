@@ -1,7 +1,5 @@
 ﻿using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Framework.UI;
-using Hevadea.Framework.UI.Containers;
-using Hevadea.Framework.UI.Widgets;
 using Hevadea.Scenes.Widgets;
 
 using Microsoft.Xna.Framework;
@@ -14,35 +12,49 @@ namespace Hevadea.Scenes.Menus.Tabs
         {
             Icon = new Sprite(Ressources.TileIcons, new Point(3, 2));
 
-            var container = new FlowLayout
+            var container = new LayoutFlow
             {
                 Dock = Dock.Fill,
-                Flow = FlowDirection.TopToBottom,
+                Flow = LayoutFlowDirection.TopToBottom,
                 Marging = 8,
             };
 
-            Content = new Container()
+            Content = new LayoutDock()
             {
                 Padding = new Margins(16),
                 Childrens =
                 {
-                    new Label {Text = "Save", Font = Ressources.FontAlagard, Dock = Dock.Top},
+                    new WidgetLabel {Text = "Save", Font = Ressources.FontAlagard, Dock = Dock.Top},
                     container
                 }
             };
 
-            container.AddChild(new Button { Text = "Quick save", Padding = new Margins(4) })
-            .RegisterMouseClickEvent(gameState.QuickSave);
+            container.AddChild(
+                new WidgetButton
+                {
+                    Text = "Quick save",
+                    Padding = new Margins(4)
+                }
+                .RegisterMouseClickEvent(gameState.QuickSave)
+            );
 
-            container.AddChild(new Button { Text = "Save and Exit", Padding = new Margins(4) })
-            .RegisterMouseClickEvent(gameState.SaveAndExit);
+            container.AddChild(
+                new WidgetButton
+                {
+                    Text = "Save and Exit",
+                    Padding = new Margins(4)
+                }
+                .RegisterMouseClickEvent(gameState.SaveAndExit)
+            );
 
-            container.AddChild(new Button
-            {
-                Text = "Exit",
-                Padding = new Margins(4)
-            })
-            .RegisterMouseClickEvent(Game.GoToMainMenu);
+            container.AddChild(
+                new WidgetButton
+                {
+                    Text = "Exit",
+                    Padding = new Margins(4)
+                }
+                .RegisterMouseClickEvent(Game.GoToMainMenu)
+            );
         }
     }
 }

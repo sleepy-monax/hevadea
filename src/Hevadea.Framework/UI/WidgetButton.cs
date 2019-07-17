@@ -1,12 +1,11 @@
 ﻿using Hevadea.Framework.Extension;
 using Hevadea.Framework.Graphic;
-using Hevadea.Framework.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.UI.Widgets
+namespace Hevadea.Framework.UI
 {
-    public class Button : Widget
+    public class WidgetButton : Widget
     {
         public Color OverColor { get; set; } = ColorPalette.Accent;
         public Color IdleColor { get; set; } = ColorPalette.Border;
@@ -14,12 +13,12 @@ namespace Hevadea.Framework.UI.Widgets
         public SpriteFont Font { get; set; } = Rise.Ui.DefaultFont;
         public string Text { get; set; } = "Button";
 
-        public Button()
+        public WidgetButton()
         {
             UnitBound = new Rectangle(0, 0, 256, 48);
         }
 
-        public Button(string text)
+        public WidgetButton(string text)
         {
             Text = text;
             UnitBound = new Rectangle(0, 0, 256, 48);

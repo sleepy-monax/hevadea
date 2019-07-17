@@ -20,17 +20,5 @@ namespace Hevadea.Registry
 
             SYSTEMS.Initialize();
         }
-
-        public static void Stage0()
-        {
-        }
-
-        public static void Stage1()
-        {
-        }
-
-        public static void Stage2()
-        {
-        }
     }
 }
