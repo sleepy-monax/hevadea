@@ -38,7 +38,7 @@ namespace Hevadea.Scenes.MainMenu
 
             var copyright = new WidgetLabel
             {
-                Text = "© 2017-2019 N. VAN BOSSUYT",
+                Text = "© 2017-2019 TERRA & MONAX",
                 Anchor = Anchor.Bottom,
                 Origine = Anchor.Bottom,
                 Font = Ressources.FontRomulus,

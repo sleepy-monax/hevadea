@@ -72,7 +72,7 @@ namespace Hevadea.Scenes
             {
                 _sb.Draw(Ressources.MakerLogo,
                     Rise.Graphic.GetCenter().ToVector2(), null,
-                    new Color(_time, _time, _time), 0f, Ressources.MakerLogo.GetCenter(), Easing.BackEaseOut(Mathf.Clamp01(_time * 8 - 3f)), SpriteEffects.None, 0);
+                    new Color(_time, _time, _time), 0f, Ressources.MakerLogo.GetCenter(), Easing.BackEaseOut(Mathf.Clamp01(_time * 8 - 3f)) * 2, SpriteEffects.None, 0);
             }
 
             _sb.End();
