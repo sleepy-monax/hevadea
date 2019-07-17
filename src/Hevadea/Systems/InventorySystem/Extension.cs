@@ -7,29 +7,6 @@ namespace Hevadea.Systems.InventorySystem
 {
     public static class Extension
     {
-        public static bool Equipe(this Entity entity, Item item)
-        {
-            return false;
-        }
-
-        public static bool Pickup(this Entity entity, Item item, int count)
-        {
-            return false;
-        }
-
-        public static bool DropHoldedItem(this Entity entity)
-        {
-            var holder = entity.GetComponent<ItemHolder>();
-
-            if (holder != null && holder.HoldedItem != null)
-            {
-
-
-            }
-
-            return false;
-        }
-
         public static Item HoldedItem(this Entity entity)
         {
             return entity.GetComponent<ItemHolder>()?.HoldedItem ?? null;
