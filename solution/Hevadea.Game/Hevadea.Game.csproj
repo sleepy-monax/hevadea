@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76037D71-10CA-4C2E-A64E-563B595CA88F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hevadea</RootNamespace>
+    <AssemblyName>Hevadea.Game</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Camera.cs" />
+    <Compile Include="Craftings\Recipe.cs" />
+    <Compile Include="Craftings\RecipeCost.cs" />
+    <Compile Include="Entities\Components\ComponentExplosive.cs" />
+    <Compile Include="Entities\Components\ComponentRevealMap.cs" />
+    <Compile Include="Entities\Components\EntityExtension.cs" />
+    <Compile Include="Entities\Components\RendererCreature.cs" />
+    <Compile Include="Entities\Components\Renderer.cs" />
+    <Compile Include="Entities\Components\RendererSprite.cs" />
+    <Compile Include="Entities\Dog.cs" />
+    <Compile Include="Entities\Lantern.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Entities\Blueprints\EntityBlueprint.cs" />
+    <Compile Include="Entities\Blueprints\GenericEntityBlueprint.cs" />
+    <Compile Include="Entities\Components\ComponentAttack.cs" />
+    <Compile Include="Entities\Components\ComponentInteract.cs" />
+    <Compile Include="Entities\Components\ComponentMove.cs" />
+    <Compile Include="Entities\Components\ComponentPickup.cs" />
+    <Compile Include="Entities\Components\ComponentPushable.cs" />
+    <Compile Include="Entities\Components\IEntityComponentDrawable.cs" />
+    <Compile Include="Entities\Components\IEntityComponentDrawableOverlay.cs" />
+    <Compile Include="Entities\Components\IEntityComponentSaveLoad.cs" />
+    <Compile Include="Entities\Components\IEntityComponentUpdatable.cs" />
+    <Compile Include="Entities\Components\ComponentEnergy.cs" />
+    <Compile Include="Entities\Components\ComponentExperience.cs" />
+    <Compile Include="Entities\Components\ComponentHealth.cs" />
+    <Compile Include="Entities\Components\ComponentSwim.cs" />
+    <Compile Include="Entities\Belt.cs" />
+    <Compile Include="Entities\Chest.cs" />
+    <Compile Include="Entities\Chicken.cs" />
+    <Compile Include="Entities\CraftingBench.cs" />
+    <Compile Include="Entities\Fish.cs" />
+    <Compile Include="Entities\Flower.cs" />
+    <Compile Include="Entities\Furnace.cs" />
+    <Compile Include="Entities\Grass.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Stairs.cs" />
+    <Compile Include="Entities\TNT.cs" />
+    <Compile Include="Entities\Torch.cs" />
+    <Compile Include="Entities\Tree.cs" />
+    <Compile Include="Entities\XpOrb.cs" />
+    <Compile Include="Entities\Zombie.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Registry\ENTITIES.cs" />
+    <Compile Include="Entities\Components\AI\Actions\ActionAttackEntity.cs" />
+    <Compile Include="Entities\Components\AI\Actions\ActionMoveToLocation.cs" />
+    <Compile Include="Entities\Components\AI\Actions\ActionWait.cs" />
+    <Compile Include="Entities\Components\AI\Actions\HelperAction.cs" />
+    <Compile Include="Entities\Components\AI\Agent.cs" />
+    <Compile Include="Entities\Components\AI\Behaviors\BehaviorAnimal.cs" />
+    <Compile Include="Entities\Components\AI\Behaviors\BehaviorEnemy.cs" />
+    <Compile Include="Entities\Components\AI\IAction.cs" />
+    <Compile Include="Entities\Components\AI\Behavior.cs" />
+    <Compile Include="Entities\Components\ComponentDropable.cs" />
+    <Compile Include="Entities\Components\ComponentInventory.cs" />
+    <Compile Include="Registry\SYSTEMS.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="Scenes\Menus\MenuAddMinimapWaypoint.cs" />
+    <Compile Include="Systems\EntitySystem.cs" />
+    <Compile Include="Systems\HealthSystem\HealthBarRenderer.cs" />
+    <Compile Include="Systems\MinimapSystem\RevealProcessor.cs" />
+    <Compile Include="Tiles\Renderers\TileRenderSpriteSheet.cs" />
+    <Compile Include="Groupe.cs" />
+    <Compile Include="Registry\ITEMS.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemEntity.cs" />
+    <Compile Include="Items\ItemStorage.cs" />
+    <Compile Include="Items\ItemTag.cs" />
+    <Compile Include="Items\Loot.cs" />
+    <Compile Include="Items\Tags\ActionItemTag.cs" />
+    <Compile Include="Items\Tags\DamageTag.cs" />
+    <Compile Include="Items\Tags\InteractItemTag.cs" />
+    <Compile Include="Items\Tags\PlacableItemTag.cs" />
+    <Compile Include="Items\Tags\PlaceEntity.cs" />
+    <Compile Include="Items\Tags\PlaceTile.cs" />
+    <Compile Include="Registry\TILES.cs" />
+    <Compile Include="Loading\LoadingMenu.cs" />
+    <Compile Include="Loading\LoadingScene.cs" />
+    <Compile Include="Loading\Jobs.cs" />
+    <Compile Include="PlayerSession.cs" />
+    <Compile Include="Registry\GENERATOR.cs" />
+    <Compile Include="Registry\LEVELS.cs" />
+    <Compile Include="Registry\RECIPIES.cs" />
+    <Compile Include="Registry\REGISTRY.cs" />
+    <Compile Include="Scenes\GuiFactory.cs" />
+    <Compile Include="Scenes\GuiHelper.cs" />
+    <Compile Include="Scenes\Tabs\TabOption.cs" />
+    <Compile Include="Scenes\Menus\MenuChest.cs" />
+    <Compile Include="Scenes\Menus\MenuInGame.cs" />
+    <Compile Include="Scenes\Menus\Menu.cs" />
+    <Compile Include="Scenes\Tabs\TabNewWorld.cs" />
+    <Compile Include="Scenes\Menus\MenuGamePaused.cs" />
+    <Compile Include="Scenes\Tabs\CraftingTab.cs" />
+    <Compile Include="Scenes\Tabs\EquipmentTab.cs" />
+    <Compile Include="Scenes\Tabs\MinimapTab.cs" />
+    <Compile Include="Scenes\Tabs\SaveTab.cs" />
+    <Compile Include="Scenes\SceneTitleScreen.cs" />
+    <Compile Include="Scenes\Widgets\WidgetCheckBox.cs" />
+    <Compile Include="Scenes\Widgets\WidgetFancyPanel.cs" />
+    <Compile Include="Scenes\Widgets\WidgetHotBar.cs" />
+    <Compile Include="Scenes\Widgets\WidgetItemContainer.cs" />
+    <Compile Include="Scenes\Widgets\WidgetMinimap.cs" />
+    <Compile Include="Scenes\Widgets\WidgetPlayerStats.cs" />
+    <Compile Include="Scenes\SceneGameplay.cs" />
+    <Compile Include="Scenes\Menus\MenuMain.cs" />
+    <Compile Include="Scenes\Tabs\TabLoadWorld.cs" />
+    <Compile Include="Scenes\SceneLoadingScreen.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scenes\Widgets\WidgetTabContainer.cs" />
+    <Compile Include="Storage\ChunkStorage.cs" />
+    <Compile Include="Storage\EntityStorage.cs" />
+    <Compile Include="Storage\LevelStorage.cs" />
+    <Compile Include="Storage\PlayerStorage.cs" />
+    <Compile Include="Storage\WorldStorage.cs" />
+    <Compile Include="Tiles\Components\BreakableTile.cs" />
+    <Compile Include="Tiles\Components\DroppableTile.cs" />
+    <Compile Include="Tiles\Components\GroundTile.cs" />
+    <Compile Include="Tiles\Components\DamageTile.cs" />
+    <Compile Include="Tiles\Components\LiquideTile.cs" />
+    <Compile Include="Tiles\Components\SolideTile.cs" />
+    <Compile Include="Tiles\Components\SpreadTile.cs" />
+    <Compile Include="Tiles\Renderers\TileConnection.cs" />
+    <Compile Include="Tiles\Renderers\TileRender.cs" />
+    <Compile Include="Tiles\Renderers\TileRenderComposite.cs" />
+    <Compile Include="Tiles\Renderers\TileRenderConnected.cs" />
+    <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="Coordinates.cs" />
+    <Compile Include="Tiles\TileComponent.cs" />
+    <Compile Include="Utils\BspTree.cs" />
+    <Compile Include="Utils\Direction.cs" />
+    <Compile Include="Utils\Maze.cs" />
+    <Compile Include="Utils\PathFinder.cs" />
+    <Compile Include="WorldGenerator\Functions.cs" />
+    <Compile Include="WorldGenerator\LevelExtension.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\BspDecorator.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\Terrain.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\CompoundFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\HouseFeature.cs" />
+    <Compile Include="WorldGenerator\LevelFeatures\Decorator.cs" />
+    <Compile Include="WorldGenerator\Generator.cs" />
+    <Compile Include="WorldGenerator\LevelFeature.cs" />
+    <Compile Include="WorldGenerator\LevelGenerator.cs" />
+    <Compile Include="WorldGenerator\WorldFeature.cs" />
+    <Compile Include="WorldGenerator\WorldFeatures\SpawnAreaFeature.cs" />
+    <Compile Include="WorldGenerator\WorldFeatures\StairCaseFeature.cs" />
+    <Compile Include="Worlds\Chunk.cs" />
+    <Compile Include="Worlds\DayNightCycle.cs" />
+    <Compile Include="Worlds\Level.cs" />
+    <Compile Include="Worlds\LevelProperties.cs" />
+    <Compile Include="Worlds\LevelRenderState.cs" />
+    <Compile Include="Worlds\LevelSpriteBatchPool.cs" />
+    <Compile Include="Worlds\Minimap.cs" />
+    <Compile Include="Worlds\World.cs" />
+    <Compile Include="Scenes\Menus\MenuPlayerRespawn.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="Entities\EntityCollection.cs" />
+    <Compile Include="Entities\Filter.cs" />
+    <Compile Include="Systems\SwimmingSystem\SwimmingProcessor.cs" />
+    <Compile Include="Systems\SwimmingSystem\SwimmingEffect.cs" />
+    <Compile Include="Systems\LightingSystem\LightRenderer.cs" />
+    <Compile Include="Systems\LightingSystem\ShadowRenderer.cs" />
+    <Compile Include="Systems\RenderingSystem\EntityRendering.cs" />
+    <Compile Include="Entities\Components\ComponentCollider.cs" />
+    <Compile Include="Entities\Components\ComponentCastShadow.cs" />
+    <Compile Include="Entities\Components\ComponentLightSource.cs" />
+    <Compile Include="Entities\Components\ComponentFlammable.cs" />
+    <Compile Include="Entities\EntityComponent.cs" />
+    <Compile Include="Systems\ElementalSystem\FireProcessor.cs" />
+    <Compile Include="Entities\Components\ComponentBreakable.cs" />
+    <Compile Include="Entities\Components\ComponentPickupable.cs" />
+    <Compile Include="Entities\Components\ComponentInteractable.cs" />
+    <Compile Include="Entities\Components\ComponentCraftingStation.cs" />
+    <Compile Include="Entities\Components\ComponentInteractive.cs" />
+    <Compile Include="Entities\EntityActions.cs" />
+    <Compile Include="Systems\ElementalSystem\FireParticles.cs" />
+    <Compile Include="Entities\Components\ComponentMovable.cs" />
+    <Compile Include="Systems\PlayerSystem\PlayerInputProcessor.cs" />
+    <Compile Include="Entities\Components\ComponentPlayerBody.cs" />
+    <Compile Include="Systems\MovementSystem\Extension.cs" />
+    <Compile Include="Entities\Components\ComponentItemHolder.cs" />
+    <Compile Include="Systems\InventorySystem\Extension.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenuProcessor.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenuRenderer.cs" />
+    <Compile Include="Systems\CircleMenuSystem\CircleMenu.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hevadea.Framework\Hevadea.Framework.csproj">
+      <Project>{44b79eaf-5584-4176-97ad-5bc358a52ae3}</Project>
+      <Name>Hevadea.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
