@@ -214,8 +214,6 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Entities\EntityCollection.cs" />
     <Compile Include="Entities\Filter.cs" />
-    <Compile Include="Systems\SwimmingSystem\SwimmingProcessor.cs" />
-    <Compile Include="Systems\SwimmingSystem\SwimmingEffect.cs" />
     <Compile Include="Systems\LightingSystem\LightRenderer.cs" />
     <Compile Include="Systems\LightingSystem\ShadowRenderer.cs" />
     <Compile Include="Systems\RenderingSystem\EntityRendering.cs" />

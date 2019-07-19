@@ -9,22 +9,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Entities.Components
 {
-    public class ComponentPickup : EntityComponent, IEntityComponentDrawable, IEntityComponentSaveLoad
+    public class ComponentPickup : EntityComponent, IEntityComponentSaveLoad
     {
-        public Entity PickupedEntity { get; private set; }
+        public Entity PickedUpEntity { get; private set; }
         public int Offset { get; set; } = 16;
 
         public void Do()
         {
             var facingTile = Owner.FacingCoordinates;
 
-            if (PickupedEntity != null) LayDownEntity();
+            if (PickedUpEntity != null) LayDownEntity();
             else PickupEntity(Owner.GetFacingEntity(26));
         }
 
         public bool HasPickedUpEntity()
         {
-            return PickupedEntity != null;
+            return PickedUpEntity != null;
         }
 
         public bool PickupEntity(Entity entity)
@@ -36,7 +36,7 @@ namespace Hevadea.Entities.Components
                 }
                 else if (entity.HasComponent<ComponentPickupable>())
                 {
-                    PickupedEntity = entity;
+                    PickedUpEntity = entity;
                     entity.Remove();
                     return true;
                 }
@@ -49,15 +49,15 @@ namespace Hevadea.Entities.Components
         {
             var facingTile = Owner.FacingCoordinates;
 
-            if (PickupedEntity != null && !Owner.Level.QueryEntity(facingTile).Any() &&
+            if (PickedUpEntity != null && !Owner.Level.QueryEntity(facingTile).Any() &&
                 facingTile.InLevelBound(Owner.Level))
             {
-                PickupedEntity.Facing = Owner.Facing;
-                Owner.Level.AddEntityAt(PickupedEntity, facingTile);
+                PickedUpEntity.Facing = Owner.Facing;
+                Owner.Level.AddEntityAt(PickedUpEntity, facingTile);
 
-                PickupedEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
+                PickedUpEntity.GetComponent<Agent>()?.Abort(AgentAbortReason.PickedUp);
 
-                PickupedEntity = null;
+                PickedUpEntity = null;
 
                 return true;
             }
@@ -65,19 +65,12 @@ namespace Hevadea.Entities.Components
             return false;
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            if (PickupedEntity == null) return;
-            PickupedEntity.GetComponent<Renderer>().Render(spriteBatch, PickupedEntity,
-                Owner.Position + new Vector2(0, -Offset), gameTime);
-        }
-
         public void OnGameSave(EntityStorage store)
         {
-            if (PickupedEntity != null)
+            if (PickedUpEntity != null)
             {
-                store.Value("pickup_entity_type", PickupedEntity.Blueprint.Name);
-                store.Value("pickup_entity_data", PickupedEntity.Save().Data);
+                store.Value("pickup_entity_type", PickedUpEntity.Blueprint.Name);
+                store.Value("pickup_entity_data", PickedUpEntity.Save().Data);
             }
         }
 
@@ -91,7 +84,7 @@ namespace Hevadea.Entities.Components
                 var entity = ENTITIES.Construct(entityType);
                 entity.Load(new EntityStorage(entityType, entityData));
 
-                PickupedEntity = entity;
+                PickedUpEntity = entity;
             }
         }
     }

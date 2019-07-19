@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Hevadea.Framework.Graphic
 {
-    public struct _Sprite
+    public class _Sprite
     {
         [IgnoreDataMember] public _SpriteAtlas Atlas { get; }
 
@@ -53,6 +53,16 @@ namespace Hevadea.Framework.Graphic
                 Y + (Height / Grid.Y) * Math.Min(Grid.Y - 1, y),
                 (Width / Grid.X),
                 (Height / Grid.Y));
+        }
+
+        public _Sprite UpperHalf(float split = 0.5f)
+        {
+            return new _Sprite(Atlas, Name, X, Y, Width, (int)(Height * split));
+        }
+
+        public _Sprite BottomHalf(float split = 0.5f)
+        {
+            return new _Sprite(Atlas, Name, X, Y + (int)(Height * split), Width, (int)(Height * (1f - split)));
         }
     }
 }

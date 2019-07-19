@@ -14,5 +14,22 @@ namespace Hevadea.Entities.Components
         {
             return entity.GetComponent<ComponentSwim>()?.IsSwiming ?? false;
         }
+
+        public static bool IsLifting(this Entity entity)
+        {
+            return entity.GetComponent<ComponentPickup>()?.PickedUpEntity != null;
+        }
+
+        public static Entity GetPickedUpEntity(this Entity entity)
+        {
+            if (entity.HasComponent<ComponentPickup>())
+            {
+                return entity.GetComponent<ComponentPickup>().PickedUpEntity;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

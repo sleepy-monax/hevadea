@@ -12,7 +12,7 @@ namespace Hevadea.Entities
         {
             AddComponent(new ComponentPickupable());
             AddComponent(new ComponentCastShadow());
-            AddComponent(new RendererCreature(Resources.ImgChicken));
+            AddComponent(new RendererCreature(Resources.Sprites["entity/chicken"]));
             AddComponent(new ComponentFlammable());
 
             AddComponent(new ComponentMove());

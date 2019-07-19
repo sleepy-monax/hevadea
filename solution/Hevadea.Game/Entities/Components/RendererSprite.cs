@@ -24,7 +24,7 @@ namespace Hevadea.Entities.Components
 
         public override void Render(SpriteBatch spriteBatch, Entity entity, Vector2 position, GameTime gameTime)
         {
-            spriteBatch.DrawSprite(Sprite, entity.Position + Offset - Sprite.Size / 2f, Color.White);
+            spriteBatch.DrawSprite(Sprite, position + Offset - Sprite.Size / 2f, Color.White);
         }
     }
 }

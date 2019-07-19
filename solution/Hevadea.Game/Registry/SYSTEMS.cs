@@ -7,7 +7,6 @@ using Hevadea.Systems.PlayerSystem;
 using System.Collections.Generic;
 using Hevadea.Systems.LightingSystem;
 using Hevadea.Systems.RenderingSystem;
-using Hevadea.Systems.SwimmingSystem;
 
 namespace Hevadea.Registry
 {
@@ -44,7 +43,6 @@ namespace Hevadea.Registry
             Register<ShadowSystem>();
 
             Register<SpriteRenderSystem>();
-            Register<SwimmingEffect>();
         }
     }
 }

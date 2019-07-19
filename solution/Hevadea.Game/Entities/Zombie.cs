@@ -26,7 +26,7 @@ namespace Hevadea.Entities
                 }
             }));
 
-            AddComponent(new RendererCreature(Resources.ImgZombie));
+            AddComponent(new RendererCreature(Resources.Sprites["entity/zombie"]));
 
             AddComponent(new ComponentAttack());
             AddComponent(new ComponentCollider(new Rectangle(-2, -2, 4, 4)));

@@ -18,8 +18,8 @@ namespace Hevadea.Systems.LightingSystem
         {
             var light = entity.GetComponent<ComponentLightSource>();
 
-            if (entity.HasComponent<ComponentPickup>(out var pickup) && pickup.PickupedEntity != null)
-                if (pickup.PickupedEntity.HasComponent<ComponentLightSource>(out var pickupLight))
+            if (entity.HasComponent<ComponentPickup>(out var pickup) && pickup.PickedUpEntity != null)
+                if (pickup.PickedUpEntity.HasComponent<ComponentLightSource>(out var pickupLight))
                     light = pickupLight;
 
             if (light != null && light.IsOn) DrawLight(pool.Lights, entity.X, entity.Y, light.Power, light.Color);

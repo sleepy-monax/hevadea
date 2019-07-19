@@ -23,7 +23,7 @@ namespace Hevadea.Entities
             AddComponent(health);
 
             AddComponent(new ComponentLightSource {IsOn = true, Color = Color.White * 0.50f, Power = 64});
-            AddComponent(new RendererCreature(Resources.ImgPlayer));
+            AddComponent(new RendererCreature(Resources.Sprites["entity/player"], Resources.Sprites["entity/player_lifting"]));
             AddComponent(new ComponentFlammable());
             AddComponent(new ComponentItemHolder());
 

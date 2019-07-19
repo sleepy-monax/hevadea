@@ -33,7 +33,7 @@ namespace Hevadea.Entities
 
             AddComponent(new ComponentPickupable());
             AddComponent(new ComponentCastShadow());
-            AddComponent(new RendererCreature(Resources.ImgDog));
+            AddComponent(new RendererCreature(Resources.Sprites["entity/dog0"]));
             AddComponent(new ComponentFlammable());
             AddComponent(new ComponentDropExperience(4));
 
