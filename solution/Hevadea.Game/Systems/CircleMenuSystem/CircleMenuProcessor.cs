@@ -1,8 +1,6 @@
-﻿using System;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Framework;
-using Hevadea.Registry;
 using Hevadea.Systems.InventorySystem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -13,7 +11,7 @@ namespace Hevadea.Systems.CircleMenuSystem
     {
         public CircleMenuProcessor()
         {
-            Filter.AnyOf(typeof(CircleMenu), typeof(Inventory));
+            Filter.AllOf(typeof(CircleMenu), typeof(Inventory));
         }
 
         public override void Update(Entity entity, GameTime gameTime)

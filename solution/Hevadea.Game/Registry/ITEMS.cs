@@ -1,8 +1,6 @@
 ﻿using Hevadea.Entities.Blueprints;
-using Hevadea.Framework.Graphic.SpriteAtlas;
 using Hevadea.Items;
 using Hevadea.Items.Tags;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Hevadea.Entities.Components;
 
@@ -29,46 +27,48 @@ namespace Hevadea.Registry
         public static Item TORCH;
         public static Item LANTERN;
         public static Item WOOD_FLOOR;
-        public static Item WOOD_LOG;
-        public static Item WOOD_PLANK;
-        public static Item WOOD_STICK;
+        public static Item MATERIAL_WOOD_LOG;
+        public static Item MATERIAL_WOOD_PLANK;
+        public static Item MATERIAL_WOOD_STICK;
         public static Item WOOD_WALL;
 
-        public static Item AXE;
-        public static Item SWORD;
-        public static Item PICKAXE;
-        public static Item SHOVEl;
-        public static Item HOE;
+        public static Item WOOD_AXE;
+        public static Item WOOD_SWORD;
+        public static Item WOOD_PICKAXE;
+        public static Item WOOD_SHOVEL;
+        public static Item WOOD_HOE;
 
         public static void Initialize()
         {
-            BELT = new Item("belt", new Sprite(Resources.TileItems, new Point(9, 0)));
-            CHEST = new Item("chest", new Sprite(Resources.TileEntities, new Point(0, 1)));
-            CRAFTING_BENCH = new Item("crafting_bench", new Sprite(Resources.TileEntities, new Point(1, 0)));
-            FURNACE = new Item("furnace", new Sprite(Resources.TileEntities, new Point(1, 1)));
+            BELT = new Item("belt", Resources.Sprites["item/belt"]);
+            CHEST = new Item("chest", Resources.Sprites["item/chest"]);
+            CRAFTING_BENCH = new Item("bench", Resources.Sprites["item/bench"]);
+            FURNACE = new Item("furnace", Resources.Sprites["item/furnace"]);
 
-            LIGHTER = new Item("lighter", new Sprite(Resources.TileEntities, new Point(4, 0)));
-            GRASS_PATCH = new Item("grass_patch", new Sprite(Resources.TileItems, new Point(7, 2)));
-            COAL = new Item("coal", new Sprite(Resources.TileItems, new Point(6, 2)));
-            IRON_ORE = new Item("iron_ore", new Sprite(Resources.TileItems, new Point(8, 0)));
-            PINE_CONE = new Item("pine_cone", new Sprite(Resources.TileItems, new Point(5, 2)));
-            RAW_FISH = new Item("raw_fish", new Sprite(Resources.TileEntities, new Point(11, 0)));
-            SAND = new Item("sand", new Sprite(Resources.TileItems, new Point(7, 3)));
-            STONE = new Item("stone", new Sprite(Resources.TileItems, new Point(7, 0)));
-            TNT = new Item("tnt", new Sprite(Resources.TileItems, new Point(0, 0)));
-            TORCH = new Item("torch", new Sprite(Resources.TileEntities, new Point(4, 0)));
-            LANTERN = new Item("lantern", new Sprite(Resources.TileEntities, new Point(4, 1)));
-            WOOD_FLOOR = new Item("wood_floor", new Sprite(Resources.TileItems, new Point(7, 5)));
-            WOOD_LOG = new Item("wood_log", new Sprite(Resources.TileItems, 6));
-            WOOD_PLANK = new Item("wood_plank", new Sprite(Resources.TileItems, new Point(6, 1)));
-            WOOD_STICK = new Item("wood_stick", new Sprite(Resources.TileItems, 5));
-            WOOD_WALL = new Item("wood_wall", new Sprite(Resources.TileItems, new Point(7, 4)));
+            LIGHTER = new Item("lighter", Resources.Sprites["item/lighter"]);
+            GRASS_PATCH = new Item("floor_grass", Resources.Sprites["item/floor_grass"]);
+            COAL = new Item("ore_coal", Resources.Sprites["item/ore_coal"]);
+            IRON_ORE = new Item("ore_iron", Resources.Sprites["item/ore_iron"]);
+            PINE_CONE = new Item("seed_pine", Resources.Sprites["item/seed_pine"]);
+            RAW_FISH = new Item("raw_fish", Resources.Sprites["item/raw_fish"]);
+            SAND = new Item("floor_sand", Resources.Sprites["item/floor_sand"]);
+            TNT = new Item("tnt", Resources.Sprites["item/tnt"]);
+            TORCH = new Item("torch", Resources.Sprites["item/torch"]);
+            LANTERN = new Item("lamp", Resources.Sprites["item/lamp"]);
 
-            AXE = new Item("axe", new Sprite(Resources.TileItems, new Point(0, 0)));
-            PICKAXE = new Item("pickaxe", new Sprite(Resources.TileItems, new Point(1, 0)));
-            SHOVEl = new Item("shovel", new Sprite(Resources.TileItems, new Point(2, 0)));
-            SWORD = new Item("sword", new Sprite(Resources.TileItems, new Point(3, 0)));
-            HOE = new Item("hoe", new Sprite(Resources.TileItems, new Point(4, 0)));
+            STONE = new Item("material_stone", Resources.Sprites["item/material_stone"]);
+
+            MATERIAL_WOOD_LOG = new Item("material_wood_log", Resources.Sprites["item/material_wood_log"]);
+            MATERIAL_WOOD_PLANK = new Item("material_wood_plank", Resources.Sprites["item/material_wood_plank"]);
+            MATERIAL_WOOD_STICK = new Item("material_wood_stick", Resources.Sprites["item/material_wood_stick"]);
+
+            WOOD_FLOOR = new Item("floor_wood", Resources.Sprites["item/floor_wood"]);
+            WOOD_WALL = new Item("wall_wood", Resources.Sprites["item/wall_wood"]);
+            WOOD_AXE = new Item("axe_wood", Resources.Sprites["item/axe_wood"]);
+            WOOD_PICKAXE = new Item("pickaxe_wood", Resources.Sprites["item/pickaxe_wood"]);
+            WOOD_SHOVEL = new Item("shovel_wood", Resources.Sprites["item/shovel_wood"]);
+            WOOD_SWORD = new Item("sword_wood", Resources.Sprites["item/sword_wood"]);
+            WOOD_HOE = new Item("hoe_wood", Resources.Sprites["item/hoe_wood"]);
         }
 
         public static void AttachTags()
@@ -94,7 +94,7 @@ namespace Hevadea.Registry
                 }
             });
 
-            AXE.AddTag(new DamageTag()
+            WOOD_AXE.AddTag(new DamageTag()
             {
                 PerEntityDamage =
                 {
@@ -103,7 +103,7 @@ namespace Hevadea.Registry
                 }
             });
 
-            SWORD.AddTag(new DamageTag()
+            WOOD_SWORD.AddTag(new DamageTag()
             {
                 PerEntityDamage =
                 {

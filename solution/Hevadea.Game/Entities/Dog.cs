@@ -35,6 +35,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentCastShadow());
             AddComponent(new RendererCreature(Resources.ImgDog));
             AddComponent(new ComponentFlammable());
+            AddComponent(new ComponentDropExperience(4));
 
             AddComponent(new ComponentMove());
             AddComponent(new ComponentCollider(new Rectangle(-4, -4, 8, 8)));

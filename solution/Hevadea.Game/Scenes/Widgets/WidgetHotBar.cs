@@ -40,7 +40,7 @@ namespace Hevadea.Scenes.Widgets
 
                 if (Rise.Pointing.AreaClick(Rect)) newSlected = i;
 
-                item.GetSprite().Draw(spriteBatch, Rect, i == _selected ? Color.White : Color.White * 0.5f);
+                spriteBatch.DrawSprite(item.Sprite, Rect, i == _selected ? Color.White : Color.White * 0.5f);
                 spriteBatch.DrawString(Resources.FontRomulus, Inventory.Count(item).ToString(), pos.ToVector2(),
                     Color.White);
             }

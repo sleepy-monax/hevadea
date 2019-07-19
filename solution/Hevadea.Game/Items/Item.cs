@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Registry;
 using Hevadea.Tiles;
 using Hevadea.Worlds;
@@ -10,29 +10,20 @@ namespace Hevadea.Items
     public class Item
     {
         public int Id { get; }
-        private readonly string Name;
-        private readonly Sprite _sprite;
+        public _Sprite Sprite { get; }
+        public string Name { get; }
+
         private List<ItemTag> _tags;
 
-        public Item(string name, Sprite sprite)
+        public Item(string name, _Sprite sprite)
         {
             Id = ITEMS.ById.Count;
             ITEMS.ById.Add(this);
             ITEMS.ByName.Add(name, this);
 
-            _sprite = sprite;
+            Sprite = sprite;
             Name = name;
             _tags = new List<ItemTag>();
-        }
-
-        public virtual string GetName()
-        {
-            return Name;
-        }
-
-        public virtual Sprite GetSprite()
-        {
-            return _sprite;
         }
 
         public bool HasTag<T>() where T : ItemTag

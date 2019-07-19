@@ -1,12 +1,9 @@
-﻿using System;
-using Hevadea.Entities;
+﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Framework;
-using Hevadea.Framework.Platform;
 using Hevadea.Scenes.Menus;
 using Hevadea.Systems.InventorySystem;
 using Hevadea.Utils;
-using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -25,8 +22,6 @@ namespace Hevadea.Systems.PlayerSystem
         AddWaypoint,
         ZoomIn,
         ZoomOut,
-
-        DebugInspect
     }
 
     public class PlayerInputProcessor : EntityUpdateSystem
@@ -42,7 +37,6 @@ namespace Hevadea.Systems.PlayerSystem
         {
             var i = Rise.Input;
 
-            if (i.KeyDown(Keys.J)) HandleInput(entity, PlayerInput.Attack);
             if (i.KeyDown(Keys.Q) != i.KeyDown(Keys.D))
             {
                 if (i.KeyDown(Keys.Q)) HandleInput(entity, PlayerInput.MoveLeft);
@@ -55,40 +49,39 @@ namespace Hevadea.Systems.PlayerSystem
                 if (i.KeyDown(Keys.S)) HandleInput(entity, PlayerInput.MoveDown);
             }
 
+            if (i.KeyDown(Keys.J)) HandleInput(entity, PlayerInput.Attack);
             if (i.KeyTyped(Keys.A)) HandleInput(entity, PlayerInput.DropItem);
             if (i.KeyTyped(Keys.Add) || i.KeyTyped(Keys.Up)) HandleInput(entity, PlayerInput.ZoomIn);
             if (i.KeyTyped(Keys.K)) HandleInput(entity, PlayerInput.Action);
             if (i.KeyTyped(Keys.L)) HandleInput(entity, PlayerInput.Pickup);
             if (i.KeyTyped(Keys.Subtract) || i.KeyTyped(Keys.Down)) HandleInput(entity, PlayerInput.ZoomOut);
             if (i.KeyTyped(Keys.X)) HandleInput(entity, PlayerInput.AddWaypoint);
-            if (i.KeyTyped(Keys.W)) HandleInput(entity, PlayerInput.DebugInspect);
         }
 
         public void HandleInput(Entity player, PlayerInput input)
         {
             var game = player.GameState;
             var playerMovement = player.GetComponent<ComponentMove>();
-
             switch (input)
             {
                 case PlayerInput.MoveLeft:
                     player.Facing = Direction.West;
-                    playerMovement.Do(-1f, 0f);
+                    playerMovement.Do(-PLAYER_MOVE_SPEED, 0f);
                     break;
 
                 case PlayerInput.MoveRight:
                     player.Facing = Direction.East;
-                    playerMovement.Do(1f, 0f);
+                    playerMovement.Do(PLAYER_MOVE_SPEED, 0f);
                     break;
 
                 case PlayerInput.MoveUp:
                     player.Facing = Direction.North;
-                    playerMovement.Do(0f, -1f);
+                    playerMovement.Do(0f, -PLAYER_MOVE_SPEED);
                     break;
 
                 case PlayerInput.MoveDown:
                     player.Facing = Direction.South;
-                    playerMovement.Do(0f, 1f);
+                    playerMovement.Do(0f, PLAYER_MOVE_SPEED);
                     break;
 
                 case PlayerInput.Action:
@@ -125,10 +118,6 @@ namespace Hevadea.Systems.PlayerSystem
                 case PlayerInput.AddWaypoint:
                     game.CurrentMenu = new MenuAddMinimapWaypoint(game);
 
-                    break;
-
-                case PlayerInput.DebugInspect:
-                    player.Inspect();
                     break;
             }
         }

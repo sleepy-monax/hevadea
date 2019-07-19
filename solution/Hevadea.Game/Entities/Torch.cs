@@ -1,5 +1,5 @@
 ﻿using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
@@ -15,7 +15,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentDropable {Items = {new Drop(ITEMS.TORCH, 1f, 1, 1)}});
             AddComponent(new ComponentLightSource
                 {IsOn = true, Color = Color.LightGoldenrodYellow * 0.75f, Power = 72});
-            AddComponent(new RendererSprite {Sprite = new Sprite(Resources.TileEntities, new Point(4, 0))});
+            AddComponent(new RendererSprite(Resources.Sprites["entity/item"], new Vector2(4, 0)));
         }
     }
 }

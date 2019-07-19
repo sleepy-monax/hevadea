@@ -36,12 +36,12 @@ namespace Hevadea.Worlds
             EntitiesOnTiles = new List<Entity>[SIZE, SIZE];
 
             for (var xx = 0; xx < SIZE; xx++)
-            for (var yy = 0; yy < SIZE; yy++)
-            {
-                Tiles[xx, yy] = TILES.VOID;
-                Data[xx, yy] = new Dictionary<string, object>();
-                EntitiesOnTiles[xx, yy] = new List<Entity>();
-            }
+                for (var yy = 0; yy < SIZE; yy++)
+                {
+                    Tiles[xx, yy] = TILES.VOID;
+                    Data[xx, yy] = new Dictionary<string, object>();
+                    EntitiesOnTiles[xx, yy] = new List<Entity>();
+                }
         }
 
         public void AddEntity(Entity e)
@@ -63,7 +63,6 @@ namespace Hevadea.Worlds
                 EntitiesOnTiles[e.Coordinates.X % SIZE, e.Coordinates.Y % SIZE].Remove(e);
 
                 e.Removed = true;
-                e.Level = null;
             }
         }
 

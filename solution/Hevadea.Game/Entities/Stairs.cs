@@ -1,5 +1,6 @@
 ﻿using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,20 +12,13 @@ namespace Hevadea.Entities
         public int Destination { get; set; } = 1;
         public bool GoUp { get; set; } = false;
 
-        private Sprite _spriteUp;
-        private Sprite _spriteDown;
-
-        public Stairs(bool goUp, int destination) : this()
-        {
-            GoUp = goUp;
-            Destination = destination;
-        }
+        private _Sprite _spriteUp;
+        private _Sprite _spriteDown;
 
         public Stairs()
         {
             SortingOffset = -16;
             var interaction = new ComponentInteractable();
-            AddComponent(interaction);
             interaction.Interacted +=
                 (sender, arg) =>
                 {
@@ -32,28 +26,27 @@ namespace Hevadea.Entities
                     World.GetLevel(Destination).AddEntityAt(arg.Entity, Coordinates);
                 };
 
-            _spriteUp = new Sprite(Resources.TileEntities, new Point(8, 0));
-            _spriteDown = new Sprite(Resources.TileEntities, new Point(8, 1));
+            AddComponent(interaction);
+
+            _spriteUp = Resources.Sprites["entity/stair_up"];
+            _spriteDown = Resources.Sprites["entity/stair_down"];
         }
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            if (GoUp)
-                _spriteUp.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
-            else
-                _spriteDown.Draw(spriteBatch, new Rectangle((int) X - 8, (int) Y - 8, 16, 16), Color.White);
+            spriteBatch.DrawSprite(GoUp ? _spriteUp : _spriteDown, Position - new Vector2(8), Color.White);
         }
 
         public override void OnSave(EntityStorage store)
         {
-            store.Value(nameof(Destination), Destination);
             store.Value(nameof(GoUp), GoUp);
+            store.Value(nameof(Destination), Destination);
         }
 
         public override void OnLoad(EntityStorage store)
         {
-            Destination = store.ValueOf(nameof(Destination), Destination);
             GoUp = store.ValueOf(nameof(GoUp), GoUp);
+            Destination = store.ValueOf(nameof(Destination), Destination);
         }
     }
 }

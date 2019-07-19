@@ -3,7 +3,7 @@ using Hevadea.Craftings;
 using Hevadea.Entities.Components;
 using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.UI;
 using Hevadea.Items;
 using Hevadea.Registry;
@@ -32,10 +32,12 @@ namespace Hevadea.Scenes.Tabs
         public override void Draw(SpriteBatch spriteBatch, Rectangle host, GameTime gameTime)
         {
             var color = Color.White * (_recipe.CanBeCrafted(_storage) ? 1f : 0.5f);
-            _recipe.Result.GetSprite().Draw(spriteBatch,
+
+            spriteBatch.DrawSprite(_recipe.Result.Sprite,
                 new Spacing((int) (8 * Rise.Ui.ScaleFactor)).Apply(new Rectangle(host.Location,
                     new Point(host.Height))), color);
-            spriteBatch.DrawString(Resources.FontRomulus, $"{_recipe.Result.GetName()} x{_recipe.Quantity}",
+
+            spriteBatch.DrawString(Resources.FontRomulus, $"{_recipe.Result.Name} x{_recipe.Quantity}",
                 new Spacing(0, host.Height / 2, host.Height, 0).Apply(host), TextAlignement.Left, TextStyle.DropShadow,
                 color, Rise.Ui.ScaleFactor);
 
@@ -44,7 +46,7 @@ namespace Hevadea.Scenes.Tabs
                 var c = _recipe.Costs[i];
                 var dest = new Rectangle(host.X + host.Height + host.Height / 2 * i, host.Y + host.Height / 2,
                     host.Height / 2, host.Height / 2);
-                c.Item.GetSprite().Draw(spriteBatch, dest, color);
+                spriteBatch.DrawSprite(c.Item.Sprite, dest, color);
                 spriteBatch.DrawString(Resources.FontRomulus, c.Count.ToString(), dest, TextAlignement.Right,
                     TextStyle.DropShadow, color, Rise.Ui.ScaleFactor);
             }

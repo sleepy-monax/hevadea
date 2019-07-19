@@ -16,7 +16,7 @@ namespace Hevadea.Systems.LightingSystem
         public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             if (entity.HasComponent<ComponentCastShadow>(out var shadow) &&
-                !(entity.GetComponent<ComponentSwim>()?.IsSwiming ?? false))
+               !(entity.GetComponent<ComponentSwim>()?.IsSwiming ?? false))
                 pool.Shadows.Draw(Resources.ImgShadow,
                     new Vector2(entity.X - 7 * shadow.Scale, entity.Y - 3f * shadow.Scale),
                     new Vector2(14, 6) * shadow.Scale, Color.White);

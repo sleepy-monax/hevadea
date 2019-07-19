@@ -1,6 +1,7 @@
 ﻿using Hevadea.Entities;
 using Hevadea.Entities.Components;
 using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Registry;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
@@ -48,9 +49,8 @@ namespace Hevadea.Items
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            var s = Item.GetSprite();
-            s.Draw(spriteBatch, new Vector2(X + 1 - 3, Y + 1 - 3), 0.50f, Color.Black * 0.10f);
-            s.Draw(spriteBatch, new Vector2(X - 3, Y - 3), 0.50f, Color.White);
+            spriteBatch.DrawSprite(Item.Sprite, new Vector2(X + 1 - 3, Y + 1 - 3), 0.50f, Color.Black * 0.10f);
+            spriteBatch.DrawSprite(Item.Sprite, new Vector2(X - 3, Y - 3), 0.50f, Color.White);
         }
 
         public override void OnSave(EntityStorage store)

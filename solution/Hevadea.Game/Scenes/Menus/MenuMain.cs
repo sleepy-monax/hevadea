@@ -1,6 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Platform;
 using Hevadea.Framework.UI;
 using Hevadea.Scenes.Tabs;

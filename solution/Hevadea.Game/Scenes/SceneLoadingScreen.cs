@@ -1,7 +1,6 @@
 ﻿using System;
 using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Threading.Tasks;

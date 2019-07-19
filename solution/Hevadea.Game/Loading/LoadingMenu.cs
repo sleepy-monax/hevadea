@@ -1,5 +1,5 @@
 ﻿using Hevadea.Framework;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Framework.Threading;
 using Hevadea.Framework.UI;
 using Hevadea.Framework.Extension;

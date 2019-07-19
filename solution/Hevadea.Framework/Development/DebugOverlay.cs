@@ -1,5 +1,6 @@
 ﻿using System;
 using Hevadea.Framework.Extension;
+using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;

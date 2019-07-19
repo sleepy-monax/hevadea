@@ -15,12 +15,7 @@ namespace Hevadea.Framework.Platform
         }
 
         public virtual void Stop()
-        {
-        }
-
-        public virtual void Inspect(object o)
-        {
-        }
+        { }
 
         public abstract void Initialize();
 

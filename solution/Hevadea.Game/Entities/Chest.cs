@@ -1,5 +1,5 @@
 ﻿using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Registry;
 using Hevadea.Scenes.Menus;
 using Microsoft.Xna.Framework;
@@ -12,7 +12,7 @@ namespace Hevadea.Entities
         public Chest()
         {
             AddComponent(new ComponentPickupable());
-            AddComponent(new RendererSprite {Sprite = new Sprite(Resources.TileEntities, new Point(0, 1))});
+            AddComponent(new RendererSprite(Resources.Sprites["entity/chest"]));
             AddComponent(new ComponentFlammable());
 
             AddComponent(new ComponentCollider(new Rectangle(-6, -2, 12, 8)));

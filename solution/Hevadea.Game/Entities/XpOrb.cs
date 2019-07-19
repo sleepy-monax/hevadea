@@ -8,23 +8,27 @@ namespace Hevadea.Entities
 {
     public class XpOrb : Entity
     {
-        public int Value { get; private set; }
+        public int Value { get; private set; } = 1;
 
-        public XpOrb(int value)
+        public XpOrb()
         {
-            Value = value;
             AddComponent(new ComponentMove());
+
+            Value = Rise.Rnd.Next(1, 16);
         }
+
 
         public override void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.FillRectangle(X - 1 * Value, Y - 1 * Value, 2 * Value, 2 * Value, Color.Cyan);
-            spriteBatch.FillRectangle(X - 2 * Value, Y - 2 * Value, 4 * Value, 4 * Value, Color.White * 0.1f);
+            var size = 1;
+            spriteBatch.FillRectangle(X - 2 * size, Y - 2 * size, 4 * size, 4 * size, Color.Yellow * 0.5f);
+            spriteBatch.FillRectangle(X - 1 * size, Y - 1 * size, 2 * size, 2 * size, Color.Yellow);
         }
 
         public override void OnUpdate(GameTime gameTime)
         {
             foreach (var e in Level.QueryEntity(Position, 16))
+            {
                 if (e != this && e.HasComponent<ComponentExperience>())
                 {
                     var exp = e.GetComponent<ComponentExperience>();
@@ -37,6 +41,18 @@ namespace Hevadea.Entities
                         break;
                     }
                 }
+            }
+
+            foreach (var e in Level.QueryEntity(Position, Game.Unit))
+            {
+                if (e.HasComponent<ComponentExperience>(out var i))
+                {
+                    GetComponent<ComponentMove>().MoveTo(e.X, e.Y, 2f);
+
+                    if (Mathf.Distance(e.X, e.Y, X, Y) < 3)
+                        e.GetComponent<ComponentExperience>().TakeXP(Value);
+                }
+            }
         }
     }
 }

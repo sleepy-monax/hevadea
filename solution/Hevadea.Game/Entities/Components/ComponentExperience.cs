@@ -11,7 +11,11 @@
 
         public void TakeXP(XpOrb orb)
         {
-            TakeXP(orb.Value);
+            if (!orb.Removed)
+            {
+                TakeXP(orb.Value);
+                orb.Remove();
+            }
         }
     }
 }

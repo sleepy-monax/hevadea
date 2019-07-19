@@ -165,7 +165,6 @@ namespace Hevadea.Framework.UI
 
                 if (Rise.Pointing.AreaClick(Bound))
                 {
-                    Logger.Log<Widget>(ToString() + "clicked!");
                     MouseClick?.Invoke(this);
                 }
             }

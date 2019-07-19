@@ -1,4 +1,4 @@
-﻿using Hevadea.Framework.Graphic.SpriteAtlas;
+﻿using Hevadea.Framework.Graphic;
 using Hevadea.Items;
 using Hevadea.Tiles;
 using Hevadea.Tiles.Components;

@@ -1,25 +1,19 @@
 ﻿using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Entities
 {
-    public class Lantern : Entity
+    public class Lamp : Entity
     {
-        public Lantern()
+        public Lamp()
         {
             AddComponent(new ComponentMove());
             AddComponent(new ComponentPickupable());
             AddComponent(new Pushable());
-            AddComponent(new RendererSprite
-            {
-                Sprite = new Sprite(Resources.TileEntities, new Point(4, 1)),
-                Offset = new Vector2(0, -3f)
-            });
-
+            AddComponent(new RendererSprite(Resources.Sprites["entity/lamp"], new Vector2(0, -3f)));
             AddComponent(new ComponentBreakable());
             AddComponent(new ComponentDropable {Items = {new Drop(ITEMS.LANTERN, 1f, 1, 1)}});
             AddComponent(new ComponentLightSource

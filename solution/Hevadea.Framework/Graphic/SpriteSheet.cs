@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.Graphic.SpriteAtlas
+namespace Hevadea.Framework.Graphic
 {
     public class SpriteSheet
     {

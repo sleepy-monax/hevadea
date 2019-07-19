@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Hevadea.Framework.Graphic.SpriteAtlas
+namespace Hevadea.Framework.Graphic
 {
     public class Sprite
     {
@@ -9,8 +9,6 @@ namespace Hevadea.Framework.Graphic.SpriteAtlas
         private readonly Point SubSpriteSize;
         public Rectangle Bound { get; private set; }
         public Vector2 Size => Bound.Size.ToVector2();
-
-        // Constructors -------------------------------------------------------
 
         public Sprite(SpriteSheet sheet, int index)
         {
@@ -38,8 +36,6 @@ namespace Hevadea.Framework.Graphic.SpriteAtlas
         {
             SubSpriteSize = subSpriteSize;
         }
-
-        // Methodes -----------------------------------------------------------
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position, Color color)
         {

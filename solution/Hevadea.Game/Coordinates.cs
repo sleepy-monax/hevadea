@@ -60,12 +60,16 @@ namespace Hevadea
 
         public bool IsColliding(float x, float y, int width, int height)
         {
-            return Collision.Colliding(X * Game.Unit,
+            return Collision.Colliding(
+                X * Game.Unit,
                 Y * Game.Unit,
-                Game.Unit, Game.Unit,
+                Game.Unit,
+                Game.Unit,
+
                 x,
                 y,
-                width, height);
+                width, 
+                height);
         }
 
         public Point ToPoint()

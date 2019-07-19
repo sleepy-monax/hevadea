@@ -61,8 +61,8 @@ namespace Hevadea.Scenes.Widgets
                             spriteBatch.DrawRectangle(rect, Color.Gold * 0.5f);
                         }
 
-                        i.GetSprite().Draw(spriteBatch, sprite_rect, Color.White);
-                        spriteBatch.DrawString(Resources.FontRomulus, $"{i.GetName()} {itemCount,3}x",
+                        spriteBatch.DrawSprite(i.Sprite, sprite_rect, Color.White);
+                        spriteBatch.DrawString(Resources.FontRomulus, $"{i.Name} {itemCount,3}x",
                             new Vector2(rect.X + Scale(48), rect.Y + Scale(12)), Color.White);
 
                         index++;

@@ -2,7 +2,6 @@
 using Hevadea.Entities.Components;
 using Hevadea.Framework;
 using Hevadea.Framework.Extension;
-using Hevadea.Framework.Graphic;
 using Hevadea.Worlds;
 using Microsoft.Xna.Framework;
 
@@ -15,7 +14,7 @@ namespace Hevadea.Systems.CircleMenuSystem
 
         public CircleMenuRenderer()
         {
-            Filter.AnyOf(typeof(CircleMenu), typeof(Inventory));
+            Filter.AllOf(typeof(CircleMenu), typeof(Inventory));
         }
 
         public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
@@ -31,7 +30,7 @@ namespace Hevadea.Systems.CircleMenuSystem
 
             for (var i = 0; i < itemCount; i++)
             {
-                var angle = i / (float) itemCount * Mathf.TwoPI;
+                var angle = i / (float)itemCount * Mathf.TwoPI;
                 var isSelected = i == menu.SelectedItem;
 
                 var offx = Mathf.Cos(angle) * DISTANCE_FROM_ENTITY;
@@ -39,12 +38,12 @@ namespace Hevadea.Systems.CircleMenuSystem
 
                 var off = new Vector2(offx, offy) * Easing.CircularEaseInOut(menu.Opacity);
 
-                var itemSprite = inventory.Content.GetStack(i).GetSprite();
+                var itemSprite = inventory.Content.GetStack(i).Sprite;
 
-                itemSprite.Draw(pool.Overlay,
+                pool.Overlay.DrawSprite(itemSprite,
                     new Vector2(1f) + center + off - new Vector2(8 * (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity),
                     (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity, Color.Black * menu.Opacity * 0.45f);
-                itemSprite.Draw(pool.Overlay,
+                pool.Overlay.DrawSprite(itemSprite,
                     center + off - new Vector2(8 * (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity),
                     (isSelected ? SELECTED_SIZE : 1f) * menu.Opacity, Color.White * menu.Opacity);
             }

@@ -40,6 +40,8 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audio\SoundEffectPool.cs" />
@@ -59,12 +61,15 @@
     <Compile Include="Graphic\Camera.cs" />
     <Compile Include="Graphic\GraphicManager.cs" />
     <Compile Include="Graphic\ParalaxeBackground.cs" />
+    <Compile Include="Graphic\ParalaxeLayer.cs" />
     <Compile Include="Graphic\Particles\Color2Particle.cs" />
     <Compile Include="Graphic\Particles\ColoredParticle.cs" />
     <Compile Include="Graphic\Particles\Particle.cs" />
     <Compile Include="Graphic\Particles\ParticleSystem.cs" />
-    <Compile Include="Graphic\SpriteAtlas\Sprite.cs" />
-    <Compile Include="Graphic\SpriteAtlas\SpriteSheet.cs" />
+    <Compile Include="Graphic\_Sprite.cs" />
+    <Compile Include="Graphic\_SpriteAtlas.cs" />
+    <Compile Include="Graphic\Sprite.cs" />
+    <Compile Include="Graphic\SpriteSheet.cs" />
     <Compile Include="Graphic\SpriteBatchBeginState.cs" />
     <Compile Include="Extension\HumanizeExtension.cs" />
     <Compile Include="Input\KeyBinding.cs" />
@@ -95,6 +100,8 @@
     <Compile Include="UI\LayoutTile.cs" />
     <Compile Include="UI\Margin.cs" />
     <Compile Include="UI\Padding.cs" />
+    <Compile Include="UI\TextAlignement.cs" />
+    <Compile Include="UI\TextStyle.cs" />
     <Compile Include="UI\UiManager.cs" />
     <Compile Include="UI\Widget.cs" />
     <Compile Include="UI\WidgetButton.cs" />

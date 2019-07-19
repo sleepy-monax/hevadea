@@ -1,7 +1,6 @@
 ﻿using Hevadea.Framework;
 using Hevadea.Framework.Audio;
 using Hevadea.Framework.Graphic;
-using Hevadea.Framework.Graphic.SpriteAtlas;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +12,7 @@ namespace Hevadea
     {
         public static ParalaxeBackground ParalaxeForest;
         public static ParalaxeBackground ParalaxeMontain;
+        public static _SpriteAtlas Sprites;
 
         public static Sprite SprPickup;
         public static Sprite SprUnderWater;
@@ -69,6 +69,9 @@ namespace Hevadea
         public static void Load()
         {
             MakerLogo = Rise.Resources.GetImage("maker-logo");
+            Sprites = new _SpriteAtlas(512, 512, "assets\\");
+            Sprites.Bitmap.Save("test.png");
+
 
             FontAlagard = Rise.Resources.GetSpriteFont("alagard");
             FontHack = Rise.Resources.GetSpriteFont("hack");

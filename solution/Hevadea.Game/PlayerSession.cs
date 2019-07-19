@@ -42,6 +42,7 @@ namespace Hevadea
 
             Entity.GetComponent<ComponentEnergy>()?.Restore();
             Entity.GetComponent<ComponentHealth>()?.Restore();
+            Entity.GetComponent<ComponentFlammable>()?.Extinguish();
 
             _gameState.World.SpawnPlayer(Entity);
         }

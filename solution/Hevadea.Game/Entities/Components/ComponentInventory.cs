@@ -1,4 +1,5 @@
 ﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Items;
 using Hevadea.Storage;
 using Microsoft.Xna.Framework;
@@ -80,8 +81,7 @@ namespace Hevadea.Entities.Components
             if (_lastAdded != null)
             {
                 var scale = Mathf.Clamp01((float) _addedTimer / 0.5f);
-                _lastAdded.GetSprite().Draw(spriteBatch, new Vector2(_ix - 8f * scale, _iy - 8f * scale), scale,
-                    Color.White);
+                spriteBatch.DrawSprite(_lastAdded.Sprite, new Vector2(_ix - 8f * scale, _iy - 8f * scale), scale, Color.White);
             }
         }
     }

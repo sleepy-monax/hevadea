@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Extension;
+using Hevadea.Framework.Graphic;
 using Hevadea.Items;
 using Hevadea.Items.Tags;
 using Hevadea.Systems.InventorySystem;
@@ -35,8 +36,15 @@ namespace Hevadea.Entities.Components
             var holdedItem = Owner.HoldedItem();
 
 
-            (holdedItem != null ? holdedItem.GetSprite() : _cursorEntity).Draw(spriteBatch,
-                new Vector2(_cursorX - 8, _cursorY - 8), Color.White);
+            if (holdedItem != null)
+            {
+                spriteBatch.DrawSprite(holdedItem.Sprite, new Vector2(_cursorX - 8, _cursorY - 8), Color.White);
+            }
+            else
+            {
+                _cursorEntity.Draw(spriteBatch, new Vector2(_cursorX - 8, _cursorY - 8), Color.White);
+            }
+
             (_isEntitySelected ? _cursorTile : _cursor).Draw(spriteBatch,
                 new Vector2(_cursorTileX - 8, _cursorTileY - 8), Color.White);
         }

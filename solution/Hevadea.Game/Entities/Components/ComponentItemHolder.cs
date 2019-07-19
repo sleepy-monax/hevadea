@@ -16,7 +16,7 @@ namespace Hevadea.Entities.Components
 
         public void OnGameSave(EntityStorage store)
         {
-            store.Value(nameof(HoldedItem), HoldedItem?.GetName() ?? "null");
+            store.Value(nameof(HoldedItem), HoldedItem?.Name ?? "null");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
@@ -7,12 +7,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Entities
 {
-    public class CraftingBench : Entity
+    public class Bench : Entity
     {
-        public CraftingBench()
+        public Bench()
         {
             AddComponent(new ComponentMove());
-            AddComponent(new RendererSprite {Sprite = new Sprite(Resources.TileEntities, new Point(1, 0))});
+            AddComponent(new RendererSprite(Resources.Sprites["entity/bench"]));
             AddComponent(new ComponentCraftingStation(RECIPIES.BenchCrafted));
             AddComponent(new ComponentCastShadow());
             AddComponent(new ComponentPickupable());

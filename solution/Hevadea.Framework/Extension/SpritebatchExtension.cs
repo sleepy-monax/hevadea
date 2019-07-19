@@ -1,41 +1,28 @@
 ﻿using Hevadea.Framework.Graphic;
+using Hevadea.Framework.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Hevadea.Framework.Extension
 {
-    public enum TextAlignement
-    {
-        Center,
-        Left,
-        Right,
-        Top,
-        Bottom
-    }
-
-    public enum TextStyle
-    {
-        Regular,
-        Bold,
-        DropShadow,
-        Rectangle
-    }
-
     public static class SpritebatchExtension
     {
         public delegate void DrawTask(SpriteBatch spriteBatch, GameTime gameTime);
 
         public static void Begin(this SpriteBatch spriteBatch, SpriteBatchBeginState spriteBatchBeginState)
         {
-            spriteBatch.Begin(spriteBatchBeginState.SortMode, spriteBatchBeginState.BlendState,
-                spriteBatchBeginState.SamplerState, spriteBatchBeginState.DepthStencilState,
-                spriteBatchBeginState.RasterizerState, spriteBatchBeginState.Effect,
+            spriteBatch.Begin(
+                spriteBatchBeginState.SortMode,
+                spriteBatchBeginState.BlendState,
+                spriteBatchBeginState.SamplerState,
+                spriteBatchBeginState.DepthStencilState,
+                spriteBatchBeginState.RasterizerState,
+                spriteBatchBeginState.Effect,
                 spriteBatchBeginState.TransformMatrix);
         }
 
-        public static void BeginDrawEnd(this SpriteBatch sb, DrawTask task, GameTime gameTime = null,
-            SpriteBatchBeginState state = null)
+        public static void BeginDrawEnd(this SpriteBatch sb, DrawTask task, GameTime gameTime = null, SpriteBatchBeginState state = null)
         {
             if (state != null)
                 sb.Begin(state);
@@ -46,21 +33,154 @@ namespace Hevadea.Framework.Extension
             sb.End();
         }
 
-        public static void Draw(this SpriteBatch spriteBatch, Texture2D texture, float x, float y, float width,
-            float height, Color color, float angle = 0.0f)
+        public static void Draw(this SpriteBatch spriteBatch, Texture2D texture, float x, float y, float width, float height, Color color, float angle = 0.0f)
         {
-            spriteBatch.Draw(texture, new Vector2(x, y), null, color, angle, Vector2.Zero,
-                new Vector2(width, height) * new Vector2(1f / texture.Width, 1f / texture.Height), SpriteEffects.None,
+            spriteBatch.Draw(
+                texture, 
+                new Vector2(x, y), 
+                null, 
+                color, 
+                angle, 
+                Vector2.Zero,
+                new Vector2(width, height) * new Vector2(1f / texture.Width, 1f / texture.Height), 
+                SpriteEffects.None,
                 0);
         }
 
-        public static void Draw(this SpriteBatch spriteBatch, Texture2D texture, Vector2 location, Vector2 size,
-            Color color, float angle = 0.0f)
+        public static void Draw(this SpriteBatch spriteBatch, Texture2D texture, Vector2 location, Vector2 size, Color color, float angle = 0.0f)
         {
-            spriteBatch.Draw(texture, location, null, color, angle, Vector2.Zero,
-                size * new Vector2(1f / texture.Width, 1f / texture.Height), SpriteEffects.None, 0);
+            spriteBatch.Draw(
+                texture, 
+                location, 
+                null, 
+                color, 
+                angle, 
+                Vector2.Zero, 
+                size * new Vector2(1f / texture.Width, 1f / texture.Height), 
+                SpriteEffects.None, 
+                0);
         }
 
+        public static void DrawSprite(this SpriteBatch spriteBatch, _Sprite sprite, Vector2 location, Color color)
+        {
+            spriteBatch.DrawSprite(sprite, location, Vector2.One, color, 0.0f, Vector2.Zero);
+        }
+
+        public static void DrawSprite(this SpriteBatch spriteBatch, _Sprite sprite, Vector2 location, float scale, Color color)
+        {
+            spriteBatch.DrawSprite(sprite, location, new Vector2(scale), color, 0.0f, Vector2.Zero);
+        }
+
+        public static void DrawSprite(this SpriteBatch spriteBatch, _Sprite sprite, Vector2 location, Vector2 scale, Color color)
+        {
+            spriteBatch.DrawSprite(sprite, location, scale, color, 0.0f, Vector2.Zero);
+        }
+
+        public static void DrawSprite(this SpriteBatch spriteBatch, _Sprite sprite, Rectangle dest, Color color)
+        {
+            spriteBatch.Draw(sprite.Atlas.Texture, dest, sprite.Bound, color);
+        }
+
+        public static void DrawSprite(this SpriteBatch spriteBatch, _Sprite sprite, int x, int y, int height, int width, Color color)
+        {
+            spriteBatch.Draw(sprite.Atlas.Texture, new Rectangle(x, y, height, width), sprite.Bound, color);
+        }
+
+        public static void DrawSprite(this SpriteBatch spriteBatch, _Sprite sprite, float x, float y, float height, float width, Color color)
+        {
+            spriteBatch.DrawSprite(sprite, new Vector2(x, y), (Vector2.One / new Vector2(sprite.Width, sprite.Height)) * new Vector2(height, width) , color);
+        }
+
+        public static void DrawSprite(this SpriteBatch spriteBatch, _Sprite sprite, Vector2 location, Vector2 scale, Color color, float rotation, Vector2 origin)
+        {
+            spriteBatch.Draw(
+                sprite.Atlas.Texture,
+                location,
+                sprite.Bound,
+                color,
+                rotation,
+                origin,
+                scale,
+                SpriteEffects.None,
+                0);
+        }
+
+        public static void DrawBox(this SpriteBatch spriteBatch, _Sprite sprite, Rectangle dest, float scale, Color color)
+        {
+            sprite = sprite.WithGrid(3, 3);
+
+            var topLeft = sprite.SubSprite(0, 0);
+            spriteBatch.DrawSprite(
+                topLeft, 
+                dest.X, 
+                dest.Y, 
+                topLeft.Width * scale, 
+                topLeft.Height * scale, 
+                color);
+
+            var topRight = sprite.SubSprite(2, 0);
+            spriteBatch.DrawSprite(
+                topRight, 
+                dest.X + dest.Width - topRight.Width * scale, 
+                dest.Y, 
+                topRight.Width * scale, 
+                topRight.Height * scale, 
+                color);
+
+            var bottomLeft = sprite.SubSprite(0, 2);
+            spriteBatch.DrawSprite(
+                bottomLeft,
+                dest.X, 
+                dest.Y + dest.Height - bottomLeft.Height * scale, 
+                bottomLeft.Width * scale, 
+                bottomLeft.Height * scale, 
+                color);
+
+            var bottomRight = sprite.SubSprite(2, 2);
+            spriteBatch.DrawSprite(
+                bottomRight, 
+                dest.X + dest.Width - bottomRight.Width * scale,
+                dest.Y + dest.Height - bottomRight.Height * scale, 
+                bottomRight.Width * scale, 
+                bottomRight.Height * scale, 
+                color);
+
+            var top = sprite.SubSprite(1, 0);
+            spriteBatch.DrawSprite(
+                top, 
+                dest.X + top.Width, 
+                dest.Y, 
+                dest.Width - top.Width * 2,
+                top.Height * scale,
+                color);
+
+            var bottom = sprite.SubSprite(1, 2);
+            spriteBatch.DrawSprite(
+                bottom,
+                dest.X + bottom.Width * scale, 
+                dest.Y + dest.Height - bottom.Width * scale,
+                dest.Width - bottom.Width * 2 * scale,
+                bottom.Height * scale, 
+                color);
+
+            var left = sprite.SubSprite(0, 1);
+            spriteBatch.DrawSprite(
+                left,
+                dest.X, 
+                dest.Y + left.Height * scale, 
+                left.Width * scale, 
+                dest.Height - left.Height * 2 * scale, 
+                color);
+
+            var right = sprite.SubSprite(2, 1);
+            spriteBatch.DrawSprite(
+                right, 
+                dest.X + dest.Width - right.Width * scale, 
+                dest.Y + right.Height * scale, 
+                right.Width * scale, 
+                dest.Height - right.Height * 2 * scale, 
+                color);
+        }
         public static void PutPixel(this SpriteBatch spriteBatch, float x, float y, Color color)
         {
             PutPixel(spriteBatch, new Vector2(x, y), color);

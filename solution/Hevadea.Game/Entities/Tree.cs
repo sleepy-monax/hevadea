@@ -1,5 +1,5 @@
 ﻿using Hevadea.Entities.Components;
-using Hevadea.Framework.Graphic.SpriteAtlas;
+using Hevadea.Framework.Graphic;
 using Hevadea.Items;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
@@ -18,7 +18,7 @@ namespace Hevadea.Entities
 
             AddComponent(new ComponentCollider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new ComponentDropable
-                {Items = {new Drop(ITEMS.WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3)}});
+                {Items = {new Drop(ITEMS.MATERIAL_WOOD_LOG, 1f, 1, 5), new Drop(ITEMS.PINE_CONE, 1f, 0, 3)}});
             AddComponent(new ComponentHealth(5));
             AddComponent(new ComponentCastShadow() {Scale = 1.5f});
         }

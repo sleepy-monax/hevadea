@@ -1,6 +1,7 @@
-﻿using Hevadea.Framework.Graphic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Runtime.InteropServices;
 
 namespace Hevadea.Framework.Extension
 {
@@ -31,10 +32,28 @@ namespace Hevadea.Framework.Extension
             if (x >= 0 && x < tex.Width && y >= 0 && y < tex.Height)
             {
                 var r = new Rectangle(x, y, 1, 1);
-                var color = new Color[] {c};
+                var color = new Color[] { c };
 
                 tex.SetData(0, r, color, 0, 1);
             }
+        }
+
+        public static Texture2D GetTexture2DFromBitmap(GraphicsDevice device, System.Drawing.Bitmap bitmap)
+        {
+            // Buffer size is size of color array multiplied by 4 because
+            // each pixel has four color bytes
+            int bufferSize = bitmap.Height * bitmap.Width * 4;
+
+            // Create new memory stream and save image to stream so    
+            // we don't have to save and read file   
+            System.IO.MemoryStream memoryStream =
+                new System.IO.MemoryStream(bufferSize);
+            bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+
+            // EXCEPTION -->
+            Texture2D texture = Texture2D.FromStream(Rise.MonoGame.GraphicsDevice, memoryStream);
+
+            return texture;
         }
     }
 }

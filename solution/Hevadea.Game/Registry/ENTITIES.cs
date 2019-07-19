@@ -29,6 +29,7 @@ namespace Hevadea.Registry
         public static EntityBlueprint LANTERN;
         public static EntityBlueprint TREE;
         public static EntityBlueprint ZOMBIE;
+        public static EntityBlueprint XPORB;
 
         public static void Initialize()
         {
@@ -37,7 +38,7 @@ namespace Hevadea.Registry
             BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<Belt>("belt"));
             CHEST = RegisterEntityBlueprint(new GenericEntityBlueprint<Chest>("chest"));
             CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<Chicken>("chiken"));
-            CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<CraftingBench>("crafting_bench"));
+            CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<Bench>("crafting_bench"));
             DOG = RegisterEntityBlueprint(new GenericEntityBlueprint<Dog>("dog"));
             FISH = RegisterEntityBlueprint(new GenericEntityBlueprint<Fish>("fish"));
             FLOWER = RegisterEntityBlueprint(new GenericEntityBlueprint<Flower>("flower"));
@@ -47,9 +48,10 @@ namespace Hevadea.Registry
             STAIRES = RegisterEntityBlueprint(new GenericEntityBlueprint<Stairs>("staires"));
             TNT = RegisterEntityBlueprint(new GenericEntityBlueprint<TNT>("tnt"));
             TORCH = RegisterEntityBlueprint(new GenericEntityBlueprint<Torch>("torch"));
-            LANTERN = RegisterEntityBlueprint(new GenericEntityBlueprint<Lantern>("lantern"));
+            LANTERN = RegisterEntityBlueprint(new GenericEntityBlueprint<Lamp>("lantern"));
             TREE = RegisterEntityBlueprint(new GenericEntityBlueprint<EntityTree>("tree"));
             ZOMBIE = RegisterEntityBlueprint(new GenericEntityBlueprint<Zombie>("zombie"));
+            XPORB  = RegisterEntityBlueprint(new GenericEntityBlueprint<XpOrb>("xporb"));
 
             GROUPE_CREATURE = new Groupe<EntityBlueprint>("creature", CHIKEN, FISH, PLAYER, ZOMBIE);
             GROUPE_TREE = new Groupe<EntityBlueprint>("tree", TREE);

@@ -8,13 +8,6 @@ namespace Hevadea.Entities
 {
     public static class EntityActions
     {
-        public static void Inspect(this Entity entity)
-        {
-            var entities = entity.GetFacingEntities(26);
-
-            if (entities.Any()) Rise.Platform.Inspect(entities.First());
-        }
-
         public static void Attack(this Entity entity, Entity target)
         {
             // Get the item the entity is holding

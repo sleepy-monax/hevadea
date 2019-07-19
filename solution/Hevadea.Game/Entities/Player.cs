@@ -40,6 +40,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentSwim());
             AddComponent(new ComponentPlayerBody());
             AddComponent(new CircleMenu());
+            AddComponent(new ComponentExperience());
         }
 
         private void Health_Killed(object sender, System.EventArgs e)

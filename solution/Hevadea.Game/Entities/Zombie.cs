@@ -35,6 +35,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentMove());
             AddComponent(new Pushable {CanBePushBy = {ENTITIES.PLAYER}});
             AddComponent(new ComponentSwim());
+            AddComponent(new ComponentDropExperience(6));
         }
     }
 }
