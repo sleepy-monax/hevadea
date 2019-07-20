@@ -6,6 +6,7 @@ using Hevadea.Framework.Extension;
 using Hevadea.Scenes.Menus;
 using Hevadea.Scenes.Widgets;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Loading
 {
@@ -15,7 +16,7 @@ namespace Hevadea.Loading
         private WidgetLabel _progressLabel;
         private WidgetProgress _progressBar;
 
-        public LoadingMenu(Job job, GameState gameState) : base(gameState)
+        public LoadingMenu(string title, Job job, GameState gameState) : base(gameState)
         {
             _job = job;
 
@@ -26,42 +27,39 @@ namespace Hevadea.Loading
                 Anchor = Anchor.Center,
                 Font = Resources.FontRomulus,
                 Origine = Anchor.Center,
-                Text = "Loading...",
-                UnitOffset = new Point(0, -24)
+                Text = "",
+                UnitOffset = new Point(0, -16)
             };
 
             _progressBar = new WidgetProgress
             {
                 Anchor = Anchor.Center,
                 Origine = Anchor.Center,
-                UnitBound = new Rectangle(0, 0, 320, 8),
-                UnitOffset = new Point(0, 24)
+                UnitBound = new Rectangle(0, 0, 320 + 64, 8),
+                UnitOffset = new Point(0, 16)
             };
-
-            var _cancelButton = new WidgetSprite()
-            {
-                Anchor = Anchor.TopRight,
-                Origine = Anchor.Center,
-                Sprite = new Sprite(Resources.TileGui, new Point(7, 7)),
-                UnitBound = new Rectangle(0, 0, 48, 48),
-                UnitOffset = new Point(-48, 48)
-            }.RegisterMouseClickEvent((sender) =>
-            {
-                _job.Cancel();
-                Game.GoToMainMenu();
-            });
 
             Content = new LayoutDock
             {
                 Children =
                 {
+                    new WidgetLabel
+                    {
+                        Text = title,
+                        Anchor = Anchor.Center,
+                        Origine = Anchor.Center,
+                        UnitOffset = new Point(0),
+                        Font = Resources.FontAlagard,
+                        TextSize = 1f,
+                    },
                     new WidgetFancyPanel
                     {
-                        Anchor = Anchor.Center,
-                        Content = new LayoutDock {Children = {_progressBar, _progressLabel, _cancelButton}},
+                        Anchor = Anchor.Bottom,
+                        Origine = Anchor.Bottom,
+                        Content = new LayoutDock {Children = {_progressBar, _progressLabel }},
                         Dock = Rise.Platform.Family == Framework.Platform.PlatformFamily.Mobile ? Dock.Fill : Dock.None,
-                        Origine = Anchor.Center,
-                        UnitBound = new Rectangle(0, 0, 840, 256),
+                        UnitBound = new Rectangle(0, 0, 512, 96),
+                        UnitOffset = new Point(0, -32)
                     }
                 }
             };
@@ -74,10 +72,19 @@ namespace Hevadea.Loading
             };
         }
 
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            spriteBatch.FillRectangle(Rise.Graphic.GetBound(), Color.Black * 0.5f);
+
+            base.Draw(spriteBatch, gameTime);
+        }
+
         public override void Update(GameTime gameTime)
         {
             _progressLabel.Text = _job.Status;
             _progressBar.Value = _job.Progress;
+
+            base.Update(gameTime);
         }
     }
 }

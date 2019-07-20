@@ -80,7 +80,7 @@ namespace Hevadea
             var job = Jobs.SaveWorld.Then((_, e) => { CurrentMenu = new MenuInGame(this); });
             job.SetArguments(new Jobs.WorldSaveInfo(GetSavePath(), this));
 
-            CurrentMenu = new LoadingMenu(job, this);
+            CurrentMenu = new LoadingMenu("Quick saving...", job, this);
         }
 
         public void SaveAndExit()
@@ -89,7 +89,7 @@ namespace Hevadea
             job.SetArguments(new Jobs.WorldSaveInfo(GetSavePath(), this));
             job.Then((sender, e) => { Game.GoToMainMenu(); });
 
-            CurrentMenu = new LoadingMenu(job, this);
+            CurrentMenu = new LoadingMenu("Saving and exiting...", job, this);
         }
         
         public string GetSavePath()
