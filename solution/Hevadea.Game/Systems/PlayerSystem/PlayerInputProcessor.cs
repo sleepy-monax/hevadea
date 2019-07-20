@@ -30,12 +30,17 @@ namespace Hevadea.Systems.PlayerSystem
 
         public PlayerInputProcessor()
         {
-            Filter.AllOf(typeof(ComponentPlayerBody));
+            Filter.AnyOf(typeof(ComponentPlayerBody), typeof(ComponentRideable));
         }
 
         public override void Update(Entity entity, GameTime gameTime)
         {
             var i = Rise.Input;
+
+            if (entity.HasComponent<ComponentRideable>() && !(entity.GetComponent<ComponentRideable>().Rider?.HasComponent<ComponentPlayerBody>() ?? false))
+            {
+                return;
+            }
 
             if (i.KeyDown(Keys.Q) != i.KeyDown(Keys.D))
             {
@@ -47,6 +52,13 @@ namespace Hevadea.Systems.PlayerSystem
             {
                 if (i.KeyDown(Keys.Z)) HandleInput(entity, PlayerInput.MoveUp);
                 if (i.KeyDown(Keys.S)) HandleInput(entity, PlayerInput.MoveDown);
+            }
+
+            if (entity.HasComponent<ComponentRideable>())
+            {
+                entity.GetComponent<ComponentRideable>().Rider.Position = entity.Position;
+                entity.GetComponent<ComponentRideable>().Rider.Facing = entity.Facing;
+                return;
             }
 
             if (i.KeyDown(Keys.J)) HandleInput(entity, PlayerInput.Attack);
@@ -85,7 +97,7 @@ namespace Hevadea.Systems.PlayerSystem
                     break;
 
                 case PlayerInput.Action:
-                    if (player.GetComponent<Inventory>().Content.Count(player.HoldedItem()) == 0)
+                    if (player.GetComponent<ComponentInventory>().Content.Count(player.HoldedItem()) == 0)
                         player.HoldItem(null);
 
                     player.GetComponent<ComponentInteract>().Do(player.HoldedItem());
@@ -103,7 +115,8 @@ namespace Hevadea.Systems.PlayerSystem
                     var level = player.Level;
                     var item = player.HoldedItem();
                     var facingTile = player.FacingCoordinates;
-                    player.GetComponent<Inventory>().Content.DropOnGround(level, item, facingTile, 1);
+
+                    player.GetComponent<ComponentInventory>().Content.DropOnGround(level, item, facingTile, 1);
 
                     break;
 

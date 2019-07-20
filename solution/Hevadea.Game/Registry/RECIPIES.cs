@@ -22,6 +22,7 @@ namespace Hevadea.Registry
             HandCrafted.Add(new Recipe(ITEMS.TORCH, 4).AddCost(ITEMS.COAL, 1).AddCost(ITEMS.MATERIAL_WOOD_STICK, 1));
             HandCrafted.Add(new Recipe(ITEMS.MATERIAL_WOOD_PLANK, 2).AddCost(ITEMS.MATERIAL_WOOD_LOG, 1));
             HandCrafted.Add(new Recipe(ITEMS.MATERIAL_WOOD_STICK, 4).AddCost(ITEMS.MATERIAL_WOOD_PLANK, 1));
+            HandCrafted.Add(new Recipe(ITEMS.BOAT, 4));
 
             HandCrafted.Add(new Recipe(ITEMS.WOOD_AXE, 1).AddCost(ITEMS.MATERIAL_WOOD_PLANK, 3).AddCost(ITEMS.MATERIAL_WOOD_STICK, 2));
             HandCrafted.Add(new Recipe(ITEMS.WOOD_SWORD, 1).AddCost(ITEMS.MATERIAL_WOOD_PLANK, 3).AddCost(ITEMS.MATERIAL_WOOD_STICK, 1));

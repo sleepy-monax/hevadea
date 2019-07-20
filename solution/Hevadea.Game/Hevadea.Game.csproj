@@ -59,8 +59,10 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Craftings\Recipe.cs" />
     <Compile Include="Craftings\RecipeCost.cs" />
+    <Compile Include="Entities\Boat.cs" />
     <Compile Include="Entities\Components\ComponentDropExperience.cs" />
     <Compile Include="Entities\Components\ComponentExplosive.cs" />
+    <Compile Include="Entities\Components\ComponentRideable.cs" />
     <Compile Include="Entities\Components\ComponentRevealMap.cs" />
     <Compile Include="Entities\Components\EntityExtension.cs" />
     <Compile Include="Entities\Components\RendererCreature.cs" />
@@ -225,10 +227,8 @@
     <Compile Include="Systems\ElementalSystem\FireProcessor.cs" />
     <Compile Include="Entities\Components\ComponentBreakable.cs" />
     <Compile Include="Entities\Components\ComponentPickupable.cs" />
-    <Compile Include="Entities\Components\ComponentInteractable.cs" />
-    <Compile Include="Entities\Components\ComponentCraftingStation.cs" />
     <Compile Include="Entities\Components\ComponentInteractive.cs" />
-    <Compile Include="Entities\EntityActions.cs" />
+    <Compile Include="Entities\Components\ComponentCraftingStation.cs" />
     <Compile Include="Systems\ElementalSystem\FireParticles.cs" />
     <Compile Include="Entities\Components\ComponentMovable.cs" />
     <Compile Include="Systems\PlayerSystem\PlayerInputProcessor.cs" />
@@ -242,15 +242,15 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
       <Link>libSDL2-2.0.0.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
       <Link>libopenal.1.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
       <Link>MonoGame.Framework.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

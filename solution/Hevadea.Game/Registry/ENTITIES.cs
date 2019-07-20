@@ -14,6 +14,7 @@ namespace Hevadea.Registry
         public static EntityBlueprint ITEM;
 
         public static EntityBlueprint BELT;
+        public static EntityBlueprint BOAT;
         public static EntityBlueprint CHEST;
         public static EntityBlueprint CHIKEN;
         public static EntityBlueprint CRAFTING_BENCH;
@@ -36,6 +37,7 @@ namespace Hevadea.Registry
             ITEM = RegisterEntityBlueprint(new GenericEntityBlueprint<ItemEntity>("item"));
 
             BELT = RegisterEntityBlueprint(new GenericEntityBlueprint<Belt>("belt"));
+            BOAT = RegisterEntityBlueprint(new GenericEntityBlueprint<Boat>("boat"));
             CHEST = RegisterEntityBlueprint(new GenericEntityBlueprint<Chest>("chest"));
             CHIKEN = RegisterEntityBlueprint(new GenericEntityBlueprint<Chicken>("chiken"));
             CRAFTING_BENCH = RegisterEntityBlueprint(new GenericEntityBlueprint<Bench>("crafting_bench"));

@@ -31,10 +31,10 @@ namespace Hevadea.Entities
             AddComponent(new ComponentCollider(new Rectangle(-2, -2, 4, 4)));
             AddComponent(new ComponentEnergy());
             AddComponent(new ComponentInteract());
-            AddComponent(new Inventory(64) {AlowPickUp = true});
+            AddComponent(new ComponentInventory(64) {AlowPickUp = true});
             AddComponent(new ComponentMove());
             AddComponent(new ComponentPickup());
-            AddComponent(new Pushable());
+            AddComponent(new ComponentPushable());
             AddComponent(new ComponentRevealMap());
             AddComponent(new ComponentCastShadow());
             AddComponent(new ComponentSwim());

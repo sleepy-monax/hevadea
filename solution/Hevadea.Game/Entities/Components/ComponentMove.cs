@@ -90,7 +90,7 @@ namespace Hevadea.Entities.Components
                     if (Collision.Colliding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X,
                         ownerhitbox.Y + sy, ownerhitbox.Width, ownerhitbox.Height))
                     {
-                        e.GetComponent<Pushable>()?.Push(Owner, 0f, sy);
+                        e.GetComponent<ComponentPushable>()?.Push(Owner, 0f, sy);
                         _moveTick = Rise.MonoGame.Ticks;
                     }
 
@@ -101,7 +101,7 @@ namespace Hevadea.Entities.Components
                     if (Collision.Colliding(eHitbox.X, eHitbox.Y, eHitbox.Width, eHitbox.Height, ownerhitbox.X + sx,
                         ownerhitbox.Y, ownerhitbox.Width, ownerhitbox.Height))
                     {
-                        e.GetComponent<Pushable>()?.Push(Owner, sx, 0f);
+                        e.GetComponent<ComponentPushable>()?.Push(Owner, sx, 0f);
                         _moveTick = Rise.MonoGame.Ticks;
                     }
 

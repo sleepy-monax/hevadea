@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Hevadea.Entities.Components
 {
-    public class Pushable : EntityComponent, IEntityComponentDrawable
+    public class ComponentPushable : EntityComponent, IEntityComponentDrawable
     {
         public Entity IsPushBy { get; private set; }
         public List<EntityBlueprint> CanBePushBy { get; set; } = new List<EntityBlueprint>();

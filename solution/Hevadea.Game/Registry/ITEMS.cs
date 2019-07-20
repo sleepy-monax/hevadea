@@ -12,6 +12,7 @@ namespace Hevadea.Registry
         public static readonly Dictionary<string, Item> ByName = new Dictionary<string, Item>();
 
         public static Item BELT;
+        public static Item BOAT;
         public static Item CHEST;
         public static Item COAL;
         public static Item CRAFTING_BENCH;
@@ -41,6 +42,7 @@ namespace Hevadea.Registry
         public static void Initialize()
         {
             BELT = new Item("belt", Resources.Sprites["item/belt"]);
+            BOAT = new Item("boat", Resources.Sprites["item/boat"]);
             CHEST = new Item("chest", Resources.Sprites["item/chest"]);
             CRAFTING_BENCH = new Item("bench", Resources.Sprites["item/bench"]);
             FURNACE = new Item("furnace", Resources.Sprites["item/furnace"]);
@@ -84,6 +86,7 @@ namespace Hevadea.Registry
             GRASS_PATCH.AddTag(new PlaceTile(TILES.GRASS) {CanBePlaceOn = {TILES.DIRT}});
             SAND.AddTag(new PlaceTile(TILES.SAND) {CanBePlaceOn = {TILES.DIRT}});
 
+            BOAT.AddTag(new PlaceEntity(ENTITIES.BOAT));
             BELT.AddTag(new PlaceEntity(ENTITIES.BELT));
             TNT.AddTag(new PlaceEntity(ENTITIES.TNT));
             LIGHTER.AddTag(new ActionItemTag()

@@ -35,7 +35,7 @@ namespace Hevadea.Entities.Components
             var entitySprite = _defaultSprite;
             var pickedUpEntityPosition = position;
 
-            if (entity.IsLifting())
+            if (entity.IsHolding())
             {
                 entitySprite = _liftingSprite;
                 pickedUpEntityPosition -= new Vector2(0, 18);
@@ -72,7 +72,7 @@ namespace Hevadea.Entities.Components
                 spriteBatch.DrawSprite(entitySprite, position + new Vector2(-entitySprite.Width / 2, -entitySprite.Height) + new Vector2(0, 6), Color.White);
             }
 
-            var pickedUpEntity = entity.GetPickedUpEntity();
+            var pickedUpEntity = entity.GetHoldedEntity();
 
             if (pickedUpEntity != null && pickedUpEntity.HasComponent<Renderer>())
             {

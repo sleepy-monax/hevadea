@@ -84,12 +84,16 @@ namespace Hevadea.Entities.Components
         {
             if (!Owner.GetComponent<ComponentPickup>()?.HasPickedUpEntity() ?? true)
             {
-                var entities = Owner.GetFacingEntities(26).Where((e) => e.HasComponent<ComponentInteractable>());
+                var entities = Owner.GetFacingEntities(26);
 
                 if (entities.Any())
-                    entities.First().GetComponent<ComponentInteractable>().Interacte(Owner, Owner.Facing, item);
+                {
+                    Owner.InteractWith(entities.First(), item);
+                }
                 else
-                    item?.Tag<InteractItemTag>()?.InteracteOn(Owner, SelectedTile);
+                {
+                    Owner.InteractWith(SelectedTile, item);
+                }
             }
         }
     }
