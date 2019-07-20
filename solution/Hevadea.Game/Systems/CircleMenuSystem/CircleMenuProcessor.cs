@@ -11,13 +11,13 @@ namespace Hevadea.Systems.CircleMenuSystem
     {
         public CircleMenuProcessor()
         {
-            Filter.AllOf(typeof(CircleMenu), typeof(Inventory));
+            Filter.AllOf(typeof(CircleMenu), typeof(ComponentInventory));
         }
 
         public override void Update(Entity entity, GameTime gameTime)
         {
             var menu = entity.GetComponent<CircleMenu>();
-            var inventory = entity.GetComponent<Inventory>();
+            var inventory = entity.GetComponent<ComponentInventory>();
 
             if (Rise.Input.KeyTyped(Keys.U))
             {

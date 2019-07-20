@@ -202,23 +202,31 @@ namespace Hevadea.Entities
 
         public void SetPosition(float x, float y)
         {
-            var oldPos = Coordinates;
-            var oldChunk = Level.GetChunkAt(oldPos);
-
-            X = x;
-            Y = y;
-            var newPos = Coordinates;
-            var newChunk = Level.GetChunkAt(newPos);
-
-            // Remove the entity from his previous position.
-            oldChunk.Entities.Remove(this);
-            oldChunk.EntitiesOnTiles[oldPos.X % Chunk.SIZE, oldPos.Y % Chunk.SIZE].Remove(this);
-
-            // Add the entity to his new position.
-            if (newChunk != null)
+            if (!Removed)
             {
-                newChunk.Entities.Add(this);
-                newChunk.EntitiesOnTiles[newPos.X % Chunk.SIZE, newPos.Y % Chunk.SIZE].Add(this);
+                var oldPos = Coordinates;
+                var oldChunk = Level.GetChunkAt(oldPos);
+
+                X = x;
+                Y = y;
+                var newPos = Coordinates;
+                var newChunk = Level.GetChunkAt(newPos);
+
+                // Remove the entity from his previous position.
+                oldChunk.Entities.Remove(this);
+                oldChunk.EntitiesOnTiles[oldPos.X % Chunk.SIZE, oldPos.Y % Chunk.SIZE].Remove(this);
+
+                // Add the entity to his new position.
+                if (newChunk != null)
+                {
+                    newChunk.Entities.Add(this);
+                    newChunk.EntitiesOnTiles[newPos.X % Chunk.SIZE, newPos.Y % Chunk.SIZE].Add(this);
+                }
+            }
+            else
+            {
+                X = x;
+                Y = y;
             }
         }
 
@@ -327,19 +335,15 @@ namespace Hevadea.Entities
         /* --- Virtual functions ------------------------------------------- */
 
         public virtual void OnLoad(EntityStorage store)
-        {
-        }
+        {}
 
         public virtual void OnSave(EntityStorage store)
-        {
-        }
+        {}
 
         public virtual void OnUpdate(GameTime gameTime)
-        {
-        }
+        {}
 
         public virtual void OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-        }
+        {}
     }
 }

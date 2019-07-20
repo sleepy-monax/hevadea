@@ -138,7 +138,7 @@ namespace Hevadea.Entities.Components
         public void Die()
         {
             Owner.GetComponent<ComponentPickup>()?.LayDownEntity();
-            Owner.GetComponent<Inventory>()?.Content.DropOnGround(Owner.Level, Owner.X, Owner.Y);
+            Owner.GetComponent<ComponentInventory>()?.Content.DropOnGround(Owner.Level, Owner.X, Owner.Y);
             Owner.GetComponent<ComponentDropable>()?.Drop();
             Owner.GetComponent<ComponentDropExperience>()?.Drop();
             Owner.Remove();

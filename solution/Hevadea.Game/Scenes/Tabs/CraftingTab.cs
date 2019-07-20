@@ -76,7 +76,7 @@ namespace Hevadea.Scenes.Tabs
 
             foreach (var recipe in recipies ?? RECIPIES.HandCrafted)
                 CraftingList.AddItem(new CraftingListItem(recipe,
-                    GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content));
+                    GameState.LocalPlayer.Entity.GetComponent<ComponentInventory>().Content));
 
             Content = new LayoutDock()
             {
@@ -92,7 +92,7 @@ namespace Hevadea.Scenes.Tabs
         private void Craft(Widget widget)
         {
             if (CraftingList.SelectedItem is CraftingListItem craft)
-                craft.GetRecipe().Craft(GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content);
+                craft.GetRecipe().Craft(GameState.LocalPlayer.Entity.GetComponent<ComponentInventory>().Content);
         }
     }
 }

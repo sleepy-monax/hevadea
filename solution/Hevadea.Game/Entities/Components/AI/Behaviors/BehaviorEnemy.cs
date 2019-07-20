@@ -34,7 +34,7 @@ namespace Hevadea.Entities.Components.AI.Behaviors
 
         public override void Update(GameTime gameTime)
         {
-            if (Target != null && (
+            if (Target != null && (Target.Removed ||
                     Target.Level != Agent.Owner.Level ||
                     Mathf.Distance(Agent.Owner.Position, Target.Position) > FollowRange * Game.Unit))
             {

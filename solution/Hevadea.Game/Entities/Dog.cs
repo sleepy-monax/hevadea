@@ -2,6 +2,8 @@ using Hevadea.Entities.Blueprints;
 using Hevadea.Entities.Components;
 using Hevadea.Entities.Components.AI;
 using Hevadea.Entities.Components.AI.Behaviors;
+using Hevadea.Framework;
+using Hevadea.Framework.Extension;
 using Hevadea.Registry;
 using Microsoft.Xna.Framework;
 
@@ -33,14 +35,14 @@ namespace Hevadea.Entities
 
             AddComponent(new ComponentPickupable());
             AddComponent(new ComponentCastShadow());
-            AddComponent(new RendererCreature(Resources.Sprites["entity/dog0"]));
+            AddComponent(new RendererCreature(Rise.Rnd.Pick(Resources.Sprites.GetSprites("entity/dog#"))));
             AddComponent(new ComponentFlammable());
             AddComponent(new ComponentDropExperience(4));
 
             AddComponent(new ComponentMove());
             AddComponent(new ComponentCollider(new Rectangle(-4, -4, 8, 8)));
             AddComponent(new ComponentHealth(3));
-            AddComponent(new Pushable());
+            AddComponent(new ComponentPushable());
             AddComponent(new ComponentSwim());
         }
     }

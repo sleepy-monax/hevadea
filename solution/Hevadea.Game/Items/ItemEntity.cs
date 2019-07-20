@@ -29,7 +29,7 @@ namespace Hevadea.Items
             SpeedY = SpeedY / 2;
 
             foreach (var e in Level.QueryEntity(Position, Game.Unit))
-                if (e.HasComponent<Inventory>(out var i) && i.AlowPickUp)
+                if (e.HasComponent<ComponentInventory>(out var i) && i.AlowPickUp)
                 {
                     move.MoveTo(e.X, e.Y, 2f);
                     if (Mathf.Distance(e.X, e.Y, X, Y) < 3 && Pickup(e)) return;
@@ -38,7 +38,7 @@ namespace Hevadea.Items
 
         public bool Pickup(Entity entity)
         {
-            if (entity?.GetComponent<Inventory>()?.Pickup(Item) ?? false)
+            if (entity?.GetComponent<ComponentInventory>()?.Pickup(Item) ?? false)
             {
                 Remove();
                 return true;

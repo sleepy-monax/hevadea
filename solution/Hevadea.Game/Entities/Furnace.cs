@@ -18,7 +18,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentDropable {Items = {new Drop(ITEMS.FURNACE, 1f, 1, 1)}});
             AddComponent(new ComponentLightSource());
             AddComponent(new ComponentMove());
-            AddComponent(new Pushable());
+            AddComponent(new ComponentPushable());
             AddComponent(new ComponentCastShadow());
         }
     }

@@ -33,7 +33,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentEnergy());
             AddComponent(new ComponentHealth(10));
             AddComponent(new ComponentMove());
-            AddComponent(new Pushable {CanBePushBy = {ENTITIES.PLAYER}});
+            AddComponent(new ComponentPushable());
             AddComponent(new ComponentSwim());
             AddComponent(new ComponentDropExperience(6));
         }

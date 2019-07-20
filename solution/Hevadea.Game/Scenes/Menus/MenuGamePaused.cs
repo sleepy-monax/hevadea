@@ -54,7 +54,7 @@ namespace Hevadea.Scenes.Menus
             recipies.AddRange(RECIPIES.HandCrafted);
             foreach (var i in r) recipies.AddRange(i);
 
-            _inventory = new WidgetItemContainer(GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content);
+            _inventory = new WidgetItemContainer(GameState.LocalPlayer.Entity.GetComponent<ComponentInventory>().Content);
             _crafting = new CraftingTab(GameState, recipies);
 
             _inventory.Dock = Dock.Fill;

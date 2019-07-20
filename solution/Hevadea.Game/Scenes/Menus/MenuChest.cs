@@ -20,9 +20,9 @@ namespace Hevadea.Scenes.Menus
             PauseGame = true;
             EscapeToClose = true;
 
-            _inventoryA = new WidgetItemContainer(entity.GetComponent<Inventory>().Content)
+            _inventoryA = new WidgetItemContainer(entity.GetComponent<ComponentInventory>().Content)
                 {Padding = new Spacing(4, 4), Dock = Dock.Fill};
-            _inventoryB = new WidgetItemContainer(chest.GetComponent<Inventory>().Content)
+            _inventoryB = new WidgetItemContainer(chest.GetComponent<ComponentInventory>().Content)
                 {Padding = new Spacing(4, 4), Dock = Dock.Fill};
 
             _inventoryA.MouseClick += Tranfer;

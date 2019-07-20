@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Hevadea.Entities.Components
 {
-    public class Inventory : EntityComponent, IEntityComponentSaveLoad, IEntityComponentOverlay,
+    public class ComponentInventory : EntityComponent, IEntityComponentSaveLoad, IEntityComponentOverlay,
         IEntityComponentUpdatable
     {
         private Item _lastAdded;
@@ -20,7 +20,7 @@ namespace Hevadea.Entities.Components
         public bool HasPickup => _addedTimer > 0.5f;
         public float PickupOffset = 16f;
 
-        public Inventory(int slotCount)
+        public ComponentInventory(int slotCount)
         {
             Content = new ItemStorage(slotCount);
         }

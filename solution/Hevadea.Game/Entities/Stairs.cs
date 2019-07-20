@@ -18,7 +18,7 @@ namespace Hevadea.Entities
         public Stairs()
         {
             SortingOffset = -16;
-            var interaction = new ComponentInteractable();
+            var interaction = new ComponentInteractive();
             interaction.Interacted +=
                 (sender, arg) =>
                 {

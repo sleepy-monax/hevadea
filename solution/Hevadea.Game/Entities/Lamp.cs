@@ -12,7 +12,7 @@ namespace Hevadea.Entities
         {
             AddComponent(new ComponentMove());
             AddComponent(new ComponentPickupable());
-            AddComponent(new Pushable());
+            AddComponent(new ComponentPushable());
             AddComponent(new RendererSprite(Resources.Sprites["entity/lamp"], new Vector2(0, -3f)));
             AddComponent(new ComponentBreakable());
             AddComponent(new ComponentDropable {Items = {new Drop(ITEMS.LANTERN, 1f, 1, 1)}});

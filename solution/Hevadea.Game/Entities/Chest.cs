@@ -18,16 +18,16 @@ namespace Hevadea.Entities
             AddComponent(new ComponentCollider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new ComponentDropable() {Items = {new Items.Drop(ITEMS.CHEST, 1f, 1, 1)}});
             AddComponent(new ComponentHealth(10));
-            AddComponent(new ComponentInteractable()).Interacted += EntityInteracte;
-            AddComponent(new Inventory(128));
+            AddComponent(new ComponentInteractive()).Interacted += EntityInteracte;
+            AddComponent(new ComponentInventory(128));
             AddComponent(new ComponentMove());
-            AddComponent(new Pushable());
+            AddComponent(new ComponentPushable());
             AddComponent(new ComponentCastShadow());
         }
 
         private void EntityInteracte(object sender, InteractEventArg args)
         {
-            if (args.Entity.HasComponent<Inventory>())
+            if (args.Entity.HasComponent<ComponentInventory>())
                 GameState.CurrentMenu = new MenuChest(args.Entity, this, GameState);
         }
     }

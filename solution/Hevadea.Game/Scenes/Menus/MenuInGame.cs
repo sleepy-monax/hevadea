@@ -38,7 +38,7 @@ namespace Hevadea.Scenes.Menus
                 Content = new WidgetMinimap(gameState),
             };
 
-            var hotBar = new WidgetHotBar(GameState.LocalPlayer.Entity.GetComponent<Inventory>().Content)
+            var hotBar = new WidgetHotBar(GameState.LocalPlayer.Entity.GetComponent<ComponentInventory>().Content)
             {
                 Dock = Dock.Bottom,
                 UnitOffset = new Point(0, -16)

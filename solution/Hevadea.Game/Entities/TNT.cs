@@ -24,7 +24,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentExplosive(false, 10f, 3f));
             AddComponent(new ComponentMove());
             AddComponent(new ComponentPickupable());
-            AddComponent(new Pushable());
+            AddComponent(new ComponentPushable());
             AddComponent(new ComponentCastShadow());
 
             _sprite = Resources.Sprites["entity/tnt"];

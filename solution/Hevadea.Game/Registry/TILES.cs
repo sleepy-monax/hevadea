@@ -90,7 +90,7 @@ namespace Hevadea.Registry
             GRASS.AddTag(new Spread {SpreadChance = 50, SpreadTo = {DIRT}});
 
             IRON_ORE.AddTag(new DroppableTile(new Drop(ITEMS.IRON_ORE, 1f, 1, 2)));
-            IRON_ORE.AddTag(new SolideTile(), new DamageTile {ReplacementTile = DIRT});
+            IRON_ORE.AddTag(new SolideTile(), new DamageTile {ReplacementTile = ROCK});
             IRON_ORE.BlockLineOfSight = true;
 
             ROCK.AddTag(new DroppableTile(new Drop(ITEMS.STONE, 1f, 2, 3), new Drop(ITEMS.COAL, 1f, 0, 2)));

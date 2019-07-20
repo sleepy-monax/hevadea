@@ -21,7 +21,7 @@ namespace Hevadea.Entities
             AddComponent(new ComponentBreakable());
             AddComponent(new ComponentCollider(new Rectangle(-6, -2, 12, 8)));
             AddComponent(new ComponentDropable {Items = {new Drop(ITEMS.CRAFTING_BENCH, 1f, 1, 1)}});
-            AddComponent(new Pushable());
+            AddComponent(new ComponentPushable());
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Hevadea.Entities.Components
         public void Break(Item item = null)
         {
             Owner.GetComponent<ComponentDropable>()?.Drop();
-            if (DropInventory) Owner.GetComponent<Inventory>().Content.DropOnGround(Owner.Level, Owner.X, Owner.Y);
+            if (DropInventory) Owner.GetComponent<ComponentInventory>().Content.DropOnGround(Owner.Level, Owner.X, Owner.Y);
             Owner.Remove();
         }
     }

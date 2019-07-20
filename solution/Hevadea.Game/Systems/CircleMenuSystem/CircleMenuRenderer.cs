@@ -14,14 +14,14 @@ namespace Hevadea.Systems.CircleMenuSystem
 
         public CircleMenuRenderer()
         {
-            Filter.AllOf(typeof(CircleMenu), typeof(Inventory));
+            Filter.AllOf(typeof(CircleMenu), typeof(ComponentInventory));
         }
 
         public override void Draw(Entity entity, LevelSpriteBatchPool pool, GameTime gameTime)
         {
             var center = entity.Position;
             var menu = entity.GetComponent<CircleMenu>();
-            var inventory = entity.GetComponent<Inventory>();
+            var inventory = entity.GetComponent<ComponentInventory>();
 
             var itemCount = inventory.Content.GetStackCount();
 

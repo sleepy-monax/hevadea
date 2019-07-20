@@ -129,16 +129,15 @@ namespace Hevadea.Framework
 
             if (Input.KeyTyped(Keys.F6))
             {
-                Config.UIScaling /= 2f;
+                Config.UIScaling -= 0.1f;
                 Ui.RefreshLayout();
             }
 
             if (Input.KeyTyped(Keys.F7))
             {
-                Config.UIScaling *= 2f;
+                Config.UIScaling += 0.1f;
                 Ui.RefreshLayout();
             }
-
 
             if (Input.KeyTyped(Keys.F8))
             {

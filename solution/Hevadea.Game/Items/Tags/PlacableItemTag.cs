@@ -16,7 +16,7 @@ namespace Hevadea.Items.Tags
 
         public override void InteracteOn(Entity user, Coordinates coords)
         {
-            var inventory = user.GetComponent<Inventory>();
+            var inventory = user.GetComponent<ComponentInventory>();
             var level = user.Level;
 
             var e = user.Level.QueryEntity(coords).FirstOrDefault();
@@ -30,7 +30,7 @@ namespace Hevadea.Items.Tags
 
                 Place(level, coords, user.Facing);
 
-                if (ConsumeItem && user is Player p && p.GetComponent<Inventory>().Content.Count(p.HoldedItem()) == 0)
+                if (ConsumeItem && user is Player p && p.GetComponent<ComponentInventory>().Content.Count(p.HoldedItem()) == 0)
                     p.HoldItem(null);
             }
         }

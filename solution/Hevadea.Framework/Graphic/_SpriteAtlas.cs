@@ -1,4 +1,6 @@
 ﻿using Hevadea.Framework.Extension;
+using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -45,6 +47,38 @@ namespace Hevadea.Framework.Graphic
             InsertSprites(path);
 
             Texture = MonoGameExtension.GetTexture2DFromBitmap(Rise.MonoGame.GraphicsDevice, Bitmap);
+        }
+
+        public _Sprite GetSprite(string name)
+        {
+            if (Sprites.ContainsKey(name))
+            {
+                return Sprites[name];
+            }
+            else
+            {
+                return Sprites["none"];
+            }
+        }
+
+        // FIXME: replace the LikeOperator.LikeString by something in house
+        public List<_Sprite> GetSprites(string name)
+        {
+            var result = new List<_Sprite>();
+            foreach (var kv in Sprites)
+            {
+                if (LikeOperator.LikeString(kv.Key, name, CompareMethod.Text))
+                {
+                    result.Add(kv.Value);
+                }
+            }
+
+            if (result.Count == 0)
+            {
+                result.Add(Sprites["none"]);
+            }
+
+            return result;
         }
 
         private List<_Sprite> InsertSprites(string path)
