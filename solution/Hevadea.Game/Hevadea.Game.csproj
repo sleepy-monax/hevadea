@@ -64,6 +64,7 @@
     <Compile Include="Entities\Components\ComponentExplosive.cs" />
     <Compile Include="Entities\Components\ComponentRideable.cs" />
     <Compile Include="Entities\Components\ComponentRevealMap.cs" />
+    <Compile Include="Entities\Components\ComponentRider.cs" />
     <Compile Include="Entities\Components\EntityExtension.cs" />
     <Compile Include="Entities\Components\RendererCreature.cs" />
     <Compile Include="Entities\Components\Renderer.cs" />

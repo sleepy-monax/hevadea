@@ -54,10 +54,12 @@ namespace Hevadea.Systems.PlayerSystem
                 if (i.KeyDown(Keys.S)) HandleInput(entity, PlayerInput.MoveDown);
             }
 
+
             if (entity.HasComponent<ComponentRideable>())
             {
                 entity.GetComponent<ComponentRideable>().Rider.Position = entity.Position;
                 entity.GetComponent<ComponentRideable>().Rider.Facing = entity.Facing;
+                if (i.KeyTyped(Keys.L)) HandleInput(entity.GetComponent<ComponentRideable>().Rider, PlayerInput.Pickup);
                 return;
             }
 
@@ -65,9 +67,10 @@ namespace Hevadea.Systems.PlayerSystem
             if (i.KeyTyped(Keys.A)) HandleInput(entity, PlayerInput.DropItem);
             if (i.KeyTyped(Keys.Add) || i.KeyTyped(Keys.Up)) HandleInput(entity, PlayerInput.ZoomIn);
             if (i.KeyTyped(Keys.K)) HandleInput(entity, PlayerInput.Action);
-            if (i.KeyTyped(Keys.L)) HandleInput(entity, PlayerInput.Pickup);
             if (i.KeyTyped(Keys.Subtract) || i.KeyTyped(Keys.Down)) HandleInput(entity, PlayerInput.ZoomOut);
             if (i.KeyTyped(Keys.X)) HandleInput(entity, PlayerInput.AddWaypoint);
+            if (i.KeyTyped(Keys.L)) HandleInput(entity, PlayerInput.Pickup);
+
         }
 
         public void HandleInput(Entity player, PlayerInput input)
@@ -108,7 +111,14 @@ namespace Hevadea.Systems.PlayerSystem
                     break;
 
                 case PlayerInput.Pickup:
-                    player.GetComponent<ComponentPickup>().Do();
+                    if (player.IsRiding())
+                    {
+                        player.UnMount();
+                    }
+                    else
+                    {
+                        player.GetComponent<ComponentPickup>().Do();
+                    }
                     break;
 
                 case PlayerInput.DropItem:

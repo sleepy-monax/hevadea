@@ -1,7 +1,8 @@
-﻿using Hevadea.Items;
+﻿using Hevadea.Framework;
+using Hevadea.Framework.Extension;
+using Hevadea.Items;
 using Hevadea.Items.Tags;
-using Microsoft.Xna.Framework;
-using System.IO;
+using System.Collections.Generic;
 
 namespace Hevadea.Entities.Components
 {
@@ -12,12 +13,38 @@ namespace Hevadea.Entities.Components
             entity.GetComponent<ComponentPickup>()?.PickupEntity(target);
         }
 
-        public static void Ride(this Entity entity, Entity ride)
+        public static void Mount(this Entity entity, Entity ride)
         {
             if (ride.HasComponent<ComponentRideable>() && ride.GetComponent<ComponentRideable>().Rider == null)
             {
                 ride.GetComponent<ComponentRideable>().Rider = entity;
                 entity.Remove();
+            }
+        }
+
+        public static void UnMount(this Entity entity)
+        {
+            if (entity.IsRiding())
+            {
+                var ride = entity.GetComponent<ComponentRider>().Ride;
+
+                var safePlaces = new List<Coordinates>();
+
+                foreach (var coords in ride.Level.QueryCoordinates(ride.Position, Game.Unit * 3))
+                {
+                    if (!ride.Level.AnyEntityAt(coords))
+                    {
+                        safePlaces.Add(coords);
+                    }
+                }
+
+                if (safePlaces.Count > 0)
+                {
+                    var unMountPlace = Rise.Rnd.Pick(safePlaces);
+
+                    ride.GetComponent<ComponentRideable>().Rider = null;
+                    ride.Level.AddEntityAt(entity, unMountPlace);
+                }
             }
         }
 
@@ -31,7 +58,7 @@ namespace Hevadea.Entities.Components
                 }
                 else if (target.HasComponent<ComponentRideable>())
                 {
-                    entity.Ride(target);
+                    entity.Mount(target);
                 }
             }
         }
@@ -56,6 +83,11 @@ namespace Hevadea.Entities.Components
             return entity.GetComponent<ComponentPickup>()?.PickedUpEntity != null ||
                    entity.GetComponent<ComponentRideable>()?.Rider != null ||
                    (entity.GetComponent<ComponentInventory>()?.HasPickup ?? false);
+        }
+
+        public static bool IsRiding(this Entity entity)
+        {
+            return entity.GetComponent<ComponentRider>()?.Ride != null;
         }
 
         public static Entity GetHoldedEntity(this Entity entity)
