@@ -67,7 +67,7 @@ namespace Hevadea.Framework.Graphic
             var result = new List<_Sprite>();
             foreach (var kv in Sprites)
             {
-                if (LikeOperator.LikeString(kv.Key, name, CompareMethod.Text))
+                if (kv.Key.StartsWith(name))
                 {
                     result.Add(kv.Value);
                 }

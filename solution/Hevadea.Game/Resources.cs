@@ -69,7 +69,7 @@ namespace Hevadea
         public static void Load()
         {
             MakerLogo = Rise.Resources.GetImage("maker-logo");
-            Sprites = new _SpriteAtlas(512, 512, "assets\\");
+            Sprites = new _SpriteAtlas(512, 512, "assets/");
             Sprites.Bitmap.Save("test.png");
 
 
