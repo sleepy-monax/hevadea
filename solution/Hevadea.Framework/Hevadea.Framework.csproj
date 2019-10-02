@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\..\..\usr\lib\mono\xbuild\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MonoGame.Framework">
