@@ -33,8 +33,8 @@ namespace Hevadea.Framework.Graphic
             }
         }
 
-        private Graphics _graphic;
-        private bool[,] _freeArea;
+        private readonly Graphics _graphic;
+        private readonly bool[,] _freeArea;
 
         public _SpriteAtlas(int width, int height, string path)
         {
@@ -42,6 +42,8 @@ namespace Hevadea.Framework.Graphic
             Bitmap = new Bitmap(width, height);
 
             _graphic = Graphics.FromImage(Bitmap);
+            _graphic.ResetTransform();
+
             _freeArea = new bool[width / CELL_SIZE, height / CELL_SIZE];
 
             InsertSprites(path);
@@ -135,8 +137,8 @@ namespace Hevadea.Framework.Graphic
                     x + Math.Max(1, width / CELL_SIZE) <= Bitmap.Width / CELL_SIZE &&
                     y + Math.Max(1, width / CELL_SIZE) <= Bitmap.Height / CELL_SIZE)
                     for (var xx = 0; xx < Math.Max(1, width / CELL_SIZE); xx++)
-                    for (var yy = 0; yy < Math.Max(1, height / CELL_SIZE); yy++)
-                        isOk = isOk && !_freeArea[x + xx, y + yy];
+                        for (var yy = 0; yy < Math.Max(1, height / CELL_SIZE); yy++)
+                            isOk &= !_freeArea[x + xx, y + yy];
                 else
                     isOk = false;
 
@@ -159,7 +161,7 @@ namespace Hevadea.Framework.Graphic
             var sprite = new _Sprite(this, name, position.X, position.Y, bitmap.Width, bitmap.Height);
             Sprites.Add(name, sprite);
 
-            _graphic.DrawImageUnscaled(bitmap, position);
+            _graphic.DrawImage(bitmap, new Rectangle(position, bitmap.Size));
         }
     }
 }
