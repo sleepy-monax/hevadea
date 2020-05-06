@@ -35,7 +35,7 @@ namespace Hevadea.Entities
 
             AddComponent(new ComponentPickupable());
             AddComponent(new ComponentCastShadow());
-            AddComponent(new RendererCreature(Rise.Rnd.Pick(Resources.Sprites.GetSprites("entity/dog#"))));
+            AddComponent(new RendererCreature(Rise.Rnd.Pick(Resources.Sprites.GetSprites("entity/dog"))));
             AddComponent(new ComponentFlammable());
             AddComponent(new ComponentDropExperience(4));
 
