@@ -40,7 +40,7 @@ namespace Hevadea.Worlds
         public Minimap(Level level)
         {
             Texture = new Texture2D(Rise.MonoGame.GraphicsDevice, level.Width, level.Height);
-            Texture.Clear(Microsoft.Xna.Framework.Color.TransparentBlack);
+            Texture.Clear(Microsoft.Xna.Framework.Color.Transparent);
 
 
             _level = level;

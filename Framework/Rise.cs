@@ -65,7 +65,7 @@ namespace Hevadea.Framework
         {
             _initializeAction = initializeAction;
             _startScene = startScene;
-            GCListener.Start();
+            // GCListener.Start();
             MonoGame.Run();
         }
 

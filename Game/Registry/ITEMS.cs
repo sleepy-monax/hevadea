@@ -55,8 +55,8 @@ namespace Hevadea.Registry
             RAW_FISH = new Item("raw_fish", Resources.Sprites["item/raw_fish"]);
             SAND = new Item("floor_sand", Resources.Sprites["item/floor_sand"]);
             TNT = new Item("tnt", Resources.Sprites["item/tnt"]);
-            TORCH = new Item("torch", Resources.Sprites["item/torch"]);
-            LANTERN = new Item("lamp", Resources.Sprites["item/lamp"]);
+            TORCH = new Item("torch", Resources.Sprites["entity/torch"]);
+            LANTERN = new Item("lantern", Resources.Sprites["item/lantern"]);
 
             STONE = new Item("material_stone", Resources.Sprites["item/material_stone"]);
 
@@ -93,7 +93,8 @@ namespace Hevadea.Registry
             {
                 Action = (user, pos) =>
                 {
-                    foreach (var e in user.Level.QueryEntity(pos)) e.GetComponent<ComponentFlammable>()?.SetInFire();
+                    foreach (var e in user.Level.QueryEntity(pos)) 
+                        e.GetComponent<ComponentFlammable>()?.SetInFire();
                 }
             });
 
